@@ -1,0 +1,87 @@
+name: Deploy Work2Cash Docs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build static docs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare site folder
+        run: |
+          rm -rf _site
+          mkdir -p _site
+
+          cp index.html _site/
+
+          if [ -f 404.html ]; then
+            cp 404.html _site/
+          fi
+
+          if [ -d documents ]; then
+            cp -R documents _site/
+          fi
+
+          if [ -d assets ]; then
+            cp -R assets _site/
+          fi
+
+          touch _site/.nojekyll
+
+      - name: Verify required site files
+        run: |
+          test -f _site/index.html
+          test -f _site/documents/main-enterprise-architecture-v1.html
+
+          echo "Site files prepared for deployment:"
+          find _site -maxdepth 5 -type f | sort
+
+      - name: Verify document guards
+        run: |
+          if [ -f scripts/check-guards.js ]; then
+            node scripts/check-guards.js
+          elif [ -f scripts/apply.guard.js ]; then
+            node scripts/apply.guard.js
+          else
+            echo "No guard verification script found. Skipping."
+          fi
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+          include-hidden-files: true
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
