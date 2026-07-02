@@ -1,5 +1,6 @@
 const PASSWORD_HASH = "d18aee7cb358683c82fbf0996bab3a1149c5884ab28abc011cd0214c996679b6";
-const DESTINATION = "./documents/main-enterprise-architecture-v1.html";
+const SESSION_KEY = "w2c_docs_unlocked";
+const DEFAULT_DESTINATION = "/docs/documents/main-enterprise-architecture-v1.html";
 
 async function sha256(text) {
   const data = new TextEncoder().encode(text);
@@ -10,7 +11,28 @@ async function sha256(text) {
 }
 
 function isUnlocked() {
-  return sessionStorage.getItem("w2c_docs_unlocked") === "true";
+  return sessionStorage.getItem(SESSION_KEY) === "true";
+}
+
+function getSafeDestination() {
+  const params = new URLSearchParams(window.location.search);
+  const next = params.get("next");
+
+  if (!next) {
+    return DEFAULT_DESTINATION;
+  }
+
+  try {
+    const url = new URL(next, window.location.origin);
+
+    if (url.origin === window.location.origin && url.pathname.startsWith("/docs/")) {
+      return url.pathname + url.search + url.hash;
+    }
+  } catch (error) {
+    return DEFAULT_DESTINATION;
+  }
+
+  return DEFAULT_DESTINATION;
 }
 
 async function unlock() {
@@ -20,8 +42,8 @@ async function unlock() {
   const hash = await sha256(passwordInput.value);
 
   if (hash === PASSWORD_HASH) {
-    sessionStorage.setItem("w2c_docs_unlocked", "true");
-    window.location.href = DESTINATION;
+    sessionStorage.setItem(SESSION_KEY, "true");
+    window.location.href = getSafeDestination();
   } else {
     error.textContent = "Incorrect password.";
   }
@@ -34,5 +56,5 @@ document.getElementById("password").addEventListener("keydown", (event) => {
 });
 
 if (isUnlocked()) {
-  window.location.href = DESTINATION;
+  window.location.href = getSafeDestination();
 }
