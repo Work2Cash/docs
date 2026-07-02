@@ -52,15 +52,14 @@ jobs:
         run: |
           test -f _site/index.html
           test -f _site/documents/main-enterprise-architecture-v1.html
+          test -f _site/documents/legal_user_facing_documents_pack_v1.html
 
           echo "Site files prepared for deployment:"
           find _site -maxdepth 5 -type f | sort
 
       - name: Verify document guards
         run: |
-          if [ -f scripts/check-guards.js ]; then
-            node scripts/check-guards.js
-          elif [ -f scripts/apply.guard.js ]; then
+          if [ -f scripts/apply.guard.js ]; then
             node scripts/apply.guard.js
           else
             echo "No guard verification script found. Skipping."
