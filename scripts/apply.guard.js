@@ -2,19 +2,19 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
-const EXCLUDED = new Set(["index.html", "404.html"]);
+const PROTECTED_DIRS = ["documents"];
 const REQUIRED_SCRIPT = "guard.js";
 const GUARD_PATH = path.join(ROOT, "assets", "js", REQUIRED_SCRIPT);
 
 function walk(dir) {
+  if (!fs.existsSync(dir)) {
+    return [];
+  }
+
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const fullPath = path.join(dir, entry.name);
 
     if (entry.isDirectory()) {
-      if (entry.name === ".git" || entry.name === "node_modules") {
-        return [];
-      }
-
       return walk(fullPath);
     }
 
@@ -51,12 +51,10 @@ function secureFile(file) {
 const fixed = [];
 const failed = [];
 
-for (const file of walk(ROOT)) {
-  const relativeFile = path.relative(ROOT, file);
+const protectedFiles = PROTECTED_DIRS.flatMap((dir) => walk(path.join(ROOT, dir)));
 
-  if (EXCLUDED.has(relativeFile)) {
-    continue;
-  }
+for (const file of protectedFiles) {
+  const relativeFile = path.relative(ROOT, file);
 
   try {
     if (secureFile(file)) {
@@ -81,5 +79,5 @@ if (fixed.length > 0) {
     console.log(`- ${file}`);
   }
 } else {
-  console.log("All protected HTML files already include guard.js.");
+  console.log(`Auth guard check passed for ${protectedFiles.length} protected HTML file(s).`);
 }

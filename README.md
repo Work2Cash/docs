@@ -16,6 +16,18 @@ Only the Technical Lead is allowed to edit, push, merge, or publish documentatio
 
 Team members should consume the documents through the GitHub Pages site.
 
+## Legal Documents
+
+The documentation site uses one combined legal document:
+
+- Legal & User-Facing Documents Pack v1
+
+Path:
+
+documents/legal_user_facing_documents_pack_v1.html
+
+This page is protected by the same client-side documentation password gate.
+
 ## Security Notice
 
 This repository is public. The GitHub Pages password gate is for team convenience only and is not a true security boundary.
