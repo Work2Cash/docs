@@ -6,7 +6,6 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <title>Work2Cash - Enterprise Architecture Document v1</title>
-  <script src="../assets/js/guard.js"></script>
   <style>
     :root {
       --brand: #1F6AE1;
@@ -679,6 +678,85 @@
     </div>
   </header>
   <main>
+    <section class="toc" id="team-resources">
+      <div class="eyebrow">Team Documentation Portal</div>
+      <h2>Work2Cash Resource Links</h2>
+      <p class="intro">The GitHub organization uses the public <code>docs</code> repository as the team-facing
+        documentation portal. This resource hub stays at the top of the main architecture document so team members can
+        quickly move between the master source of truth and supporting documents.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Resource</th>
+              <th>Repo Location / Link</th>
+              <th>Status / Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Docs Home / Password Gate</td>
+              <td><a href="../index.html"><code>../index.html</code></a></td>
+              <td>Team landing page with client-side password gate.</td>
+            </tr>
+            <tr>
+              <td>Main Enterprise Architecture v1</td>
+              <td><a
+                  href="./main-enterprise-architecture-v1.html"><code>./main-enterprise-architecture-v1.html</code></a>
+              </td>
+              <td>Primary source of truth for Work2Cash.</td>
+            </tr>
+            <tr>
+              <td>Legal &amp; User-Facing Documents Pack</td>
+              <td><a
+                  href="./legal_user_facing_documents_pack_v1.html"><code>./legal_user_facing_documents_pack_v1.html</code></a>
+              </td>
+              <td>Combined legal pack. Do not publish separate <code>/legal/...</code> pages in the docs repo.</td>
+            </tr>
+            <tr>
+              <td>API &amp; Socket Contract Specification</td>
+              <td><a
+                  href="./api_socket_contract_specification_v1.html"><code>./api_socket_contract_specification_v1.html</code></a>
+              </td>
+              <td>Planned implementation contract for Mobile, Admin, and Backend.</td>
+            </tr>
+            <tr>
+              <td>Data Model &amp; Prisma Schema Planning</td>
+              <td><a
+                  href="./data_model_prisma_schema_planning_v1.html"><code>./data_model_prisma_schema_planning_v1.html</code></a>
+              </td>
+              <td>Planned database, entities, enums, relationships, indexes, and ledger rules.</td>
+            </tr>
+            <tr>
+              <td>Provider Integration &amp; Cost Control</td>
+              <td><a
+                  href="./provider_integration_cost_control_v1.html"><code>./provider_integration_cost_control_v1.html</code></a>
+              </td>
+              <td>Planned provider register, costs, fallbacks, and usage guardrails.</td>
+            </tr>
+            <tr>
+              <td>Build / Implementation Execution Plan</td>
+              <td><a
+                  href="./build_implementation_execution_plan_v1.html"><code>./build_implementation_execution_plan_v1.html</code></a>
+              </td>
+              <td>Planned team-by-team execution plan and delivery sequence.</td>
+            </tr>
+            <tr>
+              <td>QA / Go-Live Readiness Checklist</td>
+              <td><a
+                  href="./qa_go_live_readiness_checklist_v1.html"><code>./qa_go_live_readiness_checklist_v1.html</code></a>
+              </td>
+              <td>Planned launch gate checklist and acceptance criteria.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout amber"><strong>Access Notice</strong>
+        <p>The GitHub Pages password gate is a soft team-convenience guard only. The repository is public, so no
+          secrets, credentials, API keys, production data, private user data, sensitive payment data, or confidential
+          operational secrets should be stored in the repo.</p>
+      </div>
+    </section>
     <section class="toc">
       <div class="eyebrow">Contents</div>
       <h2>Architecture Document Index</h2>
@@ -717,8 +795,9 @@
       <div class="callout blue"><strong>Document Authority</strong>
         <p>This Main Enterprise Architecture Document is the primary source of truth for Work2Cash product behavior,
           system boundaries, engineering standards, provider strategy, operational controls, launch readiness, and
-          follow-up documents. If a later implementation document conflicts with this document, this document should be
-          treated as the baseline until formally revised.</p>
+          follow-up documents. The team-facing published copy lives in the GitHub <code>docs</code> repository at
+          <code>documents/main-enterprise-architecture-v1.html</code>. If a later implementation document conflicts with
+          this document, this document should be treated as the baseline until formally revised.</p>
       </div>
       <div class="table-wrap">
         <table>
@@ -3588,6 +3667,222 @@ Tasker wallet:
       <p class="intro">Reference lists for document assembly, legal URLs, glossary, acronyms, and implementation
         handover. The glossary explains product terms and shortened technical terms used throughout the architecture.
       </p>
+      <h3>GitHub Documentation Repository Governance</h3>
+      <div class="callout blue"><strong>Team-Facing Source of Truth</strong>
+        <p>The Work2Cash GitHub organization contains a public repository named <code>docs</code>. This repository is
+          the team-facing documentation portal. Generated documents should be added to the <code>docs</code> repo and
+          linked from this Main Enterprise Architecture document.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Decision</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Repository</td>
+              <td>GitHub organization repository named <code>docs</code>.</td>
+            </tr>
+            <tr>
+              <td>GitHub Pages</td>
+              <td>Enabled and configured to deploy from GitHub Actions, not from a direct branch/folder source.</td>
+            </tr>
+            <tr>
+              <td>Deployment artifact</td>
+              <td>The custom workflow builds a clean <code>_site</code> folder and uploads only the publishable site
+                output.</td>
+            </tr>
+            <tr>
+              <td>Published files</td>
+              <td>The workflow copies <code>index.html</code>, <code>documents/</code>, <code>assets/</code>, and
+                optional <code>404.html</code>.</td>
+            </tr>
+            <tr>
+              <td>Main entry document</td>
+              <td><code>documents/main-enterprise-architecture-v1.html</code>.</td>
+            </tr>
+            <tr>
+              <td>Combined legal pack</td>
+              <td><code>documents/legal_user_facing_documents_pack_v1.html</code>.</td>
+            </tr>
+            <tr>
+              <td>Main v1 legal reference</td>
+              <td>The main architecture document must link to <code>./legal_user_facing_documents_pack_v1.html</code>.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Documentation Portal Access Model</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Control</th>
+              <th>Rule</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Password gate</td>
+              <td><code>index.html</code> is the password gate landing page.</td>
+            </tr>
+            <tr>
+              <td>Password storage</td>
+              <td>Raw passwords must not be committed. The gate uses client-side SHA-256 hash comparison.</td>
+            </tr>
+            <tr>
+              <td>Session behavior</td>
+              <td>Unlock state is stored in <code>sessionStorage</code>, so a new browser session requires password
+                entry again.</td>
+            </tr>
+            <tr>
+              <td>Direct document guard</td>
+              <td>Protected HTML pages inside <code>documents/</code> must include
+                <code>&lt;script src="../assets/js/auth-guard.js"&gt;&lt;/script&gt;</code>.</td>
+            </tr>
+            <tr>
+              <td>Return path</td>
+              <td>The guard preserves the originally requested URL with a <code>next</code> query parameter and
+                redirects the user after successful password entry.</td>
+            </tr>
+            <tr>
+              <td>Security limitation</td>
+              <td>The GitHub Pages guard is a soft/team-convenience control only because the site and repository are
+                public.</td>
+            </tr>
+            <tr>
+              <td>Forbidden content</td>
+              <td>No secrets, API keys, production credentials, private user data, sensitive payment data, confidential
+                operational secrets, or production records should be stored in the repo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Guard Checker and Deployment Gate</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Required Behavior</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Guard checker script</td>
+              <td><code>scripts/check-guards.js</code> should recursively scan <code>documents/</code>.</td>
+            </tr>
+            <tr>
+              <td>Protected page check</td>
+              <td>Every protected <code>.html</code> file under <code>documents/</code> must contain
+                <code>auth-guard.js</code>.</td>
+            </tr>
+            <tr>
+              <td>Excluded files</td>
+              <td>Root <code>index.html</code> and optional root <code>404.html</code> are excluded from protected
+                document checks.</td>
+            </tr>
+            <tr>
+              <td>Workflow gate</td>
+              <td>The GitHub Pages workflow must run <code>scripts/check-guards.js</code> before uploading the Pages
+                artifact.</td>
+            </tr>
+            <tr>
+              <td>Deployment folder</td>
+              <td>The workflow should deploy from a clean <code>_site</code> folder only, not by uploading the whole
+                repository.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Documentation Repo Edit Governance</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Governance Area</th>
+              <th>Decision</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Editor</td>
+              <td>Only the Technical Lead should edit, push, merge, or publish documentation changes.</td>
+            </tr>
+            <tr>
+              <td>Team access</td>
+              <td>Other team members consume documentation through GitHub Pages and should have no write access or
+                read-only access where needed.</td>
+            </tr>
+            <tr>
+              <td>Technical Lead access</td>
+              <td>Technical Lead should have Admin or Maintain access.</td>
+            </tr>
+            <tr>
+              <td>Main branch</td>
+              <td><code>main</code> should be protected with GitHub rulesets.</td>
+            </tr>
+            <tr>
+              <td>Merge model</td>
+              <td>Changes enter <code>main</code> through pull requests. No direct push to <code>main</code>.</td>
+            </tr>
+            <tr>
+              <td>Approvals</td>
+              <td>No required approval from another reviewer when the Technical Lead is the only editor, because authors
+                cannot approve their own PRs.</td>
+            </tr>
+            <tr>
+              <td>Bypass</td>
+              <td>No bypass should be required for normal documentation publishing.</td>
+            </tr>
+            <tr>
+              <td>Restrict updates</td>
+              <td>Avoid enabling “Restrict updates” unless bypass is intentionally used.</td>
+            </tr>
+            <tr>
+              <td>CODEOWNERS</td>
+              <td><code>CODEOWNERS</code> should point all repository files to the Technical Lead.</td>
+            </tr>
+            <tr>
+              <td>Commit discipline</td>
+              <td>No stacked documentation commits. Commits should be one clear documentation update at a time.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Documentation Commit Examples</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Commit</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>docs(site): guard direct documentation page access</code></td>
+              <td>Add or update direct page protection.</td>
+            </tr>
+            <tr>
+              <td><code>ci(pages): add custom GitHub Pages deployment</code></td>
+              <td>Add or update the GitHub Pages deployment workflow.</td>
+            </tr>
+            <tr>
+              <td><code>docs(legal): publish combined legal documents pack</code></td>
+              <td>Publish the combined legal pack.</td>
+            </tr>
+            <tr>
+              <td><code>docs(architecture): update main v1 legal references</code></td>
+              <td>Update architecture references to supporting documents.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <h3>Document Assembly Plan</h3>
       <div class="table-wrap">
         <table>
@@ -3595,85 +3890,89 @@ Tasker wallet:
             <tr>
               <th>Order</th>
               <th>Document</th>
+              <th>Repo Path</th>
+              <th>Status / Note</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
               <td>Main Enterprise Architecture Document</td>
+              <td><code>documents/main-enterprise-architecture-v1.html</code></td>
+              <td>Primary source of truth.</td>
             </tr>
             <tr>
               <td>2</td>
-              <td>API &amp; Socket Contract Specification</td>
+              <td>Legal &amp; User-Facing Documents Pack</td>
+              <td><code>documents/legal_user_facing_documents_pack_v1.html</code></td>
+              <td>Combined legal pack file. Separate <code>/legal/...</code> pages are not used in the docs repo.</td>
             </tr>
             <tr>
               <td>3</td>
-              <td>Data Model &amp; Prisma Schema Planning Document</td>
+              <td>API &amp; Socket Contract Specification</td>
+              <td><code>documents/api_socket_contract_specification_v1.html</code></td>
+              <td>Planned supporting document.</td>
             </tr>
             <tr>
               <td>4</td>
-              <td>Provider Integration &amp; Cost Control Document</td>
+              <td>Data Model &amp; Prisma Schema Planning Document</td>
+              <td><code>documents/data_model_prisma_schema_planning_v1.html</code></td>
+              <td>Planned supporting document.</td>
             </tr>
             <tr>
               <td>5</td>
-              <td>Build / Implementation Execution Plan</td>
+              <td>Provider Integration &amp; Cost Control Document</td>
+              <td><code>documents/provider_integration_cost_control_v1.html</code></td>
+              <td>Planned supporting document.</td>
             </tr>
             <tr>
               <td>6</td>
-              <td>QA / Go-Live Readiness Checklist</td>
+              <td>Build / Implementation Execution Plan</td>
+              <td><code>documents/build_implementation_execution_plan_v1.html</code></td>
+              <td>Planned supporting document.</td>
             </tr>
             <tr>
               <td>7</td>
-              <td>Legal &amp; User-Facing Documents Pack regeneration</td>
+              <td>QA / Go-Live Readiness Checklist</td>
+              <td><code>documents/qa_go_live_readiness_checklist_v1.html</code></td>
+              <td>Planned supporting document.</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <h3>Legal &amp; User-Facing Documents</h3>
-      <ul>
-        <li><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a></li>
-      </ul>
-      <h3>Public Legal URLs</h3>
+      <h3>Combined Legal Pack Publishing Decision</h3>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Document</th>
-              <th>URL</th>
+              <th>Item</th>
+              <th>Decision</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Terms of Service</td>
-              <td>https://work2cash.ng/legal/terms</td>
+              <td>Publishing model</td>
+              <td>Use one combined legal pack file inside <code>documents/</code>.</td>
             </tr>
             <tr>
-              <td>Privacy Policy</td>
-              <td>https://work2cash.ng/legal/privacy</td>
+              <td>Final repo location</td>
+              <td><code>documents/legal_user_facing_documents_pack_v1.html</code>.</td>
             </tr>
             <tr>
-              <td>Tasker Agreement</td>
-              <td>https://work2cash.ng/legal/tasker-agreement</td>
+              <td>Main architecture link</td>
+              <td><code>./legal_user_facing_documents_pack_v1.html</code>.</td>
             </tr>
             <tr>
-              <td>Cancellation &amp; Refund Policy</td>
-              <td>https://work2cash.ng/legal/cancellation-refund</td>
+              <td>Separate legal pages</td>
+              <td>Do not publish separate docs repo pages under <code>/legal/terms</code>, <code>/legal/privacy</code>,
+                <code>/legal/tasker-agreement</code>, <code>/legal/cancellation-refund</code>,
+                <code>/legal/safety</code>, <code>/legal/kyc-consent</code>, <code>/legal/location</code>, or
+                <code>/legal/payment-wallet</code>.</td>
             </tr>
             <tr>
-              <td>Community &amp; Safety Guidelines</td>
-              <td>https://work2cash.ng/legal/safety</td>
-            </tr>
-            <tr>
-              <td>KYC Consent Notice</td>
-              <td>https://work2cash.ng/legal/kyc-consent</td>
-            </tr>
-            <tr>
-              <td>Location Permission Notice</td>
-              <td>https://work2cash.ng/legal/location</td>
-            </tr>
-            <tr>
-              <td>Payment &amp; Wallet Terms</td>
-              <td>https://work2cash.ng/legal/payment-wallet</td>
+              <td>Legal review</td>
+              <td>The combined legal pack remains subject to legal counsel review before public/customer-facing
+                production publication.</td>
             </tr>
           </tbody>
         </table>
@@ -3844,10 +4143,12 @@ Tasker wallet:
       </div>
       <div>
         <h4>Status</h4>
-        <p>HTML master architecture draft. Legal pack regeneration comes after architecture sign-off.</p>
+        <p>HTML master architecture document. Published through the GitHub docs repository with supporting documents
+          linked from the resource hub.</p>
       </div>
     </div>
   </footer>
+  <script src="../assets/js/auth-guard.js"></script>
 </body>
 
 </html>
