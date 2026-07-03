@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="../assets/js/guard.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work2Cash - Data Model & Prisma Schema Execution Baseline v1</title>
+  <style>
+    :root {
+      --brand:#1F6AE1;
+      --brand-mid:#5B8DEF;
+      --brand-soft:#EAF2FF;
+      --header:#0F2A44;
+      --text:#1D2939;
+      --muted:#667085;
+      --success:#12B76A;
+      --warning:#FF8A00;
+      --danger:#F04438;
+      --line:#D8E2F1;
+      --bg:#F6F9FE;
+      --paper:#FFFFFF;
+      --soft:#F9FBFF;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      font-family: Inter, "Nunito Sans", Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.68;
+      -webkit-font-smoothing:antialiased;
+    }
+    a { color:var(--brand); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    code {
+      font-family:"SFMono-Regular", Consolas, monospace;
+      background:#EEF4FF;
+      border:1px solid #CFE0FF;
+      padding:2px 6px;
+      border-radius:6px;
+      font-size:.92em;
+    }
+    pre {
+      margin:0;
+      padding:18px;
+      overflow:auto;
+      background:#FAFCFF;
+      font-family:"SFMono-Regular", Consolas, monospace;
+      font-size:12px;
+      line-height:1.62;
+      color:#334155;
+    }
+    .cover {
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:64px clamp(24px, 6vw, 88px);
+      color:white;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(91,141,239,.65), transparent 25rem),
+        radial-gradient(circle at 85% 80%, rgba(18,183,106,.22), transparent 28rem),
+        linear-gradient(135deg, #0F2A44 0%, #123B78 58%, #1F6AE1 115%);
+    }
+    .brand-row { display:flex; gap:16px; align-items:center; }
+    .logo {
+      width:62px; height:62px; border-radius:16px; background:white; color:var(--brand);
+      display:grid; place-items:center; font-weight:900; font-size:20px;
+      box-shadow:0 18px 40px rgba(0,0,0,.18);
+    }
+    .brand-row strong { display:block; font-size:18px; }
+    .brand-row span { display:block; color:rgba(255,255,255,.74); font-size:14px; }
+    .cover-main { max-width:1080px; padding:70px 0; }
+    .label { color:#CFE0FF; text-transform:uppercase; letter-spacing:.16em; font-size:12px; font-weight:800; }
+    h1 { font-size:clamp(44px, 8vw, 84px); line-height:1; margin:18px 0; letter-spacing:-.04em; }
+    .cover-subtitle { font-size:clamp(20px, 3vw, 30px); color:rgba(255,255,255,.84); max-width:920px; font-weight:700; }
+    .meta-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:14px; margin-top:38px; max-width:980px; }
+    .meta-card {
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.12);
+      border-radius:14px;
+      padding:16px;
+      backdrop-filter:blur(10px);
+    }
+    .meta-card span { display:block; color:rgba(255,255,255,.64); font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:800; }
+    .meta-card strong { display:block; margin-top:5px; color:#fff; }
+    .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+    .badge { border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.1); border-radius:999px; padding:7px 13px; font-size:12px; font-weight:800; }
+    .cover-foot { border-top:1px solid rgba(255,255,255,.18); padding-top:24px; display:flex; justify-content:space-between; gap:24px; color:rgba(255,255,255,.66); font-size:13px; }
+    .sticky {
+      position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); backdrop-filter:blur(12px);
+      border-bottom:2px solid var(--brand);
+    }
+    .sticky-inner { max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:12px 24px; }
+    .sticky strong { color:var(--header); }
+    .sticky nav { display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end; }
+    .sticky a { font-size:12px; font-weight:800; }
+    main { max-width:1240px; margin:0 auto; padding:44px 24px 80px; }
+    .toc, .section {
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:clamp(24px, 4vw, 44px);
+      margin-bottom:28px;
+      box-shadow:0 18px 50px rgba(15,42,68,.07);
+    }
+    .toc h2, .section h2 { color:var(--header); font-size:clamp(30px, 4vw, 46px); line-height:1.08; margin:6px 0 12px; letter-spacing:-.025em; }
+    .toc-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; margin-top:22px; }
+    .toc-grid a { padding:14px 16px; border-radius:12px; border:1px solid var(--line); background:var(--brand-soft); color:var(--header); font-weight:900; }
+    .section-num { color:#CBD5E1; font-size:13px; font-weight:900; }
+    .eyebrow { color:var(--brand); text-transform:uppercase; letter-spacing:.14em; font-size:12px; font-weight:900; }
+    .intro { color:var(--muted); font-size:16px; max-width:920px; margin-bottom:28px; }
+    h3 { color:var(--header); font-size:23px; margin:34px 0 14px; padding-bottom:8px; border-bottom:2px solid #E6EEF9; }
+    h4 { color:var(--header); font-size:17px; margin:20px 0 8px; }
+    p { margin:0 0 14px; }
+    ul { padding-left:22px; margin:10px 0 20px; }
+    li { margin:6px 0; }
+    .card-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; margin:22px 0; }
+    .card { border:1px solid var(--line); background:var(--soft); border-radius:14px; padding:18px; }
+    .card span { color:var(--brand); font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:900; }
+    .card h4 { margin:6px 0 7px; }
+    .card p { color:var(--muted); font-size:14px; margin:0; }
+    .callout { border-radius:14px; padding:18px 20px; margin:22px 0; border-left:5px solid var(--brand); background:var(--brand-soft); }
+    .callout strong { display:block; color:var(--brand); text-transform:uppercase; letter-spacing:.1em; font-size:11px; margin-bottom:5px; }
+    .callout p { margin:0; }
+    .callout.green { border-color:var(--success); background:#ECFDF3; }
+    .callout.green strong { color:var(--success); }
+    .callout.amber { border-color:var(--warning); background:#FFF7E8; }
+    .callout.amber strong { color:var(--warning); }
+    .callout.red { border-color:var(--danger); background:#FFF1F0; }
+    .callout.red strong { color:var(--danger); }
+    .table-wrap { overflow:auto; border:1px solid var(--line); border-radius:14px; margin:22px 0; }
+    table { width:100%; border-collapse:collapse; min-width:920px; font-size:13.5px; }
+    th { background:var(--header); color:white; padding:12px 14px; text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+    td { padding:12px 14px; border-bottom:1px solid #EEF2F8; vertical-align:top; color:#344054; }
+    tr:nth-child(even) td { background:#FAFCFF; }
+    tr:last-child td { border-bottom:0; }
+    .pill { display:inline-block; padding:4px 10px; border-radius:999px; font-size:11px; font-weight:900; white-space:nowrap; }
+    .blue { background:var(--brand-soft); color:var(--brand); }
+    .green-pill { background:#ECFDF3; color:var(--success); }
+    .amber-pill { background:#FFF7E8; color:var(--warning); }
+    .red-pill { background:#FFF1F0; color:var(--danger); }
+    .diagram { border:1px solid var(--line); border-radius:16px; overflow:hidden; margin:24px 0; background:#fff; }
+    .diagram-head { background:linear-gradient(135deg, var(--header), #174078); color:white; padding:14px 18px; display:flex; justify-content:space-between; gap:16px; align-items:center; }
+    .diagram-head h4 { margin:0; color:white; }
+    .diagram-head span { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:#DCE9FF; font-weight:900; }
+    .diagram p { padding:14px 18px; border-top:1px solid var(--line); margin:0; color:var(--muted); font-size:13px; }
+    .code-block { border:1px solid var(--line); border-radius:14px; overflow:hidden; margin:18px 0 24px; background:#fff; }
+    .code-title { background:#F8FBFF; border-bottom:1px solid var(--line); padding:10px 14px; color:var(--header); font-weight:900; font-size:12px; }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:18px 0; }
+    .checklist { list-style:none; padding:0; }
+    .checklist li { border-bottom:1px solid #EEF2F8; padding:9px 0 9px 30px; position:relative; }
+    .checklist li::before { content:"OK"; position:absolute; left:0; top:10px; color:var(--brand); font-size:10px; font-weight:900; }
+    footer { background:var(--header); color:#D0D5DD; padding:34px 24px; }
+    .footer-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    footer h4 { color:white; margin-top:0; }
+    footer p, footer li { color:#CBD5E1; font-size:13px; }
+    @media (max-width:900px) {
+      .meta-grid, .card-grid, .toc-grid, .footer-inner, .two-col { grid-template-columns:1fr; }
+      .cover-foot, .sticky-inner { flex-direction:column; align-items:flex-start; }
+      .sticky { position:static; }
+      table { min-width:820px; }
+    }
+    @media print {
+      .sticky { display:none; }
+      .cover { min-height:auto; page-break-after:always; }
+      .section { page-break-inside:avoid; box-shadow:none; }
+      body { background:white; }
+    }
+</style>
+</head>
+<body>
+  <section class="cover">
+    <div class="brand-row">
+      <div class="logo">W2C</div>
+      <div><strong>Work2Cash</strong><span>Data Model & Prisma Schema Execution Baseline</span></div>
+    </div>
+    <div class="cover-main">
+      <div class="label">Document 7</div>
+      <h1>Data Model & Prisma Schema Execution Baseline</h1>
+      <div class="cover-subtitle">Execution-grade source of truth for Work2Cash PostgreSQL and Prisma implementation, covering users, tasks, wallets, escrow, communication, risk, admin operations, providers and auditability.</div>
+      <div class="meta-grid">
+        <div class="meta-card"><span>Project</span><strong>Work2Cash</strong></div>
+        <div class="meta-card"><span>Version</span><strong>1.0</strong></div>
+        <div class="meta-card"><span>Date</span><strong>3 July 2026</strong></div>
+        <div class="meta-card"><span>Classification</span><strong>Investor Ready</strong></div>
+        <div class="meta-card"><span>Database</span><strong>PostgreSQL</strong></div>
+        <div class="meta-card"><span>ORM</span><strong>Prisma</strong></div>
+        <div class="meta-card"><span>Architecture</span><strong>NestJS Hexagonal</strong></div>
+        <div class="meta-card"><span>Currency Storage</span><strong>Minor Units</strong></div>
+      </div>
+      <div class="badges">
+        <span class="badge">Prisma Execution</span>
+        <span class="badge">PostgreSQL</span>
+        <span class="badge">Wallet Ledger</span>
+        <span class="badge">Task State Machine</span>
+        <span class="badge">Auditability</span>
+      </div>
+    </div>
+    <div class="cover-foot">
+      <div>Source of truth: Enterprise Architecture v1, API & Socket Contract v1, Mobile/Admin Flow Catalogues.</div>
+      <div>Target repo location: documents/data-model-prisma-schema-planning-v1.html</div>
+    </div>
+  </section>
+
+  <header class="sticky">
+    <div class="sticky-inner">
+      <strong>Work2Cash Data Model & Prisma Execution v1</strong>
+      <nav>
+        <a href="#domain-map">Domains</a>
+        <a href="#entities">Entities</a>
+        <a href="#traceability">Traceability</a>
+        <a href="#prisma">Prisma</a>
+        <a href="#finance">Finance</a>
+        <a href="#codex">Codex</a>
+        <a href="#migration">Migration</a>
+      </nav>
+    </div>
+  </header>
+
+
+<style id="work2cash-doc-nav-style">
+  .doc-hub-nav {
+    max-width: 1240px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads {
+    max-width: 1240px;
+    margin: 16px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads-card {
+    border: 1px solid #CFE0FF;
+    background: #EAF2FF;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.06);
+  }
+  .team-downloads-card strong {
+    display: block;
+    color: #0F2A44;
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .team-downloads-card p {
+    margin: 0 0 12px;
+    color: #667085;
+    font-size: 13px;
+  }
+  .team-downloads-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .team-downloads-links a {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #1F6AE1;
+    background: #FFFFFF;
+    color: #1F6AE1;
+    border-radius: 999px;
+    padding: 9px 13px;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-card {
+    border: 1px solid #D8E2F1;
+    background: #FFFFFF;
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.07);
+    padding: 18px;
+  }
+  .doc-hub-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .doc-hub-top strong {
+    color: #0F2A44;
+    font-size: 16px;
+  }
+  .doc-hub-top a {
+    color: #1F6AE1;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .doc-hub-links a {
+    border: 1px solid #D8E2F1;
+    background: #EAF2FF;
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #0F2A44;
+    font-weight: 850;
+    font-size: 12px;
+    line-height: 1.35;
+    text-decoration: none;
+  }
+  .doc-hub-links a[aria-current="page"] {
+    background: #1F6AE1;
+    color: #FFFFFF;
+    border-color: #1F6AE1;
+  }
+  .doc-hub-links a:hover { text-decoration: underline; }
+  @media (max-width: 980px) {
+    .doc-hub-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 620px) {
+    .doc-hub-nav { padding: 0 16px; }
+    .doc-hub-card { border-radius: 14px; padding: 14px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .doc-hub-links { grid-template-columns: 1fr; }
+    .team-downloads { padding: 0 16px; }
+    .team-downloads-card { border-radius: 14px; padding: 14px; }
+  }
+</style>
+
+<nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
+  <div class="doc-hub-card">
+    <div class="doc-hub-top">
+      <strong>Work2Cash Documentation</strong>
+      <a href="../index.html">Back to document portal</a>
+    </div>
+    <div class="doc-hub-links">
+      <a href="./main-enterprise-architecture-v1.html">Main Enterprise Architecture v1</a><a href="./screen-to-feature-map-v1.html">Screen To Feature Map</a><a href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a href="./flow-alignment-review-v1.html">Flow Alignment Review v1</a><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a><a href="./api-socket-contract-specification-v1.html">API &amp; Socket Contract Specification v1</a><a href="./data-model-prisma-schema-planning-v1.html" aria-current="page">Data Model &amp; Prisma Schema Planning v1</a><a href="./provider-integration-cost-control-v1.html">Provider Integration &amp; Cost Control v1</a><a href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html">Admin Build Plan v1</a><a href="./build-plan-backend-v1.html">Backend Build Plan v1</a><a href="./qa-go-live-readiness-checklist-v1.html">QA / Go-Live Readiness Checklist v1</a>
+    </div>
+  </div>
+</nav>
+
+
+  <main>
+    <section class="toc">
+      <div class="eyebrow">Navigation</div>
+      <h2>Document Contents</h2>
+      <p class="intro">This document translates Work2Cash product and API decisions into an execution baseline for database and Prisma implementation. Future Codex prompts should treat the models, relationships, constraints, ownership rules and traceability tables here as implementation requirements unless the architecture source of truth is formally revised.</p>
+      <div class="toc-grid"><a href="#scope">01. How To Use This Document</a><a href="#principles">02. Data Architecture Principles</a><a href="#domain-map">03. Domain Model Map</a><a href="#entities">04. Core Entity Catalogue</a><a href="#traceability">05. API-To-Model Traceability</a><a href="#ownership">06. Backend Module Ownership</a><a href="#enums">07. Enum And State Catalogue</a><a href="#prisma">08. Prisma Schema Execution Baseline</a><a href="#relationships">09. Relationships And Ownership</a><a href="#indexes">10. Indexes, Constraints And Idempotency</a><a href="#finance">11. Finance And Ledger Model</a><a href="#privacy">12. Privacy, Retention And Access Control</a><a href="#migration">13. Migration And Seed Plan</a><a href="#prisma-rules">14. Prisma Implementation Rules</a><a href="#codex">15. Codex Execution Instructions</a><a href="#handover">16. Implementation Checklist</a></div>
+    </section>
+
+    <section id="scope" class="section">
+      <div class="section-num">01</div>
+      <div class="eyebrow">Scope</div>
+      <h2>How To Use This Document</h2>
+      <p class="intro">Use this document to align backend, mobile, admin, QA and operations on what the database must remember. The API contract describes what clients call. This data model document describes what must be persisted to make those contracts reliable, auditable and recoverable.</p>
+      <div class="card-grid">
+        <div class="card"><span>Backend</span><h4>Prisma baseline</h4><p>Use this as the starting point for schema.prisma, migrations, repositories and use case persistence boundaries.</p></div>
+        <div class="card"><span>Mobile/Admin</span><h4>State expectations</h4><p>Use model ownership to understand what can be recovered after login, app resume, payment return and socket reconnect.</p></div>
+        <div class="card"><span>QA/Ops</span><h4>Audit paths</h4><p>Use the entity and state tables to build test cases for idempotency, reports, payouts, support and admin actions.</p></div>
+      </div>
+      <div class="callout amber"><strong>Execution boundary</strong><p>This is not the generated application <code>schema.prisma</code> file, but it is the execution baseline for producing it. Codex should preserve these models, relationships, constraints, states and audit rules unless an implementation blocker is documented and approved.</p></div>
+    </section>
+
+    <section id="principles" class="section">
+      <div class="section-num">02</div>
+      <div class="eyebrow">Principles</div>
+      <h2>Data Architecture Principles</h2>
+      <div class="table-wrap"><table><thead><tr><th>Principle</th><th>Decision</th><th>Reason</th></tr></thead><tbody><tr><td>Unified user</td><td>One User table supports both Task Owner and Tasker behavior.</td><td>A Nigerian gig user can hire on one day and earn on another.</td></tr><tr><td>Separate wallets</td><td>Task Owner and Tasker wallets are separate Wallet records.</td><td>Task Owner wallet cannot withdraw directly; Tasker wallet supports withdrawals.</td></tr><tr><td>Money in minor units</td><td>Store money as kobo using BigInt fields such as amountKobo and balanceKobo.</td><td>Avoids floating point errors and supports precise ledger reconciliation.</td></tr><tr><td>State history</td><td>Important state transitions write event/history records.</td><td>Admin, support and QA need full timeline for disputes and reconciliation.</td></tr><tr><td>Provider idempotency</td><td>Provider webhook/event IDs and internal idempotency keys must be unique.</td><td>Prevents duplicate payment, ledger, payout and KYC processing.</td></tr><tr><td>Privacy by design</td><td>Exact address, media URLs, real phone numbers, KYC payloads and provider secrets are access-controlled.</td><td>Protects user trust and legal posture.</td></tr><tr><td>Socket is not source of truth</td><td>Socket messages/tracking are persisted or recoverable through REST-backed tables.</td><td>App reconnect must rebuild authoritative state from database.</td></tr><tr><td>Audit high-risk operations</td><td>Admin, finance, risk, KYC and security decisions write AdminAuditLog or equivalent.</td><td>Required for controlled operations and investor-ready governance.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="domain-map" class="section">
+      <div class="section-num">03</div>
+      <div class="eyebrow">Domains</div>
+      <h2>Domain Model Map</h2>
+      <p class="intro">Work2Cash should be implemented as modular persistence boundaries that match backend use cases. Prisma models can live in one schema file at first, but code ownership should remain domain-based.</p>
+      <div class="table-wrap"><table><thead><tr><th>Domain</th><th>Primary Models</th><th>Supports</th></tr></thead><tbody><tr><td>Identity and Access</td><td>User, credentials, social accounts, OTP, sessions, devices, security PIN, notification preferences.</td><td>Auth, login recovery, sensitive action confirmation, device/session management.</td></tr><tr><td>Tasker Activation</td><td>TaskerProfile, KycVerification, KycAttempt, TaskerPreference, payout readiness flags.</td><td>Smile ID KYC, tasker profile completion, availability lock/unlock.</td></tr><tr><td>Catalog and Coverage</td><td>TaskCategory, TaskType, ServiceZone, PlatformCoverageRule, RemoteConfig.</td><td>Task category selection, Nigeria-only task site validation, admin catalog controls.</td></tr><tr><td>Task Marketplace</td><td>Task, TaskLocation, TaskMedia, TaskInterest, DirectTaskOffer, TaskStatusEvent, TaskOwnerRejection, TaskEtaSnapshot.</td><td>Post task, public discovery, direct favorite offer, Tasker acceptance, execution state machine.</td></tr><tr><td>Wallet, Escrow and Payout</td><td>Wallet, WalletLedgerEntry, Payment, PaymentAttempt, Escrow, WithdrawalRequest, PayoutAccount, PayoutBatch, PayoutBatchItem, TaskSettlementHold.</td><td>Cardless payment, escrow, commission, withdrawal batches on 14th and 28th.</td></tr><tr><td>Communication</td><td>ChatMessage, SupportSession, SupportMessage, TaskCallSession, CommunicationAuditLog.</td><td>Task chat, support live chat, voice note metadata, masked calls, off-platform leakage monitoring.</td></tr><tr><td>Risk and Trust</td><td>TaskReport, Warning, Strike, RiskFlag, TrustScoreEvent, Rating, ReviewModeration.</td><td>Cancellations, no-shows, reports/disputes, penalties, ratings, account suspension.</td></tr><tr><td>Admin and Operations</td><td>AdminUser, AdminRole, AdminPermission, AdminSession, AdminTotpCredential, AdminAuditLog, UseCaseExecutionLog.</td><td>Admin TOTP, RBAC, audit, use-case health dashboard, operations monitoring.</td></tr><tr><td>Provider and Jobs</td><td>ProviderWebhookEvent, OutboxEvent, QueueJobAudit, ProviderRequestLog.</td><td>Paystack, Moniepoint, Smile ID, masked call provider, idempotency and worker observability.</td></tr></tbody></table></div>
+      
+    <div class="diagram">
+      <div class="diagram-head"><h4>High-Level Data Relationship Map</h4><span>Domain ERD</span></div>
+      <pre>User
+  +-- UserCredential / SocialAccount / UserSession / SecurityPinCredential
+  +-- TaskerProfile
+  |     +-- KycVerification / KycAttempt / PayoutAccount
+  +-- Wallet[TASK_OWNER]
+  +-- Wallet[TASKER]
+  +-- owned Task[]
+
+Task
+  +-- TaskLocation
+  +-- TaskMedia[]
+  +-- TaskInterest[] / DirectTaskOffer[] / FavoriteTasker
+  +-- Escrow -&gt; WalletLedgerEntry[]
+  +-- ChatMessage[] / TaskCallSession[]
+  +-- TaskReport[] -&gt; Warning / Strike / SettlementHold
+
+AdminUser
+  +-- AdminRole[] / AdminSession / AdminTotpCredential
+  +-- AdminAuditLog[]
+
+ProviderWebhookEvent -&gt; QueueJobAudit -&gt; Payment/KYC/Payout updates</pre>
+      <p>The User is unified, while task ownership, tasker activity, wallets and admin operations remain explicitly separated by relation and type.</p>
+    </div>
+    
+    </section>
+
+    <section id="entities" class="section">
+      <div class="section-num">04</div>
+      <div class="eyebrow">Entities</div>
+      <h2>Core Entity Catalogue</h2>
+      <div class="table-wrap"><table><thead><tr><th>Model</th><th>Responsibility</th><th>Important Rule</th></tr></thead><tbody><tr><td>User</td><td>Root account identity. A user can be Task Owner, Tasker, or both.</td><td>Do not split client/tasker auth tables. Keep one account model.</td></tr><tr><td>TaskerProfile</td><td>Tasker-specific profile, skills, bio, KYC activation and availability readiness.</td><td>Only present/active when user wants to earn as Tasker.</td></tr><tr><td>Wallet</td><td>Separate wallet per user and wallet type.</td><td>Task Owner wallet and Tasker wallet must be different records.</td></tr><tr><td>Task</td><td>Central marketplace work request.</td><td>Owns status, amount, category, task owner, accepted tasker, timing, privacy boundaries.</td></tr><tr><td>TaskLocation</td><td>Task site address, geocode, pin confirmation and privacy metadata.</td><td>Task site must be in Nigeria. Exact address shown only after eligibility.</td></tr><tr><td>TaskMedia</td><td>Proof media for work to be done, completion proof, report evidence and voice-note metadata where applicable.</td><td>Photos/videos up to 50MB per file for task proof. Permission-controlled access.</td></tr><tr><td>Payment</td><td>High-level payment record for provider collection.</td><td>Frontend redirect is not final truth; webhook/backend verification is.</td></tr><tr><td>Escrow</td><td>Held funds for a task before completion or dispute outcome.</td><td>Release, refund and hold transitions must be auditable.</td></tr><tr><td>WithdrawalRequest</td><td>Tasker withdrawal request waiting for payout batch.</td><td>Minimum NGN 1,000; PIN required; batch dates 14th and 28th.</td></tr><tr><td>PayoutBatch</td><td>Bulk payout run for eligible withdrawal requests.</td><td>Use Paystack/Moniepoint transfer rails; disputed Taskers require authorization.</td></tr><tr><td>TaskReport</td><td>Structured task-linked report/dispute.</td><td>Can cover no-show, refusal, unsafe media, off-platform solicitation, completion refusal.</td></tr><tr><td>TaskCallSession</td><td>Masked proxy call session.</td><td>Task-bound, time-limited, no real phone numbers exposed.</td></tr><tr><td>AdminAuditLog</td><td>Immutable admin/security/finance/risk audit record.</td><td>Every high-impact admin action must write audit reason and actor.</td></tr><tr><td>UseCaseExecutionLog</td><td>Backend use-case invocation health record.</td><td>Tracks use case last used, success/failure, duration and error code.</td></tr></tbody></table></div>
+      <h3>Model Groups</h3>
+      <div class="table-wrap"><table><thead><tr><th>Group</th><th>Models</th></tr></thead><tbody><tr><td>Identity</td><td>User, UserCredential, SocialAccount, OtpChallenge, UserSession, UserDevice, SecurityPinCredential, NotificationPreference, SavedAddress</td></tr><tr><td>Tasker</td><td>TaskerProfile, TaskerSkill, TaskerPreference, TaskerAvailabilitySnapshot, KycVerification, KycAttempt</td></tr><tr><td>Catalog</td><td>TaskCategory, TaskType, ServiceZone, PlatformCoverageRule</td></tr><tr><td>Task</td><td>Task, TaskLocation, TaskMedia, TaskInterest, DirectTaskOffer, FavoriteTasker, TaskOwnerRejection, TaskStatusEvent, TaskEtaSnapshot, TaskTrackingSample</td></tr><tr><td>Finance</td><td>Wallet, WalletLedgerEntry, Payment, PaymentAttempt, ProviderWebhookEvent, Escrow, TaskSettlement, TaskSettlementHold, PayoutAccount, WithdrawalRequest, PayoutBatch, PayoutBatchItem</td></tr><tr><td>Communication</td><td>ChatMessage, SupportSession, SupportMessage, TaskCallSession, CommunicationAuditLog</td></tr><tr><td>Risk</td><td>TaskReport, Warning, Strike, RiskFlag, TrustScoreEvent, Rating, ReviewModeration</td></tr><tr><td>Referral</td><td>ReferralCode, ReferralAttribution, ReferralReward</td></tr><tr><td>Admin</td><td>AdminUser, AdminRole, AdminPermission, AdminRolePermission, AdminUserRole, AdminSession, AdminTotpCredential, AdminAuditLog</td></tr><tr><td>Operations</td><td>UseCaseExecutionLog, OutboxEvent, QueueJobAudit, RemoteConfig, ProviderRequestLog</td></tr></tbody></table></div>
+    </section>
+
+    <section id="traceability" class="section">
+      <div class="section-num">05</div>
+      <div class="eyebrow">Traceability</div>
+      <h2>API-To-Model Traceability</h2>
+      <p class="intro">Every accepted API/socket contract must map to persisted models. This table is the implementation bridge between Document 6 and the Prisma schema. If a future endpoint is added, this table must be updated in the same documentation change.</p>
+      <div class="table-wrap"><table><thead><tr><th>Contract Area</th><th>API / Socket Contracts</th><th>Required Models</th><th>Implementation Requirement</th></tr></thead><tbody><tr><td>Auth and session APIs</td><td>/auth/register, /auth/login, /auth/refresh, /auth/logout, /me/sessions</td><td>User, UserCredential, SocialAccount, OtpChallenge, UserSession, UserDevice</td><td>Authentication and session recovery must be reconstructable from persisted session/device records.</td></tr><tr><td>Security PIN APIs</td><td>/me/security-pin/setup, /verify, /reset/start, /reset/confirm</td><td>SecurityPinCredential, OtpChallenge, UserSession, AdminAuditLog where admin-assisted</td><td>PIN hash only. OTP is used for PIN recovery, not normal sensitive-action confirmation.</td></tr><tr><td>Profile and mode APIs</td><td>/me, /me/profile, /me/mode, /me/addresses</td><td>User, SavedAddress, NotificationPreference</td><td>The accepted field is mode. Use it consistently across API, database and app state.</td></tr><tr><td>KYC APIs</td><td>/kyc/start, /kyc/nin-bvn, /kyc/face-capture, /kyc/status</td><td>TaskerProfile, KycVerification, KycAttempt, ProviderRequestLog, ProviderWebhookEvent</td><td>Tasker acceptance remains blocked until KYC status and profile activation pass.</td></tr><tr><td>Catalog APIs</td><td>/catalog/categories, /catalog/task-types, /admin/catalog/categories</td><td>TaskCategory, TaskType, RemoteConfig, AdminAuditLog</td><td>Disable/archive states must preserve historical task records.</td></tr><tr><td>Task Owner task APIs</td><td>/task-owner/tasks/drafts, /location/geocode, /location/confirm-pin, /media, /payment-intent, /broadcast</td><td>Task, TaskLocation, TaskMedia, Payment, PaymentAttempt, Escrow, TaskStatusEvent</td><td>Task posting requires location confirmation, proof media and payment/escrow readiness.</td></tr><tr><td>Tasker task APIs</td><td>/tasker/tasks, /interest, /accept, /start-journey, /arrived, /begin, /completion-proof, /request-completion</td><td>Task, TaskInterest, TaskStatusEvent, TaskMedia, TaskTrackingSample, TaskEtaSnapshot</td><td>Execution buttons map to persisted task status transitions.</td></tr><tr><td>Direct offer and favorites APIs</td><td>/favorites/taskers, /direct-offers, /rebook</td><td>FavoriteTasker, DirectTaskOffer, Task, TaskStatusEvent</td><td>Direct offers are REST/FCM-driven and not socket-based.</td></tr><tr><td>Wallet and payment APIs</td><td>/wallets, /ledger, /payments/verify, /webhooks/paystack, /webhooks/moniepoint</td><td>Wallet, WalletLedgerEntry, Payment, PaymentAttempt, ProviderWebhookEvent, Escrow</td><td>Webhook verification and ledger updates must be idempotent and transactional.</td></tr><tr><td>Withdrawal and payout APIs</td><td>/tasker/payout-account, /tasker/withdrawals, /admin/payout-batches</td><td>PayoutAccount, WithdrawalRequest, PayoutBatch, PayoutBatchItem, WalletLedgerEntry, TaskSettlementHold</td><td>Withdrawal requires PIN and enters 14th/28th batch workflow.</td></tr><tr><td>Chat and support socket/API</td><td>/support/sessions plus /task and /support socket namespaces</td><td>ChatMessage, SupportSession, SupportMessage, CommunicationAuditLog</td><td>Socket events are delivery mechanism; persisted rows are source of truth.</td></tr><tr><td>Masked call APIs</td><td>/tasks/{taskId}/call-sessions, /webhooks/calls/provider</td><td>TaskCallSession, CommunicationAuditLog, ProviderWebhookEvent</td><td>Real phone numbers are never exposed in call session responses.</td></tr><tr><td>Reports and risk APIs</td><td>/tasks/{taskId}/reports, /admin/reports/{reportId}/resolve</td><td>TaskReport, Warning, Strike, RiskFlag, TrustScoreEvent, TaskSettlementHold, AdminAuditLog</td><td>Reports are task-linked and can affect penalties, settlement holds and payout authorization.</td></tr><tr><td>Ratings and reviews APIs</td><td>/tasks/{taskId}/ratings, /admin/ratings</td><td>Rating, ReviewModeration, FavoriteTasker, TrustScoreEvent</td><td>One rating per actor per completed task.</td></tr><tr><td>Admin auth/RBAC APIs</td><td>/admin/auth/login, /admin/auth/totp/verify, /admin/admin-users, /admin/roles, /admin/permissions</td><td>AdminUser, AdminRole, AdminPermission, AdminUserRole, AdminRolePermission, AdminSession, AdminTotpCredential, AdminAuditLog</td><td>Admin access is separate from platform user access.</td></tr><tr><td>Use-case health and operations APIs</td><td>/admin/use-case-health, /health, /ready, /metrics</td><td>UseCaseExecutionLog, QueueJobAudit, ProviderRequestLog, OutboxEvent</td><td>Backend use cases must report invocation health.</td></tr></tbody></table></div>
+      <div class="callout green"><strong>Execution requirement</strong><p>No model should be added without a traceable reason: an accepted flow, API endpoint, socket persistence need, provider event, worker job, admin operation, audit rule or reporting requirement.</p></div>
+    </section>
+
+    <section id="ownership" class="section">
+      <div class="section-num">06</div>
+      <div class="eyebrow">Ownership</div>
+      <h2>Backend Module Ownership</h2>
+      <p class="intro">The NestJS backend uses hexagonal architecture. Prisma models are persisted by adapters/repositories, while use cases depend on ports. These ownership boundaries prevent shared database access from becoming shared business logic.</p>
+      <div class="table-wrap"><table><thead><tr><th>Backend Module</th><th>Owned Models</th><th>Owns These Use Cases</th></tr></thead><tbody><tr><td>identity</td><td>User, UserCredential, SocialAccount, OtpChallenge, UserSession, UserDevice, SecurityPinCredential, NotificationPreference, SavedAddress</td><td>Auth, profile, mode, PIN, device/session use cases.</td></tr><tr><td>tasker</td><td>TaskerProfile, TaskerSkill, TaskerPreference, TaskerAvailabilitySnapshot, KycVerification, KycAttempt</td><td>Tasker activation, KYC, availability and work preference use cases.</td></tr><tr><td>catalog</td><td>TaskCategory, TaskType, ServiceZone, PlatformCoverageRule, RemoteConfig</td><td>Catalog, coverage and admin configuration use cases.</td></tr><tr><td>tasks</td><td>Task, TaskLocation, TaskMedia, TaskInterest, DirectTaskOffer, FavoriteTasker, TaskOwnerRejection, TaskStatusEvent, TaskEtaSnapshot, TaskTrackingSample</td><td>Task Owner and Tasker marketplace use cases.</td></tr><tr><td>finance</td><td>Wallet, WalletLedgerEntry, Payment, PaymentAttempt, Escrow, TaskSettlement, TaskSettlementHold, PayoutAccount, WithdrawalRequest, PayoutBatch, PayoutBatchItem</td><td>Payment, escrow, ledger, withdrawal and payout use cases.</td></tr><tr><td>communications</td><td>ChatMessage, SupportSession, SupportMessage, TaskCallSession, CommunicationAuditLog</td><td>Task chat, support live chat, masked calls and voice-note metadata.</td></tr><tr><td>risk</td><td>TaskReport, Warning, Strike, RiskFlag, TrustScoreEvent, Rating, ReviewModeration</td><td>Reports, disputes, penalties, trust, moderation and safety use cases.</td></tr><tr><td>referrals</td><td>ReferralCode, ReferralAttribution, ReferralReward</td><td>Referral reward after referred user completes 5 paid tasks.</td></tr><tr><td>admin</td><td>AdminUser, AdminRole, AdminPermission, AdminRolePermission, AdminUserRole, AdminSession, AdminTotpCredential, AdminAuditLog</td><td>Admin auth, RBAC, audit and governance use cases.</td></tr><tr><td>operations</td><td>UseCaseExecutionLog, OutboxEvent, QueueJobAudit, ProviderRequestLog</td><td>Workers, provider observability, use-case health and incident readiness.</td></tr></tbody></table></div>
+      <div class="callout"><strong>Repository rule</strong><p>Only the owning backend module should write to its models directly. Other modules should call a port/use case unless a read-only projection is intentionally exposed.</p></div>
+    </section>
+
+    <section id="enums" class="section">
+      <div class="section-num">07</div>
+      <div class="eyebrow">Enums</div>
+      <h2>Enum And State Catalogue</h2>
+      <p class="intro">Enums should be stable because they become API, admin, QA and reporting vocabulary. Additions are safer than renames. Renames require migration and contract review.</p>
+      <div class="table-wrap"><table><thead><tr><th>Enum</th><th>Values</th><th>Purpose</th></tr></thead><tbody><tr><td>UserMode</td><td>TASK_OWNER, TASKER</td><td>Current app mode. Field name is mode.</td></tr><tr><td>WalletType</td><td>TASK_OWNER, TASKER, PLATFORM, REFERRAL</td><td>Separates funds by purpose and withdrawal policy.</td></tr><tr><td>KycStatus</td><td>NOT_STARTED, PENDING, APPROVED, REJECTED, REQUIRES_REVERIFICATION, FAILED</td><td>Controls Tasker activation.</td></tr><tr><td>TaskStatus</td><td>DRAFT, PENDING_PAYMENT, PAID, DIRECT_OFFER_SENT, DIRECT_OFFER_EXPIRED, BROADCASTING, ACCEPTED, TASKER_EN_ROUTE, ARRIVED, IN_PROGRESS, COMPLETION_REQUESTED, COMPLETED, DISPUTED, CANCELLED, EXPIRED, REFUNDED</td><td>Central task state machine.</td></tr><tr><td>DirectTaskOfferStatus</td><td>SENT, VIEWED, ACCEPTED, DECLINED, EXPIRED, CANCELLED, TASKER_UNAVAILABLE</td><td>Direct favorite offer lifecycle.</td></tr><tr><td>FavoriteTaskerStatus</td><td>ACTIVE, REMOVED, BLOCKED</td><td>Task Owner favorite Tasker relationship state.</td></tr><tr><td>TaskMediaPurpose</td><td>OWNER_PROOF, TASKER_COMPLETION_PROOF, REPORT_EVIDENCE, CHAT_VOICE_NOTE, SUPPORT_ATTACHMENT</td><td>Determines access and validation rules.</td></tr><tr><td>TaskMediaStatus</td><td>UPLOADING, ACTIVE, REMOVED, REJECTED</td><td>Moderation and lifecycle state.</td></tr><tr><td>PaymentStatus</td><td>INITIATED, PENDING, SUCCESSFUL, FAILED, EXPIRED, REVERSED</td><td>Provider collection state.</td></tr><tr><td>EscrowStatus</td><td>HELD, RELEASED, DISPUTED, REFUNDED, PARTIALLY_REFUNDED</td><td>Escrow lifecycle.</td></tr><tr><td>WithdrawalStatus</td><td>REQUESTED, QUEUED_FOR_BATCH, PROCESSING, SUCCESSFUL, FAILED, REVERSED, FLAGGED, CANCELLED</td><td>Withdrawal and batch state.</td></tr><tr><td>PayoutBatchStatus</td><td>DRAFT, READY_FOR_APPROVAL, APPROVED, PROCESSING, COMPLETED, PARTIALLY_FAILED, FAILED, CANCELLED</td><td>Bulk payout lifecycle.</td></tr><tr><td>TaskReportStatus</td><td>OPEN, UNDER_REVIEW, EVIDENCE_REQUESTED, RESOLVED, DISMISSED, ESCALATED</td><td>Report/dispute workflow.</td></tr><tr><td>WarningActorType</td><td>TASK_OWNER, TASKER</td><td>Warning owner.</td></tr><tr><td>StrikeActorType</td><td>TASK_OWNER, TASKER</td><td>Strike owner.</td></tr><tr><td>AdminActionRisk</td><td>LOW, MEDIUM, HIGH, CRITICAL</td><td>Determines TOTP/reason/audit controls.</td></tr><tr><td>ProviderName</td><td>PAYSTACK, MONIEPOINT, SMILE_ID, TERMII, FCM, RESEND, SHOREBIRD, SENTRY, INFOBIP, AFRICAS_TALKING, VONAGE, SINCH, GOOGLE_MAPS</td><td>Provider integration vocabulary.</td></tr></tbody></table></div>
+      
+    <div class="diagram">
+      <div class="diagram-head"><h4>Task State Machine</h4><span>Persisted Status</span></div>
+      <pre>DRAFT
+  -&gt; PENDING_PAYMENT
+  -&gt; PAID
+  -&gt; BROADCASTING
+  -&gt; ACCEPTED
+  -&gt; TASKER_EN_ROUTE
+  -&gt; ARRIVED
+  -&gt; IN_PROGRESS
+  -&gt; COMPLETION_REQUESTED
+  -&gt; COMPLETED
+
+Side paths:
+  DIRECT_OFFER_SENT -&gt; DIRECT_OFFER_EXPIRED
+  any allowed cancellable state -&gt; CANCELLED
+  completion/payment conflict -&gt; DISPUTED
+  refund path -&gt; REFUNDED</pre>
+      <p>Every important transition should create TaskStatusEvent with actor, reason, requestId and timestamp.</p>
+    </div>
+    
+    </section>
+
+    <section id="prisma" class="section">
+      <div class="section-num">08</div>
+      <div class="eyebrow">Prisma</div>
+      <h2>Prisma Schema Execution Baseline</h2>
+      <p class="intro">The following snippets establish execution direction for the real Prisma schema. Codex may refine field names only when needed for Prisma correctness, but it must preserve the model responsibility, relation direction, state vocabulary, idempotency and audit requirements.</p>
+      <div class="code-block"><div class="code-title">Prisma Generator And Datasource</div><pre>generator client {
+  provider = &quot;prisma-client-js&quot;
+}
+
+datasource db {
+  provider = &quot;postgresql&quot;
+  url      = env(&quot;DATABASE_URL&quot;)
+}</pre></div><div class="code-block"><div class="code-title">Identity And User Mode</div><pre>model User {
+  id              String      @id @default(cuid())
+  email           String?     @unique
+  phone           String?     @unique
+  displayName     String?
+  avatarUrl       String?
+  mode            UserMode    @default(TASK_OWNER)
+  status          UserStatus  @default(ACTIVE)
+  emailVerifiedAt DateTime?
+  phoneVerifiedAt DateTime?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  credentials     UserCredential?
+  socialAccounts  SocialAccount[]
+  sessions        UserSession[]
+  taskerProfile   TaskerProfile?
+  wallets         Wallet[]
+  ownedTasks      Task[]      @relation(&quot;TaskOwnerTasks&quot;)
+  acceptedTasks   Task[]      @relation(&quot;AcceptedTaskerTasks&quot;)
+
+  @@index([mode, status])
+  @@index([createdAt])
+}
+
+enum UserMode {
+  TASK_OWNER
+  TASKER
+}</pre></div><div class="code-block"><div class="code-title">Tasker Profile And KYC</div><pre>model TaskerProfile {
+  id               String       @id @default(cuid())
+  userId           String       @unique
+  user             User         @relation(fields: [userId], references: [id])
+  bio              String?
+  isActive         Boolean      @default(false)
+  kycStatus        KycStatus    @default(NOT_STARTED)
+  maxTravelKm      Int?
+  completedTaskCount Int        @default(0)
+  averageRating    Decimal?     @db.Decimal(3, 2)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  kycVerifications KycVerification[]
+  payoutAccounts   PayoutAccount[]
+
+  @@index([isActive, kycStatus])
+}
+
+model KycVerification {
+  id                String      @id @default(cuid())
+  taskerProfileId   String
+  taskerProfile     TaskerProfile @relation(fields: [taskerProfileId], references: [id])
+  provider          ProviderName @default(SMILE_ID)
+  identifierType    KycIdentifierType
+  status            KycStatus
+  providerJobId     String?
+  submittedAt       DateTime    @default(now())
+  decidedAt         DateTime?
+  failureReason     String?
+
+  @@index([taskerProfileId, status])
+  @@index([provider, providerJobId])
+}</pre></div><div class="code-block"><div class="code-title">Task, Location And State</div><pre>model Task {
+  id                String      @id @default(cuid())
+  taskOwnerId       String
+  taskOwner         User        @relation(&quot;TaskOwnerTasks&quot;, fields: [taskOwnerId], references: [id])
+  acceptedTaskerId  String?
+  acceptedTasker    User?       @relation(&quot;AcceptedTaskerTasks&quot;, fields: [acceptedTaskerId], references: [id])
+  categoryId        String
+  taskTypeId        String
+  title             String
+  description       String
+  amountKobo        BigInt
+  commissionBps     Int         @default(2000)
+  status            TaskStatus  @default(DRAFT)
+  requiredArrivalAt DateTime?
+  acceptedAt        DateTime?
+  startedJourneyAt  DateTime?
+  arrivedAt         DateTime?
+  beganAt           DateTime?
+  completedAt       DateTime?
+  cancelledAt       DateTime?
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+
+  location          TaskLocation?
+  media             TaskMedia[]
+  interests         TaskInterest[]
+  directOffers      DirectTaskOffer[]
+  statusEvents      TaskStatusEvent[]
+  reports           TaskReport[]
+  escrow            Escrow?
+
+  @@index([status, createdAt])
+  @@index([taskOwnerId, status])
+  @@index([acceptedTaskerId, status])
+  @@index([categoryId, status])
+}
+
+model TaskLocation {
+  id              String   @id @default(cuid())
+  taskId          String   @unique
+  task            Task     @relation(fields: [taskId], references: [id])
+  countryCode     String   @default(&quot;NG&quot;)
+  state           String?
+  city            String?
+  addressText     String
+  latitude        Decimal  @db.Decimal(10, 7)
+  longitude       Decimal  @db.Decimal(10, 7)
+  pinConfirmedAt  DateTime?
+  geocodeProvider ProviderName?
+
+  @@index([countryCode, state, city])
+}</pre></div><div class="code-block"><div class="code-title">Wallet, Ledger, Escrow And Payment</div><pre>model Wallet {
+  id           String     @id @default(cuid())
+  userId       String
+  user         User       @relation(fields: [userId], references: [id])
+  type         WalletType
+  currency     String     @default(&quot;NGN&quot;)
+  balanceKobo  BigInt     @default(0)
+  lockedKobo   BigInt     @default(0)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  entries      WalletLedgerEntry[]
+
+  @@unique([userId, type, currency])
+}
+
+model WalletLedgerEntry {
+  id                 String   @id @default(cuid())
+  walletId           String
+  wallet             Wallet   @relation(fields: [walletId], references: [id])
+  direction          LedgerDirection
+  amountKobo         BigInt
+  balanceAfterKobo   BigInt
+  reason             LedgerReason
+  taskId             String?
+  transactionGroupId String
+  idempotencyKey     String?  @unique
+  createdAt          DateTime @default(now())
+
+  @@index([walletId, createdAt])
+  @@index([transactionGroupId])
+}
+
+model Escrow {
+  id          String       @id @default(cuid())
+  taskId      String       @unique
+  task        Task         @relation(fields: [taskId], references: [id])
+  amountKobo  BigInt
+  status      EscrowStatus @default(HELD)
+  heldAt      DateTime     @default(now())
+  releasedAt  DateTime?
+  refundedAt  DateTime?
+}</pre></div><div class="code-block"><div class="code-title">Payout Batch</div><pre>model WithdrawalRequest {
+  id              String           @id @default(cuid())
+  taskerId        String
+  walletId        String
+  amountKobo      BigInt
+  status          WithdrawalStatus @default(REQUESTED)
+  payoutBatchItem PayoutBatchItem?
+  requestedAt     DateTime         @default(now())
+  processedAt     DateTime?
+  idempotencyKey  String?          @unique
+
+  @@index([taskerId, status])
+  @@index([requestedAt])
+}
+
+model PayoutBatch {
+  id             String            @id @default(cuid())
+  batchDate      DateTime
+  status         PayoutBatchStatus @default(DRAFT)
+  provider       ProviderName
+  totalAmountKobo BigInt           @default(0)
+  itemCount      Int               @default(0)
+  approvedById   String?
+  approvedAt     DateTime?
+  createdAt      DateTime          @default(now())
+
+  items          PayoutBatchItem[]
+
+  @@index([batchDate, status])
+}
+
+model PayoutBatchItem {
+  id                  String            @id @default(cuid())
+  payoutBatchId       String
+  payoutBatch         PayoutBatch       @relation(fields: [payoutBatchId], references: [id])
+  withdrawalRequestId String            @unique
+  withdrawalRequest   WithdrawalRequest @relation(fields: [withdrawalRequestId], references: [id])
+  status              WithdrawalStatus
+  providerReference   String?
+  failureReason       String?
+}</pre></div><div class="code-block"><div class="code-title">Communication And Masked Calls</div><pre>model TaskCallSession {
+  id                  String      @id @default(cuid())
+  taskId              String
+  callerUserId        String
+  recipientUserId     String
+  provider            ProviderName
+  proxyNumber         String
+  providerSessionId   String?
+  status              CallSessionStatus @default(ACTIVE)
+  expiresAt           DateTime
+  startedAt           DateTime?
+  endedAt             DateTime?
+  createdAt           DateTime    @default(now())
+
+  @@index([taskId, status])
+  @@index([callerUserId, createdAt])
+}
+
+model ChatMessage {
+  id          String      @id @default(cuid())
+  taskId      String?
+  supportSessionId String?
+  senderId    String
+  type        MessageType @default(TEXT)
+  body        String?
+  mediaId     String?
+  sentAt      DateTime    @default(now())
+  readAt      DateTime?
+
+  @@index([taskId, sentAt])
+  @@index([supportSessionId, sentAt])
+}</pre></div><div class="code-block"><div class="code-title">Admin Audit And Use Case Health</div><pre>model AdminAuditLog {
+  id            String          @id @default(cuid())
+  actorAdminId  String?
+  action        String
+  risk          AdminActionRisk @default(LOW)
+  targetType    String?
+  targetId      String?
+  reason        String?
+  requestId     String?
+  ipAddress     String?
+  metadata      Json?
+  createdAt     DateTime        @default(now())
+
+  @@index([actorAdminId, createdAt])
+  @@index([targetType, targetId])
+  @@index([risk, createdAt])
+}
+
+model UseCaseExecutionLog {
+  id            String   @id @default(cuid())
+  useCaseName   String
+  success       Boolean
+  errorCode     String?
+  durationMs    Int?
+  requestId     String?
+  actorId       String?
+  resourceType  String?
+  resourceId    String?
+  lastUsedAt    DateTime @default(now())
+
+  @@index([useCaseName, lastUsedAt])
+  @@index([success, useCaseName])
+}</pre></div>
+      <div class="callout"><strong>Geospatial note</strong><p>Valkey GEOSEARCH remains the primary live discovery/filtering optimization for active Taskers. PostgreSQL stores authoritative coordinates for task sites, addresses and history. PostGIS can be introduced later only if database-side geospatial queries become necessary.</p></div>
+    </section>
+
+    <section id="relationships" class="section">
+      <div class="section-num">09</div>
+      <div class="eyebrow">Relationships</div>
+      <h2>Relationships And Ownership</h2>
+      <div class="table-wrap"><table><thead><tr><th>Relationship</th><th>Cardinality</th><th>Rule</th></tr></thead><tbody><tr><td>User -&gt; TaskerProfile</td><td>1:0..1</td><td>A user only gets TaskerProfile when activating earning mode.</td></tr><tr><td>User -&gt; Wallet</td><td>1:N</td><td>At minimum Task Owner wallet and Tasker wallet. Platform/referral wallets can be separate.</td></tr><tr><td>Task -&gt; TaskLocation</td><td>1:1</td><td>Task location is immutable enough for historical accuracy after funding.</td></tr><tr><td>Task -&gt; TaskMedia</td><td>1:N</td><td>Owner proof, Tasker proof, report evidence and related media.</td></tr><tr><td>Task -&gt; TaskInterest</td><td>1:N</td><td>Public discovery interest from Taskers.</td></tr><tr><td>Task -&gt; DirectTaskOffer</td><td>1:N</td><td>Direct offer to favorite Tasker; REST/FCM driven.</td></tr><tr><td>Task -&gt; Escrow</td><td>1:1</td><td>Every funded task should have one escrow record.</td></tr><tr><td>Task -&gt; TaskReport</td><td>1:N</td><td>Reports/disputes can be linked to task with options.</td></tr><tr><td>Task -&gt; ChatMessage</td><td>1:N</td><td>Only after acceptance; persisted asynchronously from socket.</td></tr><tr><td>Task -&gt; TaskCallSession</td><td>1:N</td><td>Masked call sessions are task-bound and time-limited.</td></tr><tr><td>WithdrawalRequest -&gt; PayoutBatchItem</td><td>1:0..1</td><td>A request joins at most one active payout batch item.</td></tr><tr><td>PayoutBatch -&gt; PayoutBatchItem</td><td>1:N</td><td>Bulk transfer file/provider request grouping.</td></tr><tr><td>AdminUser -&gt; AdminAuditLog</td><td>1:N</td><td>Every privileged admin action must be traceable.</td></tr></tbody></table></div>
+      <div class="callout red"><strong>No destructive shortcuts</strong><p>Do not hard-delete user, task, wallet, payment, KYC, report, payout, or audit records in normal operations. Prefer status transitions, soft deletion, archival markers and restricted access.</p></div>
+    </section>
+
+    <section id="indexes" class="section">
+      <div class="section-num">10</div>
+      <div class="eyebrow">Performance</div>
+      <h2>Indexes, Constraints And Idempotency</h2>
+      <div class="table-wrap"><table><thead><tr><th>Model</th><th>Index / Constraint Direction</th><th>Why It Exists</th></tr></thead><tbody><tr><td>User</td><td>unique email/phone where present, status, mode</td><td>Fast login, profile lookup and admin search.</td></tr><tr><td>SocialAccount</td><td>unique provider + providerAccountId</td><td>Prevents duplicate Google/Apple identities.</td></tr><tr><td>OtpChallenge</td><td>recipient + purpose + expiresAt, consumedAt</td><td>Rate limit and verification lookup.</td></tr><tr><td>UserSession</td><td>userId + revokedAt, refreshTokenHash unique</td><td>Session rotation and revocation.</td></tr><tr><td>Task</td><td>status + createdAt, taskOwnerId + status, acceptedTaskerId + status, categoryId + status, requiredArrivalAt</td><td>Mobile home, task browsing, admin task monitoring.</td></tr><tr><td>TaskLocation</td><td>taskId unique, countryCode, state, city, latitude/longitude</td><td>Nigeria validation, filtering and admin coverage review.</td></tr><tr><td>TaskInterest</td><td>unique taskId + taskerId, taskId + status</td><td>Prevents duplicate interest and supports candidate list.</td></tr><tr><td>DirectTaskOffer</td><td>unique taskId + taskerId + active status, expiresAt</td><td>Direct offer lifecycle and expiry jobs.</td></tr><tr><td>WalletLedgerEntry</td><td>walletId + createdAt, transactionGroupId, idempotencyKey unique</td><td>Ledger history and duplicate protection.</td></tr><tr><td>Payment</td><td>provider + providerReference unique, taskId, status</td><td>Webhook reconciliation.</td></tr><tr><td>ProviderWebhookEvent</td><td>provider + eventId unique, processedAt</td><td>Webhook idempotency.</td></tr><tr><td>WithdrawalRequest</td><td>taskerId + status, payoutBatchId, requestedAt</td><td>Batch preparation.</td></tr><tr><td>PayoutBatchItem</td><td>payoutBatchId + status, withdrawalRequestId unique</td><td>Bulk payout reconciliation.</td></tr><tr><td>TaskReport</td><td>taskId + status, reporterId + createdAt</td><td>Dispute queues and task detail.</td></tr><tr><td>AdminAuditLog</td><td>actorAdminId + createdAt, targetType + targetId, risk</td><td>Audit investigation.</td></tr><tr><td>UseCaseExecutionLog</td><td>useCaseName + lastUsedAt, success + useCaseName</td><td>Use-case health dashboard.</td></tr></tbody></table></div>
+      <h3>Concrete Uniqueness And Constraint Requirements</h3>
+      <div class="table-wrap"><table><thead><tr><th>Field / Model</th><th>Constraint</th><th>Implementation Note</th></tr></thead><tbody><tr><td>User.email</td><td>Unique when present.</td><td>Use nullable unique handling supported by PostgreSQL/Prisma.</td></tr><tr><td>User.phone</td><td>Unique when present.</td><td>Phone verification is separate from phone existence.</td></tr><tr><td>SocialAccount</td><td>Unique provider + providerAccountId.</td><td>A Google/Apple account cannot attach to multiple users.</td></tr><tr><td>UserCredential.userId</td><td>Unique.</td><td>One password credential record per user.</td></tr><tr><td>SecurityPinCredential.userId</td><td>Unique.</td><td>One active PIN credential record per user; rotate by updating hash metadata.</td></tr><tr><td>UserSession.refreshTokenHash</td><td>Unique.</td><td>Supports refresh-token rotation and reuse detection.</td></tr><tr><td>TaskerProfile.userId</td><td>Unique.</td><td>One Tasker profile per user.</td></tr><tr><td>Wallet</td><td>Unique userId + type + currency.</td><td>Guarantees separate Task Owner and Tasker wallets without duplicates.</td></tr><tr><td>TaskLocation.taskId</td><td>Unique.</td><td>One authoritative task site per task.</td></tr><tr><td>TaskInterest</td><td>Unique taskId + taskerId.</td><td>A Tasker cannot express interest twice for the same task.</td></tr><tr><td>DirectTaskOffer</td><td>Unique active taskId + taskerId.</td><td>Prevents duplicate active direct offers to same Tasker.</td></tr><tr><td>FavoriteTasker</td><td>Unique taskOwnerId + taskerId.</td><td>One favorite relationship with status changes.</td></tr><tr><td>Payment.providerReference</td><td>Unique provider + providerReference.</td><td>Provider payment reference cannot be processed twice.</td></tr><tr><td>ProviderWebhookEvent</td><td>Unique provider + eventId.</td><td>Webhook retry-safe processing.</td></tr><tr><td>WalletLedgerEntry.idempotencyKey</td><td>Unique when present.</td><td>Prevents duplicate ledger writes.</td></tr><tr><td>Escrow.taskId</td><td>Unique.</td><td>One active escrow accounting container per funded task.</td></tr><tr><td>PayoutAccount</td><td>Unique active taskerProfileId + provider/bank account fingerprint.</td><td>Prevents duplicate payout destination records.</td></tr><tr><td>WithdrawalRequest.idempotencyKey</td><td>Unique when present.</td><td>Prevents duplicate withdrawal from request retries.</td></tr><tr><td>PayoutBatchItem.withdrawalRequestId</td><td>Unique.</td><td>Withdrawal request can appear in one batch item.</td></tr><tr><td>Rating</td><td>Unique taskId + raterUserId.</td><td>One rating per actor per completed task.</td></tr><tr><td>AdminUser.email</td><td>Unique.</td><td>Admin accounts are separate from platform users.</td></tr><tr><td>AdminPermission.key</td><td>Unique.</td><td>Permission keys are code-owned and stable.</td></tr><tr><td>AdminRole.name</td><td>Unique.</td><td>Role names must remain stable across seed/update runs.</td></tr></tbody></table></div>
+      <h3>Idempotency Rules</h3>
+      <div class="table-wrap"><table><thead><tr><th>Area</th><th>Required Key</th><th>Database Enforcement</th></tr></thead><tbody><tr><td>Payment intent</td><td>clientRequestId or idempotencyKey</td><td>Unique key on PaymentAttempt where practical.</td></tr><tr><td>Provider webhook</td><td>provider + providerEventId</td><td>Unique composite key on ProviderWebhookEvent.</td></tr><tr><td>Wallet ledger</td><td>idempotencyKey and transactionGroupId</td><td>Unique idempotency key, grouped debit/credit entries.</td></tr><tr><td>Task state transition</td><td>taskId + targetStatus + requestId where applicable</td><td>Use TaskStatusEvent and use case guard.</td></tr><tr><td>Media finalization</td><td>uploadSessionId or mediaId</td><td>Unique media reference to avoid duplicate proof records.</td></tr><tr><td>Withdrawal request</td><td>idempotencyKey</td><td>Unique key to avoid duplicate withdrawal request from retries.</td></tr><tr><td>Payout batch item</td><td>withdrawalRequestId</td><td>Unique one-batch item per withdrawal request.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="finance" class="section">
+      <div class="section-num">11</div>
+      <div class="eyebrow">Finance</div>
+      <h2>Finance And Ledger Model</h2>
+      <p class="intro">The finance model must be conservative. Balances should be derived from ledger entries and cached on Wallet only inside database transactions. All provider events must be reconciled before wallet/escrow state changes are trusted.</p>
+      
+    <div class="diagram">
+      <div class="diagram-head"><h4>Escrow And Payout Data Flow</h4><span>Finance ERD</span></div>
+      <pre>Payment provider webhook
+  -&gt; ProviderWebhookEvent(unique provider event)
+  -&gt; Payment / PaymentAttempt
+  -&gt; Escrow[HELD]
+  -&gt; Task BROADCASTING / ACCEPTED / COMPLETED
+  -&gt; TaskSettlement calculates commission
+  -&gt; WalletLedgerEntry credits Tasker wallet
+  -&gt; WithdrawalRequest
+  -&gt; PayoutBatchItem
+  -&gt; PayoutBatch
+  -&gt; Provider transfer reference</pre>
+      <p>Payment collection, escrow release and payout must be separated so disputes can hold only the affected settlement without blocking unrelated earnings.</p>
+    </div>
+    
+      <div class="table-wrap"><table><thead><tr><th>Rule</th><th>Data Model Decision</th><th>Reason</th></tr></thead><tbody><tr><td>Minimum task amount</td><td>Validate amountKobo &gt;= 200000.</td><td>NGN 2,000 minimum task amount.</td></tr><tr><td>Minimum withdrawal</td><td>Validate WithdrawalRequest.amountKobo &gt;= 100000.</td><td>NGN 1,000 minimum withdrawal.</td></tr><tr><td>Commission tiers</td><td>Store commissionBps snapshot on TaskSettlement.</td><td>Historical settlements must not change when Tasker crosses a later tier.</td></tr><tr><td>Processing fee</td><td>Store Task Owner processing/service fee separately from task amount.</td><td>Task Owner sees task amount and fee separately.</td></tr><tr><td>Task Owner refund</td><td>Represent support-handled excess funding/refund as ledger entries and support case references.</td><td>Task Owner cannot withdraw directly by default.</td></tr><tr><td>Disputed payout</td><td>Use TaskSettlementHold linked to task/report/withdrawal where needed.</td><td>Only affected payout is delayed; non-disputed earnings continue.</td></tr><tr><td>Batch payout dates</td><td>PayoutBatch.batchDate should be 14th or 28th policy date.</td><td>Supports bulk transfer through Paystack/Moniepoint.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="privacy" class="section">
+      <div class="section-num">12</div>
+      <div class="eyebrow">Privacy</div>
+      <h2>Privacy, Retention And Access Control</h2>
+      <div class="table-wrap"><table><thead><tr><th>Data Type</th><th>Storage Rule</th><th>Access Rule</th></tr></thead><tbody><tr><td>KYC identifiers</td><td>Store minimum required metadata; encrypt sensitive provider payload references.</td><td>Only KYC/admin-risk roles through audited access.</td></tr><tr><td>Biometric/face capture</td><td>Prefer provider-managed or restricted object storage references.</td><td>Never expose publicly; access is time-limited and audited.</td></tr><tr><td>Exact task address</td><td>TaskLocation stores exact address and coordinates.</td><td>Only visible after payment and accepted Tasker rules are satisfied.</td></tr><tr><td>Task media</td><td>Store object key, purpose, status, owner, size, MIME type and moderation status.</td><td>Serve through signed URLs or controlled backend proxy.</td></tr><tr><td>Real phone numbers</td><td>Stored on User/contact records only.</td><td>Never exposed through masked call sessions.</td></tr><tr><td>Chat/support messages</td><td>Persist for dispute and support record.</td><td>Access by task participants or support/admin role with audit.</td></tr><tr><td>Admin actions</td><td>AdminAuditLog is immutable operational evidence.</td><td>Admin review only; no normal deletion path.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="migration" class="section">
+      <div class="section-num">13</div>
+      <div class="eyebrow">Migration</div>
+      <h2>Migration And Seed Plan</h2>
+      <div class="table-wrap"><table><thead><tr><th>Phase</th><th>Name</th><th>Models / Migrations</th><th>Why This Order</th></tr></thead><tbody><tr><td>Phase 1</td><td>Foundation</td><td>Users, credentials, sessions, PIN, admin auth/RBAC, task catalog, remote config.</td><td>Required before mobile/admin login and screen scaffolding.</td></tr><tr><td>Phase 2</td><td>Tasker and KYC</td><td>TaskerProfile, KYC records, preferences, availability, saved addresses.</td><td>Unblocks Tasker activation and admin KYC review.</td></tr><tr><td>Phase 3</td><td>Task Marketplace</td><td>Task, location, media, interest, direct offers, favorites, status events, rejection logs.</td><td>Unblocks create task, discovery, acceptance and execution.</td></tr><tr><td>Phase 4</td><td>Finance</td><td>Wallets, ledger, payments, escrows, withdrawals, payout accounts, payout batches, provider webhooks.</td><td>Unblocks payment, escrow and payout flows.</td></tr><tr><td>Phase 5</td><td>Communication and Support</td><td>Chat messages, support sessions/messages, call sessions, communication audit logs.</td><td>Unblocks chat, support live chat, voice notes and masked calls.</td></tr><tr><td>Phase 6</td><td>Risk, Reviews and Referral</td><td>Reports, warnings, strikes, ratings, risk flags, trust score events, referrals.</td><td>Unblocks disputes, penalties, trust and referral rewards.</td></tr><tr><td>Phase 7</td><td>Operations</td><td>Use-case logs, outbox events, queue audits, provider request logs, audit dashboards.</td><td>Unblocks monitoring, incident review and go-live operations.</td></tr></tbody></table></div>
+      <h3>Seed Data</h3>
+      <div class="table-wrap"><table><thead><tr><th>Seed Area</th><th>Required Seed Data</th><th>Notes</th></tr></thead><tbody><tr><td>Task categories</td><td>Home, Errands, Office, Support and approved task types.</td><td>Must match launch task categories.</td></tr><tr><td>Admin roles</td><td>Owner, Operations, Finance, Support, Risk, Readonly.</td><td>Permission keys must be seeded from stable code-owned values.</td></tr><tr><td>Remote config</td><td>ETA guard settings, max media size, payout batch dates, commission tiers, location rules.</td><td>Admin dashboard reads/updates config with audit.</td></tr><tr><td>Commission tiers</td><td>20%, 17.5%, 15%, 12.5%, 10% thresholds.</td><td>Use basis points in database.</td></tr><tr><td>Provider registry</td><td>Paystack, Moniepoint, Smile ID, Termii, FCM, Google Maps, Sentry, Shorebird, masked call candidates.</td><td>Provider credentials remain environment secrets, not seed data.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="prisma-rules" class="section">
+      <div class="section-num">14</div>
+      <div class="eyebrow">Execution Rules</div>
+      <h2>Prisma Implementation Rules</h2>
+      <p class="intro">These rules are mandatory for implementation. They prevent Prisma from leaking across the hexagonal architecture and protect finance, provider, task state and admin audit correctness.</p>
+      <div class="table-wrap"><table><thead><tr><th>Area</th><th>Execution Rule</th></tr></thead><tbody><tr><td>Repository boundary</td><td>Use Prisma only inside persistence adapters/repositories. Use cases must depend on ports, not PrismaClient directly.</td></tr><tr><td>Transactions</td><td>Use database transactions for wallet ledger writes, escrow release/refund, payout batch creation, task state changes with side effects, and provider webhook processing.</td></tr><tr><td>Money</td><td>Use BigInt/integer minor units for money. Do not use Float for balances, amounts, fees or commission settlement.</td></tr><tr><td>Status transitions</td><td>Do not update Task.status directly from controllers. Route through use cases that validate transition and write TaskStatusEvent.</td></tr><tr><td>Soft deletion</td><td>Use status, archivedAt, removedAt, disabledAt or revokedAt for operational records. Avoid hard deletes outside seed cleanup or unused drafts.</td></tr><tr><td>Provider payloads</td><td>Store provider references and sanitized metadata. Do not store secrets, raw credentials or unnecessary full provider payloads in normal models.</td></tr><tr><td>JSON fields</td><td>Use Json only for flexible metadata, provider-safe snapshots and audit context. Do not hide core query fields inside Json.</td></tr><tr><td>Prisma schema size</td><td>If schema grows large, split with Prisma schema folder support or clear region comments during implementation. Keep generated code files within the project line-limit standard.</td></tr><tr><td>Migrations</td><td>Every migration must be named by feature, reviewed, and tested against staging backup/restore before production use.</td></tr><tr><td>Seeding</td><td>Seed scripts must be idempotent using stable keys/slugs. Do not create duplicate roles, permissions, categories or config keys.</td></tr><tr><td>Indexes</td><td>Add indexes during the feature migration that introduces the query pattern. Do not wait until performance issues appear in production.</td></tr><tr><td>Outbox</td><td>For critical side effects after transaction commit, write OutboxEvent inside the same transaction and process asynchronously.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="codex" class="section">
+      <div class="section-num">15</div>
+      <div class="eyebrow">Codex</div>
+      <h2>Codex Execution Instructions</h2>
+      <p class="intro">Use this section directly when asking Codex to implement the schema, migrations, repositories or tests. Codex should treat this document as execution input, not inspiration.</p>
+      <div class="table-wrap"><table><thead><tr><th>Instruction</th><th>Required Behavior</th></tr></thead><tbody><tr><td>Read order</td><td>Before implementing Prisma schema, read Document 6 API &amp; Socket Contract, this Document 7, and the mobile/admin flow catalogues.</td></tr><tr><td>Schema first</td><td>Implement enums and core models before feature repositories. Do not start controllers before model constraints are clear.</td></tr><tr><td>Feature commits</td><td>Commit feature by feature or fix by fix. Do not stack unrelated schema changes, API endpoints and admin UI changes in one commit.</td></tr><tr><td>No speculative models</td><td>Only add models that support accepted flows, API contracts, audit requirements or provider integration needs.</td></tr><tr><td>Traceability</td><td>Every new model must map to a flow, endpoint, admin operation, worker, provider event or audit requirement.</td></tr><tr><td>Tests</td><td>For each finance, task transition, KYC, report or payout model change, add tests for duplicate/idempotent behavior and invalid state handling.</td></tr><tr><td>Data safety</td><td>Before destructive migration or column removal, add a reversible migration plan and backup/restore note.</td></tr><tr><td>Naming</td><td>Use explicit names matching Work2Cash vocabulary: Task Owner, Tasker, mode, TaskStatusEvent, PayoutBatch, TaskSettlementHold.</td></tr></tbody></table></div>
+      <div class="callout red"><strong>No speculative schema work</strong><p>Do not add models, enum values or provider fields because they may be useful later. Add them only when they support an accepted Work2Cash flow, API/socket contract, admin operation, worker, provider event, report, audit trail or go-live requirement.</p></div>
+    </section>
+
+    <section id="handover" class="section">
+      <div class="section-num">16</div>
+      <div class="eyebrow">Checklist</div>
+      <h2>Implementation Checklist</h2>
+      <ul class="checklist">
+        <li>API-to-model traceability has been reviewed against Document 6 before schema implementation starts.</li>
+        <li>Backend module ownership is followed; PrismaClient is not used directly inside controllers or use cases.</li>
+        <li>Prisma schema preserves unified User model and separate Task Owner/Tasker wallet records.</li>
+        <li>All money fields use minor units with BigInt or an equivalent integer strategy.</li>
+        <li>Task state changes are protected by use case guards and persisted in TaskStatusEvent.</li>
+        <li>Payment, webhook, wallet, task transition, withdrawal and payout operations have idempotency constraints.</li>
+        <li>Task proof media, completion proof, report evidence and voice-note metadata are permission-controlled.</li>
+        <li>Masked call sessions never store or expose real recipient phone number in user-facing responses.</li>
+        <li>Admin high-impact actions require TOTP where applicable and write AdminAuditLog.</li>
+        <li>UseCaseExecutionLog supports the separate use-case health dashboard.</li>
+        <li>Seed data includes launch task categories, commission tiers, provider registry and payout batch rules.</li>
+        <li>Migrations are reviewed in phases and no destructive production migration runs without backup and restore testing.</li>
+      </ul>
+      <div class="callout green"><strong>Repo placement</strong><p>Publish this document as <code>documents/data-model-prisma-schema-planning-v1.html</code> in the Work2Cash docs repository and link it from the main architecture resource list. The file name can retain planning for continuity, but the document content is now the execution baseline.</p></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div><h4>Work2Cash</h4><p>Data Model & Prisma Schema Execution Baseline v1 for backend, mobile, admin, QA and operations alignment.</p></div>
+      <div><h4>Document Location</h4><p><code>documents/data-model-prisma-schema-planning-v1.html</code></p></div>
+      <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
+    </div>
+  </footer></body>
+</html>

@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="../assets/js/guard.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work2Cash - QA / Go-Live Readiness Checklist v1</title>
+  <style>
+    :root {
+      --brand:#1F6AE1;
+      --brand-mid:#5B8DEF;
+      --brand-soft:#EAF2FF;
+      --header:#0F2A44;
+      --text:#1D2939;
+      --muted:#667085;
+      --success:#12B76A;
+      --warning:#FF8A00;
+      --danger:#F04438;
+      --line:#D8E2F1;
+      --bg:#F6F9FE;
+      --paper:#FFFFFF;
+      --soft:#F9FBFF;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      font-family: Inter, "Nunito Sans", Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.68;
+      -webkit-font-smoothing:antialiased;
+    }
+    a { color:var(--brand); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    code {
+      font-family:"SFMono-Regular", Consolas, monospace;
+      background:#EEF4FF;
+      border:1px solid #CFE0FF;
+      padding:2px 6px;
+      border-radius:6px;
+      font-size:.92em;
+    }
+    pre {
+      margin:0;
+      padding:18px;
+      overflow:auto;
+      background:#FAFCFF;
+      font-family:"SFMono-Regular", Consolas, monospace;
+      font-size:12px;
+      line-height:1.62;
+      color:#334155;
+    }
+    .cover {
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:64px clamp(24px, 6vw, 88px);
+      color:white;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(91,141,239,.65), transparent 25rem),
+        radial-gradient(circle at 85% 80%, rgba(18,183,106,.22), transparent 28rem),
+        linear-gradient(135deg, #0F2A44 0%, #123B78 58%, #1F6AE1 115%);
+    }
+    .brand-row { display:flex; gap:16px; align-items:center; }
+    .logo {
+      width:62px; height:62px; border-radius:16px; background:white; color:var(--brand);
+      display:grid; place-items:center; font-weight:900; font-size:20px;
+      box-shadow:0 18px 40px rgba(0,0,0,.18);
+    }
+    .brand-row strong { display:block; font-size:18px; }
+    .brand-row span { display:block; color:rgba(255,255,255,.74); font-size:14px; }
+    .cover-main { max-width:1080px; padding:70px 0; }
+    .label { color:#CFE0FF; text-transform:uppercase; letter-spacing:.16em; font-size:12px; font-weight:800; }
+    h1 { font-size:clamp(44px, 8vw, 84px); line-height:1; margin:18px 0; letter-spacing:-.04em; }
+    .cover-subtitle { font-size:clamp(20px, 3vw, 30px); color:rgba(255,255,255,.84); max-width:920px; font-weight:700; }
+    .meta-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:14px; margin-top:38px; max-width:980px; }
+    .meta-card {
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.12);
+      border-radius:14px;
+      padding:16px;
+      backdrop-filter:blur(10px);
+    }
+    .meta-card span { display:block; color:rgba(255,255,255,.64); font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:800; }
+    .meta-card strong { display:block; margin-top:5px; color:#fff; }
+    .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+    .badge { border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.1); border-radius:999px; padding:7px 13px; font-size:12px; font-weight:800; }
+    .cover-foot { border-top:1px solid rgba(255,255,255,.18); padding-top:24px; display:flex; justify-content:space-between; gap:24px; color:rgba(255,255,255,.66); font-size:13px; }
+    .sticky {
+      position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); backdrop-filter:blur(12px);
+      border-bottom:2px solid var(--brand);
+    }
+    .sticky-inner { max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:12px 24px; }
+    .sticky strong { color:var(--header); }
+    .sticky nav { display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end; }
+    .sticky a { font-size:12px; font-weight:800; }
+    main { max-width:1240px; margin:0 auto; padding:44px 24px 80px; }
+    .toc, .section {
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:clamp(24px, 4vw, 44px);
+      margin-bottom:28px;
+      box-shadow:0 18px 50px rgba(15,42,68,.07);
+    }
+    .toc h2, .section h2 { color:var(--header); font-size:clamp(30px, 4vw, 46px); line-height:1.08; margin:6px 0 12px; letter-spacing:-.025em; }
+    .toc-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; margin-top:22px; }
+    .toc-grid a { padding:14px 16px; border-radius:12px; border:1px solid var(--line); background:var(--brand-soft); color:var(--header); font-weight:900; }
+    .section-num { color:#CBD5E1; font-size:13px; font-weight:900; }
+    .eyebrow { color:var(--brand); text-transform:uppercase; letter-spacing:.14em; font-size:12px; font-weight:900; }
+    .intro { color:var(--muted); font-size:16px; max-width:920px; margin-bottom:28px; }
+    h3 { color:var(--header); font-size:23px; margin:34px 0 14px; padding-bottom:8px; border-bottom:2px solid #E6EEF9; }
+    h4 { color:var(--header); font-size:17px; margin:20px 0 8px; }
+    p { margin:0 0 14px; }
+    ul { padding-left:22px; margin:10px 0 20px; }
+    li { margin:6px 0; }
+    .card-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; margin:22px 0; }
+    .card { border:1px solid var(--line); background:var(--soft); border-radius:14px; padding:18px; }
+    .card span { color:var(--brand); font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:900; }
+    .card h4 { margin:6px 0 7px; }
+    .card p { color:var(--muted); font-size:14px; margin:0; }
+    .callout { border-radius:14px; padding:18px 20px; margin:22px 0; border-left:5px solid var(--brand); background:var(--brand-soft); }
+    .callout strong { display:block; color:var(--brand); text-transform:uppercase; letter-spacing:.1em; font-size:11px; margin-bottom:5px; }
+    .callout p { margin:0; }
+    .callout.green { border-color:var(--success); background:#ECFDF3; }
+    .callout.green strong { color:var(--success); }
+    .callout.amber { border-color:var(--warning); background:#FFF7E8; }
+    .callout.amber strong { color:var(--warning); }
+    .callout.red { border-color:var(--danger); background:#FFF1F0; }
+    .callout.red strong { color:var(--danger); }
+    .table-wrap { overflow:auto; border:1px solid var(--line); border-radius:14px; margin:22px 0; }
+    table { width:100%; border-collapse:collapse; min-width:920px; font-size:13.5px; }
+    th { background:var(--header); color:white; padding:12px 14px; text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+    td { padding:12px 14px; border-bottom:1px solid #EEF2F8; vertical-align:top; color:#344054; }
+    tr:nth-child(even) td { background:#FAFCFF; }
+    tr:last-child td { border-bottom:0; }
+    .pill { display:inline-block; padding:4px 10px; border-radius:999px; font-size:11px; font-weight:900; white-space:nowrap; }
+    .blue { background:var(--brand-soft); color:var(--brand); }
+    .green-pill { background:#ECFDF3; color:var(--success); }
+    .amber-pill { background:#FFF7E8; color:var(--warning); }
+    .red-pill { background:#FFF1F0; color:var(--danger); }
+    .diagram { border:1px solid var(--line); border-radius:16px; overflow:hidden; margin:24px 0; background:#fff; }
+    .diagram-head { background:linear-gradient(135deg, var(--header), #174078); color:white; padding:14px 18px; display:flex; justify-content:space-between; gap:16px; align-items:center; }
+    .diagram-head h4 { margin:0; color:white; }
+    .diagram-head span { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:#DCE9FF; font-weight:900; }
+    .diagram p { padding:14px 18px; border-top:1px solid var(--line); margin:0; color:var(--muted); font-size:13px; }
+    .code-block { border:1px solid var(--line); border-radius:14px; overflow:hidden; margin:18px 0 24px; background:#fff; }
+    .code-title { background:#F8FBFF; border-bottom:1px solid var(--line); padding:10px 14px; color:var(--header); font-weight:900; font-size:12px; }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:18px 0; }
+    .checklist { list-style:none; padding:0; }
+    .checklist li { border-bottom:1px solid #EEF2F8; padding:9px 0 9px 30px; position:relative; }
+    .checklist li::before { content:"OK"; position:absolute; left:0; top:10px; color:var(--brand); font-size:10px; font-weight:900; }
+    footer { background:var(--header); color:#D0D5DD; padding:34px 24px; }
+    .footer-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    footer h4 { color:white; margin-top:0; }
+    footer p, footer li { color:#CBD5E1; font-size:13px; }
+    @media (max-width:900px) {
+      .meta-grid, .card-grid, .toc-grid, .footer-inner, .two-col { grid-template-columns:1fr; }
+      .cover-foot, .sticky-inner { flex-direction:column; align-items:flex-start; }
+      .sticky { position:static; }
+      table { min-width:820px; }
+    }
+    @media print {
+      .sticky { display:none; }
+      .cover { min-height:auto; page-break-after:always; }
+      .section { page-break-inside:avoid; box-shadow:none; }
+      body { background:white; }
+    }
+</style>
+</head>
+<body>
+  <section class="cover">
+    <div class="brand-row">
+      <div class="logo">W2C</div>
+      <div><strong>Work2Cash</strong><span>QA / Go-Live Readiness Checklist</span></div>
+    </div>
+    <div class="cover-main">
+      <div class="label">Document 10</div>
+      <h1>QA / Go-Live Readiness Checklist</h1>
+      <div class="cover-subtitle">Final acceptance, testing, operational readiness, rollback and launch decision checklist for Work2Cash.</div>
+      <div class="meta-grid">
+        <div class="meta-card"><span>Project</span><strong>Work2Cash</strong></div>
+        <div class="meta-card"><span>Version</span><strong>1.0</strong></div>
+        <div class="meta-card"><span>Date</span><strong>3 July 2026</strong></div>
+        <div class="meta-card"><span>Classification</span><strong>Execution Ready</strong></div>
+        <div class="meta-card"><span>Build Start</span><strong>6 Jul 2026</strong></div>
+        <div class="meta-card"><span>Testing Start</span><strong>17 Aug 2026</strong></div>
+        <div class="meta-card"><span>Go-Live Target</span><strong>31 Aug 2026</strong></div>
+        <div class="meta-card"><span>Repo Path</span><strong>documents/qa-go-live-readiness-checklist-v1.html</strong></div>
+      </div>
+      <div class="badges">
+        <span class="badge">Go/No-Go</span>
+        <span class="badge">QA Gates</span>
+        <span class="badge">Provider Validation</span>
+        <span class="badge">Rollback</span>
+        <span class="badge">Codex Ready</span>
+      </div>
+    </div>
+    <div class="cover-foot">
+      <div>Source of truth: Main Architecture, Flow Catalogues, API Contracts, Data Model, Provider Plan and Build Plans.</div>
+      <div>Protected by docs auth guard when published.</div>
+    </div>
+  </section>
+
+  <header class="sticky">
+    <div class="sticky-inner">
+      <strong>QA / Go-Live Readiness Checklist v1</strong>
+      <nav>
+        <a href="#sources">Sources</a>
+        <a href="#gates">Gates</a>
+        <a href="#testing">Testing</a>
+        <a href="#providers">Providers</a>
+        <a href="#blockers">Blockers</a>
+        <a href="#decision">Decision</a>
+      </nav>
+    </div>
+  </header>
+
+
+<style id="work2cash-doc-nav-style">
+  .doc-hub-nav {
+    max-width: 1240px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads {
+    max-width: 1240px;
+    margin: 16px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads-card {
+    border: 1px solid #CFE0FF;
+    background: #EAF2FF;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.06);
+  }
+  .team-downloads-card strong {
+    display: block;
+    color: #0F2A44;
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .team-downloads-card p {
+    margin: 0 0 12px;
+    color: #667085;
+    font-size: 13px;
+  }
+  .team-downloads-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .team-downloads-links a {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #1F6AE1;
+    background: #FFFFFF;
+    color: #1F6AE1;
+    border-radius: 999px;
+    padding: 9px 13px;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-card {
+    border: 1px solid #D8E2F1;
+    background: #FFFFFF;
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.07);
+    padding: 18px;
+  }
+  .doc-hub-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .doc-hub-top strong {
+    color: #0F2A44;
+    font-size: 16px;
+  }
+  .doc-hub-top a {
+    color: #1F6AE1;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .doc-hub-links a {
+    border: 1px solid #D8E2F1;
+    background: #EAF2FF;
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #0F2A44;
+    font-weight: 850;
+    font-size: 12px;
+    line-height: 1.35;
+    text-decoration: none;
+  }
+  .doc-hub-links a[aria-current="page"] {
+    background: #1F6AE1;
+    color: #FFFFFF;
+    border-color: #1F6AE1;
+  }
+  .doc-hub-links a:hover { text-decoration: underline; }
+  @media (max-width: 980px) {
+    .doc-hub-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 620px) {
+    .doc-hub-nav { padding: 0 16px; }
+    .doc-hub-card { border-radius: 14px; padding: 14px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .doc-hub-links { grid-template-columns: 1fr; }
+    .team-downloads { padding: 0 16px; }
+    .team-downloads-card { border-radius: 14px; padding: 14px; }
+  }
+</style>
+
+<nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
+  <div class="doc-hub-card">
+    <div class="doc-hub-top">
+      <strong>Work2Cash Documentation</strong>
+      <a href="../index.html">Back to document portal</a>
+    </div>
+    <div class="doc-hub-links">
+      <a href="./main-enterprise-architecture-v1.html">Main Enterprise Architecture v1</a><a href="./screen-to-feature-map-v1.html">Screen To Feature Map</a><a href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a href="./flow-alignment-review-v1.html">Flow Alignment Review v1</a><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a><a href="./api-socket-contract-specification-v1.html">API &amp; Socket Contract Specification v1</a><a href="./data-model-prisma-schema-planning-v1.html">Data Model &amp; Prisma Schema Planning v1</a><a href="./provider-integration-cost-control-v1.html">Provider Integration &amp; Cost Control v1</a><a href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html">Admin Build Plan v1</a><a href="./build-plan-backend-v1.html">Backend Build Plan v1</a><a href="./qa-go-live-readiness-checklist-v1.html" aria-current="page">QA / Go-Live Readiness Checklist v1</a>
+    </div>
+  </div>
+</nav>
+
+
+  <main>
+    <section class="toc">
+      <div class="eyebrow">Document 10</div>
+      <h2>What This Document Is For</h2>
+      <p class="intro">This checklist converts the Work2Cash architecture and implementation plans into release gates. A flow is not launch-ready just because screens exist. It is launch-ready only when the user journey, backend state, admin visibility, provider behavior, recovery path, monitoring and support process all pass.</p>
+      <div class="toc-grid">
+        <a href="#sources">01. Source Documents</a>
+        <a href="#gates">02. Readiness Gates</a>
+        <a href="#testing">03. Testing Calendar</a>
+        <a href="#flows">04. Product Flow Acceptance</a>
+        <a href="#admin">05. Admin Readiness</a>
+        <a href="#providers">06. Provider Validation</a>
+        <a href="#infra">07. Infrastructure Readiness</a>
+        <a href="#security">08. Security / Privacy / Legal</a>
+        <a href="#blockers">09. Go-Live Blockers</a>
+        <a href="#rollback">10. Rollback Plan</a>
+        <a href="#decision">11. Go/No-Go Decision</a>
+        <a href="#codex">12. Codex QA Instructions</a>
+      </div>
+    </section>
+
+    <section id="sources" class="section">
+      <div class="section-num">01</div>
+      <div class="eyebrow">Sources</div>
+      <h2>Source Documents And Evidence Chain</h2>
+      
+        <p class="intro">QA must trace every acceptance decision back to the source documents. If product behavior is unclear, the Main Enterprise Architecture remains the controlling baseline until formally revised.</p>
+        <div class="table-wrap"><table><thead><tr><th>Document</th><th>Repo Path</th><th>QA Use</th></tr></thead><tbody><tr><td>Main Enterprise Architecture v1</td><td>documents/main-enterprise-architecture-v1.html</td><td>Top-level source of truth.</td></tr><tr><td>Mobile Flow Catalogue v1</td><td>documents/mobile-flow-catalogue-v1.html</td><td>Closed mobile flows and recovery subflows.</td></tr><tr><td>Admin Flow Catalogue v1</td><td>documents/admin-flow-catalogue-v1.html</td><td>Closed admin web flows and operational dependencies.</td></tr><tr><td>Flow Alignment Review v1</td><td>documents/flow-alignment-review-v1.html</td><td>Alignment decisions across Figma, mobile, admin and architecture.</td></tr><tr><td>Legal &amp; User-Facing Documents Pack v1</td><td>documents/legal_user_facing_documents_pack_v1.html</td><td>Combined user-facing policy pack.</td></tr><tr><td>API &amp; Socket Contract Specification v1</td><td>documents/api-socket-contract-specification-v1.html</td><td>REST, socket, webhook, queue and response contracts.</td></tr><tr><td>Data Model &amp; Prisma Schema Planning v1</td><td>documents/data-model-prisma-schema-planning-v1.html</td><td>Data model and schema execution baseline.</td></tr><tr><td>Provider Integration &amp; Cost Control v1</td><td>documents/provider-integration-cost-control-v1.html</td><td>Provider adapters, webhooks, costs and go-live validations.</td></tr><tr><td>Mobile Build Plan v1</td><td>documents/build-plan-mobile-v1.html</td><td>Mobile-led implementation order.</td></tr><tr><td>Admin Build Plan v1</td><td>documents/build-plan-admin-v1.html</td><td>Admin execution plan following mobile outcomes.</td></tr><tr><td>Backend Build Plan v1</td><td>documents/build-plan-backend-v1.html</td><td>Backend execution plan following mobile needs.</td></tr></tbody></table></div>
+        
+    <div class="diagram">
+      <div class="diagram-head"><h4>Evidence Chain</h4><span>Release Proof</span></div>
+      <pre>Architecture decision
+  -&gt; Flow catalogue acceptance
+  -&gt; API/socket/data model contract
+  -&gt; Provider/cost-control rule
+  -&gt; Build plan task
+  -&gt; QA evidence
+  -&gt; Go/no-go decision</pre>
+      <p>Every release decision should have evidence, not just verbal confirmation.</p>
+    </div>
+    
+        
+    </section>
+    
+    <section id="gates" class="section">
+      <div class="section-num">02</div>
+      <div class="eyebrow">Gates</div>
+      <h2>Release Readiness Gates</h2>
+      
+        <p class="intro">The release moves forward only when each gate has clear evidence. A gate can be passed, failed, or conditionally accepted with named risk and owner.</p>
+        <div class="table-wrap"><table><thead><tr><th>Gate</th><th>Name</th><th>Pass Requirement</th><th>Primary Owner</th></tr></thead><tbody><tr><td>Gate 0</td><td>Documentation Baseline</td><td>All execution documents are published, guarded, linked from the main architecture document and accepted as implementation baseline.</td><td>Technical Lead</td></tr><tr><td>Gate 1</td><td>Feature Complete</td><td>Mobile, admin and backend have completed planned MVP flows with no known missing core flow.</td><td>All Teams</td></tr><tr><td>Gate 2</td><td>Integration Complete</td><td>Mobile, admin, backend, sockets, queues, providers, database and object storage work together on staging.</td><td>All Teams</td></tr><tr><td>Gate 3</td><td>Regression Complete</td><td>Testing Week 1 regression passes for auth, KYC, task, payment, matching, finance, reports, support and admin operations.</td><td>QA Coordination</td></tr><tr><td>Gate 4</td><td>Operational Readiness</td><td>Backups, restore, monitoring, alerting, runbooks, support process, payout batch process and provider support paths are ready.</td><td>Technical Lead</td></tr><tr><td>Gate 5</td><td>Security And Privacy Readiness</td><td>Sensitive data, PIN, TOTP, RBAC, webhooks, media permissions, phone masking and logs pass review.</td><td>Backend + Admin + Mobile</td></tr><tr><td>Gate 6</td><td>Release Candidate Approval</td><td>Final mobile/admin/backend release candidates are tested, tagged and deployable.</td><td>Technical Lead</td></tr><tr><td>Gate 7</td><td>Go/No-Go Approval</td><td>Final approval is recorded with blocker list, accepted risks, rollback plan and launch owner.</td><td>Traceworka</td></tr></tbody></table></div>
+        
+    <div class="checklist-block">
+      <h4>Gate Evidence Checklist</h4>
+      <ul><li><span class="check"></span><div>Each gate has an owner and acceptance date.</div></li><li><span class="check"></span><div>Every failed item has severity, owner, expected fix date and linked evidence.</div></li><li><span class="check"></span><div>Every conditional acceptance has a documented risk and business approval.</div></li><li><span class="check"></span><div>No P0 or P1 issue remains open at go-live.</div></li><li><span class="check"></span><div>Known P2 issues have user impact, workaround and post-launch target date.</div></li></ul>
+    </div>
+    
+        
+    </section>
+    
+    <section id="testing" class="section">
+      <div class="section-num">03</div>
+      <div class="eyebrow">Testing</div>
+      <h2>Two-Week QA And UAT Calendar</h2>
+      
+        <p class="intro">Testing starts after the six-week build freeze. Week 1 focuses on regression and environment readiness. Week 2 focuses on UAT, recovery, security, provider proof and final go/no-go evidence.</p>
+        <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Focus</th><th>Execution Scope</th></tr></thead><tbody><tr><td>T1D1</td><td>Mon 17 Aug 2026</td><td>Smoke and environment</td><td>Verify staging API/admin/socket/mobile builds, env vars, migrations, seed data and provider sandbox keys.</td></tr><tr><td>T1D2</td><td>Tue 18 Aug 2026</td><td>Identity/KYC regression</td><td>Test registration, login, OTP, social login, profile, PIN, sessions, KYC and admin KYC review.</td></tr><tr><td>T1D3</td><td>Wed 19 Aug 2026</td><td>Task/payment regression</td><td>Test task creation, location, media, payment, webhook, escrow, broadcast and direct offer.</td></tr><tr><td>T1D4</td><td>Thu 20 Aug 2026</td><td>Matching/execution regression</td><td>Test discovery, interest, accept/reject, start journey, arrived, begin, chat, tracking and completion.</td></tr><tr><td>T1D5</td><td>Fri 21 Aug 2026</td><td>Finance/support regression</td><td>Test wallet, withdrawal, payout batch, report, support live chat, emergency and admin resolution.</td></tr><tr><td>T2D1</td><td>Mon 24 Aug 2026</td><td>UAT round 1</td><td>Run full user journeys as Task Owner, Tasker and Admin with documented defects.</td></tr><tr><td>T2D2</td><td>Tue 25 Aug 2026</td><td>Recovery/load/offline</td><td>Test app resume, socket reconnect, payment return, KYC return, provider delays, queue retries and low-end Android behavior.</td></tr><tr><td>T2D3</td><td>Wed 26 Aug 2026</td><td>Security/privacy/provider</td><td>Test PIN, TOTP, RBAC, webhook signatures, media permissions, phone masking and Sentry scrubbing.</td></tr><tr><td>T2D4</td><td>Thu 27 Aug 2026</td><td>Release candidate verification</td><td>Re-run critical happy paths and exception paths after fixes.</td></tr><tr><td>T2D5</td><td>Fri 28 Aug 2026</td><td>Go-live decision pack</td><td>Produce go/no-go checklist, known issues, rollback notes, backup restore proof and provider validation proof.</td></tr></tbody></table></div>
+        
+    <div class="checklist-block">
+      <h4>Daily QA Reporting Requirements</h4>
+      <ul><li><span class="check"></span><div>List tests completed, tests blocked and tests deferred.</div></li><li><span class="check"></span><div>Record every defect with flow ID, severity, environment, reproduction steps and expected result.</div></li><li><span class="check"></span><div>Attach screenshots, screen recordings, request IDs, provider references or logs where relevant.</div></li><li><span class="check"></span><div>Separate product decision gaps from engineering defects.</div></li><li><span class="check"></span><div>Publish a daily go-live risk summary during both testing weeks.</div></li></ul>
+    </div>
+    
+        
+    </section>
+    
+    <section id="flows" class="section">
+      <div class="section-num">04</div>
+      <div class="eyebrow">Flows</div>
+      <h2>Mobile Product Flow Acceptance</h2>
+      
+        <p class="intro">Mobile is the primary product surface. Each flow must pass happy path, recovery path, error path and role-permission expectations before it is accepted.</p>
+        <div class="table-wrap"><table><thead><tr><th>Flow Area</th><th>Acceptance Scope</th></tr></thead><tbody><tr><td>Auth/Profile</td><td>Registration, login, OTP email-first/SMS fallback, Google/Apple login, profile completion, mode switch and session recovery.</td></tr><tr><td>KYC/Tasker Activation</td><td>Tasker profile, NIN/BVN, biometric capture, status polling, failure recovery and admin review.</td></tr><tr><td>Task Owner Creation</td><td>Category, description, amount, required arrival time, GPS/manual address, geocode, pin confirm and proof media.</td></tr><tr><td>Payment/Escrow</td><td>Task amount + fee display, Paystack/Moniepoint redirect/status, webhook confirmation, pending recovery and escrow creation.</td></tr><tr><td>Broadcast/Direct Offer</td><td>Public broadcast, favorite Tasker direct offer, FCM notification, expiry/decline and fallback to public discovery.</td></tr><tr><td>Tasker Discovery</td><td>Visible tasks sorted nearest first, location filter, limited public preview, Nigeria eligibility and arrival confirmation.</td></tr><tr><td>Task Owner Selection</td><td>Candidate list, Tasker ETA/profile, accept/reject before movement or within allowed movement window.</td></tr><tr><td>Execution</td><td>Start Journey, I have arrived, Begin Task, chat, voice note metadata, tracking, ETA guard and masked call entry.</td></tr><tr><td>Completion</td><td>Tasker proof upload, request completion, Task Owner approval, escrow settlement, rating and favorite.</td></tr><tr><td>Exceptions</td><td>Cancellation, no-show, report/dispute, warning/strike, settlement hold and admin resolution.</td></tr><tr><td>Wallet/Withdrawal</td><td>Separate Task Owner/Tasker wallets, ledger, Tasker payout account, PIN-confirmed withdrawal, 14th/28th batch status.</td></tr><tr><td>Support/Emergency</td><td>Support live chat, emergency support path, ticket linking and clear distinction from disputes.</td></tr></tbody></table></div>
+        
+    <div class="diagram">
+      <div class="diagram-head"><h4>Mobile Flow Acceptance Loop</h4><span>Closed Flow</span></div>
+      <pre>Start flow
+  -&gt; complete primary action
+  -&gt; backend persists state
+  -&gt; socket/notification updates where needed
+  -&gt; app recovers after restart/reconnect
+  -&gt; admin can observe or act where required
+  -&gt; legal/support copy matches behavior
+  -&gt; flow accepted</pre>
+      <p>A mobile flow is not closed until the app can recover from interruption and the admin/backend side can see the correct state.</p>
+    </div>
+    
+        
+    </section>
+    
+    <section id="admin" class="section">
+      <div class="section-num">05</div>
+      <div class="eyebrow">Admin</div>
+      <h2>Admin Operations Readiness</h2>
+      
+        <p class="intro">Admin readiness means the team can operate the marketplace safely after launch. Admin must not create shortcuts that break accepted product rules.</p>
+        <div class="table-wrap"><table><thead><tr><th>Admin Area</th><th>Acceptance Scope</th></tr></thead><tbody><tr><td>Admin Auth</td><td>Login, TOTP, session expiry, forbidden state and logout.</td></tr><tr><td>Dashboard</td><td>Operational cards, use-case health, provider/queue visibility and skeleton/error states.</td></tr><tr><td>Users/KYC</td><td>User detail, Tasker profile, KYC queue, approve/reject/request re-verification.</td></tr><tr><td>Tasks/Media</td><td>Task list/detail, status timeline, proof media moderation, no admin reassignment.</td></tr><tr><td>Reports/Risk</td><td>Reports queue, evidence review, warnings, strikes, trust impact and suspension.</td></tr><tr><td>Finance</td><td>Transactions, receipts, ledger, escrow, reconciliation, wallet support and payout batches.</td></tr><tr><td>Support</td><td>Support live chat queue/session, emergency handling and case linking.</td></tr><tr><td>Config</td><td>Catalog, coverage, ETA guard, media limits, payout dates, notification settings and audit.</td></tr><tr><td>Audit/RBAC</td><td>Every high-impact action records actor, reason, target, requestId and timestamp.</td></tr></tbody></table></div>
+        
+    <div class="checklist-block">
+      <h4>Admin Safety Rules</h4>
+      <ul><li><span class="check"></span><div>Admin must not reassign tasks under any condition.</div></li><li><span class="check"></span><div>Force-cancel, KYC review, wallet support, report resolution and category changes require audit trail.</div></li><li><span class="check"></span><div>Every high-impact action requires reason capture.</div></li><li><span class="check"></span><div>RBAC forbidden states must be tested.</div></li><li><span class="check"></span><div>Tables and detail views must have skeleton, empty, error and retry states.</div></li></ul>
+    </div>
+    
+        
+    </section>
+    
+    <section id="providers" class="section">
+      <div class="section-num">06</div>
+      <div class="eyebrow">Providers</div>
+      <h2>Provider And Cost-Control Validation</h2>
+      
+        <p class="intro">Provider validation is required before live traffic. Paid providers must be protected by batching, idempotency, retries, alerts and cost limits.</p>
+        <div class="table-wrap"><table><thead><tr><th>Provider / Area</th><th>Validation Test</th><th>Go-Live Rule</th></tr></thead><tbody><tr><td>Paystack</td><td>Payment intent, bank transfer/redirect flow, signed webhook, duplicate webhook idempotency, verify status and reconciliation.</td><td>Required</td></tr><tr><td>Moniepoint</td><td>Payment/collection flow, webhook verification, status verify, pending/failed reconciliation.</td><td>Required</td></tr><tr><td>Payout batches</td><td>Batch creation, disputed Tasker exclusion, partial failure, retry, audit and export.</td><td>Required</td></tr><tr><td>Smile ID</td><td>KYC start, NIN/BVN, biometric capture reference, callback/status mapping, admin re-verification.</td><td>Required</td></tr><tr><td>Google Maps</td><td>Manual address geocode, Nigeria-only task site validation, ETA computation, 5-minute + 10% journey guard.</td><td>Required</td></tr><tr><td>FCM</td><td>Device registration, direct offer, task, chat/support and critical notification delivery, tap-to-REST recovery.</td><td>Required</td></tr><tr><td>Termii</td><td>SMS fallback OTP, rate limit, purpose log and failure path.</td><td>Required</td></tr><tr><td>Email</td><td>OTP, receipt/support message templates and delivery event logging.</td><td>Required</td></tr><tr><td>Sentry</td><td>Backend, mobile and admin errors captured with PII/secrets scrubbed.</td><td>Required</td></tr><tr><td>Shorebird</td><td>Staging patch test and limitation notes.</td><td>Required before mobile release readiness</td></tr><tr><td>Masked calls</td><td>Proxy number, inbound route, bridge recipient, real number hidden, cost tracked.</td><td>Can remain disabled if not validated</td></tr><tr><td>Object storage</td><td>Signed upload, private read, media review/remove, size limit enforcement, backup storage path.</td><td>Required</td></tr></tbody></table></div>
+        
+    <div class="checklist-block">
+      <h4>Cost-Control Checklist</h4>
+      <ul><li><span class="check"></span><div>Google Maps ETA refresh uses 5-minute guard plus next 10% journey milestone.</div></li><li><span class="check"></span><div>No paid provider is called through uncontrolled auto-refresh loops.</div></li><li><span class="check"></span><div>Termii SMS is fallback after email OTP where appropriate.</div></li><li><span class="check"></span><div>Payment reconciliation jobs do not spam provider APIs.</div></li><li><span class="check"></span><div>Provider usage and cost are visible in admin/monitoring where practical.</div></li><li><span class="check"></span><div>Masked calls can remain disabled if Nigerian proxy-dial validation is incomplete.</div></li></ul>
+    </div>
+    
+        
+    </section>
+    
+    <section id="infra" class="section">
+      <div class="section-num">07</div>
+      <div class="eyebrow">Infrastructure</div>
+      <h2>Infrastructure, Backup And Monitoring Readiness</h2>
+      
+        <p class="intro">Production readiness requires proof that the system can run, fail visibly, back up data and recover. Self-hosting increases cost control but requires operational discipline.</p>
+        <div class="table-wrap"><table><thead><tr><th>Area</th><th>Readiness Requirement</th></tr></thead><tbody><tr><td>Servers</td><td>Staging and production targets provisioned, firewall rules applied, SSH hardened, no public database/Valkey exposure.</td></tr><tr><td>Postgres</td><td>Migrations applied, indexes reviewed, connection limits known, backup job running and restore tested.</td></tr><tr><td>Valkey</td><td>Queues/cache/socket adapter configured, memory limits monitored, eviction policy understood.</td></tr><tr><td>BullMQ</td><td>Critical queues visible, retries/dead-letter handling configured, stalled jobs observable.</td></tr><tr><td>Storage</td><td>Signed upload and private access tested; backups stored off-server in object/S3-compatible storage.</td></tr><tr><td>Domains</td><td>work2cash.ng, api, socket, admin, staging, api-staging and socket-staging DNS records validated.</td></tr><tr><td>TLS</td><td>HTTPS certificates valid for production and staging subdomains.</td></tr><tr><td>Monitoring</td><td>Health/readiness, metrics, Sentry, queue/provider logs and alert destinations ready.</td></tr><tr><td>Backups</td><td>RPO 15 minutes to 1 hour and RTO 2 to 4 hours validated by restore drill.</td></tr></tbody></table></div>
+        
+    <div class="checklist-block">
+      <h4>Backup And Restore Evidence</h4>
+      <ul><li><span class="check"></span><div>A fresh production-like Postgres backup is created successfully.</div></li><li><span class="check"></span><div>Backup is uploaded to off-server object/S3-compatible storage.</div></li><li><span class="check"></span><div>Restore is tested into staging or a temporary restore database.</div></li><li><span class="check"></span><div>Restore result includes row count or checksum evidence for critical tables.</div></li><li><span class="check"></span><div>RPO and RTO targets are measured and recorded.</div></li></ul>
+    </div>
+    
+        
+    </section>
+    
+    <section id="security" class="section">
+      <div class="section-num">08</div>
+      <div class="eyebrow">Security</div>
+      <h2>Security, Privacy And Legal Readiness</h2>
+      
+        <p class="intro">Work2Cash handles KYC, location, wallet, task media, phone privacy and payment-related data. Launch cannot proceed if sensitive data protection is uncertain.</p>
+        <div class="table-wrap"><table><thead><tr><th>Area</th><th>Readiness Requirement</th></tr></thead><tbody><tr><td>Authentication</td><td>JWT/refresh, OTP rate limit, social login, logout and session revoke tested.</td></tr><tr><td>Sensitive actions</td><td>PIN confirmation used for withdrawals and sensitive account actions; OTP used for PIN recovery/contact verification.</td></tr><tr><td>Admin</td><td>TOTP, RBAC, audit logging and high-impact action reason capture tested.</td></tr><tr><td>Payments</td><td>Webhook signatures, idempotency, reconciliation and provider reference storage tested.</td></tr><tr><td>Wallet</td><td>Append-only ledger behavior tested; no direct Task Owner withdrawal path.</td></tr><tr><td>KYC</td><td>Smile ID data access restricted and KYC details scrubbed from logs.</td></tr><tr><td>Media</td><td>Proof photos/videos are permission-controlled and exact/private media is not exposed publicly.</td></tr><tr><td>Location</td><td>Exact address shown only after accepted/payment rules are satisfied.</td></tr><tr><td>Phone privacy</td><td>Masked call behavior does not expose real phone numbers.</td></tr><tr><td>Legal links</td><td>Terms, privacy, KYC consent, location notice, wallet/payment terms and safety/cancellation policies accessible from app.</td></tr></tbody></table></div>
+        
+    <div class="checklist-block">
+      <h4>Legal/User-Facing Copy Checks</h4>
+      <ul><li><span class="check"></span><div>Payment wording does not imply funds are released before task completion/settlement.</div></li><li><span class="check"></span><div>Calls wording states: Calls use your normal airtime. Work2Cash protects your phone number.</div></li><li><span class="check"></span><div>Task Owner wallet wording states direct withdrawal requires support.</div></li><li><span class="check"></span><div>Cancellation/no-show penalties, warnings and strikes are shown before confirmation where applicable.</div></li><li><span class="check"></span><div>Referral reward wording states reward is wallet credit after referred user completes 5 paid tasks.</div></li></ul>
+    </div>
+    
+        
+    </section>
+    
+    <section id="blockers" class="section">
+      <div class="section-num">09</div>
+      <div class="eyebrow">Blockers</div>
+      <h2>Go-Live Blockers</h2>
+      
+        <p class="intro">Any unresolved item in this list blocks production launch unless a formal decision disables the affected feature and proves the rest of the product remains safe.</p>
+        <div class="table-wrap"><table><thead><tr><th>Area</th><th>Blocking Condition</th></tr></thead><tbody><tr><td>Payments</td><td>Paystack or Moniepoint webhook signature verification fails, duplicate webhook handling is unsafe, or frontend redirect is treated as final payment proof.</td></tr><tr><td>Wallet/Ledger</td><td>Any wallet, escrow, payout, refund or commission ledger mismatch is unresolved.</td></tr><tr><td>KYC</td><td>Smile ID KYC submit/status/admin review path fails or KYC data is exposed to unauthorized users.</td></tr><tr><td>Core Task Flow</td><td>Task Owner cannot create/fund/broadcast/direct-offer a task, or Tasker cannot discover/accept/execute/complete a task.</td></tr><tr><td>Task Status</td><td>Start Journey, I have arrived, Begin Task, completion and cancellation state guards are inconsistent.</td></tr><tr><td>Admin Security</td><td>Admin TOTP, RBAC, audit reason capture or high-impact action controls are broken.</td></tr><tr><td>Privacy</td><td>Real phone numbers, private task addresses, KYC details, payment secrets or protected proof media leak.</td></tr><tr><td>Socket Reliability</td><td>Chat, tracking or support live chat cannot recover from reconnect through REST source of truth.</td></tr><tr><td>Notifications</td><td>FCM does not work for direct offer, task, chat/support or critical operational notifications.</td></tr><tr><td>Backups</td><td>Postgres backup restore has not been tested successfully before production launch.</td></tr><tr><td>Monitoring</td><td>Sentry, health checks, queue/provider failure visibility and basic alerts are not available.</td></tr><tr><td>Legal</td><td>Required user-facing legal/policy links are missing from the app/admin or are materially inconsistent with product behavior.</td></tr></tbody></table></div>
+        <div class="callout red"><strong>Blocker rule</strong><p>No payment, wallet, KYC, privacy, task execution, backup, admin security or core flow blocker should be waived casually. If a blocker is waived, the feature must be disabled or the risk must be explicitly accepted by final approvers.</p></div>
+        
+    </section>
+    
+    <section id="rollback" class="section">
+      <div class="section-num">10</div>
+      <div class="eyebrow">Rollback</div>
+      <h2>Rollback And Incident Response Plan</h2>
+      
+        <p class="intro">Rollback must protect money, identity data, task state and user trust. Rollback is not only code reversal; it includes provider state, queues, database state and user communication.</p>
+        <div class="table-wrap"><table><thead><tr><th>Step</th><th>Action</th><th>Execution Detail</th></tr></thead><tbody><tr><td>1</td><td>Pause launch actions</td><td>Stop new release rollout, pause marketing/public traffic increase and notify internal owners.</td></tr><tr><td>2</td><td>Freeze data-sensitive operations</td><td>If issue affects payments/wallets, pause payout processing and new risky financial actions.</td></tr><tr><td>3</td><td>Route traffic back</td><td>Revert API/admin/mobile configuration to last known stable release or disable affected feature through config where possible.</td></tr><tr><td>4</td><td>Preserve evidence</td><td>Export request IDs, provider references, Sentry issues, queue IDs, audit logs and affected user/task IDs.</td></tr><tr><td>5</td><td>Recover data safely</td><td>Use migrations/restore only with explicit technical approval. Never manually mutate wallet balances outside ledger rules.</td></tr><tr><td>6</td><td>Communicate status</td><td>Prepare user/support messaging for affected flows and expected resolution timeline.</td></tr><tr><td>7</td><td>Post-incident review</td><td>Document root cause, fix, regression test and prevention rule before reattempting release.</td></tr></tbody></table></div>
+        
+    <div class="diagram">
+      <div class="diagram-head"><h4>Rollback Decision Tree</h4><span>Release Safety</span></div>
+      <pre>Issue found
+  -&gt; Is money/wallet/KYC/privacy affected?
+      -&gt; yes: pause risky operations first
+      -&gt; no: isolate affected feature
+  -&gt; preserve logs and provider references
+  -&gt; rollback config/code if needed
+  -&gt; verify data integrity
+  -&gt; communicate status
+  -&gt; approve re-release only after regression proof</pre>
+      <p>Financial and privacy issues get priority over feature availability.</p>
+    </div>
+    
+        
+    </section>
+    
+    <section id="decision" class="section">
+      <div class="section-num">11</div>
+      <div class="eyebrow">Decision</div>
+      <h2>Final Go/No-Go Decision Pack</h2>
+      
+        <p class="intro">The go-live decision should be a written record. It should identify what was tested, what failed, what was fixed, what remains open and who approved launch.</p>
+        <div class="table-wrap"><table><thead><tr><th>Decision Item</th><th>Required Evidence</th></tr></thead><tbody><tr><td>Release candidate versions</td><td>Backend commit/tag, admin build, mobile build, database migration version and environment versions.</td></tr><tr><td>Gate status</td><td>Gate 0 to Gate 7 pass/fail/conditional status.</td></tr><tr><td>Defect summary</td><td>Open defects by severity, owner, workaround and target date.</td></tr><tr><td>Provider proof</td><td>Payment, KYC, maps, FCM, Termii/email, Sentry, storage and backup validation evidence.</td></tr><tr><td>Operational proof</td><td>Support process, payout batch process, monitoring alerts, restore drill and rollback plan.</td></tr><tr><td>Legal proof</td><td>Combined legal pack published and app/admin links confirmed.</td></tr><tr><td>Accepted risks</td><td>Named risks, owner, mitigation and approval.</td></tr><tr><td>Final decision</td><td>Go, no-go or delayed launch decision with timestamp and approver.</td></tr></tbody></table></div>
+        <h3>30-Day Launch Success Criteria</h3>
+        <div class="table-wrap"><table><thead><tr><th>Metric</th><th>Target</th></tr></thead><tbody><tr><td>Payment success rate</td><td>Above 95% during first 30 days.</td></tr><tr><td>Escrow ledger mismatch</td><td>0 mismatches.</td></tr><tr><td>Critical unresolved Sentry errors</td><td>0 before launch.</td></tr><tr><td>API uptime</td><td>Above 99% during first 30 days.</td></tr><tr><td>Task completion</td><td>Improves week over week.</td></tr><tr><td>KYC SLA</td><td>Within 24 hours.</td></tr><tr><td>Withdrawal SLA</td><td>Within 24 hours or next payout batch rule where applicable.</td></tr><tr><td>Support SLA</td><td>First response within 2 business hours.</td></tr><tr><td>Emergency support</td><td>Priority response target under 15 minutes.</td></tr><tr><td>Privacy/security</td><td>No confirmed leakage of phone numbers, KYC data, payment secrets, private task addresses or protected task media.</td></tr><tr><td>Masked call privacy</td><td>Real phone numbers are not exposed during task-bound calls.</td></tr><tr><td>Google Maps/API cost</td><td>Spend remains inside approved budget guard.</td></tr></tbody></table></div>
+        <div class="code-block"><div class="code-title">Go/No-Go Record Template</div><pre>Decision: GO / NO-GO / DELAYED
+Decision date:
+Release candidate:
+Migration version:
+Gate summary:
+Open P0 issues:
+Open P1 issues:
+Accepted risks:
+Rollback owner:
+Support owner:
+Provider escalation contacts verified:
+Final approver:
+Notes:</pre></div>
+        
+    </section>
+    
+    <section id="codex" class="section">
+      <div class="section-num">12</div>
+      <div class="eyebrow">Codex</div>
+      <h2>Codex And AI-Agent QA Instructions</h2>
+      
+        <p class="intro">Use the block below when asking Codex or another AI agent to execute a QA task, inspect a flow, write tests or update documentation after a defect is found.</p>
+        <div class="code-block"><div class="code-title">QA AI Task Block</div><pre>Task ID:
+Document:
+Gate or flow:
+Primary owner:
+Evidence required:
+Systems to test:
+Provider dependencies:
+Data setup needed:
+Steps:
+Expected result:
+Failure/blocker criteria:
+Artifacts to attach:
+Commit message if docs/code change is needed:</pre></div>
+        <div class="table-wrap"><table><thead><tr><th>Instruction</th><th>Required Behavior</th></tr></thead><tbody><tr><td>Use source documents</td><td>Read the relevant flow catalogue, API/socket contract, data model, provider plan and build plan before executing QA changes.</td></tr><tr><td>Test one thing at a time</td><td>Do not combine unrelated QA fixes or documentation changes in one commit.</td></tr><tr><td>Evidence first</td><td>Every pass/fail judgment needs evidence: screenshot, recording, log, requestId, provider reference, test output or written reproduction.</td></tr><tr><td>Respect product rules</td><td>Do not introduce admin reassignment, Facebook login, card-entry-first payment or dispute live chat while fixing tests.</td></tr><tr><td>Protect data</td><td>Do not paste secrets, OTPs, KYC details, real phone numbers, private addresses or payment payloads into docs or logs.</td></tr><tr><td>Commit standard</td><td>Use clear commits such as test(mobile): cover task execution status recovery or docs(qa): update go-live checklist evidence.</td></tr></tbody></table></div>
+      
+    </section>
+    
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div><h4>Work2Cash</h4><p>QA / Go-Live Readiness Checklist v1 for final launch acceptance.</p></div>
+      <div><h4>Document Location</h4><p><code>documents/qa-go-live-readiness-checklist-v1.html</code></p></div>
+      <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
+    </div>
+  </footer></body>
+</html>

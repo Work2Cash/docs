@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <script src="../assets/js/guard.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Work2Cash - Enterprise Architecture Document v1</title>
   <style>
     :root {
@@ -677,86 +677,178 @@
           href="#section-10">10</a><a href="#section-11">11</a><a href="#section-12">12</a></nav>
     </div>
   </header>
+
+
+  <style id="work2cash-doc-nav-style">
+    .doc-hub-nav {
+      max-width: 1240px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+    }
+
+    .team-downloads {
+      max-width: 1240px;
+      margin: 16px auto 0;
+      padding: 0 24px;
+    }
+
+    .team-downloads-card {
+      border: 1px solid #CFE0FF;
+      background: #EAF2FF;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 18px 50px rgba(15, 42, 68, .06);
+    }
+
+    .team-downloads-card strong {
+      display: block;
+      color: #0F2A44;
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .team-downloads-card p {
+      margin: 0 0 12px;
+      color: #667085;
+      font-size: 13px;
+    }
+
+    .team-downloads-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .team-downloads-links a {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #1F6AE1;
+      background: #FFFFFF;
+      color: #1F6AE1;
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-weight: 900;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .doc-hub-card {
+      border: 1px solid #D8E2F1;
+      background: #FFFFFF;
+      border-radius: 18px;
+      box-shadow: 0 18px 50px rgba(15, 42, 68, .07);
+      padding: 18px;
+    }
+
+    .doc-hub-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .doc-hub-top strong {
+      color: #0F2A44;
+      font-size: 16px;
+    }
+
+    .doc-hub-top a {
+      color: #1F6AE1;
+      font-weight: 900;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .doc-hub-links {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .doc-hub-links a {
+      border: 1px solid #D8E2F1;
+      background: #EAF2FF;
+      border-radius: 12px;
+      padding: 10px 12px;
+      color: #0F2A44;
+      font-weight: 850;
+      font-size: 12px;
+      line-height: 1.35;
+      text-decoration: none;
+    }
+
+    .doc-hub-links a[aria-current="page"] {
+      background: #1F6AE1;
+      color: #FFFFFF;
+      border-color: #1F6AE1;
+    }
+
+    .doc-hub-links a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 980px) {
+      .doc-hub-links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .doc-hub-nav {
+        padding: 0 16px;
+      }
+
+      .doc-hub-card {
+        border-radius: 14px;
+        padding: 14px;
+      }
+
+      .doc-hub-top {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .doc-hub-links {
+        grid-template-columns: 1fr;
+      }
+
+      .team-downloads {
+        padding: 0 16px;
+      }
+
+      .team-downloads-card {
+        border-radius: 14px;
+        padding: 14px;
+      }
+    }
+  </style>
+
+  <nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
+    <div class="doc-hub-card">
+      <div class="doc-hub-top">
+        <strong>Work2Cash Documentation</strong>
+        <a href="../index.html">Back to document portal</a>
+      </div>
+      <div class="doc-hub-links">
+        <a href="./main-enterprise-architecture-v1.html" aria-current="page">Main Enterprise Architecture v1</a><a
+          href="./screen-to-feature-map-v1.html">Screen To Feature Map</a><a
+          href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a
+          href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a
+          href="./flow-alignment-review-v1.html">Flow Alignment Review v1</a><a
+          href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a><a
+          href="./api-socket-contract-specification-v1.html">API &amp; Socket Contract Specification v1</a><a
+          href="./data-model-prisma-schema-planning-v1.html">Data Model &amp; Prisma Schema Planning v1</a><a
+          href="./provider-integration-cost-control-v1.html">Provider Integration &amp; Cost Control v1</a><a
+          href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html">Admin Build
+          Plan v1</a><a href="./build-plan-backend-v1.html">Backend Build Plan v1</a><a
+          href="./qa-go-live-readiness-checklist-v1.html">QA / Go-Live Readiness Checklist v1</a>
+      </div>
+    </div>
+  </nav>
+
   <main>
-    <section class="toc" id="team-resources">
-      <div class="eyebrow">Team Documentation Portal</div>
-      <h2>Work2Cash Resource Links</h2>
-      <p class="intro">The GitHub organization uses the public <code>docs</code> repository as the team-facing
-        documentation portal. This resource hub stays at the top of the main architecture document so team members can
-        quickly move between the master source of truth and supporting documents.</p>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Resource</th>
-              <th>Repo Location / Link</th>
-              <th>Status / Purpose</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Docs Home / Password Gate</td>
-              <td><a href="../index.html"><code>../index.html</code></a></td>
-              <td>Team landing page with client-side password gate.</td>
-            </tr>
-            <tr>
-              <td>Main Enterprise Architecture v1</td>
-              <td><a
-                  href="./main-enterprise-architecture-v1.html"><code>./main-enterprise-architecture-v1.html</code></a>
-              </td>
-              <td>Primary source of truth for Work2Cash.</td>
-            </tr>
-            <tr>
-              <td>Legal &amp; User-Facing Documents Pack</td>
-              <td><a
-                  href="./legal_user_facing_documents_pack_v1.html"><code>./legal_user_facing_documents_pack_v1.html</code></a>
-              </td>
-              <td>Combined legal pack. Do not publish separate <code>/legal/...</code> pages in the docs repo.</td>
-            </tr>
-            <tr>
-              <td>API &amp; Socket Contract Specification</td>
-              <td><a
-                  href="./api_socket_contract_specification_v1.html"><code>./api_socket_contract_specification_v1.html</code></a>
-              </td>
-              <td>Planned implementation contract for Mobile, Admin, and Backend.</td>
-            </tr>
-            <tr>
-              <td>Data Model &amp; Prisma Schema Planning</td>
-              <td><a
-                  href="./data_model_prisma_schema_planning_v1.html"><code>./data_model_prisma_schema_planning_v1.html</code></a>
-              </td>
-              <td>Planned database, entities, enums, relationships, indexes, and ledger rules.</td>
-            </tr>
-            <tr>
-              <td>Provider Integration &amp; Cost Control</td>
-              <td><a
-                  href="./provider_integration_cost_control_v1.html"><code>./provider_integration_cost_control_v1.html</code></a>
-              </td>
-              <td>Planned provider register, costs, fallbacks, and usage guardrails.</td>
-            </tr>
-            <tr>
-              <td>Build / Implementation Execution Plan</td>
-              <td><a
-                  href="./build_implementation_execution_plan_v1.html"><code>./build_implementation_execution_plan_v1.html</code></a>
-              </td>
-              <td>Planned team-by-team execution plan and delivery sequence.</td>
-            </tr>
-            <tr>
-              <td>QA / Go-Live Readiness Checklist</td>
-              <td><a
-                  href="./qa_go_live_readiness_checklist_v1.html"><code>./qa_go_live_readiness_checklist_v1.html</code></a>
-              </td>
-              <td>Planned launch gate checklist and acceptance criteria.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="callout amber"><strong>Access Notice</strong>
-        <p>The GitHub Pages password gate is a soft team-convenience guard only. The repository is public, so no
-          secrets, credentials, API keys, production data, private user data, sensitive payment data, or confidential
-          operational secrets should be stored in the repo.</p>
-      </div>
-    </section>
     <section class="toc">
       <div class="eyebrow">Contents</div>
       <h2>Architecture Document Index</h2>
@@ -770,7 +862,8 @@
           Standards</a><a href="#section-10">10. Build, QA and Go-Live</a><a href="#section-11">11. Risks and
           Decisions</a><a href="#section-12">12. Appendices</a></div>
     </section>
-    <section class="section" id="section-01">
+
+    <section id="section-01" class="section">
       <div class="section-num">01</div>
       <div class="eyebrow">Part I</div>
       <h2>Executive Foundation</h2>
@@ -795,9 +888,8 @@
       <div class="callout blue"><strong>Document Authority</strong>
         <p>This Main Enterprise Architecture Document is the primary source of truth for Work2Cash product behavior,
           system boundaries, engineering standards, provider strategy, operational controls, launch readiness, and
-          follow-up documents. The team-facing published copy lives in the GitHub <code>docs</code> repository at
-          <code>documents/main-enterprise-architecture-v1.html</code>. If a later implementation document conflicts with
-          this document, this document should be treated as the baseline until formally revised.</p>
+          follow-up documents. If a later implementation document conflicts with this document, this document should be
+          treated as the baseline until formally revised.</p>
       </div>
       <div class="table-wrap">
         <table>
@@ -936,7 +1028,8 @@
         </table>
       </div>
     </section>
-    <section class="section" id="section-02">
+
+    <section id="section-02" class="section">
       <div class="section-num">02</div>
       <div class="eyebrow">Part II</div>
       <h2>Product Scope and Business Rules</h2>
@@ -979,13 +1072,15 @@
             </tr>
             <tr>
               <td>MVP Modules</td>
-              <td>Auth, KYC, Task Owner flow, Tasker flow, wallet/escrow, chat, voice messages, masked calls,
-                notifications, admin operations, support, disputes/reports, withdrawals, referrals</td>
+              <td>Auth including password recovery and Google/Apple social login; KYC; Task Owner flow; Tasker flow;
+                wallet/escrow; PIN-confirmed sensitive actions; payout account setup; chat; voice messages; masked
+                calls; notifications; admin operations; support and emergency support; disputes/reports; withdrawals;
+                ratings/reviews; referrals; rebook/repeat task</td>
             </tr>
             <tr>
               <td>Deferred</td>
-              <td>Promo codes, subscriptions, loyalty, advanced analytics, in-app voice calls, multi-country support
-              </td>
+              <td>Facebook login, auto-accept tasks, promo codes, subscriptions, loyalty, advanced analytics beyond
+                basic operational reporting, in-app voice calls, multi-country support</td>
             </tr>
           </tbody>
         </table>
@@ -1188,14 +1283,7 @@
             </tr>
             <tr>
               <td>Tasker Wallet</td>
-              <td>Receives earnings and supports withdrawal requests subject to policy checks, settlement holds, and
-                payout calendar rules.</td>
-            </tr>
-            <tr>
-              <td>Tasker Payout Dates</td>
-              <td>Tasker withdrawal requests are paid in bulk on the 14th and 28th of every month using
-                Paystack/Moniepoint payout rails where available. Requests with active issues/disputes require admin
-                authorization before inclusion in a payout batch.</td>
+              <td>Receives earnings and supports withdrawal subject to policy checks.</td>
             </tr>
           </tbody>
         </table>
@@ -1271,43 +1359,41 @@
         </table>
       </div>
     </section>
-    <section class="section" id="section-03">
+
+    <section id="section-03" class="section">
       <div class="section-num">03</div>
       <div class="eyebrow">Part III</div>
       <h2>Actor Flows and Acceptance Criteria</h2>
-      <p class="intro">This section is the product-flow source of truth. It explains how Task Owners, Taskers, and
-        Admins move through Work2Cash, the system responsibilities at each stage, and the acceptance criteria QA must
-        validate before go-live.</p>
+      <p class="intro">This section converts product flows into testable launch acceptance criteria for Task Owners,
+        Taskers, and admins.</p>
+
       <div class="diagram">
         <div class="diagram-head">
           <h4>Cross-Actor Marketplace Flow</h4><span>Architecture Diagram</span>
         </div>
-        <pre>Task Owner                      Work2Cash Backend                         Tasker
-    |                                  |                                     |
-    | Create task + task site          |                                     |
-    | Upload proof of work needed      |                                     |
-    | Confirm geocoded map pin         |                                     |
-    | Set required arrival time        |                                     |
-    | Pay into escrow ---------------&gt; | Verify payment + hold escrow        |
-    |                                  | Publish limited task preview ------&gt; | Browse tasks sorted nearest first
-    |                                  |                                     | Filter by location/category/time
-    |                                  |                                     | Confirm arrival ability
-    | &lt;------------------------------- | ETA + Tasker interest                |
-    | Accept/reject Tasker ----------&gt; | Lock accepted Tasker                 |
-    |                                  | Enable chat, voice note, masked call |
-    | Track arrival + communicate      | &lt;--------- live tracking ----------&gt; | Mark en route
-    |                                  | &lt;--------- location events --------&gt; | Tap "I have arrived"
-    |                                  |                                     | Tap "Begin Task"
-    | Monitor task progress            |                                     | Upload completion proof
-    | Confirm or report issue -------&gt; | Release escrow or hold for review    |
-    | Rate / favorite Tasker           | Update trust, wallet, history        | Await payout batch</pre>
-        <p>The Work2Cash marketplace is escrow-led. The Task Owner funds the task first, the Tasker confirms arrival
-          ability, and the Task Owner decides whether to accept the Tasker after seeing ETA. The backend remains the
-          source of truth for task state, payment state, escrow, settlement, and policy enforcement.</p>
+        <pre>Task Owner                      Work2Cash Backend                  Tasker
+    |                                 |                              |
+    | Create task + location          |                              |
+    | Upload task proof               |                              |
+    | Confirm map pin                 |                              |
+    | Set required arrival time       |                              |
+    | Pay into escrow --------------&gt; | Verify payment + hold escrow |
+    |                                 | Publish task availability --&gt; | Browse tasks sorted by distance
+    |                                 |                              | Filter by location
+    |                                 |                              | Confirm arrival ability
+    | &lt;------------------------------ | ETA + Tasker interest         |
+    | Accept/reject Tasker ----------&gt; | Lock accepted Tasker          |
+    |                                 | Enable chat/voice/call        |
+    | Track arrival + communicate     | &lt;------ live tracking ------&gt; | En route / arrived / in progress
+    | Completion review               |                              | Upload completion proof
+    | Confirm or report issue ------&gt; | Release escrow or hold review |
+    | Rate / favorite Tasker          | Update trust, wallet, history |
+</pre>
+        <p>The marketplace flow is escrow-led. The Task Owner controls the final Tasker acceptance decision after seeing
+          ETA, while the Tasker must confirm arrival ability before committing.</p>
       </div>
       <h3>Task Owner Flow</h3>
-      <div class="callout blue">
-        <strong>Task Owner Intent</strong>
+      <div class="callout blue"><strong>Task Owner Intent</strong>
         <p>The Task Owner flow is designed to make task posting clear, safe, and evidence-backed. A Task Owner can be
           anywhere, but the task site must be in Nigeria. The Task Owner must define the work, confirm the location,
           fund the task, review interested Taskers, and approve completion before final settlement.</p>
@@ -1330,14 +1416,12 @@
   -&gt; Review Tasker ETA and profile
   -&gt; Accept or reject Tasker
   -&gt; Communicate through chat, voice note, or masked call
-  -&gt; Track journey and task progress
-  -&gt; Review Tasker completion proof
-  -&gt; Confirm completion or raise task-linked report
+  -&gt; Track arrival and task progress
+  -&gt; Confirm completion or raise report
   -&gt; Rate Tasker
   -&gt; Optionally add Tasker to favorites</pre>
         <p>Task Owner rejection is allowed before the Tasker starts moving and within 5 minutes after the Tasker marks
-          en route. Rejections after movement are logged. Repeated movement-stage rejection can trigger warnings, trust
-          score changes, or risk review.</p>
+          en route. Repeated movement-stage rejection is logged and can trigger warnings/risk review.</p>
       </div>
       <div class="table-wrap">
         <table>
@@ -1352,47 +1436,47 @@
             <tr>
               <td>Task Definition</td>
               <td>Task Owner selects an approved category/type, describes the work, provides address, confirms map pin,
-                sets arrival requirement, and uploads proof media.</td>
-              <td>Validate category, geocode address, enforce Nigeria task-site boundary, store proof media securely,
-                and prevent public exposure of exact address/media.</td>
+                and uploads proof media.</td>
+              <td>Validate category, geocode address, enforce Nigeria task-site boundary, store proof media securely.
+              </td>
             </tr>
             <tr>
               <td>Funding</td>
               <td>Task Owner reviews task amount, platform/service/payment fee, and final payable amount before payment.
               </td>
-              <td>Initialize Paystack/Moniepoint payment, verify backend payment confirmation, create escrow, and
-                persist provider references.</td>
+              <td>Initialize Paystack/Moniepoint payment, verify backend payment confirmation, create escrow record.
+              </td>
             </tr>
             <tr>
               <td>Tasker Selection</td>
-              <td>Task Owner can use public discovery or direct favorite offer. Public discovery lets Taskers browse and
-                express interest. Direct offer targets one favorite Tasker through API/FCM.</td>
+              <td>Task Owner can use public discovery or direct favorite offer. For public discovery, Taskers
+                browse/filter and express interest. For direct offer, selected favorite Tasker receives API/FCM-driven
+                offer.</td>
               <td>Expose limited public task info, calculate ETA, protect exact address/media until acceptance rules are
-                satisfied, and enforce rejection-window rules.</td>
+                satisfied.</td>
             </tr>
             <tr>
               <td>Communication</td>
-              <td>After acceptance, Task Owner can chat, exchange voice messages, or call through Work2Cash masked
+              <td>After acceptance, Task Owner can chat, send/receive voice messages, or call through Work2Cash masked
                 proxy.</td>
-              <td>Enable Socket.io chat/tracking, persist communication metadata, create TaskCallSession for masked
-                calls, and prevent real phone number exposure.</td>
+              <td>Enable Socket.io chat/tracking, create TaskCallSession for masked call, prevent real phone number
+                exposure.</td>
             </tr>
             <tr>
               <td>Completion</td>
-              <td>Task Owner reviews completion proof, confirms completion, rates Tasker, favorites Tasker, or raises a
-                task-linked report.</td>
-              <td>Release escrow to Tasker wallet or hold settlement if disputed, update ratings/favorites/trust, and
-                audit sensitive outcomes.</td>
+              <td>Task Owner reviews completion proof, confirms completion, rates Tasker, favorites Tasker, or raises
+                report/dispute.</td>
+              <td>Release escrow, hold settlement if disputed, update ratings, favorites, trust, wallet, and audit
+                records.</td>
             </tr>
           </tbody>
         </table>
       </div>
       <h3>Tasker Flow</h3>
-      <div class="callout green">
-        <strong>Tasker Intent</strong>
-        <p>The Tasker flow is designed around verified earning and clear status updates. A Tasker cannot accept tasks
-          until KYC is approved. Once active, the Tasker can browse Nigerian tasks, confirm arrival ability, perform
-          work, upload completion proof, and receive settlement through the scheduled payout process.</p>
+      <div class="callout green"><strong>Tasker Intent</strong>
+        <p>The Tasker flow is designed around verified earning. A Tasker cannot accept tasks until KYC is approved. Once
+          active, the Tasker can browse available Nigerian tasks, filter by location, confirm arrival ability, perform
+          work, upload completion proof, and withdraw settled earnings.</p>
       </div>
       <div class="diagram">
         <div class="diagram-head">
@@ -1410,22 +1494,16 @@
   -&gt; Open limited task preview
   -&gt; Confirm ability to arrive by required time
   -&gt; Accept public task or direct offer
-  -&gt; Tap "Start Journey" / mark en route
-  -&gt; Travel to task site with live tracking
-  -&gt; Tap "I have arrived"
-  -&gt; Wait for valid task state / Task Owner visibility
-  -&gt; Tap "Begin Task"
-  -&gt; Perform task
+  -&gt; Mark en route
+  -&gt; Arrive and start task
   -&gt; Communicate through approved channels
+  -&gt; Complete work
   -&gt; Upload proof of work done
   -&gt; Request completion
-  -&gt; Receive settled earning in Tasker wallet
-  -&gt; Submit withdrawal request
-  -&gt; Receive payout in bulk batch on 14th or 28th</pre>
-        <p>The Tasker must be in Nigeria to accept tasks. Tasker status updates are explicit button-driven transitions:
-          <strong>Start Journey</strong> moves the task to en route, <strong>I have arrived</strong> moves the task to
-          arrived, and <strong>Begin Task</strong> starts the in-progress work state. These transitions must be
-          persisted and validated by the backend.</p>
+  -&gt; Receive earnings after escrow release
+  -&gt; Withdraw Tasker wallet balance</pre>
+        <p>The Tasker must be in Nigeria to accept tasks. If a task has an active issue or dispute, payout can be
+          delayed for that disputed task and may require admin authorization.</p>
       </div>
       <div class="table-wrap">
         <table>
@@ -1439,48 +1517,38 @@
           <tbody>
             <tr>
               <td>Activation</td>
-              <td>Tasker completes profile, KYC, skills/categories, availability, travel radius, and location
-                permission.</td>
-              <td>Block task acceptance until KYC is approved and TaskerProfile is active.</td>
+              <td>Tasker completes profile, KYC, skills/categories, availability, and location permission.</td>
+              <td>Block task acceptance until KYC approved and TaskerProfile active.</td>
             </tr>
             <tr>
               <td>Discovery</td>
               <td>Tasker sees available tasks sorted nearest first and can filter by location rather than being limited
-                to radius-hidden visibility.</td>
-              <td>Return limited task previews, protect private address/proof media, and enforce Nigeria tasker-location
-                acceptance rule.</td>
+                to hidden radius-only visibility.</td>
+              <td>Return task previews with limited public information and protect private address/proof media.</td>
             </tr>
             <tr>
               <td>Commitment</td>
               <td>Tasker confirms they can arrive on or before the Task Owner's required arrival time.</td>
-              <td>Calculate/display ETA, track Tasker confirmation, and prevent acceptance outside Nigeria.</td>
-            </tr>
-            <tr>
-              <td>Journey</td>
-              <td>Tasker taps Start Journey/en route, travels to the task site, and taps "I have arrived" on arrival.
-              </td>
-              <td>Persist TASKER_EN_ROUTE and ARRIVED states, stream live tracking, apply ETA guard, and expose journey
-                status to Task Owner.</td>
+              <td>Calculate/display ETA, track confirmation, prevent acceptance outside Nigeria.</td>
             </tr>
             <tr>
               <td>Execution</td>
-              <td>Tasker taps "Begin Task" to move from arrival to active task execution.</td>
-              <td>Persist IN_PROGRESS state, enable task progress UI, enforce valid state transitions, and keep
-                communication available only in valid states.</td>
+              <td>Tasker updates state from en route to arrived, in progress, and completion requested.</td>
+              <td>Persist task state, stream live tracking, enforce valid transitions and communication availability.
+              </td>
             </tr>
             <tr>
               <td>Settlement</td>
-              <td>Tasker uploads completion proof and receives earning after Task Owner confirmation or admin
-                resolution.</td>
-              <td>Release escrow to Tasker wallet, apply commission tier, hold only disputed/active-issue earnings, and
-                include eligible withdrawal requests in the next payout batch.</td>
+              <td>Tasker uploads completion proof and receives earning after completion approval or admin resolution.
+              </td>
+              <td>Release escrow to Tasker wallet, apply commission tier, hold payout only for active issue/dispute
+                cases.</td>
             </tr>
           </tbody>
         </table>
       </div>
       <h3>Admin Operations Flow</h3>
-      <div class="callout amber">
-        <strong>Admin Intent</strong>
+      <div class="callout amber"><strong>Admin Intent</strong>
         <p>The admin dashboard is the operational control center for trust, finance, support, KYC, coverage,
           configuration, and platform health. Every high-risk action must be permission-controlled, require a reason
           where appropriate, and create an audit trail.</p>
@@ -1496,8 +1564,7 @@
       +-- Users and sessions
       +-- Tasker KYC/review
       +-- Active/historical tasks
-      +-- Payments, escrow, withdrawal requests
-      +-- Payout batches for 14th and 28th
+      +-- Payments, escrow, withdrawals
       +-- Reports/disputes and risk flags
       +-- Support live chat
       +-- Task media review
@@ -1507,8 +1574,8 @@
       +-- Audit logs and monitoring
   -&gt; Action requires reason if high-risk
   -&gt; System writes AdminAuditLog</pre>
-        <p>Admin operations must never bypass finance, KYC, security, or dispute rules arbitrarily. Payout batches
-          require finance review, settlement eligibility checks, and audit logging before bulk transfer execution.</p>
+        <p>Admin operations must never bypass finance, KYC, security, or dispute rules arbitrarily. V1 has no arbitrary
+          admin override policy.</p>
       </div>
       <div class="table-wrap">
         <table>
@@ -1527,15 +1594,8 @@
             </tr>
             <tr>
               <td>Finance</td>
-              <td>Monitor payments, escrow, wallet ledger, refunds, withdrawal requests, payout batches, and
-                reconciliation.</td>
-              <td>Finance Admin role, reason-required actions, ledger consistency checks, payout calendar control.</td>
-            </tr>
-            <tr>
-              <td>Payout Batch</td>
-              <td>Prepare bulk payout on the 14th and 28th for eligible Taskers who submitted withdrawal requests.</td>
-              <td>Eligibility check, dispute hold check, provider transfer file/API execution, success/failure
-                reconciliation, and audit log.</td>
+              <td>Monitor payments, escrow, wallet ledger, refunds, withdrawals, and reconciliation.</td>
+              <td>Finance Admin role, reason-required actions, ledger consistency checks.</td>
             </tr>
             <tr>
               <td>Reports/Disputes</td>
@@ -1578,19 +1638,12 @@
             <tr>
               <td>Tasker</td>
               <td>Cannot accept before KYC approval; can browse location-filtered tasks, confirm arrival ability,
-                accept/decline, tap Start Journey, tap "I have arrived", tap "Begin Task", communicate, upload proof,
-                receive earning, and request withdrawal.</td>
+                accept/decline, update states, communicate, upload proof, receive earning, withdraw.</td>
             </tr>
             <tr>
               <td>Admin</td>
               <td>TOTP/RBAC enforced; can manage users, Taskers, KYC, tasks, finance, reports/disputes, support live
-                chat, categories, coverage config, audit logs, use case health, withdrawal requests, and payout batches.
-              </td>
-            </tr>
-            <tr>
-              <td>Payout</td>
-              <td>Eligible Tasker withdrawal requests can be batched and paid on the 14th and 28th, while
-                disputed/active-issue Tasker payouts require admin authorization.</td>
+                chat, categories, coverage config, audit logs, and use case health.</td>
             </tr>
             <tr>
               <td>Privacy</td>
@@ -1605,12 +1658,14 @@
         </table>
       </div>
     </section>
-    <section class="section" id="section-04">
+
+    <section id="section-04" class="section">
       <div class="section-num">04</div>
       <div class="eyebrow">Part IV</div>
       <h2>System Architecture</h2>
       <p class="intro">The platform uses NestJS, Flutter, Next.js, PostgreSQL, Valkey, BullMQ, Socket.io, and
         self-hosted infrastructure with cost-controlled provider integrations.</p>
+
       <div class="diagram">
         <div class="diagram-head">
           <h4>System Context</h4><span>Architecture Diagram</span>
@@ -1633,7 +1688,9 @@ NestJS Backend API + Socket Gateway
           +-- FCM / Firebase Analytics
           +-- Sentry
           +-- Infobip candidate for masked calls</pre>
+
       </div>
+
       <div class="diagram">
         <div class="diagram-head">
           <h4>Domain and Deployment Boundary</h4><span>Architecture Diagram</span>
@@ -1749,7 +1806,8 @@ socket-staging.work2cash.ng  -&gt; staging Socket.io</pre>
           live chat, risk, categories, coverage config, remote config, audit logs, metrics, and use case health.</li>
       </ul>
     </section>
-    <section class="section" id="section-05">
+
+    <section id="section-05" class="section">
       <div class="section-num">05</div>
       <div class="eyebrow">Part V</div>
       <h2>Data Model and State</h2>
@@ -1793,7 +1851,7 @@ socket-staging.work2cash.ng  -&gt; staging Socket.io</pre>
             <tr>
               <td>Wallet/Finance</td>
               <td>Wallet, WalletTransaction, EscrowTransaction, Payment, Withdrawal, Refund, TaskSettlementHold /
-                EscrowReleaseDelay, PayoutBatch, PayoutBatchItem</td>
+                EscrowReleaseDelay</td>
             </tr>
             <tr>
               <td>Communication</td>
@@ -1830,8 +1888,8 @@ Task Owner wallet:
 
 Tasker wallet:
   - receives earnings
-  - supports withdrawal requests
-  - pays out through bulk payout batches on the 14th and 28th</pre>
+  - supports withdrawal</pre>
+
       </div>
       <h3>Important Status Enums</h3>
       <div class="table-wrap">
@@ -1875,12 +1933,7 @@ Tasker wallet:
             </tr>
             <tr>
               <td>WithdrawalStatus</td>
-              <td>REQUESTED, ELIGIBLE_FOR_BATCH, HELD_FOR_REVIEW, BATCHED, PROCESSING, SUCCESSFUL, FAILED, REVERSED,
-                FLAGGED, CANCELLED</td>
-            </tr>
-            <tr>
-              <td>PayoutBatchStatus</td>
-              <td>DRAFT, REVIEW_READY, APPROVED, PROCESSING, PARTIALLY_SUCCESSFUL, SUCCESSFUL, FAILED, CANCELLED</td>
+              <td>REQUESTED, PROCESSING, SUCCESSFUL, FAILED, REVERSED, FLAGGED, CANCELLED</td>
             </tr>
           </tbody>
         </table>
@@ -1925,14 +1978,8 @@ Tasker wallet:
             </tr>
             <tr>
               <td>Settlement hold</td>
-              <td>Only disputed or active-issue tasks delay payout. Non-disputed Tasker earnings should settle normally
-                into the Tasker wallet.</td>
-            </tr>
-            <tr>
-              <td>Payout batching</td>
-              <td>Withdrawal requests are collected into payout batches for the 14th and 28th of every month. A
-                PayoutBatchItem links each eligible Withdrawal to the batch, provider reference, transfer status, and
-                reconciliation outcome.</td>
+              <td>Only disputed or active-issue tasks delay payout. Non-disputed Tasker earnings should settle normally.
+              </td>
             </tr>
             <tr>
               <td>Warnings/strikes</td>
@@ -1948,13 +1995,13 @@ Tasker wallet:
         </table>
       </div>
     </section>
-    <section class="section" id="section-06">
+
+    <section id="section-06" class="section">
       <div class="section-num">06</div>
       <div class="eyebrow">Part VI</div>
       <h2>API, Socket, Events and Jobs</h2>
       <p class="intro">Backend contracts are split into REST APIs for durable state, Socket.io for live
-        communication/tracking, provider webhooks for callbacks, BullMQ for asynchronous reliability, and cron/scheduler
-        jobs for operational safeguards.</p>
+        communication/tracking, webhooks for provider callbacks, and BullMQ/cron for asynchronous reliability.</p>
       <h3>REST API Group Index</h3>
       <div class="table-wrap">
         <table>
@@ -1962,124 +2009,66 @@ Tasker wallet:
             <tr>
               <th>Group</th>
               <th>Scope</th>
-              <th>Client Dependency</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Auth APIs</td>
-              <td>Register/login, OTP via email first and Termii SMS fallback, refresh token, logout</td>
-              <td>Mobile + Admin</td>
+              <td>Register/login, password recovery, Google/Apple social authentication, OTP via email first and Termii
+                SMS fallback, refresh token, logout</td>
             </tr>
             <tr>
               <td>User/Profile APIs</td>
-              <td>Current user, profile update, mode switch, saved addresses, notification preferences, device/session
-                management</td>
-              <td>Mobile + Admin</td>
+              <td>Current user, profile update, mode switch, saved addresses, notification preferences, security PIN
+                setup/reset, PIN verification for sensitive actions, device/session management</td>
             </tr>
             <tr>
               <td>KYC APIs</td>
               <td>Start KYC, submit NIN/BVN, biometric capture reference, status check, admin review sync</td>
-              <td>Mobile + Admin</td>
             </tr>
             <tr>
               <td>Task Catalog APIs</td>
-              <td>List/manage categories and task types, pricing/rules, category availability, media requirements</td>
-              <td>Mobile + Admin</td>
+              <td>List/manage categories and task types, pricing/rules</td>
             </tr>
             <tr>
               <td>Task Owner APIs</td>
-              <td>Create draft, geocode/manual location, pin confirm, proof upload, payment intent, public
-                discovery/direct offer, Tasker rejection, completion confirmation, rating/favorite, report</td>
-              <td>Mobile</td>
+              <td>Create draft, geocode/manual location, pin confirm, proof upload, payment intent, broadcast/direct
+                offer, reject Tasker, confirm completion, rate/favorite, report, rebook/repeat task</td>
             </tr>
             <tr>
               <td>Tasker APIs</td>
-              <td>Tasker profile, skills, availability, task browse/filter, accept/decline, Start Journey, I have
-                arrived, Begin Task, completion request, proof upload, rate owner</td>
-              <td>Mobile</td>
+              <td>Profile, skills, availability, working hours, task preferences, maximum travel distance, task
+                browse/filter, accept/decline, en route, arrived, started, completion request, proof upload, rate owner
+              </td>
             </tr>
             <tr>
               <td>Favorites APIs</td>
-              <td>Add/remove/list favorite Taskers, check favorite status, send direct offer to favorite Tasker</td>
-              <td>Mobile + Admin visibility</td>
+              <td>Add/remove/list favorite Taskers, check status</td>
             </tr>
             <tr>
               <td>Direct Offer APIs</td>
               <td>Send, view, accept, decline, expire, convert to public discovery/broadcast</td>
-              <td>Mobile</td>
             </tr>
             <tr>
               <td>Wallet/Payment APIs</td>
-              <td>Wallets, ledger, payment initialization, webhooks, reconciliation, escrow, withdrawal request,
-                refund/support issue</td>
-              <td>Mobile + Admin</td>
-            </tr>
-            <tr>
-              <td>Payout Batch APIs</td>
-              <td>List eligible withdrawals, create 14th/28th payout batch, approve batch, process bulk transfers,
-                reconcile results, hold disputed Taskers</td>
-              <td>Admin</td>
+              <td>Wallets, ledger, payment initialization, webhooks, reconciliation, escrow, payout account setup,
+                PIN-confirmed withdrawal request, refund/support issue</td>
             </tr>
             <tr>
               <td>Support/Dispute APIs</td>
-              <td>Structured task report/dispute, support ticket, evidence upload, support live chat session setup</td>
-              <td>Mobile + Admin</td>
+              <td>Structured task report/dispute, support ticket, emergency support, evidence upload, support live chat
+                session setup</td>
             </tr>
             <tr>
               <td>Admin APIs</td>
-              <td>TOTP, RBAC, users, Taskers, KYC, tasks, finance, payout batches, reports, support, risk, config,
-                categories, coverage, audit, use case health</td>
-              <td>Admin</td>
+              <td>TOTP, RBAC, users, Taskers, KYC with request re-verification, tasks with controlled force cancel but
+                no admin reassignment, finance, receipts/transactions, reports, basic analytics, support,
+                notifications/announcements, ratings/reviews moderation, risk, config, categories with disable/archive,
+                coverage, audit, use case health</td>
             </tr>
             <tr>
               <td>System/Ops APIs</td>
-              <td>Health, readiness, metrics, webhook logs, job logs, use case logs, backup status, queue status</td>
-              <td>Admin + Monitoring</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>Contract-First API Delivery Rule</h3>
-      <div class="callout blue"><strong>Week 1 API Unblocking Requirement</strong>
-        <p>Before the end of Week 1, Backend must publish the API contracts, enums, standard response shapes,
-          auth/session rules, file upload contracts, socket event names, mock/stub endpoints, and seed data needed by
-          Mobile and Admin. Full provider integrations can come later, but Mobile and Admin must not be blocked by
-          missing endpoint contracts.</p>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Week 1 Backend Contract Output</th>
-              <th>Purpose</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>OpenAPI/Swagger draft</td>
-              <td>Gives Mobile/Admin stable request and response shapes.</td>
-            </tr>
-            <tr>
-              <td>Shared enums</td>
-              <td>TaskStatus, KycStatus, PaymentStatus, WithdrawalStatus, PayoutBatchStatus, TaskMediaStatus, report
-                statuses, role values.</td>
-            </tr>
-            <tr>
-              <td>Mock/stub endpoints</td>
-              <td>Allows screens and tables to integrate before complete business logic is ready.</td>
-            </tr>
-            <tr>
-              <td>Seed data</td>
-              <td>Task categories, pricing rules, test users, sample tasks, sample wallets, sample admin roles.</td>
-            </tr>
-            <tr>
-              <td>Error catalogue</td>
-              <td>Frontend can map domain errors to friendly messages and states.</td>
-            </tr>
-            <tr>
-              <td>Socket event contract</td>
-              <td>Mobile can implement chat/tracking/support event handlers early.</td>
+              <td>Health, readiness, metrics, webhook logs, job logs, use case logs</td>
             </tr>
           </tbody>
         </table>
@@ -2096,7 +2085,7 @@ Tasker wallet:
           <tbody>
             <tr>
               <td>Task Chat</td>
-              <td>Message send/new/read, typing, voice message metadata, delivery state after task acceptance.</td>
+              <td>Message send/new/read, typing, voice message metadata, delivery state after task acceptance</td>
             </tr>
             <tr>
               <td>Support Live Chat</td>
@@ -2105,19 +2094,18 @@ Tasker wallet:
             </tr>
             <tr>
               <td>Live Tracking</td>
-              <td>Tasker location updates while accepted/en route/arrived/in progress; paid ETA refresh is guarded.</td>
+              <td>Tasker location updates while accepted/en route/in progress; paid ETA refresh is guarded.</td>
             </tr>
             <tr>
               <td>Presence</td>
-              <td>Online state, availability heartbeat, socket reconnection status.</td>
+              <td>Online state, availability heartbeat, socket reconnection status</td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="callout amber"><strong>Not Socket-Based</strong>
-        <p>Direct offers, dispute resolution, payment status, KYC status, withdrawal requests, payout batches, and
-          durable task state transitions are REST/API-driven and backed by database state. Socket events are live
-          delivery channels, not the source of truth.</p>
+        <p>Direct offers, dispute resolution, payment status, KYC status, withdrawal requests, and durable task state
+          transitions are REST/API-driven and backed by database state.</p>
       </div>
       <h3>API Response and Error Standard</h3>
       <div class="table-wrap">
@@ -2144,13 +2132,13 @@ Tasker wallet:
             </tr>
             <tr>
               <td>Idempotency</td>
-              <td>Payment, webhook, wallet, media upload finalization, task state transitions, payout batches, and
-                settlement endpoints must support idempotency where duplicate calls can occur.</td>
+              <td>Payment, webhook, wallet, media upload finalization, task state transitions, and settlement endpoints
+                must support idempotency where duplicate calls can occur.</td>
             </tr>
             <tr>
               <td>Correlation</td>
-              <td>REST, socket, worker, webhook, and payout flows should carry requestId/correlationId for logs and use
-                case health tracking.</td>
+              <td>REST, socket, worker, and webhook flows should carry requestId/correlationId for logs and use case
+                health tracking.</td>
             </tr>
             <tr>
               <td>Sensitive data</td>
@@ -2201,7 +2189,7 @@ Tasker wallet:
         <div class="diagram-head">
           <h4>Proxy Dial-In Masked Calls</h4><span>Architecture Diagram</span>
         </div>
-        <pre>User taps "Call via Work2Cash"
+        <pre>User taps &quot;Call via Work2Cash&quot;
   -&gt; Backend creates/retrieves TaskCallSession
   -&gt; App opens phone dialer with Work2Cash proxy number
   -&gt; Caller pays normal airtime
@@ -2224,107 +2212,56 @@ Tasker wallet:
           <tbody>
             <tr>
               <td>notification.queue</td>
-              <td>Email OTP, Termii SMS fallback, FCM notifications, transactional email/SMS fallback.</td>
+              <td>Email OTP, Termii SMS fallback, FCM notifications, transactional email/SMS fallback</td>
             </tr>
             <tr>
               <td>payment.queue</td>
-              <td>Webhook safety retries, payment verification, reconciliation, escrow release/refund.</td>
+              <td>Webhook safety retries, payment verification, reconciliation, escrow release/refund</td>
             </tr>
             <tr>
               <td>kyc.queue</td>
-              <td>Smile ID status checks, KYC reconciliation, manual review reminders.</td>
+              <td>Smile ID status checks, KYC reconciliation, manual review reminders</td>
             </tr>
             <tr>
               <td>matching.queue</td>
-              <td>Task discovery support, offer fan-out, direct offer expiry, re-broadcast logic.</td>
+              <td>Task discovery support, offer fan-out, direct offer expiry, re-broadcast logic</td>
             </tr>
             <tr>
               <td>wallet.queue</td>
-              <td>Ledger posting, withdrawal eligibility checks, failed withdrawal retry, admin-approved refunds.</td>
-            </tr>
-            <tr>
-              <td>payout.queue</td>
-              <td>Prepare 14th/28th payout batches, run bulk transfer requests, reconcile Paystack/Moniepoint transfer
-                responses, flag failed batch items.</td>
+              <td>Ledger posting, withdrawal processing, failed withdrawal retry, admin-approved refunds</td>
             </tr>
             <tr>
               <td>chat.queue</td>
-              <td>Persist task chat, support live chat, voice message metadata, delivery/read receipts where required.
+              <td>Persist task chat, support live chat, voice message metadata, delivery/read receipts where required
               </td>
             </tr>
             <tr>
               <td>maps.queue</td>
-              <td>Batched ETA requests, updated ETA guard checks, route update persistence.</td>
+              <td>Batched ETA requests, dual-condition ETA guard checks, route update persistence</td>
             </tr>
             <tr>
               <td>audit.queue</td>
-              <td>Admin audit logs, use case logs, security event logs, communication audit logs.</td>
+              <td>Admin audit logs, use case logs, security event logs</td>
             </tr>
             <tr>
               <td>media.queue</td>
-              <td>File validation, unsafe media review workflow, temporary upload cleanup.</td>
+              <td>File validation, unsafe media review workflow, temporary upload cleanup</td>
             </tr>
             <tr>
               <td>report.queue</td>
-              <td>Finance exports, platform summaries, dashboard aggregates.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>Scheduled Jobs</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Schedule</th>
-              <th>Jobs</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Every 1 minute</td>
-              <td>Expire unpaid payment intents, public offers, direct offers, and retry failed critical notifications.
-              </td>
-            </tr>
-            <tr>
-              <td>Every 5 minutes</td>
-              <td>Payment reconciliation, KYC pending check, stale task detection, support assignment timeout, ETA guard
-                evaluation.</td>
-            </tr>
-            <tr>
-              <td>Every 10 minutes</td>
-              <td>Tasker availability heartbeat cleanup, socket presence cleanup, delayed/stuck job detection.</td>
-            </tr>
-            <tr>
-              <td>Hourly</td>
-              <td>Ledger consistency check, expired OTP cleanup, temporary upload cleanup, admin session risk checks.
-              </td>
-            </tr>
-            <tr>
-              <td>Daily</td>
-              <td>Backup verification, platform health summary, finance settlement report, payout eligibility preview,
-                SLA breach summary.</td>
-            </tr>
-            <tr>
-              <td>14th and 28th monthly</td>
-              <td>Create/review/process Tasker payout batches for eligible withdrawal requests. If a payout date falls
-                on a non-working day or provider outage, Finance Admin confirms the next operational processing window.
-              </td>
-            </tr>
-            <tr>
-              <td>Weekly</td>
-              <td>Backup restore drill reminder, slow query review, cost usage review, security/audit log review.</td>
+              <td>Finance exports, platform summaries, dashboard aggregates</td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
-    <section class="section" id="section-07">
+
+    <section id="section-07" class="section">
       <div class="section-num">07</div>
       <div class="eyebrow">Part VII</div>
       <h2>Providers, Hosting and Costing</h2>
       <p class="intro">The infrastructure strategy prioritizes low fixed cost, self-hosting, provider abstraction, and
-        clear fallback paths if latency, provider capability, or cost assumptions fail.</p>
+        clear fallback paths if latency or provider capability fails.</p>
       <h3>Provider Register</h3>
       <div class="table-wrap">
         <table>
@@ -2338,12 +2275,12 @@ Tasker wallet:
           <tbody>
             <tr>
               <td>Paystack</td>
-              <td>Collections, payment verification, webhooks, transfer rail candidate for payout batches</td>
+              <td>Collections, transfers, webhooks, virtual/payment flows</td>
               <td>Launch provider</td>
             </tr>
             <tr>
               <td>Moniepoint</td>
-              <td>Collections/payment support and transfer rail candidate for payout batches</td>
+              <td>Collections/payment support</td>
               <td>Launch provider</td>
             </tr>
             <tr>
@@ -2378,8 +2315,8 @@ Tasker wallet:
             </tr>
             <tr>
               <td>Google Maps</td>
-              <td>Geocoding, ETA, Distance Matrix/Routes equivalent through adapter</td>
-              <td>Use after filtering/batching and ETA guard</td>
+              <td>Geocoding, ETA, Distance Matrix</td>
+              <td>Use after filtering/batching and cost guard</td>
             </tr>
             <tr>
               <td>Shorebird</td>
@@ -2408,22 +2345,16 @@ Tasker wallet:
             </tr>
             <tr>
               <td>DigitalOcean Spaces / S3-compatible</td>
-              <td>Task media, proof files, voice notes where needed, exports, and backups</td>
+              <td>Task media and backups</td>
               <td>Object/backup storage</td>
-            </tr>
-            <tr>
-              <td>WhoGoHost</td>
-              <td>Domain registration for work2cash.ng</td>
-              <td>Domain acquisition source for budget planning</td>
             </tr>
           </tbody>
         </table>
       </div>
       <h3>Hosting Strategy</h3>
       <div class="callout green"><strong>Production Strategy</strong>
-        <p>Use Hetzner first for production because of cost. If Nigerian latency or routing is unacceptable after real
-          network testing, move the app, data, monitoring, and supporting services together to DigitalOcean
-          London/Frankfurt. The app server and database server must not be split across providers.</p>
+        <p>Use Hetzner first for production because of cost. If Nigerian latency or routing is unacceptable after
+          testing, move the app and data servers together to DigitalOcean London/Frankfurt.</p>
       </div>
       <div class="table-wrap">
         <table>
@@ -2475,187 +2406,6 @@ Tasker wallet:
           </tbody>
         </table>
       </div>
-      <h3>Domain Cost</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Provider</th>
-              <th>Base Cost</th>
-              <th>Tax</th>
-              <th>Total</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>work2cash.ng domain registration</td>
-              <td>WhoGoHost</td>
-              <td>₦9,200</td>
-              <td>7.5% VAT = ₦690</td>
-              <td>₦9,890</td>
-              <td>Excludes bank transfer/payment charges. Approx. $6.18 at ₦1,600/$.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>Hetzner Pricing Confirmation Note</h3>
-      <div class="callout amber"><strong>Pricing Baseline Confirmed From Hetzner Official Source
-          (https://www.hetzner.com/cloud/cost-optimized/)</strong>
-        <p>The uploaded saved Hetzner Cost-Optimized MHTML is treated as the project confirmation snapshot for the
-          official Hetzner source. It confirms the CX23, CX33, CX43, CAX11, CAX21, CAX31, CX53, and CAX41 monthly price
-          caps in USD, excluding VAT. Before provisioning, the team must still re-check the live Hetzner Cloud console
-          because provider pricing, VAT handling, currency display, and availability can change.</p>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Plan</th>
-              <th>Architecture</th>
-              <th>vCPU</th>
-              <th>RAM</th>
-              <th>SSD</th>
-              <th>Monthly USD</th>
-              <th>Hourly USD</th>
-              <th>Monthly NGN @ ₦1,600/$</th>
-              <th>Work2Cash Role</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>CX23</td>
-              <td>Intel/AMD</td>
-              <td>2</td>
-              <td>4GB</td>
-              <td>40GB</td>
-              <td>$7.09</td>
-              <td>$0.0114</td>
-              <td>₦11,344</td>
-              <td>Monitoring server candidate</td>
-            </tr>
-            <tr>
-              <td>CAX11</td>
-              <td>Ampere ARM</td>
-              <td>2</td>
-              <td>4GB</td>
-              <td>40GB</td>
-              <td>$7.59</td>
-              <td>$0.0122</td>
-              <td>₦12,144</td>
-              <td>Alternative staging/utility server</td>
-            </tr>
-            <tr>
-              <td>CX33</td>
-              <td>Intel/AMD</td>
-              <td>4</td>
-              <td>8GB</td>
-              <td>80GB</td>
-              <td>$10.59</td>
-              <td>$0.0170</td>
-              <td>₦16,944</td>
-              <td>Staging server</td>
-            </tr>
-            <tr>
-              <td>CAX21</td>
-              <td>Ampere ARM</td>
-              <td>4</td>
-              <td>8GB</td>
-              <td>80GB</td>
-              <td>$13.09</td>
-              <td>$0.0210</td>
-              <td>₦20,944</td>
-              <td>Alternative staging server</td>
-            </tr>
-            <tr>
-              <td>CX43</td>
-              <td>Intel/AMD</td>
-              <td>8</td>
-              <td>16GB</td>
-              <td>160GB</td>
-              <td>$19.09</td>
-              <td>$0.0306</td>
-              <td>₦30,544</td>
-              <td>Production app/data servers</td>
-            </tr>
-            <tr>
-              <td>CAX31</td>
-              <td>Ampere ARM</td>
-              <td>8</td>
-              <td>16GB</td>
-              <td>160GB</td>
-              <td>$25.59</td>
-              <td>$0.0410</td>
-              <td>₦40,944</td>
-              <td>Alternative production app/data server</td>
-            </tr>
-            <tr>
-              <td>CX53</td>
-              <td>Intel/AMD</td>
-              <td>16</td>
-              <td>32GB</td>
-              <td>320GB</td>
-              <td>$35.59</td>
-              <td>$0.0571</td>
-              <td>₦56,944</td>
-              <td>Scale-up option</td>
-            </tr>
-            <tr>
-              <td>CAX41</td>
-              <td>Ampere ARM</td>
-              <td>16</td>
-              <td>32GB</td>
-              <td>320GB</td>
-              <td>$49.09</td>
-              <td>$0.0787</td>
-              <td>₦78,544</td>
-              <td>Alternative scale-up option</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="callout green"><strong>Billing Interpretation</strong>
-        <p>Hetzner bills cloud servers with a monthly price cap and an hourly rate when servers are deleted before the
-          end of the billing month. Work2Cash budgeting uses the monthly cap because staging and production servers are
-          expected to run continuously.</p>
-      </div>
-      <h3>Payout Cost and Operations</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Rule</th>
-              <th>Decision</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Payout dates</td>
-              <td>Tasker withdrawal requests are processed in bulk on the 14th and 28th of every month.</td>
-            </tr>
-            <tr>
-              <td>Transfer rails</td>
-              <td>Paystack and Moniepoint are the approved payout rails, subject to provider capability, fees, limits,
-                and operational reliability.</td>
-            </tr>
-            <tr>
-              <td>Eligibility</td>
-              <td>Only Taskers with valid withdrawal requests, sufficient Tasker wallet balance, verified payout
-                details, and no active payout-blocking issue/dispute are included.</td>
-            </tr>
-            <tr>
-              <td>Held payouts</td>
-              <td>Taskers with active issue/dispute holds require admin authorization before payout.</td>
-            </tr>
-            <tr>
-              <td>Reconciliation</td>
-              <td>Every bulk transfer result must be reconciled to PayoutBatchItem, Withdrawal, WalletTransaction, and
-                provider reference.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
       <h3>Staging to Production Transition</h3>
       <div class="table-wrap">
         <table>
@@ -2680,8 +2430,7 @@ Tasker wallet:
             </tr>
             <tr>
               <td>4</td>
-              <td>Seed categories, task types, system config, admin roles, coverage config, payout calendar, and legal
-                URLs.</td>
+              <td>Seed categories, task types, system config, admin roles, coverage config, and legal URLs.</td>
             </tr>
             <tr>
               <td>5</td>
@@ -2691,7 +2440,7 @@ Tasker wallet:
             <tr>
               <td>6</td>
               <td>Run smoke tests for auth, KYC, task creation, payment, webhook, escrow, chat, media upload, support,
-                payout batch preview, admin, backup, and monitoring.</td>
+                admin, backup, and monitoring.</td>
             </tr>
             <tr>
               <td>7</td>
@@ -2707,29 +2456,27 @@ Tasker wallet:
       <h3>Cost Control Rules</h3>
       <ul>
         <li>Do not auto-refresh paid APIs aggressively.</li>
-        <li>Batch Google Maps requests and use geospatial filtering/ranking before paid ETA calls.</li>
-        <li>Use the updated ETA guard: paid ETA refresh is allowed when 5 minutes have elapsed and the Tasker has
-          covered at least another 10% of the total journey distance since the last paid ETA refresh. The 10% journey
-          progress is the primary trigger; after a refresh, reset the 5-minute timer and the next 10% distance
-          milestone.</li>
+        <li>Batch Google Maps requests and use geospatial pre-filtering/ranking before paid ETA calls.</li>
+        <li>Use the ETA Cost Guard: paid ETA refresh is allowed only when the 5-minute guard has elapsed and the Tasker
+          has crossed the next 10% total-journey milestone; after refresh, reset the timer and next milestone.</li>
         <li>Track masked call sessions, minutes, failures, provider costs, and task-level usage.</li>
-        <li>Track payout batch size, failed transfers, retry cost, provider fee, and payout reconciliation status.</li>
         <li>Self-host PostgreSQL, Valkey, BullMQ, Socket.io, monitoring, and workers while maintaining backup/restore
           discipline.</li>
         <li>Use monthly provider spending alerts.</li>
       </ul>
       <h3>Sources and Pricing Notes</h3>
       <ul>
-        <li>DigitalOcean pricing should be rechecked before fallback provisioning.</li>
-        <li>DigitalOcean Spaces $5/month is the object-storage planning assumption.</li>
-        <li>Hetzner prices are based on the official Hetzner Cost-Optimized source and the uploaded MHTML confirmation
-          snapshot; prices must be rechecked before purchase.</li>
-        <li>Domain cost is based on the current project decision: ₦9,200 + 7.5% VAT from WhoGoHost, excluding bank
-          transfer/payment charges.</li>
-        <li>All provider prices exclude VAT unless explicitly stated and may change before launch.</li>
+        <li>DigitalOcean pricing checked against official Droplets pricing page for $96/month 16GB/8vCPU and $24/month
+          4GB/2vCPU planning assumptions.</li>
+        <li>DigitalOcean Spaces $5/month planning assumption checked against official Spaces pricing documentation.</li>
+        <li>Hetzner pricing baseline is confirmed from Hetzner official source
+          (https://www.hetzner.com/cloud/cost-optimized/); prices still must be revalidated before provisioning because
+          providers can change pricing.</li>
+        <li>All provider prices exclude VAT and may change before launch.</li>
       </ul>
     </section>
-    <section class="section" id="section-08">
+
+    <section id="section-08" class="section">
       <div class="section-num">08</div>
       <div class="eyebrow">Part VIII</div>
       <h2>Security, Trust and Compliance</h2>
@@ -2905,20 +2652,20 @@ Tasker wallet:
             </tr>
             <tr>
               <td>Business</td>
-              <td>Dispute spike, cancellation spike, KYC rejection spike, support SLA breach, payout/withdrawal SLA
-                breach.</td>
+              <td>Dispute spike, cancellation spike, KYC rejection spike, support SLA breach, withdrawal SLA breach.
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
-    <section class="section" id="section-09">
+
+    <section id="section-09" class="section">
       <div class="section-num">09</div>
       <div class="eyebrow">Part IX</div>
       <h2>Engineering Standards</h2>
       <p class="intro">Engineering rules define how the Backend, Mobile, and Admin Frontend teams keep the codebase
-        maintainable, observable, testable, and aligned with product decisions. These standards are binding for
-        implementation unless formally changed in this architecture document.</p>
+        maintainable, observable, testable, and aligned with product decisions.</p>
       <h3>Backend Standards</h3>
       <ul>
         <li>NestJS with Hexagonal Architecture.</li>
@@ -2928,9 +2675,7 @@ Tasker wallet:
         <li>Do not log sensitive KYC, payment, OTP, phone, address, media, or provider secret data.</li>
         <li>Use adapters for Paystack, Moniepoint, Smile ID, Google Maps, Termii, FCM, storage, and masked call
           providers.</li>
-        <li>Use idempotency for payment, wallet, webhook, media, payout batch, and critical task state transitions.</li>
-        <li>Backend must publish the APIs needed by Mobile and Admin before the end of Week 1 using contract/stub
-          responses where real logic is not ready.</li>
+        <li>Use idempotency for payment, wallet, webhook, media, and critical state transitions.</li>
         <li>Target file size below 400 lines; hard warning above 500 lines.</li>
       </ul>
       <h3>Mobile Standards</h3>
@@ -2943,57 +2688,56 @@ Tasker wallet:
           states where relevant.</li>
         <li>Location, camera, microphone, media, notification, and phone permissions must have product-specific
           justification and graceful denial handling.</li>
-        <li>Tasker task state buttons must map clearly: Start Journey = TASKER_EN_ROUTE, "I have arrived" = ARRIVED,
-          "Begin Task" = IN_PROGRESS.</li>
       </ul>
       <h3>Admin Frontend Standards</h3>
       <ul>
         <li>Next.js feature-first architecture with typed API clients and permission-aware routes.</li>
         <li>Every admin table supports loading, empty, error, retry, filters, pagination, and permission denied states.
         </li>
-        <li>Finance, KYC, policy, support, payout batch, and config actions must request reason where high-risk.</li>
+        <li>Finance, KYC, policy, support, and config actions must request reason where high-risk.</li>
         <li>Audit log visibility must be built into high-risk workflows.</li>
       </ul>
-      <h3>Frontend Loading and Submission States</h3>
+      <h3>Commit Message Standard</h3>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>State Type</th>
-              <th>Required UX Standard</th>
+              <th>Type</th>
+              <th>Meaning</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Initial fetch / GET request</td>
-              <td>Show a skeletonized version of the target view. Cards should show skeleton cards, tables should show
-                skeleton rows, and detail pages should show skeleton sections instead of generic spinners.</td>
+              <td>feat(scope): summary</td>
+              <td>New feature</td>
             </tr>
             <tr>
-              <td>Refresh / background fetch</td>
-              <td>Keep current content visible where safe and show subtle refreshing indicators. Do not blank out the
-                screen unless data is unavailable.</td>
+              <td>fix(scope): summary</td>
+              <td>Bug fix</td>
             </tr>
             <tr>
-              <td>POST/PATCH/critical submit</td>
-              <td>Show a blur overlay above the current view with a spinning Work2Cash logo. This applies to task
-                posting, payment init, profile save, KYC submit, proof upload finalization, withdrawal request, payout
-                approval, and high-risk admin actions.</td>
+              <td>refactor(scope): summary</td>
+              <td>Internal restructuring without behavior change</td>
             </tr>
             <tr>
-              <td>DELETE/destructive action</td>
-              <td>Require confirmation, show blur overlay with spinning Work2Cash logo during submission, and show
-                success/error confirmation after completion.</td>
+              <td>perf(scope): summary</td>
+              <td>Performance improvement</td>
             </tr>
             <tr>
-              <td>Upload progress</td>
-              <td>Show file-level progress for photos/videos and support retry for failed files. Max file size is 50MB
-                per file.</td>
+              <td>test(scope): summary</td>
+              <td>Tests added or changed</td>
             </tr>
             <tr>
-              <td>Payment pending</td>
-              <td>Show pending state and backend status refresh. Never mark payment successful based only on frontend
-                redirect or user tap.</td>
+              <td>docs(scope): summary</td>
+              <td>Documentation</td>
+            </tr>
+            <tr>
+              <td>security(scope): summary</td>
+              <td>Security change</td>
+            </tr>
+            <tr>
+              <td>infra(scope): summary</td>
+              <td>Infrastructure change</td>
             </tr>
           </tbody>
         </table>
@@ -3043,79 +2787,20 @@ Tasker wallet:
             <tr>
               <td>domain-specific</td>
               <td>paymentPending, paymentFailed, kycPending, kycRejected, taskExpired, noTaskerFound, withdrawalPending,
-                payoutBatched, payoutFailed, settlementHeld.</td>
+                settlementHeld.</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <h3>Commit Message Standard</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Meaning</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>feat(scope): summary</td>
-              <td>New feature</td>
-            </tr>
-            <tr>
-              <td>fix(scope): summary</td>
-              <td>Bug fix</td>
-            </tr>
-            <tr>
-              <td>refactor(scope): summary</td>
-              <td>Internal restructuring without behavior change</td>
-            </tr>
-            <tr>
-              <td>perf(scope): summary</td>
-              <td>Performance improvement</td>
-            </tr>
-            <tr>
-              <td>test(scope): summary</td>
-              <td>Tests added or changed</td>
-            </tr>
-            <tr>
-              <td>docs(scope): summary</td>
-              <td>Documentation</td>
-            </tr>
-            <tr>
-              <td>security(scope): summary</td>
-              <td>Security change</td>
-            </tr>
-            <tr>
-              <td>infra(scope): summary</td>
-              <td>Infrastructure change</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>Commit Discipline</h3>
-      <div class="callout amber"><strong>No Stacked Feature Commits</strong>
-        <p>Commits must be made feature by feature and fix by fix. One commit should represent one clear, reviewable
-          change. Do not bundle two unrelated features, a feature plus a bug fix, or backend/mobile/admin changes that
-          are not part of the same logical unit.</p>
-      </div>
-      <ul>
-        <li>Good: <code>feat(tasks): add tasker arrived endpoint</code></li>
-        <li>Good: <code>fix(wallet): prevent duplicate payout batch item</code></li>
-        <li>Good: <code>test(tasks): cover begin task transition</code></li>
-        <li>Bad: <code>feat(app): add task flow, wallet payout, admin dashboard and fixes</code></li>
-        <li>Money, KYC, admin permission, security, provider, payout, and migration commits must include a body
-          explaining the behavior and risk.</li>
-      </ul>
     </section>
-    <section class="section" id="section-10">
+
+    <section id="section-10" class="section">
       <div class="section-num">10</div>
       <div class="eyebrow">Part X</div>
       <h2>Build, QA and Go-Live</h2>
-      <p class="intro">The build system uses contract-first sequencing so backend work does not block Mobile or Admin
-        Frontend. The plan keeps a general timeline for management while also defining what each team builds in detail.
-      </p>
-      <h3>General Timeline</h3>
+      <p class="intro">The build system uses contract-first sequencing so backend work does not block mobile/admin,
+        followed by two testing weeks before go-live.</p>
+      <h3>Timeline</h3>
       <div class="table-wrap">
         <table>
           <thead>
@@ -3129,191 +2814,48 @@ Tasker wallet:
             <tr>
               <td>Week 1</td>
               <td>6-10 July 2026</td>
-              <td>Project setup, architecture foundation, auth/profile foundations, API contracts/stubs for Mobile and
-                Admin.</td>
+              <td>Setup, architecture foundation, auth/profile foundations, API contracts/stubs</td>
             </tr>
             <tr>
               <td>Week 2</td>
               <td>13-17 July 2026</td>
-              <td>Task flows, KYC, catalog, pricing, task location, proof media foundations.</td>
+              <td>Task flows, KYC, catalog, pricing foundations</td>
             </tr>
             <tr>
               <td>Week 3</td>
               <td>20-24 July 2026</td>
-              <td>Payments, wallet, escrow, task discovery, direct offers, favorites, withdrawal request foundations.
-              </td>
+              <td>Payments, wallet, escrow, task discovery, direct offers, favorites</td>
             </tr>
             <tr>
               <td>Week 4</td>
               <td>27-31 July 2026</td>
               <td>Chat, voice messages, masked call validation, notifications, support, reports/disputes, admin
-                operations.</td>
+                operations</td>
             </tr>
             <tr>
               <td>Week 5</td>
               <td>3-7 August 2026</td>
-              <td>Integration, edge cases, monitoring, backups, security, payout batching, media proof workflow.</td>
+              <td>Integration, edge cases, monitoring, backups, security, media proof workflow</td>
             </tr>
             <tr>
               <td>Week 6</td>
               <td>10-14 August 2026</td>
-              <td>MVP completion, feature freeze, staging stabilization, final provider checks.</td>
+              <td>MVP completion, feature freeze, staging stabilization</td>
             </tr>
             <tr>
               <td>Testing Week 1</td>
               <td>17-21 August 2026</td>
-              <td>QA, regression, device testing, product-flow acceptance, admin operational testing.</td>
+              <td>QA, regression, device testing, product-flow acceptance</td>
             </tr>
             <tr>
               <td>Testing Week 2</td>
               <td>24-28 August 2026</td>
-              <td>Load test, payment test, backup restore, payout batch dry run, provider validation, go-live rehearsal.
-              </td>
+              <td>Load, payment, backup restore, provider validation, go-live rehearsal</td>
             </tr>
             <tr>
               <td>Go-Live</td>
               <td>31 August 2026</td>
-              <td>Production launch after approval.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>Backend Build Plan</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Week</th>
-              <th>Backend Deliverables</th>
-              <th>Unblocks</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Week 1</td>
-              <td>Repository setup, NestJS hexagonal module skeleton, Prisma setup, shared response/error format,
-                auth/session contracts, user/profile contracts, category/pricing contracts, task contracts,
-                wallet/payment contract stubs, admin contracts, socket event names, OpenAPI/Swagger, seed data.</td>
-              <td>Mobile and Admin can integrate screens, Riverpod states, admin tables, forms, and error/loading/empty
-                states without waiting for full business logic.</td>
-            </tr>
-            <tr>
-              <td>Week 2</td>
-              <td>Real auth, OTP email-first/SMS fallback, user/profile, TaskerProfile, KYC workflow shell,
-                catalog/pricing rules, task creation, geocoding, pin confirmation, proof media upload metadata.</td>
-              <td>Auth, onboarding, profile, KYC, category selection, task creation, and media upload UI.</td>
-            </tr>
-            <tr>
-              <td>Week 3</td>
-              <td>Paystack/Moniepoint payment init/webhook contracts, escrow hold, ledger foundation, task discovery
-                browse/sort/filter, direct offers, favorites, withdrawal request model.</td>
-              <td>Payment screens, wallet screens, task discovery, direct offer, favorite Tasker, withdrawal request UI.
-              </td>
-            </tr>
-            <tr>
-              <td>Week 4</td>
-              <td>Socket.io task chat, voice message metadata, support live chat, FCM notification service,
-                reports/disputes, admin operations, masked call provider abstraction and Infobip validation spike.</td>
-              <td>Chat, support, notifications, reporting, admin support/risk workflows.</td>
-            </tr>
-            <tr>
-              <td>Week 5</td>
-              <td>Monitoring instrumentation, Sentry, use case health dashboard data, backups, cron jobs, ETA guard,
-                payout batch models/jobs, audit logs, RBAC hardening, media moderation workflow.</td>
-              <td>Admin monitoring, finance, payout, audit, operations, go-live readiness.</td>
-            </tr>
-            <tr>
-              <td>Week 6</td>
-              <td>Provider integration hardening, idempotency, reconciliation, edge cases, migration cleanup, test
-                coverage, staging stabilization.</td>
-              <td>Full MVP QA and launch rehearsal.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>Mobile Build Plan</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Week</th>
-              <th>Mobile Deliverables</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Week 1</td>
-              <td>Flutter feature-first clean architecture, Riverpod generator setup, theme/design tokens, routing,
-                auth/profile screen scaffolds, API client, response/error handling, skeleton loading system, Work2Cash
-                blur overlay submission component.</td>
-            </tr>
-            <tr>
-              <td>Week 2</td>
-              <td>Task Owner task creation, categories, task details, location/manual address, map pin confirmation,
-                proof upload UI, KYC capture/status, Tasker profile setup.</td>
-            </tr>
-            <tr>
-              <td>Week 3</td>
-              <td>Payment flow, wallet views, task discovery, Tasker task browse/filter, direct offer handling, favorite
-                Tasker flow, withdrawal request screens.</td>
-            </tr>
-            <tr>
-              <td>Week 4</td>
-              <td>Task chat, voice messages, FCM handlers, support live chat, task reports, masked call UI using proxy
-                dial-in flow if provider validation is ready.</td>
-            </tr>
-            <tr>
-              <td>Week 5</td>
-              <td>Live tracking, Tasker Start Journey, "I have arrived", "Begin Task", proof completion upload,
-                offline/retry states, location permission handling, media upload retry.</td>
-            </tr>
-            <tr>
-              <td>Week 6</td>
-              <td>End-to-end polish, low-end Android testing, Shorebird patch readiness, crash/error monitoring, staging
-                stabilization.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>Admin Frontend Build Plan</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Week</th>
-              <th>Admin Frontend Deliverables</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Week 1</td>
-              <td>Next.js feature-first structure, layout shell, login/TOTP UI, RBAC route guards, dashboard shell, API
-                client, table/form standards, skeleton loading and blur-overlay action standard.</td>
-            </tr>
-            <tr>
-              <td>Week 2</td>
-              <td>User management, Tasker profile/KYC queue screens, category/task type management, pricing rules, task
-                media review foundations.</td>
-            </tr>
-            <tr>
-              <td>Week 3</td>
-              <td>Task monitoring, payment/wallet/escrow dashboards, withdrawal request list, favorite/direct offer
-                visibility, finance filters.</td>
-            </tr>
-            <tr>
-              <td>Week 4</td>
-              <td>Reports/disputes, support live chat dashboard, notifications/communication, risk flags, warning/strike
-                views, admin action reason modals.</td>
-            </tr>
-            <tr>
-              <td>Week 5</td>
-              <td>Payout batch management for 14th/28th cycles, audit logs, use case health dashboard, background job
-                logs, backup/monitoring views, coverage/config controls.</td>
-            </tr>
-            <tr>
-              <td>Week 6</td>
-              <td>Permission hardening, empty/error/loading states, export/report polish, staging stabilization, UAT
-                fixes.</td>
+              <td>Production launch after approval</td>
             </tr>
           </tbody>
         </table>
@@ -3322,8 +2864,6 @@ Tasker wallet:
       <ul>
         <li>Backend publishes OpenAPI, enums, response shapes, socket event names, auth rules, and mock/stub endpoints
           early.</li>
-        <li>By the end of Week 1, the Mobile and Admin teams must have enough API contracts and seeded data to build all
-          MVP screens without waiting for backend provider integrations.</li>
         <li>Backend tasks are tagged CONTRACT, STUB, REAL, INTEGRATION, or HARDENING.</li>
         <li>Mobile and Admin can build against contracts before full backend logic is complete.</li>
         <li>Use mocks and seeded test data to avoid blocking UI teams.</li>
@@ -3338,8 +2878,6 @@ Tasker wallet:
         <li>Postgres backup restore not tested.</li>
         <li>Socket chat/tracking unstable.</li>
         <li>FCM delivery not working.</li>
-        <li>Tasker status transitions missing: Start Journey, "I have arrived", and "Begin Task".</li>
-        <li>Payout batch eligibility/reconciliation untested.</li>
         <li>Masked call exposes real phone numbers.</li>
         <li>Private task address or proof media exposed publicly.</li>
         <li>Task Owner or Tasker core flow cannot be completed.</li>
@@ -3380,13 +2918,8 @@ Tasker wallet:
               <td>Within 24 hours</td>
             </tr>
             <tr>
-              <td>Withdrawal review SLA</td>
-              <td>Eligibility review/hold decision within 24 hours; cash payout occurs on the next 14th/28th payout
-                batch.</td>
-            </tr>
-            <tr>
-              <td>Payout batch success</td>
-              <td>Approved payout batches reconcile against provider results with no unexplained failed items.</td>
+              <td>Withdrawal SLA</td>
+              <td>Within 24 hours</td>
             </tr>
             <tr>
               <td>Support SLA</td>
@@ -3435,7 +2968,7 @@ Tasker wallet:
             <tr>
               <td>Finance</td>
               <td>Payment success/failure, webhook delay, pending payments, escrow held value, release success,
-                withdrawal requests, payout batch success, ledger mismatch count.</td>
+                withdrawal success, ledger mismatch count.</td>
             </tr>
             <tr>
               <td>Trust/Safety</td>
@@ -3454,8 +2987,8 @@ Tasker wallet:
             </tr>
             <tr>
               <td>Cost</td>
-              <td>Infrastructure spend, Google Maps spend, SMS/email spend, masked call spend, payout provider fees,
-                cost per completed task, provider usage vs budget.</td>
+              <td>Infrastructure spend, Google Maps spend, SMS/email spend, masked call spend, cost per completed task,
+                provider usage vs budget.</td>
             </tr>
           </tbody>
         </table>
@@ -3502,7 +3035,8 @@ Tasker wallet:
         </table>
       </div>
     </section>
-    <section class="section" id="section-11">
+
+    <section id="section-11" class="section">
       <div class="section-num">11</div>
       <div class="eyebrow">Part XI</div>
       <h2>Risks and Decisions</h2>
@@ -3550,16 +3084,6 @@ Tasker wallet:
               <td>Provider capability and cost must be validated during development</td>
             </tr>
             <tr>
-              <td>Scheduled bulk payouts</td>
-              <td>Paystack/Moniepoint payout operations are simpler and easier to reconcile in batches</td>
-              <td>Taskers receive cash payouts on the 14th/28th instead of instant withdrawals</td>
-            </tr>
-            <tr>
-              <td>Updated ETA guard</td>
-              <td>Uses journey progress as the primary paid-ETA trigger while preventing frequent calls</td>
-              <td>ETA may not refresh if the Tasker has not crossed the next 10% journey milestone</td>
-            </tr>
-            <tr>
               <td>Static legal pages first</td>
               <td>Safer and faster for MVP</td>
               <td>Admin-managed legal content deferred</td>
@@ -3581,8 +3105,7 @@ Tasker wallet:
             <tr>
               <td>USD cost spikes</td>
               <td>High</td>
-              <td>Batch paid APIs, use Hetzner first, track provider costs, guard Google Maps, monitor masked calls and
-                payout transfer fees</td>
+              <td>Batch paid APIs, use Hetzner first, track provider costs, guard Google Maps, monitor masked calls</td>
             </tr>
             <tr>
               <td>Payment webhook failure</td>
@@ -3660,229 +3183,96 @@ Tasker wallet:
         </table>
       </div>
     </section>
-    <section class="section" id="section-12">
+
+    <section id="section-12" class="section">
       <div class="section-num">12</div>
       <div class="eyebrow">Part XII</div>
       <h2>Appendices</h2>
-      <p class="intro">Reference lists for document assembly, legal URLs, glossary, acronyms, and implementation
-        handover. The glossary explains product terms and shortened technical terms used throughout the architecture.
-      </p>
-      <h3>GitHub Documentation Repository Governance</h3>
-      <div class="callout blue"><strong>Team-Facing Source of Truth</strong>
-        <p>The Work2Cash GitHub organization contains a public repository named <code>docs</code>. This repository is
-          the team-facing documentation portal. Generated documents should be added to the <code>docs</code> repo and
-          linked from this Main Enterprise Architecture document.</p>
-      </div>
+      <p class="intro">Reference lists for document assembly, legal URLs, glossary, and implementation handover.</p>
+      <h3>Work2Cash Resource Links</h3>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Area</th>
-              <th>Decision</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Repository</td>
-              <td>GitHub organization repository named <code>docs</code>.</td>
-            </tr>
-            <tr>
-              <td>GitHub Pages</td>
-              <td>Enabled and configured to deploy from GitHub Actions, not from a direct branch/folder source.</td>
-            </tr>
-            <tr>
-              <td>Deployment artifact</td>
-              <td>The custom workflow builds a clean <code>_site</code> folder and uploads only the publishable site
-                output.</td>
-            </tr>
-            <tr>
-              <td>Published files</td>
-              <td>The workflow copies <code>index.html</code>, <code>documents/</code>, <code>assets/</code>, and
-                optional <code>404.html</code>.</td>
-            </tr>
-            <tr>
-              <td>Main entry document</td>
-              <td><code>documents/main-enterprise-architecture-v1.html</code>.</td>
-            </tr>
-            <tr>
-              <td>Combined legal pack</td>
-              <td><code>documents/legal_user_facing_documents_pack_v1.html</code>.</td>
-            </tr>
-            <tr>
-              <td>Main v1 legal reference</td>
-              <td>The main architecture document must link to <code>./legal_user_facing_documents_pack_v1.html</code>.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>Documentation Portal Access Model</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Control</th>
-              <th>Rule</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Password gate</td>
-              <td><code>index.html</code> is the password gate landing page.</td>
-            </tr>
-            <tr>
-              <td>Password storage</td>
-              <td>Raw passwords must not be committed. The gate uses client-side SHA-256 hash comparison.</td>
-            </tr>
-            <tr>
-              <td>Session behavior</td>
-              <td>Unlock state is stored in <code>sessionStorage</code>, so a new browser session requires password
-                entry again.</td>
-            </tr>
-            <tr>
-              <td>Direct document guard</td>
-              <td>Protected HTML pages inside <code>documents/</code> must include
-                <code>&lt;script src="../assets/js/auth-guard.js"&gt;&lt;/script&gt;</code>.</td>
-            </tr>
-            <tr>
-              <td>Return path</td>
-              <td>The guard preserves the originally requested URL with a <code>next</code> query parameter and
-                redirects the user after successful password entry.</td>
-            </tr>
-            <tr>
-              <td>Security limitation</td>
-              <td>The GitHub Pages guard is a soft/team-convenience control only because the site and repository are
-                public.</td>
-            </tr>
-            <tr>
-              <td>Forbidden content</td>
-              <td>No secrets, API keys, production credentials, private user data, sensitive payment data, confidential
-                operational secrets, or production records should be stored in the repo.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>Guard Checker and Deployment Gate</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Required Behavior</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Guard checker script</td>
-              <td><code>scripts/check-guards.js</code> should recursively scan <code>documents/</code>.</td>
-            </tr>
-            <tr>
-              <td>Protected page check</td>
-              <td>Every protected <code>.html</code> file under <code>documents/</code> must contain
-                <code>auth-guard.js</code>.</td>
-            </tr>
-            <tr>
-              <td>Excluded files</td>
-              <td>Root <code>index.html</code> and optional root <code>404.html</code> are excluded from protected
-                document checks.</td>
-            </tr>
-            <tr>
-              <td>Workflow gate</td>
-              <td>The GitHub Pages workflow must run <code>scripts/check-guards.js</code> before uploading the Pages
-                artifact.</td>
-            </tr>
-            <tr>
-              <td>Deployment folder</td>
-              <td>The workflow should deploy from a clean <code>_site</code> folder only, not by uploading the whole
-                repository.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>Documentation Repo Edit Governance</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Governance Area</th>
-              <th>Decision</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Editor</td>
-              <td>Only the Technical Lead should edit, push, merge, or publish documentation changes.</td>
-            </tr>
-            <tr>
-              <td>Team access</td>
-              <td>Other team members consume documentation through GitHub Pages and should have no write access or
-                read-only access where needed.</td>
-            </tr>
-            <tr>
-              <td>Technical Lead access</td>
-              <td>Technical Lead should have Admin or Maintain access.</td>
-            </tr>
-            <tr>
-              <td>Main branch</td>
-              <td><code>main</code> should be protected with GitHub rulesets.</td>
-            </tr>
-            <tr>
-              <td>Merge model</td>
-              <td>Changes enter <code>main</code> through pull requests. No direct push to <code>main</code>.</td>
-            </tr>
-            <tr>
-              <td>Approvals</td>
-              <td>No required approval from another reviewer when the Technical Lead is the only editor, because authors
-                cannot approve their own PRs.</td>
-            </tr>
-            <tr>
-              <td>Bypass</td>
-              <td>No bypass should be required for normal documentation publishing.</td>
-            </tr>
-            <tr>
-              <td>Restrict updates</td>
-              <td>Avoid enabling “Restrict updates” unless bypass is intentionally used.</td>
-            </tr>
-            <tr>
-              <td>CODEOWNERS</td>
-              <td><code>CODEOWNERS</code> should point all repository files to the Technical Lead.</td>
-            </tr>
-            <tr>
-              <td>Commit discipline</td>
-              <td>No stacked documentation commits. Commits should be one clear documentation update at a time.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>Documentation Commit Examples</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Commit</th>
+              <th>Resource</th>
+              <th>Docs Repo Path / Link</th>
               <th>Purpose</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><code>docs(site): guard direct documentation page access</code></td>
-              <td>Add or update direct page protection.</td>
+              <td>Main Enterprise Architecture v1</td>
+              <td>documents/main-enterprise-architecture-v1.html</td>
+              <td>Top-level source of truth for architecture, product, infrastructure, provider, security, timeline and
+                governance decisions.</td>
             </tr>
             <tr>
-              <td><code>ci(pages): add custom GitHub Pages deployment</code></td>
-              <td>Add or update the GitHub Pages deployment workflow.</td>
+              <td>Mobile Flow Catalogue v1</td>
+              <td>documents/mobile-flow-catalogue-v1.html</td>
+              <td>Closed mobile flows, subflows, dependencies, recovery paths and screen silhouettes.</td>
             </tr>
             <tr>
-              <td><code>docs(legal): publish combined legal documents pack</code></td>
-              <td>Publish the combined legal pack.</td>
+              <td>Admin Flow Catalogue v1</td>
+              <td>documents/admin-flow-catalogue-v1.html</td>
+              <td>Closed admin web flows, dependencies, recovery paths and dashboard silhouettes.</td>
             </tr>
             <tr>
-              <td><code>docs(architecture): update main v1 legal references</code></td>
-              <td>Update architecture references to supporting documents.</td>
+              <td>Flow Alignment Review v1</td>
+              <td>documents/flow-alignment-review-v1.html</td>
+              <td>Comparison and decision tracker for Figma, mobile/admin flow catalogues and architecture alignment.
+              </td>
+            </tr>
+            <tr>
+              <td>Legal & User-Facing Documents Pack</td>
+              <td>documents/legal_user_facing_documents_pack_v1.html</td>
+              <td>Combined legal/user-facing pack. Separate /legal/... pages are not used for MVP docs publishing.</td>
+            </tr>
+            <tr>
+              <td>API & Socket Contract Specification</td>
+              <td>documents/api-socket-contract-specification-v1.html</td>
+              <td>Planned contract document for REST, socket, webhook, events, queues and response shapes.</td>
+            </tr>
+            <tr>
+              <td>Data Model & Prisma Schema Planning</td>
+              <td>documents/data-model-prisma-schema-planning-v1.html</td>
+              <td>Planned entity, relationship, enum and migration planning document.</td>
+            </tr>
+            <tr>
+              <td>Provider Integration & Cost Control</td>
+              <td>documents/provider-integration-cost-control-v1.html</td>
+              <td>Planned provider, hosting, pricing, cost guard and operations document.</td>
+            </tr>
+            <tr>
+              <td>Build / Implementation Execution Plan</td>
+              <td>documents/build-implementation-execution-plan-v1.html</td>
+              <td>Planned team-by-team build timeline and execution tracker.</td>
+            </tr>
+            <tr>
+              <td>QA / Go-Live Readiness Checklist</td>
+              <td>documents/qa-go-live-readiness-checklist-v1.html</td>
+              <td>Planned QA, launch, rollback, provider validation and go-live checklist.</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <h3>GitHub Documentation Governance</h3>
+      <ul>
+        <li>Repository name: docs. It is the team-facing Work2Cash documentation portal.</li>
+        <li>GitHub Pages deploys through GitHub Actions from a clean _site folder.</li>
+        <li>The deployment artifact should include index.html, documents/, assets/, and optional 404.html.</li>
+        <li>GitHub Pages source is GitHub Actions.</li>
+        <li>index.html is the password gate landing page. Protected documents use client-side auth guard only; this is
+          soft protection, not server-side security.</li>
+        <li>Every protected HTML file under documents/ must include:
+          <code>&lt;script src=&quot;../assets/js/guard.js&quot;&gt;&lt;/script&gt;</code>.
+        </li>
+        <li>scripts/apply.guard.js must recursively scan documents/ and fail deployment if a protected HTML file lacks
+          guard.js.</li>
+        <li>No secrets, API keys, production credentials, private user data, sensitive payment data, or confidential
+          operational secrets should be stored in the docs repo.</li>
+        <li>Documentation changes enter main through PRs. No direct push to main. Commits should be one clear
+          documentation update at a time.</li>
+      </ul>
       <h3>Document Assembly Plan</h3>
       <div class="table-wrap">
         <table>
@@ -3890,98 +3280,111 @@ Tasker wallet:
             <tr>
               <th>Order</th>
               <th>Document</th>
-              <th>Repo Path</th>
-              <th>Status / Note</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
               <td>Main Enterprise Architecture Document</td>
-              <td><code>documents/main-enterprise-architecture-v1.html</code></td>
-              <td>Primary source of truth.</td>
+              <td>Active source of truth</td>
             </tr>
             <tr>
               <td>2</td>
-              <td>Legal &amp; User-Facing Documents Pack</td>
-              <td><code>documents/legal_user_facing_documents_pack_v1.html</code></td>
-              <td>Combined legal pack file. Separate <code>/legal/...</code> pages are not used in the docs repo.</td>
+              <td>Mobile Flow Catalogue</td>
+              <td>Generated and aligned</td>
             </tr>
             <tr>
               <td>3</td>
-              <td>API &amp; Socket Contract Specification</td>
-              <td><code>documents/api_socket_contract_specification_v1.html</code></td>
-              <td>Planned supporting document.</td>
+              <td>Admin Flow Catalogue</td>
+              <td>Generated and aligned</td>
             </tr>
             <tr>
               <td>4</td>
-              <td>Data Model &amp; Prisma Schema Planning Document</td>
-              <td><code>documents/data_model_prisma_schema_planning_v1.html</code></td>
-              <td>Planned supporting document.</td>
+              <td>Flow Alignment Review</td>
+              <td>Generated and resolved-decision tracker</td>
             </tr>
             <tr>
               <td>5</td>
-              <td>Provider Integration &amp; Cost Control Document</td>
-              <td><code>documents/provider_integration_cost_control_v1.html</code></td>
-              <td>Planned supporting document.</td>
+              <td>Legal & User-Facing Documents Pack</td>
+              <td>Combined pack; publish under documents/</td>
             </tr>
             <tr>
               <td>6</td>
-              <td>Build / Implementation Execution Plan</td>
-              <td><code>documents/build_implementation_execution_plan_v1.html</code></td>
-              <td>Planned supporting document.</td>
+              <td>API & Socket Contract Specification</td>
+              <td>Planned</td>
             </tr>
             <tr>
               <td>7</td>
+              <td>Data Model & Prisma Schema Planning Document</td>
+              <td>Planned</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Provider Integration & Cost Control Document</td>
+              <td>Planned</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Build / Implementation Execution Plan</td>
+              <td>Planned</td>
+            </tr>
+            <tr>
+              <td>10</td>
               <td>QA / Go-Live Readiness Checklist</td>
-              <td><code>documents/qa_go_live_readiness_checklist_v1.html</code></td>
-              <td>Planned supporting document.</td>
+              <td>Planned</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <h3>Legal &amp; User-Facing Documents</h3>
-      <ul>
-        <li><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a></li>
-      </ul>
-      <h3>Public Legal URLs</h3>
+      <h3>Combined Legal Pack</h3>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Item</th>
-              <th>Decision</th>
+              <th>Document</th>
+              <th>Location</th>
+              <th>Publishing Rule</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Publishing model</td>
-              <td>Use one combined legal pack file inside <code>documents/</code>.</td>
-            </tr>
-            <tr>
-              <td>Final repo location</td>
-              <td><code>documents/legal_user_facing_documents_pack_v1.html</code>.</td>
-            </tr>
-            <tr>
-              <td>Main architecture link</td>
-              <td><code>./legal_user_facing_documents_pack_v1.html</code>.</td>
-            </tr>
-            <tr>
-              <td>Separate legal pages</td>
-              <td>Do not publish separate docs repo pages under <code>/legal/terms</code>, <code>/legal/privacy</code>,
-                <code>/legal/tasker-agreement</code>, <code>/legal/cancellation-refund</code>,
-                <code>/legal/safety</code>, <code>/legal/kyc-consent</code>, <code>/legal/location</code>, or
-                <code>/legal/payment-wallet</code>.</td>
-            </tr>
-            <tr>
-              <td>Legal review</td>
-              <td>The combined legal pack remains subject to legal counsel review before public/customer-facing
-                production publication.</td>
+              <td>Legal & User-Facing Documents Pack v1</td>
+              <td>documents/legal_user_facing_documents_pack_v1.html</td>
+              <td>Main architecture links to ./legal_user_facing_documents_pack_v1.html. Separate /legal/... pages are
+                not published for MVP docs.</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <h3>Glossary and Acronyms</h3>
+      <h3>Closed Flow Catalogue Addendum</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Accepted Flow Decisions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mobile</td>
+              <td>SF-11 Password Recovery; SF-12 Payout Account Setup; SF-13 Google/Apple Social Authentication; MF-18
+                Profile and Settings; MF-19 Security and Device Management with PIN; MF-20 Notification Center and
+                Preferences; MF-21 Tasker Availability and Work Preferences with Auto Accept deferred; MF-22 Ratings and
+                Reviews; MF-23 Emergency Support; MF-24 Rebook / Repeat Task.</td>
+            </tr>
+            <tr>
+              <td>Admin</td>
+              <td>AF-21 Notifications and Announcements; AF-22 Ratings and Reviews Management; AF-23 Basic Analytics and
+                Reports; AF-24 Receipt and Transaction Review; controlled Force Cancel inside AF-05; Request
+                Re-Verification inside AF-04; Disable/Archive category rules inside AF-11; Admin Reassign Task rejected.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Glossary</h3>
       <div class="table-wrap">
         <table>
           <thead>
@@ -3993,24 +3396,15 @@ Tasker wallet:
           <tbody>
             <tr>
               <td>Task Owner</td>
-              <td>User who creates, funds, monitors, and confirms a task.</td>
+              <td>User who creates and funds a task.</td>
             </tr>
             <tr>
               <td>Tasker</td>
               <td>KYC-approved user who can accept and perform tasks.</td>
             </tr>
             <tr>
-              <td>mode</td>
-              <td>User-facing operating mode: TASK_OWNER or TASKER. It controls what experience is shown and what
-                actions are allowed.</td>
-            </tr>
-            <tr>
-              <td>TaskerProfile</td>
-              <td>Profile that unlocks earning ability after KYC, skills, availability, location, and payout setup.</td>
-            </tr>
-            <tr>
               <td>Direct Offer</td>
-              <td>Task sent directly to a favorite Tasker through REST API and FCM, not Socket.io.</td>
+              <td>Task sent directly to a favorite Tasker through API/FCM, not Socket.io.</td>
             </tr>
             <tr>
               <td>Public Discovery</td>
@@ -4018,11 +3412,7 @@ Tasker wallet:
             </tr>
             <tr>
               <td>Escrow</td>
-              <td>Held task funds released after completion or dispute/report resolution.</td>
-            </tr>
-            <tr>
-              <td>Ledger</td>
-              <td>Append-only financial record of wallet, escrow, refund, payout, and adjustment movements.</td>
+              <td>Held funds released after completion or resolution.</td>
             </tr>
             <tr>
               <td>Task Proof</td>
@@ -4030,98 +3420,35 @@ Tasker wallet:
             </tr>
             <tr>
               <td>Masked Call</td>
-              <td>Task-bound call through a Work2Cash proxy number that protects real phone numbers.</td>
+              <td>Task-bound call through Work2Cash proxy number that protects real phone numbers.</td>
             </tr>
             <tr>
-              <td>ETA</td>
-              <td>Estimated Time of Arrival.</td>
+              <td>ETA Cost Guard</td>
+              <td>Paid ETA refresh rule using a 5-minute guard plus the next 10% total-journey milestone. After each
+                refresh, reset the timer and next milestone.</td>
             </tr>
             <tr>
-              <td>Updated ETA Guard</td>
-              <td>Paid ETA refresh is allowed when 5 minutes have elapsed and the Tasker has crossed the next 10%
-                total-journey milestone since the last refresh. After refresh, reset the 5-minute timer and milestone.
-              </td>
+              <td>PIN Confirmation</td>
+              <td>Work2Cash security PIN used for sensitive actions. OTP is used for PIN reset/recovery.</td>
             </tr>
             <tr>
-              <td>FCM</td>
-              <td>Firebase Cloud Messaging, used for push notifications and device wake-up.</td>
+              <td>Payout Account</td>
+              <td>Tasker withdrawal destination verified before payout requests. Task Owner wallet cannot withdraw
+                directly.</td>
             </tr>
             <tr>
-              <td>KYC</td>
-              <td>Know Your Customer identity verification. Work2Cash uses Smile ID for Tasker verification.</td>
+              <td>Rebook</td>
+              <td>Creates a new task from a completed task while preserving the old task as immutable history.</td>
             </tr>
             <tr>
-              <td>OTP</td>
-              <td>One-Time Password. Work2Cash sends OTP by email first and Termii SMS as fallback.</td>
+              <td>Emergency Support</td>
+              <td>Priority support branch for urgent task, safety, payment, contact, or no-show issues. It does not
+                replace local emergency services.</td>
             </tr>
             <tr>
-              <td>RBAC</td>
-              <td>Role-Based Access Control for admin permissions.</td>
-            </tr>
-            <tr>
-              <td>TOTP</td>
-              <td>Time-based One-Time Password used for admin two-factor authentication.</td>
-            </tr>
-            <tr>
-              <td>RPO</td>
-              <td>Recovery Point Objective: the maximum acceptable data loss window after an incident.</td>
-            </tr>
-            <tr>
-              <td>RTO</td>
-              <td>Recovery Time Objective: the maximum acceptable downtime before service recovery.</td>
-            </tr>
-            <tr>
-              <td>WAL</td>
-              <td>Write-Ahead Log used by PostgreSQL for recovery and point-in-time backup strategies.</td>
-            </tr>
-            <tr>
-              <td>Valkey</td>
-              <td>Redis-compatible in-memory datastore used for cache, queues, presence, geospatial support, and
-                Socket.io scaling.</td>
-            </tr>
-            <tr>
-              <td>BullMQ</td>
-              <td>Node.js queue library used with Valkey/Redis for background jobs and retries.</td>
-            </tr>
-            <tr>
-              <td>Socket.io</td>
-              <td>Real-time communication framework used for task chat, support live chat, presence, and live tracking.
-              </td>
-            </tr>
-            <tr>
-              <td>Webhook</td>
-              <td>Provider callback sent to Work2Cash, such as payment confirmation or call-routing event.</td>
-            </tr>
-            <tr>
-              <td>Idempotency</td>
-              <td>Design rule that repeated requests or provider retries do not create duplicate money movements or
-                duplicate state changes.</td>
-            </tr>
-            <tr>
-              <td>Payout Batch</td>
-              <td>Scheduled bulk payout group processed on the 14th and 28th for eligible Tasker withdrawal requests.
-              </td>
-            </tr>
-            <tr>
-              <td>Settlement Hold</td>
-              <td>Temporary hold on payout for a task or Tasker earning because of an active issue, report, dispute, or
-                risk flag.</td>
-            </tr>
-            <tr>
-              <td>SLA</td>
-              <td>Service Level Agreement or operational response target.</td>
-            </tr>
-            <tr>
-              <td>NDPA / NDPR</td>
-              <td>Nigeria data protection legal framework/principles governing user data handling.</td>
-            </tr>
-            <tr>
-              <td>Shorebird</td>
-              <td>Flutter over-the-air patching service used for urgent mobile fixes after release.</td>
-            </tr>
-            <tr>
-              <td>Sentry</td>
-              <td>Error and crash monitoring tool used across backend, mobile, and admin.</td>
+              <td>Disable/Archive Category</td>
+              <td>Admin catalog action that removes a category/task type from new task creation while preserving
+                historical records.</td>
             </tr>
           </tbody>
         </table>
@@ -4130,10 +3457,11 @@ Tasker wallet:
       <ul>
         <li>DigitalOcean Droplets pricing: https://www.digitalocean.com/pricing/droplets</li>
         <li>DigitalOcean Spaces pricing: https://docs.digitalocean.com/products/spaces/details/pricing/</li>
-        <li>Hetzner Cost-Optimized pricing page: https://www.hetzner.com/cloud/cost-optimized/</li>
+        <li>Hetzner Cloud cost-optimized pricing: https://www.hetzner.com/cloud/cost-optimized/</li>
         <li>Nigeria Data Protection Commission: https://ndpc.gov.ng/</li>
       </ul>
     </section>
+
   </main>
   <footer>
     <div class="footer-inner">
@@ -4147,12 +3475,10 @@ Tasker wallet:
       </div>
       <div>
         <h4>Status</h4>
-        <p>HTML master architecture document. Published through the GitHub docs repository with supporting documents
-          linked from the resource hub.</p>
+        <p>HTML master architecture draft. Legal pack regeneration comes after architecture sign-off.</p>
       </div>
     </div>
   </footer>
-  <script src="../assets/js/auth-guard.js"></script>
 </body>
 
 </html>

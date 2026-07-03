@@ -1,4 +1,4 @@
-const PASSWORD_HASH = "d18aee7cb358683c82fbf0996bab3a1149c5884ab28abc011cd0214c996679b6";
+const PASSWORD_HASH = "98838c66b1c0fbfdb1969d63537f23b9d64d8010ae57db48dc4c70da3109bc2a";
 const SESSION_KEY = "w2c_docs_unlocked";
 const DEFAULT_DESTINATION = "/docs/documents/main-enterprise-architecture-v1.html";
 
@@ -35,6 +35,32 @@ function getSafeDestination() {
   return DEFAULT_DESTINATION;
 }
 
+function showDocumentLibrary() {
+  const gate = document.getElementById("gate");
+  const docs = document.getElementById("docs");
+
+  if (!gate || !docs) {
+    return false;
+  }
+
+  gate.classList.add("hidden");
+  docs.classList.remove("hidden");
+  return true;
+}
+
+function continueAfterUnlock() {
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.has("next")) {
+    window.location.href = getSafeDestination();
+    return;
+  }
+
+  if (!showDocumentLibrary()) {
+    window.location.href = DEFAULT_DESTINATION;
+  }
+}
+
 async function unlock() {
   const passwordInput = document.getElementById("password");
   const error = document.getElementById("error");
@@ -43,18 +69,30 @@ async function unlock() {
 
   if (hash === PASSWORD_HASH) {
     sessionStorage.setItem(SESSION_KEY, "true");
-    window.location.href = getSafeDestination();
+    continueAfterUnlock();
   } else {
     error.textContent = "Incorrect password.";
   }
 }
 
-document.getElementById("unlock").addEventListener("click", unlock);
+const unlockButton = document.getElementById("unlock");
+const authForm = document.getElementById("auth-form");
+
+if (unlockButton) {
+  unlockButton.addEventListener("click", unlock);
+}
+
+if (authForm) {
+  authForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    unlock();
+  });
+}
 
 document.getElementById("password").addEventListener("keydown", (event) => {
   if (event.key === "Enter") unlock();
 });
 
 if (isUnlocked()) {
-  window.location.href = getSafeDestination();
+  continueAfterUnlock();
 }

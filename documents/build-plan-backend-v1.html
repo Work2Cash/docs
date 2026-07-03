@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="../assets/js/guard.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work2Cash - Backend Build Execution Plan v1</title>
+  <style>
+    :root {
+      --brand:#1F6AE1;
+      --brand-mid:#5B8DEF;
+      --brand-soft:#EAF2FF;
+      --header:#0F2A44;
+      --text:#1D2939;
+      --muted:#667085;
+      --success:#12B76A;
+      --warning:#FF8A00;
+      --danger:#F04438;
+      --line:#D8E2F1;
+      --bg:#F6F9FE;
+      --paper:#FFFFFF;
+      --soft:#F9FBFF;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      font-family: Inter, "Nunito Sans", Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.68;
+      -webkit-font-smoothing:antialiased;
+    }
+    a { color:var(--brand); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    code {
+      font-family:"SFMono-Regular", Consolas, monospace;
+      background:#EEF4FF;
+      border:1px solid #CFE0FF;
+      padding:2px 6px;
+      border-radius:6px;
+      font-size:.92em;
+    }
+    pre {
+      margin:0;
+      padding:18px;
+      overflow:auto;
+      background:#FAFCFF;
+      font-family:"SFMono-Regular", Consolas, monospace;
+      font-size:12px;
+      line-height:1.62;
+      color:#334155;
+    }
+    .cover {
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:64px clamp(24px, 6vw, 88px);
+      color:white;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(91,141,239,.65), transparent 25rem),
+        radial-gradient(circle at 85% 80%, rgba(18,183,106,.22), transparent 28rem),
+        linear-gradient(135deg, #0F2A44 0%, #123B78 58%, #1F6AE1 115%);
+    }
+    .brand-row { display:flex; gap:16px; align-items:center; }
+    .logo {
+      width:62px; height:62px; border-radius:16px; background:white; color:var(--brand);
+      display:grid; place-items:center; font-weight:900; font-size:20px;
+      box-shadow:0 18px 40px rgba(0,0,0,.18);
+    }
+    .brand-row strong { display:block; font-size:18px; }
+    .brand-row span { display:block; color:rgba(255,255,255,.74); font-size:14px; }
+    .cover-main { max-width:1080px; padding:70px 0; }
+    .label { color:#CFE0FF; text-transform:uppercase; letter-spacing:.16em; font-size:12px; font-weight:800; }
+    h1 { font-size:clamp(44px, 8vw, 84px); line-height:1; margin:18px 0; letter-spacing:-.04em; }
+    .cover-subtitle { font-size:clamp(20px, 3vw, 30px); color:rgba(255,255,255,.84); max-width:920px; font-weight:700; }
+    .meta-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:14px; margin-top:38px; max-width:980px; }
+    .meta-card {
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.12);
+      border-radius:14px;
+      padding:16px;
+      backdrop-filter:blur(10px);
+    }
+    .meta-card span { display:block; color:rgba(255,255,255,.64); font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:800; }
+    .meta-card strong { display:block; margin-top:5px; color:#fff; }
+    .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+    .badge { border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.1); border-radius:999px; padding:7px 13px; font-size:12px; font-weight:800; }
+    .cover-foot { border-top:1px solid rgba(255,255,255,.18); padding-top:24px; display:flex; justify-content:space-between; gap:24px; color:rgba(255,255,255,.66); font-size:13px; }
+    .sticky {
+      position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); backdrop-filter:blur(12px);
+      border-bottom:2px solid var(--brand);
+    }
+    .sticky-inner { max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:12px 24px; }
+    .sticky strong { color:var(--header); }
+    .sticky nav { display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end; }
+    .sticky a { font-size:12px; font-weight:800; }
+    main { max-width:1240px; margin:0 auto; padding:44px 24px 80px; }
+    .toc, .section {
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:clamp(24px, 4vw, 44px);
+      margin-bottom:28px;
+      box-shadow:0 18px 50px rgba(15,42,68,.07);
+    }
+    .toc h2, .section h2 { color:var(--header); font-size:clamp(30px, 4vw, 46px); line-height:1.08; margin:6px 0 12px; letter-spacing:-.025em; }
+    .toc-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; margin-top:22px; }
+    .toc-grid a { padding:14px 16px; border-radius:12px; border:1px solid var(--line); background:var(--brand-soft); color:var(--header); font-weight:900; }
+    .section-num { color:#CBD5E1; font-size:13px; font-weight:900; }
+    .eyebrow { color:var(--brand); text-transform:uppercase; letter-spacing:.14em; font-size:12px; font-weight:900; }
+    .intro { color:var(--muted); font-size:16px; max-width:920px; margin-bottom:28px; }
+    h3 { color:var(--header); font-size:23px; margin:34px 0 14px; padding-bottom:8px; border-bottom:2px solid #E6EEF9; }
+    h4 { color:var(--header); font-size:17px; margin:20px 0 8px; }
+    p { margin:0 0 14px; }
+    ul { padding-left:22px; margin:10px 0 20px; }
+    li { margin:6px 0; }
+    .card-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; margin:22px 0; }
+    .card { border:1px solid var(--line); background:var(--soft); border-radius:14px; padding:18px; }
+    .card span { color:var(--brand); font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:900; }
+    .card h4 { margin:6px 0 7px; }
+    .card p { color:var(--muted); font-size:14px; margin:0; }
+    .callout { border-radius:14px; padding:18px 20px; margin:22px 0; border-left:5px solid var(--brand); background:var(--brand-soft); }
+    .callout strong { display:block; color:var(--brand); text-transform:uppercase; letter-spacing:.1em; font-size:11px; margin-bottom:5px; }
+    .callout p { margin:0; }
+    .callout.green { border-color:var(--success); background:#ECFDF3; }
+    .callout.green strong { color:var(--success); }
+    .callout.amber { border-color:var(--warning); background:#FFF7E8; }
+    .callout.amber strong { color:var(--warning); }
+    .callout.red { border-color:var(--danger); background:#FFF1F0; }
+    .callout.red strong { color:var(--danger); }
+    .table-wrap { overflow:auto; border:1px solid var(--line); border-radius:14px; margin:22px 0; }
+    table { width:100%; border-collapse:collapse; min-width:920px; font-size:13.5px; }
+    th { background:var(--header); color:white; padding:12px 14px; text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+    td { padding:12px 14px; border-bottom:1px solid #EEF2F8; vertical-align:top; color:#344054; }
+    tr:nth-child(even) td { background:#FAFCFF; }
+    tr:last-child td { border-bottom:0; }
+    .pill { display:inline-block; padding:4px 10px; border-radius:999px; font-size:11px; font-weight:900; white-space:nowrap; }
+    .blue { background:var(--brand-soft); color:var(--brand); }
+    .green-pill { background:#ECFDF3; color:var(--success); }
+    .amber-pill { background:#FFF7E8; color:var(--warning); }
+    .red-pill { background:#FFF1F0; color:var(--danger); }
+    .diagram { border:1px solid var(--line); border-radius:16px; overflow:hidden; margin:24px 0; background:#fff; }
+    .diagram-head { background:linear-gradient(135deg, var(--header), #174078); color:white; padding:14px 18px; display:flex; justify-content:space-between; gap:16px; align-items:center; }
+    .diagram-head h4 { margin:0; color:white; }
+    .diagram-head span { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:#DCE9FF; font-weight:900; }
+    .diagram p { padding:14px 18px; border-top:1px solid var(--line); margin:0; color:var(--muted); font-size:13px; }
+    .code-block { border:1px solid var(--line); border-radius:14px; overflow:hidden; margin:18px 0 24px; background:#fff; }
+    .code-title { background:#F8FBFF; border-bottom:1px solid var(--line); padding:10px 14px; color:var(--header); font-weight:900; font-size:12px; }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:18px 0; }
+    .checklist { list-style:none; padding:0; }
+    .checklist li { border-bottom:1px solid #EEF2F8; padding:9px 0 9px 30px; position:relative; }
+    .checklist li::before { content:"OK"; position:absolute; left:0; top:10px; color:var(--brand); font-size:10px; font-weight:900; }
+    footer { background:var(--header); color:#D0D5DD; padding:34px 24px; }
+    .footer-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    footer h4 { color:white; margin-top:0; }
+    footer p, footer li { color:#CBD5E1; font-size:13px; }
+    @media (max-width:900px) {
+      .meta-grid, .card-grid, .toc-grid, .footer-inner, .two-col { grid-template-columns:1fr; }
+      .cover-foot, .sticky-inner { flex-direction:column; align-items:flex-start; }
+      .sticky { position:static; }
+      table { min-width:820px; }
+    }
+    @media print {
+      .sticky { display:none; }
+      .cover { min-height:auto; page-break-after:always; }
+      .section { page-break-inside:avoid; box-shadow:none; }
+      body { background:white; }
+    }
+</style>
+</head>
+<body>
+  <section class="cover">
+    <div class="brand-row">
+      <div class="logo">W2C</div>
+      <div><strong>Work2Cash</strong><span>Backend Build Execution Plan</span></div>
+    </div>
+    <div class="cover-main">
+      <div class="label">Document 9C</div>
+      <h1>Backend Build Execution Plan</h1>
+      <div class="cover-subtitle">Backend execution plan that delivers APIs, sockets, schemas, providers and admin contracts in the order mobile needs them.</div>
+      <div class="meta-grid">
+        <div class="meta-card"><span>Project</span><strong>Work2Cash</strong></div>
+        <div class="meta-card"><span>Version</span><strong>1.0</strong></div>
+        <div class="meta-card"><span>Date</span><strong>3 July 2026</strong></div>
+        <div class="meta-card"><span>Classification</span><strong>Execution Ready</strong></div>
+        <div class="meta-card"><span>Start Date</span><strong>6 Jul 2026</strong></div>
+        <div class="meta-card"><span>Build Window</span><strong>6 Weeks</strong></div>
+        <div class="meta-card"><span>Testing Window</span><strong>2 Weeks</strong></div>
+        <div class="meta-card"><span>Method</span><strong>Mobile-Led</strong></div>
+      </div>
+      <div class="badges">
+        <span class="badge">Codex Ready</span>
+        <span class="badge">Mobile-Led</span>
+        <span class="badge">Dependency Ordered</span>
+        <span class="badge">Day-by-Day</span>
+        <span class="badge">AI Agent Tasks</span>
+      </div>
+    </div>
+    <div class="cover-foot">
+      <div>Source of truth: Documents 1, 6, 7, 8 and the Mobile/Admin Flow Catalogues.</div>
+      <div>Repo location: documents/build-plan-backend-v1.html</div>
+    </div>
+  </section>
+
+  <header class="sticky">
+    <div class="sticky-inner">
+      <strong>Backend Build Execution Plan v1</strong>
+      <nav>
+        <a href="#principles">Principles</a>
+        <a href="#dependencies">Dependencies</a>
+        <a href="#build">Build</a>
+        <a href="#testing">Testing</a>
+        <a href="#codex">Codex</a>
+      </nav>
+    </div>
+  </header>
+
+
+<style id="work2cash-doc-nav-style">
+  .doc-hub-nav {
+    max-width: 1240px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads {
+    max-width: 1240px;
+    margin: 16px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads-card {
+    border: 1px solid #CFE0FF;
+    background: #EAF2FF;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.06);
+  }
+  .team-downloads-card strong {
+    display: block;
+    color: #0F2A44;
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .team-downloads-card p {
+    margin: 0 0 12px;
+    color: #667085;
+    font-size: 13px;
+  }
+  .team-downloads-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .team-downloads-links a {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #1F6AE1;
+    background: #FFFFFF;
+    color: #1F6AE1;
+    border-radius: 999px;
+    padding: 9px 13px;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-card {
+    border: 1px solid #D8E2F1;
+    background: #FFFFFF;
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.07);
+    padding: 18px;
+  }
+  .doc-hub-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .doc-hub-top strong {
+    color: #0F2A44;
+    font-size: 16px;
+  }
+  .doc-hub-top a {
+    color: #1F6AE1;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .doc-hub-links a {
+    border: 1px solid #D8E2F1;
+    background: #EAF2FF;
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #0F2A44;
+    font-weight: 850;
+    font-size: 12px;
+    line-height: 1.35;
+    text-decoration: none;
+  }
+  .doc-hub-links a[aria-current="page"] {
+    background: #1F6AE1;
+    color: #FFFFFF;
+    border-color: #1F6AE1;
+  }
+  .doc-hub-links a:hover { text-decoration: underline; }
+  @media (max-width: 980px) {
+    .doc-hub-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 620px) {
+    .doc-hub-nav { padding: 0 16px; }
+    .doc-hub-card { border-radius: 14px; padding: 14px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .doc-hub-links { grid-template-columns: 1fr; }
+    .team-downloads { padding: 0 16px; }
+    .team-downloads-card { border-radius: 14px; padding: 14px; }
+  }
+</style>
+
+<nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
+  <div class="doc-hub-card">
+    <div class="doc-hub-top">
+      <strong>Work2Cash Documentation</strong>
+      <a href="../index.html">Back to document portal</a>
+    </div>
+    <div class="doc-hub-links">
+      <a href="./main-enterprise-architecture-v1.html">Main Enterprise Architecture v1</a><a href="./screen-to-feature-map-v1.html">Screen To Feature Map</a><a href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a href="./flow-alignment-review-v1.html">Flow Alignment Review v1</a><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a><a href="./api-socket-contract-specification-v1.html">API &amp; Socket Contract Specification v1</a><a href="./data-model-prisma-schema-planning-v1.html">Data Model &amp; Prisma Schema Planning v1</a><a href="./provider-integration-cost-control-v1.html">Provider Integration &amp; Cost Control v1</a><a href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html">Admin Build Plan v1</a><a href="./build-plan-backend-v1.html" aria-current="page">Backend Build Plan v1</a><a href="./qa-go-live-readiness-checklist-v1.html">QA / Go-Live Readiness Checklist v1</a>
+    </div>
+  </div>
+</nav>
+
+<section class="team-downloads" aria-label="Team Markdown downloads">
+  <div class="team-downloads-card">
+    <strong>Team Markdown Downloads</strong>
+    <p>Download these Markdown briefs for Codex prompts, implementation planning and team handoff.</p>
+    <div class="team-downloads-links"><a href="./downloads/backend-team-build-brief-v1.md" download>Backend Team Markdown Brief</a><a href="./downloads/shared-ai-agent-execution-rules-v1.md" download>Shared Execution Rules</a></div>
+  </div>
+</section>
+
+
+  <main>
+    <section class="toc">
+      <div class="eyebrow">Document 9C</div>
+      <h2>Backend Follows Mobile Priority</h2>
+      <p class="intro">Backend must be contract-first and mobile-led. It should publish stubs and stable DTOs early, then replace stubs with real use cases without breaking mobile/admin integration.</p>
+      <div class="toc-grid">
+        <a href="#principles">01. Backend Build Principles</a>
+        <a href="#dependencies">02. Mobile-Led Availability</a>
+        <a href="#architecture">03. Backend Architecture Rules</a>
+        <a href="#build">04. Six-Week Build Plan</a>
+        <a href="#testing">05. Two-Week Testing Plan</a>
+        <a href="#codex">06. Codex Execution Instructions</a>
+      </div>
+    </section>
+    <section id="principles" class="section">
+      <div class="section-num">01</div>
+      <div class="eyebrow">Principles</div>
+      <h2>Backend Build Principles</h2>
+      <div class="table-wrap"><table><thead><tr><th>Rule</th><th>Execution Requirement</th></tr></thead><tbody><tr><td>Mobile-led</td><td>Backend APIs must be available in the order mobile needs them, not in arbitrary backend module preference.</td></tr><tr><td>Contract-first</td><td>Publish DTOs, response shapes, OpenAPI, socket events and stubs before frontend integration starts.</td></tr><tr><td>Hexagonal architecture</td><td>Use cases depend on ports. Provider SDKs and Prisma stay inside adapters/repositories.</td></tr><tr><td>Use-case health</td><td>Every use case records last used, success/failure, duration and error code for admin use-case health dashboard.</td></tr><tr><td>Idempotency</td><td>Payments, webhooks, wallets, task transitions, media finalization, withdrawals and payouts must be idempotent.</td></tr><tr><td>Cost control</td><td>No paid provider polling loops. Google Maps uses 5-minute + 10% journey ETA guard.</td></tr><tr><td>Commits</td><td>Commit feature by feature or fix by fix. Do not stack unrelated schema/API/provider changes.</td></tr></tbody></table></div>
+    </section>
+    <section id="dependencies" class="section">
+      <div class="section-num">02</div>
+      <div class="eyebrow">Availability</div>
+      <h2>Mobile-Led Backend Availability</h2>
+      <div class="table-wrap"><table><thead><tr><th>Window</th><th>Backend Availability</th><th>Contracts/Data</th><th>Mobile Impact</th></tr></thead><tbody><tr><td>W1D1-W1D2</td><td>Contracts and schema foundation</td><td>Response shapes, auth stubs, /me, OpenAPI shell, Prisma initial migrations.</td><td>Mobile can scaffold auth and app entry without waiting for full business logic.</td></tr><tr><td>W1D3-W1D5</td><td>Auth/Profile/PIN ready</td><td>Register, login, OTP, social auth stubs, profile, mode, PIN, sessions, notifications preferences.</td><td>Mobile completes auth/profile/security flows; admin can start auth shell.</td></tr><tr><td>W2D1-W2D3</td><td>KYC/Catalog/Task draft ready</td><td>Tasker profile, KYC, catalog, geocode, task draft, media upload contracts.</td><td>Mobile implements KYC and task creation flows.</td></tr><tr><td>W2D4-W2D5</td><td>Payment/Broadcast/Direct offer ready</td><td>Payment intent, verify, webhooks sandbox, escrow state, broadcast, direct offer.</td><td>Mobile implements create-and-fund, public broadcast and direct offer.</td></tr><tr><td>W3D1-W3D3</td><td>Discovery/Interest/Selection ready</td><td>Task list/filter, task detail, Tasker interest, candidates, accept/reject tasker.</td><td>Mobile implements matching and Task Owner decision.</td></tr><tr><td>W3D4-W3D5</td><td>Execution socket/status ready</td><td>Start journey, arrived, begin, tracking, task chat, voice note metadata, masked call stubs.</td><td>Mobile implements active task flow.</td></tr><tr><td>W4D1-W4D3</td><td>Completion/Reports/Ratings ready</td><td>Completion proof, request completion, approve, reports, cancellation, no-show, ratings, favorites.</td><td>Mobile implements settlement and exception flows.</td></tr><tr><td>W4D4-W4D5</td><td>Wallet/Withdrawal/Support ready</td><td>Wallets, ledger, payout account, withdrawal, support sessions, emergency support.</td><td>Mobile implements finance/support flows.</td></tr><tr><td>W5</td><td>Referral/Rebook/Admin integration ready</td><td>Referral, rebook, admin operational APIs, use-case health, payout batch operations.</td><td>Mobile and admin complete integrated workflows.</td></tr><tr><td>W6</td><td>Hardening ready</td><td>Provider validation, monitoring, backup, rate limits, idempotency, performance fixes.</td><td>All teams stabilize release candidate.</td></tr></tbody></table></div>
+      <div class="callout red"><strong>Week 1 rule</strong><p>Before the end of Week 1, backend must publish the contracts and stubs needed by mobile and admin for authentication, profile, mode, PIN, sessions, admin auth and dashboard shell. This prevents the frontend teams from blocking on backend uncertainty.</p></div>
+    </section>
+    <section id="architecture" class="section">
+      <div class="section-num">03</div>
+      <div class="eyebrow">Architecture</div>
+      <h2>Backend Architecture Rules</h2>
+      
+    <div class="diagram">
+      <div class="diagram-head"><h4>Backend Delivery Boundary</h4><span>Hexagonal</span></div>
+      <pre>Controller / Socket Gateway / Worker
+  -&gt; DTO validation
+  -&gt; Use Case
+  -&gt; Port
+  -&gt; Adapter
+      - Prisma repository
+      - Provider adapter
+      - Queue adapter
+      - Notification adapter
+
+Use case result
+  -&gt; Standard response shape
+  -&gt; UseCaseExecutionLog
+  -&gt; Audit/outbox where needed</pre>
+      <p>Controllers should stay thin. Use cases own business rules. Adapters own infrastructure details.</p>
+    </div>
+    
+      <div class="table-wrap"><table><thead><tr><th>Area</th><th>Required Implementation</th></tr></thead><tbody><tr><td>Prisma</td><td>Follow Document 7 execution baseline, module ownership and transaction rules.</td></tr><tr><td>Providers</td><td>Follow Document 8 adapter, webhook, secret and cost-control rules.</td></tr><tr><td>Sockets</td><td>Use Socket.IO only for chat, support live chat, tracking and presence. Durable state remains REST/database-backed.</td></tr><tr><td>Queues</td><td>Use BullMQ for payments, KYC, notifications, maps, wallet, chat persistence, media, reports and audit jobs.</td></tr><tr><td>Admin APIs</td><td>Expose list, detail, action, audit and export-safe contracts early enough for admin frontend.</td></tr><tr><td>No reassignment</td><td>Do not create any backend use case or admin endpoint that manually reassigns a task to another Tasker.</td></tr></tbody></table></div>
+    </section>
+    
+    <section id="build" class="section">
+      <div class="section-num">04</div>
+      <div class="eyebrow">Build Plan</div>
+      <h2>Six-Week Build Plan By Week</h2>
+      <p class="intro">Each week has its own delivery goal and exit condition. The daily rows remain explicit so Codex and other AI agents can execute one scoped task at a time without losing the weekly dependency context.</p>
+      
+        <article class="info-card">
+          <div class="eyebrow">Week 1</div>
+          <h3>Week 1 - Foundation, Identity And Contract Availability</h3>
+          <p><strong>Goal:</strong> Create the shared project foundations and unblock mobile/admin with stable auth, profile, PIN, session, admin auth and dashboard contracts.</p>
+          <p><strong>Week exit:</strong> Mobile can complete app entry/auth/profile shell; admin can enter protected dashboard shell; backend has stable response/error shapes and OpenAPI shell.</p>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W1D1</td><td>Mon 6 Jul 2026</td><td>Repo foundation and contracts</td><td>Create NestJS hexagonal structure, Prisma baseline, response/error shapes, OpenAPI shell, health/version endpoints.</td><td>Unblocks mobile/admin scaffolding.</td><td>docs(backend): publish initial API contract shell</td></tr><tr><td>W1D2</td><td>Tue 7 Jul 2026</td><td>Auth contract stubs</td><td>Implement auth/profile/PIN/session DTOs and stub handlers with stable response shapes.</td><td>Unblocks mobile auth screens.</td><td>feat(auth): add auth contract stubs</td></tr><tr><td>W1D3</td><td>Wed 8 Jul 2026</td><td>Auth implementation</td><td>Implement register, login, OTP email-first/SMS fallback, refresh rotation, social auth adapter shell.</td><td>Supports mobile registration/login.</td><td>feat(auth): implement registration and login</td></tr><tr><td>W1D4</td><td>Thu 9 Jul 2026</td><td>Profile, mode, PIN, sessions</td><td>Implement /me, profile update, mode, PIN setup/verify/reset, device/session revoke.</td><td>Supports mobile profile/security.</td><td>feat(identity): implement profile pin and sessions</td></tr><tr><td>W1D5</td><td>Fri 10 Jul 2026</td><td>Admin auth and dashboard stubs</td><td>Implement admin auth/TOTP stubs, dashboard summary stub, RBAC model seed.</td><td>Unblocks admin shell.</td><td>feat(admin): add auth and dashboard stubs</td></tr></tbody></table></div>
+        </article>
+        
+        <article class="info-card">
+          <div class="eyebrow">Week 2</div>
+          <h3>Week 2 - Tasker Activation, Task Creation And Funding</h3>
+          <p><strong>Goal:</strong> Build the flows that allow Taskers to become eligible and Task Owners to create, locate, upload proof for and fund tasks.</p>
+          <p><strong>Week exit:</strong> Tasker activation/KYC, task catalog, task draft, location, media, payment intent and broadcast/direct offer contracts are usable on staging.</p>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W2D1</td><td>Mon 13 Jul 2026</td><td>Tasker/KYC APIs</td><td>Implement TaskerProfile, KYC use cases, Smile ID adapter shell, KYC status and admin re-verification.</td><td>Unblocks mobile Tasker activation/admin KYC.</td><td>feat(kyc): implement tasker activation contracts</td></tr><tr><td>W2D2</td><td>Tue 14 Jul 2026</td><td>Catalog/task draft APIs</td><td>Implement categories/types, task draft, amount validation, required arrival time.</td><td>Unblocks mobile task creation.</td><td>feat(tasks): implement catalog and task draft</td></tr><tr><td>W2D3</td><td>Wed 15 Jul 2026</td><td>Location/media APIs</td><td>Implement geocode, pin confirmation, task site Nigeria validation, media signed upload/finalize.</td><td>Unblocks mobile location/proof.</td><td>feat(tasks): implement location and media contracts</td></tr><tr><td>W2D4</td><td>Thu 16 Jul 2026</td><td>Payment/escrow APIs</td><td>Implement payment intent, verify, Paystack/Moniepoint adapter shell, ProviderWebhookEvent, escrow creation.</td><td>Unblocks mobile funding.</td><td>feat(payments): implement payment and escrow foundation</td></tr><tr><td>W2D5</td><td>Fri 17 Jul 2026</td><td>Broadcast/direct offer APIs</td><td>Implement broadcast, favorites, direct offers, FCM notification job shell.</td><td>Unblocks mobile discovery/direct offer.</td><td>feat(matching): implement broadcast and direct offers</td></tr></tbody></table></div>
+        </article>
+        
+        <article class="info-card">
+          <div class="eyebrow">Week 3</div>
+          <h3>Week 3 - Discovery, Matching And Active Task Start</h3>
+          <p><strong>Goal:</strong> Build public discovery, Tasker interest, Task Owner selection and the first half of active execution.</p>
+          <p><strong>Week exit:</strong> A funded task can move from broadcast/direct offer through Tasker interest, Task Owner acceptance and active task start with chat/tracking foundations.</p>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W3D1</td><td>Mon 20 Jul 2026</td><td>Discovery APIs</td><td>Implement Tasker task list, location filter, nearest-first sorting, limited public preview.</td><td>Unblocks mobile Tasker discovery.</td><td>feat(discovery): implement task browsing</td></tr><tr><td>W3D2</td><td>Tue 21 Jul 2026</td><td>Interest/accept APIs</td><td>Implement Tasker interest, arrival confirmation, direct offer accept/decline, eligibility guards.</td><td>Unblocks Tasker commitment.</td><td>feat(matching): implement tasker interest and acceptance</td></tr><tr><td>W3D3</td><td>Wed 22 Jul 2026</td><td>Candidate/selection APIs</td><td>Implement candidate list with ETA snapshots, Task Owner accept/reject, rejection logging.</td><td>Unblocks Task Owner selection.</td><td>feat(matching): implement candidate selection</td></tr><tr><td>W3D4</td><td>Thu 23 Jul 2026</td><td>Task execution state APIs</td><td>Implement start journey, arrived, begin, state guards and TaskStatusEvent.</td><td>Unblocks active task screen.</td><td>feat(tasks): implement execution state transitions</td></tr><tr><td>W3D5</td><td>Fri 24 Jul 2026</td><td>Socket/chat/tracking</td><td>Implement Socket.IO auth, task rooms, support rooms shell, tracking events, ETA guard, chat persistence queue.</td><td>Unblocks active task communication.</td><td>feat(socket): implement task chat and tracking</td></tr></tbody></table></div>
+        </article>
+        
+        <article class="info-card">
+          <div class="eyebrow">Week 4</div>
+          <h3>Week 4 - Completion, Exceptions, Trust And Finance</h3>
+          <p><strong>Goal:</strong> Close the task lifecycle with completion, settlement, cancellation, no-show, reports, ratings, favorites, wallet, withdrawal and support.</p>
+          <p><strong>Week exit:</strong> A task can finish cleanly or enter a governed exception path; affected wallet, payout, report and admin review states are visible.</p>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W4D1</td><td>Mon 27 Jul 2026</td><td>Completion/settlement</td><td>Implement completion proof, request completion, confirm completion, commission snapshot, escrow release/hold.</td><td>Unblocks settlement.</td><td>feat(settlement): implement completion and escrow release</td></tr><tr><td>W4D2</td><td>Tue 28 Jul 2026</td><td>Cancellation/reports</td><td>Implement cancellation, no-show, reports, warning/strike, settlement hold use cases.</td><td>Unblocks exception flows/admin reports.</td><td>feat(risk): implement cancellation reports and penalties</td></tr><tr><td>W4D3</td><td>Wed 29 Jul 2026</td><td>Ratings/favorites/rebook</td><td>Implement ratings, review moderation foundation, favorite add/remove, rebook.</td><td>Unblocks retention flows.</td><td>feat(retention): implement ratings favorites and rebook</td></tr><tr><td>W4D4</td><td>Thu 30 Jul 2026</td><td>Wallet/withdrawal</td><td>Implement wallets, ledger, payout account, PIN-confirmed withdrawal, payout batch models.</td><td>Unblocks finance flows.</td><td>feat(finance): implement wallet and withdrawal</td></tr><tr><td>W4D5</td><td>Fri 31 Jul 2026</td><td>Support/emergency</td><td>Implement support sessions, emergency support, support socket completion, case linking.</td><td>Unblocks support flows/admin support.</td><td>feat(support): implement support and emergency</td></tr></tbody></table></div>
+        </article>
+        
+        <article class="info-card">
+          <div class="eyebrow">Week 5</div>
+          <h3>Week 5 - Operational Integration, Recovery And Full Flow QA</h3>
+          <p><strong>Goal:</strong> Complete secondary flows, operational admin coverage, provider validation, recovery behavior and end-to-end flow QA.</p>
+          <p><strong>Week exit:</strong> All planned flows have working happy paths and documented exception paths on staging with defect lists by flow/module.</p>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W5D1</td><td>Mon 3 Aug 2026</td><td>Admin operational APIs</td><td>Implement admin users, tasks, finance, reports, media, ratings, config APIs.</td><td>Unblocks admin complete modules.</td><td>feat(admin): implement operational APIs</td></tr><tr><td>W5D2</td><td>Tue 4 Aug 2026</td><td>Referral and notification APIs</td><td>Implement referral reward tracking, notifications list/read, announcements.</td><td>Unblocks mobile referral/admin announcements.</td><td>feat(growth): implement referral and notifications</td></tr><tr><td>W5D3</td><td>Wed 5 Aug 2026</td><td>Provider hardening</td><td>Validate Paystack, Moniepoint, Smile ID, Google Maps, Termii, FCM, Sentry, object storage in staging.</td><td>Unblocks provider QA.</td><td>fix(providers): harden staging integrations</td></tr><tr><td>W5D4</td><td>Thu 6 Aug 2026</td><td>Operations/monitoring</td><td>Implement use-case health, queue audit, provider request logs, metrics, backup status.</td><td>Unblocks admin monitoring.</td><td>feat(ops): implement use case health and monitoring</td></tr><tr><td>W5D5</td><td>Fri 7 Aug 2026</td><td>Integrated defect pass</td><td>Fix defects from mobile/admin full-flow QA, contract mismatches, state recovery issues.</td><td>All teams integration.</td><td>fix(integration): resolve full flow defects</td></tr></tbody></table></div>
+        </article>
+        
+        <article class="info-card">
+          <div class="eyebrow">Week 6</div>
+          <h3>Week 6 - Hardening, Release Candidate And Build Freeze</h3>
+          <p><strong>Goal:</strong> Fix defects, harden performance/security/provider behavior, prepare release candidates and freeze builds for the testing window.</p>
+          <p><strong>Week exit:</strong> Mobile, admin and backend release candidates are frozen with only blocker fixes allowed afterwards.</p>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W6D1</td><td>Mon 10 Aug 2026</td><td>Security and idempotency hardening</td><td>Review auth, PIN, TOTP, webhooks, ledger idempotency, admin audit, rate limits.</td><td>Release hardening.</td><td>fix(security): harden auth webhooks and idempotency</td></tr><tr><td>W6D2</td><td>Tue 11 Aug 2026</td><td>Performance/load pass</td><td>Load test critical endpoints, socket rooms, queues, DB indexes, backup jobs.</td><td>Release performance.</td><td>perf(api): optimize critical flows</td></tr><tr><td>W6D3</td><td>Wed 12 Aug 2026</td><td>Release candidate backend</td><td>Freeze API contracts, generate OpenAPI, migration notes, env checklist.</td><td>Frontend RC.</td><td>chore(release): prepare backend release candidate</td></tr><tr><td>W6D4</td><td>Thu 13 Aug 2026</td><td>UAT/blocker fixes</td><td>Fix only UAT blockers and critical regressions.</td><td>Final UAT.</td><td>fix(release): resolve uat blockers</td></tr><tr><td>W6D5</td><td>Fri 14 Aug 2026</td><td>Backend build freeze</td><td>Freeze backend release candidate, backup/restore proof, provider validation report.</td><td>Testing weeks.</td><td>chore(release): freeze backend build</td></tr></tbody></table></div>
+        </article>
+        
+    </section>
+    <section id="testing" class="section">
+      <div class="section-num">05</div>
+      <div class="eyebrow">Testing</div>
+      <h2>Two-Week Testing Plan By Week</h2>
+      <p class="intro">Testing is split into regression/environment verification first, then UAT, recovery, security and go-live decision readiness.</p>
+      
+        <article class="info-card">
+          <div class="eyebrow">Testing Week 1</div>
+          <h3>Testing Week 1 - Regression And Environment Verification</h3>
+          <p><strong>Goal:</strong> Verify environments, providers and complete cross-team regressions for identity, KYC, task, payment, matching, finance, support and admin operations.</p>
+          <p><strong>Week exit:</strong> Critical regressions are known, prioritized and either fixed or formally accepted for UAT decision-making.</p>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Focus</th><th>Execution Scope</th><th>Primary Owners</th></tr></thead><tbody><tr><td>T1D1</td><td>Mon 17 Aug 2026</td><td>Smoke and environment</td><td>Verify staging API/admin/socket/mobile builds, env vars, migrations, seed data, provider sandbox keys.</td><td>All teams</td></tr><tr><td>T1D2</td><td>Tue 18 Aug 2026</td><td>Identity/KYC regression</td><td>Test registration, login, OTP, social login, profile, PIN, sessions, KYC and admin KYC review.</td><td>Mobile + Backend + Admin</td></tr><tr><td>T1D3</td><td>Wed 19 Aug 2026</td><td>Task/payment regression</td><td>Test task creation, location, media, payment, webhook, escrow, broadcast and direct offer.</td><td>Mobile + Backend</td></tr><tr><td>T1D4</td><td>Thu 20 Aug 2026</td><td>Matching/execution regression</td><td>Test discovery, interest, accept/reject, start journey, arrived, begin, chat, tracking and completion.</td><td>All teams</td></tr><tr><td>T1D5</td><td>Fri 21 Aug 2026</td><td>Finance/support regression</td><td>Test wallet, withdrawal, payout batch, report, support live chat, emergency and admin resolution.</td><td>All teams</td></tr></tbody></table></div>
+        </article>
+        
+        <article class="info-card">
+          <div class="eyebrow">Testing Week 2</div>
+          <h3>Testing Week 2 - UAT, Recovery, Security And Go-Live Decision</h3>
+          <p><strong>Goal:</strong> Run UAT, recovery/load/offline testing, security/privacy/provider checks, release candidate verification and go-live decision preparation.</p>
+          <p><strong>Week exit:</strong> Go/no-go pack includes known issues, rollback notes, backup restore proof and provider validation proof.</p>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Focus</th><th>Execution Scope</th><th>Primary Owners</th></tr></thead><tbody><tr><td>T2D1</td><td>Mon 24 Aug 2026</td><td>UAT round 1</td><td>Run full user journeys as Task Owner, Tasker and Admin with documented defects.</td><td>Project Lead + all teams</td></tr><tr><td>T2D2</td><td>Tue 25 Aug 2026</td><td>Recovery/load/offline</td><td>Test app resume, socket reconnect, payment return, KYC return, provider delays, queue retries, low-end Android.</td><td>Mobile + Backend</td></tr><tr><td>T2D3</td><td>Wed 26 Aug 2026</td><td>Security/privacy/provider</td><td>Test PIN, TOTP, RBAC, webhook signatures, media permissions, phone masking, Sentry scrubbing.</td><td>Backend + Admin + Mobile</td></tr><tr><td>T2D4</td><td>Thu 27 Aug 2026</td><td>Release candidate verification</td><td>Re-run critical happy paths and exception paths after fixes.</td><td>All teams</td></tr><tr><td>T2D5</td><td>Fri 28 Aug 2026</td><td>Go-live decision pack</td><td>Produce go/no-go checklist, known issues, rollback notes, backup restore proof and provider validation proof.</td><td>Project Lead + Technical Lead</td></tr></tbody></table></div>
+        </article>
+        
+    </section>
+
+    <section id="codex" class="section">
+      <div class="section-num">06</div>
+      <div class="eyebrow">Codex</div>
+      <h2>Codex Execution Instructions</h2>
+      <div class="code-block"><div class="code-title">Backend AI Task Block</div><pre>Task ID:
+Team:
+Flow IDs:
+Depends on:
+Required documents:
+Inputs:
+Implementation scope:
+Files/modules likely affected:
+API/socket dependencies:
+Data models needed:
+Acceptance criteria:
+Tests required:
+Do not do:
+Commit message:</pre></div>
+      <div class="table-wrap"><table><thead><tr><th>Instruction</th><th>Required Behavior</th></tr></thead><tbody><tr><td>Read order</td><td>Read API &amp; Socket Contract, Data Model, Provider Cost Control, Mobile Build Plan, then this backend build plan.</td></tr><tr><td>Stubs first</td><td>When frontend is waiting, publish contract stubs with correct response/error shape before full provider logic.</td></tr><tr><td>Use case per task</td><td>Implement one use case or tightly related use-case group at a time. Track use-case health.</td></tr><tr><td>Tests</td><td>Add tests for success, validation failure, auth failure, forbidden state, duplicate/idempotent request and provider retry.</td></tr><tr><td>Migrations</td><td>Schema changes must be feature-named, reversible where practical and aligned to Document 7.</td></tr><tr><td>Do not do</td><td>Do not bypass use cases from admin, mutate wallet without ledger entry, trust frontend payment redirect, or call paid providers in loops.</td></tr></tbody></table></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div><h4>Work2Cash</h4><p>Backend Build Execution Plan v1 for Codex and AI-agent execution.</p></div>
+      <div><h4>Document Location</h4><p><code>documents/build-plan-backend-v1.html</code></p></div>
+      <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
+    </div>
+  </footer></body>
+</html>

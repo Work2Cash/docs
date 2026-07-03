@@ -27,6 +27,14 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Verify document guards
+        run: |
+          if [ -f scripts/apply.guard.js ]; then
+            node scripts/apply.guard.js
+          else
+            echo "No guard verification script found. Skipping."
+          fi
+
       - name: Prepare site folder
         run: |
           rm -rf _site
@@ -51,19 +59,15 @@ jobs:
       - name: Verify required site files
         run: |
           test -f _site/index.html
-          test -f _site/documents/main-enterprise-architecture-v1.html
-          test -f _site/documents/legal_user_facing_documents_pack_v1.html
+
+          if [ -d documents ]; then
+            while IFS= read -r file; do
+              test -f "_site/$file"
+            done < <(find documents -type f | sort)
+          fi
 
           echo "Site files prepared for deployment:"
           find _site -maxdepth 5 -type f | sort
-
-      - name: Verify document guards
-        run: |
-          if [ -f scripts/apply.guard.js ]; then
-            node scripts/apply.guard.js
-          else
-            echo "No guard verification script found. Skipping."
-          fi
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4

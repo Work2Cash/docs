@@ -1,1664 +1,715 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Work2Cash - Legal & User-Facing Documents Pack v1</title>
   <script src="../assets/js/guard.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work2Cash Legal & User-Facing Documents Draft</title>
   <style>
     :root {
       --brand: #1F6AE1;
-      --brand-mid: #5B8DEF;
       --brand-soft: #EAF2FF;
+      --icon: #5B8DEF;
       --header: #0F2A44;
       --text: #1D2939;
       --muted: #667085;
       --success: #12B76A;
       --warning: #FF8A00;
       --danger: #F04438;
-      --line: #D8E2F1;
-      --bg: #F6F9FE;
-      --paper: #FFFFFF;
-      --soft: #F9FBFF;
+      --line: #d8e2f1;
+      --paper: #ffffff;
+      --bg: #f6f9fe;
     }
-
-    * {
-      box-sizing: border-box
-    }
-
-    html {
-      scroll-behavior: smooth
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, "Nunito Sans", Arial, sans-serif;
+      font-family: Inter, Nunito Sans, Arial, sans-serif;
       color: var(--text);
       background: var(--bg);
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased
+      line-height: 1.65;
     }
-
-    a {
-      color: var(--brand);
-      text-decoration: none
-    }
-
-    a:hover {
-      text-decoration: underline
-    }
-
     .cover {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 64px clamp(24px, 6vw, 88px);
+      display: grid;
+      align-items: center;
+      padding: 64px 24px;
       color: white;
-      background: radial-gradient(circle at 14% 18%, rgba(91, 141, 239, .65), transparent 25rem), radial-gradient(circle at 85% 80%, rgba(18, 183, 106, .22), transparent 28rem), linear-gradient(135deg, #0F2A44 0%, #123B78 58%, #1F6AE1 115%)
+      background:
+        radial-gradient(circle at 12% 16%, rgba(91, 141, 239, .8), transparent 28%),
+        linear-gradient(135deg, #0f2a44 0%, #1f6ae1 62%, #5b8def 100%);
     }
-
-    .brand-row {
-      display: flex;
-      gap: 16px;
-      align-items: center
-    }
-
+    .cover-inner { max-width: 1120px; margin: 0 auto; width: 100%; }
+    .brand-row { display: flex; align-items: center; gap: 14px; margin-bottom: 84px; }
     .logo {
-      width: 62px;
-      height: 62px;
-      border-radius: 16px;
-      background: white;
-      color: var(--brand);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      font-size: 20px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, .18)
+      width: 54px; height: 54px; border-radius: 14px;
+      background: white; color: var(--brand);
+      display: grid; place-items: center; font-weight: 900; font-size: 21px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.22);
     }
-
-    .brand-row strong {
-      display: block;
-      font-size: 18px
-    }
-
-    .brand-row span {
-      display: block;
-      color: rgba(255, 255, 255, .74);
-      font-size: 14px
-    }
-
-    .cover-main {
-      max-width: 1080px;
-      padding: 70px 0
-    }
-
-    .cover-main .label {
-      color: #CFE0FF;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      font-size: 12px;
-      font-weight: 800
-    }
-
-    h1 {
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 1;
-      margin: 18px 0 18px;
-      letter-spacing: -.04em
-    }
-
-    .cover-subtitle {
-      font-size: clamp(20px, 3vw, 30px);
-      color: rgba(255, 255, 255, .84);
-      max-width: 920px;
-      font-weight: 700
-    }
-
-    .meta-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 38px;
-      max-width: 980px
-    }
-
+    .brand-meta strong { display: block; font-size: 18px; letter-spacing: .02em; }
+    .brand-meta span { display: block; opacity: .86; font-size: 14px; }
+    h1 { font-size: clamp(42px, 7vw, 88px); line-height: .96; margin: 0 0 22px; letter-spacing: -0.04em; }
+    .subtitle { max-width: 850px; font-size: clamp(18px, 2.2vw, 26px); opacity: .92; margin: 0 0 40px; }
+    .meta-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
     .meta-card {
-      border: 1px solid rgba(255, 255, 255, .22);
-      background: rgba(255, 255, 255, .12);
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
       border-radius: 14px;
       padding: 16px;
-      backdrop-filter: blur(10px)
+      backdrop-filter: blur(10px);
     }
-
-    .meta-card span {
-      display: block;
-      color: rgba(255, 255, 255, .64);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      font-weight: 800
-    }
-
-    .meta-card strong {
-      display: block;
-      margin-top: 5px;
-      font-size: 15px;
-      color: #fff
-    }
-
-    .badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 28px
-    }
-
-    .badge {
-      border: 1px solid rgba(255, 255, 255, .24);
-      color: #fff;
-      background: rgba(255, 255, 255, .1);
-      border-radius: 999px;
-      padding: 7px 13px;
-      font-size: 12px;
-      font-weight: 800
-    }
-
-    .cover-foot {
-      border-top: 1px solid rgba(255, 255, 255, .18);
-      padding-top: 24px;
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      color: rgba(255, 255, 255, .66);
-      font-size: 13px
-    }
-
-    .sticky {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(255, 255, 255, .96);
+    .meta-card span { display: block; opacity: .72; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+    .meta-card strong { display: block; margin-top: 5px; font-size: 16px; }
+    .doc-header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,.94);
+      border-bottom: 1px solid var(--line);
       backdrop-filter: blur(12px);
-      border-bottom: 2px solid var(--brand)
     }
-
-    .sticky-inner {
-      max-width: 1220px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding: 12px 24px
+    .doc-header-inner {
+      max-width: 1120px; margin: 0 auto; padding: 12px 24px;
+      display: flex; justify-content: space-between; gap: 20px; align-items: center;
     }
-
-    .sticky strong {
-      color: var(--header)
-    }
-
-    .sticky nav {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-end
-    }
-
-    .sticky a {
-      font-size: 12px;
-      font-weight: 800
-    }
-
-    main {
-      max-width: 1220px;
-      margin: 0 auto;
-      padding: 44px 24px 80px
-    }
-
-    .toc,
-    .section {
+    .doc-header strong { color: var(--header); }
+    .doc-header nav { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+    .doc-header a { color: var(--brand); text-decoration: none; font-weight: 700; font-size: 13px; }
+    main { max-width: 1120px; margin: 0 auto; padding: 56px 24px 80px; }
+    .panel {
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 18px;
-      padding: clamp(24px, 4vw, 44px);
+      padding: clamp(22px, 4vw, 40px);
+      box-shadow: 0 18px 50px rgba(15, 42, 68, .07);
       margin-bottom: 28px;
-      box-shadow: 0 18px 50px rgba(15, 42, 68, .07)
     }
-
-    .toc h2,
-    .section h2 {
-      color: var(--header);
-      font-size: clamp(30px, 4vw, 46px);
-      line-height: 1.08;
-      margin: 6px 0 12px;
-      letter-spacing: -.025em
+    .eyebrow { color: var(--brand); font-weight: 900; text-transform: uppercase; letter-spacing: .12em; font-size: 12px; }
+    h2 { color: var(--header); font-size: clamp(30px, 4vw, 46px); line-height: 1.08; margin: 8px 0 16px; }
+    h3 { color: var(--header); font-size: 22px; margin: 28px 0 8px; }
+    p { margin: 0 0 14px; }
+    ul { padding-left: 22px; margin: 10px 0 0; }
+    li { margin: 6px 0; }
+    .toc { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-top: 22px; }
+    .toc a {
+      display: block; padding: 14px 16px; border-radius: 12px;
+      background: var(--brand-soft); border: 1px solid var(--line);
+      color: var(--header); text-decoration: none; font-weight: 800;
     }
-
-    .toc-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 22px
-    }
-
-    .toc-grid a {
-      padding: 14px 16px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: var(--brand-soft);
-      color: var(--header);
-      font-weight: 900
-    }
-
-    .section-num {
-      color: #CBD5E1;
-      font-size: 13px;
-      font-weight: 900
-    }
-
-    .eyebrow {
-      color: var(--brand);
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      font-size: 12px;
-      font-weight: 900
-    }
-
-    .intro {
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 920px;
-      margin-bottom: 28px
-    }
-
-    h3 {
-      color: var(--header);
-      font-size: 23px;
-      margin: 34px 0 14px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #E6EEF9
-    }
-
-    h4 {
-      color: var(--header);
-      font-size: 17px;
-      margin: 20px 0 8px
-    }
-
-    p {
-      margin: 0 0 14px
-    }
-
-    ul,
-    ol {
-      padding-left: 22px;
-      margin: 10px 0 20px
-    }
-
-    li {
-      margin: 6px 0
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin: 22px 0
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      background: var(--soft);
-      border-radius: 14px;
-      padding: 18px
-    }
-
-    .card span {
-      color: var(--brand);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      font-weight: 900
-    }
-
-    .card h4 {
-      margin: 6px 0 7px
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 14px;
-      margin: 0
-    }
-
     .callout {
-      border-radius: 14px;
-      padding: 18px 20px;
-      margin: 22px 0;
       border-left: 5px solid var(--brand);
-      background: var(--brand-soft)
-    }
-
-    .callout strong {
-      display: block;
-      color: var(--brand);
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      font-size: 11px;
-      margin-bottom: 5px
-    }
-
-    .callout p {
-      margin: 0
-    }
-
-    .callout.green {
-      border-color: var(--success);
-      background: #ECFDF3
-    }
-
-    .callout.green strong {
-      color: var(--success)
-    }
-
-    .callout.amber {
-      border-color: var(--warning);
-      background: #FFF7E8
-    }
-
-    .callout.amber strong {
-      color: var(--warning)
-    }
-
-    .callout.red {
-      border-color: var(--danger);
-      background: #FFF1F0
-    }
-
-    .callout.red strong {
-      color: var(--danger)
-    }
-
-    .table-wrap {
-      overflow: auto;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      margin: 22px 0
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 760px;
-      font-size: 13.5px
-    }
-
-    th {
-      background: var(--header);
-      color: white;
-      padding: 12px 14px;
-      text-align: left;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .06em
-    }
-
-    td {
-      padding: 12px 14px;
-      border-bottom: 1px solid #EEF2F8;
-      vertical-align: top;
-      color: #344054
-    }
-
-    tr:nth-child(even) td {
-      background: #FAFCFF
-    }
-
-    tr:last-child td {
-      border-bottom: 0
-    }
-
-    .pill {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 900;
-      white-space: nowrap
-    }
-
-    .blue-pill {
       background: var(--brand-soft);
-      color: var(--brand)
-    }
-
-    .green-pill {
-      background: #ECFDF3;
-      color: var(--success)
-    }
-
-    .amber-pill {
-      background: #FFF7E8;
-      color: var(--warning)
-    }
-
-    .red-pill {
-      background: #FFF1F0;
-      color: var(--danger)
-    }
-
-    .legal-doc {
-      counter-reset: clause
-    }
-
-    .clause {
-      margin: 18px 0 20px
-    }
-
-    .clause h4 {
-      counter-increment: clause
-    }
-
-    .clause h4:before {
-      content: counter(clause) ". ";
-      color: var(--brand)
-    }
-
-    .notice-box {
-      border: 1px dashed var(--warning);
-      background: #FFF7E8;
-      border-radius: 14px;
-      padding: 16px;
-      margin: 20px 0;
-      color: #7A4B00
-    }
-
-    .small {
-      font-size: 13px;
-      color: var(--muted)
-    }
-
-    .doc-meta {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin: 18px 0
-    }
-
-    .doc-meta div {
-      border: 1px solid var(--line);
-      background: #FAFCFF;
+      padding: 16px 18px;
       border-radius: 12px;
-      padding: 12px
+      margin: 18px 0;
     }
-
-    .doc-meta span {
-      display: block;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      font-size: 10px;
-      color: var(--muted);
-      font-weight: 900
+    .danger { border-left-color: var(--danger); background: #fff1f0; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .info-card { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fbfdff; }
+    .info-card strong { color: var(--header); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .tag { background: var(--brand-soft); color: var(--brand); border: 1px solid #cdddfb; padding: 7px 10px; border-radius: 999px; font-size: 13px; font-weight: 800; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; overflow: hidden; border-radius: 12px; }
+    th, td { border: 1px solid var(--line); padding: 12px; text-align: left; vertical-align: top; }
+    th { background: var(--brand-soft); color: var(--header); }
+    footer { text-align: center; color: var(--muted); padding: 34px 24px 60px; }
+    @media (max-width: 820px) {
+      .meta-grid, .grid-2, .toc { grid-template-columns: 1fr; }
+      .brand-row { margin-bottom: 52px; }
+      .doc-header-inner { align-items: flex-start; flex-direction: column; }
+      .doc-header { position: static; }
     }
-
-    .doc-meta strong {
-      font-size: 13px;
-      color: var(--header)
-    }
-
-    footer {
-      background: var(--header);
-      color: #D0D5DD;
-      padding: 34px 24px
-    }
-
-    .footer-inner {
-      max-width: 1220px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px
-    }
-
-    footer h4 {
-      color: white;
-      margin-top: 0
-    }
-
-    footer p,
-    footer li {
-      color: #CBD5E1;
-      font-size: 13px
-    }
-
-    @media(max-width:900px) {
-
-      .meta-grid,
-      .card-grid,
-      .toc-grid,
-      .footer-inner,
-      .doc-meta {
-        grid-template-columns: 1fr
-      }
-
-      .cover-foot,
-      .sticky-inner {
-        flex-direction: column;
-        align-items: flex-start
-      }
-
-      .sticky {
-        position: static
-      }
-
-      table {
-        min-width: 680px
-      }
-    }
-
     @media print {
-      .sticky {
-        display: none
-      }
-
-      .cover {
-        min-height: auto;
-        page-break-after: always
-      }
-
-      .section {
-        page-break-inside: auto;
-        box-shadow: none
-      }
-
-      .toc,
-      .section {
-        border: 1px solid #dce3ee;
-        box-shadow: none
-      }
-
-      .callout,
-      .table-wrap {
-        page-break-inside: avoid
-      }
-
-      body {
-        background: white
-      }
-
-      a {
-        text-decoration: none;
-        color: #1F6AE1
-      }
-
-      .legal-doc h3 {
-        page-break-before: always
-      }
+      .cover { min-height: auto; }
+      .doc-header { position: static; }
+      .panel { break-inside: avoid; box-shadow: none; }
     }
-  </style>
+    </style>
 </head>
-
 <body>
   <section class="cover">
-    <div class="brand-row">
-      <div class="logo">W2C</div>
-      <div><strong>Work2Cash</strong><span>Traceworka Legal Draft Pack</span></div>
-    </div>
-    <div class="cover-main">
-      <div class="label">Legal & User-Facing Documents Pack</div>
-      <h1>Work2Cash Legal Pack</h1>
-      <div class="cover-subtitle">Regenerated public policy drafts for Terms, Privacy, Tasker Agreement, Cancellation &
-        Refund, Safety, KYC, Location, and Payment & Wallet rules.</div>
+    <div class="cover-inner">
+      <div class="brand-row">
+        <div class="logo">W2C</div>
+        <div class="brand-meta">
+          <strong>Work2Cash</strong>
+          <span>Traceworka Product Documentation</span>
+        </div>
+      </div>
+      <h1>Legal & User-Facing Documents Draft</h1>
+      <p class="subtitle">A launch-ready policy baseline for Terms, Privacy, Tasker rules, cancellation, safety, KYC, location, and wallet operations.</p>
       <div class="meta-grid">
         <div class="meta-card"><span>Prepared For</span><strong>Traceworka</strong></div>
-        <div class="meta-card"><span>Version</span><strong>1.0-draft</strong></div>
-        <div class="meta-card"><span>Date</span><strong>3 July 2026</strong></div>
-        <div class="meta-card"><span>Status</span><strong>Counsel Review Required</strong></div>
-        <div class="meta-card"><span>Market</span><strong>Nigeria</strong></div>
-        <div class="meta-card"><span>Product</span><strong>Work2Cash</strong></div>
-        <div class="meta-card"><span>Source</span><strong>Main Architecture v1</strong></div>
-        <div class="meta-card"><span>Source SHA</span><strong>b139bc8f61941b80</strong></div>
+        <div class="meta-card"><span>Project</span><strong>Work2Cash</strong></div>
+        <div class="meta-card"><span>Version</span><strong>Draft 1.0</strong></div>
+        <div class="meta-card"><span>Classification</span><strong>Investor Ready Draft</strong></div>
       </div>
-      <div class="badges"><span class="badge">Terms</span><span class="badge">Privacy</span><span class="badge">Tasker
-          Agreement</span><span class="badge">Safety</span><span class="badge">KYC Consent</span><span
-          class="badge">Location</span><span class="badge">Payment & Wallet</span></div>
-    </div>
-    <div class="cover-foot">
-      <div>Prepared by Traceworka for review.</div>
-      <div>Do not publish until legal counsel approves final wording.</div>
     </div>
   </section>
-  <header class="sticky">
-    <div class="sticky-inner"><strong>Work2Cash Legal Pack v1.0 Draft</strong>
-      <nav><a href="#doc-terms">01</a><a href="#doc-privacy">02</a><a href="#doc-tasker-agreement">03</a><a
-          href="#doc-cancellation-refund">04</a><a href="#doc-safety">05</a><a href="#doc-kyc-consent">06</a><a
-          href="#doc-location">07</a><a href="#doc-payment-wallet">08</a><a href="#internal-notes">Notes</a></nav>
+  <header class="doc-header">
+    <div class="doc-header-inner">
+      <strong>Work2Cash Legal Pack</strong>
+      <nav><a href="#terms">Terms</a>
+<a href="#privacy">Privacy</a>
+<a href="#tasker">Tasker</a>
+<a href="#refund">Cancellation</a>
+<a href="#safety">Community</a>
+<a href="#kyc">KYC</a>
+<a href="#location">Location</a>
+<a href="#wallet">Payment</a></nav>
     </div>
   </header>
+
+
+<style id="work2cash-doc-nav-style">
+  .doc-hub-nav {
+    max-width: 1240px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads {
+    max-width: 1240px;
+    margin: 16px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads-card {
+    border: 1px solid #CFE0FF;
+    background: #EAF2FF;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.06);
+  }
+  .team-downloads-card strong {
+    display: block;
+    color: #0F2A44;
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .team-downloads-card p {
+    margin: 0 0 12px;
+    color: #667085;
+    font-size: 13px;
+  }
+  .team-downloads-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .team-downloads-links a {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #1F6AE1;
+    background: #FFFFFF;
+    color: #1F6AE1;
+    border-radius: 999px;
+    padding: 9px 13px;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-card {
+    border: 1px solid #D8E2F1;
+    background: #FFFFFF;
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.07);
+    padding: 18px;
+  }
+  .doc-hub-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .doc-hub-top strong {
+    color: #0F2A44;
+    font-size: 16px;
+  }
+  .doc-hub-top a {
+    color: #1F6AE1;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .doc-hub-links a {
+    border: 1px solid #D8E2F1;
+    background: #EAF2FF;
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #0F2A44;
+    font-weight: 850;
+    font-size: 12px;
+    line-height: 1.35;
+    text-decoration: none;
+  }
+  .doc-hub-links a[aria-current="page"] {
+    background: #1F6AE1;
+    color: #FFFFFF;
+    border-color: #1F6AE1;
+  }
+  .doc-hub-links a:hover { text-decoration: underline; }
+  @media (max-width: 980px) {
+    .doc-hub-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 620px) {
+    .doc-hub-nav { padding: 0 16px; }
+    .doc-hub-card { border-radius: 14px; padding: 14px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .doc-hub-links { grid-template-columns: 1fr; }
+    .team-downloads { padding: 0 16px; }
+    .team-downloads-card { border-radius: 14px; padding: 14px; }
+  }
+</style>
+
+<nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
+  <div class="doc-hub-card">
+    <div class="doc-hub-top">
+      <strong>Work2Cash Documentation</strong>
+      <a href="../index.html">Back to document portal</a>
+    </div>
+    <div class="doc-hub-links">
+      <a href="./main-enterprise-architecture-v1.html">Main Enterprise Architecture v1</a><a href="./screen-to-feature-map-v1.html">Screen To Feature Map</a><a href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a href="./flow-alignment-review-v1.html">Flow Alignment Review v1</a><a href="./legal_user_facing_documents_pack_v1.html" aria-current="page">Legal &amp; User-Facing Documents Pack v1</a><a href="./api-socket-contract-specification-v1.html">API &amp; Socket Contract Specification v1</a><a href="./data-model-prisma-schema-planning-v1.html">Data Model &amp; Prisma Schema Planning v1</a><a href="./provider-integration-cost-control-v1.html">Provider Integration &amp; Cost Control v1</a><a href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html">Admin Build Plan v1</a><a href="./build-plan-backend-v1.html">Backend Build Plan v1</a><a href="./qa-go-live-readiness-checklist-v1.html">QA / Go-Live Readiness Checklist v1</a>
+    </div>
+  </div>
+</nav>
+
   <main>
-    <section class="toc">
+    <section class="panel">
+      <div class="eyebrow">Important Notice</div>
+      <h2>Draft Status</h2>
+      <div class="callout danger">
+        This document is a product and architecture draft prepared from the Work2Cash planning session. It is not legal advice and should be reviewed by qualified legal counsel before publication or enforcement.
+      </div>
+      <div class="grid-2">
+        <div class="info-card"><strong>Primary Market</strong><br>Nigeria, with nationwide service coverage and active geofencing to keep posting and matching inside Nigeria.</div>
+        <div class="info-card"><strong>Core Business Model</strong><br>Unified user account, Task Owner and Tasker modes, escrow-backed task payment, and Tasker commission tiers.</div>
+        <div class="info-card"><strong>Payment Providers</strong><br>Paystack and Moniepoint, with Task Owner-paid processing fees and backend-verified payment status.</div>
+        <div class="info-card"><strong>Trust Controls</strong><br>Smile ID KYC, warnings, strikes, support review, structured disputes, admin audit logs, and role-based admin access.</div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">Terms</span><span class="tag">Privacy</span><span class="tag">Tasker Agreement</span><span class="tag">Safety</span><span class="tag">KYC</span><span class="tag">Wallets</span>
+      </div>
+    </section>
+    <section class="panel">
       <div class="eyebrow">Contents</div>
-      <h2>Legal & User-Facing Documents Pack</h2>
-      <p class="intro">This regenerated pack converts the Work2Cash enterprise architecture decisions into user-facing
-        legal drafts for review, approval, and eventual publication.</p>
-      <div class="toc-grid"><a href="#doc-terms">01. Terms of Service</a><a href="#doc-privacy">02. Privacy Policy</a><a
-          href="#doc-tasker-agreement">03. Tasker Agreement</a><a href="#doc-cancellation-refund">04. Cancellation &amp;
-          Refund Policy</a><a href="#doc-safety">05. Community &amp; Safety Guidelines</a><a href="#doc-kyc-consent">06.
-          KYC Consent Notice</a><a href="#doc-location">07. Location Permission Notice</a><a
-          href="#doc-payment-wallet">08. Payment &amp; Wallet Terms</a><a href="#internal-notes">09. Publishing Notes &
-          Counsel Checklist</a></div>
+      <h2>Document Index</h2>
+      <div class="toc"><a href="#terms">01. Terms of Service</a>
+<a href="#privacy">02. Privacy Policy</a>
+<a href="#tasker">03. Tasker Agreement</a>
+<a href="#refund">04. Cancellation &amp; Refund Policy</a>
+<a href="#safety">05. Community &amp; Safety Guidelines</a>
+<a href="#kyc">06. KYC Consent Notice</a>
+<a href="#location">07. Location Permission Notice</a>
+<a href="#wallet">08. Payment &amp; Wallet Terms</a></div>
     </section>
-    <section class="section">
-      <div class="section-num">00</div>
-      <div class="eyebrow">Document Control</div>
-      <h2>Draft Status and Source Alignment</h2>
-      <p class="intro">This pack is regenerated from the current Work2Cash Enterprise Architecture v1 baseline and
-        should be treated as a legal drafting package, not final legal advice.</p>
-      <div class="card-grid">
-        <article class="card"><span>Prepared For</span>
-          <h4>Traceworka</h4>
-          <p>For Work2Cash public legal pages and app-store readiness.</p>
-        </article>
-        <article class="card"><span>Source Baseline</span>
-          <h4>Main Architecture v1</h4>
-          <p>Source SHA prefix: b139bc8f61941b80. Uses nationwide Nigeria launch, escrow, proof media, masked calls,
-            payout batches, and updated location rules.</p>
-        </article>
-        <article class="card"><span>Review Required</span>
-          <h4>Qualified Counsel</h4>
-          <p>Final legal wording, retention periods, regulator wording, and provider-specific terms must be approved
-            before launch.</p>
-        </article>
-      </div>
-      <div class="callout amber"><strong>Not Final Legal Advice</strong>
-        <p>These drafts are prepared for operational and legal review. They should not be published until reviewed and
-          approved by qualified Nigerian legal counsel and the final company contact, retention schedule, provider
-          terms, and regulator-specific obligations are confirmed.</p>
-      </div>
-    </section>
-    <section class="section legal-doc" id="doc-terms">
-      <div class="section-num">01</div>
-      <div class="eyebrow">Public Legal Page Draft</div>
-      <h2>Terms of Service</h2>
-      <p class="intro">The main user agreement for Task Owners, Taskers, and visitors using Work2Cash.</p>
-      <div class="doc-meta">
-        <div><span>Recommended URL</span><strong>https://work2cash.ng/legal/terms</strong></div>
-        <div><span>Status</span><strong>Draft - counsel review required</strong></div>
-        <div><span>Version</span><strong>1.0-draft</strong></div>
-        <div><span>Date</span><strong>3 July 2026</strong></div>
-      </div>
-      <div class="notice-box"><strong>Review notice:</strong> These drafts are prepared for operational and legal
-        review. They should not be published until reviewed and approved by qualified Nigerian legal counsel and the
-        final company contact, retention schedule, provider terms, and regulator-specific obligations are confirmed.
-      </div>
-      <div class="clause">
-        <h4>Who We Are</h4>
-        <p>Work2Cash is a Nigeria-focused task marketplace operated by Traceworka. In these Terms, "Work2Cash", "we",
-          "us", and "our" refer to the Work2Cash platform and its operator. "User", "you", and "your" refer to any
-          person who creates an account, posts a task, performs a task, contacts support, or otherwise uses the
-          platform.</p>
-      </div>
-      <div class="clause">
-        <h4>Acceptance of These Terms</h4>
-        <p>By creating an account, using the app, posting a task, accepting a task, making payment, requesting
-          withdrawal, or using any Work2Cash service, you agree to these Terms and the related policies published on our
-          legal pages. If you do not agree, you must not use Work2Cash.</p>
-      </div>
-      <div class="clause">
-        <h4>Eligibility</h4>
-        <p>You must be at least 18 years old and capable of entering into a binding agreement. You must provide accurate
-          information, keep your account secure, and use Work2Cash only for lawful purposes. Taskers must complete the
-          required Tasker profile and KYC approval before they can accept tasks.</p>
-      </div>
-      <div class="clause">
-        <h4>Account Modes</h4>
-        <p>Work2Cash uses one account for both hiring and earning. A user may operate in Task Owner mode to post and
-          fund tasks, and in Tasker mode to earn from tasks after KYC approval. The mode shown in the app controls the
-          experience and actions available at that time.</p>
-      </div>
-      <div class="clause">
-        <h4>Nigeria Service Boundary</h4>
-        <p>Work2Cash is designed for task sites in Nigeria. A Task Owner may be physically outside Nigeria, but the task
-          site must be in Nigeria. A Tasker must be in Nigeria to accept a task. Work2Cash may restrict service
-          temporarily by state, city, or custom service zone for safety, compliance, or operational reasons.</p>
-      </div>
-      <div class="clause">
-        <h4>Marketplace Role</h4>
-        <p>Work2Cash provides a platform for Task Owners and Taskers to connect, communicate, fund tasks, track
-          progress, and resolve issues. Taskers are independent service providers and are not employees of Work2Cash.
-          Work2Cash may facilitate payments, escrow, safety checks, support, and dispute review, but the Task Owner and
-          Tasker remain responsible for their own conduct and commitments.</p>
-      </div>
-      <div class="clause">
-        <h4>Approved Task Categories Only</h4>
-        <p>Task Owners may only select from approved task categories and task types shown in the app. Custom categories
-          are not available in the MVP. Work2Cash may enable, disable, reorder, review, or remove categories and task
-          media to protect users and platform quality.</p>
-      </div>
-      <div class="clause">
-        <h4>Task Posting Requirements</h4>
-        <p>When posting a task, the Task Owner must describe the work clearly, select the correct approved task type,
-          provide the task site, confirm the map pin when required, set the required arrival time, upload proof of work
-          to be done, review pricing and fees, and fund the task before matching or direct offer acceptance.</p>
-      </div>
-      <div class="clause">
-        <h4>Tasker Acceptance and Status Updates</h4>
-        <p>A Tasker must confirm they can arrive on or before the Task Owner's required arrival time before accepting a
-          task. During execution, status updates must be made inside the app. The Tasker taps Start Journey to move to
-          en route, taps I have arrived after reaching the task site, and taps Begin Task to start the task. These
-          updates affect task visibility, live tracking, cancellation rules, and dispute evidence.</p>
-      </div>
-      <div class="clause">
-        <h4>Task Owner Review of Tasker</h4>
-        <p>Task Owners may review a Tasker's profile and ETA before accepting. A Task Owner may reject a Tasker before
-          the Tasker starts moving and within 5 minutes after the Tasker marks en route. Repeated movement-stage
-          rejection may trigger warnings, trust-score changes, risk review, or other platform action.</p>
-      </div>
-      <div class="clause">
-        <h4>Payments and Escrow</h4>
-        <p>Task Owners must pay into escrow before matching or direct offer acceptance. Work2Cash may use Paystack,
-          Moniepoint, or other approved payment rails for collections and transfers. Payment confirmation must come from
-          Work2Cash backend verification, provider webhook, or reconciliation, not only from a frontend redirect or user
-          screenshot.</p>
-      </div>
-      <div class="clause">
-        <h4>Fees and Pricing</h4>
-        <p>Work2Cash may charge platform, service, payment-processing, cancellation, or other disclosed fees. Task
-          Owners will see the task amount, applicable fees, and final payable total before payment. Taskers will see
-          gross task amount, platform commission, and net earning where applicable.</p>
-      </div>
-      <div class="clause">
-        <h4>Wallets and Withdrawals</h4>
-        <p>A user may have separate Task Owner and Tasker wallet purposes. Task Owner wallet funds are mainly for task
-          funding, refunds, and credits and cannot be directly withdrawn by default without support review. Tasker
-          wallet earnings may be withdrawn subject to minimum withdrawal amount, eligibility, dispute holds, policy
-          checks, provider limits, and payout calendar rules.</p>
-      </div>
-      <div class="clause">
-        <h4>Tasker Payout Calendar</h4>
-        <p>Eligible Tasker withdrawal requests are processed in bulk payout batches on the 14th and 28th of every month
-          where Paystack, Moniepoint, or another approved transfer rail is available. A withdrawal request may be held
-          if the Tasker has an active dispute, active issue, risk flag, failed KYC/payment review, invalid bank details,
-          or other unresolved settlement concern. If a payout date falls on a non-working day or there is provider
-          downtime, Work2Cash may process on the next operational processing window.</p>
-      </div>
-      <div class="clause">
-        <h4>Communication Rules</h4>
-        <p>Task communication must stay inside Work2Cash whenever possible. Chat, voice messages, masked calls, support
-          live chat, and task reports may be used according to task state and platform rules. Users must not use
-          communication tools to harass, threaten, mislead, solicit off-platform payment, or bypass Work2Cash
-          protections.</p>
-      </div>
-      <div class="clause">
-        <h4>Masked Calls</h4>
-        <p>Work2Cash may provide task-bound masked calls through a proxy number. Real phone numbers must not be exposed
-          by Work2Cash during masked calls. Calls use the caller's normal airtime or network charges, while Work2Cash
-          may pay provider-side masking, forwarding, or session costs. Masked call availability depends on provider
-          support, task state, and operational reliability.</p>
-      </div>
-      <div class="clause">
-        <h4>Task Proof, Media, and Evidence</h4>
-        <p>Task Owners must upload proof of work to be done. Taskers must upload proof of work done when requesting
-          completion. Supported media may include photos and videos up to the stated file-size limit. Users must not
-          upload illegal, unsafe, misleading, unrelated, or privacy-invasive media. Work2Cash may review, restrict,
-          remove, or preserve media as part of safety, moderation, dispute, or legal processes.</p>
-      </div>
-      <div class="clause">
-        <h4>Completion, Ratings, and Favorites</h4>
-        <p>A task is completed when the required completion flow is satisfied by Task Owner confirmation or
-          platform/admin resolution. Task Owners and Taskers may rate each other where available. A Task Owner may
-          favorite a Tasker after a completed and rated task, and may later send direct offers to favorite Taskers.</p>
-      </div>
-      <div class="clause">
-        <h4>Cancellations, Refunds, and Penalties</h4>
-        <p>Cancellation, refund, warning, strike, and penalty rules are governed by the Cancellation &amp; Refund
-          Policy. Work2Cash may apply penalties, warnings, strike restrictions, refund holds, or admin review depending
-          on task state, evidence, and user conduct.</p>
-      </div>
-      <div class="clause">
-        <h4>Reports, Disputes, and Support</h4>
-        <p>Users may report issues through structured task-linked reports, evidence upload, and support channels.
-          Support live chat is for operational help. Disputes are structured evidence-based reviews and do not use live
-          chat as the dispute record. Work2Cash may request additional evidence, review communication logs, review task
-          proof, and decide whether to release escrow, refund, partially refund, warn, strike, or suspend a user.</p>
-      </div>
-      <div class="clause">
-        <h4>Prohibited Conduct and Tasks</h4>
-        <p>Users must not post, accept, request, perform, or facilitate illegal activities, adult or sexual services,
-          weapons-related tasks, intimidation or violence, drug-related activity, high-risk medical tasks, licensed
-          professional work unless specifically approved, overnight stay tasks, unsafe access tasks, tasks involving
-          minors without appropriate guardian presence, off-platform payment or booking, or any task outside approved
-          categories.</p>
-      </div>
-      <div class="clause">
-        <h4>Suspension and Enforcement</h4>
-        <p>Work2Cash may warn, restrict, suspend, deactivate, or block an account where there is suspected or confirmed
-          fraud, safety risk, off-platform abuse, payment abuse, KYC concern, harassment, repeated cancellation abuse,
-          prohibited tasks, or violation of these Terms. High-risk decisions may be reviewed by support, risk, finance,
-          or admin teams.</p>
-      </div>
-      <div class="clause">
-        <h4>Platform Availability</h4>
-        <p>Work2Cash aims to keep the platform reliable, but we do not guarantee uninterrupted availability. Provider
-          outages, network problems, payment delays, maintenance, device issues, map provider limits, or force majeure
-          events may affect service.</p>
-      </div>
-      <div class="clause">
-        <h4>Limitation of Liability</h4>
-        <p>To the extent permitted by applicable law, Work2Cash is not liable for indirect, incidental, special,
-          consequential, punitive, or lost-profit damages arising from platform use, user conduct, third-party provider
-          failure, task quality, network interruptions, or payment delays. Nothing in these Terms excludes liability
-          that cannot legally be excluded.</p>
-      </div>
-      <div class="clause">
-        <h4>Changes to These Terms</h4>
-        <p>We may update these Terms as Work2Cash evolves. Material changes should be published through the app,
-          website, email, or other reasonable notice. Continued use after an update means you accept the updated Terms.
-        </p>
-      </div>
-      <div class="clause">
-        <h4>Governing Law and Contact</h4>
-        <p>These Terms are intended to be governed by applicable laws of the Federal Republic of Nigeria, subject to
-          legal review before launch. For support, contact support@work2cash.ng. For privacy requests, contact
-          privacy@work2cash.ng.</p>
-      </div>
-    </section>
-    <section class="section legal-doc" id="doc-privacy">
-      <div class="section-num">02</div>
-      <div class="eyebrow">Public Legal Page Draft</div>
-      <h2>Privacy Policy</h2>
-      <p class="intro">Explains what data Work2Cash collects, why it is used, who it may be shared with, and user
-        privacy rights.</p>
-      <div class="doc-meta">
-        <div><span>Recommended URL</span><strong>https://work2cash.ng/legal/privacy</strong></div>
-        <div><span>Status</span><strong>Draft - counsel review required</strong></div>
-        <div><span>Version</span><strong>1.0-draft</strong></div>
-        <div><span>Date</span><strong>3 July 2026</strong></div>
-      </div>
-      <div class="notice-box"><strong>Review notice:</strong> These drafts are prepared for operational and legal
-        review. They should not be published until reviewed and approved by qualified Nigerian legal counsel and the
-        final company contact, retention schedule, provider terms, and regulator-specific obligations are confirmed.
-      </div>
-      <div class="clause">
-        <h4>Introduction</h4>
-        <p>This Privacy Policy explains how Work2Cash collects, uses, shares, protects, and retains personal data when
-          you use our app, website, admin-supported services, task marketplace, support channels, payment flows, KYC
-          flows, location services, communication tools, and related features.</p>
-      </div>
-      <div class="clause">
-        <h4>Data Controller</h4>
-        <p>For this draft, Traceworka is treated as the operator responsible for Work2Cash data processing decisions.
-          Final legal entity details, registration details, privacy officer details, and contact channels must be
-          confirmed before publication.</p>
-      </div>
-      <div class="clause">
-        <h4>Data We Collect</h4>
-        <p>We may collect account information such as name, email address, phone number, password credentials, OTP
-          verification status, profile photo, residential address, state, preferences, and account status. We may
-          collect Tasker profile information including skills, categories, availability, travel radius, task history,
-          ratings, performance metrics, KYC status, and payout details.</p>
-      </div>
-      <div class="clause">
-        <h4>KYC and Identity Data</h4>
-        <p>For Tasker verification, we may collect or process identity information such as NIN, BVN, identity document
-          details, selfie/biometric capture, verification status, provider reference, manual review notes, rejection
-          reason, and audit history. KYC may be handled through Smile ID or another approved identity verification
-          provider.</p>
-      </div>
-      <div class="clause">
-        <h4>Task and Marketplace Data</h4>
-        <p>We collect task descriptions, selected category/type, price, date/time, required arrival time, task site
-          address, geocoded coordinates, confirmed map pin, task proof media, Tasker interest, ETA, acceptance/rejection
-          decisions, task status updates, cancellation reasons, completion proof, ratings, favorites, reports, disputes,
-          and support evidence.</p>
-      </div>
-      <div class="clause">
-        <h4>Location Data</h4>
-        <p>We collect location data when a Task Owner sets or confirms a task site and when a Tasker is available,
-          browsing location-based tasks, accepting a task, en route, arrived, in progress, or otherwise using a feature
-          that requires location. Live tracking is task-bound and should stop when the task is completed, cancelled,
-          expired, or otherwise no longer requires tracking.</p>
-      </div>
-      <div class="clause">
-        <h4>Communication Data</h4>
-        <p>We may process task chat messages, support live chat messages, voice message files and metadata,
-          read/delivery receipts, typing indicators, masked call session metadata, proxy call routing logs, call
-          timestamps, call duration, and communication audit logs. Work2Cash does not need to expose real phone numbers
-          to enable masked calls.</p>
-      </div>
-      <div class="clause">
-        <h4>Payment and Wallet Data</h4>
-        <p>We collect payment intent references, provider references, transaction status, escrow records, wallet ledger
-          records, withdrawal requests, payout batch records, refunds, chargebacks, bank details for Tasker payouts,
-          reconciliation status, and finance support records. Work2Cash does not store full card details where a payment
-          provider handles card processing.</p>
-      </div>
-      <div class="clause">
-        <h4>Device, Log, and Security Data</h4>
-        <p>We may collect device identifiers, app version, IP address, session records, login attempts, failed OTP
-          attempts, FCM token, push-notification status, error logs, fraud/risk signals, admin audit logs, webhook logs,
-          queue/job logs, and usage events needed for security, operations, analytics, and support.</p>
-      </div>
-      <div class="clause">
-        <h4>How We Use Data</h4>
-        <p>We use data to create accounts, verify users, operate the marketplace, match Task Owners and Taskers, process
-          payments and payouts, hold and release escrow, provide support, resolve disputes, protect users, detect fraud,
-          enforce policies, improve product experience, send notifications, comply with law, maintain records, and
-          operate infrastructure securely.</p>
-      </div>
-      <div class="clause">
-        <h4>Legal Bases and Consent</h4>
-        <p>Depending on the processing activity, we may rely on contract performance, user consent, legal obligation,
-          legitimate interest, safety/fraud prevention, or another lawful basis recognized under applicable Nigerian
-          data protection law. Optional processing such as some marketing or non-essential analytics should allow
-          withdrawal where required.</p>
-      </div>
-      <div class="clause">
-        <h4>Who We Share Data With</h4>
-        <p>We may share data with payment providers such as Paystack and Moniepoint, KYC providers such as Smile ID,
-          SMS/email providers such as Termii and email vendors, push notification services such as FCM, map services
-          such as Google Maps, masked call providers such as Infobip or approved alternatives, cloud hosting/storage
-          providers, monitoring tools such as Sentry, support providers, professional advisers, regulators,
-          law-enforcement agencies, or other parties where required by law or necessary to protect users.</p>
-      </div>
-      <div class="clause">
-        <h4>Address and Media Privacy</h4>
-        <p>Public task listings show limited task information. Exact addresses and full task proof media are not meant
-          to be public. Access should be restricted to authorized users, support/admin personnel with a valid reason, or
-          legal/safety review where necessary.</p>
-      </div>
-      <div class="clause">
-        <h4>Data Subject Rights</h4>
-        <p>Subject to verification and applicable law, you may have rights to be informed, access your data, correct
-          inaccurate data, object to certain processing, restrict processing, request portability, request deletion
-          where applicable, report concerns to the supervisory authority, and ask for review of certain automated
-          decisions.</p>
-      </div>
-      <div class="clause">
-        <h4>Data Retention</h4>
-        <p>Exact retention periods are not locked in this draft and must be confirmed during legal review before
-          publication. Work2Cash should retain data only for as long as necessary for service operation, user safety,
-          dispute handling, accounting, audit, fraud prevention, legal obligations, and backup recovery. The backend
-          must support configurable retention policies for logs, support records, dispute evidence, task media, KYC
-          records, audit logs, payment records, wallet records, and backups.</p>
-      </div>
-      <div class="clause">
-        <h4>Security</h4>
-        <p>Work2Cash uses technical and organizational safeguards such as authentication, OTP rate limits, session
-          tracking, admin TOTP, RBAC, audit logs, encrypted transport, restricted media access, provider webhooks
-          verification, idempotency, ledger controls, backups, monitoring, and access restrictions. No system is
-          perfectly secure, but we work to reduce risk and respond to incidents.</p>
-      </div>
-      <div class="clause">
-        <h4>International Processing</h4>
-        <p>Some service providers, infrastructure, or support tools may process data outside Nigeria. Where this occurs,
-          Work2Cash should use appropriate contractual, security, and compliance measures required by applicable law.
-          Final transfer wording must be reviewed by legal counsel.</p>
-      </div>
-      <div class="clause">
-        <h4>Children and Minors</h4>
-        <p>Work2Cash is not intended for users under 18. Tasks involving minors must follow platform safety rules and
-          may require guardian presence. Users must not upload children's personal data unless it is lawful, necessary,
-          and consistent with platform rules.</p>
-      </div>
-      <div class="clause">
-        <h4>Changes to This Policy</h4>
-        <p>We may update this Privacy Policy as Work2Cash evolves. Material updates should be communicated through the
-          app, website, email, or other reasonable notice.</p>
-      </div>
-      <div class="clause">
-        <h4>Contact</h4>
-        <p>For privacy requests, contact privacy@work2cash.ng. For general support, contact support@work2cash.ng. Final
-          privacy officer, response timelines, and escalation details must be confirmed before publication.</p>
-      </div>
-    </section>
-    <section class="section legal-doc" id="doc-tasker-agreement">
-      <div class="section-num">03</div>
-      <div class="eyebrow">Public Legal Page Draft</div>
-      <h2>Tasker Agreement</h2>
-      <p class="intro">Additional agreement for users who want to earn by accepting and performing tasks.</p>
-      <div class="doc-meta">
-        <div><span>Recommended URL</span><strong>https://work2cash.ng/legal/tasker-agreement</strong></div>
-        <div><span>Status</span><strong>Draft - counsel review required</strong></div>
-        <div><span>Version</span><strong>1.0-draft</strong></div>
-        <div><span>Date</span><strong>3 July 2026</strong></div>
-      </div>
-      <div class="notice-box"><strong>Review notice:</strong> These drafts are prepared for operational and legal
-        review. They should not be published until reviewed and approved by qualified Nigerian legal counsel and the
-        final company contact, retention schedule, provider terms, and regulator-specific obligations are confirmed.
-      </div>
-      <div class="clause">
-        <h4>Purpose</h4>
-        <p>This Tasker Agreement applies to users who create a Tasker profile, complete KYC, accept tasks, perform
-          tasks, communicate with Task Owners, upload completion proof, receive earnings, or request withdrawals on
-          Work2Cash.</p>
-      </div>
-      <div class="clause">
-        <h4>Independent Service Provider</h4>
-        <p>Taskers are independent service providers. Work2Cash does not employ Taskers, guarantee fixed income, control
-          Tasker working hours, or provide employment benefits. Taskers are responsible for their own conduct,
-          availability, tools, transport, taxes, and compliance with applicable law.</p>
-      </div>
-      <div class="clause">
-        <h4>Tasker Activation</h4>
-        <p>A user cannot accept tasks until the Tasker profile is complete, KYC is submitted and approved, required
-          profile details are provided, relevant task categories are selected, and any platform activation requirements
-          are satisfied.</p>
-      </div>
-      <div class="clause">
-        <h4>KYC and Ongoing Review</h4>
-        <p>Taskers must provide accurate identity information and may be required to complete NIN, BVN, document,
-          selfie, biometric, or manual verification through Smile ID or another approved provider. Work2Cash may reject,
-          pause, or re-review a Tasker where KYC fails, expires, is inconsistent, or creates risk concerns.</p>
-      </div>
-      <div class="clause">
-        <h4>Location and Availability</h4>
-        <p>Taskers must be in Nigeria to accept tasks. A Tasker may set availability and travel radius, but must not
-          accept tasks they cannot reasonably reach on or before the Task Owner's required arrival time. Location
-          permission may be required while available, accepting, en route, arrived, or in progress.</p>
-      </div>
-      <div class="clause">
-        <h4>Task Review Before Acceptance</h4>
-        <p>Before accepting a task, the Tasker must review the available task preview, category, location area, amount,
-          expected arrival time, description, safety conditions, and any available proof media. A Tasker should decline
-          unsafe, unclear, illegal, or unsuitable tasks.</p>
-      </div>
-      <div class="clause">
-        <h4>Required Status Updates</h4>
-        <p>Tasker status updates must be done in the app. Tap Start Journey when you begin traveling to the task site.
-          Tap I have arrived after reaching the task site. Tap Begin Task when the task actually starts. These actions
-          are used for live tracking, Task Owner visibility, cancellation rules, no-show review, and dispute evidence.
-        </p>
-      </div>
-      <div class="clause">
-        <h4>Work Standard</h4>
-        <p>Taskers must perform accepted tasks professionally, safely, lawfully, and in line with the task description.
-          Taskers must not misrepresent arrival, begin work before the correct state, abandon tasks without valid
-          reason, damage property, threaten users, or demand payment outside Work2Cash.</p>
-      </div>
-      <div class="clause">
-        <h4>Proof of Work Done</h4>
-        <p>After task execution, the Tasker must upload proof of work done where required. Completion proof must be
-          accurate, relevant, and respectful of privacy. Fake, copied, unrelated, unsafe, or misleading proof may lead
-          to rejection, dispute, warning, strike, payout hold, suspension, or account removal.</p>
-      </div>
-      <div class="clause">
-        <h4>Communication</h4>
-        <p>Taskers must use approved Work2Cash communication channels such as task chat, voice messages, masked calls,
-          and support channels. Real phone numbers should not be exchanged where Work2Cash provides masked calls.
-          Requests to move payment or booking outside Work2Cash are prohibited.</p>
-      </div>
-      <div class="clause">
-        <h4>Cancellations and No-Shows</h4>
-        <p>Cancelling after acceptance may result in a warning unless a valid safety or emergency reason is reported and
-          accepted. No-shows may result in a strike. Repeated cancellations, late arrival, false status updates, or poor
-          conduct may reduce trust, restrict task access, or lead to suspension.</p>
-      </div>
-      <div class="clause">
-        <h4>Unsafe Tasks</h4>
-        <p>A Tasker may reject unsafe tasks without penalty. If a task becomes unsafe after acceptance, the Tasker
-          should stop when safe, report the issue immediately through Work2Cash, provide evidence where possible, and
-          wait for support or admin review.</p>
-      </div>
-      <div class="clause">
-        <h4>Earnings and Commission</h4>
-        <p>Tasker earnings are calculated after platform commission and applicable rules. Completed task count for
-          commission tiers includes successfully completed and settled tasks only. Cancelled, refunded, unresolved
-          dispute, or test tasks do not count.</p>
-      </div>
-      <div class="clause">
-        <h4>Withdrawal Requests and Payout Batches</h4>
-        <p>The minimum Tasker withdrawal is ₦1,000. Eligible withdrawal requests are processed through payout batches on
-          the 14th and 28th of every month where supported by Paystack, Moniepoint, or another approved rail. Requests
-          with active disputes, active issues, risk flags, invalid bank details, or provider failures may be held or
-          retried.</p>
-      </div>
-      <div class="clause">
-        <h4>Taxes and Bank Details</h4>
-        <p>Taskers are responsible for taxes, levies, bank-account accuracy, and any legal obligations arising from
-          their earnings. Work2Cash is not responsible for loss caused by incorrect payout details supplied by a Tasker.
-        </p>
-      </div>
-      <div class="clause">
-        <h4>Ratings, Favorites, and Direct Offers</h4>
-        <p>Task Owners may rate Taskers after completed tasks and may add a Tasker to favorites. A favorite Tasker may
-          receive direct offers through Work2Cash. Direct offers still require platform rules, payment/escrow,
-          acceptance, and task-state controls.</p>
-      </div>
-      <div class="clause">
-        <h4>Warnings, Strikes, and Restrictions</h4>
-        <p>Three warnings convert to one strike. Tasker Strike 1 restricts task acceptance for 2 days; Strike 2
-          restricts for 1 week; Strike 3 restricts for 1 month; Strike 4 may suspend the account. Work2Cash may act
-          faster for severe safety, fraud, abuse, or legal risk.</p>
-      </div>
-      <div class="clause">
-        <h4>Agreement Updates</h4>
-        <p>Work2Cash may update this Tasker Agreement. Continued Tasker activity after an update means you accept the
-          updated agreement.</p>
-      </div>
-    </section>
-    <section class="section legal-doc" id="doc-cancellation-refund">
-      <div class="section-num">04</div>
-      <div class="eyebrow">Public Legal Page Draft</div>
-      <h2>Cancellation &amp; Refund Policy</h2>
-      <p class="intro">Explains cancellations, warnings, strikes, penalties, refunds, no-shows, settlement holds, and
-        dispute outcomes.</p>
-      <div class="doc-meta">
-        <div><span>Recommended URL</span><strong>https://work2cash.ng/legal/cancellation-refund</strong></div>
-        <div><span>Status</span><strong>Draft - counsel review required</strong></div>
-        <div><span>Version</span><strong>1.0-draft</strong></div>
-        <div><span>Date</span><strong>3 July 2026</strong></div>
-      </div>
-      <div class="notice-box"><strong>Review notice:</strong> These drafts are prepared for operational and legal
-        review. They should not be published until reviewed and approved by qualified Nigerian legal counsel and the
-        final company contact, retention schedule, provider terms, and regulator-specific obligations are confirmed.
-      </div>
-      <div class="clause">
-        <h4>Purpose</h4>
-        <p>This policy explains how Work2Cash handles cancellations, no-shows, refund requests, settlement holds,
-          warnings, strikes, and admin dispute outcomes. It applies to Task Owners and Taskers.</p>
-      </div>
-      <div class="clause">
-        <h4>Escrow Principle</h4>
-        <p>Task Owner payment is held in escrow before matching or direct offer acceptance. Escrow is released,
-          refunded, partially refunded, or held based on task state, evidence, cancellation timing, completion
-          confirmation, dispute outcome, or admin resolution.</p>
-      </div>
-      <div class="clause">
-        <h4>Cancellation Rules</h4>
-        <p>The current MVP cancellation rules are: Task Owner cancellation before Tasker acceptance has no penalty. Task
-          Owner cancellation after Tasker acceptance has no penalty. Task Owner cancellation while Tasker is en route
-          has a 10% penalty and 1 warning. Task Owner cancellation after Tasker arrives has a 10% penalty and 1 warning.
-          Tasker cancellation after accepting gives 1 warning. Tasker no-show gives 1 strike. Task Owner no-show gives a
-          10% penalty and 1 warning.</p>
-      </div>
-      <div class="clause">
-        <h4>Task Owner Rejection Window</h4>
-        <p>A Task Owner may reject a Tasker before the Tasker starts moving and within 5 minutes after the Tasker marks
-          en route. Rejections after movement are logged. Repeated movement-stage rejections can trigger warning, trust
-          score reduction, or risk review.</p>
-      </div>
-      <div class="clause">
-        <h4>Late Arrival and Grace</h4>
-        <p>The Task Owner sets the required arrival time. The Tasker must confirm they can arrive on or before that
-          time. A recommended grace period of 10 minutes may apply after the agreed arrival time before late/no-show
-          reporting, subject to product settings and admin review.</p>
-      </div>
-      <div class="clause">
-        <h4>Clear vs Contested Violations</h4>
-        <p>Clear policy violations may be penalized immediately. Contested cases may be held for admin review or
-          timeout. Work2Cash may request chat records, task proof, location events, status timestamps, payment records,
-          and other evidence before deciding.</p>
-      </div>
-      <div class="clause">
-        <h4>Refund Outcomes</h4>
-        <p>A refund may be full, partial, denied, or converted into wallet credit depending on payment status,
-          cancellation stage, task state, evidence, dispute outcome, payment provider status, and applicable fees.
-          Refunds normally return to the Task Owner wallet or original payment route where supported.</p>
-      </div>
-      <div class="clause">
-        <h4>Excess Task Owner Funds</h4>
-        <p>Task Owner wallet funds are expected to be used for tasks. If a Task Owner deposits more than required or
-          needs help with excess funds, they must contact support for review. Direct self-withdrawal from Task Owner
-          wallet is not available by default.</p>
-      </div>
-      <div class="clause">
-        <h4>Tasker Settlement Holds</h4>
-        <p>Tasker payout delay applies only when a Tasker has one or more active issue/dispute tasks, risk flags, payout
-          review issues, or invalid payout details. Non-disputed Tasker earnings should settle normally into the Tasker
-          wallet. Disputed Tasker payout requires admin authorization before release.</p>
-      </div>
-      <div class="clause">
-        <h4>Payout Calendar Impact</h4>
-        <p>Even after earnings are settled into the Tasker wallet, withdrawal requests are paid in bulk payout batches
-          on the 14th and 28th of each month. If a payout date falls on a non-working day or provider outage, payment
-          may move to the next operational processing window.</p>
-      </div>
-      <div class="clause">
-        <h4>Warnings and Strikes</h4>
-        <p>Three warnings convert to one strike. Tasker Strike 1 restricts task acceptance for 2 days, Strike 2 for 1
-          week, Strike 3 for 1 month, and Strike 4 may suspend the account. Task Owner strikes reduce trust score for
-          Strikes 1-3, while Strike 4 may suspend the account and require support review.</p>
-      </div>
-      <div class="clause">
-        <h4>Admin Resolution</h4>
-        <p>Where a task is disputed, Work2Cash may resolve in favor of the Task Owner, in favor of the Tasker, partially
-          refund, fully refund, release escrow, apply penalties, warn, strike, suspend, or dismiss the report. Admin
-          actions should be evidence-based and audit logged.</p>
-      </div>
-      <div class="clause">
-        <h4>Provider Delays and Failed Payments</h4>
-        <p>Payment and refund timing may depend on Paystack, Moniepoint, banks, card networks, transfer rails, webhook
-          delays, reconciliation, fraud checks, or provider outages. Work2Cash will use reasonable efforts to reconcile
-          failed or pending payments.</p>
-      </div>
-      <div class="clause">
-        <h4>No Off-Platform Refunds</h4>
-        <p>Users must not arrange refunds, compensation, or extra payments outside Work2Cash for Work2Cash tasks.
-          Off-platform settlement can remove platform protections and may lead to warning, strike, restriction, or
-          suspension.</p>
-      </div>
-    </section>
-    <section class="section legal-doc" id="doc-safety">
-      <div class="section-num">05</div>
-      <div class="eyebrow">Public Legal Page Draft</div>
-      <h2>Community &amp; Safety Guidelines</h2>
-      <p class="intro">Rules for safe, respectful, lawful, and on-platform behavior.</p>
-      <div class="doc-meta">
-        <div><span>Recommended URL</span><strong>https://work2cash.ng/legal/safety</strong></div>
-        <div><span>Status</span><strong>Draft - counsel review required</strong></div>
-        <div><span>Version</span><strong>1.0-draft</strong></div>
-        <div><span>Date</span><strong>3 July 2026</strong></div>
-      </div>
-      <div class="notice-box"><strong>Review notice:</strong> These drafts are prepared for operational and legal
-        review. They should not be published until reviewed and approved by qualified Nigerian legal counsel and the
-        final company contact, retention schedule, provider terms, and regulator-specific obligations are confirmed.
-      </div>
-      <div class="clause">
-        <h4>Our Safety Standard</h4>
-        <p>Work2Cash is built for lawful, respectful, evidence-backed task work. Every user must protect personal
-          safety, property, privacy, and platform trust.</p>
-      </div>
-      <div class="clause">
-        <h4>Respectful Conduct</h4>
-        <p>Users must not harass, threaten, insult, discriminate, stalk, intimidate, extort, sexually harass, or abuse
-          another user, admin, support agent, or third party. Unsafe behavior should be reported immediately.</p>
-      </div>
-      <div class="clause">
-        <h4>Prohibited Tasks</h4>
-        <p>Work2Cash does not allow illegal activities, adult or sexual services, weapons-related tasks, intimidation or
-          violence, drug-related tasks, high-risk medical tasks, licensed professional tasks unless specifically
-          approved, overnight stay tasks, tasks involving minors without appropriate guardian presence, unsafe travel or
-          access, tasks outside approved categories, or any task that violates law or public safety.</p>
-      </div>
-      <div class="clause">
-        <h4>Off-Platform Requests</h4>
-        <p>Users must not request, encourage, or accept off-platform payment, direct booking, phone-number exchange for
-          bypassing Work2Cash, or any arrangement intended to avoid platform escrow, fees, safety controls, or dispute
-          records. Off-platform solicitation is reportable.</p>
-      </div>
-      <div class="clause">
-        <h4>Task Site Safety</h4>
-        <p>Task Owners must provide a safe and lawful task environment. The task site should be accessible, accurately
-          described, and free from avoidable hazards. Taskers should leave or refuse if a situation becomes unsafe and
-          should report the issue through Work2Cash.</p>
-      </div>
-      <div class="clause">
-        <h4>Tasker Safety Rights</h4>
-        <p>Taskers may reject unsafe tasks without penalty. After acceptance, a Tasker may cancel without penalty only
-          if a valid safety issue is reported and accepted through review. Evidence such as messages, photos, location,
-          or status timestamps may be requested.</p>
-      </div>
-      <div class="clause">
-        <h4>Privacy and Media</h4>
-        <p>Users must not upload private, illegal, misleading, unrelated, or humiliating media. Task proof should show
-          the work needed or work completed, not expose unnecessary personal information. Admin may remove unsafe or
-          invalid media and log the reason.</p>
-      </div>
-      <div class="clause">
-        <h4>Communication Safety</h4>
-        <p>Chat, voice messages, masked calls, and support communication must be used only for task-related and
-          support-related purposes. Work2Cash may review communication metadata, reports, and evidence for safety,
-          fraud, support, or dispute reasons. Voice messages are treated as user-generated evidence and should follow
-          the same safety rules.</p>
-      </div>
-      <div class="clause">
-        <h4>Masked Calls</h4>
-        <p>Masked calls are provided to protect real phone numbers where technically and operationally available. Users
-          must not pressure others to reveal real phone numbers. Before calls, users should see a reminder to keep task
-          communication and payment inside Work2Cash.</p>
-      </div>
-      <div class="clause">
-        <h4>Emergency Situations</h4>
-        <p>Work2Cash support is not a police, ambulance, fire, or emergency-response service. If there is immediate
-          danger, users should contact local emergency services or nearby authorities first, then report the incident to
-          Work2Cash when safe.</p>
-      </div>
-      <div class="clause">
-        <h4>Reports and Enforcement</h4>
-        <p>Users can report no-show, poor service, unsafe behavior, harassment, damage/theft, off-platform request,
-          wrong location, payment/refund issue, and other concerns. Verified abuse may lead to warnings, strikes,
-          trust-score changes, settlement holds, suspension, reporting to authorities, or permanent removal.</p>
-      </div>
-      <div class="clause">
-        <h4>Blocking Users</h4>
-        <p>Task Owners and Taskers may block each other after a task or support case where the feature is available.
-          Blocking prevents future direct offers or preferred matching but does not delete task history, evidence,
-          finance records, or audit records.</p>
-      </div>
-    </section>
-    <section class="section legal-doc" id="doc-kyc-consent">
-      <div class="section-num">06</div>
-      <div class="eyebrow">Public Legal Page Draft</div>
-      <h2>KYC Consent Notice</h2>
-      <p class="intro">Explains identity verification for Taskers and the consent needed to process KYC data.</p>
-      <div class="doc-meta">
-        <div><span>Recommended URL</span><strong>https://work2cash.ng/legal/kyc-consent</strong></div>
-        <div><span>Status</span><strong>Draft - counsel review required</strong></div>
-        <div><span>Version</span><strong>1.0-draft</strong></div>
-        <div><span>Date</span><strong>3 July 2026</strong></div>
-      </div>
-      <div class="notice-box"><strong>Review notice:</strong> These drafts are prepared for operational and legal
-        review. They should not be published until reviewed and approved by qualified Nigerian legal counsel and the
-        final company contact, retention schedule, provider terms, and regulator-specific obligations are confirmed.
-      </div>
-      <div class="clause">
-        <h4>Why KYC Is Required</h4>
-        <p>Taskers must complete identity verification before accepting tasks. KYC helps Work2Cash protect users, reduce
-          fraud, support payments, comply with legal obligations, investigate disputes, and build trust in the
-          marketplace.</p>
-      </div>
-      <div class="clause">
-        <h4>Information We May Request</h4>
-        <p>We may request your full name, phone number, email address, date of birth where required, NIN, BVN, identity
-          document details, document photo, selfie, biometric capture, address/state, bank-account details, and related
-          verification information.</p>
-      </div>
-      <div class="clause">
-        <h4>Verification Provider</h4>
-        <p>Work2Cash may use Smile ID or another approved KYC provider to verify identity information. The provider may
-          process identity documents, biometric/selfie data, NIN/BVN references, verification checks, match results, and
-          provider reference IDs according to its own security and compliance obligations.</p>
-      </div>
-      <div class="clause">
-        <h4>Consent</h4>
-        <p>By starting Tasker KYC, you consent to Work2Cash and its approved KYC provider collecting, transmitting,
-          verifying, storing, reviewing, and processing the information needed to complete identity verification, fraud
-          checks, manual review, audit, dispute support, and compliance obligations.</p>
-      </div>
-      <div class="clause">
-        <h4>Manual Review</h4>
-        <p>If automated verification is incomplete, inconsistent, unavailable, or high risk, Work2Cash may place your
-          KYC in manual review. A reviewer may see necessary identity information and evidence subject to permission
-          controls and audit logging.</p>
-      </div>
-      <div class="clause">
-        <h4>KYC Outcomes</h4>
-        <p>KYC may be approved, rejected, expired, placed in manual review, or require resubmission. Work2Cash may
-          restrict Tasker acceptance until KYC is approved. Rejection may occur where information is inaccurate,
-          unverifiable, inconsistent, expired, fraudulent, or unsupported by provider checks.</p>
-      </div>
-      <div class="clause">
-        <h4>Data Protection</h4>
-        <p>KYC data is sensitive. Work2Cash should restrict access, audit reviewer actions, avoid logging sensitive
-          values unnecessarily, and use secure transmission and storage practices. Exact retention periods must be
-          confirmed before public launch.</p>
-      </div>
-      <div class="clause">
-        <h4>Withdrawal of Consent</h4>
-        <p>You may contact privacy@work2cash.ng to ask about KYC data, correction, deletion, or consent withdrawal.
-          Withdrawing consent or requesting deletion may prevent you from acting as a Tasker where KYC is required for
-          safety, compliance, payment, dispute, or fraud-prevention reasons.</p>
-      </div>
-      <div class="clause">
-        <h4>False Information</h4>
-        <p>Submitting false, forged, stolen, altered, or misleading KYC information may lead to rejection, suspension,
-          payout hold, reporting to providers/regulators/law enforcement where appropriate, and permanent removal from
-          Work2Cash.</p>
-      </div>
-      <div class="clause">
-        <h4>Questions</h4>
-        <p>For KYC support, contact support@work2cash.ng. For privacy questions, contact privacy@work2cash.ng.</p>
-      </div>
-    </section>
-    <section class="section legal-doc" id="doc-location">
-      <div class="section-num">07</div>
-      <div class="eyebrow">Public Legal Page Draft</div>
-      <h2>Location Permission Notice</h2>
-      <p class="intro">Explains when Work2Cash collects location, how it is used, and how exact task addresses are
-        protected.</p>
-      <div class="doc-meta">
-        <div><span>Recommended URL</span><strong>https://work2cash.ng/legal/location</strong></div>
-        <div><span>Status</span><strong>Draft - counsel review required</strong></div>
-        <div><span>Version</span><strong>1.0-draft</strong></div>
-        <div><span>Date</span><strong>3 July 2026</strong></div>
-      </div>
-      <div class="notice-box"><strong>Review notice:</strong> These drafts are prepared for operational and legal
-        review. They should not be published until reviewed and approved by qualified Nigerian legal counsel and the
-        final company contact, retention schedule, provider terms, and regulator-specific obligations are confirmed.
-      </div>
-      <div class="clause">
-        <h4>Why Location Is Needed</h4>
-        <p>Work2Cash uses location to create accurate task sites, help Taskers find nearby work, sort tasks nearest
-          first, calculate ETA, support live task tracking, verify arrival, support safety review, and resolve disputes.
-        </p>
-      </div>
-      <div class="clause">
-        <h4>Task Owner Location Use</h4>
-        <p>A Task Owner may use live location or manually enter a task site address. When an address is manually
-          entered, Work2Cash may geocode it into coordinates and ask the Task Owner to confirm the map pin before
-          posting. A Task Owner can be anywhere, but the task site must be in Nigeria.</p>
-      </div>
-      <div class="clause">
-        <h4>Tasker Location Use</h4>
-        <p>A Tasker must be in Nigeria to accept tasks. Location may be required while the Tasker is available, browsing
-          tasks, filtering tasks by location, accepting a task, starting journey, travelling to the task site, marking
-          arrival, beginning the task, working, or resolving an active task issue.</p>
-      </div>
-      <div class="clause">
-        <h4>Live Tracking Window</h4>
-        <p>Live tracking begins when a task has been accepted and the Tasker is en route or otherwise in a valid active
-          task state. Tracking should stop when the task is completed, cancelled, expired, disputed without live
-          tracking need, or otherwise no longer requires location updates.</p>
-      </div>
-      <div class="clause">
-        <h4>ETA Updates</h4>
-        <p>Work2Cash may calculate ETA using a map provider such as Google Maps. To reduce cost, battery use, and
-          unnecessary provider calls, paid ETA refresh may be guarded. The architecture uses a 5-minute timer plus the
-          next 10% total-journey progress milestone, with journey progress being the main trigger. After a refresh, the
-          timer and milestone reset.</p>
-      </div>
-      <div class="clause">
-        <h4>Accuracy</h4>
-        <p>If GPS accuracy is poor, Work2Cash may warn the user, retry location capture, or request confirmation. Users
-          must not falsify location, mark arrival before arriving, or use tools to manipulate task tracking.</p>
-      </div>
-      <div class="clause">
-        <h4>Address Privacy</h4>
-        <p>Public task listings show limited location information. Exact task address and full proof media are not meant
-          to be public. They are shown only when platform rules are satisfied, such as payment, acceptance, and valid
-          task state.</p>
-      </div>
-      <div class="clause">
-        <h4>Location in Disputes</h4>
-        <p>Location records, geocoding records, arrival timestamps, journey events, and task state changes may be used
-          to review late arrival, no-show, wrong location, unsafe location, cancellation, and completion disputes.</p>
-      </div>
-      <div class="clause">
-        <h4>Turning Off Location</h4>
-        <p>You may control location permission through your device settings. Some Work2Cash features may not work
-          without location permission, especially Tasker availability, task acceptance, journey tracking, arrival
-          confirmation, and location-based discovery.</p>
-      </div>
-      <div class="clause">
-        <h4>Contact</h4>
-        <p>For questions about location data, contact privacy@work2cash.ng or support@work2cash.ng.</p>
-      </div>
-    </section>
-    <section class="section legal-doc" id="doc-payment-wallet">
-      <div class="section-num">08</div>
-      <div class="eyebrow">Public Legal Page Draft</div>
-      <h2>Payment &amp; Wallet Terms</h2>
-      <p class="intro">Explains payments, escrow, wallets, commissions, withdrawals, payout batches, failed payments,
-        and reconciliation.</p>
-      <div class="doc-meta">
-        <div><span>Recommended URL</span><strong>https://work2cash.ng/legal/payment-wallet</strong></div>
-        <div><span>Status</span><strong>Draft - counsel review required</strong></div>
-        <div><span>Version</span><strong>1.0-draft</strong></div>
-        <div><span>Date</span><strong>3 July 2026</strong></div>
-      </div>
-      <div class="notice-box"><strong>Review notice:</strong> These drafts are prepared for operational and legal
-        review. They should not be published until reviewed and approved by qualified Nigerian legal counsel and the
-        final company contact, retention schedule, provider terms, and regulator-specific obligations are confirmed.
-      </div>
-      <div class="clause">
-        <h4>Payment Providers</h4>
-        <p>Work2Cash may use Paystack, Moniepoint, banks, card networks, transfer processors, and other approved
-          providers to collect payments, verify transactions, hold references, process refunds, and transfer eligible
-          Tasker payouts.</p>
-      </div>
-      <div class="clause">
-        <h4>Escrow Funding</h4>
-        <p>Task Owners must fund tasks before matching, public discovery acceptance, or direct favorite Tasker offer
-          completion. Funds are held in escrow and released or refunded according to task state, completion,
-          cancellation, dispute, and admin resolution rules.</p>
-      </div>
-      <div class="clause">
-        <h4>Backend Verification</h4>
-        <p>A payment is not treated as successful only because a user saw a redirect, uploaded a screenshot, or tapped a
-          button. Work2Cash relies on backend verification, provider webhooks, provider references, and reconciliation
-          to confirm payment status.</p>
-      </div>
-      <div class="clause">
-        <h4>Wallet Types</h4>
-        <p>A user may have a Task Owner wallet and a Tasker wallet. The Task Owner wallet is for task funding, refunds,
-          and credits. The Tasker wallet receives task earnings and supports withdrawal requests subject to eligibility
-          and policy checks.</p>
-      </div>
-      <div class="clause">
-        <h4>Task Owner Wallet Restrictions</h4>
-        <p>Task Owner wallet funds are expected to be used for tasks. Direct self-withdrawal from the Task Owner wallet
-          is not available by default. If excess funds need review, the Task Owner must contact support.</p>
-      </div>
-      <div class="clause">
-        <h4>Tasker Earnings</h4>
-        <p>Tasker earnings are credited after task completion, escrow release, and applicable commission/fee rules.
-          Tasker earnings display should show gross task amount, platform commission, and net earning where applicable.
-        </p>
-      </div>
-      <div class="clause">
-        <h4>Commission Tiers</h4>
-        <p>The default platform commission is 20%. The rate may reduce to 17.5% after 20 completed tasks, 15% after 50
-          completed tasks, 12.5% after 100 completed tasks, and 10% after 500 completed tasks. Only successfully
-          completed and settled tasks count toward tier progression.</p>
-      </div>
-      <div class="clause">
-        <h4>Minimum Amounts</h4>
-        <p>The minimum task amount is ₦2,000. The minimum Tasker withdrawal is ₦1,000. Work2Cash may update minimums
-          after notice or as required for provider cost, fraud prevention, or marketplace health.</p>
-      </div>
-      <div class="clause">
-        <h4>Withdrawal Requests</h4>
-        <p>Submitting a withdrawal request does not guarantee immediate payment. Work2Cash may review withdrawal
-          eligibility, KYC, bank details, risk flags, active disputes, settlement holds, provider limits, and payout
-          calendar before payment.</p>
-      </div>
-      <div class="clause">
-        <h4>Payout Batch Dates</h4>
-        <p>Eligible Tasker withdrawal requests are paid in bulk batches on the 14th and 28th of every month using
-          Paystack, Moniepoint, or other approved payout rails where available. Requests submitted too close to a batch
-          date, requests under review, failed provider transfers, or held payouts may move to the next batch.</p>
-      </div>
-      <div class="clause">
-        <h4>Settlement Holds</h4>
-        <p>Work2Cash may hold settlement or payout for active disputes, active issues, suspected fraud, chargebacks,
-          reversed payments, duplicate provider events, invalid proof, unsafe conduct, KYC concerns, or admin review.
-          Non-disputed earnings should not be held unnecessarily.</p>
-      </div>
-      <div class="clause">
-        <h4>Refunds</h4>
-        <p>Refunds may be issued to the Task Owner wallet or original payment route where supported. Payment-processing
-          fees, provider fees, cancellation penalties, and partial service outcomes may affect refund amount. Provider
-          timing can affect when funds become visible.</p>
-      </div>
-      <div class="clause">
-        <h4>Failed, Pending, or Duplicate Payments</h4>
-        <p>If a payment is failed, pending, duplicated, or unclear, Work2Cash may reconcile with Paystack, Moniepoint,
-          or other providers before updating wallet or task state. Users should not create duplicate payments unless the
-          app instructs them to do so.</p>
-      </div>
-      <div class="clause">
-        <h4>Chargebacks and Reversals</h4>
-        <p>Chargebacks, bank reversals, fraudulent payments, or provider reversals may cause escrow holds, wallet debit,
-          task restriction, dispute review, risk flags, suspension, or recovery actions.</p>
-      </div>
-      <div class="clause">
-        <h4>Bank Details and Transfer Errors</h4>
-        <p>Taskers are responsible for accurate payout bank details. Work2Cash is not responsible for losses caused by
-          incorrect details supplied by a user, except where Work2Cash caused the error. Failed transfers may be
-          retried, reversed, or held for support review.</p>
-      </div>
-      <div class="clause">
-        <h4>Ledger Records</h4>
-        <p>Wallet balances must be backed by ledger records. Work2Cash may maintain transaction history, escrow records,
-          payout batch records, webhook logs, admin audit logs, and reconciliation logs for finance, safety, audit, and
-          legal purposes.</p>
-      </div>
-      <div class="clause">
-        <h4>Provider Terms</h4>
-        <p>Payment providers may have their own terms, limits, downtime, bank-transfer charges, card fees, settlement
-          timelines, and compliance checks. Users may be subject to provider terms when using payment or payout
-          services.</p>
-      </div>
-    </section>
-    <section class="section" id="internal-notes">
-      <div class="section-num">09</div>
-      <div class="eyebrow">Internal Publishing Notes</div>
-      <h2>Publishing Notes & Counsel Checklist</h2>
-      <p class="intro">These notes are intended for the Work2Cash team and should not be published as user-facing policy
-        content unless rewritten for public use.</p>
-      <h3>Publishing Map</h3>
-      <p>The public legal pages should be published as static pages first at /legal/terms, /legal/privacy,
-        /legal/tasker-agreement, /legal/cancellation-refund, /legal/safety, /legal/kyc-consent, /legal/location, and
-        /legal/payment-wallet. Admin-managed legal content can come later after the product stabilizes.</p>
-      <h3>Mobile Permission Copy</h3>
-      <p>Location: Work2Cash uses location to set task sites, sort nearby tasks, calculate ETA, verify arrival, and
-        enable live tracking during active tasks. Camera/Photos: Work2Cash uses photos and videos for task proof,
-        completion proof, KYC, support evidence, and dispute evidence. Microphone: Work2Cash uses microphone access for
-        voice messages. Notifications: Work2Cash sends task, offer, payment, support, KYC, safety, and payout updates.
-        Phone/Dialer: Work2Cash may open your phone dialer for masked calls through a Work2Cash proxy number.</p>
-      <h3>Counsel Review Checklist</h3>
-      <p>Before publication, counsel should confirm legal entity details, governing law wording, dispute resolution
-        forum, data controller/processor language, NDPA privacy wording, retention schedule, provider-specific
-        payment/KYC/call terms, transfer/cross-border wording, tax language, consumer-protection wording, limitation of
-        liability enforceability, and app-store privacy disclosures.</p>
-      <h3>Regulatory Reference Notes</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Reference Area</th>
-              <th>Drafting Impact</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Nigeria data protection</td>
-              <td>Privacy Policy, KYC Consent, Location Notice, media handling, support records, and retention schedule
-                should be aligned with NDPA/NDPC expectations.</td>
-            </tr>
-            <tr>
-              <td>Consumer protection</td>
-              <td>Terms, cancellation/refund, pricing disclosure, dispute handling, and user support wording should be
-                reviewed for fairness and clarity.</td>
-            </tr>
-            <tr>
-              <td>Payments and financial records</td>
-              <td>Payment, wallet, escrow, refunds, payout batches, reconciliation, and provider terms should be
-                reviewed with finance/legal before launch.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <section class="panel" id="terms">
+<div class="eyebrow">Document 01</div>
+<h2>Terms of Service</h2>
+<p>Platform rules for Task Owners, Taskers, administrators, and support operations.</p>
+<h3>Purpose and Scope</h3>
+<ul>
+<li>These Terms govern the use of Work2Cash, a Nigeria-focused platform that connects Task Owners with nearby Taskers for approved short-duration services.</li>
+<li>Work2Cash provides marketplace, payment, wallet, matching, chat, support, KYC, and operational tools. Work2Cash is not the direct employer of Taskers in the MVP model.</li>
+<li>The platform is designed for use within Nigeria. Users outside Nigeria may be restricted from posting tasks, accepting tasks, or receiving task offers.</li>
+</ul>
+<h3>User Roles</h3>
+<ul>
+<li>A single account may operate as a Task Owner and as a Tasker.</li>
+<li>Any authenticated user may act as a Task Owner where the user satisfies platform rules.</li>
+<li>A user may act as a Tasker only after completing Tasker profile setup, passing required KYC, and remaining in good standing.</li>
+<li>The active mode selected in the app controls what actions are available to the user at any point in time.</li>
+</ul>
+<h3>Account Responsibilities</h3>
+<ul>
+<li>Users must provide accurate account, contact, task, payment, and KYC information.</li>
+<li>Users are responsible for protecting their login credentials, OTPs, devices, and sessions.</li>
+<li>Users must not create multiple accounts to bypass restrictions, warnings, strikes, suspensions, referral rules, or payment controls.</li>
+<li>Work2Cash may restrict, review, or suspend accounts where fraud, abuse, unsafe conduct, or policy violations are suspected.</li>
+</ul>
+<h3>Task Marketplace Rules</h3>
+<ul>
+<li>Task Owners may create tasks from approved task categories and service types.</li>
+<li>Task Owners may pay into escrow before a task is broadcast publicly or sent directly to a favorite Tasker.</li>
+<li>Taskers may accept public task offers or direct task offers only when eligible, available, and not restricted by policy.</li>
+<li>Task chat becomes available only after a task has been accepted.</li>
+<li>REST APIs remain the source of truth for task, payment, wallet, and dispute state. Socket events are used only for real-time support features such as chat, tracking, and presence.</li>
+</ul>
+<h3>Payments, Escrow, and Wallets</h3>
+<ul>
+<li>Task payments are processed through supported Nigerian payment providers, including Paystack and Moniepoint.</li>
+<li>Payment processing fees are paid by the Task Owner as a separate fee and should be displayed before payment confirmation.</li>
+<li>Task funds are held in escrow until the task reaches an eligible completion or resolution state.</li>
+<li>Task Owner wallet funds are intended for task payments, refunds, credits, and platform use. Direct withdrawal from a Task Owner wallet is disabled by default.</li>
+<li>Tasker wallet funds represent eligible earnings and may be withdrawn according to platform rules.</li>
+</ul>
+<h3>Commission and Earnings</h3>
+<ul>
+<li>The default platform commission is 20 percent of completed task value.</li>
+<li>Tasker commission improves with settled completed task count: 17.5 percent after 20 tasks, 15 percent after 50 tasks, 12.5 percent after 100 tasks, and 10 percent after 500 tasks.</li>
+<li>The minimum task amount is ₦2,000.</li>
+<li>The minimum Tasker withdrawal amount is ₦1,000.</li>
+<li>Taskers should be shown gross task amount, platform commission, and net earning before accepting eligible work.</li>
+</ul>
+<h3>Warnings, Strikes, and Suspension</h3>
+<ul>
+<li>Three warnings convert to one strike.</li>
+<li>For Taskers: Strike 1 prevents accepting tasks for 2 days, Strike 2 for 1 week, Strike 3 for 1 month, and Strike 4 suspends the account.</li>
+<li>For Task Owners: Strike 1, Strike 2, and Strike 3 reduce trust score. Strike 4 suspends the account and requires contacting support.</li>
+<li>Warnings, strikes, trust score reductions, penalties, and suspensions must be recorded as policy events.</li>
+</ul>
+<h3>Prohibited Conduct</h3>
+<ul>
+<li>Users must not request illegal, unsafe, adult, drug-related, weapon-related, violent, fraudulent, or off-platform activities.</li>
+<li>Users must not harass, threaten, abuse, discriminate against, or intimidate other users, Taskers, Task Owners, support agents, or administrators.</li>
+<li>Users must not request payment outside Work2Cash, move platform transactions off-platform, or manipulate task completion status.</li>
+<li>Work2Cash may investigate and restrict users for suspicious activity, repeated complaints, repeated cancellations, no-shows, or fraud signals.</li>
+</ul>
+<h3>Disputes and Support</h3>
+<ul>
+<li>Task-linked reports and disputes are handled through structured options, evidence upload, admin review, and resolution actions.</li>
+<li>Disputes do not use live chat in v1.</li>
+<li>Users may use support live chat for operational help, urgent support, and account/payment assistance.</li>
+<li>Support and dispute outcomes are subject to platform rules, available evidence, task state, payment state, and audit history.</li>
+</ul>
+<h3>Changes and Legal Review</h3>
+<ul>
+<li>These draft Terms are intended as a product and architecture policy baseline.</li>
+<li>Final public Terms should be reviewed by qualified legal counsel before launch.</li>
+<li>Work2Cash may update public terms, policies, and operational rules as the platform grows, provided users receive appropriate notice where required.</li>
+</ul>
+</section><section class="panel" id="privacy">
+<div class="eyebrow">Document 02</div>
+<h2>Privacy Policy</h2>
+<p>Data collection, use, security, retention, and user privacy rights.</p>
+<h3>Privacy Position</h3>
+<ul>
+<li>Work2Cash is designed to follow privacy-by-design and data-minimization practices for the Nigerian market.</li>
+<li>The platform should align with the Nigeria Data Protection Act 2023 and regulatory direction from the Nigeria Data Protection Commission.</li>
+<li>This draft privacy policy defines operational intent and should be reviewed by legal counsel before publication.</li>
+</ul>
+<h3>Data We Collect</h3>
+<ul>
+<li>Account data: name, phone number, email address, profile photo, account status, referral code, saved addresses, device records, and session records.</li>
+<li>Tasker and KYC data: Tasker profile, skills, categories, availability, NIN or BVN submission reference, biometric verification status, Smile ID results, review status, and admin decision history.</li>
+<li>Task data: task category, task description, task location, task value, selected matching method, assigned Tasker, status history, cancellation records, reports, and completion evidence where used.</li>
+<li>Payment and wallet data: payment references, provider metadata, wallet ledger entries, escrow records, refunds, withdrawals, reconciliation records, and webhook event logs.</li>
+<li>Communication data: task chat messages, support live chat messages, support tickets, and structured dispute/report evidence.</li>
+<li>Operational data: audit logs, use case logs, background job logs, API logs, error logs, security events, and risk flags.</li>
+</ul>
+<h3>Why We Use Data</h3>
+<ul>
+<li>To create and manage user accounts.</li>
+<li>To verify Taskers and protect marketplace trust.</li>
+<li>To create, match, track, complete, cancel, and resolve tasks.</li>
+<li>To process payments, escrow, wallet credit, withdrawals, refunds, penalties, and referral rewards.</li>
+<li>To provide notifications through email, Termii SMS, Firebase Cloud Messaging, and in-app channels.</li>
+<li>To provide task chat, support live chat, user reports, dispute handling, and safety review.</li>
+<li>To monitor fraud, enforce platform policies, improve reliability, and meet legal, accounting, audit, or regulatory obligations.</li>
+</ul>
+<h3>Sensitive Data Handling</h3>
+<ul>
+<li>KYC and biometric verification data must be restricted to authorized workflows and authorized administrators.</li>
+<li>NIN, BVN, biometric references, KYC results, payment provider payloads, OTPs, secrets, and webhook secrets must not be exposed in logs, analytics, support screenshots, or Sentry events.</li>
+<li>Sensitive admin views must be role-restricted and audit-logged.</li>
+<li>Backups containing sensitive data should be encrypted and stored off-server.</li>
+</ul>
+<h3>Location Data</h3>
+<ul>
+<li>Task Owners may use GPS or manual address entry to provide task location.</li>
+<li>Tasker location is required while the Tasker is available or active.</li>
+<li>Live tracking starts from task acceptance or en-route state and stops when the task is completed, cancelled, disputed, or expired.</li>
+<li>Exact task address is shown only after payment and Tasker acceptance.</li>
+<li>Live location is primarily temporary state and should be stored in Valkey where possible. Only important milestones and tracking events should be persisted in PostgreSQL.</li>
+</ul>
+<h3>Third-Party Providers</h3>
+<ul>
+<li>Work2Cash may share required data with providers that support platform operations, including Paystack, Moniepoint, Smile ID, Termii, Firebase Cloud Messaging, Firebase Analytics, Sentry, Google Maps, Shorebird, and storage/hosting providers.</li>
+<li>Data shared with providers must be limited to what is needed for the specific service.</li>
+<li>Provider integrations should be isolated through backend adapters where practical.</li>
+</ul>
+<h3>Retention Rules</h3>
+<ul>
+<li>User profile data is retained while an account is active and may be deleted or anonymized after closure unless retention is required.</li>
+<li>KYC records are retained for trust, safety, fraud prevention, regulatory, and dispute reasons.</li>
+<li>Wallet, payment, escrow, refund, withdrawal, and reconciliation records are retained long-term for finance, audit, fraud prevention, and accounting needs.</li>
+<li>Task chat, support chat, and dispute records are retained for support, safety, evidence, and quality review.</li>
+<li>Raw continuous GPS trails should not be stored permanently by default.</li>
+<li>Application debug logs should have shorter retention than audit, security, finance, and KYC records.</li>
+</ul>
+<h3>User Rights and Requests</h3>
+<ul>
+<li>Users should be able to request access to account data, correction of profile data, account deletion or deactivation, support review of sensitive decisions, and privacy/security support.</li>
+<li>Account deletion does not automatically delete finance, escrow, KYC, dispute, fraud, or audit records that Work2Cash must retain for legal, safety, accounting, or operational reasons.</li>
+<li>Where deletion is limited by retention duties, Work2Cash may deactivate the account and anonymize fields that are not required for retention.</li>
+</ul>
+<h3>Security Practices</h3>
+<ul>
+<li>Admin access requires TOTP 2FA.</li>
+<li>RBAC must control access to KYC, finance, risk, support, and configuration modules.</li>
+<li>PostgreSQL and Valkey must not be publicly exposed.</li>
+<li>Webhook signatures must be verified.</li>
+<li>Sentry, logs, analytics, push notifications, and support tools must be configured to avoid leaking sensitive user data.</li>
+</ul>
+</section><section class="panel" id="tasker">
+<div class="eyebrow">Document 03</div>
+<h2>Tasker Agreement</h2>
+<p>Rules for earning, profile activation, work quality, and withdrawal eligibility.</p>
+<h3>Tasker Activation</h3>
+<ul>
+<li>A user becomes eligible to operate as a Tasker only after creating a Tasker profile, selecting supported skills/categories, completing required KYC, and receiving approved/active status.</li>
+<li>KYC verification is mandatory before a Tasker can accept tasks.</li>
+<li>Tasker location access is required while the Tasker is available or active.</li>
+</ul>
+<h3>Tasker Responsibilities</h3>
+<ul>
+<li>Accept only tasks the Tasker can reasonably complete safely, honestly, and within the expected scope.</li>
+<li>Arrive at the task location as agreed and update task progress accurately.</li>
+<li>Use in-app chat for task-related communication after acceptance.</li>
+<li>Avoid off-platform payment requests, harassment, unsafe behavior, false completion requests, and manipulation of task status.</li>
+<li>Respect Task Owner property, privacy, and safety.</li>
+</ul>
+<h3>Offer Handling</h3>
+<ul>
+<li>Public task offers may be sent based on location, availability, category match, and platform rules.</li>
+<li>Direct offers may be sent by Task Owners who have favorited a Tasker.</li>
+<li>Direct offers are handled through REST/API state and FCM notification, not Socket.io.</li>
+<li>Taskers may accept or decline eligible offers. Unsafe tasks may be rejected without penalty if properly reported.</li>
+</ul>
+<h3>Earnings and Withdrawals</h3>
+<ul>
+<li>Tasker earnings become available only after escrow release or eligible admin resolution.</li>
+<li>The minimum Tasker withdrawal amount is ₦1,000.</li>
+<li>The platform commission starts at 20 percent and improves with settled completed task count.</li>
+<li>Cancelled, refunded, disputed-unresolved, test, or fraudulent tasks do not count toward commission tier progression.</li>
+</ul>
+<h3>Tasker Warnings and Strikes</h3>
+<ul>
+<li>Tasker cancellation after accepting a task creates one warning unless a valid safety exception is accepted.</li>
+<li>Tasker no-show creates one strike.</li>
+<li>Three warnings convert to one strike.</li>
+<li>Strike 1 prevents accepting tasks for 2 days. Strike 2 prevents accepting tasks for 1 week. Strike 3 prevents accepting tasks for 1 month. Strike 4 suspends the account.</li>
+</ul>
+</section><section class="panel" id="refund">
+<div class="eyebrow">Document 04</div>
+<h2>Cancellation &amp; Refund Policy</h2>
+<p>Cancellation, no-show, penalty, refund, and structured dispute rules.</p>
+<h3>Cancellation Rules</h3>
+<ul>
+<li>Task Owner cancels before Tasker accepts: no penalty.</li>
+<li>Task Owner cancels after Tasker accepts: no penalty.</li>
+<li>Task Owner cancels while Tasker is en route: 10 percent penalty and one warning.</li>
+<li>Task Owner cancels after Tasker arrives: 10 percent penalty and one warning.</li>
+<li>Tasker cancels after accepting: one warning.</li>
+<li>Tasker no-shows: one strike.</li>
+<li>Task Owner no-shows: 10 percent penalty and one warning.</li>
+</ul>
+<h3>Task Completion Refusal</h3>
+<ul>
+<li>If a task is completed but the Task Owner refuses approval, the Tasker may raise a task-linked report/dispute.</li>
+<li>The admin team reviews evidence and resolves through the structured dispute flow.</li>
+<li>Escrow is released, refunded, partially refunded, or otherwise resolved according to the dispute outcome and platform rules.</li>
+</ul>
+<h3>Refund Position</h3>
+<ul>
+<li>All funded amounts are expected to be used on tasks.</li>
+<li>If a Task Owner deposits more than the required amount, the Task Owner must contact support for next steps.</li>
+<li>Task Owner wallet withdrawal is disabled by default.</li>
+<li>Refund, excess funding, and wallet issues are handled through support and platform finance workflows.</li>
+</ul>
+<h3>Admin Override Position</h3>
+<ul>
+<li>No arbitrary admin override is allowed in v1.</li>
+<li>Admins may resolve disputes and support cases only through defined platform workflows.</li>
+<li>High-risk admin actions must require a reason and must be audit-logged.</li>
+</ul>
+</section><section class="panel" id="safety">
+<div class="eyebrow">Document 05</div>
+<h2>Community &amp; Safety Guidelines</h2>
+<p>Marketplace safety, prohibited tasks, reporting, blocking, and risk controls.</p>
+<h3>Expected Conduct</h3>
+<ul>
+<li>Users must treat each other respectfully and must not harass, threaten, insult, exploit, or intimidate others.</li>
+<li>Task Owners must provide accurate task details and safe access to the task location.</li>
+<li>Taskers must perform accepted work honestly and must not misrepresent task progress or completion.</li>
+<li>Both parties must keep payment and task communication on Work2Cash where the platform requires it.</li>
+</ul>
+<h3>Prohibited Task Types</h3>
+<ul>
+<li>Illegal activities.</li>
+<li>Adult or sexual services.</li>
+<li>Weapons, violence, intimidation, or coercion-related tasks.</li>
+<li>Drug-related tasks.</li>
+<li>High-risk medical tasks.</li>
+<li>Tasks requiring licensed professionals unless Work2Cash later creates a verified licensed category.</li>
+<li>Overnight stay tasks.</li>
+<li>Tasks involving minors without guardian presence.</li>
+<li>Tasks outside supported categories.</li>
+<li>Tasks requiring unsafe travel or unsafe location access.</li>
+</ul>
+<h3>Reports and Disputes</h3>
+<ul>
+<li>Reports are treated as structured dispute or safety reports.</li>
+<li>A report/dispute can be linked to a specific task.</li>
+<li>When creating a report, the user selects from a variety of report options.</li>
+<li>Report options depend on task state and reporter role.</li>
+<li>Reports go to the admin/risk/support review queue.</li>
+</ul>
+<h3>Blocking</h3>
+<ul>
+<li>Task Owners can block Taskers after a task or support case.</li>
+<li>Taskers can block Task Owners after a task or support case.</li>
+<li>Blocking prevents future direct offers and preferred matching.</li>
+<li>Blocking does not remove audit, dispute, payment, support, or task history.</li>
+</ul>
+<h3>Automatic Risk Flags</h3>
+<ul>
+<li>Multiple failed payment attempts, repeated cancellations, repeated no-shows, repeated disputes, repeated complaints, suspicious withdrawals, device/account abuse, location mismatch, KYC mismatch, and off-platform payment attempts may trigger risk review.</li>
+<li>Complaints should not automatically punish users until reviewed unless the risk is severe.</li>
+<li>Verified safety or fraud issues may lead to warnings, strikes, trust score reduction, restrictions, or suspension.</li>
+</ul>
+<h3>Emergency Support</h3>
+<ul>
+<li>MVP should include an emergency support escalation path.</li>
+<li>Emergency support can start as a high-priority support ticket/live chat route.</li>
+<li>The target response for emergency support is under 15 minutes.</li>
+<li>Work2Cash support is not a replacement for public emergency services where those services are required.</li>
+</ul>
+</section><section class="panel" id="kyc">
+<div class="eyebrow">Document 06</div>
+<h2>KYC Consent Notice</h2>
+<p>Identity verification consent and Tasker eligibility requirements.</p>
+<h3>Why KYC Is Required</h3>
+<ul>
+<li>KYC is required to protect Task Owners, Taskers, the platform, and payment flows from identity fraud, impersonation, and unsafe activity.</li>
+<li>A user cannot accept tasks as a Tasker until KYC is approved and the Tasker profile is active.</li>
+</ul>
+<h3>Information Used for Verification</h3>
+<ul>
+<li>KYC may require NIN or BVN submission, biometric face capture, profile information, device information, and verification results from the KYC provider.</li>
+<li>Smile ID is the planned KYC verification provider.</li>
+<li>Verification results may include approved, rejected, pending, expired, or manual-review status.</li>
+</ul>
+<h3>Consent and Review</h3>
+<ul>
+<li>By starting KYC, the user consents to Work2Cash processing and sharing required identity verification data with the KYC provider.</li>
+<li>KYC failures may block Tasker activation.</li>
+<li>Suspicious or unclear verification results may be sent to manual review.</li>
+<li>KYC status and decisions may be visible to authorized admins only.</li>
+</ul>
+<h3>KYC Security</h3>
+<ul>
+<li>KYC data must be restricted, role-protected, and audit-logged when accessed by admins.</li>
+<li>KYC data must not be exposed in ordinary logs, analytics, push messages, Sentry payloads, or customer support exports.</li>
+<li>KYC records may be retained for trust, safety, fraud prevention, regulatory, and dispute reasons.</li>
+</ul>
+</section><section class="panel" id="location">
+<div class="eyebrow">Document 07</div>
+<h2>Location Permission Notice</h2>
+<p>GPS, service coverage, address privacy, and live tracking rules.</p>
+<h3>Service Coverage</h3>
+<ul>
+<li>Work2Cash supports nationwide rollout across Nigeria.</li>
+<li>The active service boundary is Nigeria.</li>
+<li>Users outside Nigeria cannot post or receive tasks.</li>
+<li>Admin controls may temporarily restrict service in specific cities or zones if operations require it.</li>
+</ul>
+<h3>Task Owner Location</h3>
+<ul>
+<li>Task Owners may provide task location using GPS or manual address entry.</li>
+<li>Task Owners outside the active service area cannot post tasks.</li>
+<li>Exact address is shown only after payment and Tasker acceptance.</li>
+</ul>
+<h3>Tasker Location</h3>
+<ul>
+<li>Tasker location is required while available or active.</li>
+<li>Taskers outside the active service area cannot receive offers.</li>
+<li>Taskers may configure a maximum travel radius, subject to platform caps.</li>
+<li>Public broadcast radius defaults to 2km and is capped at 5km.</li>
+</ul>
+<h3>Live Tracking</h3>
+<ul>
+<li>Live tracking starts from accepted/en-route state and stops when the task is completed, cancelled, disputed, or expired.</li>
+<li>If GPS accuracy is worse than 100 meters, the app should warn the user and retry.</li>
+<li>Live tracking is used for task progress, safety, ETA, and support review.</li>
+</ul>
+</section><section class="panel" id="wallet">
+<div class="eyebrow">Document 08</div>
+<h2>Payment &amp; Wallet Terms</h2>
+<p>Escrow, wallet separation, fees, withdrawals, referrals, and ledger controls.</p>
+<h3>Payment Methods</h3>
+<ul>
+<li>Work2Cash uses Paystack and Moniepoint as launch payment providers.</li>
+<li>The platform should prioritize cardless payment flows where possible, including transfer and wallet-friendly payment experiences.</li>
+<li>Payment confirmation must be verified by backend systems and not by frontend redirect alone.</li>
+</ul>
+<h3>Wallet Separation</h3>
+<ul>
+<li>Each user may have a Task Owner wallet and a Tasker wallet.</li>
+<li>Task Owner wallet funds are for task payments, refunds, wallet credit, and platform use.</li>
+<li>Tasker wallet funds are earnings and can be withdrawn when eligible.</li>
+<li>Direct Task Owner wallet withdrawal is disabled by default and requires support handling.</li>
+</ul>
+<h3>Escrow Rules</h3>
+<ul>
+<li>Task funds are held in escrow after successful payment.</li>
+<li>Escrow may be released after completion approval or eligible admin resolution.</li>
+<li>Escrow may be refunded or partially refunded based on cancellation, report/dispute outcome, or support resolution.</li>
+<li>Escrow and wallet actions must be represented as append-only ledger entries.</li>
+</ul>
+<h3>Fees and Commission</h3>
+<ul>
+<li>Task Owner pays payment processing fees separately.</li>
+<li>Tasker commission starts at 20 percent and improves through completed, settled task count.</li>
+<li>Tasker earning displays should show gross task amount, commission, and net earning.</li>
+<li>Task Owner price displays should show task amount, service/platform/payment fees, and final total before payment.</li>
+</ul>
+<h3>Referrals</h3>
+<ul>
+<li>Referral reward is issued as wallet credit.</li>
+<li>Referral reward is granted only after the referred user completes 5 paid tasks.</li>
+<li>Referral rules should be configurable by admin and protected against self-referral or multi-account abuse.</li>
+</ul>
+<h3>Ledger and Reconciliation</h3>
+<ul>
+<li>Wallet balance must not change without a wallet transaction ledger record.</li>
+<li>Hourly ledger consistency checks should verify balances, escrow, refunds, penalties, withdrawals, and referral credits.</li>
+<li>Webhook events must be stored, verified, and reconciled.</li>
+<li>Manual finance actions must require reason and audit logging.</li>
+</ul>
+</section>
+    <section class="panel" id="handover">
+      <div class="eyebrow">Final Handover</div>
+      <h2>Launch Review Checklist</h2>
+      <ul><li>Legal counsel reviews all public legal pages before launch.</li>
+<li>Terms, Privacy Policy, Tasker Agreement, Cancellation &amp; Refund Policy, Safety Guidelines, KYC Consent, Location Notice, and Payment &amp; Wallet Terms are published.</li>
+<li>App store and Play Store privacy URLs point to the correct public pages.</li>
+<li>Signup, KYC, location, payment, and Tasker onboarding flows display the correct consent notices.</li>
+<li>Admin dashboard can audit KYC, finance, support, policy, and high-risk actions.</li>
+<li>Support team has scripts for excess wallet funding, disputes, emergency support, and suspended accounts.</li></ul>
+      <h3>Suggested Public URLs</h3>
+      <table>
+        <thead><tr><th>Document</th><th>Suggested URL</th></tr></thead>
+        <tbody>
+          <tr><td>Terms of Service</td><td>https://work2cash.ng/legal/terms</td></tr>
+          <tr><td>Privacy Policy</td><td>https://work2cash.ng/legal/privacy</td></tr>
+          <tr><td>Tasker Agreement</td><td>https://work2cash.ng/legal/tasker-agreement</td></tr>
+          <tr><td>Cancellation & Refund Policy</td><td>https://work2cash.ng/legal/cancellation-refund</td></tr>
+          <tr><td>Community & Safety Guidelines</td><td>https://work2cash.ng/legal/safety</td></tr>
+          <tr><td>KYC Consent Notice</td><td>https://work2cash.ng/legal/kyc-consent</td></tr>
+          <tr><td>Location Permission Notice</td><td>https://work2cash.ng/legal/location</td></tr>
+          <tr><td>Payment & Wallet Terms</td><td>https://work2cash.ng/legal/payment-wallet</td></tr>
+        </tbody>
+      </table>
+      <h3>References</h3>
+      <ul>
+        <li>Nigeria Data Protection Commission: https://ndpc.gov.ng/</li>
+        <li>Nigeria Data Protection Act 2023 should be reviewed by counsel against the final public wording.</li>
+      </ul>
     </section>
   </main>
-  <footer>
-    <div class="footer-inner">
-      <div>
-        <h4>Work2Cash</h4>
-        <p>Legal and user-facing document pack for review before public launch.</p>
-      </div>
-      <div>
-        <h4>Contacts</h4>
-        <p>Support: support@work2cash.ng<br>Privacy: privacy@work2cash.ng</p>
-      </div>
-      <div>
-        <h4>Important</h4>
-        <p>Final wording must be approved by qualified Nigerian legal counsel before publication.</p>
-      </div>
-    </div>
-  </footer>
-</body>
-
+  <footer>Work2Cash Legal & User-Facing Documents Draft - Prepared for Traceworka - Draft 1.0</footer></body>
 </html>
