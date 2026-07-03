@@ -1,26 +1,395 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work2Cash Documentation</title>
-  <link rel="stylesheet" href="./assets/css/docs.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work2Cash Documentation Portal</title>
+  <style>
+    :root {
+      --brand: #1F6AE1;
+      --brand-mid: #5B8DEF;
+      --brand-soft: #EAF2FF;
+      --header: #0F2A44;
+      --text: #1D2939;
+      --muted: #667085;
+      --success: #12B76A;
+      --warning: #FF8A00;
+      --danger: #F04438;
+      --line: #D8E2F1;
+      --bg: #F6F9FE;
+      --paper: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, "Nunito Sans", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(91, 141, 239, .22), transparent 26rem),
+        linear-gradient(180deg, #F6F9FE 0%, #FFFFFF 100%);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 56px 22px 80px;
+    }
+
+    .hero {
+      min-height: 360px;
+      border-radius: 26px;
+      padding: clamp(28px, 5vw, 58px);
+      color: #fff;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(91, 141, 239, .7), transparent 24rem),
+        radial-gradient(circle at 84% 76%, rgba(18, 183, 106, .2), transparent 26rem),
+        linear-gradient(135deg, #0F2A44 0%, #123B78 58%, #1F6AE1 115%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 24px 80px rgba(15, 42, 68, .18);
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      background: #fff;
+      color: var(--brand);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .brand-row span {
+      display: block;
+      color: rgba(255, 255, 255, .74);
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 42px 0 8px;
+      font-size: clamp(42px, 8vw, 80px);
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, .82);
+      max-width: 850px;
+      font-size: clamp(18px, 2.4vw, 25px);
+      font-weight: 700;
+    }
+
+    .panel {
+      margin-top: 28px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: clamp(20px, 3vw, 34px);
+      box-shadow: 0 18px 50px rgba(15, 42, 68, .07);
+    }
+
+    .panel h2 {
+      color: var(--header);
+      font-size: 30px;
+      margin: 0 0 10px;
+    }
+
+    .intro {
+      color: var(--muted);
+      max-width: 880px;
+    }
+
+    .auth-form {
+      display: grid;
+      gap: 12px;
+      max-width: 560px;
+      margin-top: 18px;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      background: var(--brand);
+      color: #fff;
+      padding: 14px 16px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .error {
+      color: var(--danger);
+      font-weight: 800;
+      min-height: 24px;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .doc-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      background: #fff;
+      min-height: 150px;
+    }
+
+    .doc-card span {
+      display: inline-block;
+      color: var(--brand);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 11px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .doc-card h3 {
+      margin: 0 0 8px;
+      color: var(--header);
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .doc-card p {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0 0 14px;
+    }
+
+    .doc-card a {
+      font-weight: 900;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 900px) {
+      .doc-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .shell {
+        padding: 22px 14px 44px;
+      }
+
+      .hero {
+        border-radius: 18px;
+        min-height: 320px;
+      }
+
+      .doc-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <main class="gate">
-    <div class="card">
-      <h1>Work2Cash Documentation</h1>
-      <p>Enter the team password to continue.</p>
+  <div class="shell">
+    <section class="hero">
+      <div class="brand-row">
+        <div class="logo">W2C</div>
+        <div><strong>Work2Cash</strong><span>Team Documentation Portal</span></div>
+      </div>
+      <div>
+        <h1>Documentation Portal</h1>
+        <div class="subtitle">Architecture, flows, implementation contracts, build plans and launch readiness documents
+          for the Work2Cash team.</div>
+      </div>
+    </section>
 
-      <input id="password" type="password" placeholder="Password" />
-      <button id="unlock">Open Documentation</button>
+    <section id="gate" class="panel">
+      <h2>Enter Team Password</h2>
+      <p class="intro">This is a soft client-side GitHub Pages gate for team convenience. Do not store secrets, API
+        keys, credentials, private user data, sensitive payment data or confidential operational secrets in this
+        repository.</p>
+      <form class="auth-form" id="auth-form">
+        <input id="password" type="password" autocomplete="current-password" placeholder="Password">
+        <button type="submit">Unlock Documentation</button>
+        <div class="error" id="error" role="alert"></div>
+      </form>
+      <p class="note">This password gate uses a SHA-256 hash only. Never commit the raw password.</p>
+    </section>
 
-      <p id="error" class="error"></p>
-    </div>
-  </main>
+    <section id="docs" class="panel hidden">
+      <h2>Document Library</h2>
+      <p class="intro">Use the Main Enterprise Architecture as the source of truth. Other documents expand specific
+        execution areas.</p>
+      <div class="doc-grid">
+        <article class="doc-card">
+          <span>Architecture</span>
+          <h3>Main Enterprise Architecture v1</h3>
+          <p>Top-level source of truth for Work2Cash product, architecture, infrastructure, providers, standards and
+            timelines.</p>
+          <a href="./documents/main-enterprise-architecture-v1.html">Open document</a>
+        </article>
 
+        <article class="doc-card">
+          <span>Design</span>
+          <h3>Screen To Feature Map</h3>
+          <p>Figma screen-to-feature mapping reference.</p>
+          <a href="./documents/screen-to-feature-map-v1.html">Open document</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Flows</span>
+          <h3>Mobile Flow Catalogue v1</h3>
+          <p>Closed mobile flows, subflows, dependencies, recovery paths and screen silhouettes.</p>
+          <a href="./documents/mobile-flow-catalogue-v1.html">Open document</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Flows</span>
+          <h3>Admin Flow Catalogue v1</h3>
+          <p>Closed admin web flows, dependencies, recovery paths and dashboard silhouettes.</p>
+          <a href="./documents/admin-flow-catalogue-v1.html">Open document</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Flows</span>
+          <h3>Flow Alignment Review v1</h3>
+          <p>Comparison and decision tracker across Figma, mobile/admin flows and architecture.</p>
+          <a href="./documents/flow-alignment-review-v1.html">Open document</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Legal</span>
+          <h3>Legal &amp; User-Facing Documents Pack v1</h3>
+          <p>Combined legal and user-facing policy pack for MVP review and publication.</p>
+          <a href="./documents/legal_user_facing_documents_pack_v1.html">Open document</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Implementation</span>
+          <h3>API &amp; Socket Contract Specification v1</h3>
+          <p>REST, socket, webhook, queue, event and response-shape contracts.</p>
+          <a href="./documents/api-socket-contract-specification-v1.html">Open document</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Implementation</span>
+          <h3>Data Model &amp; Prisma Schema Planning v1</h3>
+          <p>Prisma/data-model execution baseline and API-to-model traceability.</p>
+          <a href="./documents/data-model-prisma-schema-planning-v1.html">Open document</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Implementation</span>
+          <h3>Provider Integration &amp; Cost Control v1</h3>
+          <p>Provider strategy, adapter rules, webhooks, validation and cost controls.</p>
+          <a href="./documents/provider-integration-cost-control-v1.html">Open document</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Build Plans</span>
+          <h3>Mobile Build Plan v1</h3>
+          <p>Mobile-led Flutter execution plan by week and day.</p>
+          <a href="./documents/build-plan-mobile-v1.html">Open document</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Build Plans</span>
+          <h3>Admin Build Plan v1</h3>
+          <p>Next.js admin execution plan that follows mobile outcomes.</p>
+          <a href="./documents/build-plan-admin-v1.html">Open document</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Build Plans</span>
+          <h3>Backend Build Plan v1</h3>
+          <p>NestJS backend execution plan that follows mobile needs.</p>
+          <a href="./documents/build-plan-backend-v1.html">Open document</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Launch</span>
+          <h3>QA / Go-Live Readiness Checklist v1</h3>
+          <p>Final QA gates, provider validation, blockers, rollback and go/no-go checklist.</p>
+          <a href="./documents/qa-go-live-readiness-checklist-v1.html">Open document</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Downloads</span>
+          <h3>Mobile Team Markdown Brief</h3>
+          <p>Markdown brief for mobile implementation work and AI-assisted execution.</p>
+          <a href="./documents/downloads/mobile-team-build-brief-v1.md" download>Download Markdown</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Downloads</span>
+          <h3>Admin Team Markdown Brief</h3>
+          <p>Markdown brief for admin implementation work and AI-assisted execution.</p>
+          <a href="./documents/downloads/admin-team-build-brief-v1.md" download>Download Markdown</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Downloads</span>
+          <h3>Backend Team Markdown Brief</h3>
+          <p>Markdown brief for backend implementation work and AI-assisted execution.</p>
+          <a href="./documents/downloads/backend-team-build-brief-v1.md" download>Download Markdown</a>
+        </article>
+
+        <article class="doc-card">
+          <span>Downloads</span>
+          <h3>Shared AI Agent Execution Rules</h3>
+          <p>Shared Markdown rules for teams using AI agents against the Work2Cash docs.</p>
+          <a href="./documents/downloads/shared-ai-agent-execution-rules-v1.md" download>Download Markdown</a>
+        </article>
+      </div>
+    </section>
+
+    <footer>Work2Cash docs bundle. Protected documents also include a direct-access auth guard.</footer>
+  </div>
   <script src="./assets/js/gate.js"></script>
 </body>
 

@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="../assets/js/guard.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work2Cash Screen-to-Feature Map</title>
+  <style>
+    :root {
+      --brand: #1F6AE1;
+      --brand-dark: #0F2A44;
+      --brand-soft: #EAF2FF;
+      --brand-mid: #5B8DEF;
+      --text: #1D2939;
+      --muted: #667085;
+      --success: #12B76A;
+      --success-soft: #ECFDF3;
+      --warning: #F79009;
+      --warning-soft: #FFFAEB;
+      --danger: #F04438;
+      --danger-soft: #FEF3F2;
+      --gray-950: #020617;
+      --gray-900: #101828;
+      --gray-800: #1D2939;
+      --gray-700: #344054;
+      --gray-600: #475467;
+      --gray-500: #667085;
+      --gray-300: #D0D5DD;
+      --gray-200: #EAECF0;
+      --gray-100: #F2F4F7;
+      --gray-50: #F9FAFB;
+      --white: #FFFFFF;
+      --shadow: 0 24px 70px rgba(15, 42, 68, 0.12);
+      --font-heading: Rubik, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-body: "Nunito Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      color: var(--brand-dark);
+      line-height: 1.18;
+    }
+    p { color: var(--gray-600); margin: 0 0 0.9rem; }
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: 0.35rem;
+      padding: 0.08rem 0.3rem;
+    }
+    pre code { background: transparent; border: 0; padding: 0; }
+
+    .cover {
+      min-height: 100svh;
+      padding: clamp(2rem, 6vw, 5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 82% 16%, rgba(91, 141, 239, 0.42), transparent 28rem),
+        radial-gradient(circle at 12% 86%, rgba(18, 183, 106, 0.20), transparent 22rem),
+        linear-gradient(150deg, var(--brand-dark), #122E60 55%, var(--brand) 120%);
+    }
+    .logo-row { display: flex; align-items: center; gap: 1rem; }
+    .logo {
+      width: 4.2rem;
+      height: 4.2rem;
+      border-radius: 1rem;
+      display: grid;
+      place-items: center;
+      background: var(--white);
+      color: var(--brand);
+      font-weight: 950;
+      font-size: 1.28rem;
+      box-shadow: 0 14px 40px rgba(2, 6, 23, 0.18);
+      flex: 0 0 auto;
+    }
+    .logo-text { color: rgba(255,255,255,0.72); font-size: 0.92rem; }
+    .logo-text strong { display: block; color: var(--white); font-size: 1.05rem; }
+    .cover-main { max-width: 1040px; padding: clamp(4rem, 10vw, 8rem) 0 clamp(2rem, 5vw, 4rem); }
+    .eyebrow {
+      color: rgba(255,255,255,0.66);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 1.35rem;
+    }
+    .cover h1 {
+      color: var(--white);
+      font-size: clamp(2.25rem, 7vw, 4.5rem);
+      line-height: 1.04;
+      margin: 0 0 1rem;
+    }
+    .cover-subtitle {
+      color: rgba(255,255,255,0.76);
+      font-size: clamp(1.08rem, 2.6vw, 1.55rem);
+      max-width: 900px;
+      margin-bottom: 2rem;
+    }
+    .divider {
+      width: 5rem;
+      height: 0.28rem;
+      border-radius: 999px;
+      background: var(--brand-mid);
+      margin-bottom: 2rem;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.15rem;
+      max-width: 900px;
+    }
+    .meta { border-left: 1px solid rgba(255,255,255,0.25); padding-left: 1rem; }
+    .meta label {
+      display: block;
+      color: rgba(255,255,255,0.48);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .meta span { color: var(--white); font-weight: 800; }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2.15rem; }
+    .badge {
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      color: rgba(255,255,255,0.86);
+      padding: 0.42rem 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+    .cover-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.16);
+      padding-top: 1.65rem;
+      color: rgba(255,255,255,0.56);
+      font-size: 0.84rem;
+    }
+    .confidential {
+      display: inline-block;
+      border: 1px solid rgba(91,141,239,0.62);
+      color: #DBE8FF;
+      background: rgba(31,106,225,0.25);
+      border-radius: 0.34rem;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 2px solid var(--brand);
+      padding: 0.88rem clamp(1.1rem, 6vw, 5rem);
+    }
+    .topbar strong { color: var(--brand); }
+    .topbar span { color: var(--muted); font-size: 0.82rem; text-align: right; }
+    main {
+      width: min(100%, 1160px);
+      margin: 0 auto;
+      padding: 0 clamp(1.1rem, 6vw, 5rem);
+    }
+    section {
+      padding: clamp(3.5rem, 8vw, 5.5rem) 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    section:last-child { border-bottom: 0; }
+    .section-number { color: var(--gray-300); font-weight: 950; font-size: 0.82rem; margin-bottom: 0.3rem; }
+    .section-eyebrow {
+      color: var(--brand);
+      font-size: 0.72rem;
+      font-weight: 950;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    main h1 { font-size: clamp(2rem, 5vw, 2.75rem); margin: 0 0 0.8rem; }
+    h2 { font-size: clamp(1.35rem, 3vw, 1.82rem); margin: 2.7rem 0 1rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--gray-200); }
+    h3 { font-size: 1.08rem; margin: 2rem 0 0.7rem; }
+    .intro { max-width: 820px; color: var(--gray-600); font-size: 1.04rem; margin-bottom: 2rem; }
+
+    .toc-grid, .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 1rem;
+      margin: 1.3rem 0;
+    }
+    .toc-grid { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .card, .toc-card {
+      border: 1px solid var(--gray-200);
+      border-radius: 0.85rem;
+      background: var(--gray-50);
+      padding: 1.1rem;
+    }
+    .card h3, .card h4 { margin-top: 0; }
+    .card p, .card li, .toc-card span { color: var(--gray-600); font-size: 0.92rem; }
+    .toc-card a { display: block; color: var(--brand-dark); font-weight: 900; margin-bottom: 0.3rem; }
+
+    .stat-card {
+      border: 1px solid var(--gray-200);
+      border-radius: 0.9rem;
+      padding: 1.15rem;
+      background: var(--white);
+      box-shadow: 0 12px 35px rgba(15, 42, 68, 0.06);
+    }
+    .stat-card .stat { color: var(--brand); font-size: 1.65rem; line-height: 1; font-weight: 950; font-family: var(--font-heading); }
+    .stat-card span { color: var(--muted); font-size: 0.85rem; }
+
+    .callout {
+      border-radius: 0.85rem;
+      padding: 1.18rem 1.32rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--brand);
+      background: var(--brand-soft);
+    }
+    .callout-label {
+      color: var(--brand);
+      font-size: 0.72rem;
+      font-weight: 950;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .callout p, .callout li { color: var(--gray-700); margin-bottom: 0.45rem; }
+    .success { background: var(--success-soft); border-left-color: var(--success); }
+    .success .callout-label { color: var(--success); }
+    .warning { background: var(--warning-soft); border-left-color: var(--warning); }
+    .warning .callout-label { color: var(--warning); }
+    .critical { background: var(--danger-soft); border-left-color: var(--danger); }
+    .critical .callout-label { color: var(--danger); }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--gray-200);
+      border-radius: 0.85rem;
+      margin: 1.5rem 0;
+      background: var(--white);
+    }
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    th {
+      background: var(--brand-dark);
+      color: var(--white);
+      text-align: left;
+      padding: 0.82rem 0.95rem;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    td {
+      padding: 0.86rem 0.95rem;
+      border-bottom: 1px solid var(--gray-100);
+      color: var(--gray-700);
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: var(--gray-50); }
+    tr:last-child td { border-bottom: 0; }
+
+    .pill {
+      display: inline-block;
+      padding: 0.16rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .pill-blue { background: var(--brand-soft); color: var(--brand); }
+    .pill-green { background: var(--success-soft); color: var(--success); }
+    .pill-amber { background: var(--warning-soft); color: var(--warning); }
+    .pill-red { background: var(--danger-soft); color: var(--danger); }
+    .pill-gray { background: var(--gray-100); color: var(--gray-700); }
+
+    .checklist { list-style: none; padding: 0; margin: 1rem 0; }
+    .checklist li {
+      position: relative;
+      padding: 0.55rem 0 0.55rem 1.65rem;
+      border-bottom: 1px solid var(--gray-100);
+      color: var(--gray-700);
+      font-size: 0.94rem;
+    }
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.78rem;
+      width: 0.74rem;
+      height: 0.74rem;
+      border: 2px solid var(--brand);
+      border-radius: 0.22rem;
+      background: var(--white);
+    }
+    .steps { counter-reset: steps; list-style: none; padding: 0; margin: 1rem 0; }
+    .steps li {
+      counter-increment: steps;
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 0.95rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .steps li::before {
+      content: counter(steps);
+      width: 2.25rem;
+      height: 2.25rem;
+      display: grid;
+      place-items: center;
+      border-radius: 0.65rem;
+      background: var(--brand);
+      color: var(--white);
+      font-weight: 950;
+    }
+    .steps strong { display: block; color: var(--brand-dark); margin-bottom: 0.25rem; }
+    .steps span { color: var(--gray-600); font-size: 0.93rem; }
+
+    .diagram {
+      border: 1px solid var(--gray-200);
+      border-radius: 0.9rem;
+      background: var(--gray-50);
+      padding: 1.15rem;
+      margin: 1.4rem 0;
+      overflow-x: auto;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(150px, 1fr));
+      gap: 0.85rem;
+      min-width: 780px;
+      align-items: stretch;
+    }
+    .node {
+      position: relative;
+      min-height: 5.5rem;
+      border: 1px solid var(--gray-200);
+      border-top: 4px solid var(--brand);
+      border-radius: 0.8rem;
+      background: var(--white);
+      padding: 0.85rem;
+      box-shadow: 0 10px 25px rgba(15, 42, 68, 0.05);
+    }
+    .node strong { display: block; color: var(--brand-dark); margin-bottom: 0.25rem; }
+    .node span { color: var(--muted); font-size: 0.82rem; }
+    .node.success-node { border-top-color: var(--success); }
+    .node.warning-node { border-top-color: var(--warning); }
+
+    .code-block {
+      background: #0B1220;
+      border: 1px solid #22304A;
+      border-radius: 0.85rem;
+      overflow: hidden;
+      margin: 1.2rem 0;
+    }
+    .code-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      background: #111827;
+      border-bottom: 1px solid #263247;
+      padding: 0.62rem 0.85rem;
+      color: #A8B3C7;
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+    }
+    .copy-btn {
+      border: 1px solid #334155;
+      background: #1F2937;
+      color: #E5E7EB;
+      border-radius: 0.45rem;
+      padding: 0.32rem 0.55rem;
+      font-size: 0.74rem;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: #374151; }
+    pre {
+      margin: 0;
+      padding: 1rem;
+      overflow-x: auto;
+      color: #E5E7EB;
+      font-family: var(--font-mono);
+      font-size: 0.83rem;
+      line-height: 1.6;
+      white-space: pre;
+    }
+
+    .footer {
+      background: var(--brand-dark);
+      color: rgba(255,255,255,0.68);
+      padding: clamp(2rem, 6vw, 3.2rem) clamp(1.1rem, 6vw, 5rem);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .footer h4 { color: var(--white); margin-top: 0; }
+    .footer p, .footer li { color: rgba(255,255,255,0.66); font-size: 0.84rem; }
+    .footer ul { list-style: none; padding: 0; margin: 0; }
+    .bottom {
+      background: var(--gray-950);
+      color: var(--gray-500);
+      padding: 1rem clamp(1.1rem, 6vw, 5rem);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 1000px) {
+      .grid-3, .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 900px) {
+      .topbar { position: static; align-items: flex-start; }
+      .topbar span { text-align: left; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .footer { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .cover { min-height: auto; }
+      .logo { width: 3.25rem; height: 3.25rem; border-radius: 0.8rem; font-size: 1rem; }
+      .cover-footer { flex-direction: column; }
+      .steps li { grid-template-columns: 1fr; }
+      .steps li::before { margin-bottom: -0.25rem; }
+      table { min-width: 680px; }
+    }
+    @media print {
+      .topbar, .copy-btn { display: none; }
+      .cover { min-height: 100vh; page-break-after: always; }
+      section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="cover">
+    <div class="logo-row">
+      <div class="logo">W2C</div>
+      <div class="logo-text">
+        <strong>Work2Cash</strong>
+        Product Architecture Document System
+      </div>
+    </div>
+
+    <div class="cover-main">
+      <div class="eyebrow">Screen-to-Feature Map</div>
+      <h1>Mobile App and Admin Dashboard Feature Breakdown</h1>
+      <p class="cover-subtitle">A structured handover document translating the Figma screens into product features, backend requirements, Flutter modules, admin dashboard modules, and implementation checkpoints.</p>
+      <div class="divider"></div>
+      <div class="meta-grid">
+        <div class="meta"><label>Project</label><span>Work2Cash</span></div>
+        <div class="meta"><label>Market</label><span>Nigeria</span></div>
+        <div class="meta"><label>Platforms</label><span>Flutter + Next.js Admin</span></div>
+        <div class="meta"><label>Document Date</label><span>July 1, 2026</span></div>
+      </div>
+      <div class="badges">
+        <span class="badge">Task Owner Flow</span>
+        <span class="badge">Tasker Flow</span>
+        <span class="badge">KYC</span>
+        <span class="badge">Wallet and Escrow</span>
+        <span class="badge">Admin Operations</span>
+        <span class="badge">Nigeria-First UX</span>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <div>
+        <span class="confidential">Internal</span>
+        <div>Prepared for product, engineering, and stakeholder handover.</div>
+      </div>
+      <div>Design source: Work2Cash Figma export package</div>
+    </div>
+  </header>
+
+
+<style id="work2cash-doc-nav-style">
+  .doc-hub-nav {
+    max-width: 1240px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads {
+    max-width: 1240px;
+    margin: 16px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads-card {
+    border: 1px solid #CFE0FF;
+    background: #EAF2FF;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.06);
+  }
+  .team-downloads-card strong {
+    display: block;
+    color: #0F2A44;
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .team-downloads-card p {
+    margin: 0 0 12px;
+    color: #667085;
+    font-size: 13px;
+  }
+  .team-downloads-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .team-downloads-links a {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #1F6AE1;
+    background: #FFFFFF;
+    color: #1F6AE1;
+    border-radius: 999px;
+    padding: 9px 13px;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-card {
+    border: 1px solid #D8E2F1;
+    background: #FFFFFF;
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.07);
+    padding: 18px;
+  }
+  .doc-hub-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .doc-hub-top strong {
+    color: #0F2A44;
+    font-size: 16px;
+  }
+  .doc-hub-top a {
+    color: #1F6AE1;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .doc-hub-links a {
+    border: 1px solid #D8E2F1;
+    background: #EAF2FF;
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #0F2A44;
+    font-weight: 850;
+    font-size: 12px;
+    line-height: 1.35;
+    text-decoration: none;
+  }
+  .doc-hub-links a[aria-current="page"] {
+    background: #1F6AE1;
+    color: #FFFFFF;
+    border-color: #1F6AE1;
+  }
+  .doc-hub-links a:hover { text-decoration: underline; }
+  @media (max-width: 980px) {
+    .doc-hub-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 620px) {
+    .doc-hub-nav { padding: 0 16px; }
+    .doc-hub-card { border-radius: 14px; padding: 14px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .doc-hub-links { grid-template-columns: 1fr; }
+    .team-downloads { padding: 0 16px; }
+    .team-downloads-card { border-radius: 14px; padding: 14px; }
+  }
+</style>
+
+<nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
+  <div class="doc-hub-card">
+    <div class="doc-hub-top">
+      <strong>Work2Cash Documentation</strong>
+      <a href="../index.html">Back to document portal</a>
+    </div>
+    <div class="doc-hub-links">
+      <a href="./main-enterprise-architecture-v1.html">Main Enterprise Architecture v1</a><a href="./screen-to-feature-map-v1.html" aria-current="page">Screen To Feature Map</a><a href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a href="./flow-alignment-review-v1.html">Flow Alignment Review v1</a><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a><a href="./api-socket-contract-specification-v1.html">API &amp; Socket Contract Specification v1</a><a href="./data-model-prisma-schema-planning-v1.html">Data Model &amp; Prisma Schema Planning v1</a><a href="./provider-integration-cost-control-v1.html">Provider Integration &amp; Cost Control v1</a><a href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html">Admin Build Plan v1</a><a href="./build-plan-backend-v1.html">Backend Build Plan v1</a><a href="./qa-go-live-readiness-checklist-v1.html">QA / Go-Live Readiness Checklist v1</a>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="topbar">
+    <strong>Work2Cash Screen-to-Feature Map</strong>
+    <span>One user identity, dual roles, cardless payments, guarded paid APIs</span>
+  </div>
+
+  <main>
+    <section id="summary">
+      <div class="section-number">01</div>
+      <div class="section-eyebrow">Big Picture</div>
+      <h1>What This Document Converts</h1>
+      <p class="intro">The design package contains the user-facing mobile flows, raw mobile screens, admin dashboard screens, and the Work2Cash design token reference. This document maps those visuals into buildable product requirements.</p>
+
+      <div class="grid-4">
+        <div class="stat-card"><div class="stat">2</div><span>Mobile lanes: Task Owner and Tasker</span></div>
+        <div class="stat-card"><div class="stat">1</div><span>Shared user identity and KYC foundation</span></div>
+        <div class="stat-card"><div class="stat">4</div><span>Primary operational engines: tasks, matching, wallet, admin</span></div>
+        <div class="stat-card"><div class="stat">0</div><span>Forced card entry as default payment path</span></div>
+      </div>
+
+      <div class="diagram">
+        <div class="flow">
+          <div class="node"><strong>Shared Auth</strong><span>Account, OTP, identity, profile completion.</span></div>
+          <div class="node"><strong>Task Owner</strong><span>Post task, fund escrow, track, confirm, rate.</span></div>
+          <div class="node success-node"><strong>Tasker</strong><span>Set availability, accept tasks, complete work, withdraw.</span></div>
+          <div class="node warning-node"><strong>Admin</strong><span>Verify, moderate, settle, resolve, report.</span></div>
+          <div class="node"><strong>Platform Core</strong><span>KYC, wallet ledger, notifications, chat, analytics.</span></div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">Core Rule</div>
+        <p>Work2Cash must be built as one marketplace with one user identity. A user can request help as a Task Owner and later earn as a Tasker after KYC and profile activation.</p>
+      </div>
+
+      <div class="toc-grid">
+        <div class="toc-card"><a href="#design-system">2. Design System</a><span>Brand colors, typography, and reusable document style.</span></div>
+        <div class="toc-card"><a href="#shared">3. Shared Auth and Identity</a><span>Onboarding, OTP, KYC, profile, and pricing rule education.</span></div>
+        <div class="toc-card"><a href="#owner">4. Task Owner Flow</a><span>Task posting, payment, tracking, completion, wallet, support.</span></div>
+        <div class="toc-card"><a href="#tasker">5. Tasker Flow</a><span>Activation, availability, job requests, completion, earnings.</span></div>
+        <div class="toc-card"><a href="#admin">6. Admin Dashboard</a><span>Platform operations, finance, KYC, dispute, fraud, analytics.</span></div>
+        <div class="toc-card"><a href="#backend">7. Backend Modules</a><span>Domain modules implied by the design surface.</span></div>
+        <div class="toc-card"><a href="#implementation">8. Implementation Map</a><span>Flutter, admin, API, and provider integration boundaries.</span></div>
+        <div class="toc-card"><a href="#handover">9. Final Checklist</a><span>Build readiness checks before tickets are created.</span></div>
+      </div>
+    </section>
+
+    <section id="design-system">
+      <div class="section-number">02</div>
+      <div class="section-eyebrow">Visual Foundation</div>
+      <h1>Design System Reference</h1>
+      <p class="intro">The document system uses the Work2Cash palette from the design handoff. The visual style is clean, operational, and easy to scan across mobile, tablet, and desktop.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Primary Brand</h3>
+          <p><span class="pill pill-blue">#1F6AE1</span></p>
+          <p>Use for primary actions, selected states, active highlights, and key document accents.</p>
+        </div>
+        <div class="card">
+          <h3>Header Navy</h3>
+          <p><span class="pill pill-gray">#0F2A44</span></p>
+          <p>Use for headings, top bars, important text, cover background, and table headers.</p>
+        </div>
+        <div class="card">
+          <h3>Icon Blue</h3>
+          <p><span class="pill pill-blue">#5B8DEF</span></p>
+          <p>Use for secondary accents, info panels, highlights, and visual hierarchy.</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Value</th>
+              <th>Usage</th>
+              <th>Implementation Note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Main brand</td>
+              <td><code>#1F6AE1</code></td>
+              <td>Primary buttons, active states, key highlights</td>
+              <td>Use consistently for the main call-to-action color.</td>
+            </tr>
+            <tr>
+              <td>Header color</td>
+              <td><code>#0F2A44</code></td>
+              <td>Headers, top bars, important text</td>
+              <td>Use for high contrast and brand authority.</td>
+            </tr>
+            <tr>
+              <td>Button text</td>
+              <td><code>#1D2939</code></td>
+              <td>Primary readable body and strong text</td>
+              <td>Use as the default dark text color.</td>
+            </tr>
+            <tr>
+              <td>Helper text</td>
+              <td><code>#667085</code></td>
+              <td>Captions, hints, helper copy</td>
+              <td>Use for low-emphasis interface text.</td>
+            </tr>
+            <tr>
+              <td>Active task</td>
+              <td><code>#12B76A</code></td>
+              <td>Success, active task, completed states</td>
+              <td>Use for positive workflow confirmation.</td>
+            </tr>
+            <tr>
+              <td>Error task</td>
+              <td><code>#F04438</code></td>
+              <td>Error, rejection, failed payment, risky action</td>
+              <td>Reserve for high-friction or destructive moments.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="shared">
+      <div class="section-number">03</div>
+      <div class="section-eyebrow">Shared Foundation</div>
+      <h1>Auth, Identity, and KYC Screens</h1>
+      <p class="intro">These screens belong to the shared user system. They should not create separate Client and Tasker auth tables. They prepare the user for both marketplace roles.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Screen / Area</th>
+              <th>Feature Meaning</th>
+              <th>Backend Requirement</th>
+              <th>Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Welcome / onboarding</td>
+              <td>Introduces the two intents: get help or earn.</td>
+              <td>Store onboarding intent without splitting the user model.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Role choice</td>
+              <td>User chooses "I need help" or "I want to earn".</td>
+              <td>Persist selected app mode and route the user to the correct flow.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Create account</td>
+              <td>Full name, email, password, terms agreement, optional social login.</td>
+              <td>Registration, password hashing, social auth adapters, terms audit.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Login / forgot password</td>
+              <td>Email or phone login, recovery, reset flow.</td>
+              <td>Auth sessions, refresh tokens, OTP reset, resend limits.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>OTP verification</td>
+              <td>Six-digit verification code.</td>
+              <td>OTP generation, expiry, retry limits, anti-spam guard.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Verify identity</td>
+              <td>Upload selfie and ID document.</td>
+              <td>KYC session, Smile ID adapter, secure media storage, status tracking.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Selfie capture</td>
+              <td>Camera capture, retake, all-clear state.</td>
+              <td>Image upload, liveness metadata, provider submission queue.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>ID upload</td>
+              <td>ID document scan, rescan, upload document.</td>
+              <td>Document metadata, encrypted storage, verification status.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Complete profile</td>
+              <td>Phone number, address, state, user photo.</td>
+              <td>User profile fields, address relation, state validation.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Pricing rule</td>
+              <td>Explains fair pricing and underpricing restriction.</td>
+              <td>Category minimum price rules and recommended price ranges.</td>
+              <td><span class="pill pill-green">Trust</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warning">
+        <div class="callout-label">Identity Rule</div>
+        <p>KYC unlocks Tasker Mode. It should not block a regular user from requesting help unless the business later decides that high-risk categories require additional verification.</p>
+      </div>
+    </section>
+
+    <section id="owner">
+      <div class="section-number">04</div>
+      <div class="section-eyebrow">Task Owner Experience</div>
+      <h1>Task Owner Screen-to-Feature Map</h1>
+      <p class="intro">The Task Owner lane lets a user describe a task, set a fair budget, pay into escrow using cardless methods, track the tasker, confirm completion, and leave a review.</p>
+
+      <div class="diagram">
+        <div class="flow">
+          <div class="node"><strong>Create Task</strong><span>Category, details, checklist, photos, schedule.</span></div>
+          <div class="node"><strong>Find Tasker</strong><span>Redis proximity, filtered candidates, ETA batch.</span></div>
+          <div class="node warning-node"><strong>Fund Escrow</strong><span>Virtual account, OPay, USSD, wallet.</span></div>
+          <div class="node"><strong>Track Work</strong><span>Map, chat, timer, progress checklist.</span></div>
+          <div class="node success-node"><strong>Complete</strong><span>Confirm, release funds, rate tasker.</span></div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Screen / Area</th>
+              <th>Feature Meaning</th>
+              <th>Backend / Product Requirement</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Home quick task</td>
+              <td>Select task category like home, errands, office/shop, outdoor, event support.</td>
+              <td><code>TaskCategory</code> and <code>TaskType</code> catalog.</td>
+              <td>Admin must manage categories and pricing rules.</td>
+            </tr>
+            <tr>
+              <td>Task details</td>
+              <td>User describes what needs to be done.</td>
+              <td>Task draft creation with structured and free-text fields.</td>
+              <td>Support attachments and later edits before payment.</td>
+            </tr>
+            <tr>
+              <td>Task checklist</td>
+              <td>Specific sub-services such as sweeping, dish washing, laundry.</td>
+              <td>Task requirement checklist tied to service category.</td>
+              <td>Useful for disputes and completion confirmation.</td>
+            </tr>
+            <tr>
+              <td>Set pricing</td>
+              <td>User enters budget and sees platform recommended/minimum range.</td>
+              <td>Pricing engine with minimum price, recommended price, urgency adjustments.</td>
+              <td>Do not allow underpricing below configured floor.</td>
+            </tr>
+            <tr>
+              <td>Task schedule</td>
+              <td>Date, time, duration, urgency.</td>
+              <td>Task window, expiry rules, urgent task flag.</td>
+              <td>Urgent jobs can affect broadcast priority.</td>
+            </tr>
+            <tr>
+              <td>Location</td>
+              <td>Saved address or current location.</td>
+              <td>Address book, coordinates, geocoding cache.</td>
+              <td>Cache paid geocoding results when terms allow.</td>
+            </tr>
+            <tr>
+              <td>Available taskers</td>
+              <td>Nearby taskers with ETA, distance, rating, service fit.</td>
+              <td>Valkey <code>GEOSEARCH</code> first, paid ETA only after filtering.</td>
+              <td>Batch ETA requests and enforce quotas.</td>
+            </tr>
+            <tr>
+              <td>Booking summary</td>
+              <td>Selected task, cost breakdown, secure payment note.</td>
+              <td>Pending booking, escrow intent, service fee computation.</td>
+              <td>Show transparent pricing before payment.</td>
+            </tr>
+            <tr>
+              <td>Make payment</td>
+              <td>Bank transfer, virtual account, USSD, OPay, wallet.</td>
+              <td>Payment initialization, provider reference, webhook reconciliation.</td>
+              <td>Card entry must not be the default path.</td>
+            </tr>
+            <tr>
+              <td>Payment success / receipt</td>
+              <td>Payment received, receipt, QR/download.</td>
+              <td>Ledger credit, escrow hold, receipt generation.</td>
+              <td>Do not trust the client UI without webhook confirmation.</td>
+            </tr>
+            <tr>
+              <td>Task in progress</td>
+              <td>Timer, task progress, chat, emergency support.</td>
+              <td>Task state machine, WebSocket chat, support escalation.</td>
+              <td>Works with intermittent connectivity.</td>
+            </tr>
+            <tr>
+              <td>Task complete / rating</td>
+              <td>Owner confirms completion and rates tasker.</td>
+              <td>Escrow release, two-sided review, rating aggregation.</td>
+              <td>Include dispute window before auto-release if needed.</td>
+            </tr>
+            <tr>
+              <td>Wallet and transactions</td>
+              <td>Balance, funding, transaction history, pending/failed states.</td>
+              <td>Double-entry ledger and balance projection.</td>
+              <td>Never store balance as the only source of truth.</td>
+            </tr>
+            <tr>
+              <td>Messages, notifications, help</td>
+              <td>Chat, task alerts, FAQs, support ticket, report issue.</td>
+              <td>Socket.io, FCM, notification inbox, support module.</td>
+              <td>FCM wakes devices for task and chat events.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout critical">
+        <div class="callout-label">Payment UX Correction</div>
+        <p>Any card-looking design should be interpreted as saved funding options, not a forced card form. The default production flow is bank transfer, virtual account, USSD, OPay, and wallet balance.</p>
+      </div>
+    </section>
+
+    <section id="tasker">
+      <div class="section-number">05</div>
+      <div class="section-eyebrow">Tasker Experience</div>
+      <h1>Tasker Screen-to-Feature Map</h1>
+      <p class="intro">The Tasker lane activates after KYC and profile setup. It covers availability, task preferences, live job requests, task execution, earnings, withdrawals, and task owner reviews.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Screen / Area</th>
+              <th>Feature Meaning</th>
+              <th>Backend / Product Requirement</th>
+              <th>Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Complete Tasker profile</td>
+              <td>Gender, DOB, phone, address, location, state, bank details.</td>
+              <td><code>TaskerProfile</code>, KYC gate, payout destination setup.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Select task</td>
+              <td>Choose categories and sub-skills the tasker can perform.</td>
+              <td>Tasker skills relation and category eligibility.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Availability</td>
+              <td>Days available, working hours, max distance, auto-accept.</td>
+              <td>Availability schedule, service radius, task matching filters.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Pricing info</td>
+              <td>Minimum acceptable price and pricing guidance.</td>
+              <td>Tasker pricing preference bounded by platform minimum.</td>
+              <td><span class="pill pill-green">Trust</span></td>
+            </tr>
+            <tr>
+              <td>Enable location</td>
+              <td>Allow app to find nearby jobs.</td>
+              <td>Location permission, online status, Valkey geo index update.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Task request</td>
+              <td>Incoming job with owner, distance, task details, price, accept/reject.</td>
+              <td>Real-time job offer, expiry, atomic assignment lock.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Accepted task / start journey</td>
+              <td>Tasker starts movement to task owner.</td>
+              <td>Status change to <code>TASKER_EN_ROUTE</code>, GPS stream starts.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Arrived / start task</td>
+              <td>Tasker marks arrival and begins work timer.</td>
+              <td>Status transition to <code>ARRIVED</code> then <code>IN_PROGRESS</code>.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Mark completed</td>
+              <td>Tasker requests owner confirmation.</td>
+              <td>Status changes to <code>AWAITING_OWNER_CONFIRMATION</code>.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Task completed</td>
+              <td>Payment released after owner confirms.</td>
+              <td>Wallet credit, ledger settlement, notification.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Wallet / earnings / withdraw</td>
+              <td>Available balance, earned amount, withdrawal amount, fee, PIN.</td>
+              <td>Ledger history, withdrawal request, payout adapter, withdrawal PIN.</td>
+              <td><span class="pill pill-blue">MVP</span></td>
+            </tr>
+            <tr>
+              <td>Rate task owner / ratings</td>
+              <td>Two-sided marketplace reputation.</td>
+              <td>Review model for tasker-to-owner and owner-to-tasker reviews.</td>
+              <td><span class="pill pill-green">Trust</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">Race Condition Rule</div>
+        <p>When multiple taskers receive the same request, only one tasker can win. The backend must enforce this with a transaction or unique assignment constraint, not only app-side logic.</p>
+      </div>
+    </section>
+
+    <section id="admin">
+      <div class="section-number">06</div>
+      <div class="section-eyebrow">Platform Operations</div>
+      <h1>Admin Dashboard Feature Map</h1>
+      <p class="intro">The admin dashboard is not just reporting. It is the operating console for KYC, task intervention, finance reconciliation, disputes, fraud/risk, pricing, roles, and auditability.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>User and Tasker Operations</h3>
+          <ul class="checklist">
+            <li>User management, user details, suspend/ban.</li>
+            <li>Tasker management, performance stats, KYC state.</li>
+            <li>Ratings, reviews, completion rate, earnings overview.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Finance Operations</h3>
+          <ul class="checklist">
+            <li>Wallet activity, escrow payments, withdrawal requests.</li>
+            <li>Refund management, payment issues, receipts, exports.</li>
+            <li>Provider references and reconciliation workflows.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Risk and Governance</h3>
+          <ul class="checklist">
+            <li>KYC review, document review, face verification.</li>
+            <li>Suspicious account flags, fraud/risk management.</li>
+            <li>Admin roles, permissions, audit logs, 2FA.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Admin Module</th>
+              <th>Feature Meaning</th>
+              <th>Backend Requirement</th>
+              <th>Access Control</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dashboard overview</td>
+              <td>Total users, active tasks, revenue, pending approvals, disputes.</td>
+              <td>Analytics aggregation and cached summary metrics.</td>
+              <td>Admin, Operations</td>
+            </tr>
+            <tr>
+              <td>User management</td>
+              <td>List, search, filter, view, suspend, ban users.</td>
+              <td>Admin user query APIs and account status workflow.</td>
+              <td>Admin, Support Lead</td>
+            </tr>
+            <tr>
+              <td>KYC verification</td>
+              <td>Review selfie, ID, verification status, approve/reject.</td>
+              <td>KYC moderation workflow, provider data, audit trail.</td>
+              <td>KYC Reviewer, Admin</td>
+            </tr>
+            <tr>
+              <td>Task management</td>
+              <td>All tasks by status, category, amount, owner, tasker.</td>
+              <td>Task search, task timeline, intervention endpoints.</td>
+              <td>Operations</td>
+            </tr>
+            <tr>
+              <td>Force cancel / reassign</td>
+              <td>Admin cancels or reassigns problematic tasks.</td>
+              <td>Reason capture, refund/penalty decision, notification.</td>
+              <td>Operations Lead</td>
+            </tr>
+            <tr>
+              <td>Wallet and escrow</td>
+              <td>Held funds, wallet activity, task settlement state.</td>
+              <td>Ledger query, escrow status, settlement audit trail.</td>
+              <td>Finance</td>
+            </tr>
+            <tr>
+              <td>Withdrawals</td>
+              <td>Approve/reject withdrawal requests.</td>
+              <td>Payout approval workflow, payout adapter, withdrawal status.</td>
+              <td>Finance Lead</td>
+            </tr>
+            <tr>
+              <td>Disputes and support</td>
+              <td>Complaint details, evidence, admin decision, resolution tracking.</td>
+              <td>Support ticket module, dispute states, evidence attachments.</td>
+              <td>Support, Operations</td>
+            </tr>
+            <tr>
+              <td>Category and pricing</td>
+              <td>Create/edit task categories, services, recommended and minimum price.</td>
+              <td>Marketplace catalog and pricing rules engine.</td>
+              <td>Admin</td>
+            </tr>
+            <tr>
+              <td>Fraud and risk</td>
+              <td>Risk alerts, suspicious behavior, top risk factors.</td>
+              <td>Risk score, rule triggers, admin flags, investigation history.</td>
+              <td>Risk, Admin</td>
+            </tr>
+            <tr>
+              <td>Roles and permissions</td>
+              <td>Add admin, create role, permission matrix, 2FA.</td>
+              <td>RBAC, admin auth, admin audit logs, session security.</td>
+              <td>Super Admin</td>
+            </tr>
+            <tr>
+              <td>Analytics and reports</td>
+              <td>Revenue, task trend, user growth, top services, reports.</td>
+              <td>Reporting queries, export, scheduled summary support.</td>
+              <td>Admin, Management</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="backend">
+      <div class="section-number">07</div>
+      <div class="section-eyebrow">Engineering Modules</div>
+      <h1>Backend Modules Implied by the Screens</h1>
+      <p class="intro">The design maps naturally into NestJS modules. The boundaries below are domain boundaries, not just folders. Each module should expose ports for provider-specific adapters.</p>
+
+      <div class="code-block">
+        <div class="code-head"><span>Suggested NestJS domain modules</span><button class="copy-btn" data-copy="modules">Copy</button></div>
+        <pre><code id="modules">Auth
+Users
+KYC
+TaskerProfile
+Categories
+PricingRules
+Tasks
+Matching
+GeoTracking
+Wallet
+Payments
+Escrow
+Withdrawals
+Reviews
+Chat
+Notifications
+Support
+Disputes
+Admin
+RBAC
+AuditLogs
+Analytics</code></pre>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>High-Risk Modules</h3>
+          <ul class="checklist">
+            <li>Wallet must use a double-entry ledger.</li>
+            <li>Payments must be webhook-first and idempotent.</li>
+            <li>Task assignment must be atomic.</li>
+            <li>KYC data must be encrypted and access-controlled.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Provider Adapter Boundaries</h3>
+          <ul class="checklist">
+            <li>Smile ID behind <code>KycProviderPort</code>.</li>
+            <li>Google Maps behind <code>RoutingProviderPort</code>.</li>
+            <li>Paystack and OPay behind <code>PaymentProviderPort</code>.</li>
+            <li>FCM behind <code>PushNotificationPort</code>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout critical">
+        <div class="callout-label">Cost Discipline</div>
+        <p>Never auto-refresh paid provider calls. The backend should filter with Valkey, batch paid requests, cache safe results, and enforce usage quotas around Google Maps and similar USD-billed services.</p>
+      </div>
+    </section>
+
+    <section id="implementation">
+      <div class="section-number">08</div>
+      <div class="section-eyebrow">Build Translation</div>
+      <h1>Implementation Map</h1>
+      <p class="intro">This section translates the screen map into frontend, admin, and API implementation lanes so the team can move from design review to engineering tickets.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Layer</th>
+              <th>Suggested Modules</th>
+              <th>Key Risks</th>
+              <th>Build Guidance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Flutter mobile</td>
+              <td>auth, profile, kyc, task_owner, tasker, wallet, chat, notifications, support, settings</td>
+              <td>Background killing, flaky network, payment app switching.</td>
+              <td>Use offline-aware states, FCM wakeups, resilient payment return handling.</td>
+            </tr>
+            <tr>
+              <td>Next.js admin</td>
+              <td>dashboard, users, taskers, kyc, tasks, finance, support, risk, catalog, admins, analytics</td>
+              <td>Unauthorized admin actions and missing audit trails.</td>
+              <td>Use RBAC, action confirmation, reason capture, and audit logging.</td>
+            </tr>
+            <tr>
+              <td>NestJS API</td>
+              <td>domain modules listed above with hexagonal ports and adapters</td>
+              <td>Provider lock-in and messy money flow.</td>
+              <td>Keep adapters swappable and ledger operations transactional.</td>
+            </tr>
+            <tr>
+              <td>Valkey</td>
+              <td>geo indexes, tasker presence, job offer expiry, rate limits, ephemeral cache</td>
+              <td>Using cache as source of truth.</td>
+              <td>Persist durable state in PostgreSQL, use Valkey for fast lookup and transient state.</td>
+            </tr>
+            <tr>
+              <td>PostgreSQL</td>
+              <td>users, taskers, tasks, payments, ledger, reviews, support, audit, admin</td>
+              <td>Weak constraints around assignment, settlement, and identity.</td>
+              <td>Use constraints, transactions, and append-only ledger entries.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Task State Machine</h2>
+      <div class="code-block">
+        <div class="code-head"><span>Recommended task lifecycle</span><button class="copy-btn" data-copy="task-states">Copy</button></div>
+        <pre><code id="task-states">CREATED
+FUNDED
+BROADCASTING
+ACCEPTED
+TASKER_EN_ROUTE
+ARRIVED
+IN_PROGRESS
+AWAITING_OWNER_CONFIRMATION
+COMPLETED
+SETTLED
+
+Side states:
+CANCELLED
+EXPIRED
+NO_TASKER_FOUND
+DISPUTED
+REFUNDED</code></pre>
+      </div>
+
+      <div class="callout success">
+        <div class="callout-label">MVP Scope Hint</div>
+        <p>The MVP should prioritize auth/KYC, task posting, tasker matching, escrow payment, task execution, chat, notifications, wallet ledger, withdrawals, and minimal admin operations. Advanced analytics, rewards, and deep fraud tooling can follow after the core marketplace is stable.</p>
+      </div>
+    </section>
+
+    <section id="handover">
+      <div class="section-number">09</div>
+      <div class="section-eyebrow">Final Handover</div>
+      <h1>Build Readiness Checklist</h1>
+      <p class="intro">Use this before converting the designs into engineering tickets, database schemas, and API contracts.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Product Checklist</h3>
+          <ul class="checklist">
+            <li>Confirm Task Owner and Tasker screen order.</li>
+            <li>Confirm task categories and sub-services for launch.</li>
+            <li>Confirm minimum and recommended pricing rules.</li>
+            <li>Confirm cardless payment options for MVP.</li>
+            <li>Confirm dispute and completion timeout rules.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Engineering Checklist</h3>
+          <ul class="checklist">
+            <li>Define database entities and state machines.</li>
+            <li>Define API endpoints and WebSocket events.</li>
+            <li>Define provider ports for KYC, maps, payments, email, push.</li>
+            <li>Define wallet ledger and escrow rules.</li>
+            <li>Define admin RBAC and audit log coverage.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">Definition of Done</div>
+        <p>This document is ready when every visible screen has a mapped feature, every mapped feature has an owner module, and every high-risk operation has a backend rule that protects money, trust, privacy, and USD provider cost.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <h4>Work2Cash</h4>
+      <p>Hyper-local service marketplace for Nigeria, designed around trust, cardless payments, and frugal engineering.</p>
+    </div>
+    <div>
+      <h4>Document Scope</h4>
+      <ul>
+        <li>Mobile screen map</li>
+        <li>Admin dashboard map</li>
+        <li>Backend module mapping</li>
+        <li>Implementation readiness checklist</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Strategic Constraints</h4>
+      <ul>
+        <li>Minimize USD-billed provider usage</li>
+        <li>Prioritize bank transfer, wallet, and USSD flows</li>
+        <li>Build for lower-end Android and unreliable connectivity</li>
+      </ul>
+    </div>
+  </footer>
+
+  <div class="bottom">
+    <span>Prepared for Work2Cash product and engineering handover</span>
+    <span>Standalone HTML document, no external dependencies</span>
+  </div>
+
+  <script>
+    document.querySelectorAll("[data-copy]").forEach(function(button) {
+      button.addEventListener("click", function() {
+        var target = document.getElementById(button.getAttribute("data-copy"));
+        if (!target) return;
+        navigator.clipboard.writeText(target.innerText).then(function() {
+          var previous = button.innerText;
+          button.innerText = "Copied";
+          setTimeout(function() { button.innerText = previous; }, 1200);
+        });
+      });
+    });
+  </script></body>
+</html>

@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="../assets/js/guard.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work2Cash - Provider Integration & Cost Control v1</title>
+  <style>
+    :root {
+      --brand:#1F6AE1;
+      --brand-mid:#5B8DEF;
+      --brand-soft:#EAF2FF;
+      --header:#0F2A44;
+      --text:#1D2939;
+      --muted:#667085;
+      --success:#12B76A;
+      --warning:#FF8A00;
+      --danger:#F04438;
+      --line:#D8E2F1;
+      --bg:#F6F9FE;
+      --paper:#FFFFFF;
+      --soft:#F9FBFF;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      font-family: Inter, "Nunito Sans", Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.68;
+      -webkit-font-smoothing:antialiased;
+    }
+    a { color:var(--brand); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    code {
+      font-family:"SFMono-Regular", Consolas, monospace;
+      background:#EEF4FF;
+      border:1px solid #CFE0FF;
+      padding:2px 6px;
+      border-radius:6px;
+      font-size:.92em;
+    }
+    pre {
+      margin:0;
+      padding:18px;
+      overflow:auto;
+      background:#FAFCFF;
+      font-family:"SFMono-Regular", Consolas, monospace;
+      font-size:12px;
+      line-height:1.62;
+      color:#334155;
+    }
+    .cover {
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:64px clamp(24px, 6vw, 88px);
+      color:white;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(91,141,239,.65), transparent 25rem),
+        radial-gradient(circle at 85% 80%, rgba(18,183,106,.22), transparent 28rem),
+        linear-gradient(135deg, #0F2A44 0%, #123B78 58%, #1F6AE1 115%);
+    }
+    .brand-row { display:flex; gap:16px; align-items:center; }
+    .logo {
+      width:62px; height:62px; border-radius:16px; background:white; color:var(--brand);
+      display:grid; place-items:center; font-weight:900; font-size:20px;
+      box-shadow:0 18px 40px rgba(0,0,0,.18);
+    }
+    .brand-row strong { display:block; font-size:18px; }
+    .brand-row span { display:block; color:rgba(255,255,255,.74); font-size:14px; }
+    .cover-main { max-width:1080px; padding:70px 0; }
+    .label { color:#CFE0FF; text-transform:uppercase; letter-spacing:.16em; font-size:12px; font-weight:800; }
+    h1 { font-size:clamp(44px, 8vw, 84px); line-height:1; margin:18px 0; letter-spacing:-.04em; }
+    .cover-subtitle { font-size:clamp(20px, 3vw, 30px); color:rgba(255,255,255,.84); max-width:920px; font-weight:700; }
+    .meta-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:14px; margin-top:38px; max-width:980px; }
+    .meta-card {
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.12);
+      border-radius:14px;
+      padding:16px;
+      backdrop-filter:blur(10px);
+    }
+    .meta-card span { display:block; color:rgba(255,255,255,.64); font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:800; }
+    .meta-card strong { display:block; margin-top:5px; color:#fff; }
+    .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+    .badge { border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.1); border-radius:999px; padding:7px 13px; font-size:12px; font-weight:800; }
+    .cover-foot { border-top:1px solid rgba(255,255,255,.18); padding-top:24px; display:flex; justify-content:space-between; gap:24px; color:rgba(255,255,255,.66); font-size:13px; }
+    .sticky {
+      position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); backdrop-filter:blur(12px);
+      border-bottom:2px solid var(--brand);
+    }
+    .sticky-inner { max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:12px 24px; }
+    .sticky strong { color:var(--header); }
+    .sticky nav { display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end; }
+    .sticky a { font-size:12px; font-weight:800; }
+    main { max-width:1240px; margin:0 auto; padding:44px 24px 80px; }
+    .toc, .section {
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:clamp(24px, 4vw, 44px);
+      margin-bottom:28px;
+      box-shadow:0 18px 50px rgba(15,42,68,.07);
+    }
+    .toc h2, .section h2 { color:var(--header); font-size:clamp(30px, 4vw, 46px); line-height:1.08; margin:6px 0 12px; letter-spacing:-.025em; }
+    .toc-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; margin-top:22px; }
+    .toc-grid a { padding:14px 16px; border-radius:12px; border:1px solid var(--line); background:var(--brand-soft); color:var(--header); font-weight:900; }
+    .section-num { color:#CBD5E1; font-size:13px; font-weight:900; }
+    .eyebrow { color:var(--brand); text-transform:uppercase; letter-spacing:.14em; font-size:12px; font-weight:900; }
+    .intro { color:var(--muted); font-size:16px; max-width:920px; margin-bottom:28px; }
+    h3 { color:var(--header); font-size:23px; margin:34px 0 14px; padding-bottom:8px; border-bottom:2px solid #E6EEF9; }
+    h4 { color:var(--header); font-size:17px; margin:20px 0 8px; }
+    p { margin:0 0 14px; }
+    ul { padding-left:22px; margin:10px 0 20px; }
+    li { margin:6px 0; }
+    .card-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; margin:22px 0; }
+    .card { border:1px solid var(--line); background:var(--soft); border-radius:14px; padding:18px; }
+    .card span { color:var(--brand); font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:900; }
+    .card h4 { margin:6px 0 7px; }
+    .card p { color:var(--muted); font-size:14px; margin:0; }
+    .callout { border-radius:14px; padding:18px 20px; margin:22px 0; border-left:5px solid var(--brand); background:var(--brand-soft); }
+    .callout strong { display:block; color:var(--brand); text-transform:uppercase; letter-spacing:.1em; font-size:11px; margin-bottom:5px; }
+    .callout p { margin:0; }
+    .callout.green { border-color:var(--success); background:#ECFDF3; }
+    .callout.green strong { color:var(--success); }
+    .callout.amber { border-color:var(--warning); background:#FFF7E8; }
+    .callout.amber strong { color:var(--warning); }
+    .callout.red { border-color:var(--danger); background:#FFF1F0; }
+    .callout.red strong { color:var(--danger); }
+    .table-wrap { overflow:auto; border:1px solid var(--line); border-radius:14px; margin:22px 0; }
+    table { width:100%; border-collapse:collapse; min-width:920px; font-size:13.5px; }
+    th { background:var(--header); color:white; padding:12px 14px; text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+    td { padding:12px 14px; border-bottom:1px solid #EEF2F8; vertical-align:top; color:#344054; }
+    tr:nth-child(even) td { background:#FAFCFF; }
+    tr:last-child td { border-bottom:0; }
+    .pill { display:inline-block; padding:4px 10px; border-radius:999px; font-size:11px; font-weight:900; white-space:nowrap; }
+    .blue { background:var(--brand-soft); color:var(--brand); }
+    .green-pill { background:#ECFDF3; color:var(--success); }
+    .amber-pill { background:#FFF7E8; color:var(--warning); }
+    .red-pill { background:#FFF1F0; color:var(--danger); }
+    .diagram { border:1px solid var(--line); border-radius:16px; overflow:hidden; margin:24px 0; background:#fff; }
+    .diagram-head { background:linear-gradient(135deg, var(--header), #174078); color:white; padding:14px 18px; display:flex; justify-content:space-between; gap:16px; align-items:center; }
+    .diagram-head h4 { margin:0; color:white; }
+    .diagram-head span { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:#DCE9FF; font-weight:900; }
+    .diagram p { padding:14px 18px; border-top:1px solid var(--line); margin:0; color:var(--muted); font-size:13px; }
+    .code-block { border:1px solid var(--line); border-radius:14px; overflow:hidden; margin:18px 0 24px; background:#fff; }
+    .code-title { background:#F8FBFF; border-bottom:1px solid var(--line); padding:10px 14px; color:var(--header); font-weight:900; font-size:12px; }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:18px 0; }
+    .checklist { list-style:none; padding:0; }
+    .checklist li { border-bottom:1px solid #EEF2F8; padding:9px 0 9px 30px; position:relative; }
+    .checklist li::before { content:"OK"; position:absolute; left:0; top:10px; color:var(--brand); font-size:10px; font-weight:900; }
+    footer { background:var(--header); color:#D0D5DD; padding:34px 24px; }
+    .footer-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    footer h4 { color:white; margin-top:0; }
+    footer p, footer li { color:#CBD5E1; font-size:13px; }
+    @media (max-width:900px) {
+      .meta-grid, .card-grid, .toc-grid, .footer-inner, .two-col { grid-template-columns:1fr; }
+      .cover-foot, .sticky-inner { flex-direction:column; align-items:flex-start; }
+      .sticky { position:static; }
+      table { min-width:820px; }
+    }
+    @media print {
+      .sticky { display:none; }
+      .cover { min-height:auto; page-break-after:always; }
+      .section { page-break-inside:avoid; box-shadow:none; }
+      body { background:white; }
+    }
+</style>
+</head>
+<body>
+  <section class="cover">
+    <div class="brand-row">
+      <div class="logo">W2C</div>
+      <div><strong>Work2Cash</strong><span>Provider Integration & Cost Control</span></div>
+    </div>
+    <div class="cover-main">
+      <div class="label">Document 8</div>
+      <h1>Provider Integration & Cost Control</h1>
+      <div class="cover-subtitle">Execution-grade provider integration, adapter, webhook, validation, fallback and cost-control baseline for Work2Cash.</div>
+      <div class="meta-grid">
+        <div class="meta-card"><span>Project</span><strong>Work2Cash</strong></div>
+        <div class="meta-card"><span>Version</span><strong>1.0</strong></div>
+        <div class="meta-card"><span>Date</span><strong>3 July 2026</strong></div>
+        <div class="meta-card"><span>Classification</span><strong>Investor Ready</strong></div>
+        <div class="meta-card"><span>Primary Market</span><strong>Nigeria</strong></div>
+        <div class="meta-card"><span>Cost Strategy</span><strong>Frugal + Guarded</strong></div>
+        <div class="meta-card"><span>Payments</span><strong>Paystack + Moniepoint</strong></div>
+        <div class="meta-card"><span>Hosting</span><strong>Hetzner First</strong></div>
+      </div>
+      <div class="badges">
+        <span class="badge">Provider Ports</span>
+        <span class="badge">Cost Guards</span>
+        <span class="badge">Webhook Idempotency</span>
+        <span class="badge">Fallback Strategy</span>
+        <span class="badge">Go-Live Validation</span>
+      </div>
+    </div>
+    <div class="cover-foot">
+      <div>Source of truth: Enterprise Architecture v1, API & Socket Contract v1, Data Model & Prisma Execution Baseline v1.</div>
+      <div>Target repo location: documents/provider-integration-cost-control-v1.html</div>
+    </div>
+  </section>
+
+  <header class="sticky">
+    <div class="sticky-inner">
+      <strong>Work2Cash Provider & Cost Control v1</strong>
+      <nav>
+        <a href="#registry">Registry</a>
+        <a href="#adapters">Adapters</a>
+        <a href="#webhooks">Webhooks</a>
+        <a href="#cost-controls">Cost</a>
+        <a href="#codex">Codex</a>
+      </nav>
+    </div>
+  </header>
+
+
+<style id="work2cash-doc-nav-style">
+  .doc-hub-nav {
+    max-width: 1240px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads {
+    max-width: 1240px;
+    margin: 16px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads-card {
+    border: 1px solid #CFE0FF;
+    background: #EAF2FF;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.06);
+  }
+  .team-downloads-card strong {
+    display: block;
+    color: #0F2A44;
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .team-downloads-card p {
+    margin: 0 0 12px;
+    color: #667085;
+    font-size: 13px;
+  }
+  .team-downloads-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .team-downloads-links a {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #1F6AE1;
+    background: #FFFFFF;
+    color: #1F6AE1;
+    border-radius: 999px;
+    padding: 9px 13px;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-card {
+    border: 1px solid #D8E2F1;
+    background: #FFFFFF;
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.07);
+    padding: 18px;
+  }
+  .doc-hub-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .doc-hub-top strong {
+    color: #0F2A44;
+    font-size: 16px;
+  }
+  .doc-hub-top a {
+    color: #1F6AE1;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .doc-hub-links a {
+    border: 1px solid #D8E2F1;
+    background: #EAF2FF;
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #0F2A44;
+    font-weight: 850;
+    font-size: 12px;
+    line-height: 1.35;
+    text-decoration: none;
+  }
+  .doc-hub-links a[aria-current="page"] {
+    background: #1F6AE1;
+    color: #FFFFFF;
+    border-color: #1F6AE1;
+  }
+  .doc-hub-links a:hover { text-decoration: underline; }
+  @media (max-width: 980px) {
+    .doc-hub-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 620px) {
+    .doc-hub-nav { padding: 0 16px; }
+    .doc-hub-card { border-radius: 14px; padding: 14px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .doc-hub-links { grid-template-columns: 1fr; }
+    .team-downloads { padding: 0 16px; }
+    .team-downloads-card { border-radius: 14px; padding: 14px; }
+  }
+</style>
+
+<nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
+  <div class="doc-hub-card">
+    <div class="doc-hub-top">
+      <strong>Work2Cash Documentation</strong>
+      <a href="../index.html">Back to document portal</a>
+    </div>
+    <div class="doc-hub-links">
+      <a href="./main-enterprise-architecture-v1.html">Main Enterprise Architecture v1</a><a href="./screen-to-feature-map-v1.html">Screen To Feature Map</a><a href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a href="./flow-alignment-review-v1.html">Flow Alignment Review v1</a><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a><a href="./api-socket-contract-specification-v1.html">API &amp; Socket Contract Specification v1</a><a href="./data-model-prisma-schema-planning-v1.html">Data Model &amp; Prisma Schema Planning v1</a><a href="./provider-integration-cost-control-v1.html" aria-current="page">Provider Integration &amp; Cost Control v1</a><a href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html">Admin Build Plan v1</a><a href="./build-plan-backend-v1.html">Backend Build Plan v1</a><a href="./qa-go-live-readiness-checklist-v1.html">QA / Go-Live Readiness Checklist v1</a>
+    </div>
+  </div>
+</nav>
+
+
+  <main>
+    <section class="toc">
+      <div class="eyebrow">Navigation</div>
+      <h2>Document Contents</h2>
+      <p class="intro">This document defines how Work2Cash integrates third-party and self-hosted providers without losing cost control. It is intended for Codex-driven backend, mobile, admin, DevOps and QA execution.</p>
+      <div class="toc-grid"><a href="#scope">01. How To Use This Document</a><a href="#strategy">02. Provider Strategy</a><a href="#registry">03. Provider Registry</a><a href="#environment">04. Environment And Secret Map</a><a href="#adapters">05. Adapter And Port Contracts</a><a href="#webhooks">06. Webhook And Idempotency Rules</a><a href="#cost-controls">07. Cost Control Rules</a><a href="#budgets">08. Budget Baselines And Review Gates</a><a href="#validation">09. Provider Validation Gates</a><a href="#fallback">10. Failure, Fallback And Disablement</a><a href="#monitoring">11. Monitoring, Logs And Alerts</a><a href="#codex">12. Codex Execution Instructions</a><a href="#handover">13. Implementation Checklist</a></div>
+    </section>
+
+    <section id="scope" class="section">
+      <div class="section-num">01</div>
+      <div class="eyebrow">Scope</div>
+      <h2>How To Use This Document</h2>
+      <p class="intro">Use this document when implementing provider adapters, environment variables, webhooks, queues, validation gates, budget guards and operational monitoring. Provider pricing changes often, so this document separates Work2Cash architecture decisions from pricing values that must be revalidated before provisioning or go-live.</p>
+      <div class="card-grid">
+        <div class="card"><span>Backend</span><h4>Ports and adapters</h4><p>Implement provider integrations behind ports. Use cases should not import provider SDKs directly.</p></div>
+        <div class="card"><span>DevOps</span><h4>Secrets and budgets</h4><p>Configure provider credentials, billing alerts, environment isolation, backups and monitoring safely.</p></div>
+        <div class="card"><span>QA/Product</span><h4>Validation gates</h4><p>Use provider validation tables as go-live test gates before enabling live traffic.</p></div>
+      </div>
+      <div class="callout red"><strong>Cost safety rule</strong><p>Never implement paid provider auto-refresh loops. Paid providers must be called through explicit use cases, queues, webhooks, batch jobs, user actions, or guarded refresh logic.</p></div>
+    </section>
+
+    <section id="strategy" class="section">
+      <div class="section-num">02</div>
+      <div class="eyebrow">Strategy</div>
+      <h2>Provider Strategy</h2>
+      
+    <div class="diagram">
+      <div class="diagram-head"><h4>Provider Boundary</h4><span>Hexagonal Architecture</span></div>
+      <pre>Controller / Socket Gateway / Worker
+  -&gt; Use Case
+  -&gt; Port Interface
+  -&gt; Provider Adapter
+  -&gt; External Provider
+
+Provider callback
+  -&gt; Webhook Controller
+  -&gt; Signature Verification
+  -&gt; ProviderWebhookEvent
+  -&gt; Queue
+  -&gt; Use Case
+  -&gt; Database State Change</pre>
+      <p>Provider SDKs and HTTP clients stay inside adapters. Use cases own business state transitions.</p>
+    </div>
+    
+      <div class="table-wrap"><table><thead><tr><th>Rule</th><th>Execution Decision</th><th>Reason</th></tr></thead><tbody><tr><td>Provider abstraction</td><td>Every external provider must sit behind a port/interface.</td><td>Supports swapping Paystack/Moniepoint, Resend/SendGrid and masked-call providers without rewriting use cases.</td></tr><tr><td>Staging first</td><td>Every provider must pass staging validation before production credentials are configured.</td><td>Prevents live-money/live-KYC mistakes.</td></tr><tr><td>Webhook first for truth</td><td>Payment, transfer, KYC and call provider callbacks must be verified and persisted before state mutation.</td><td>Protects against spoofing, duplicate retries and redirect mismatch.</td></tr><tr><td>Cost visibility</td><td>Every paid provider operation must be logged by provider, use case, resource and requestId.</td><td>Makes USD/variable cost visible before it becomes dangerous.</td></tr><tr><td>Fallback safe states</td><td>Provider failure should lead to pending, retry, support, manual review or disabled feature state.</td><td>Avoids false success and silent data corruption.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="registry" class="section">
+      <div class="section-num">03</div>
+      <div class="eyebrow">Registry</div>
+      <h2>Provider Registry</h2>
+      <div class="table-wrap"><table><thead><tr><th>Category</th><th>Provider</th><th>Role</th><th>Work2Cash Usage</th><th>Status</th><th>Execution Note</th></tr></thead><tbody><tr><td>Payments - Collections</td><td>Paystack</td><td>Primary collection rail alongside Moniepoint.</td><td>Task Owner cardless payment, bank transfer, payment redirect/status, webhook confirmation.</td><td>Active MVP provider</td><td>Verify current pricing, supported channels, webhook signatures and settlement behavior before go-live.</td></tr><tr><td>Payments - Collections</td><td>Moniepoint</td><td>Primary collection rail alongside Paystack.</td><td>Task Owner payment, provider status, webhook confirmation.</td><td>Active MVP provider</td><td>Verify online checkout/API availability, webhook reliability, bank transfer flow and settlement behavior before go-live.</td></tr><tr><td>Payouts</td><td>Paystack Transfers</td><td>Transfer rail for Tasker withdrawals where appropriate.</td><td>Bulk payout batch processing on 14th and 28th.</td><td>Active MVP provider</td><td>Verify transfer fees, bank coverage, transfer limits, reversal behavior and compliance requirements.</td></tr><tr><td>Payouts</td><td>Moniepoint</td><td>Transfer rail for payout batches where appropriate.</td><td>Bulk payout batch processing and reconciliation.</td><td>Active MVP provider</td><td>Verify transfer API, bulk transfer support, pricing, limits and settlement operations.</td></tr><tr><td>KYC</td><td>Smile ID</td><td>Identity verification provider.</td><td>NIN/BVN + biometric face match for Tasker activation.</td><td>Active MVP provider</td><td>Verify Nigeria product availability, pricing, callback signatures, required consent wording and data retention requirements.</td></tr><tr><td>Maps</td><td>Google Maps Platform</td><td>Paid maps/routing/geocoding provider.</td><td>Geocoding manual address, ETA snapshots, traffic-aware arrival estimate.</td><td>Active MVP provider with strict guard</td><td>Distance/route pricing changes frequently. Configure billing alerts and enforce ETA guard.</td></tr><tr><td>Push Notifications</td><td>Firebase Cloud Messaging</td><td>Primary device wake and push notification channel.</td><td>New task alerts, direct offers, chat/support notifications, critical task updates.</td><td>Active MVP provider</td><td>Keep FCM tokens fresh and handle aggressive Android background killing.</td></tr><tr><td>SMS</td><td>Termii</td><td>SMS fallback for critical OTP and critical notifications.</td><td>OTP fallback after email, critical account/payment/support messages only.</td><td>Active MVP provider</td><td>SMS can become expensive; use only where email/push is insufficient.</td></tr><tr><td>Email</td><td>Resend</td><td>Phase 1 transactional email provider.</td><td>OTP email, receipts, account notifications, support emails.</td><td>Phase 1 provider</td><td>Use React Email templates and monitor free/pro limits.</td></tr><tr><td>Email</td><td>SendGrid</td><td>Later email provider when volume/deliverability requires it.</td><td>High-volume transactional email and dedicated IP needs.</td><td>Deferred provider</td><td>Switch via email adapter without changing use cases.</td></tr><tr><td>Monitoring</td><td>Sentry</td><td>Error monitoring.</td><td>Backend, Flutter and Next.js error tracking.</td><td>Developer/free plan baseline</td><td>Avoid sending PII, KYC payloads, provider secrets or payment-sensitive values.</td></tr><tr><td>Mobile Updates</td><td>Shorebird</td><td>Flutter patch delivery.</td><td>Post-release Dart patch updates where allowed.</td><td>Active mobile provider</td><td>Do not use for native changes requiring app store release.</td></tr><tr><td>Masked Calls</td><td>Infobip</td><td>Primary candidate for proxy dial-in masked calls.</td><td>Task-bound call masking without exposing phone numbers.</td><td>Candidate to validate</td><td>Confirm Nigerian voice number availability, local airtime behavior, carrier reliability and pricing.</td></tr><tr><td>Masked Calls</td><td>Africa&#x27;s Talking</td><td>Secondary candidate for masked calls.</td><td>Fallback voice masking candidate.</td><td>Candidate to validate</td><td>Confirm Nigeria number support and proxy dial-in feasibility.</td></tr><tr><td>Masked Calls</td><td>Vonage</td><td>Fallback masked call provider.</td><td>Fallback if local candidates fail.</td><td>Fallback</td><td>Do not depend on it until Nigeria voice-capable number support is verified.</td></tr><tr><td>Masked Calls</td><td>Sinch</td><td>Enterprise fallback.</td><td>Fallback if scale/compliance requires enterprise provider.</td><td>Fallback</td><td>Likely higher-cost path; validate only if needed.</td></tr><tr><td>Hosting</td><td>Hetzner</td><td>First-choice production and staging hosting path.</td><td>Self-host NestJS, Postgres, Valkey, BullMQ, monitoring stack where selected.</td><td>First-choice infrastructure</td><td>Latency must be measured from Nigeria before final production commitment.</td></tr><tr><td>Hosting</td><td>DigitalOcean</td><td>Production fallback if Hetzner latency becomes unacceptable.</td><td>Alternative app/data/monitoring server setup and Spaces/S3-compatible storage.</td><td>Fallback infrastructure</td><td>Keep migration plan ready and object storage compatible.</td></tr><tr><td>Object/Backup Storage</td><td>DigitalOcean Spaces or S3-compatible storage</td><td>Media, backup and export storage.</td><td>Task proof media, backups, generated exports.</td><td>Active option</td><td>Use signed URLs, lifecycle policies and backup restore tests.</td></tr><tr><td>Domain</td><td>WhoGoHost</td><td>Domain registrar for work2cash.ng.</td><td>Domain purchase and DNS ownership.</td><td>Active provider</td><td>Domain baseline: NGN 9,200 + 7.5% VAT = NGN 9,890 excluding bank transfer/payment charges.</td></tr><tr><td>Analytics</td><td>Firebase Analytics</td><td>Basic mobile analytics.</td><td>Event-level mobile analytics where useful.</td><td>Deferred/light usage</td><td>Product analytics is intentionally not a core MVP dependency.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="environment" class="section">
+      <div class="section-num">04</div>
+      <div class="eyebrow">Environment</div>
+      <h2>Environment And Secret Map</h2>
+      <div class="table-wrap"><table><thead><tr><th>Surface</th><th>Environment</th><th>URL</th><th>Purpose</th><th>Secret Rule</th></tr></thead><tbody><tr><td>API</td><td>Production</td><td>https://api.work2cash.ng</td><td>REST source of truth.</td><td>Provider live keys only after go-live approval.</td></tr><tr><td>Socket</td><td>Production</td><td>https://socket.work2cash.ng</td><td>Socket.IO for task chat, support chat, tracking and presence.</td><td>Token auth and Valkey adapter when scaled.</td></tr><tr><td>Admin</td><td>Production</td><td>https://admin.work2cash.ng</td><td>Operations dashboard.</td><td>Admin TOTP and RBAC required.</td></tr><tr><td>API</td><td>Staging</td><td>https://api-staging.work2cash.ng</td><td>Staging REST API.</td><td>Sandbox/test keys only.</td></tr><tr><td>Socket</td><td>Staging</td><td>https://socket-staging.work2cash.ng</td><td>Staging socket gateway.</td><td>No production user data.</td></tr><tr><td>Website/Admin</td><td>Staging</td><td>https://staging.work2cash.ng</td><td>Staging web/admin surface.</td><td>Password-gated documentation remains separate from app auth.</td></tr></tbody></table></div>
+      <h3>Secret Groups</h3>
+      <div class="table-wrap"><table><thead><tr><th>Provider</th><th>Expected Environment Variables</th><th>Rule</th></tr></thead><tbody><tr><td>Paystack</td><td>PAYSTACK_SECRET_KEY, PAYSTACK_PUBLIC_KEY, PAYSTACK_WEBHOOK_SECRET, PAYSTACK_BASE_URL</td><td>Staging uses test keys. Production uses live keys only after approval.</td></tr><tr><td>Moniepoint</td><td>MONIEPOINT_CLIENT_ID, MONIEPOINT_CLIENT_SECRET, MONIEPOINT_WEBHOOK_SECRET, MONIEPOINT_BASE_URL</td><td>Names can be adjusted to official SDK/API naming during implementation.</td></tr><tr><td>Smile ID</td><td>SMILE_ID_PARTNER_ID, SMILE_ID_API_KEY, SMILE_ID_WEBHOOK_SECRET, SMILE_ID_BASE_URL</td><td>Never expose to mobile/admin frontend.</td></tr><tr><td>Google Maps</td><td>GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_BASE_URL, GOOGLE_MAPS_BUDGET_LIMIT</td><td>Restrict key by API, domain/IP where possible.</td></tr><tr><td>Termii</td><td>TERMII_API_KEY, TERMII_SENDER_ID, TERMII_BASE_URL</td><td>Use only for fallback/critical SMS.</td></tr><tr><td>Email</td><td>RESEND_API_KEY, SENDGRID_API_KEY, EMAIL_PROVIDER</td><td>EMAIL_PROVIDER controls adapter selection.</td></tr><tr><td>Firebase</td><td>FCM_SERVER_CREDENTIALS, FIREBASE_PROJECT_ID</td><td>Store server credentials only on backend/worker environment.</td></tr><tr><td>Sentry</td><td>SENTRY_DSN_BACKEND, SENTRY_DSN_ADMIN, SENTRY_DSN_FLUTTER, SENTRY_ENVIRONMENT</td><td>Scrub sensitive data before sending events.</td></tr><tr><td>Shorebird</td><td>SHOREBIRD_TOKEN, SHOREBIRD_APP_ID</td><td>CI/mobile release context only.</td></tr><tr><td>Masked Calls</td><td>CALL_PROVIDER, INFOBIP_API_KEY, AFRICAS_TALKING_API_KEY, VONAGE_API_KEY, SINCH_API_KEY</td><td>Only configure provider after validation.</td></tr><tr><td>Object Storage</td><td>S3_ENDPOINT, S3_REGION, S3_BUCKET_MEDIA, S3_BUCKET_BACKUPS, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY</td><td>Use separate buckets/prefixes for media and backups.</td></tr></tbody></table></div>
+      <div class="callout amber"><strong>Secret handling</strong><p>Raw passwords, API keys, webhook secrets, service account credentials and production provider credentials must never be committed to the docs repo or application repository.</p></div>
+    </section>
+
+    <section id="adapters" class="section">
+      <div class="section-num">05</div>
+      <div class="eyebrow">Adapters</div>
+      <h2>Adapter And Port Contracts</h2>
+      <div class="table-wrap"><table><thead><tr><th>Port</th><th>Adapters</th><th>Responsibilities</th><th>Boundary Rule</th></tr></thead><tbody><tr><td>PaymentCollectionPort</td><td>PaystackPaymentAdapter, MoniepointPaymentAdapter</td><td>Create payment intent, verify status, parse webhook, normalize provider references.</td><td>No task state mutation inside adapter; use case owns state transition.</td></tr><tr><td>PayoutPort</td><td>PaystackTransferAdapter, MoniepointTransferAdapter</td><td>Create transfer/bulk transfer, verify transfer status, parse payout webhook.</td><td>PayoutBatch use case owns item status and ledger effects.</td></tr><tr><td>KycPort</td><td>SmileIdKycAdapter</td><td>Start NIN/BVN/biometric job, parse callback, normalize KYC result.</td><td>KYC adapter must not activate TaskerProfile directly.</td></tr><tr><td>MapsPort</td><td>GoogleMapsAdapter</td><td>Geocode address, compute ETA/distance for shortlisted candidates.</td><td>All paid calls go through guard and budget logger.</td></tr><tr><td>SmsPort</td><td>TermiiSmsAdapter</td><td>Send OTP fallback and critical SMS.</td><td>Email-first rule enforced by notification use case.</td></tr><tr><td>EmailPort</td><td>ResendEmailAdapter, SendGridEmailAdapter</td><td>Send transactional email templates.</td><td>Provider selected by config, not by use case.</td></tr><tr><td>PushNotificationPort</td><td>FcmPushAdapter</td><td>Send push notifications and topic/device messages.</td><td>Push must point user to REST state, not carry sensitive payload.</td></tr><tr><td>CallMaskingPort</td><td>InfobipCallMaskingAdapter, AfricasTalkingCallMaskingAdapter, VonageCallMaskingAdapter, SinchCallMaskingAdapter</td><td>Create proxy call session, route inbound provider call, close session.</td><td>Provider availability must be confirmed before production enablement.</td></tr><tr><td>ObjectStoragePort</td><td>S3CompatibleStorageAdapter</td><td>Signed upload/download URLs, delete/expire objects, backup storage.</td><td>Media access must be permission-controlled.</td></tr><tr><td>ErrorMonitoringPort</td><td>SentryMonitoringAdapter</td><td>Capture sanitized exceptions and performance traces.</td><td>No PII/secrets in error payloads.</td></tr></tbody></table></div>
+      <div class="code-block"><div class="code-title">Provider Adapter Pattern</div><pre>export interface PaymentCollectionPort {
+  createPaymentIntent(input: CreatePaymentIntentInput): Promise&lt;CreatePaymentIntentResult&gt;;
+  verifyPayment(reference: string): Promise&lt;NormalizedPaymentStatus&gt;;
+  parseWebhook(rawBody: Buffer, headers: Record&lt;string, string&gt;): Promise&lt;NormalizedWebhookEvent&gt;;
+}
+
+// Use case owns task/payment/escrow state.
+// Adapter only normalizes provider communication.</pre></div>
+    </section>
+
+    <section id="webhooks" class="section">
+      <div class="section-num">06</div>
+      <div class="eyebrow">Webhooks</div>
+      <h2>Webhook And Idempotency Rules</h2>
+      <div class="table-wrap"><table><thead><tr><th>Rule</th><th>Execution Requirement</th><th>Why It Matters</th></tr></thead><tbody><tr><td>Raw body</td><td>Webhook routes must preserve raw request body for signature validation.</td><td>Required for Paystack, Moniepoint and other signed callbacks.</td></tr><tr><td>Signature verification</td><td>Reject webhooks that fail signature verification.</td><td>Prevents spoofed payment/KYC/call events.</td></tr><tr><td>Idempotency</td><td>Persist provider + eventId/reference in ProviderWebhookEvent before processing.</td><td>Allows safe provider retries.</td></tr><tr><td>Fast acknowledgement</td><td>Store event and queue processing quickly.</td><td>Avoids provider timeout and duplicate retry storms.</td></tr><tr><td>State guards</td><td>Provider event cannot force invalid task/payment/payout state transition.</td><td>Use use-case state machine guards.</td></tr><tr><td>Audit</td><td>High-impact provider results write audit/provider request logs.</td><td>Supports reconciliation and dispute review.</td></tr><tr><td>Replay handling</td><td>Duplicate webhook returns success after confirming previous processing state.</td><td>Provider retries should not create duplicates.</td></tr></tbody></table></div>
+      
+    <div class="diagram">
+      <div class="diagram-head"><h4>Webhook Processing</h4><span>Idempotent Provider Flow</span></div>
+      <pre>Provider sends webhook
+  -&gt; Preserve raw body
+  -&gt; Verify signature
+  -&gt; Insert ProviderWebhookEvent(provider + eventId)
+  -&gt; If duplicate: return success with previous state
+  -&gt; Queue normalized event
+  -&gt; Use case validates state transition
+  -&gt; Transaction updates Payment/KYC/Payout/Call state
+  -&gt; ProviderRequestLog / AuditLog records result</pre>
+      <p>Provider retries must be safe. Duplicate callbacks must not duplicate ledger entries, task states, payout items or KYC decisions.</p>
+    </div>
+    
+    </section>
+
+    <section id="cost-controls" class="section">
+      <div class="section-num">07</div>
+      <div class="eyebrow">Cost Control</div>
+      <h2>Cost Control Rules</h2>
+      <div class="table-wrap"><table><thead><tr><th>Provider Area</th><th>Forbidden Behavior</th><th>Required Control</th><th>Enforcement</th></tr></thead><tbody><tr><td>Google Maps</td><td>Do not call paid ETA APIs on every location update.</td><td>Use Valkey/Redis geospatial filtering first, then ETA only for shortlisted candidates and guarded tracking updates.</td><td>5-minute guard plus next 10% total-journey milestone; reset timer and milestone after refresh.</td></tr><tr><td>Payments</td><td>Do not trust frontend redirect as final payment truth.</td><td>Use provider webhook + backend verification before escrow/task state changes.</td><td>Idempotent ProviderWebhookEvent and PaymentAttempt records.</td></tr><tr><td>SMS</td><td>Do not make SMS the first OTP channel.</td><td>Email first, Termii SMS fallback only when needed.</td><td>OTP purpose, rate limit and retry tracking.</td></tr><tr><td>Email</td><td>Do not hard-code provider SDK into use cases.</td><td>Use EmailPort with Resend adapter first and SendGrid adapter later.</td><td>Provider swap does not affect auth/support use cases.</td></tr><tr><td>Masked Calls</td><td>Do not expose direct phone numbers.</td><td>Use proxy dial-in session and provider callback validation.</td><td>TaskCallSession expiry and valid task state checks.</td></tr><tr><td>Push Notifications</td><td>Do not use push as source of truth.</td><td>FCM wakes device; app fetches REST state after open/resume.</td><td>Notification records and deep link targets persist in DB.</td></tr><tr><td>Hosting</td><td>Do not start with oversized managed services if self-hosting is selected.</td><td>Use separate app/data/monitoring servers for production where feasible; staging remains lean.</td><td>Monitor CPU/RAM/disk and move to fallback provider if latency or ops burden requires.</td></tr><tr><td>Backups</td><td>Do not assume snapshots are enough.</td><td>Use scheduled Postgres dumps/WAL strategy, object-storage copy and restore drills.</td><td>RPO/RTO targets must be tested before go-live.</td></tr><tr><td>Error Monitoring</td><td>Do not send sensitive payloads to Sentry.</td><td>Scrub PII, KYC identifiers, payment references where sensitive, phone numbers and provider secrets.</td><td>Sentry beforeSend/scrubbing rules in all clients.</td></tr><tr><td>Queues</td><td>Do not execute provider side effects directly in request path when avoidable.</td><td>Use BullMQ jobs with idempotent processors for notifications, payments, KYC, maps, media, reports and payouts.</td><td>QueueJobAudit and retry/dead-letter monitoring.</td></tr></tbody></table></div>
+      <h3>Budget Guards</h3>
+      <div class="table-wrap"><table><thead><tr><th>Cost Area</th><th>Guard</th><th>Alert / Action</th><th>Measurement</th></tr></thead><tbody><tr><td>Google Maps monthly spend</td><td>Set cloud billing budget and internal Maps usage counter.</td><td>Alert at 50%, 75%, 90% and hard operational review at 100%.</td><td>Maps worker records every paid request with purpose and taskId where applicable.</td></tr><tr><td>SMS spend</td><td>Track OTP and critical SMS count by purpose.</td><td>Alert when SMS fallback rate is unusually high.</td><td>High fallback rate may indicate email deliverability or UX issue.</td></tr><tr><td>KYC spend</td><td>Track KYC attempt count, success/failure and duplicate attempts.</td><td>Block repeated KYC retry abuse and require cooldown/support review where needed.</td><td>KYC retries directly affect cost.</td></tr><tr><td>Email spend</td><td>Track monthly volume by provider and template.</td><td>Resend first; SendGrid only after volume/deliverability threshold.</td><td>Avoid noisy transactional emails.</td></tr><tr><td>Masked call spend</td><td>Track proxy number leases, inbound calls, forwarding minutes and failed sessions.</td><td>Feature remains provider-validation gated until Nigeria cost behavior is known.</td><td>Call copy: Calls use your normal airtime. Work2Cash protects your phone number.</td></tr><tr><td>Server spend</td><td>Track CPU/RAM/disk/network and backup storage.</td><td>Right-size self-hosted servers before scaling up.</td><td>Infrastructure spend must be reviewed before switching provider.</td></tr><tr><td>Object storage spend</td><td>Track media size, backup size, lifecycle expiry and CDN egress.</td><td>Enforce 50MB per task media file and cleanup orphaned uploads.</td><td>Use lifecycle policy for old generated exports/log archives.</td></tr></tbody></table></div>
+      <div class="callout green"><strong>ETA guard</strong><p>Tasker GPS may stream frequently, but paid ETA refresh is allowed only when the 5-minute guard has elapsed and the next 10% total-journey milestone has been crossed. The 10% journey milestone is the main driver. After refresh, reset the guard timer and next milestone.</p></div>
+    </section>
+
+    <section id="budgets" class="section">
+      <div class="section-num">08</div>
+      <div class="eyebrow">Budgets</div>
+      <h2>Budget Baselines And Review Gates</h2>
+      <p class="intro">The table below captures Work2Cash budgeting assumptions. Any external provider pricing must be revalidated from the official provider source before live provisioning, investor reporting or go-live budgeting.</p>
+      <div class="table-wrap"><table><thead><tr><th>Item</th><th>Baseline</th><th>Execution Note</th></tr></thead><tbody><tr><td>Exchange rate assumption</td><td>USD 1 = NGN 1,600</td><td>Project budgeting baseline. Revalidate before payments/provisioning.</td></tr><tr><td>Domain</td><td>NGN 9,200 + 7.5% VAT = NGN 9,890</td><td>WhoGoHost baseline excluding bank transfer/payment charges.</td></tr><tr><td>Staging hosting</td><td>Hetzner CX33 baseline from project source</td><td>4 vCPU, 8GB RAM, 80GB SSD. Revalidate before provisioning.</td></tr><tr><td>Production first choice</td><td>Hetzner self-hosted production</td><td>Selected for cost; latency from Nigeria must be measured.</td></tr><tr><td>Production fallback</td><td>DigitalOcean multi-server production</td><td>Use if Hetzner latency or operational risk becomes unacceptable.</td></tr><tr><td>Production budget buffer</td><td>USD 60-80 monthly buffer</td><td>Infrastructure/provider overage buffer from architecture baseline.</td></tr><tr><td>Variable provider costs</td><td>Maps, KYC, SMS, email, masked calls, payment fees</td><td>Track by use case and alert before budget drift becomes operational risk.</td></tr></tbody></table></div>
+      <div class="callout amber"><strong>Pricing verification gate</strong><p>Provider pricing is operationally unstable. Before go-live, verify Paystack, Moniepoint, Smile ID, Google Maps, Termii, email, hosting, object storage and masked-call pricing from official provider sources and update this document if the baseline changes.</p></div>
+    </section>
+
+    <section id="validation" class="section">
+      <div class="section-num">09</div>
+      <div class="eyebrow">Validation</div>
+      <h2>Provider Validation Gates</h2>
+      <div class="table-wrap"><table><thead><tr><th>Provider / Area</th><th>Validation Test</th><th>Go-Live Rule</th></tr></thead><tbody><tr><td>Paystack</td><td>Can create payment intent, complete bank-transfer/redirect flow, receive signed webhook, reconcile duplicate webhook, and verify payment status.</td><td>Required before payment MVP signoff.</td></tr><tr><td>Moniepoint</td><td>Can create payment/collection flow, receive signed webhook, verify status, and reconcile failed/pending cases.</td><td>Required before payment MVP signoff.</td></tr><tr><td>Payout batch</td><td>Can generate batch, exclude disputed Taskers, process provider transfer, handle partial failure and retry safely.</td><td>Required before Tasker withdrawal launch.</td></tr><tr><td>Smile ID</td><td>Can run test KYC, receive callback, map result to KycStatus and request re-verification from admin.</td><td>Required before Tasker activation launch.</td></tr><tr><td>Google Maps</td><td>Can geocode manual address, reject non-Nigeria task site, compute ETA, and enforce 5-minute + 10% journey guard.</td><td>Required before task matching launch.</td></tr><tr><td>FCM</td><td>Can register device token, send direct offer/task/chat/support notification, and recover state from REST after tap.</td><td>Required before mobile closed testing.</td></tr><tr><td>Termii</td><td>Can send fallback OTP with rate limit and purpose logging.</td><td>Required before auth closed testing.</td></tr><tr><td>Email</td><td>Can send OTP, receipt and support email with template and event logging.</td><td>Required before auth/payment closed testing.</td></tr><tr><td>Sentry</td><td>Can capture sanitized backend/mobile/admin errors without PII/secrets.</td><td>Required before staging QA.</td></tr><tr><td>Shorebird</td><td>Can patch non-native Flutter issue in staging build and document limitations.</td><td>Required before mobile release readiness.</td></tr><tr><td>Masked calls</td><td>Can lease/use proxy number, route inbound call, bridge recipient, hide real number and track cost.</td><td>Can remain disabled if provider validation is incomplete.</td></tr><tr><td>Backups</td><td>Can backup Postgres, upload to object storage, restore to staging and confirm RPO/RTO.</td><td>Required before production go-live.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="fallback" class="section">
+      <div class="section-num">10</div>
+      <div class="eyebrow">Fallback</div>
+      <h2>Failure, Fallback And Disablement</h2>
+      <div class="table-wrap"><table><thead><tr><th>Failure</th><th>User-Facing State</th><th>Backend State</th><th>Admin / Ops Action</th></tr></thead><tbody><tr><td>Payment webhook delayed</td><td>Payment pending. User can refresh status.</td><td>Payment remains PENDING; task not broadcast until verified.</td><td>Reconcile provider reference from admin finance.</td></tr><tr><td>Payment provider down</td><td>Payment option temporarily unavailable.</td><td>Provider marked degraded by config.</td><td>Route to alternate provider if enabled.</td></tr><tr><td>KYC provider delayed</td><td>KYC pending review.</td><td>KycVerification remains PENDING.</td><td>Admin can reconcile provider status or request re-verification.</td></tr><tr><td>Maps API budget risk</td><td>ETA temporarily unavailable or stale.</td><td>Use last ETA/distance and disable paid refresh.</td><td>Review budget and provider logs.</td></tr><tr><td>FCM delivery failure</td><td>Notification may not appear; app fetches state on open.</td><td>Notification failed/retry logged.</td><td>Retry where useful; do not rely on push for truth.</td></tr><tr><td>SMS provider failure</td><td>OTP fallback unavailable; email remains primary.</td><td>OtpChallenge remains pending/failed.</td><td>Switch provider or support path if critical.</td></tr><tr><td>Masked call provider unavailable</td><td>Call via Work2Cash temporarily unavailable.</td><td>TaskCallSession not created or marked failed.</td><td>Disable feature flag and keep chat/voice notes available.</td></tr><tr><td>Object storage failure</td><td>Upload/download retry state.</td><td>TaskMedia remains UPLOADING or failed.</td><td>Retry job and check storage health.</td></tr><tr><td>Sentry unavailable</td><td>No user-facing impact.</td><td>Monitoring degraded.</td><td>Use application logs and restore Sentry later.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="monitoring" class="section">
+      <div class="section-num">11</div>
+      <div class="eyebrow">Monitoring</div>
+      <h2>Monitoring, Logs And Alerts</h2>
+      <div class="table-wrap"><table><thead><tr><th>Signal</th><th>Required Log / Metric</th><th>Alert Condition</th></tr></thead><tbody><tr><td>Provider requests</td><td>provider, operation, requestId, resourceId, status, duration, estimatedCost where known.</td><td>Error spike, latency spike or cost spike.</td></tr><tr><td>Webhook processing</td><td>event received, signature valid/invalid, duplicate, processed, failed.</td><td>Webhook failure rate or duplicate storm.</td></tr><tr><td>Payment reconciliation</td><td>pending payments by age, successful payments, failed payments.</td><td>Pending payment exceeds allowed age.</td></tr><tr><td>Maps usage</td><td>paid geocode/ETA requests by purpose and task.</td><td>Budget threshold or abnormal refresh frequency.</td></tr><tr><td>KYC usage</td><td>attempts, success, reject, failed, provider errors.</td><td>High failure rate or duplicate attempts.</td></tr><tr><td>SMS usage</td><td>OTP sends by purpose, fallback rate, failures.</td><td>SMS fallback rate above expected threshold.</td></tr><tr><td>Payout batch</td><td>batch status, failed items, partial failures, provider references.</td><td>Batch stuck or partial failure.</td></tr><tr><td>Queues</td><td>waiting, active, delayed, failed, dead-letter counts.</td><td>Queue backlog or repeated job failure.</td></tr><tr><td>Backups</td><td>backup success/failure, size, restore test date.</td><td>Missed backup or stale restore drill.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="codex" class="section">
+      <div class="section-num">12</div>
+      <div class="eyebrow">Codex</div>
+      <h2>Codex Execution Instructions</h2>
+      <div class="table-wrap"><table><thead><tr><th>Instruction</th><th>Required Behavior</th></tr></thead><tbody><tr><td>Adapter-first implementation</td><td>Create ports and provider adapters. Do not call provider SDKs directly from controllers or use cases.</td></tr><tr><td>Idempotency first</td><td>Implement ProviderWebhookEvent and idempotency keys before live payment, payout, KYC or call callbacks.</td></tr><tr><td>Sandbox before live</td><td>Every provider must pass staging validation with sandbox/test keys before production credentials are configured.</td></tr><tr><td>Secrets handling</td><td>Never commit provider keys, webhook secrets, service account JSON, Sentry DSNs with secrets, or production credentials.</td></tr><tr><td>Cost logging</td><td>Every paid provider adapter must write ProviderRequestLog or equivalent with provider, operation, resource, success, cost estimate where known and requestId.</td></tr><tr><td>Feature flags</td><td>Risky provider features such as masked calls must be controlled by admin config/feature flag.</td></tr><tr><td>Fallback paths</td><td>Provider failures must return recoverable states: pending, retry, support, manual review or disabled feature. Do not silently mark success.</td></tr><tr><td>No paid polling loops</td><td>Do not implement auto-refresh loops against paid providers. Use queues, webhooks, status recovery and explicit guarded refresh.</td></tr><tr><td>Frontend behavior</td><td>Provider submit actions use blur overlay with spinning Work2Cash logo; fetches use skeletonized views.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="handover" class="section">
+      <div class="section-num">13</div>
+      <div class="eyebrow">Checklist</div>
+      <h2>Implementation Checklist</h2>
+      <ul class="checklist">
+        <li>Every provider integration is implemented through a port and adapter.</li>
+        <li>Provider credentials are environment-only and are never committed.</li>
+        <li>Payment, payout, KYC and call webhooks preserve raw body and verify signature.</li>
+        <li>ProviderWebhookEvent idempotency exists before live webhook processing.</li>
+        <li>Google Maps ETA guard is implemented before live tracking is enabled.</li>
+        <li>Termii SMS is fallback/critical only; email remains OTP first channel.</li>
+        <li>Sentry scrubbing removes PII, KYC payloads, phone numbers and provider secrets.</li>
+        <li>Payout batch validation covers 14th/28th schedule, disputed Tasker exclusion and partial failure handling.</li>
+        <li>Masked calls remain disabled until Nigeria voice/proxy validation passes.</li>
+        <li>Backups are restored successfully in staging before production go-live.</li>
+        <li>Provider pricing is revalidated from official sources before go-live.</li>
+      </ul>
+      <div class="callout green"><strong>Repo placement</strong><p>Publish this document as <code>documents/provider-integration-cost-control-v1.html</code> in the Work2Cash docs repository and link it from the main architecture resource list.</p></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div><h4>Work2Cash</h4><p>Provider Integration & Cost Control v1 for execution across backend, mobile, admin, DevOps and QA.</p></div>
+      <div><h4>Document Location</h4><p><code>documents/provider-integration-cost-control-v1.html</code></p></div>
+      <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
+    </div>
+  </footer></body>
+</html>

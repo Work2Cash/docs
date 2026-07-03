@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="../assets/js/guard.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work2Cash Flow Alignment Review v1</title>
+  <style>
+    :root { --brand:#1F6AE1; --brand-soft:#EAF2FF; --header:#0F2A44; --text:#1D2939; --muted:#667085; --line:#D8E2F1; --bg:#F6F9FE; --green:#12B76A; --amber:#FF8A00; --red:#F04438; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Inter, Arial, sans-serif; background:var(--bg); color:var(--text); line-height:1.62; }
+    .cover { min-height:72vh; padding:64px clamp(24px,6vw,88px); color:#fff; background:linear-gradient(135deg,#0F2A44,#123B78 55%,#1F6AE1); display:flex; flex-direction:column; justify-content:center; }
+    .logo { width:60px; height:60px; border-radius:16px; background:#fff; color:var(--brand); display:grid; place-items:center; font-weight:900; margin-bottom:24px; }
+    h1 { font-size:clamp(42px,7vw,78px); line-height:1; margin:0 0 18px; letter-spacing:-.04em; max-width:1000px; }
+    .cover p { max-width:920px; color:rgba(255,255,255,.82); font-size:clamp(18px,2.4vw,26px); font-weight:700; }
+    .meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+    .meta span { border:1px solid rgba(255,255,255,.28); border-radius:999px; padding:8px 13px; font-size:12px; font-weight:800; }
+    .sticky { position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); border-bottom:2px solid var(--brand); backdrop-filter:blur(10px); }
+    .sticky-inner { max-width:1200px; margin:0 auto; padding:12px 22px; display:flex; gap:18px; justify-content:space-between; align-items:center; }
+    .sticky a { color:var(--brand); text-decoration:none; font-weight:800; font-size:12px; margin-left:10px; }
+    main { max-width:1200px; margin:0 auto; padding:34px 22px 80px; }
+    .section { background:#fff; border:1px solid var(--line); border-radius:18px; padding:clamp(22px,4vw,42px); margin-bottom:24px; box-shadow:0 18px 50px rgba(15,42,68,.07); }
+    .eyebrow { color:var(--brand); text-transform:uppercase; letter-spacing:.14em; font-size:12px; font-weight:900; }
+    h2 { color:var(--header); font-size:clamp(28px,4vw,44px); margin:6px 0 12px; line-height:1.08; }
+    .intro { color:var(--muted); max-width:940px; }
+    .table-wrap { overflow:auto; border:1px solid var(--line); border-radius:14px; margin-top:20px; }
+    table { width:100%; min-width:860px; border-collapse:collapse; font-size:13.5px; }
+    th { background:var(--header); color:#fff; text-align:left; padding:12px 14px; font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+    td { padding:12px 14px; border-bottom:1px solid #EEF2F8; vertical-align:top; }
+    tr:nth-child(even) td { background:#FAFCFF; }
+    .badge { display:inline-block; border-radius:999px; padding:4px 9px; font-size:11px; font-weight:900; white-space:nowrap; }
+    .badge.green { background:#ECFDF3; color:var(--green); }
+    .badge.amber { background:#FFF7E8; color:var(--amber); }
+    .badge.red { background:#FFF1F0; color:var(--red); }
+    .badge.blue { background:var(--brand-soft); color:var(--brand); }
+    .callout { border-left:5px solid var(--brand); background:var(--brand-soft); border-radius:14px; padding:18px; margin:22px 0; }
+    .callout strong { display:block; color:var(--brand); text-transform:uppercase; letter-spacing:.1em; font-size:11px; }
+    code { background:#EEF4FF; border:1px solid #CFE0FF; padding:2px 6px; border-radius:6px; }
+    footer { background:var(--header); color:#CBD5E1; padding:30px 22px; }
+    footer div { max-width:1200px; margin:0 auto; }
+    @media(max-width:800px) { .sticky { position:static; } .sticky-inner { flex-direction:column; align-items:flex-start; } table { min-width:760px; } }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <div class="logo">W2C</div>
+    <h1>Flow Alignment Review v1</h1>
+    <p>Comparison of the mobile and admin closed-flow catalogues against the main architecture document and Figma guide exports.</p>
+    <div class="meta">
+      <span>Mobile Flow Catalogue</span>
+      <span>Admin Flow Catalogue</span>
+      <span>Main Architecture v1</span>
+      <span>Figma Mobile/Admin Guides</span>
+    </div>
+  </section>
+  <header class="sticky">
+    <div class="sticky-inner">
+      <strong>Work2Cash Alignment Review</strong>
+      <nav>
+        <a href="#s1">Coverage</a>
+        <a href="#s2">Source of Truth</a>
+        <a href="#s3">Mobile Gaps</a>
+        <a href="#s4">Admin Gaps</a>
+        <a href="#s5">Figma Conflicts</a>
+      </nav>
+    </div>
+  </header>
+
+
+<style id="work2cash-doc-nav-style">
+  .doc-hub-nav {
+    max-width: 1240px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads {
+    max-width: 1240px;
+    margin: 16px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads-card {
+    border: 1px solid #CFE0FF;
+    background: #EAF2FF;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.06);
+  }
+  .team-downloads-card strong {
+    display: block;
+    color: #0F2A44;
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .team-downloads-card p {
+    margin: 0 0 12px;
+    color: #667085;
+    font-size: 13px;
+  }
+  .team-downloads-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .team-downloads-links a {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #1F6AE1;
+    background: #FFFFFF;
+    color: #1F6AE1;
+    border-radius: 999px;
+    padding: 9px 13px;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-card {
+    border: 1px solid #D8E2F1;
+    background: #FFFFFF;
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.07);
+    padding: 18px;
+  }
+  .doc-hub-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .doc-hub-top strong {
+    color: #0F2A44;
+    font-size: 16px;
+  }
+  .doc-hub-top a {
+    color: #1F6AE1;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .doc-hub-links a {
+    border: 1px solid #D8E2F1;
+    background: #EAF2FF;
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #0F2A44;
+    font-weight: 850;
+    font-size: 12px;
+    line-height: 1.35;
+    text-decoration: none;
+  }
+  .doc-hub-links a[aria-current="page"] {
+    background: #1F6AE1;
+    color: #FFFFFF;
+    border-color: #1F6AE1;
+  }
+  .doc-hub-links a:hover { text-decoration: underline; }
+  @media (max-width: 980px) {
+    .doc-hub-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 620px) {
+    .doc-hub-nav { padding: 0 16px; }
+    .doc-hub-card { border-radius: 14px; padding: 14px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .doc-hub-links { grid-template-columns: 1fr; }
+    .team-downloads { padding: 0 16px; }
+    .team-downloads-card { border-radius: 14px; padding: 14px; }
+  }
+</style>
+
+<nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
+  <div class="doc-hub-card">
+    <div class="doc-hub-top">
+      <strong>Work2Cash Documentation</strong>
+      <a href="../index.html">Back to document portal</a>
+    </div>
+    <div class="doc-hub-links">
+      <a href="./main-enterprise-architecture-v1.html">Main Enterprise Architecture v1</a><a href="./screen-to-feature-map-v1.html">Screen To Feature Map</a><a href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a href="./flow-alignment-review-v1.html" aria-current="page">Flow Alignment Review v1</a><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a><a href="./api-socket-contract-specification-v1.html">API &amp; Socket Contract Specification v1</a><a href="./data-model-prisma-schema-planning-v1.html">Data Model &amp; Prisma Schema Planning v1</a><a href="./provider-integration-cost-control-v1.html">Provider Integration &amp; Cost Control v1</a><a href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html">Admin Build Plan v1</a><a href="./build-plan-backend-v1.html">Backend Build Plan v1</a><a href="./qa-go-live-readiness-checklist-v1.html">QA / Go-Live Readiness Checklist v1</a>
+    </div>
+  </div>
+</nav>
+
+  <main>
+    
+    <section class="section" id="s1">
+      <div class="eyebrow">Section 1</div>
+      <h2>Coverage Result</h2>
+      <p class="intro">The core marketplace flows are now closed for both mobile and admin. The remaining work is mostly explicit supporting flows, source-of-truth cleanup, and design copy alignment.</p>
+      <div class='table-wrap'><table><thead><tr><th>Area</th><th>Compared Flow Area</th><th>Status</th><th>Action</th></tr></thead><tbody><tr><td>Mobile</td><td>Auth, OTP, registration, login/session recovery</td><td><span class='badge green'>Covered</span></td><td>Password recovery and Google/Apple social auth are now explicit.</td></tr><tr><td>Mobile</td><td>Task Owner create/fund task, proof upload, payment, public discovery/direct offer</td><td><span class='badge green'>Covered</span></td><td>Payment copy must remain cardless.</td></tr><tr><td>Mobile</td><td>Tasker activation, KYC, browse/accept task, active execution</td><td><span class='badge green'>Covered</span></td><td>KYC screen copy must align with Smile ID NIN/BVN + biometric flow.</td></tr><tr><td>Mobile</td><td>Start Journey, I have arrived, Begin Task, completion proof</td><td><span class='badge green'>Covered</span></td><td>Mobile catalogue already has latest execution steps.</td></tr><tr><td>Mobile</td><td>Cancellation, no-show, report/dispute, settlement hold</td><td><span class='badge green'>Covered</span></td><td>Good alignment with accepted policy.</td></tr><tr><td>Mobile</td><td>Favorites and direct offer</td><td><span class='badge green'>Covered</span></td><td>Good alignment with accepted direct-offer decision.</td></tr><tr><td>Mobile</td><td>Support live chat</td><td><span class='badge green'>Covered</span></td><td>Emergency Support is now an explicit priority flow.</td></tr><tr><td>Mobile</td><td>Profile, security, notifications, availability, ratings, rebook</td><td><span class='badge green'>Covered</span></td><td>Added as explicit MVP mobile flows.</td></tr><tr><td>Admin</td><td>Dashboard, users, KYC, task monitoring</td><td><span class='badge green'>Covered</span></td><td>Task monitoring includes controlled force cancel. Admin task reassignment is explicitly rejected.</td></tr><tr><td>Admin</td><td>Reports/disputes, support live chat, media moderation, risk/warnings/strikes</td><td><span class='badge green'>Covered</span></td><td>Good alignment with policy.</td></tr><tr><td>Admin</td><td>Finance, wallet, refunds, escrow, withdrawal/payout batches</td><td><span class='badge green'>Covered</span></td><td>Receipt and Transaction Review is now an explicit admin flow.</td></tr><tr><td>Admin</td><td>Catalog, coverage, config, RBAC, audit, monitoring</td><td><span class='badge green'>Covered</span></td><td>Notifications/announcements and basic analytics/reporting are now explicit admin flows.</td></tr></tbody></table></div>
+    </section>
+    
+    
+    <section class="section" id="s2">
+      <div class="eyebrow">Section 2</div>
+      <h2>Source-of-Truth Corrections</h2>
+      <p class="intro">These are corrections needed in the main architecture document so it stays aligned with the accepted decisions and the newer flow catalogues.</p>
+      <div class='table-wrap'><table><thead><tr><th>Priority</th><th>Finding</th><th>Evidence</th><th>Required Correction</th></tr></thead><tbody><tr><td><span class='badge green'>Resolved</span></td><td>Main architecture ETA guard corrected.</td><td>Old 10+ minutes / 25% rule has been replaced.</td><td>Main architecture now uses the ETA Cost Guard: 5-minute guard plus next 10% total-journey milestone, then reset timer/milestone after refresh.</td></tr><tr><td><span class='badge green'>Resolved</span></td><td>Main architecture legal publishing corrected.</td><td>Separate /legal/... page list has been removed from the source-of-truth appendix.</td><td>Main architecture now points to the combined legal pack at documents/legal_user_facing_documents_pack_v1.html.</td></tr><tr><td><span class='badge green'>Resolved</span></td><td>Main architecture documentation governance added.</td><td>GitHub docs repo setup, soft password gate, auth guard, guard checker, PR governance and resource links are now included.</td><td>Main architecture now lists the team-facing resource paths for generated and planned documents.</td></tr><tr><td><span class='badge green'>Resolved</span></td><td>Hetzner source wording corrected.</td><td>Screenshot-baseline wording has been removed.</td><td>Main architecture now states the pricing baseline is confirmed from Hetzner official source while still requiring revalidation before provisioning.</td></tr><tr><td><span class='badge amber'>Open Design</span></td><td>Figma category names differ from accepted category names.</td><td>Figma uses Home-Based, Compound/Outdoor, Office/Shop, Short Term Support/Event Support. Accepted categories are Home, Errands, Office, Support.</td><td>Treat Figma labels as visual references only. Product copy and admin catalog should use Home, Errands, Office, Support.</td></tr></tbody></table></div>
+    </section>
+    
+    
+    <section class="section" id="s3">
+      <div class="eyebrow">Section 3</div>
+      <h2>Resolved Mobile Flow Decisions</h2>
+      <p class="intro">These mobile flow decisions have been accepted and applied to the mobile closed-flow catalogue. Remaining items are design-copy corrections.</p>
+      <div class='table-wrap'><table><thead><tr><th>ID</th><th>Flow / Issue</th><th>Decision Result</th><th>Status / Next Action</th></tr></thead><tbody><tr><td>SF-11</td><td>Password Recovery</td><td>Approved for MVP and added to mobile catalogue.</td><td>Resolved</td></tr><tr><td>SF-13</td><td>Google / Apple Social Authentication</td><td>Google and Apple approved for MVP. Facebook excluded.</td><td>Resolved</td></tr><tr><td>MF-18</td><td>Profile and Settings Management</td><td>Approved for MVP and added to mobile catalogue.</td><td>Resolved</td></tr><tr><td>MF-19</td><td>Security and Device Management</td><td>Approved for MVP. Sensitive actions use PIN; OTP is for recovery/reset.</td><td>Resolved</td></tr><tr><td>MF-20</td><td>Notification Center and Preferences</td><td>Approved for MVP with FCM primary and Termii SMS fallback for critical messages.</td><td>Resolved</td></tr><tr><td>MF-21</td><td>Tasker Availability and Work Preferences</td><td>Approved for MVP. Auto Accept is deferred.</td><td>Resolved</td></tr><tr><td>SF-12</td><td>Payout Account Setup</td><td>Approved for MVP and connected to withdrawal flow.</td><td>Resolved</td></tr><tr><td>MF-22</td><td>Ratings and Reviews</td><td>Approved for MVP and connected to favorites/trust/admin moderation.</td><td>Resolved</td></tr><tr><td>MF-23</td><td>Emergency Support</td><td>Approved for MVP as priority support branch.</td><td>Resolved</td></tr><tr><td>MF-24</td><td>Rebook / Repeat Task</td><td>Approved for MVP. Creates a new task and preserves old task immutability.</td><td>Resolved</td></tr><tr><td>Design Correction</td><td>Cardless Payment UI</td><td>Figma still includes Add Bank Card / card-linked-to-BVN wording.</td><td>Replace with Paystack/Moniepoint transfer, USSD, redirect/status or virtual-account style screens.</td></tr><tr><td>Design Correction</td><td>KYC UI</td><td>Figma still shows generic upload ID/photo screens.</td><td>Align primary KYC UI to Smile ID NIN/BVN plus live biometric capture. Keep document upload only as manual exception if later approved.</td></tr></tbody></table></div>
+    </section>
+    
+    
+    <section class="section" id="s4">
+      <div class="eyebrow">Section 4</div>
+      <h2>Resolved Admin Flow Decisions</h2>
+      <p class="intro">These admin flow decisions have been accepted and applied to the admin closed-flow catalogue.</p>
+      <div class='table-wrap'><table><thead><tr><th>ID</th><th>Flow / Issue</th><th>Decision Result</th><th>Status / Next Action</th></tr></thead><tbody><tr><td>AF-21</td><td>Notifications and Announcements</td><td>Approved for MVP and added to admin catalogue.</td><td>Resolved</td></tr><tr><td>AF-22</td><td>Ratings and Reviews Management</td><td>Approved for MVP and added to admin catalogue.</td><td>Resolved</td></tr><tr><td>AF-23</td><td>Basic Analytics and Reports</td><td>Approved for MVP. Advanced analytics remains deferred.</td><td>Resolved</td></tr><tr><td>AF-24</td><td>Receipt and Transaction Review</td><td>Approved as its own MVP admin flow.</td><td>Resolved</td></tr><tr><td>AF-05 Update</td><td>Controlled Force Cancel Task</td><td>Approved inside Task Operations Monitoring with elevated permission, reason, impact preview and audit.</td><td>Resolved</td></tr><tr><td>Rejected</td><td>Admin Reassign Task</td><td>Rejected. Admin cannot reassign under any condition. Replacement happens through Tasker cancellation or Task Owner rejection rules.</td><td>Resolved</td></tr><tr><td>AF-04 Update</td><td>Request Re-Verification</td><td>Approved inside KYC review.</td><td>Resolved</td></tr><tr><td>AF-11 Update</td><td>Category Disable/Archive Rules</td><td>Approved. Hard delete only for unused drafts.</td><td>Resolved</td></tr></tbody></table></div>
+    </section>
+    
+    
+    <section class="section" id="s5">
+      <div class="eyebrow">Section 5</div>
+      <h2>Figma vs Architecture Conflicts</h2>
+      <p class="intro">These are not implementation gaps yet. They are places where the design exports contain older or unapproved product assumptions.</p>
+      <div class='table-wrap'><table><thead><tr><th>Area</th><th>Figma Shows</th><th>Current Product Decision</th><th>Action</th></tr></thead><tbody><tr><td>Payment</td><td>Figma contains card-based screens and card method labels.</td><td>Accepted project direction is cardless Paystack + Moniepoint using transfer/USSD/redirect/status flows.</td><td>Design must be updated before implementation.</td></tr><tr><td>KYC</td><td>Figma contains generic document upload and multiple ID types.</td><td>Accepted direction is Smile ID NIN/BVN with biometric match. Admin may still need evidence/manual review screens.</td><td>Split primary KYC from manual exception review.</td></tr><tr><td>Task Categories</td><td>Figma still has old grouping labels.</td><td>Accepted categories are Home, Errands, Office, Support.</td><td>Update mobile/admin labels and seed data.</td></tr><tr><td>Social Auth</td><td>Figma shows Google/Apple/Facebook.</td><td>Google and Apple are approved for MVP. Facebook is excluded.</td><td>Remove Facebook from MVP screens.</td></tr><tr><td>Analytics</td><td>Admin design includes Analytics & Report.</td><td>Basic operational reports are included in MVP. Advanced analytics remains deferred.</td><td>Keep MVP reports simple and read-only.</td></tr></tbody></table></div><div class='callout'><strong>Recommendation</strong><p>Update the flow catalogues first, then update Figma copy/screens to match the accepted source of truth. Do not implement card-based payment or generic document-upload KYC unless those decisions are reopened.</p></div>
+    </section>
+    
+  </main>
+  <footer><div>Recommended docs repo path: <code>documents/flow-alignment-review-v1.html</code></div></footer></body>
+</html>

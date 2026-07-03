@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="../assets/js/guard.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work2Cash - API & Socket Contract Specification v1</title>
+  <style>
+    :root {
+      --brand:#1F6AE1;
+      --brand-mid:#5B8DEF;
+      --brand-soft:#EAF2FF;
+      --header:#0F2A44;
+      --text:#1D2939;
+      --muted:#667085;
+      --success:#12B76A;
+      --warning:#FF8A00;
+      --danger:#F04438;
+      --line:#D8E2F1;
+      --bg:#F6F9FE;
+      --paper:#FFFFFF;
+      --soft:#F9FBFF;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      font-family: Inter, "Nunito Sans", Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.68;
+      -webkit-font-smoothing:antialiased;
+    }
+    a { color:var(--brand); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    code {
+      font-family:"SFMono-Regular", Consolas, monospace;
+      background:#EEF4FF;
+      border:1px solid #CFE0FF;
+      padding:2px 6px;
+      border-radius:6px;
+      font-size:.92em;
+    }
+    pre {
+      margin:0;
+      padding:18px;
+      overflow:auto;
+      background:#FAFCFF;
+      font-family:"SFMono-Regular", Consolas, monospace;
+      font-size:12px;
+      line-height:1.62;
+      color:#334155;
+    }
+    .cover {
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:64px clamp(24px, 6vw, 88px);
+      color:white;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(91,141,239,.65), transparent 25rem),
+        radial-gradient(circle at 85% 80%, rgba(18,183,106,.22), transparent 28rem),
+        linear-gradient(135deg, #0F2A44 0%, #123B78 58%, #1F6AE1 115%);
+    }
+    .brand-row { display:flex; gap:16px; align-items:center; }
+    .logo {
+      width:62px; height:62px; border-radius:16px; background:white; color:var(--brand);
+      display:grid; place-items:center; font-weight:900; font-size:20px;
+      box-shadow:0 18px 40px rgba(0,0,0,.18);
+    }
+    .brand-row strong { display:block; font-size:18px; }
+    .brand-row span { display:block; color:rgba(255,255,255,.74); font-size:14px; }
+    .cover-main { max-width:1080px; padding:70px 0; }
+    .label { color:#CFE0FF; text-transform:uppercase; letter-spacing:.16em; font-size:12px; font-weight:800; }
+    h1 { font-size:clamp(44px, 8vw, 84px); line-height:1; margin:18px 0; letter-spacing:-.04em; }
+    .cover-subtitle { font-size:clamp(20px, 3vw, 30px); color:rgba(255,255,255,.84); max-width:920px; font-weight:700; }
+    .meta-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:14px; margin-top:38px; max-width:980px; }
+    .meta-card {
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.12);
+      border-radius:14px;
+      padding:16px;
+      backdrop-filter:blur(10px);
+    }
+    .meta-card span { display:block; color:rgba(255,255,255,.64); font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:800; }
+    .meta-card strong { display:block; margin-top:5px; color:#fff; }
+    .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+    .badge { border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.1); border-radius:999px; padding:7px 13px; font-size:12px; font-weight:800; }
+    .cover-foot { border-top:1px solid rgba(255,255,255,.18); padding-top:24px; display:flex; justify-content:space-between; gap:24px; color:rgba(255,255,255,.66); font-size:13px; }
+    .sticky {
+      position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); backdrop-filter:blur(12px);
+      border-bottom:2px solid var(--brand);
+    }
+    .sticky-inner { max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:12px 24px; }
+    .sticky strong { color:var(--header); }
+    .sticky nav { display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end; }
+    .sticky a { font-size:12px; font-weight:800; }
+    main { max-width:1240px; margin:0 auto; padding:44px 24px 80px; }
+    .toc, .section {
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:clamp(24px, 4vw, 44px);
+      margin-bottom:28px;
+      box-shadow:0 18px 50px rgba(15,42,68,.07);
+    }
+    .toc h2, .section h2 { color:var(--header); font-size:clamp(30px, 4vw, 46px); line-height:1.08; margin:6px 0 12px; letter-spacing:-.025em; }
+    .toc-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; margin-top:22px; }
+    .toc-grid a { padding:14px 16px; border-radius:12px; border:1px solid var(--line); background:var(--brand-soft); color:var(--header); font-weight:900; }
+    .section-num { color:#CBD5E1; font-size:13px; font-weight:900; }
+    .eyebrow { color:var(--brand); text-transform:uppercase; letter-spacing:.14em; font-size:12px; font-weight:900; }
+    .intro { color:var(--muted); font-size:16px; max-width:920px; margin-bottom:28px; }
+    h3 { color:var(--header); font-size:23px; margin:34px 0 14px; padding-bottom:8px; border-bottom:2px solid #E6EEF9; }
+    h4 { color:var(--header); font-size:17px; margin:20px 0 8px; }
+    p { margin:0 0 14px; }
+    ul { padding-left:22px; margin:10px 0 20px; }
+    li { margin:6px 0; }
+    .card-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; margin:22px 0; }
+    .card { border:1px solid var(--line); background:var(--soft); border-radius:14px; padding:18px; }
+    .card span { color:var(--brand); font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:900; }
+    .card h4 { margin:6px 0 7px; }
+    .card p { color:var(--muted); font-size:14px; margin:0; }
+    .callout { border-radius:14px; padding:18px 20px; margin:22px 0; border-left:5px solid var(--brand); background:var(--brand-soft); }
+    .callout strong { display:block; color:var(--brand); text-transform:uppercase; letter-spacing:.1em; font-size:11px; margin-bottom:5px; }
+    .callout p { margin:0; }
+    .callout.green { border-color:var(--success); background:#ECFDF3; }
+    .callout.green strong { color:var(--success); }
+    .callout.amber { border-color:var(--warning); background:#FFF7E8; }
+    .callout.amber strong { color:var(--warning); }
+    .callout.red { border-color:var(--danger); background:#FFF1F0; }
+    .callout.red strong { color:var(--danger); }
+    .table-wrap { overflow:auto; border:1px solid var(--line); border-radius:14px; margin:22px 0; }
+    table { width:100%; border-collapse:collapse; min-width:920px; font-size:13.5px; }
+    th { background:var(--header); color:white; padding:12px 14px; text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+    td { padding:12px 14px; border-bottom:1px solid #EEF2F8; vertical-align:top; color:#344054; }
+    tr:nth-child(even) td { background:#FAFCFF; }
+    tr:last-child td { border-bottom:0; }
+    .pill { display:inline-block; padding:4px 10px; border-radius:999px; font-size:11px; font-weight:900; white-space:nowrap; }
+    .blue { background:var(--brand-soft); color:var(--brand); }
+    .green-pill { background:#ECFDF3; color:var(--success); }
+    .amber-pill { background:#FFF7E8; color:var(--warning); }
+    .red-pill { background:#FFF1F0; color:var(--danger); }
+    .diagram { border:1px solid var(--line); border-radius:16px; overflow:hidden; margin:24px 0; background:#fff; }
+    .diagram-head { background:linear-gradient(135deg, var(--header), #174078); color:white; padding:14px 18px; display:flex; justify-content:space-between; gap:16px; align-items:center; }
+    .diagram-head h4 { margin:0; color:white; }
+    .diagram-head span { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:#DCE9FF; font-weight:900; }
+    .diagram p { padding:14px 18px; border-top:1px solid var(--line); margin:0; color:var(--muted); font-size:13px; }
+    .code-block { border:1px solid var(--line); border-radius:14px; overflow:hidden; margin:18px 0 24px; background:#fff; }
+    .code-title { background:#F8FBFF; border-bottom:1px solid var(--line); padding:10px 14px; color:var(--header); font-weight:900; font-size:12px; }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:18px 0; }
+    .checklist { list-style:none; padding:0; }
+    .checklist li { border-bottom:1px solid #EEF2F8; padding:9px 0 9px 30px; position:relative; }
+    .checklist li::before { content:"OK"; position:absolute; left:0; top:10px; color:var(--brand); font-size:10px; font-weight:900; }
+    footer { background:var(--header); color:#D0D5DD; padding:34px 24px; }
+    .footer-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    footer h4 { color:white; margin-top:0; }
+    footer p, footer li { color:#CBD5E1; font-size:13px; }
+    @media (max-width:900px) {
+      .meta-grid, .card-grid, .toc-grid, .footer-inner, .two-col { grid-template-columns:1fr; }
+      .cover-foot, .sticky-inner { flex-direction:column; align-items:flex-start; }
+      .sticky { position:static; }
+      table { min-width:820px; }
+    }
+    @media print {
+      .sticky { display:none; }
+      .cover { min-height:auto; page-break-after:always; }
+      .section { page-break-inside:avoid; box-shadow:none; }
+      body { background:white; }
+    }
+</style>
+</head>
+<body>
+  <section class="cover">
+    <div class="brand-row">
+      <div class="logo">W2C</div>
+      <div><strong>Work2Cash</strong><span>API & Socket Contract Specification</span></div>
+    </div>
+    <div class="cover-main">
+      <div class="label">Document 6</div>
+      <h1>API & Socket Contract Specification</h1>
+      <div class="cover-subtitle">REST, Socket.IO, webhook, queue, response-shape, security, and handover contracts for the Work2Cash mobile app, admin dashboard, and backend services.</div>
+      <div class="meta-grid">
+        <div class="meta-card"><span>Project</span><strong>Work2Cash</strong></div>
+        <div class="meta-card"><span>Version</span><strong>1.0</strong></div>
+        <div class="meta-card"><span>Date</span><strong>3 July 2026</strong></div>
+        <div class="meta-card"><span>Classification</span><strong>Investor Ready</strong></div>
+        <div class="meta-card"><span>Primary API</span><strong>api.work2cash.ng</strong></div>
+        <div class="meta-card"><span>Socket Host</span><strong>socket.work2cash.ng</strong></div>
+        <div class="meta-card"><span>Backend</span><strong>NestJS Hexagonal</strong></div>
+        <div class="meta-card"><span>Consumers</span><strong>Flutter + Next.js</strong></div>
+      </div>
+      <div class="badges">
+        <span class="badge">REST Contracts</span>
+        <span class="badge">Socket.IO Events</span>
+        <span class="badge">Provider Webhooks</span>
+        <span class="badge">Idempotency</span>
+        <span class="badge">Nigeria-First Rules</span>
+      </div>
+    </div>
+    <div class="cover-foot">
+      <div>Source of truth: Work2Cash Enterprise Architecture v1, Mobile Flow Catalogue v1, Admin Flow Catalogue v1.</div>
+      <div>Public GitHub Pages note: protected pages must include the documentation auth guard.</div>
+    </div>
+  </section>
+
+  <header class="sticky">
+    <div class="sticky-inner">
+      <strong>Work2Cash API & Socket Spec v1</strong>
+      <nav>
+        <a href="#scope">Scope</a>
+        <a href="#auth">Auth</a>
+        <a href="#rest">REST</a>
+        <a href="#socket">Socket</a>
+        <a href="#traceability">Traceability</a>
+        <a href="#webhooks">Webhooks</a>
+        <a href="#handover">Checklist</a>
+      </nav>
+    </div>
+  </header>
+
+
+<style id="work2cash-doc-nav-style">
+  .doc-hub-nav {
+    max-width: 1240px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads {
+    max-width: 1240px;
+    margin: 16px auto 0;
+    padding: 0 24px;
+  }
+  .team-downloads-card {
+    border: 1px solid #CFE0FF;
+    background: #EAF2FF;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.06);
+  }
+  .team-downloads-card strong {
+    display: block;
+    color: #0F2A44;
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .team-downloads-card p {
+    margin: 0 0 12px;
+    color: #667085;
+    font-size: 13px;
+  }
+  .team-downloads-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .team-downloads-links a {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #1F6AE1;
+    background: #FFFFFF;
+    color: #1F6AE1;
+    border-radius: 999px;
+    padding: 9px 13px;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-card {
+    border: 1px solid #D8E2F1;
+    background: #FFFFFF;
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(15,42,68,.07);
+    padding: 18px;
+  }
+  .doc-hub-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .doc-hub-top strong {
+    color: #0F2A44;
+    font-size: 16px;
+  }
+  .doc-hub-top a {
+    color: #1F6AE1;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .doc-hub-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .doc-hub-links a {
+    border: 1px solid #D8E2F1;
+    background: #EAF2FF;
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #0F2A44;
+    font-weight: 850;
+    font-size: 12px;
+    line-height: 1.35;
+    text-decoration: none;
+  }
+  .doc-hub-links a[aria-current="page"] {
+    background: #1F6AE1;
+    color: #FFFFFF;
+    border-color: #1F6AE1;
+  }
+  .doc-hub-links a:hover { text-decoration: underline; }
+  @media (max-width: 980px) {
+    .doc-hub-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 620px) {
+    .doc-hub-nav { padding: 0 16px; }
+    .doc-hub-card { border-radius: 14px; padding: 14px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .doc-hub-links { grid-template-columns: 1fr; }
+    .team-downloads { padding: 0 16px; }
+    .team-downloads-card { border-radius: 14px; padding: 14px; }
+  }
+</style>
+
+<nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
+  <div class="doc-hub-card">
+    <div class="doc-hub-top">
+      <strong>Work2Cash Documentation</strong>
+      <a href="../index.html">Back to document portal</a>
+    </div>
+    <div class="doc-hub-links">
+      <a href="./main-enterprise-architecture-v1.html">Main Enterprise Architecture v1</a><a href="./screen-to-feature-map-v1.html">Screen To Feature Map</a><a href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a href="./flow-alignment-review-v1.html">Flow Alignment Review v1</a><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a><a href="./api-socket-contract-specification-v1.html" aria-current="page">API &amp; Socket Contract Specification v1</a><a href="./data-model-prisma-schema-planning-v1.html">Data Model &amp; Prisma Schema Planning v1</a><a href="./provider-integration-cost-control-v1.html">Provider Integration &amp; Cost Control v1</a><a href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html">Admin Build Plan v1</a><a href="./build-plan-backend-v1.html">Backend Build Plan v1</a><a href="./qa-go-live-readiness-checklist-v1.html">QA / Go-Live Readiness Checklist v1</a>
+    </div>
+  </div>
+</nav>
+
+
+  <main>
+    <section class="toc">
+      <div class="eyebrow">Navigation</div>
+      <h2>Document Contents</h2>
+      <p class="intro">This document is written for backend, mobile, admin frontend, QA, operations, and non-technical stakeholders. It defines what each system can ask for, what it must receive, when real-time sockets are allowed, and which operations must remain durable REST workflows.</p>
+      <div class="toc-grid"><a href="#scope">01. How To Use This Spec</a><a href="#environments">02. Environment And Boundary Map</a><a href="#principles">03. Contract Principles</a><a href="#auth">04. Authentication, Sessions, And Security</a><a href="#standards">05. Response, Error, Pagination, And Idempotency</a><a href="#rest">06. REST API Contract Index</a><a href="#socket">07. Socket.IO Contract</a><a href="#webhooks">08. Webhook And Provider Callback Contracts</a><a href="#queues">09. Queue, Job, And Worker Contracts</a><a href="#schemas">10. DTO, Schema, And Enum Baseline</a><a href="#traceability">11. Flow-To-Contract Traceability</a><a href="#admin">12. Admin Contract Rules</a><a href="#handover">13. Contract QA And Handover Checklist</a></div>
+    </section>
+
+    <section id="scope" class="section">
+      <div class="section-num">01</div>
+      <div class="eyebrow">Scope</div>
+      <h2>How To Use This Spec</h2>
+      <p class="intro">The purpose of this document is to prevent backend, mobile, and admin teams from building against assumptions. Every consumer should know which flow owns which API, which operations are real-time, which operations are durable REST transactions, and which decisions are intentionally deferred.</p>
+      <div class="card-grid">
+        <div class="card"><span>Backend Team</span><h4>Build contracts first</h4><p>Publish stub endpoints, DTOs, response shapes, errors, and OpenAPI references early enough that mobile and admin are not blocked.</p></div>
+        <div class="card"><span>Mobile Team</span><h4>Bind flows to contracts</h4><p>Use REST for state transitions, payments, reports, KYC, and account actions. Use sockets only for chat, support live chat, tracking, and presence.</p></div>
+        <div class="card"><span>Admin Team</span><h4>Operate from auditability</h4><p>Admin contracts must preserve role checks, TOTP checks for high-impact actions, reason capture, and immutable audit logs.</p></div>
+      </div>
+      <div class="callout amber"><strong>Important boundary</strong><p>Socket events are not a substitute for durable business transactions. Payments, KYC, withdrawals, disputes, task state changes, direct offers, and admin actions must be REST/API-driven and database-backed.</p></div>
+      
+    <div class="diagram">
+      <div class="diagram-head"><h4>System Boundary Diagram</h4><span>API + Socket Split</span></div>
+      <pre>Mobile App                Admin Dashboard
+   |                            |
+   | REST: commands/query       | REST: operations/query
+   v                            v
+https://api.work2cash.ng  &lt;---- Admin auth/RBAC/TOTP
+   |
+   | Use cases, ports, adapters, workers
+   v
+PostgreSQL + Valkey + BullMQ + Provider Adapters
+   ^
+   | Real-time permitted only for chat, support live chat, tracking, presence
+   |
+https://socket.work2cash.ng
+   ^
+   |
+Mobile App / Admin Support Console</pre>
+      <p>The API host owns durable state. The socket host owns real-time delivery and must reconcile with REST after reconnect.</p>
+    </div>
+    
+    </section>
+
+    <section id="environments" class="section">
+      <div class="section-num">02</div>
+      <div class="eyebrow">Environments</div>
+      <h2>Environment And Boundary Map</h2>
+      <p class="intro">Work2Cash separates API and Socket domains so traffic can scale independently while still running on the same NestJS codebase if needed. The split is DNS, routing, deployment, and gateway-level separation; it does not require two unrelated backend applications.</p>
+      <div class="table-wrap"><table><thead><tr><th>Environment</th><th>Surface</th><th>URL</th><th>Purpose</th><th>Notes</th></tr></thead><tbody><tr><td>Production</td><td>Website</td><td><code>https://work2cash.ng</code></td><td>Public product site and download entry.</td><td>www redirects to root domain.</td></tr><tr><td>Production</td><td>API</td><td><code>https://api.work2cash.ng</code></td><td>REST API for mobile, admin, webhooks where provider allows.</td><td>Primary durable contract surface.</td></tr><tr><td>Production</td><td>Admin</td><td><code>https://admin.work2cash.ng</code></td><td>Next.js admin dashboard.</td><td>Admin TOTP and RBAC required.</td></tr><tr><td>Production</td><td>Socket</td><td><code>https://socket.work2cash.ng</code></td><td>Socket.IO gateway for real-time features.</td><td>Uses token auth and Valkey adapter when scaled.</td></tr><tr><td>Staging</td><td>Website/Admin</td><td><code>https://staging.work2cash.ng</code></td><td>Staging web/admin surface.</td><td>Ultra-lean Hetzner staging path.</td></tr><tr><td>Staging</td><td>API</td><td><code>https://api-staging.work2cash.ng</code></td><td>Staging REST API.</td><td>Used by staging mobile/admin builds.</td></tr><tr><td>Staging</td><td>Socket</td><td><code>https://socket-staging.work2cash.ng</code></td><td>Staging Socket.IO gateway.</td><td>Used by staging mobile/admin builds.</td></tr></tbody></table></div>
+      <div class="callout"><strong>Same NestJS server option</strong><p>The same NestJS deployment can serve REST and Socket.IO if the reverse proxy routes <code>api.work2cash.ng</code> to REST controllers and <code>socket.work2cash.ng</code> to the Socket.IO gateway path. Separating domains keeps room for future scale-out without changing mobile/admin contracts.</p></div>
+    </section>
+
+    <section id="principles" class="section">
+      <div class="section-num">03</div>
+      <div class="eyebrow">Principles</div>
+      <h2>Contract Principles</h2>
+      <div class="card-grid">
+        <div class="card"><span>Durable State</span><h4>REST owns decisions</h4><p>Task acceptance, rejection, cancellation, payment, withdrawal, KYC, report, and admin resolution must be REST commands.</p></div>
+        <div class="card"><span>Real Time</span><h4>Socket owns presence</h4><p>Chat, live support messages, tracking updates, and presence are socket events, but source-of-truth recovery still comes from REST.</p></div>
+        <div class="card"><span>Cost Control</span><h4>Batch and guard paid calls</h4><p>Google ETA refresh uses the 5-minute plus 10% journey milestone guard. Provider calls must be idempotent and queued where practical.</p></div>
+        <div class="card"><span>Privacy</span><h4>Reveal only when eligible</h4><p>Exact address, full proof media, real phone numbers, provider payloads, and payment-sensitive details must be protected.</p></div>
+        <div class="card"><span>UX</span><h4>Cardless payment by default</h4><p>Payment UX should prefer bank transfer, USSD, provider redirect/status, and wallet prompts through Paystack and Moniepoint.</p></div>
+        <div class="card"><span>Audit</span><h4>High-impact actions are traceable</h4><p>Admin actions, penalties, settlement holds, payout approvals, and security changes must capture actor, reason, requestId, and timestamp.</p></div>
+      </div>
+    </section>
+
+    <section id="auth" class="section">
+      <div class="section-num">04</div>
+      <div class="eyebrow">Security</div>
+      <h2>Authentication, Sessions, And Security</h2>
+      <p class="intro">Authentication supports password login, Google login, and Apple login. The account model is unified: a user may operate as Task Owner, Tasker, or both. Mode switching uses the accepted <code>mode</code> field.</p>
+      
+    <div class="diagram">
+      <div class="diagram-head"><h4>Auth Lifecycle</h4><span>Login Recovery</span></div>
+      <pre>Register
+  -&gt; OTP verification
+  -&gt; Login
+  -&gt; KYC if Tasker activation is needed
+  -&gt; Complete profile
+  -&gt; Setup PIN
+  -&gt; Home
+
+Login
+  -&gt; /me returns nextRequiredAction
+  -&gt; if KYC incomplete: KYC subflow
+  -&gt; if profile incomplete: Complete Profile subflow
+  -&gt; if PIN missing: PIN Setup subflow
+  -&gt; Home
+
+Broken registration is repaired by login:
+  Login never assumes registration completed perfectly.
+  /me tells the app what standalone subflow must run next.</pre>
+      <p>The login flow must solidify broken registration by routing the user into the missing standalone subflow.</p>
+    </div>
+    
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Actor</th><th>Purpose</th><th>Auth</th><th>Idempotency</th><th>Flow Refs</th><th>Notes</th></tr></thead><tbody><tr><td><span class="pill blue">POST</span></td><td><code>/auth/register</code></td><td>Guest</td><td>Create a new account using email or phone details.</td><td>Public</td><td>Recommended by clientRequestId</td><td>Registration</td><td>Must start OTP verification before full access.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/auth/login</code></td><td>Guest</td><td>Authenticate with password and issue access/refresh tokens.</td><td>Public</td><td>No</td><td>Login</td><td>Returns nextRequiredAction when KYC, profile, PIN, or mode setup is incomplete.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/auth/social/google</code></td><td>Guest</td><td>Authenticate or create account using Google identity.</td><td>Public</td><td>Recommended</td><td>Social Auth</td><td>Facebook is excluded from MVP.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/auth/social/apple</code></td><td>Guest</td><td>Authenticate or create account using Apple identity.</td><td>Public</td><td>Recommended</td><td>Social Auth</td><td>Required for iOS if social login is offered.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/auth/otp/send</code></td><td>Guest/User</td><td>Send OTP for email, phone, recovery, or sensitive verification fallback.</td><td>Conditional</td><td>Yes by purpose+recipient</td><td>OTP Subflow</td><td>Email is attempted first; Termii SMS is fallback.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/auth/otp/verify</code></td><td>Guest/User</td><td>Verify OTP and mark the verification purpose as complete.</td><td>Conditional</td><td>Yes</td><td>OTP Subflow</td><td>OTP is not used as the default sensitive-action confirmation; PIN is.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/auth/password/forgot</code></td><td>Guest</td><td>Start password reset using email first then SMS fallback.</td><td>Public</td><td>Yes</td><td>Password Recovery</td><td>Response must not reveal whether account exists.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/auth/password/reset</code></td><td>Guest</td><td>Complete password reset after valid OTP/recovery token.</td><td>Public</td><td>Yes</td><td>Password Recovery</td><td>Revokes old refresh tokens after success.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/auth/refresh</code></td><td>User</td><td>Rotate refresh token and issue a fresh access token.</td><td>Refresh token</td><td>Yes</td><td>Session Recovery</td><td>Reuse detection must revoke compromised token family.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/auth/logout</code></td><td>User</td><td>Invalidate the current session.</td><td>Access token</td><td>Yes</td><td>Logout</td><td>Client clears local tokens after success.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/auth/logout-all</code></td><td>User</td><td>Revoke all sessions for the user.</td><td>Access token + PIN</td><td>Yes</td><td>Security</td><td>Sensitive action; requires PIN.</td></tr></tbody></table></div>
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Actor</th><th>Purpose</th><th>Auth</th><th>Idempotency</th><th>Flow Refs</th><th>Notes</th></tr></thead><tbody><tr><td><span class="pill green-pill">GET</span></td><td><code>/me</code></td><td>User</td><td>Return authenticated user, mode, KYC, profile completeness, wallets, and next actions.</td><td>Access token</td><td>No</td><td>App Boot</td><td>This is the mobile source of truth after login and socket reconnect.</td></tr><tr><td><span class="pill blue">PATCH</span></td><td><code>/me/profile</code></td><td>User</td><td>Update profile fields such as name, photo, gender, and contact metadata.</td><td>Access token</td><td>No</td><td>Complete Profile</td><td>Changing email/phone is a sensitive action and requires PIN.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/me/mode</code></td><td>User</td><td>Switch visible app mode between Task Owner and Tasker.</td><td>Access token</td><td>Yes</td><td>Mode Switch</td><td>Use the accepted field name: mode.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/me/addresses</code></td><td>User</td><td>List saved addresses for task posting and profile convenience.</td><td>Access token</td><td>No</td><td>Address Book</td><td>Exact addresses are private user data.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/me/addresses</code></td><td>User</td><td>Create a saved address from manual entry or GPS-confirmed pin.</td><td>Access token</td><td>Yes</td><td>Address Book</td><td>Manual address must be geocoded and confirmed on map.</td></tr><tr><td><span class="pill blue">PATCH</span></td><td><code>/me/addresses/{addressId}</code></td><td>User</td><td>Update saved address metadata.</td><td>Access token</td><td>No</td><td>Address Book</td><td>Do not use this to alter historical task site records.</td></tr><tr><td><span class="pill amber-pill">DELETE</span></td><td><code>/me/addresses/{addressId}</code></td><td>User</td><td>Remove saved address from future use.</td><td>Access token</td><td>Yes</td><td>Address Book</td><td>Soft delete preferred.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/me/notification-preferences</code></td><td>User</td><td>Return push, email, SMS, and announcement preference settings.</td><td>Access token</td><td>No</td><td>Preferences</td><td>Critical safety/payment messages may bypass marketing preferences.</td></tr><tr><td><span class="pill blue">PATCH</span></td><td><code>/me/notification-preferences</code></td><td>User</td><td>Update notification preferences.</td><td>Access token</td><td>No</td><td>Preferences</td><td>SMS critical-only rule remains controlled by platform policy.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/me/security-pin/setup</code></td><td>User</td><td>Create first security PIN after identity/contact checks.</td><td>Access token</td><td>Yes</td><td>PIN Setup</td><td>PIN is required for withdrawals and sensitive actions.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/me/security-pin/verify</code></td><td>User</td><td>Verify PIN for a sensitive operation.</td><td>Access token</td><td>Yes</td><td>Sensitive Action</td><td>Never return or log the PIN.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/me/security-pin/reset/start</code></td><td>User</td><td>Start PIN reset through OTP and risk checks.</td><td>Access token</td><td>Yes</td><td>PIN Reset</td><td>OTP is used for PIN recovery, not routine confirmations.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/me/security-pin/reset/confirm</code></td><td>User</td><td>Set new PIN after reset verification.</td><td>Access token</td><td>Yes</td><td>PIN Reset</td><td>Revoke sessions if risk score requires it.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/me/sessions</code></td><td>User</td><td>List active devices and sessions.</td><td>Access token</td><td>No</td><td>Device Management</td><td>Admin can also view risk metadata, not raw tokens.</td></tr><tr><td><span class="pill amber-pill">DELETE</span></td><td><code>/me/sessions/{sessionId}</code></td><td>User</td><td>Revoke another device session.</td><td>Access token + PIN</td><td>Yes</td><td>Device Management</td><td>Sensitive action.</td></tr></tbody></table></div>
+      <div class="callout red"><strong>Sensitive action rule</strong><p>PIN confirmation is required for changing phone number, changing email, changing password, adding or changing Tasker payout account, requesting withdrawal, high-risk wallet/payment actions, and revoking other sessions. OTP is reserved for PIN reset/recovery and contact verification.</p></div>
+    </section>
+
+    <section id="standards" class="section">
+      <div class="section-num">05</div>
+      <div class="eyebrow">Standards</div>
+      <h2>Response, Error, Pagination, And Idempotency</h2>
+      <p class="intro">Every REST endpoint and socket acknowledgement must use predictable shapes. This allows Flutter, Next.js, QA, and backend tests to share the same mental model.</p>
+      <div class="two-col">
+        <div class="code-block"><div class="code-title">Success Response</div><pre>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Task created successfully.&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;task_123&quot;
+  },
+  &quot;meta&quot;: {
+    &quot;requestId&quot;: &quot;req_01H...&quot;,
+    &quot;timestamp&quot;: &quot;2026-07-03T10:00:00Z&quot;
+  }
+}</pre></div>
+        <div class="code-block"><div class="code-title">Error Response</div><pre>{
+  &quot;success&quot;: false,
+  &quot;message&quot;: &quot;Security PIN is required.&quot;,
+  &quot;error&quot;: {
+    &quot;code&quot;: &quot;PIN_REQUIRED&quot;,
+    &quot;details&quot;: {
+      &quot;action&quot;: &quot;REQUEST_WITHDRAWAL&quot;
+    }
+  },
+  &quot;meta&quot;: {
+    &quot;requestId&quot;: &quot;req_01H...&quot;
+  }
+}</pre></div>
+      </div>
+      <div class="code-block"><div class="code-title">Paginated Response</div><pre>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Tasks returned.&quot;,
+  &quot;data&quot;: [ ],
+  &quot;meta&quot;: {
+    &quot;requestId&quot;: &quot;req_01H...&quot;,
+    &quot;pagination&quot;: {
+      &quot;limit&quot;: 20,
+      &quot;nextCursor&quot;: &quot;cursor_abc&quot;,
+      &quot;total&quot;: 153
+    }
+  }
+}</pre></div>
+      <div class="table-wrap"><table><thead><tr><th>Rule</th><th>Required Standard</th><th>Reason</th></tr></thead><tbody><tr><td>Request correlation</td><td>Every API response, socket ack, worker log, and webhook record carries <code>requestId</code> or <code>correlationId</code>.</td><td>Allows tracing across REST, socket, queues, and providers.</td></tr><tr><td>Idempotency</td><td>Payment, webhook, wallet, media finalization, task state transition, settlement, and payout endpoints must accept or derive idempotency keys.</td><td>Prevents duplicate charges, duplicate ledger entries, and repeated state transitions.</td></tr><tr><td>Error codes</td><td>Use stable machine-readable codes such as <code>PIN_REQUIRED</code>, <code>KYC_REQUIRED</code>, <code>TASK_STATE_INVALID</code>, <code>LOCATION_OUTSIDE_NIGERIA</code>.</td><td>Flutter and admin can show correct error states.</td></tr><tr><td>Loading states</td><td>GET/fetch calls should support skeletonized views. POST/PATCH submit states should show blur overlay with spinning Work2Cash logo on frontend clients.</td><td>Keeps UX consistent across mobile and admin.</td></tr><tr><td>Privacy</td><td>Never expose OTPs, PINs, real phone numbers, provider secrets, raw KYC secrets, private addresses before eligibility, or hidden media URLs.</td><td>Protects users and platform trust.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="rest" class="section">
+      <div class="section-num">06</div>
+      <div class="eyebrow">REST</div>
+      <h2>REST API Contract Index</h2>
+      <p class="intro">This section maps core mobile and admin flows to REST endpoints. Exact DTOs can evolve during implementation, but the ownership boundaries, state rules, auth requirements, and idempotency rules are source-of-truth constraints.</p>
+      <h3>KYC And Tasker Activation</h3>
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Actor</th><th>Purpose</th><th>Auth</th><th>Idempotency</th><th>Flow Refs</th><th>Notes</th></tr></thead><tbody><tr><td><span class="pill blue">POST</span></td><td><code>/kyc/start</code></td><td>User</td><td>Open a KYC attempt for Tasker activation.</td><td>Access token</td><td>Yes</td><td>Tasker Activation</td><td>Taskers cannot accept tasks until KYC is approved.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/kyc/nin-bvn</code></td><td>User</td><td>Submit NIN or BVN for verification through Smile ID adapter.</td><td>Access token</td><td>Yes</td><td>KYC</td><td>Provider payloads must be encrypted at rest where required.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/kyc/face-capture</code></td><td>User</td><td>Submit biometric face capture reference or uploaded media.</td><td>Access token</td><td>Yes</td><td>KYC</td><td>Use signed upload flow if media is large.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/kyc/status</code></td><td>User</td><td>Return current KYC state and allowed next action.</td><td>Access token</td><td>No</td><td>KYC</td><td>Mobile polls only at controlled points; push/notification can inform completion.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/kyc/{kycId}/request-reverification</code></td><td>Admin</td><td>Ask user to repeat KYC due to risk, expiry, or mismatch.</td><td>Admin token + TOTP where required</td><td>Yes</td><td>Admin KYC</td><td>Must write audit log and reason.</td></tr></tbody></table></div>
+      <h3>Catalog And Task Categories</h3>
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Actor</th><th>Purpose</th><th>Auth</th><th>Idempotency</th><th>Flow Refs</th><th>Notes</th></tr></thead><tbody><tr><td><span class="pill green-pill">GET</span></td><td><code>/catalog/categories</code></td><td>User/Admin</td><td>List active task categories and display order.</td><td>Access token</td><td>No</td><td>Task Creation</td><td>MVP categories: Home, Errands, Office, Support.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/catalog/task-types</code></td><td>User/Admin</td><td>List task types under each category.</td><td>Access token</td><td>No</td><td>Task Creation</td><td>Client should cache and refresh on app boot.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/catalog/categories</code></td><td>Admin</td><td>Create category or task type.</td><td>Admin token</td><td>Yes</td><td>Admin Catalog</td><td>Use carefully; affects mobile task creation.</td></tr><tr><td><span class="pill blue">PATCH</span></td><td><code>/admin/catalog/categories/{categoryId}</code></td><td>Admin</td><td>Update labels, ordering, and visibility.</td><td>Admin token</td><td>No</td><td>Admin Catalog</td><td>Renames should preserve stable IDs.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/catalog/categories/{categoryId}/disable</code></td><td>Admin</td><td>Disable category for new tasks.</td><td>Admin token</td><td>Yes</td><td>Admin Catalog</td><td>Existing tasks remain valid.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/catalog/categories/{categoryId}/archive</code></td><td>Admin</td><td>Archive unused or retired category.</td><td>Admin token</td><td>Yes</td><td>Admin Catalog</td><td>Hard delete only unused drafts.</td></tr></tbody></table></div>
+      <h3>Task Owner APIs</h3>
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Actor</th><th>Purpose</th><th>Auth</th><th>Idempotency</th><th>Flow Refs</th><th>Notes</th></tr></thead><tbody><tr><td><span class="pill blue">POST</span></td><td><code>/task-owner/tasks/drafts</code></td><td>Task Owner</td><td>Create a draft task.</td><td>Access token</td><td>Yes</td><td>Post Task</td><td>Minimum task amount is NGN 2,000.</td></tr><tr><td><span class="pill blue">PATCH</span></td><td><code>/task-owner/tasks/{taskId}</code></td><td>Task Owner</td><td>Update task title, category, description, budget, required arrival time, and visibility while editable.</td><td>Access token</td><td>No</td><td>Post Task</td><td>After payment/broadcast, allowed fields narrow by state.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/task-owner/tasks/{taskId}/location/geocode</code></td><td>Task Owner</td><td>Convert manual address to coordinates.</td><td>Access token</td><td>Yes</td><td>Location Subflow</td><td>Task site must be in Nigeria.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/task-owner/tasks/{taskId}/location/confirm-pin</code></td><td>Task Owner</td><td>Confirm exact map pin before posting.</td><td>Access token</td><td>Yes</td><td>Location Subflow</td><td>Exact address remains hidden publicly.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/task-owner/tasks/{taskId}/media</code></td><td>Task Owner</td><td>Upload proof of work to be done.</td><td>Access token</td><td>Yes</td><td>Proof Media</td><td>Photos/videos up to 50MB each; permission-controlled access.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/task-owner/tasks/{taskId}/payment-intent</code></td><td>Task Owner</td><td>Create Paystack or Moniepoint payment session.</td><td>Access token</td><td>Yes</td><td>Payment</td><td>Task Owner sees task amount and processing fee separately.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/task-owner/tasks/{taskId}/broadcast</code></td><td>Task Owner</td><td>Move a funded task into public broadcast.</td><td>Access token</td><td>Yes</td><td>Broadcast</td><td>Task appears nearest-first to eligible Taskers.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/task-owner/tasks/{taskId}/direct-offers</code></td><td>Task Owner</td><td>Send direct offer to a favorite Tasker.</td><td>Access token</td><td>Yes</td><td>Direct Offer</td><td>Direct offers are REST/FCM, not socket-based.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/task-owner/tasks/{taskId}/candidates</code></td><td>Task Owner</td><td>List interested/available Taskers with ETA and profile summary.</td><td>Access token</td><td>No</td><td>Select Tasker</td><td>Task Owner decides based on ETA; platform does not auto-reject by default.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/task-owner/tasks/{taskId}/accept-tasker</code></td><td>Task Owner</td><td>Accept a Tasker for the task.</td><td>Access token</td><td>Yes</td><td>Select Tasker</td><td>Unlocks exact address and communication permissions.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/task-owner/tasks/{taskId}/reject-tasker</code></td><td>Task Owner</td><td>Reject a Tasker before movement or within allowed movement grace window.</td><td>Access token</td><td>Yes</td><td>Select Tasker</td><td>Repeated movement-stage rejection creates risk flag.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/task-owner/tasks/{taskId}/confirm-completion</code></td><td>Task Owner</td><td>Approve completed task and release escrow if no hold applies.</td><td>Access token</td><td>Yes</td><td>Completion</td><td>If refused, Tasker can report/dispute for admin review.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/task-owner/tasks/{taskId}/cancel</code></td><td>Task Owner</td><td>Cancel task under current state rules.</td><td>Access token</td><td>Yes</td><td>Cancellation</td><td>Penalty/warning depends on task state.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/task-owner/tasks/{taskId}/report</code></td><td>Task Owner</td><td>Report issue linked to a task.</td><td>Access token</td><td>Yes</td><td>Report</td><td>Options include off-platform solicitation and no-show.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/task-owner/tasks/{taskId}/rebook</code></td><td>Task Owner</td><td>Create repeat task from a previous completed task.</td><td>Access token</td><td>Yes</td><td>Rebook</td><td>Can target favorite Tasker or broadcast again.</td></tr></tbody></table></div>
+      <h3>Tasker APIs</h3>
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Actor</th><th>Purpose</th><th>Auth</th><th>Idempotency</th><th>Flow Refs</th><th>Notes</th></tr></thead><tbody><tr><td><span class="pill green-pill">GET</span></td><td><code>/tasker/profile</code></td><td>Tasker</td><td>Return Tasker profile, KYC state, skills, ratings, payout readiness, and availability.</td><td>Access token</td><td>No</td><td>Tasker Home</td><td>Requires unified user account.</td></tr><tr><td><span class="pill blue">PATCH</span></td><td><code>/tasker/profile</code></td><td>Tasker</td><td>Update skills, bio, task categories, service locations, and profile metadata.</td><td>Access token</td><td>No</td><td>Tasker Profile</td><td>Tasker activation requires KYC.</td></tr><tr><td><span class="pill blue">PATCH</span></td><td><code>/tasker/preferences</code></td><td>Tasker</td><td>Update work preferences and max travel radius.</td><td>Access token</td><td>No</td><td>Availability</td><td>Auto accept remains deferred.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasker/availability</code></td><td>Tasker</td><td>Set available/unavailable status.</td><td>Access token</td><td>Yes</td><td>Availability</td><td>Tasker location is required while active.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/tasker/tasks</code></td><td>Tasker</td><td>List available tasks sorted nearest first with location filtering.</td><td>Access token</td><td>No</td><td>Find Tasks</td><td>Tasker must be in Nigeria to accept tasks.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/tasker/tasks/{taskId}</code></td><td>Tasker</td><td>Return public task details, limited media summary, distance, and arrival requirement.</td><td>Access token</td><td>No</td><td>Task Detail</td><td>Exact address and full proof media are restricted until acceptance/payment rules pass.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasker/tasks/{taskId}/interest</code></td><td>Tasker</td><td>Declare interest and confirm ability to arrive by required time.</td><td>Access token</td><td>Yes</td><td>Task Interest</td><td>Task Owner sees ETA and decides.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasker/tasks/{taskId}/accept</code></td><td>Tasker</td><td>Accept direct offer or accepted assignment where state allows.</td><td>Access token</td><td>Yes</td><td>Accept Task</td><td>Must pass KYC, location, strike, and availability checks.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasker/tasks/{taskId}/decline</code></td><td>Tasker</td><td>Decline direct offer or withdraw interest before commitment.</td><td>Access token</td><td>Yes</td><td>Decline</td><td>No penalty before accepted assignment.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasker/tasks/{taskId}/start-journey</code></td><td>Tasker</td><td>Mark movement toward task site.</td><td>Access token</td><td>Yes</td><td>Execution</td><td>Enables live tracking and movement-stage rejection window.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasker/tasks/{taskId}/arrived</code></td><td>Tasker</td><td>Mark arrival at task site.</td><td>Access token</td><td>Yes</td><td>Execution</td><td>Task Owner can report late/no-show after grace window if needed.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasker/tasks/{taskId}/begin</code></td><td>Tasker</td><td>Begin the task after arrival.</td><td>Access token</td><td>Yes</td><td>Execution</td><td>This is the Begin Task button in app.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasker/tasks/{taskId}/completion-proof</code></td><td>Tasker</td><td>Upload proof of work done.</td><td>Access token</td><td>Yes</td><td>Completion Proof</td><td>Photos/videos up to 50MB each.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasker/tasks/{taskId}/request-completion</code></td><td>Tasker</td><td>Ask Task Owner to approve completed work.</td><td>Access token</td><td>Yes</td><td>Completion</td><td>If Task Owner refuses, Tasker can raise report/dispute.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasker/tasks/{taskId}/cancel</code></td><td>Tasker</td><td>Cancel accepted task.</td><td>Access token</td><td>Yes</td><td>Cancellation</td><td>After accepting, Tasker receives one warning; no-show is one strike.</td></tr></tbody></table></div>
+      
+    <div class="diagram">
+      <div class="diagram-head"><h4>Task Lifecycle REST + Socket Split</h4><span>State Ownership</span></div>
+      <pre>Task Owner creates task draft         REST
+Task Owner confirms location/media    REST
+Task Owner funds task                 REST + Provider webhook
+Task enters broadcast                 REST command + FCM notify
+Tasker shows interest                 REST
+Task Owner accepts/rejects Tasker     REST
+Tasker starts journey                 REST, then tracking socket begins
+Tasker taps I have arrived            REST
+Tasker taps Begin Task                REST
+Chat / tracking / presence            Socket
+Tasker requests completion            REST
+Task Owner approves or reports        REST
+Escrow release or hold                Worker + REST observable state</pre>
+      <p>The task state machine is never driven only by socket events. Socket improves live experience, while REST preserves truth.</p>
+    </div>
+    
+      <h3>Wallet, Payment, Escrow, And Payout APIs</h3>
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Actor</th><th>Purpose</th><th>Auth</th><th>Idempotency</th><th>Flow Refs</th><th>Notes</th></tr></thead><tbody><tr><td><span class="pill green-pill">GET</span></td><td><code>/wallets</code></td><td>User</td><td>Return Task Owner wallet and Tasker wallet summaries.</td><td>Access token</td><td>No</td><td>Wallet</td><td>Wallets are separate even though account is unified.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/wallets/{walletId}/ledger</code></td><td>User/Admin</td><td>Return wallet ledger entries.</td><td>Access token</td><td>No</td><td>Wallet</td><td>Admin access is permission-controlled.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/payments/verify</code></td><td>Task Owner</td><td>Verify payment redirect/status from client side.</td><td>Access token</td><td>Yes</td><td>Payment</td><td>Backend must still trust webhooks as final authority.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/webhooks/paystack</code></td><td>Provider</td><td>Receive Paystack payment/transfer events.</td><td>Signature</td><td>Provider event ID</td><td>Webhook</td><td>Use raw body signature verification and async processing.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/webhooks/moniepoint</code></td><td>Provider</td><td>Receive Moniepoint payment/transfer events.</td><td>Signature</td><td>Provider event ID</td><td>Webhook</td><td>Must be idempotent.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/tasker/payout-account</code></td><td>Tasker</td><td>Return payout account setup status.</td><td>Access token</td><td>No</td><td>Payout Setup</td><td>Do not expose full bank details.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasker/payout-account</code></td><td>Tasker</td><td>Add or change Tasker payout account.</td><td>Access token + PIN</td><td>Yes</td><td>Payout Setup</td><td>Sensitive action.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasker/withdrawals</code></td><td>Tasker</td><td>Request withdrawal into next eligible payout batch.</td><td>Access token + PIN</td><td>Yes</td><td>Withdrawal</td><td>Minimum withdrawal is NGN 1,000.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/tasker/withdrawals</code></td><td>Tasker</td><td>List withdrawal requests and batch status.</td><td>Access token</td><td>No</td><td>Withdrawal</td><td>Payout dates are 14th and 28th.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/payout-batches</code></td><td>Admin Finance</td><td>Create payout batch for eligible withdrawal requests.</td><td>Admin token</td><td>Yes</td><td>Finance Admin</td><td>Bulk transfer through Paystack or Moniepoint.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/payout-batches/{batchId}/approve</code></td><td>Admin Finance</td><td>Approve prepared payout batch.</td><td>Admin token + TOTP</td><td>Yes</td><td>Finance Admin</td><td>Disputed Taskers require admin authorization.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/payout-batches/{batchId}/mark-processed</code></td><td>Admin Finance</td><td>Finalize payout batch after provider processing.</td><td>Admin token + TOTP</td><td>Yes</td><td>Finance Admin</td><td>Record provider references per item.</td></tr></tbody></table></div>
+      <h3>Ratings, Favorites, Reports, Support, And Notifications</h3>
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Actor</th><th>Purpose</th><th>Auth</th><th>Idempotency</th><th>Flow Refs</th><th>Notes</th></tr></thead><tbody><tr><td><span class="pill blue">POST</span></td><td><code>/tasks/{taskId}/ratings</code></td><td>Task Owner/Tasker</td><td>Submit rating and review after completed task.</td><td>Access token</td><td>Yes</td><td>Ratings</td><td>Task Owner can add Tasker to favorites during rating.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/favorites/taskers</code></td><td>Task Owner</td><td>List favorite Taskers.</td><td>Access token</td><td>No</td><td>Favorites</td><td>Used for direct offer selection.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/favorites/taskers</code></td><td>Task Owner</td><td>Add Tasker to favorites.</td><td>Access token</td><td>Yes</td><td>Favorites</td><td>Usually offered after rating.</td></tr><tr><td><span class="pill amber-pill">DELETE</span></td><td><code>/favorites/taskers/{taskerId}</code></td><td>Task Owner</td><td>Remove favorite Tasker.</td><td>Access token</td><td>Yes</td><td>Favorites</td><td>Soft remove using status.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasks/{taskId}/reports</code></td><td>User</td><td>Create report/dispute linked to a task.</td><td>Access token</td><td>Yes</td><td>Reports</td><td>Reports can cover payment, safety, no-show, poor work, off-platform solicitation, or completion refusal.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/reports/{reportId}</code></td><td>User/Admin</td><td>Return report status and allowed next action.</td><td>Access token</td><td>No</td><td>Reports</td><td>User sees only own report scope.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/support/sessions</code></td><td>User</td><td>Open support live chat session.</td><td>Access token</td><td>Yes</td><td>Support Chat</td><td>Live chat uses socket events after session creation.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/support/emergency</code></td><td>User</td><td>Open emergency support request.</td><td>Access token</td><td>Yes</td><td>Emergency Support</td><td>Priority routing for safety-related cases.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/notifications</code></td><td>User</td><td>List in-app notifications.</td><td>Access token</td><td>No</td><td>Notifications</td><td>FCM wakes device; in-app list provides durable state.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/notifications/{notificationId}/read</code></td><td>User</td><td>Mark notification read.</td><td>Access token</td><td>Yes</td><td>Notifications</td><td>Idempotent by notification ID.</td></tr></tbody></table></div>
+      <h3>Communication, Voice Notes, And Masked Call APIs</h3>
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Actor</th><th>Purpose</th><th>Auth</th><th>Idempotency</th><th>Flow Refs</th><th>Notes</th></tr></thead><tbody><tr><td><span class="pill blue">POST</span></td><td><code>/tasks/{taskId}/call-sessions</code></td><td>Task Owner/Tasker</td><td>Create or retrieve a masked call session for an eligible task state.</td><td>Access token</td><td>Yes</td><td>Masked Calls</td><td>Returns Work2Cash proxy number; never returns real recipient number.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/tasks/{taskId}/call-sessions/active</code></td><td>Task Owner/Tasker</td><td>Return active masked call session if one exists.</td><td>Access token</td><td>No</td><td>Masked Calls</td><td>Only available for accepted, en route, arrived, in progress, completion, or valid dispute window states.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasks/{taskId}/call-sessions/{sessionId}/end</code></td><td>Task Owner/Tasker/System</td><td>Close a masked call session.</td><td>Access token or provider callback</td><td>Yes</td><td>Masked Calls</td><td>Used when task ends, session expires, or provider reports call completion.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/tasks/{taskId}/communications</code></td><td>Task Owner/Tasker/Admin</td><td>Return communication summary for task chat, voice notes, masked call sessions, and audit flags.</td><td>Access token</td><td>No</td><td>Communication Audit</td><td>Admin sees policy/audit metadata according to permission; users see their task communication scope.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/tasks/{taskId}/voice-notes</code></td><td>Task Owner/Tasker</td><td>Finalize uploaded voice note metadata for task chat.</td><td>Access token</td><td>Yes</td><td>Voice Notes</td><td>Actual delivery notification is socket-based after media metadata is stored.</td></tr></tbody></table></div>
+      <h3>System APIs</h3>
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Actor</th><th>Purpose</th><th>Auth</th><th>Idempotency</th><th>Flow Refs</th><th>Notes</th></tr></thead><tbody><tr><td><span class="pill green-pill">GET</span></td><td><code>/health</code></td><td>Load balancer</td><td>Basic liveness check.</td><td>Public/internal</td><td>No</td><td>Ops</td><td>No database dependency.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/ready</code></td><td>Load balancer</td><td>Readiness check for API dependencies.</td><td>Internal</td><td>No</td><td>Ops</td><td>Checks database, Valkey, queues, and critical adapters.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/metrics</code></td><td>Monitoring</td><td>Expose service metrics for monitoring.</td><td>Internal</td><td>No</td><td>Ops</td><td>Do not expose publicly.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/version</code></td><td>Client/Admin</td><td>Return deployed API version and compatibility metadata.</td><td>Public</td><td>No</td><td>App Compatibility</td><td>Useful for Shorebird/client support.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="socket" class="section">
+      <div class="section-num">07</div>
+      <div class="eyebrow">Socket.IO</div>
+      <h2>Socket.IO Contract</h2>
+      <p class="intro">Socket.IO is self-hosted and used for real-time experiences that benefit from low-latency updates. It is not used for direct offers, payment status truth, KYC status truth, durable dispute resolution, withdrawal requests, or admin finance decisions.</p>
+      <div class="code-block"><div class="code-title">Socket Event Envelope</div><pre>{
+  &quot;eventId&quot;: &quot;evt_01H...&quot;,
+  &quot;requestId&quot;: &quot;req_01H...&quot;,
+  &quot;occurredAt&quot;: &quot;2026-07-03T10:00:00Z&quot;,
+  &quot;actor&quot;: {
+    &quot;userId&quot;: &quot;user_123&quot;,
+    &quot;role&quot;: &quot;TASKER&quot;
+  },
+  &quot;data&quot;: { }
+}</pre></div>
+      <div class="code-block"><div class="code-title">Socket Acknowledgement</div><pre>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Accepted.&quot;,
+  &quot;data&quot;: {
+    &quot;messageId&quot;: &quot;msg_123&quot;
+  },
+  &quot;meta&quot;: {
+    &quot;requestId&quot;: &quot;req_01H...&quot;
+  }
+}</pre></div>
+      <div class="table-wrap"><table><thead><tr><th>Namespace</th><th>Event</th><th>Direction</th><th>Used By</th><th>Purpose</th><th>Persistence</th></tr></thead><tbody><tr><td>/task</td><td>task.room.join</td><td>Client -&gt; Server</td><td>Task Owner, Tasker</td><td>Join task room after membership/state authorization.</td><td>No</td></tr><tr><td>/task</td><td>task.chat.send</td><td>Client -&gt; Server</td><td>Task Owner, Tasker</td><td>Send task chat message after task is accepted.</td><td>Async PostgreSQL save</td></tr><tr><td>/task</td><td>task.chat.new</td><td>Server -&gt; Client</td><td>Task Owner, Tasker</td><td>Deliver new chat message.</td><td>Already queued for save</td></tr><tr><td>/task</td><td>task.chat.read</td><td>Both</td><td>Task Owner, Tasker</td><td>Mark messages read and broadcast read receipt.</td><td>Yes</td></tr><tr><td>/task</td><td>task.chat.typing</td><td>Both</td><td>Task Owner, Tasker</td><td>Transient typing indicator.</td><td>No</td></tr><tr><td>/task</td><td>task.voice.created</td><td>Server -&gt; Client</td><td>Task Owner, Tasker</td><td>Notify that a voice note media object is ready.</td><td>Media metadata saved</td></tr><tr><td>/support</td><td>support.session.join</td><td>Client -&gt; Server</td><td>User, Support Admin</td><td>Join support live chat session.</td><td>No</td></tr><tr><td>/support</td><td>support.message.send</td><td>Client -&gt; Server</td><td>User, Support Admin</td><td>Send support live chat message.</td><td>Async PostgreSQL save</td></tr><tr><td>/support</td><td>support.message.new</td><td>Server -&gt; Client</td><td>User, Support Admin</td><td>Deliver support message.</td><td>Already queued for save</td></tr><tr><td>/support</td><td>support.assignment.updated</td><td>Server -&gt; Client</td><td>User, Support Admin</td><td>Notify support agent assignment or reassignment.</td><td>Yes</td></tr><tr><td>/tracking</td><td>tracking.location.update</td><td>Tasker -&gt; Server</td><td>Tasker</td><td>Stream Tasker GPS while accepted/en route/arrived/in progress.</td><td>Latest state + sampled audit</td></tr><tr><td>/tracking</td><td>tracking.location.updated</td><td>Server -&gt; Client</td><td>Task Owner</td><td>Send allowed live location update.</td><td>No</td></tr><tr><td>/tracking</td><td>tracking.eta.updated</td><td>Server -&gt; Client</td><td>Task Owner, Tasker</td><td>Send ETA after backend guard permits paid refresh.</td><td>Yes</td></tr><tr><td>/presence</td><td>presence.heartbeat</td><td>Client -&gt; Server</td><td>User/Admin</td><td>Maintain online/available state.</td><td>Latest state</td></tr><tr><td>/presence</td><td>presence.updated</td><td>Server -&gt; Client</td><td>Authorized viewers</td><td>Broadcast presence changes where relevant.</td><td>No</td></tr></tbody></table></div>
+      
+    <div class="diagram">
+      <div class="diagram-head"><h4>Socket Reconnect Recovery</h4><span>Source Of Truth</span></div>
+      <pre>Socket disconnects
+  -&gt; Client shows reconnecting state
+  -&gt; Socket reconnects with access token
+  -&gt; Client rejoins authorized rooms
+  -&gt; Client calls REST /me and active task endpoint
+  -&gt; Client compares REST source-of-truth with local state
+  -&gt; Missing messages/tracking summaries are fetched or replayed</pre>
+      <p>After reconnect, the app must reconcile with REST. Socket delivery alone is not treated as final business truth.</p>
+    </div>
+    
+      <div class="callout amber"><strong>ETA refresh guard</strong><p>Tasker GPS may stream frequently, but paid ETA refresh is allowed only when the 5-minute guard has elapsed and the next 10% total-journey milestone has been crossed. The 10% journey milestone is the main driver. After refresh, reset the guard timer and next milestone.</p></div>
+    </section>
+
+    <section id="webhooks" class="section">
+      <div class="section-num">08</div>
+      <div class="eyebrow">Providers</div>
+      <h2>Webhook And Provider Callback Contracts</h2>
+      <p class="intro">Provider webhooks are treated as external, untrusted input until signature validation, idempotency checks, and state transition guards pass. Frontend redirects are useful for UX, but webhooks and backend verification own final payment truth.</p>
+      <div class="table-wrap"><table><thead><tr><th>Provider</th><th>Endpoint</th><th>Primary Events</th><th>Validation</th><th>Idempotency Key</th><th>Processing Rule</th></tr></thead><tbody><tr><td>Paystack</td><td>/webhooks/paystack</td><td>charge.success, transfer.success, transfer.failed</td><td>Verify provider signature on raw body.</td><td>Paystack event ID/reference.</td><td>Store WebhookEvent then process via payment.queue.</td></tr><tr><td>Moniepoint</td><td>/webhooks/moniepoint</td><td>payment.success, payment.failed, transfer.status</td><td>Verify Moniepoint signature/secret scheme.</td><td>Provider event ID/reference.</td><td>Store first, acknowledge fast, process async.</td></tr><tr><td>Smile ID</td><td>/webhooks/smile-id</td><td>KYC approved, rejected, pending, failed</td><td>Verify Smile ID callback signature where available.</td><td>Smile job/user reference.</td><td>Update KYC attempt and notify user/admin.</td></tr><tr><td>Masked Call Provider</td><td>/webhooks/calls/provider</td><td>Inbound proxy call, call bridged, call ended, recording metadata if enabled</td><td>Verify provider signature and source.</td><td>Call session ID + provider call ID.</td><td>Return routing instruction only for valid task-bound session.</td></tr></tbody></table></div>
+      
+    <div class="diagram">
+      <div class="diagram-head"><h4>Payment And Webhook Processing</h4><span>Idempotency</span></div>
+      <pre>Task Owner starts payment
+  -&gt; API creates provider payment intent
+  -&gt; Client redirects or follows provider instruction
+  -&gt; Provider sends webhook to API
+  -&gt; API verifies signature against raw body
+  -&gt; API stores WebhookEvent using provider event ID
+  -&gt; payment.queue processes event
+  -&gt; Wallet ledger + escrow update in transaction
+  -&gt; Task becomes PAID/BROADCASTING when eligible
+  -&gt; User receives notification</pre>
+      <p>Payment processing must be idempotent at webhook, ledger, escrow, and task transition levels.</p>
+    </div>
+    
+      <div class="callout"><strong>Masked call provider rule</strong><p>Masked calls use proxy dial-in flow for MVP. The caller pays normal airtime; Work2Cash pays provider-side costs. Real phone numbers must not be exposed. Provider selection is to be confirmed during development, with Infobip as the primary candidate and Africa's Talking, Vonage, and Sinch as fallback options.</p></div>
+    </section>
+
+    <section id="queues" class="section">
+      <div class="section-num">09</div>
+      <div class="eyebrow">Workers</div>
+      <h2>Queue, Job, And Worker Contracts</h2>
+      <p class="intro">BullMQ and Valkey support background work, retries, rate limits, and cost control. Queue payloads should contain stable IDs and correlation metadata, not large provider payloads or sensitive raw secrets.</p>
+      <div class="table-wrap"><table><thead><tr><th>Queue</th><th>Producer</th><th>Consumers</th><th>Purpose</th><th>Must Be Idempotent</th></tr></thead><tbody><tr><td>notification.queue</td><td>API, workers, admin</td><td>Notification worker</td><td>FCM, in-app, email, and critical SMS sends.</td><td>Yes</td></tr><tr><td>payment.queue</td><td>Webhooks, API</td><td>Payment worker</td><td>Verify payments, update escrow, reconcile provider events.</td><td>Yes</td></tr><tr><td>kyc.queue</td><td>KYC API, webhooks</td><td>KYC worker</td><td>Smile ID job submission and callback handling.</td><td>Yes</td></tr><tr><td>matching.queue</td><td>Task APIs</td><td>Matching worker</td><td>Broadcast task, direct offers, candidate update jobs.</td><td>Yes</td></tr><tr><td>wallet.queue</td><td>Payment/Task/Withdrawal APIs</td><td>Wallet worker</td><td>Ledger entries, escrow release, holds, withdrawals.</td><td>Yes</td></tr><tr><td>chat.queue</td><td>Socket gateway</td><td>Chat persistence worker</td><td>Persist task/support messages and delivery/read states.</td><td>Yes</td></tr><tr><td>maps.queue</td><td>Task/tracking APIs</td><td>Maps worker</td><td>Geocoding, ETA refresh, route cost guard.</td><td>Yes</td></tr><tr><td>audit.queue</td><td>All services</td><td>Audit worker</td><td>Persist admin/security/provider/use case audit events.</td><td>Yes</td></tr><tr><td>media.queue</td><td>Media API</td><td>Media worker</td><td>Moderation, thumbnailing, permission indexing.</td><td>Yes</td></tr><tr><td>report.queue</td><td>Report/Admin APIs</td><td>Report worker</td><td>Penalty review timers, escalation, settlement holds.</td><td>Yes</td></tr></tbody></table></div>
+      <div class="code-block"><div class="code-title">Worker Job Envelope</div><pre>{
+  &quot;jobId&quot;: &quot;job_01H...&quot;,
+  &quot;type&quot;: &quot;PAYMENT_WEBHOOK_RECEIVED&quot;,
+  &quot;correlationId&quot;: &quot;req_01H...&quot;,
+  &quot;actorId&quot;: null,
+  &quot;resource&quot;: {
+    &quot;type&quot;: &quot;WebhookEvent&quot;,
+    &quot;id&quot;: &quot;wh_123&quot;
+  },
+  &quot;attempt&quot;: 1,
+  &quot;createdAt&quot;: &quot;2026-07-03T10:00:00Z&quot;
+}</pre></div>
+    </section>
+
+    <section id="schemas" class="section">
+      <div class="section-num">10</div>
+      <div class="eyebrow">Schemas</div>
+      <h2>DTO, Schema, And Enum Baseline</h2>
+      <p class="intro">This section captures the contract vocabulary that mobile, admin, and backend should agree on before detailed OpenAPI schemas are generated. DTOs must be split by command/query, and each use case should expose explicit params, result, and error conditions.</p>
+      <div class="card-grid">
+        <div class="card">
+          <span>Enum</span>
+          <h4>TaskStatus</h4>
+          <p>DRAFT, PENDING_PAYMENT, PAID, DIRECT_OFFER_SENT, DIRECT_OFFER_EXPIRED, BROADCASTING, ACCEPTED, TASKER_EN_ROUTE, ARRIVED, IN_PROGRESS, COMPLETION_REQUESTED, COMPLETED, DISPUTED, CANCELLED, EXPIRED, REFUNDED</p>
+        </div>
+        
+        <div class="card">
+          <span>Enum</span>
+          <h4>DirectTaskOfferStatus</h4>
+          <p>SENT, VIEWED, ACCEPTED, DECLINED, EXPIRED, CANCELLED, TASKER_UNAVAILABLE</p>
+        </div>
+        
+        <div class="card">
+          <span>Enum</span>
+          <h4>FavoriteTaskerStatus</h4>
+          <p>ACTIVE, REMOVED, BLOCKED</p>
+        </div>
+        
+        <div class="card">
+          <span>Enum</span>
+          <h4>TaskMediaStatus</h4>
+          <p>ACTIVE, REMOVED, REJECTED</p>
+        </div>
+        
+        <div class="card">
+          <span>Enum</span>
+          <h4>TaskReportStatus</h4>
+          <p>OPEN, UNDER_REVIEW, EVIDENCE_REQUESTED, RESOLVED, DISMISSED, ESCALATED</p>
+        </div>
+        
+        <div class="card">
+          <span>Enum</span>
+          <h4>PaymentStatus</h4>
+          <p>INITIATED, PENDING, SUCCESSFUL, FAILED, EXPIRED, REVERSED</p>
+        </div>
+        
+        <div class="card">
+          <span>Enum</span>
+          <h4>EscrowStatus</h4>
+          <p>HELD, RELEASED, DISPUTED, REFUNDED, PARTIALLY_REFUNDED</p>
+        </div>
+        
+        <div class="card">
+          <span>Enum</span>
+          <h4>WithdrawalStatus</h4>
+          <p>REQUESTED, PROCESSING, SUCCESSFUL, FAILED, REVERSED, FLAGGED, CANCELLED</p>
+        </div>
+        </div>
+      <div class="code-block"><div class="code-title">Create Task Draft DTO Example</div><pre>{
+  &quot;categoryId&quot;: &quot;cat_home&quot;,
+  &quot;taskTypeId&quot;: &quot;task_house_cleaning&quot;,
+  &quot;title&quot;: &quot;Clean two-bedroom apartment&quot;,
+  &quot;description&quot;: &quot;General cleaning before evening.&quot;,
+  &quot;amount&quot;: 5000,
+  &quot;requiredArrivalAt&quot;: &quot;2026-07-03T15:00:00+01:00&quot;,
+  &quot;locationInputMode&quot;: &quot;MANUAL_ADDRESS&quot;
+}</pre></div>
+      <div class="code-block"><div class="code-title">Tasker Interest DTO Example</div><pre>{
+  &quot;taskId&quot;: &quot;task_123&quot;,
+  &quot;confirmedCanArriveByRequiredTime&quot;: true,
+  &quot;currentLocation&quot;: {
+    &quot;latitude&quot;: 7.3775,
+    &quot;longitude&quot;: 3.9470,
+    &quot;accuracyMeters&quot;: 24
+  }
+}</pre></div>
+      <div class="table-wrap"><table><thead><tr><th>Object</th><th>Required Contract Rule</th><th>Notes</th></tr></thead><tbody><tr><td>TaskMedia</td><td>Supports photos and videos up to 50MB per file.</td><td>Media access must be permission-controlled. Admin can review/remove unsafe or invalid media.</td></tr><tr><td>TaskLocationGeocode</td><td>Manual address must geocode to coordinates and be confirmed by user pin.</td><td>Task site must be in Nigeria.</td></tr><tr><td>TaskCallSession</td><td>Task-bound and time-limited.</td><td>Recipient sees Work2Cash/proxy number, not caller real number.</td></tr><tr><td>TaskOwnerRejection</td><td>Logs timing, movement state, reason, and risk impact.</td><td>Repeated movement-stage rejections trigger warning/risk flag.</td></tr><tr><td>TaskSettlementHold</td><td>Applies only when there is an active issue/dispute.</td><td>Non-disputed Taskers should receive normal escrow release.</td></tr><tr><td>CommunicationAuditLog</td><td>Captures policy-relevant chat/voice/call metadata.</td><td>Supports off-platform leakage review without exposing unnecessary private content.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="traceability" class="section">
+      <div class="section-num">11</div>
+      <div class="eyebrow">Traceability</div>
+      <h2>Flow-To-Contract Traceability</h2>
+      <p class="intro">This section checks the API and socket contract against the corrected mobile and admin flow catalogues. It is meant to help product, QA, backend, mobile, and admin teams quickly see which endpoints support each flow and where sockets are involved.</p>
+      <h3>Mobile Main Flow Traceability</h3>
+      <div class="table-wrap"><table><thead><tr><th>Flow</th><th>Name</th><th>Primary REST Contracts</th><th>Socket / Realtime Contract</th><th>Implementation Note</th></tr></thead><tbody><tr><td>MF-01</td><td>Registration</td><td>/auth/register, /auth/otp/send, /auth/otp/verify, /me, /me/profile, /me/security-pin/setup</td><td>Socket not required</td><td>Repairs through Login + nextRequiredAction if interrupted.</td></tr><tr><td>MF-02</td><td>Login</td><td>/auth/login, /auth/social/google, /auth/social/apple, /auth/refresh, /me</td><td>Socket connects after auth when needed</td><td>Routes to KYC, profile, PIN, or Home based on backend state.</td></tr><tr><td>MF-03</td><td>Onboarding and Mode Setup</td><td>/me, /me/mode, /me/profile</td><td>Socket not required</td><td>Uses mode field for Task Owner/Tasker context.</td></tr><tr><td>MF-04</td><td>Task Owner Home</td><td>/me, /notifications, /task-owner/tasks/{taskId}/candidates, task summary endpoints</td><td>Presence optional</td><td>Shows current tasks, wallet state, notifications, and shortcuts.</td></tr><tr><td>MF-05</td><td>Tasker Activation</td><td>/kyc/start, /kyc/nin-bvn, /kyc/face-capture, /kyc/status, /tasker/profile</td><td>Socket not required</td><td>Tasker cannot accept tasks until KYC and profile are approved.</td></tr><tr><td>MF-06</td><td>Create and Fund Task</td><td>/task-owner/tasks/drafts, /task-owner/tasks/{taskId}, /location/geocode, /location/confirm-pin, /media, /payment-intent</td><td>Socket not required</td><td>Payment truth comes from backend verification/webhook, not client redirect alone.</td></tr><tr><td>MF-07</td><td>Public Discovery and Tasker Interest</td><td>/tasker/tasks, /tasker/tasks/{taskId}, /tasker/tasks/{taskId}/interest, /task-owner/tasks/{taskId}/candidates</td><td>FCM notification, not socket-required</td><td>Tasks are visible nearest-first and filterable by location.</td></tr><tr><td>MF-08</td><td>Direct Offer to Favorite Tasker</td><td>/favorites/taskers, /task-owner/tasks/{taskId}/direct-offers, /tasker/tasks/{taskId}/accept, /tasker/tasks/{taskId}/decline</td><td>FCM notification; direct offer is not socket-based</td><td>Direct offer status uses durable REST state.</td></tr><tr><td>MF-09</td><td>Tasker Browse and Accept Task</td><td>/tasker/tasks, /tasker/tasks/{taskId}, /tasker/tasks/{taskId}/interest, /tasker/tasks/{taskId}/accept</td><td>Presence optional</td><td>Tasker must be in Nigeria and confirm arrival ability.</td></tr><tr><td>MF-10</td><td>Active Task Execution</td><td>/tasker/tasks/{taskId}/start-journey, /arrived, /begin, /completion-proof, /request-completion</td><td>/tracking, /task</td><td>Covers Start Journey, I have arrived, Begin Task, chat, voice notes, masked calls, and tracking.</td></tr><tr><td>MF-11</td><td>Completion and Settlement</td><td>/task-owner/tasks/{taskId}/confirm-completion, /tasks/{taskId}/ratings, wallet/escrow status endpoints</td><td>Socket may notify chat/presence, but settlement is REST/worker</td><td>Escrow release can be held only for active issues/disputes.</td></tr><tr><td>MF-12</td><td>Cancellation and No-Show</td><td>/task-owner/tasks/{taskId}/cancel, /tasker/tasks/{taskId}/cancel, /tasks/{taskId}/reports</td><td>Socket can update active task UI</td><td>Warning/strike and penalty rules are backend-enforced.</td></tr><tr><td>MF-13</td><td>Tasker Withdrawal</td><td>/tasker/payout-account, /tasker/withdrawals, /wallets, /wallets/{walletId}/ledger</td><td>Socket not required</td><td>Requires PIN and enters 14th/28th payout batch.</td></tr><tr><td>MF-14</td><td>Task History</td><td>/task-owner/tasks history endpoint, /tasker/tasks history endpoint, /reports/{reportId}, /wallets/{walletId}/ledger</td><td>Socket not required</td><td>Exact endpoint names can be finalized in OpenAPI implementation.</td></tr><tr><td>MF-15</td><td>Favorites</td><td>/favorites/taskers, /tasks/{taskId}/ratings, /task-owner/tasks/{taskId}/direct-offers</td><td>Socket not required</td><td>Task Owner can add favorite after rating and rebook/send direct offer later.</td></tr><tr><td>MF-16</td><td>Support Live Chat</td><td>/support/sessions, /support/emergency, /support/tickets where added</td><td>/support</td><td>Support chat is socket-based after REST creates session.</td></tr><tr><td>MF-17</td><td>Notifications</td><td>/notifications, /notifications/{notificationId}/read, /me/notification-preferences</td><td>FCM + optional presence</td><td>FCM wakes device; in-app notification list is durable REST state.</td></tr><tr><td>MF-18</td><td>Profile and Settings</td><td>/me, /me/profile, /me/addresses, /me/notification-preferences</td><td>Socket not required</td><td>Sensitive changes require PIN.</td></tr><tr><td>MF-19</td><td>Security and Device Management</td><td>/me/security-pin/setup, /verify, /reset/start, /reset/confirm, /me/sessions</td><td>Socket not required</td><td>PIN confirms sensitive actions; OTP only for PIN recovery/contact verification.</td></tr><tr><td>MF-20</td><td>Notification Center and Preferences</td><td>/notifications, /notifications/{notificationId}/read, /me/notification-preferences</td><td>FCM</td><td>Critical messages may bypass marketing preference limits.</td></tr><tr><td>MF-21</td><td>Tasker Availability and Work Preferences</td><td>/tasker/profile, /tasker/preferences, /tasker/availability</td><td>/presence</td><td>Auto accept is deferred; Tasker must confirm ability to arrive.</td></tr><tr><td>MF-22</td><td>Ratings and Reviews</td><td>/tasks/{taskId}/ratings, /favorites/taskers</td><td>Socket not required</td><td>Ratings feed trust, display, favorites, and moderation.</td></tr><tr><td>MF-23</td><td>Emergency Support</td><td>/support/emergency, /support/sessions, /tasks/{taskId}/reports, /tasks/{taskId}/media where needed</td><td>/support</td><td>Creates priority support path and can link to task/report.</td></tr><tr><td>MF-24</td><td>Rebook / Repeat Task</td><td>/task-owner/tasks/{taskId}/rebook, /payment-intent, /direct-offers, /broadcast</td><td>FCM if direct offer</td><td>Creates a new immutable task from prior task details.</td></tr></tbody></table></div>
+      <h3>Mobile Reusable Subflow Traceability</h3>
+      <div class="table-wrap"><table><thead><tr><th>Subflow</th><th>Name</th><th>Primary Contracts</th><th>Notes</th></tr></thead><tbody><tr><td>SF-01</td><td>OTP Verification</td><td>/auth/otp/send, /auth/otp/verify</td><td>Email first, Termii SMS fallback.</td></tr><tr><td>SF-02</td><td>Complete Profile</td><td>/me, /me/profile</td><td>Repairs incomplete registration or login state.</td></tr><tr><td>SF-03</td><td>Tasker KYC</td><td>/kyc/start, /kyc/nin-bvn, /kyc/face-capture, /kyc/status</td><td>Required before Tasker can accept work.</td></tr><tr><td>SF-04</td><td>Location, Address and Pin Confirmation</td><td>/location/geocode, /location/confirm-pin, /me/addresses</td><td>Manual address geocodes to coordinates and must be confirmed.</td></tr><tr><td>SF-05</td><td>Media Upload</td><td>/task-owner/tasks/{taskId}/media, /tasker/tasks/{taskId}/completion-proof, /tasks/{taskId}/voice-notes</td><td>Photos/videos/voice note metadata; 50MB file rule for task media.</td></tr><tr><td>SF-06</td><td>Payment and Escrow Funding</td><td>/payment-intent, /payments/verify, /webhooks/paystack, /webhooks/moniepoint</td><td>Webhook/backend verification owns final truth.</td></tr><tr><td>SF-07</td><td>Wallet Ledger</td><td>/wallets, /wallets/{walletId}/ledger</td><td>Task Owner wallet and Tasker wallet are separate.</td></tr><tr><td>SF-08</td><td>Report / Dispute</td><td>/tasks/{taskId}/reports, /reports/{reportId}</td><td>Reports can be task-linked with policy options.</td></tr><tr><td>SF-09</td><td>Permission Recovery</td><td>/me, relevant flow retry endpoint</td><td>Client UI flow; backend validates location/media availability where required.</td></tr><tr><td>SF-10</td><td>Status Recovery / Resume</td><td>/me, active task detail, payment status, KYC status, report status</td><td>Required after reconnect, app resume, provider return, or socket reconnect.</td></tr><tr><td>SF-11</td><td>Password Recovery</td><td>/auth/password/forgot, /auth/password/reset</td><td>Email first, SMS fallback.</td></tr><tr><td>SF-12</td><td>Payout Account Setup</td><td>/tasker/payout-account</td><td>Requires PIN for add/change.</td></tr><tr><td>SF-13</td><td>Google / Apple Social Authentication</td><td>/auth/social/google, /auth/social/apple</td><td>Facebook excluded from MVP.</td></tr></tbody></table></div>
+      <h3>Admin Flow Traceability</h3>
+      <div class="table-wrap"><table><thead><tr><th>Flow</th><th>Name</th><th>Primary REST Contracts</th><th>Socket / Realtime Contract</th><th>Implementation Note</th></tr></thead><tbody><tr><td>AF-01</td><td>Admin Entry, Login and TOTP</td><td>/admin/auth/login, /admin/auth/totp/verify, /admin/auth/logout</td><td>Socket not required</td><td>Admin session starts only after TOTP challenge passes.</td></tr><tr><td>AF-02</td><td>Admin Dashboard Overview</td><td>/admin/dashboard, /admin/use-case-health, /admin/finance/transactions</td><td>Presence optional</td><td>Role-filtered dashboard summary.</td></tr><tr><td>AF-03</td><td>User Management</td><td>/admin/users, /admin/users/{userId}, /admin/users/{userId}/suspend</td><td>Socket not required</td><td>Platform users, not admin users.</td></tr><tr><td>AF-04</td><td>Tasker and KYC Review</td><td>/admin/kyc/{kycId}/request-reverification, /admin/users/{userId}</td><td>Socket not required</td><td>Admin can request re-verification.</td></tr><tr><td>AF-05</td><td>Task Operations Monitoring</td><td>/admin/tasks, /admin/tasks/{taskId}, /admin/tasks/{taskId}/force-cancel</td><td>May observe tracking/chat metadata</td><td>Admin can force cancel but must not reassign.</td></tr><tr><td>AF-06</td><td>Task Report and Dispute Resolution</td><td>/admin/reports, /admin/reports/{reportId}/resolve</td><td>No dispute live chat</td><td>Reports can link to task and evidence.</td></tr><tr><td>AF-07</td><td>Support Live Chat Operations</td><td>/support/sessions plus admin support assignment endpoints when implemented</td><td>/support</td><td>Support live chat uses socket after REST session exists.</td></tr><tr><td>AF-08</td><td>Finance: Payments, Escrow and Reconciliation</td><td>/admin/finance/transactions, /webhooks/paystack, /webhooks/moniepoint</td><td>Socket not required</td><td>Provider events are reconciled through webhook/payment queue.</td></tr><tr><td>AF-09</td><td>Withdrawal and Payout Batch Operations</td><td>/admin/payout-batches, /approve, /mark-processed</td><td>Socket not required</td><td>Bulk payout batches on 14th and 28th.</td></tr><tr><td>AF-10</td><td>Wallet, Refund and Excess Funding Support</td><td>/wallets/{walletId}/ledger, /admin/finance/transactions, report/support endpoints</td><td>Socket not required</td><td>Task Owner cannot withdraw directly; support handles excess funding cases.</td></tr><tr><td>AF-11</td><td>Task Catalog Management</td><td>/admin/catalog/categories, /disable, /archive</td><td>Socket not required</td><td>Disable/archive affects future task creation.</td></tr><tr><td>AF-12</td><td>Service Coverage Configuration</td><td>/admin/config/{key}, location/coverage config endpoints when implemented</td><td>Socket not required</td><td>Nigeria-only task site policy and location rules.</td></tr><tr><td>AF-13</td><td>Task Media Moderation</td><td>/admin/tasks/{taskId}, media moderation endpoints when implemented</td><td>Socket not required</td><td>Admin can review/remove unsafe or invalid media.</td></tr><tr><td>AF-14</td><td>Risk, Trust, Warning and Strike Review</td><td>/admin/reports/{reportId}/resolve, /admin/users/{userId}/suspend, /admin/audit-logs</td><td>Socket not required</td><td>Warning/strike outcomes must be auditable.</td></tr><tr><td>AF-15</td><td>Referral Management</td><td>Referral endpoints to be finalized in OpenAPI</td><td>Socket not required</td><td>Reward after referred user completes 5 paid tasks.</td></tr><tr><td>AF-16</td><td>Platform Config and Remote Config</td><td>/admin/config, /admin/config/{key}</td><td>Socket not required</td><td>Admin dashboard owns remote config sections.</td></tr><tr><td>AF-17</td><td>Admin Users, Roles and Permissions</td><td>/admin/admin-users, /admin/roles, /admin/permissions, /admin/auth/sessions</td><td>Socket not required</td><td>Admin RBAC is separate from platform user roles.</td></tr><tr><td>AF-18</td><td>Audit Log Review</td><td>/admin/audit-logs</td><td>Socket not required</td><td>Immutable audit trail for privileged actions.</td></tr><tr><td>AF-19</td><td>Use Case Health and Background Job Monitoring</td><td>/admin/use-case-health, /health, /ready, /metrics</td><td>Socket not required</td><td>Tracks use case last-used and success/failure.</td></tr><tr><td>AF-20</td><td>Monitoring, Backup and Incident Readiness</td><td>/health, /ready, /metrics, provider status endpoints when implemented</td><td>Socket not required</td><td>Supports self-hosted service readiness.</td></tr><tr><td>AF-21</td><td>Notifications and Announcements</td><td>/admin/announcements, /notifications</td><td>FCM delivery, socket not required</td><td>Channels include FCM, in-app, email, critical SMS only.</td></tr><tr><td>AF-22</td><td>Ratings and Reviews Management</td><td>/admin/ratings, /tasks/{taskId}/ratings</td><td>Socket not required</td><td>Unsafe/invalid reviews can be hidden with audit.</td></tr><tr><td>AF-23</td><td>Basic Analytics and Reports</td><td>/admin/dashboard, /admin/finance/transactions, /admin/use-case-health</td><td>Socket not required</td><td>Advanced analytics remain deferred.</td></tr><tr><td>AF-24</td><td>Receipt and Transaction Review</td><td>/admin/finance/transactions, /wallets/{walletId}/ledger</td><td>Socket not required</td><td>Supports payment, transfer, webhook, and receipt review.</td></tr></tbody></table></div>
+      <div class="callout amber"><strong>Traceability rule</strong><p>If a screen or flow is added in Figma, mobile, or admin after this version, the contract matrix must be updated in the same documentation change. This keeps backend implementation order aligned with frontend delivery.</p></div>
+    </section>
+
+    <section id="admin" class="section">
+      <div class="section-num">12</div>
+      <div class="eyebrow">Admin</div>
+      <h2>Admin Contract Rules</h2>
+      <p class="intro">Admin endpoints are not simply wider versions of user endpoints. They require role filtering, TOTP for high-impact operations, audit reasons, and safe defaults. Admin can force cancel where authorized, but admin must not reassign tasks under any condition.</p>
+      <h3>Admin Authentication And TOTP APIs</h3>
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Actor</th><th>Purpose</th><th>Auth</th><th>Idempotency</th><th>Flow Refs</th><th>Notes</th></tr></thead><tbody><tr><td><span class="pill blue">POST</span></td><td><code>/admin/auth/login</code></td><td>Admin</td><td>Authenticate admin user with email/password.</td><td>Public admin</td><td>No</td><td>AF-01</td><td>If password is valid, require TOTP before issuing full admin session.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/auth/totp/verify</code></td><td>Admin</td><td>Verify TOTP challenge during login or sensitive operation.</td><td>Admin pre-session or admin token</td><td>Yes</td><td>AF-01</td><td>Required for admin login completion and high-impact actions.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/auth/totp/enroll</code></td><td>Admin</td><td>Enroll TOTP for an admin account.</td><td>Admin token or invite token</td><td>Yes</td><td>Admin Security</td><td>Only allowed during approved setup/recovery path.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/auth/totp/recovery-codes</code></td><td>Admin</td><td>Generate or rotate recovery codes.</td><td>Admin token + TOTP</td><td>Yes</td><td>Admin Security</td><td>Display once; store hashed codes only.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/auth/sessions</code></td><td>Admin</td><td>List admin sessions and devices.</td><td>Admin token</td><td>No</td><td>AF-17</td><td>Used by admin security and audit review.</td></tr><tr><td><span class="pill amber-pill">DELETE</span></td><td><code>/admin/auth/sessions/{sessionId}</code></td><td>Admin</td><td>Revoke an admin session.</td><td>Admin token + TOTP</td><td>Yes</td><td>AF-17</td><td>High-impact security action; audit required.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/auth/logout</code></td><td>Admin</td><td>Invalidate current admin session.</td><td>Admin token</td><td>Yes</td><td>AF-01</td><td>Client clears local admin session state.</td></tr></tbody></table></div>
+      <h3>Admin Users, Roles, And Permissions APIs</h3>
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Actor</th><th>Purpose</th><th>Auth</th><th>Idempotency</th><th>Flow Refs</th><th>Notes</th></tr></thead><tbody><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/admin-users</code></td><td>Admin Owner/Technical Lead</td><td>List admin users.</td><td>Admin token</td><td>No</td><td>AF-17</td><td>Separate from platform user management.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/admin-users</code></td><td>Admin Owner/Technical Lead</td><td>Invite or create admin user.</td><td>Admin token + TOTP</td><td>Yes</td><td>AF-17</td><td>Requires role assignment and audit reason.</td></tr><tr><td><span class="pill blue">PATCH</span></td><td><code>/admin/admin-users/{adminUserId}</code></td><td>Admin Owner/Technical Lead</td><td>Update admin user status, metadata, or assigned roles.</td><td>Admin token + TOTP</td><td>No</td><td>AF-17</td><td>No direct database edits for admin access.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/admin-users/{adminUserId}/disable</code></td><td>Admin Owner/Technical Lead</td><td>Disable an admin account.</td><td>Admin token + TOTP</td><td>Yes</td><td>AF-17</td><td>Revokes active sessions and records audit event.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/roles</code></td><td>Admin Owner/Technical Lead</td><td>List roles and permissions.</td><td>Admin token</td><td>No</td><td>AF-17</td><td>Used by RBAC screens.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/roles</code></td><td>Admin Owner/Technical Lead</td><td>Create a role.</td><td>Admin token + TOTP</td><td>Yes</td><td>AF-17</td><td>Requires permission set and reason.</td></tr><tr><td><span class="pill blue">PATCH</span></td><td><code>/admin/roles/{roleId}</code></td><td>Admin Owner/Technical Lead</td><td>Update role permissions.</td><td>Admin token + TOTP</td><td>No</td><td>AF-17</td><td>Must prevent removing last effective platform owner access.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/permissions</code></td><td>Admin Owner/Technical Lead</td><td>List available permission keys.</td><td>Admin token</td><td>No</td><td>AF-17</td><td>Permission keys should be stable and code-owned.</td></tr></tbody></table></div>
+      <h3>Admin Operations APIs</h3>
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Actor</th><th>Purpose</th><th>Auth</th><th>Idempotency</th><th>Flow Refs</th><th>Notes</th></tr></thead><tbody><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/dashboard</code></td><td>Admin</td><td>Return operating dashboard summary.</td><td>Admin token</td><td>No</td><td>Admin Home</td><td>Role-filtered metrics.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/users</code></td><td>Admin Support/Risk</td><td>Search users and account states.</td><td>Admin token</td><td>No</td><td>User Admin</td><td>No raw secrets or full payment data.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/users/{userId}</code></td><td>Admin Support/Risk</td><td>View user profile, mode, wallets summary, KYC, strikes, sessions, and tasks.</td><td>Admin token</td><td>No</td><td>User Detail</td><td>Permission-gated sections.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/users/{userId}/suspend</code></td><td>Admin Risk</td><td>Suspend account after verified risk rule.</td><td>Admin token + TOTP</td><td>Yes</td><td>Risk</td><td>Requires reason and audit log.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/tasks</code></td><td>Admin Ops</td><td>Search and filter tasks.</td><td>Admin token</td><td>No</td><td>Task Ops</td><td>Includes state, city/zone, owner, tasker, payment state.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/tasks/{taskId}</code></td><td>Admin Ops</td><td>View task details and timeline.</td><td>Admin token</td><td>No</td><td>Task Ops</td><td>Media access is permission-controlled.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/tasks/{taskId}/force-cancel</code></td><td>Admin Ops Lead</td><td>Force cancel task with elevated permission.</td><td>Admin token + TOTP</td><td>Yes</td><td>Controlled Force Cancel</td><td>Admin must not reassign under any condition.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/finance/transactions</code></td><td>Admin Finance</td><td>List payments, escrow, wallet entries, transfers, and receipts.</td><td>Admin token</td><td>No</td><td>Finance</td><td>Supports receipt/transaction review.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/reports</code></td><td>Admin Support/Risk</td><td>List reports/disputes.</td><td>Admin token</td><td>No</td><td>Reports</td><td>No live dispute chat; support chat remains separate.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/reports/{reportId}/resolve</code></td><td>Admin Support/Risk</td><td>Resolve report with outcome, penalty, hold, or dismissal.</td><td>Admin token + TOTP where high impact</td><td>Yes</td><td>Reports</td><td>Contested penalties can remain pending until review/timeout.</td></tr><tr><td><span class="pill blue">POST</span></td><td><code>/admin/announcements</code></td><td>Admin Ops</td><td>Create notification or announcement campaign.</td><td>Admin token</td><td>Yes</td><td>Announcements</td><td>Channels: FCM, in-app, email, critical SMS only.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/ratings</code></td><td>Admin Ops/Risk</td><td>Review ratings and reported reviews.</td><td>Admin token</td><td>No</td><td>Ratings</td><td>Unsafe or invalid content can be removed.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/config</code></td><td>Admin Ops</td><td>Read remote config values.</td><td>Admin token</td><td>No</td><td>Remote Config</td><td>Config lives in admin dashboard, not external remote-config provider.</td></tr><tr><td><span class="pill blue">PATCH</span></td><td><code>/admin/config/{key}</code></td><td>Admin Ops Lead</td><td>Update feature flags, thresholds, or platform caps.</td><td>Admin token + TOTP</td><td>Yes</td><td>Remote Config</td><td>Changes require audit log.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/audit-logs</code></td><td>Admin Risk</td><td>Search privileged actions and system audit events.</td><td>Admin token</td><td>No</td><td>Audit</td><td>Immutable audit trail.</td></tr><tr><td><span class="pill green-pill">GET</span></td><td><code>/admin/use-case-health</code></td><td>Technical/Admin</td><td>View use case invocation, last used, success/failure state.</td><td>Admin token</td><td>No</td><td>Use Case Health</td><td>Backed by backend use case tracking.</td></tr></tbody></table></div>
+      <div class="callout red"><strong>No admin reassignment</strong><p>If a task has started and cannot continue, it should be closed according to policy and return to broadcasting only through the allowed task/cancellation state path. Admin should not manually reassign to another Tasker.</p></div>
+    </section>
+
+    <section id="handover" class="section">
+      <div class="section-num">13</div>
+      <div class="eyebrow">Handover</div>
+      <h2>Contract QA And Handover Checklist</h2>
+      <p class="intro">Before implementation proceeds into full feature work, each team should confirm that the contract shape is usable. This prevents hidden blockers between backend, mobile, and admin.</p>
+      <ul class="checklist">
+        <li>Backend publishes OpenAPI/Swagger for all REST groups listed in this document.</li>
+        <li>Backend publishes socket event names, payload examples, ack examples, and room authorization rules.</li>
+        <li>Mobile maps each closed mobile flow to its required API and socket contracts.</li>
+        <li>Admin maps each closed admin flow to its required API and permission policy.</li>
+        <li>Every payment, wallet, webhook, payout, media finalization, and task state transition endpoint has idempotency coverage.</li>
+        <li>Every admin high-impact endpoint writes audit logs and captures reason.</li>
+        <li>Every protected document page in the GitHub Pages docs repo includes <code>../assets/js/guard.js</code>.</li>
+        <li>Contract tests cover success, validation failure, auth failure, forbidden state, duplicate request, and provider retry cases.</li>
+        <li>Frontend loading standards are implemented: skeletons for fetches and blur overlay with spinning Work2Cash logo for POST/PATCH submissions.</li>
+        <li>Privacy review confirms exact address, real phone number, KYC data, provider secrets, and hidden media are not leaked.</li>
+      </ul>
+      <div class="callout green"><strong>Implementation rule</strong><p>Commits should be feature by feature and fix by fix. Do not stack unrelated endpoint groups, socket events, and admin changes in one documentation or implementation commit.</p></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div><h4>Work2Cash</h4><p>API & Socket Contract Specification v1 for the team-facing documentation portal.</p></div>
+      <div><h4>Document Location</h4><p><code>documents/api-socket-contract-specification-v1.html</code></p></div>
+      <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
+    </div>
+  </footer></body>
+</html>

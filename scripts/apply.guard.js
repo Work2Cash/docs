@@ -29,11 +29,6 @@ function getGuardSrc(file) {
 
 function secureFile(file) {
   const html = fs.readFileSync(file, "utf8");
-
-  if (html.includes(REQUIRED_SCRIPT)) {
-    return false;
-  }
-
   const headMatch = html.match(/<head\b[^>]*>/i);
 
   if (!headMatch) {
@@ -41,8 +36,17 @@ function secureFile(file) {
   }
 
   const src = getGuardSrc(file);
+  const guardPattern = new RegExp(
+    `\\n\\s*<script\\s+src=["']${src.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']><\\/script>\\s*`,
+    "g"
+  );
+  const withoutExistingGuards = html.replace(guardPattern, "\n");
   const scriptTag = `${headMatch[0]}\n  <script src="${src}"></script>`;
-  const updated = html.replace(headMatch[0], scriptTag);
+  const updated = withoutExistingGuards.replace(headMatch[0], scriptTag);
+
+  if (updated === html) {
+    return false;
+  }
 
   fs.writeFileSync(file, updated);
   return true;
