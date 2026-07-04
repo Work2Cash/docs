@@ -186,8 +186,8 @@
         <div class="meta-card"><span>Date</span><strong>3 July 2026</strong></div>
         <div class="meta-card"><span>Classification</span><strong>Execution Ready</strong></div>
         <div class="meta-card"><span>Build Start</span><strong>6 Jul 2026</strong></div>
-        <div class="meta-card"><span>Testing Start</span><strong>17 Aug 2026</strong></div>
-        <div class="meta-card"><span>Go-Live Target</span><strong>31 Aug 2026</strong></div>
+        <div class="meta-card"><span>Testing Start</span><strong>31 Aug 2026</strong></div>
+        <div class="meta-card"><span>Go-Live Target</span><strong>14 Sep 2026</strong></div>
         <div class="meta-card"><span>Repo Path</span><strong>documents/qa-go-live-readiness-checklist-v1.html</strong></div>
       </div>
       <div class="badges">
@@ -289,10 +289,25 @@
     font-size: 13px;
     text-decoration: none;
   }
+  .doc-hub-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
   .doc-hub-links {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
+  }
+  .agent-md-action {
+    border: 1px solid #1F6AE1;
+    background: #1F6AE1;
+    color: #FFFFFF !important;
+    border-radius: 999px;
+    padding: 7px 11px;
+    font-weight: 900;
+    font-size: 12px;
+    text-decoration: none;
   }
   .doc-hub-links a {
     border: 1px solid #D8E2F1;
@@ -328,7 +343,10 @@
   <div class="doc-hub-card">
     <div class="doc-hub-top">
       <strong>Work2Cash Documentation</strong>
-      <a href="../index.html">Back to document portal</a>
+      <div class="doc-hub-actions">
+        <a href="../index.html">Back to document portal</a>
+        <a class="agent-md-action" href="./agent-md/qa-go-live-readiness-checklist-v1.md" download>Download agent Markdown</a>
+      </div>
     </div>
     <div class="doc-hub-links">
       <a href="./main-enterprise-architecture-v1.html">Main Enterprise Architecture v1</a><a href="./screen-to-feature-map-v1.html">Screen To Feature Map</a><a href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a href="./flow-alignment-review-v1.html">Flow Alignment Review v1</a><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a><a href="./api-socket-contract-specification-v1.html">API &amp; Socket Contract Specification v1</a><a href="./data-model-prisma-schema-planning-v1.html">Data Model &amp; Prisma Schema Planning v1</a><a href="./provider-integration-cost-control-v1.html">Provider Integration &amp; Cost Control v1</a><a href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html">Admin Build Plan v1</a><a href="./build-plan-backend-v1.html">Backend Build Plan v1</a><a href="./qa-go-live-readiness-checklist-v1.html" aria-current="page">QA / Go-Live Readiness Checklist v1</a>
@@ -402,8 +420,8 @@
       <div class="eyebrow">Testing</div>
       <h2>Two-Week QA And UAT Calendar</h2>
       
-        <p class="intro">Testing starts after the six-week build freeze. Week 1 focuses on regression and environment readiness. Week 2 focuses on UAT, recovery, security, provider proof and final go/no-go evidence.</p>
-        <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Focus</th><th>Execution Scope</th></tr></thead><tbody><tr><td>T1D1</td><td>Mon 17 Aug 2026</td><td>Smoke and environment</td><td>Verify staging API/admin/socket/mobile builds, env vars, migrations, seed data and provider sandbox keys.</td></tr><tr><td>T1D2</td><td>Tue 18 Aug 2026</td><td>Identity/KYC regression</td><td>Test registration, login, OTP, social login, profile, PIN, sessions, KYC and admin KYC review.</td></tr><tr><td>T1D3</td><td>Wed 19 Aug 2026</td><td>Task/payment regression</td><td>Test task creation, location, media, payment, webhook, escrow, broadcast and direct offer.</td></tr><tr><td>T1D4</td><td>Thu 20 Aug 2026</td><td>Matching/execution regression</td><td>Test discovery, interest, accept/reject, start journey, arrived, begin, chat, tracking and completion.</td></tr><tr><td>T1D5</td><td>Fri 21 Aug 2026</td><td>Finance/support regression</td><td>Test wallet, withdrawal, payout batch, report, support live chat, emergency and admin resolution.</td></tr><tr><td>T2D1</td><td>Mon 24 Aug 2026</td><td>UAT round 1</td><td>Run full user journeys as Task Owner, Tasker and Admin with documented defects.</td></tr><tr><td>T2D2</td><td>Tue 25 Aug 2026</td><td>Recovery/load/offline</td><td>Test app resume, socket reconnect, payment return, KYC return, provider delays, queue retries and low-end Android behavior.</td></tr><tr><td>T2D3</td><td>Wed 26 Aug 2026</td><td>Security/privacy/provider</td><td>Test PIN, TOTP, RBAC, webhook signatures, media permissions, phone masking and Sentry scrubbing.</td></tr><tr><td>T2D4</td><td>Thu 27 Aug 2026</td><td>Release candidate verification</td><td>Re-run critical happy paths and exception paths after fixes.</td></tr><tr><td>T2D5</td><td>Fri 28 Aug 2026</td><td>Go-live decision pack</td><td>Produce go/no-go checklist, known issues, rollback notes, backup restore proof and provider validation proof.</td></tr></tbody></table></div>
+        <p class="intro">Testing starts after the eight-week build freeze. Week 1 focuses on regression and environment readiness. Week 2 focuses on UAT, recovery, security, provider proof and final go/no-go evidence.</p>
+        <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Focus</th><th>Execution Scope</th></tr></thead><tbody><tr><td>T1D1</td><td>Mon 31 Aug 2026</td><td>Smoke and environment</td><td>Verify staging API/admin/socket/mobile builds, env vars, migrations, seed data and provider sandbox keys.</td></tr><tr><td>T1D2</td><td>Tue 1 Sep 2026</td><td>Identity/KYC regression</td><td>Test registration, login, OTP, social login, profile, PIN, sessions, KYC and admin KYC review.</td></tr><tr><td>T1D3</td><td>Wed 2 Sep 2026</td><td>Task/payment regression</td><td>Test task creation, location, media, payment, webhook, escrow, broadcast and direct offer.</td></tr><tr><td>T1D4</td><td>Thu 3 Sep 2026</td><td>Matching/execution regression</td><td>Test discovery, interest, accept/reject, start journey, arrived, begin, chat, tracking and completion.</td></tr><tr><td>T1D5</td><td>Fri 4 Sep 2026</td><td>Finance/support regression</td><td>Test wallet, withdrawal, payout batch, report, support live chat, emergency and admin resolution.</td></tr><tr><td>T2D1</td><td>Mon 7 Sep 2026</td><td>UAT round 1</td><td>Run full user journeys as Task Owner, Tasker and Admin with documented defects.</td></tr><tr><td>T2D2</td><td>Tue 8 Sep 2026</td><td>Recovery/load/offline</td><td>Test app resume, socket reconnect, payment return, KYC return, provider delays, queue retries and low-end Android behavior.</td></tr><tr><td>T2D3</td><td>Wed 9 Sep 2026</td><td>Security/privacy/provider</td><td>Test PIN, TOTP, RBAC, webhook signatures, media permissions, phone masking and Sentry scrubbing.</td></tr><tr><td>T2D4</td><td>Thu 10 Sep 2026</td><td>Release candidate verification</td><td>Re-run critical happy paths and exception paths after fixes.</td></tr><tr><td>T2D5</td><td>Fri 11 Sep 2026</td><td>Go-live decision pack</td><td>Produce go/no-go checklist, known issues, rollback notes, backup restore proof and provider validation proof.</td></tr></tbody></table></div>
         
     <div class="checklist-block">
       <h4>Daily QA Reporting Requirements</h4>
@@ -592,5 +610,6 @@ Commit message if docs/code change is needed:</pre></div>
       <div><h4>Document Location</h4><p><code>documents/qa-go-live-readiness-checklist-v1.html</code></p></div>
       <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
     </div>
-  </footer></body>
+  </footer>
+</body>
 </html>

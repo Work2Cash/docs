@@ -186,7 +186,7 @@
         <div class="meta-card"><span>Date</span><strong>3 July 2026</strong></div>
         <div class="meta-card"><span>Classification</span><strong>Execution Ready</strong></div>
         <div class="meta-card"><span>Start Date</span><strong>6 Jul 2026</strong></div>
-        <div class="meta-card"><span>Build Window</span><strong>6 Weeks</strong></div>
+        <div class="meta-card"><span>Build Window</span><strong>8 Weeks</strong></div>
         <div class="meta-card"><span>Testing Window</span><strong>2 Weeks</strong></div>
         <div class="meta-card"><span>Method</span><strong>Mobile-Led</strong></div>
       </div>
@@ -288,10 +288,25 @@
     font-size: 13px;
     text-decoration: none;
   }
+  .doc-hub-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
   .doc-hub-links {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
+  }
+  .agent-md-action {
+    border: 1px solid #1F6AE1;
+    background: #1F6AE1;
+    color: #FFFFFF !important;
+    border-radius: 999px;
+    padding: 7px 11px;
+    font-weight: 900;
+    font-size: 12px;
+    text-decoration: none;
   }
   .doc-hub-links a {
     border: 1px solid #D8E2F1;
@@ -327,7 +342,10 @@
   <div class="doc-hub-card">
     <div class="doc-hub-top">
       <strong>Work2Cash Documentation</strong>
-      <a href="../index.html">Back to document portal</a>
+      <div class="doc-hub-actions">
+        <a href="../index.html">Back to document portal</a>
+        <a class="agent-md-action" href="./agent-md/build-plan-admin-v1.md" download>Download agent Markdown</a>
+      </div>
     </div>
     <div class="doc-hub-links">
       <a href="./main-enterprise-architecture-v1.html">Main Enterprise Architecture v1</a><a href="./screen-to-feature-map-v1.html">Screen To Feature Map</a><a href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a href="./flow-alignment-review-v1.html">Flow Alignment Review v1</a><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a><a href="./api-socket-contract-specification-v1.html">API &amp; Socket Contract Specification v1</a><a href="./data-model-prisma-schema-planning-v1.html">Data Model &amp; Prisma Schema Planning v1</a><a href="./provider-integration-cost-control-v1.html">Provider Integration &amp; Cost Control v1</a><a href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html" aria-current="page">Admin Build Plan v1</a><a href="./build-plan-backend-v1.html">Backend Build Plan v1</a><a href="./qa-go-live-readiness-checklist-v1.html">QA / Go-Live Readiness Checklist v1</a>
@@ -338,8 +356,8 @@
 <section class="team-downloads" aria-label="Team Markdown downloads">
   <div class="team-downloads-card">
     <strong>Team Markdown Downloads</strong>
-    <p>Download these Markdown briefs for Codex prompts, implementation planning and team handoff.</p>
-    <div class="team-downloads-links"><a href="./downloads/admin-team-build-brief-v1.md" download>Admin Team Markdown Brief</a><a href="./downloads/shared-ai-agent-execution-rules-v1.md" download>Shared Execution Rules</a></div>
+    <p>Download these Markdown files for Codex or any AI agent. Start with AGENTS.md; it explains how the agent should use the files.</p>
+    <div class="team-downloads-links"><a href="./downloads/AGENTS.md" download>AGENTS.md Usage Guide</a><a href="./agent-md/work2cash-full-source-of-truth-v1.md" download>Full Project Markdown</a><a href="./downloads/admin-team-build-brief-v1.md" download>Admin Team Markdown Brief</a><a href="./downloads/shared-ai-agent-execution-rules-v1.md" download>Shared Execution Rules</a><a href="./agent-md/weeks/weekly-execution-index.md" download>Weekly Execution Index</a></div>
   </div>
 </section>
 
@@ -353,7 +371,7 @@
         <a href="#principles">01. Admin Build Principles</a>
         <a href="#dependencies">02. Mobile Outcome Dependencies</a>
         <a href="#modules">03. Admin Module Order</a>
-        <a href="#build">04. Six-Week Build Plan</a>
+        <a href="#build">04. Eight-Week Build Plan</a>
         <a href="#testing">05. Two-Week Testing Plan</a>
         <a href="#codex">06. Codex Execution Instructions</a>
       </div>
@@ -393,7 +411,7 @@ Admin does not bypass task, finance, KYC or risk use cases.</pre>
     <section id="build" class="section">
       <div class="section-num">04</div>
       <div class="eyebrow">Build Plan</div>
-      <h2>Six-Week Build Plan By Week</h2>
+      <h2>Eight-Week Build Plan By Week</h2>
       <p class="intro">Each week has its own delivery goal and exit condition. The daily rows remain explicit so Codex and other AI agents can execute one scoped task at a time without losing the weekly dependency context.</p>
       
         <article class="info-card">
@@ -438,10 +456,26 @@ Admin does not bypass task, finance, KYC or risk use cases.</pre>
         
         <article class="info-card">
           <div class="eyebrow">Week 6</div>
-          <h3>Week 6 - Hardening, Release Candidate And Build Freeze</h3>
-          <p><strong>Goal:</strong> Fix defects, harden performance/security/provider behavior, prepare release candidates and freeze builds for the testing window.</p>
-          <p><strong>Week exit:</strong> Mobile, admin and backend release candidates are frozen with only blocker fixes allowed afterwards.</p>
-          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W6D1</td><td>Mon 10 Aug 2026</td><td>Admin hardening</td><td>Fix defects, tighten RBAC, audit reasons, empty/error/loading states.</td><td>All admin contracts.</td><td>No new modules.</td></tr><tr><td>W6D2</td><td>Tue 11 Aug 2026</td><td>Admin performance and table QA</td><td>Test large lists, filters, pagination and detail loading.</td><td>Staging admin API.</td><td>Skeletons for fetch; overlay for actions.</td></tr><tr><td>W6D3</td><td>Wed 12 Aug 2026</td><td>Admin release candidate</td><td>Prepare protected admin build, environment config and deployment checklist.</td><td>Staging/prod env config.</td><td>No secrets committed.</td></tr><tr><td>W6D4</td><td>Thu 13 Aug 2026</td><td>Admin UAT fixes</td><td>Apply only UAT/blocker fixes.</td><td>Stable backend.</td><td>No new features.</td></tr><tr><td>W6D5</td><td>Fri 14 Aug 2026</td><td>Admin build freeze</td><td>Freeze admin release candidate and create handover notes.</td><td>Stable staging.</td><td>Only blocker fixes after this point.</td></tr></tbody></table></div>
+          <h3>Week 6 - Hardening, Security And Performance</h3>
+          <p><strong>Goal:</strong> Fix integration defects, harden performance/security/provider behavior, improve recovery paths and close major technical gaps.</p>
+          <p><strong>Week exit:</strong> Critical defects from Week 5 are resolved or owned, and core flows are stable enough for release-candidate preparation.</p>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W6D1</td><td>Mon 10 Aug 2026</td><td>Admin hardening</td><td>Fix defects, tighten RBAC, audit reasons, empty/error/loading states.</td><td>All admin contracts.</td><td>No new modules.</td></tr><tr><td>W6D2</td><td>Tue 11 Aug 2026</td><td>Admin performance and table QA</td><td>Test large lists, filters, pagination and detail loading.</td><td>Staging admin API.</td><td>Skeletons for fetch; overlay for actions.</td></tr><tr><td>W6D3</td><td>Wed 12 Aug 2026</td><td>Security and permission review</td><td>Validate TOTP, RBAC, forbidden states, high-impact confirmations and audit capture.</td><td>Stable admin auth/RBAC APIs.</td><td>No unguarded admin actions.</td></tr><tr><td>W6D4</td><td>Thu 13 Aug 2026</td><td>Operational workflow review</td><td>Run KYC, task monitor, force cancel, reports, finance, payout and support workflows end to end.</td><td>Stable backend staging.</td><td>No admin reassignment under any condition.</td></tr><tr><td>W6D5</td><td>Fri 14 Aug 2026</td><td>Hardening review</td><td>Close major admin defects and create release-candidate blocker list.</td><td>All admin modules.</td><td>Only scoped fixes after review.</td></tr></tbody></table></div>
+        </article>
+        
+        <article class="info-card">
+          <div class="eyebrow">Week 7</div>
+          <h3>Week 7 - Release Candidate Preparation And Operational Dry Runs</h3>
+          <p><strong>Goal:</strong> Prepare mobile, admin and backend release candidates while running provider, payout, monitoring, backup and support dry runs.</p>
+          <p><strong>Week exit:</strong> Release candidates are available on staging with provider validation evidence, backup restore proof and operational handover notes.</p>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W7D1</td><td>Mon 17 Aug 2026</td><td>Admin release candidate preparation</td><td>Prepare protected admin build, environment config and deployment checklist.</td><td>Staging/prod env config.</td><td>No secrets committed.</td></tr><tr><td>W7D2</td><td>Tue 18 Aug 2026</td><td>Finance and payout dry run</td><td>Run withdrawal queue, payout batch creation/approval/process and partial failure handling.</td><td>/admin/payout-batches/*.</td><td>Attach payout dry-run evidence.</td></tr><tr><td>W7D3</td><td>Wed 19 Aug 2026</td><td>Support and operations dry run</td><td>Run support live chat, emergency support, reports, KYC review and wallet-support operations.</td><td>Support/report/admin APIs.</td><td>Confirm support handover steps.</td></tr><tr><td>W7D4</td><td>Thu 20 Aug 2026</td><td>Monitoring and config validation</td><td>Validate use-case health, queue/provider status, remote config, coverage and audit log visibility.</td><td>Ops/admin APIs.</td><td>Confirm operational dashboard readiness.</td></tr><tr><td>W7D5</td><td>Fri 21 Aug 2026</td><td>Admin release candidate</td><td>Generate admin release candidate and handover notes for QA testing.</td><td>Stable staging backend.</td><td>Only approved fixes after RC.</td></tr></tbody></table></div>
+        </article>
+        
+        <article class="info-card">
+          <div class="eyebrow">Week 8</div>
+          <h3>Week 8 - Stabilization, Go-Live Rehearsal And Build Freeze</h3>
+          <p><strong>Goal:</strong> Complete final defect pass, go-live rehearsal, documentation handover and controlled build freeze before formal testing starts.</p>
+          <p><strong>Week exit:</strong> Builds are frozen for the two-week testing window. Only blocker fixes are allowed after this point.</p>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W8D1</td><td>Mon 24 Aug 2026</td><td>Stabilization sprint</td><td>Apply approved admin release-candidate fixes only.</td><td>RC defect list.</td><td>No new modules.</td></tr><tr><td>W8D2</td><td>Tue 25 Aug 2026</td><td>Final admin defect pass</td><td>Re-test fixed defects and critical admin flows.</td><td>Stable staging.</td><td>Close or classify every admin defect.</td></tr><tr><td>W8D3</td><td>Wed 26 Aug 2026</td><td>Go-live rehearsal</td><td>Run admin operations exactly as launch support and operations team will use them.</td><td>Production-like staging.</td><td>Document launch rehearsal evidence.</td></tr><tr><td>W8D4</td><td>Thu 27 Aug 2026</td><td>Admin handover</td><td>Confirm role permissions, runbooks, support notes, payout notes and moderation notes.</td><td>Final docs and staging admin.</td><td>Prepare testing-week handover.</td></tr><tr><td>W8D5</td><td>Fri 28 Aug 2026</td><td>Admin build freeze</td><td>Freeze admin build for formal testing weeks.</td><td>Stable staging.</td><td>Only blocker fixes after this point.</td></tr></tbody></table></div>
         </article>
         
     </section>
@@ -456,7 +490,7 @@ Admin does not bypass task, finance, KYC or risk use cases.</pre>
           <h3>Testing Week 1 - Regression And Environment Verification</h3>
           <p><strong>Goal:</strong> Verify environments, providers and complete cross-team regressions for identity, KYC, task, payment, matching, finance, support and admin operations.</p>
           <p><strong>Week exit:</strong> Critical regressions are known, prioritized and either fixed or formally accepted for UAT decision-making.</p>
-          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Focus</th><th>Execution Scope</th><th>Primary Owners</th></tr></thead><tbody><tr><td>T1D1</td><td>Mon 17 Aug 2026</td><td>Smoke and environment</td><td>Verify staging API/admin/socket/mobile builds, env vars, migrations, seed data, provider sandbox keys.</td><td>All teams</td></tr><tr><td>T1D2</td><td>Tue 18 Aug 2026</td><td>Identity/KYC regression</td><td>Test registration, login, OTP, social login, profile, PIN, sessions, KYC and admin KYC review.</td><td>Mobile + Backend + Admin</td></tr><tr><td>T1D3</td><td>Wed 19 Aug 2026</td><td>Task/payment regression</td><td>Test task creation, location, media, payment, webhook, escrow, broadcast and direct offer.</td><td>Mobile + Backend</td></tr><tr><td>T1D4</td><td>Thu 20 Aug 2026</td><td>Matching/execution regression</td><td>Test discovery, interest, accept/reject, start journey, arrived, begin, chat, tracking and completion.</td><td>All teams</td></tr><tr><td>T1D5</td><td>Fri 21 Aug 2026</td><td>Finance/support regression</td><td>Test wallet, withdrawal, payout batch, report, support live chat, emergency and admin resolution.</td><td>All teams</td></tr></tbody></table></div>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Focus</th><th>Execution Scope</th><th>Primary Owners</th></tr></thead><tbody><tr><td>T1D1</td><td>Mon 31 Aug 2026</td><td>Smoke and environment</td><td>Verify staging API/admin/socket/mobile builds, env vars, migrations, seed data, provider sandbox keys.</td><td>All teams</td></tr><tr><td>T1D2</td><td>Tue 1 Sep 2026</td><td>Identity/KYC regression</td><td>Test registration, login, OTP, social login, profile, PIN, sessions, KYC and admin KYC review.</td><td>Mobile + Backend + Admin</td></tr><tr><td>T1D3</td><td>Wed 2 Sep 2026</td><td>Task/payment regression</td><td>Test task creation, location, media, payment, webhook, escrow, broadcast and direct offer.</td><td>Mobile + Backend</td></tr><tr><td>T1D4</td><td>Thu 3 Sep 2026</td><td>Matching/execution regression</td><td>Test discovery, interest, accept/reject, start journey, arrived, begin, chat, tracking and completion.</td><td>All teams</td></tr><tr><td>T1D5</td><td>Fri 4 Sep 2026</td><td>Finance/support regression</td><td>Test wallet, withdrawal, payout batch, report, support live chat, emergency and admin resolution.</td><td>All teams</td></tr></tbody></table></div>
         </article>
         
         <article class="info-card">
@@ -464,7 +498,7 @@ Admin does not bypass task, finance, KYC or risk use cases.</pre>
           <h3>Testing Week 2 - UAT, Recovery, Security And Go-Live Decision</h3>
           <p><strong>Goal:</strong> Run UAT, recovery/load/offline testing, security/privacy/provider checks, release candidate verification and go-live decision preparation.</p>
           <p><strong>Week exit:</strong> Go/no-go pack includes known issues, rollback notes, backup restore proof and provider validation proof.</p>
-          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Focus</th><th>Execution Scope</th><th>Primary Owners</th></tr></thead><tbody><tr><td>T2D1</td><td>Mon 24 Aug 2026</td><td>UAT round 1</td><td>Run full user journeys as Task Owner, Tasker and Admin with documented defects.</td><td>Project Lead + all teams</td></tr><tr><td>T2D2</td><td>Tue 25 Aug 2026</td><td>Recovery/load/offline</td><td>Test app resume, socket reconnect, payment return, KYC return, provider delays, queue retries, low-end Android.</td><td>Mobile + Backend</td></tr><tr><td>T2D3</td><td>Wed 26 Aug 2026</td><td>Security/privacy/provider</td><td>Test PIN, TOTP, RBAC, webhook signatures, media permissions, phone masking, Sentry scrubbing.</td><td>Backend + Admin + Mobile</td></tr><tr><td>T2D4</td><td>Thu 27 Aug 2026</td><td>Release candidate verification</td><td>Re-run critical happy paths and exception paths after fixes.</td><td>All teams</td></tr><tr><td>T2D5</td><td>Fri 28 Aug 2026</td><td>Go-live decision pack</td><td>Produce go/no-go checklist, known issues, rollback notes, backup restore proof and provider validation proof.</td><td>Project Lead + Technical Lead</td></tr></tbody></table></div>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Focus</th><th>Execution Scope</th><th>Primary Owners</th></tr></thead><tbody><tr><td>T2D1</td><td>Mon 7 Sep 2026</td><td>UAT round 1</td><td>Run full user journeys as Task Owner, Tasker and Admin with documented defects.</td><td>Project Lead + all teams</td></tr><tr><td>T2D2</td><td>Tue 8 Sep 2026</td><td>Recovery/load/offline</td><td>Test app resume, socket reconnect, payment return, KYC return, provider delays, queue retries, low-end Android.</td><td>Mobile + Backend</td></tr><tr><td>T2D3</td><td>Wed 9 Sep 2026</td><td>Security/privacy/provider</td><td>Test PIN, TOTP, RBAC, webhook signatures, media permissions, phone masking, Sentry scrubbing.</td><td>Backend + Admin + Mobile</td></tr><tr><td>T2D4</td><td>Thu 10 Sep 2026</td><td>Release candidate verification</td><td>Re-run critical happy paths and exception paths after fixes.</td><td>All teams</td></tr><tr><td>T2D5</td><td>Fri 11 Sep 2026</td><td>Go-live decision pack</td><td>Produce go/no-go checklist, known issues, rollback notes, backup restore proof and provider validation proof.</td><td>Project Lead + Technical Lead</td></tr></tbody></table></div>
         </article>
         
     </section>
@@ -497,5 +531,6 @@ Commit message:</pre></div>
       <div><h4>Document Location</h4><p><code>documents/build-plan-admin-v1.html</code></p></div>
       <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
     </div>
-  </footer></body>
+  </footer>
+</body>
 </html>
