@@ -46,6 +46,10 @@ jobs:
             cp 404.html _site/
           fi
 
+          if [ -f AGENTS.md ]; then
+            cp AGENTS.md _site/
+          fi
+
           if [ -d documents ]; then
             cp -R documents _site/
           fi
@@ -59,6 +63,10 @@ jobs:
       - name: Verify required site files
         run: |
           test -f _site/index.html
+
+          if [ -f AGENTS.md ]; then
+            test -f _site/AGENTS.md
+          fi
 
           if [ -d documents ]; then
             while IFS= read -r file; do
