@@ -31,7 +31,7 @@
     }
     a { color: var(--brand); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .shell { max-width: 1180px; margin: 0 auto; padding: 56px 22px 80px; }
+    .shell { width: 85%; max-width: none; margin: 0 auto; padding: 56px 22px 80px; }
     .hero {
       min-height: 360px;
       border-radius: 26px;
@@ -132,7 +132,7 @@
     footer { color: var(--muted); font-size: 13px; margin-top: 28px; }
     @media (max-width: 900px) { .doc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 620px) {
-      .shell { padding: 22px 14px 44px; }
+      .shell { width: 100%; padding: 22px 14px 44px; }
       .hero { border-radius: 18px; min-height: 320px; }
       .doc-grid { grid-template-columns: 1fr; }
     }
