@@ -1,9 +1,8 @@
 # Data Model & Prisma Schema Planning v1
 
-> AI-agent Markdown equivalent of `data-model-prisma-schema-planning-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../data-model-prisma-schema-planning-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -109,7 +108,7 @@ Source of truth: Enterprise Architecture v1, API & Socket Contract v1, Mobile/Ad
 
 <div>
 
-Target repo location: documents/data-model-prisma-schema-planning-v1.html
+Portal page: Data Model & Prisma Schema Planning v1
 
 </div>
 
@@ -1321,9 +1320,9 @@ Checklist
 
 <div class="callout green">
 
-**Repo placement**
+**Portal publication note**
 
-Publish this document as `documents/data-model-prisma-schema-planning-v1.html` in the Work2Cash docs repository and link it from the main architecture resource list. The file name can retain planning for continuity, but the document content is now the execution baseline.
+Publish this document as **Data Model & Prisma Schema Planning v1** in the Work2Cash documentation portal and link it from the main architecture resource list.
 
 </div>
 
@@ -1345,7 +1344,7 @@ Data Model & Prisma Schema Execution Baseline v1 for backend, mobile, admin, QA 
 
 #### Document Location
 
-`documents/data-model-prisma-schema-planning-v1.html`
+**Data Model & Prisma Schema Planning v1** in the documentation portal
 
 </div>
 

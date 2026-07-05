@@ -1,9 +1,8 @@
 # Provider Integration & Cost Control v1
 
-> AI-agent Markdown equivalent of `provider-integration-cost-control-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../provider-integration-cost-control-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -109,7 +108,7 @@ Source of truth: Enterprise Architecture v1, API & Socket Contract v1, Data Mode
 
 <div>
 
-Target repo location: documents/provider-integration-cost-control-v1.html
+Portal page: Provider Integration & Cost Control v1
 
 </div>
 
@@ -370,7 +369,7 @@ Environment
 
 **Secret handling**
 
-Raw passwords, API keys, webhook secrets, service account credentials and production provider credentials must never be committed to the docs repo or application repository.
+Raw passwords, API keys, webhook secrets, service account credentials and production provider credentials must never be committed to the documentation portal or application repository.
 
 </div>
 
@@ -756,9 +755,9 @@ Checklist
 
 <div class="callout green">
 
-**Repo placement**
+**Portal publication note**
 
-Publish this document as `documents/provider-integration-cost-control-v1.html` in the Work2Cash docs repository and link it from the main architecture resource list.
+Publish this document as **Provider Integration & Cost Control v1** in the Work2Cash documentation portal and link it from the main architecture resource list.
 
 </div>
 
@@ -780,7 +779,7 @@ Provider Integration & Cost Control v1 for execution across backend, mobile, adm
 
 #### Document Location
 
-`documents/provider-integration-cost-control-v1.html`
+**Provider Integration & Cost Control v1** in the documentation portal
 
 </div>
 

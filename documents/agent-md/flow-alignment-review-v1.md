@@ -1,9 +1,8 @@
 # Flow Alignment Review v1
 
-> AI-agent Markdown equivalent of `flow-alignment-review-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../flow-alignment-review-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -90,7 +89,7 @@ These are corrections needed in the main architecture document so it stays align
 |----------------------------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | <span class="badge green">Resolved</span>    | Main architecture ETA guard corrected.                    | Old 10+ minutes / 25% rule has been replaced.                                                                                                   | Main architecture now uses the ETA Cost Guard: 5-minute guard plus next 10% total-journey milestone, then reset timer/milestone after refresh.      |
 | <span class="badge green">Resolved</span>    | Main architecture legal publishing corrected.             | Separate /legal/... page list has been removed from the source-of-truth appendix.                                                               | Main architecture now points to the combined legal pack at documents/legal_user_facing_documents_pack_v1.html.                                      |
-| <span class="badge green">Resolved</span>    | Main architecture documentation governance added.         | GitHub docs repo setup, soft password gate, auth guard, guard checker, PR governance and resource links are now included.                       | Main architecture now lists the team-facing resource paths for generated and planned documents.                                                     |
+| <span class="badge green">Resolved</span>    | Main architecture documentation governance added.         | GitHub documentation portal setup, soft password gate, auth guard, guard checker, PR governance and resource links are now included.                       | Main architecture now lists the team-facing resource paths for generated and planned documents.                                                     |
 | <span class="badge green">Resolved</span>    | Hetzner source wording corrected.                         | Screenshot-baseline wording has been removed.                                                                                                   | Main architecture now states the pricing baseline is confirmed from Hetzner official source while still requiring revalidation before provisioning. |
 | <span class="badge amber">Open Design</span> | Figma category names differ from accepted category names. | Figma uses Home-Based, Compound/Outdoor, Office/Shop, Short Term Support/Event Support. Accepted categories are Home, Errands, Office, Support. | Treat Figma labels as visual references only. Product copy and admin catalog should use Home, Errands, Office, Support.                             |
 
@@ -198,6 +197,6 @@ Update the flow catalogues first, then update Figma copy/screens to match the ac
 
 <div>
 
-Recommended docs repo path: `documents/flow-alignment-review-v1.html`
+Recommended documentation portal page: Flow Alignment Review v1
 
 </div>

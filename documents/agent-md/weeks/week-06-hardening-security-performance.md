@@ -4,11 +4,16 @@
 
 This is the focused AI-agent execution pack for Week 6 of the Work2Cash build plan.
 
+Before using this weekly pack with Codex or any AI agent, download the required Markdown files from the documentation portal UI.
+
 Use this file with:
 
-- `../downloads/shared-ai-agent-execution-rules-v1.md`
-- the relevant team brief in `../downloads/`
-- the specific contract/model/provider Markdown document needed for the task
+- **AGENTS.md Usage Guide** from **Team Markdown Downloads**.
+- **Shared Execution Rules** from **Team Markdown Downloads**.
+- The relevant team brief from **Team Markdown Downloads**.
+- The relevant flow catalogue from its portal page using **Download agent Markdown**.
+- **Full Project Markdown** from **Team Markdown Downloads** when broad context is required.
+- Any specific contract, model, provider or source document needed for the task using **Download agent Markdown** on that document page.
 
 Do not load the full HTML documents for normal implementation work.
 
@@ -77,11 +82,11 @@ Mobile controls implementation order. Backend must publish contracts/stubs befor
 ## AI Agent Prompt Template
 
 ```text
-Read these Markdown files only:
-- documents/downloads/shared-ai-agent-execution-rules-v1.md
-- documents/downloads/[team]-team-build-brief-v1.md
-- documents/agent-md/weeks/week-06-hardening-security-performance.md
-- documents/agent-md/[specific-source-document].md
+Read these Markdown files downloaded from the documentation portal UI only:
+- Shared Execution Rules
+- [Team] Team Markdown Brief
+- This weekly execution pack
+- [Specific source document downloaded from its portal page]
 
 Do not read HTML files unless I explicitly provide a section.
 
