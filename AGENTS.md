@@ -1,65 +1,77 @@
 # AGENTS.md
 
-This repository contains the Work2Cash documentation portal.
+This documentation portal contains the Work2Cash team documents.
 
 Use this file to teach Codex or any other AI coding agent how to read the Work2Cash Markdown documents and execute tasks correctly for Mobile, Admin Frontend and Backend.
 
-## Role Of This Repo
+## Role Of This Portal
 
 - HTML documents are for human/team reading.
 - Markdown documents are for Codex and other AI agents.
 - The Main Enterprise Architecture remains the controlling source of truth.
 - Teams should download the Markdown files relevant to their work and provide them to their agent of choice.
 
+## AI Context Guard
+
+If an agent receives only one team-specific Markdown brief or build-plan Markdown file, it must not give implementation steps yet. It should first ask the user to return to the documentation portal UI and download the relevant flow Markdown, the active weekly execution pack, and **Full Project Markdown**.
+
+Tell teams where to download the files:
+
+- Mobile: open **Mobile Flow Catalogue v1** and click **Download agent Markdown**.
+- Admin: open **Admin Flow Catalogue v1** and click **Download agent Markdown**.
+- Backend: open **Mobile Flow Catalogue v1** and click **Download agent Markdown**; for admin-facing backend work, also open **Admin Flow Catalogue v1** and click **Download agent Markdown**.
+- Active week: open **Weekly Execution Packs** and download the current week Markdown.
+- Full source context: open the relevant team **Build Plan v1** page and use **Team Markdown Downloads** to download **Full Project Markdown**.
+
 ## Primary Agent Files
 
-Start here:
+Start here from the documentation portal:
 
-- `documents/agent-md/ai-agent-start-here.md`
+- Open **AI Agent Start Here**.
 
 Use shared rules for every task:
 
-- `documents/downloads/shared-ai-agent-execution-rules-v1.md`
+- Open any team build plan page, then use **Team Markdown Downloads** to download **Shared Execution Rules**.
 
-Use the relevant team brief:
+Use the relevant team brief from **Team Markdown Downloads** on the matching build plan page:
 
-- `documents/downloads/mobile-team-build-brief-v1.md`
-- `documents/downloads/admin-team-build-brief-v1.md`
-- `documents/downloads/backend-team-build-brief-v1.md`
+- **Mobile Team Markdown Brief**
+- **Admin Team Markdown Brief**
+- **Backend Team Markdown Brief**
 
-Use weekly packs for focused execution:
+Use weekly packs for focused execution. Open **Weekly Execution Packs** from the portal, then download the active week:
 
-- `documents/agent-md/weeks/week-01-foundation-identity.md`
-- `documents/agent-md/weeks/week-02-tasker-task-creation-payment.md`
-- `documents/agent-md/weeks/week-03-discovery-matching-execution-start.md`
-- `documents/agent-md/weeks/week-04-completion-finance-support.md`
-- `documents/agent-md/weeks/week-05-integration-recovery-full-flow-qa.md`
-- `documents/agent-md/weeks/week-06-hardening-security-performance.md`
-- `documents/agent-md/weeks/week-07-release-candidate-operations-dry-run.md`
-- `documents/agent-md/weeks/week-08-stabilization-freeze.md`
+- Week 1 - Foundation and Identity
+- Week 2 - Tasker, Task Creation and Payment
+- Week 3 - Discovery, Matching and Execution Start
+- Week 4 - Completion, Finance and Support
+- Week 5 - Integration, Recovery and Full Flow QA
+- Week 6 - Hardening, Security and Performance
+- Week 7 - Release Candidate and Operations Dry Run
+- Week 8 - Stabilization and Freeze
 
 Use full project context only when necessary:
 
-- `documents/agent-md/work2cash-full-source-of-truth-v1.md`
+- Use **Team Markdown Downloads** to download **Full Project Markdown**.
 
 ## How Teams Should Download And Use The Files
 
-Each team should open its build plan page in the documentation portal and use the **Team Markdown Downloads** section.
+Each team should open its build plan page in the documentation portal and use the **Team Markdown Downloads** section. Flow Markdown files are downloaded from their flow document pages using **Download agent Markdown**.
 
 Download:
 
-1. `AGENTS.md`
-2. `documents/downloads/shared-ai-agent-execution-rules-v1.md`
+1. **AGENTS.md Usage Guide**
+2. **Shared Execution Rules**
 3. The team-specific brief:
-   - Mobile: `documents/downloads/mobile-team-build-brief-v1.md`
-   - Admin: `documents/downloads/admin-team-build-brief-v1.md`
-   - Backend: `documents/downloads/backend-team-build-brief-v1.md`
+   - Mobile: **Mobile Team Markdown Brief**
+   - Admin: **Admin Team Markdown Brief**
+   - Backend: **Backend Team Markdown Brief**
 4. The weekly execution pack for the current week.
 5. Any specific source document needed for the task.
 
 If an agent needs broad project context, provide:
 
-- `documents/agent-md/work2cash-full-source-of-truth-v1.md`
+- **Full Project Markdown**
 
 Do not use the full project Markdown by default for every task. It is large. Use weekly packs for focused execution.
 
@@ -69,12 +81,12 @@ For normal implementation tasks, do not read every document.
 
 Use this order:
 
-1. `documents/downloads/shared-ai-agent-execution-rules-v1.md`
+1. **Shared Execution Rules**
 2. The relevant team brief.
 3. The relevant weekly pack.
 4. The specific source document needed for the task, such as API contracts or data model planning.
 
-Only read `work2cash-full-source-of-truth-v1.md` when the task requires broad context across product, architecture, flows, providers, data model, build plan and launch rules.
+Only use **Full Project Markdown** when the task requires broad context across product, architecture, flows, providers, data model, build plan and launch rules.
 
 ## Codex Usage Pattern
 
@@ -83,10 +95,10 @@ For Codex, paste or attach the files in this order:
 ```text
 Read these Markdown files only:
 1. AGENTS.md
-2. documents/downloads/shared-ai-agent-execution-rules-v1.md
-3. documents/downloads/[team]-team-build-brief-v1.md
-4. documents/agent-md/weeks/[current-week].md
-5. documents/agent-md/[specific-source-document].md
+2. Shared Execution Rules
+3. [Team] Team Markdown Brief
+4. [Current Week] Execution Pack
+5. [Specific source document downloaded from its portal page]
 
 Do not read HTML files unless I provide a specific section.
 
@@ -100,14 +112,14 @@ Use these files for normal mobile implementation:
 
 ```text
 AGENTS.md
-documents/downloads/shared-ai-agent-execution-rules-v1.md
-documents/downloads/mobile-team-build-brief-v1.md
-documents/agent-md/weeks/[current-week].md
-documents/agent-md/mobile-flow-catalogue-v1.md
-documents/agent-md/api-socket-contract-specification-v1.md
+Shared Execution Rules
+Mobile Team Markdown Brief
+[Current Week] Execution Pack
+Mobile Flow Catalogue agent Markdown
+API & Socket Contract Specification agent Markdown
 ```
 
-Add `documents/agent-md/provider-integration-cost-control-v1.md` when the task touches payment, KYC, FCM, maps, SMS, Sentry, Shorebird or media storage.
+Add **Provider Integration & Cost Control agent Markdown** when the task touches payment, KYC, FCM, maps, SMS, Sentry, Shorebird or media storage.
 
 ## Admin Team Agent Context
 
@@ -115,14 +127,14 @@ Use these files for normal admin implementation:
 
 ```text
 AGENTS.md
-documents/downloads/shared-ai-agent-execution-rules-v1.md
-documents/downloads/admin-team-build-brief-v1.md
-documents/agent-md/weeks/[current-week].md
-documents/agent-md/admin-flow-catalogue-v1.md
-documents/agent-md/api-socket-contract-specification-v1.md
+Shared Execution Rules
+Admin Team Markdown Brief
+[Current Week] Execution Pack
+Admin Flow Catalogue agent Markdown
+API & Socket Contract Specification agent Markdown
 ```
 
-Add `documents/agent-md/data-model-prisma-schema-planning-v1.md` when the task needs model names, enum names, audit expectations or admin state behavior.
+Add **Data Model & Prisma Schema Planning agent Markdown** when the task needs model names, enum names, audit expectations or admin state behavior.
 
 ## Backend Team Agent Context
 
@@ -130,22 +142,20 @@ Use these files for normal backend implementation:
 
 ```text
 AGENTS.md
-documents/downloads/shared-ai-agent-execution-rules-v1.md
-documents/downloads/backend-team-build-brief-v1.md
-documents/agent-md/weeks/[current-week].md
-documents/agent-md/api-socket-contract-specification-v1.md
-documents/agent-md/data-model-prisma-schema-planning-v1.md
+Shared Execution Rules
+Backend Team Markdown Brief
+[Current Week] Execution Pack
+API & Socket Contract Specification agent Markdown
+Data Model & Prisma Schema Planning agent Markdown
 ```
 
-Add `documents/agent-md/provider-integration-cost-control-v1.md` when the task touches Paystack, Moniepoint, Smile ID, Google Maps, Termii, FCM, Sentry, Shorebird, object storage, backups, Valkey or BullMQ.
+Add **Provider Integration & Cost Control agent Markdown** when the task touches Paystack, Moniepoint, Smile ID, Google Maps, Termii, FCM, Sentry, Shorebird, object storage, backups, Valkey or BullMQ.
 
 ## Full Context Usage
 
 Use the full source file only for onboarding, architecture review, cross-document consistency checks or tasks where the agent must understand the whole platform.
 
-```text
-documents/agent-md/work2cash-full-source-of-truth-v1.md
-```
+Download **Full Project Markdown** from **Team Markdown Downloads**.
 
 For coding tasks, prefer the smaller weekly and team files.
 

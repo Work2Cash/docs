@@ -1,9 +1,8 @@
 # QA / Go-Live Readiness Checklist v1
 
-> AI-agent Markdown equivalent of `qa-go-live-readiness-checklist-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../qa-go-live-readiness-checklist-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -85,7 +84,7 @@ Go-Live Target**14 Sep 2026**
 
 <div class="meta-card">
 
-Repo Path**documents/qa-go-live-readiness-checklist-v1.html**
+Portal Page**documents/qa-go-live-readiness-checklist-v1.html**
 
 </div>
 
@@ -171,7 +170,7 @@ QA must trace every acceptance decision back to the source documents. If product
 
 <div class="table-wrap">
 
-| Document                               | Repo Path                                           | QA Use                                                            |
+| Document                               | Portal Page                                           | QA Use                                                            |
 |----------------------------------------|-----------------------------------------------------|-------------------------------------------------------------------|
 | Main Enterprise Architecture v1        | documents/main-enterprise-architecture-v1.html      | Top-level source of truth.                                        |
 | Mobile Flow Catalogue v1               | documents/mobile-flow-catalogue-v1.html             | Closed mobile flows and recovery subflows.                        |
@@ -979,7 +978,7 @@ QA / Go-Live Readiness Checklist v1 for final launch acceptance.
 
 #### Document Location
 
-`documents/qa-go-live-readiness-checklist-v1.html`
+**QA Go-Live Readiness Checklist v1** in the documentation portal
 
 </div>
 

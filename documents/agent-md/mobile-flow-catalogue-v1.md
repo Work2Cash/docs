@@ -1,9 +1,8 @@
 # Mobile Flow Catalogue v1
 
-> AI-agent Markdown equivalent of `mobile-flow-catalogue-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../mobile-flow-catalogue-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -85,7 +84,7 @@ Prepared for Work2Cash team-facing documentation.
 
 <div>
 
-Place as `documents/mobile-flow-catalogue-v1.html` in the docs repo.
+Portal page: Mobile Flow Catalogue v1.
 
 </div>
 

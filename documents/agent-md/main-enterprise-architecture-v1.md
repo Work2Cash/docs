@@ -1,9 +1,8 @@
 # Main Enterprise Architecture v1
 
-> AI-agent Markdown equivalent of `main-enterprise-architecture-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../main-enterprise-architecture-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -1487,7 +1486,7 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 <div class="table-wrap">
 
-| Resource                              | Docs Repo Path / Link                                 | Purpose                                                                                                                     |
+| Resource                              | Docs Portal Page / Link                                 | Purpose                                                                                                                     |
 |---------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
 | Main Enterprise Architecture v1       | documents/main-enterprise-architecture-v1.html        | Top-level source of truth for architecture, product, infrastructure, provider, security, timeline and governance decisions. |
 | Mobile Flow Catalogue v1              | documents/mobile-flow-catalogue-v1.html               | Closed mobile flows, subflows, dependencies, recovery paths and screen silhouettes.                                         |
@@ -1504,14 +1503,14 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 ### GitHub Documentation Governance
 
-- Repository name: docs. It is the team-facing Work2Cash documentation portal.
+- The `docs` project is the team-facing Work2Cash documentation portal.
 - GitHub Pages deploys through GitHub Actions from a clean \_site folder.
 - The deployment artifact should include index.html, documents/, assets/, and optional 404.html.
 - GitHub Pages source is GitHub Actions.
 - index.html is the password gate landing page. Protected documents use client-side auth guard only; this is soft protection, not server-side security.
 - Every protected HTML file under documents/ must include: `<script src="../assets/js/guard.js"></script>`.
 - scripts/apply.guard.js must recursively scan documents/ and fail deployment if a protected HTML file lacks guard.js.
-- No secrets, API keys, production credentials, private user data, sensitive payment data, or confidential operational secrets should be stored in the docs repo.
+- No secrets, API keys, production credentials, private user data, sensitive payment data, or confidential operational secrets should be stored in the documentation portal.
 - Documentation changes enter main through PRs. No direct push to main. Commits should be one clear documentation update at a time.
 
 ### Document Assembly Plan

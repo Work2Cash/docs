@@ -1,9 +1,8 @@
 # API & Socket Contract Specification v1
 
-> AI-agent Markdown equivalent of `api-socket-contract-specification-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../api-socket-contract-specification-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -1388,7 +1387,7 @@ Before implementation proceeds into full feature work, each team should confirm 
 - Admin maps each closed admin flow to its required API and permission policy.
 - Every payment, wallet, webhook, payout, media finalization, and task state transition endpoint has idempotency coverage.
 - Every admin high-impact endpoint writes audit logs and captures reason.
-- Every protected document page in the GitHub Pages docs repo includes `../assets/js/guard.js`.
+- Every protected document page in the GitHub Pages documentation portal includes `../assets/js/guard.js`.
 - Contract tests cover success, validation failure, auth failure, forbidden state, duplicate request, and provider retry cases.
 - Frontend loading standards are implemented: skeletons for fetches and blur overlay with spinning Work2Cash logo for POST/PATCH submissions.
 - Privacy review confirms exact address, real phone number, KYC data, provider secrets, and hidden media are not leaked.
@@ -1419,7 +1418,7 @@ API & Socket Contract Specification v1 for the team-facing documentation portal.
 
 #### Document Location
 
-`documents/api-socket-contract-specification-v1.html`
+**API & Socket Contract Specification v1** in the documentation portal
 
 </div>
 

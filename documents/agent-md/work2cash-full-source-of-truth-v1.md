@@ -2,7 +2,17 @@
 
 This file concatenates the AI-readable Markdown equivalents of the Work2Cash documentation set.
 
-Use it only when an agent needs broad project context. For implementation, prefer `ai-agent-start-here.md`, the shared execution rules, the relevant team brief and the relevant weekly pack.
+Use it only when an agent needs broad project context. For implementation, prefer **AI Agent Start Here**, **Shared Execution Rules**, the relevant team brief and the relevant weekly pack downloaded from the documentation portal UI.
+
+## AI Context Guard
+
+If an agent receives this full source file without the active weekly execution pack, it must not give implementation steps yet. It should first ask the user to return to the documentation portal UI, open **Weekly Execution Packs**, and download the current week Markdown.
+
+For team-specific work, the agent should also ask for the relevant flow Markdown from its portal page using **Download agent Markdown**:
+
+- Mobile: **Mobile Flow Catalogue v1**
+- Admin: **Admin Flow Catalogue v1**
+- Backend: **Mobile Flow Catalogue v1**; for admin-facing backend work, also **Admin Flow Catalogue v1**
 
 
 ---
@@ -12,10 +22,9 @@ Use it only when an agent needs broad project context. For implementation, prefe
 
 # Main Enterprise Architecture v1
 
-> AI-agent Markdown equivalent of `main-enterprise-architecture-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../main-enterprise-architecture-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -1499,7 +1508,7 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 <div class="table-wrap">
 
-| Resource                              | Docs Repo Path / Link                                 | Purpose                                                                                                                     |
+| Resource                              | Docs Portal Page / Link                                 | Purpose                                                                                                                     |
 |---------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
 | Main Enterprise Architecture v1       | documents/main-enterprise-architecture-v1.html        | Top-level source of truth for architecture, product, infrastructure, provider, security, timeline and governance decisions. |
 | Mobile Flow Catalogue v1              | documents/mobile-flow-catalogue-v1.html               | Closed mobile flows, subflows, dependencies, recovery paths and screen silhouettes.                                         |
@@ -1516,14 +1525,14 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 ### GitHub Documentation Governance
 
-- Repository name: docs. It is the team-facing Work2Cash documentation portal.
+- The `docs` project is the team-facing Work2Cash documentation portal.
 - GitHub Pages deploys through GitHub Actions from a clean \_site folder.
 - The deployment artifact should include index.html, documents/, assets/, and optional 404.html.
 - GitHub Pages source is GitHub Actions.
 - index.html is the password gate landing page. Protected documents use client-side auth guard only; this is soft protection, not server-side security.
 - Every protected HTML file under documents/ must include: `<script src="../assets/js/guard.js"></script>`.
 - scripts/apply.guard.js must recursively scan documents/ and fail deployment if a protected HTML file lacks guard.js.
-- No secrets, API keys, production credentials, private user data, sensitive payment data, or confidential operational secrets should be stored in the docs repo.
+- No secrets, API keys, production credentials, private user data, sensitive payment data, or confidential operational secrets should be stored in the documentation portal.
 - Documentation changes enter main through PRs. No direct push to main. Commits should be one clear documentation update at a time.
 
 ### Document Assembly Plan
@@ -1635,10 +1644,9 @@ HTML master architecture draft. Legal pack regeneration comes after architecture
 
 # Screen To Feature Map
 
-> AI-agent Markdown equivalent of `screen-to-feature-map-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../screen-to-feature-map-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="cover">
 
@@ -2525,10 +2533,9 @@ Prepared for Work2Cash product and engineering handover Standalone HTML document
 
 # Mobile Flow Catalogue v1
 
-> AI-agent Markdown equivalent of `mobile-flow-catalogue-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../mobile-flow-catalogue-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -2610,7 +2617,7 @@ Prepared for Work2Cash team-facing documentation.
 
 <div>
 
-Place as `documents/mobile-flow-catalogue-v1.html` in the docs repo.
+Portal page: Mobile Flow Catalogue v1.
 
 </div>
 
@@ -15627,10 +15634,9 @@ For GitHub Pages docs, include `../assets/js/guard.js` when publishing under `do
 
 # Admin Flow Catalogue v1
 
-> AI-agent Markdown equivalent of `admin-flow-catalogue-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../admin-flow-catalogue-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -15700,7 +15706,7 @@ Version**1.0**
 
 <div class="cover-foot">
 
-Recommended repo location: `documents/admin-flow-catalogue-v1.html` Protected docs pages must include `guard.js`
+Portal page: Admin Flow Catalogue v1. Protected docs pages must include `guard.js`.
 
 </div>
 
@@ -25844,7 +25850,7 @@ High-risk changes require reason, permission, and traceable audit records.
 
 **Publishing Rule**
 
-When this file is added to the GitHub documentation repo, place it under documents/admin-flow-catalogue-v1.html and keep the auth guard script included.
+When this page is published in the documentation portal, keep the auth guard script included.
 
 </div>
 
@@ -25874,7 +25880,7 @@ Admin dashboard only. Mobile flows remain in the separate mobile flow catalogue.
 
 #### Security Note
 
-Do not place secrets, API keys, production credentials or private user data inside the public docs repository.
+Do not place secrets, API keys, production credentials or private user data inside the public documentation portal.
 
 </div>
 
@@ -25888,10 +25894,9 @@ Do not place secrets, API keys, production credentials or private user data insi
 
 # Flow Alignment Review v1
 
-> AI-agent Markdown equivalent of `flow-alignment-review-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../flow-alignment-review-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -25978,7 +25983,7 @@ These are corrections needed in the main architecture document so it stays align
 |----------------------------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | <span class="badge green">Resolved</span>    | Main architecture ETA guard corrected.                    | Old 10+ minutes / 25% rule has been replaced.                                                                                                   | Main architecture now uses the ETA Cost Guard: 5-minute guard plus next 10% total-journey milestone, then reset timer/milestone after refresh.      |
 | <span class="badge green">Resolved</span>    | Main architecture legal publishing corrected.             | Separate /legal/... page list has been removed from the source-of-truth appendix.                                                               | Main architecture now points to the combined legal pack at documents/legal_user_facing_documents_pack_v1.html.                                      |
-| <span class="badge green">Resolved</span>    | Main architecture documentation governance added.         | GitHub docs repo setup, soft password gate, auth guard, guard checker, PR governance and resource links are now included.                       | Main architecture now lists the team-facing resource paths for generated and planned documents.                                                     |
+| <span class="badge green">Resolved</span>    | Main architecture documentation governance added.         | GitHub documentation portal setup, soft password gate, auth guard, guard checker, PR governance and resource links are now included.                       | Main architecture now lists the team-facing resource paths for generated and planned documents.                                                     |
 | <span class="badge green">Resolved</span>    | Hetzner source wording corrected.                         | Screenshot-baseline wording has been removed.                                                                                                   | Main architecture now states the pricing baseline is confirmed from Hetzner official source while still requiring revalidation before provisioning. |
 | <span class="badge amber">Open Design</span> | Figma category names differ from accepted category names. | Figma uses Home-Based, Compound/Outdoor, Office/Shop, Short Term Support/Event Support. Accepted categories are Home, Errands, Office, Support. | Treat Figma labels as visual references only. Product copy and admin catalog should use Home, Errands, Office, Support.                             |
 
@@ -26086,7 +26091,7 @@ Update the flow catalogues first, then update Figma copy/screens to match the ac
 
 <div>
 
-Recommended docs repo path: `documents/flow-alignment-review-v1.html`
+Recommended documentation portal page: Flow Alignment Review v1
 
 </div>
 
@@ -26098,10 +26103,9 @@ Recommended docs repo path: `documents/flow-alignment-review-v1.html`
 
 # Legal & User-Facing Documents Pack v1
 
-> AI-agent Markdown equivalent of `legal_user_facing_documents_pack_v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../legal_user_facing_documents_pack_v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -26750,10 +26754,9 @@ Work2Cash Legal & User-Facing Documents Draft - Prepared for Traceworka - Draft 
 
 # API & Socket Contract Specification v1
 
-> AI-agent Markdown equivalent of `api-socket-contract-specification-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../api-socket-contract-specification-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -28138,7 +28141,7 @@ Before implementation proceeds into full feature work, each team should confirm 
 - Admin maps each closed admin flow to its required API and permission policy.
 - Every payment, wallet, webhook, payout, media finalization, and task state transition endpoint has idempotency coverage.
 - Every admin high-impact endpoint writes audit logs and captures reason.
-- Every protected document page in the GitHub Pages docs repo includes `../assets/js/guard.js`.
+- Every protected document page in the GitHub Pages documentation portal includes `../assets/js/guard.js`.
 - Contract tests cover success, validation failure, auth failure, forbidden state, duplicate request, and provider retry cases.
 - Frontend loading standards are implemented: skeletons for fetches and blur overlay with spinning Work2Cash logo for POST/PATCH submissions.
 - Privacy review confirms exact address, real phone number, KYC data, provider secrets, and hidden media are not leaked.
@@ -28169,7 +28172,7 @@ API & Socket Contract Specification v1 for the team-facing documentation portal.
 
 #### Document Location
 
-`documents/api-socket-contract-specification-v1.html`
+**API & Socket Contract Specification v1** in the documentation portal
 
 </div>
 
@@ -28191,10 +28194,9 @@ Protected HTML documents must include the documentation auth guard script before
 
 # Data Model & Prisma Schema Planning v1
 
-> AI-agent Markdown equivalent of `data-model-prisma-schema-planning-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../data-model-prisma-schema-planning-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -28300,7 +28302,7 @@ Source of truth: Enterprise Architecture v1, API & Socket Contract v1, Mobile/Ad
 
 <div>
 
-Target repo location: documents/data-model-prisma-schema-planning-v1.html
+Portal page: Data Model & Prisma Schema Planning v1
 
 </div>
 
@@ -29512,9 +29514,9 @@ Checklist
 
 <div class="callout green">
 
-**Repo placement**
+**Portal publication note**
 
-Publish this document as `documents/data-model-prisma-schema-planning-v1.html` in the Work2Cash docs repository and link it from the main architecture resource list. The file name can retain planning for continuity, but the document content is now the execution baseline.
+Publish this document as **Data Model & Prisma Schema Planning v1** in the Work2Cash documentation portal and link it from the main architecture resource list.
 
 </div>
 
@@ -29536,7 +29538,7 @@ Data Model & Prisma Schema Execution Baseline v1 for backend, mobile, admin, QA 
 
 #### Document Location
 
-`documents/data-model-prisma-schema-planning-v1.html`
+**Data Model & Prisma Schema Planning v1** in the documentation portal
 
 </div>
 
@@ -29558,10 +29560,9 @@ Protected HTML documents must include the documentation auth guard script before
 
 # Provider Integration & Cost Control v1
 
-> AI-agent Markdown equivalent of `provider-integration-cost-control-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../provider-integration-cost-control-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -29667,7 +29668,7 @@ Source of truth: Enterprise Architecture v1, API & Socket Contract v1, Data Mode
 
 <div>
 
-Target repo location: documents/provider-integration-cost-control-v1.html
+Portal page: Provider Integration & Cost Control v1
 
 </div>
 
@@ -29928,7 +29929,7 @@ Environment
 
 **Secret handling**
 
-Raw passwords, API keys, webhook secrets, service account credentials and production provider credentials must never be committed to the docs repo or application repository.
+Raw passwords, API keys, webhook secrets, service account credentials and production provider credentials must never be committed to the documentation portal or application repository.
 
 </div>
 
@@ -30314,9 +30315,9 @@ Checklist
 
 <div class="callout green">
 
-**Repo placement**
+**Portal publication note**
 
-Publish this document as `documents/provider-integration-cost-control-v1.html` in the Work2Cash docs repository and link it from the main architecture resource list.
+Publish this document as **Provider Integration & Cost Control v1** in the Work2Cash documentation portal and link it from the main architecture resource list.
 
 </div>
 
@@ -30338,7 +30339,7 @@ Provider Integration & Cost Control v1 for execution across backend, mobile, adm
 
 #### Document Location
 
-`documents/provider-integration-cost-control-v1.html`
+**Provider Integration & Cost Control v1** in the documentation portal
 
 </div>
 
@@ -30360,10 +30361,9 @@ Protected HTML documents must include the documentation auth guard script before
 
 # Mobile Build Plan v1
 
-> AI-agent Markdown equivalent of `build-plan-mobile-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../build-plan-mobile-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -30469,7 +30469,7 @@ Source of truth: Documents 1, 6, 7, 8 and the Mobile/Admin Flow Catalogues.
 
 <div>
 
-Repo location: documents/build-plan-mobile-v1.html
+Portal page: Mobile Build Plan v1
 
 </div>
 
@@ -31014,7 +31014,7 @@ Mobile Build Execution Plan v1 for Codex and AI-agent execution.
 
 #### Document Location
 
-`documents/build-plan-mobile-v1.html`
+**Mobile Build Plan v1** in the documentation portal
 
 </div>
 
@@ -31036,10 +31036,9 @@ Protected HTML documents must include the documentation auth guard script before
 
 # Admin Build Plan v1
 
-> AI-agent Markdown equivalent of `build-plan-admin-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../build-plan-admin-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -31145,7 +31144,7 @@ Source of truth: Documents 1, 6, 7, 8 and the Mobile/Admin Flow Catalogues.
 
 <div>
 
-Repo location: documents/build-plan-admin-v1.html
+Portal page: Admin Build Plan v1
 
 </div>
 
@@ -31659,7 +31658,7 @@ Admin Build Execution Plan v1 for Codex and AI-agent execution.
 
 #### Document Location
 
-`documents/build-plan-admin-v1.html`
+**Admin Build Plan v1** in the documentation portal
 
 </div>
 
@@ -31681,10 +31680,9 @@ Protected HTML documents must include the documentation auth guard script before
 
 # Backend Build Plan v1
 
-> AI-agent Markdown equivalent of `build-plan-backend-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../build-plan-backend-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -31790,7 +31788,7 @@ Source of truth: Documents 1, 6, 7, 8 and the Mobile/Admin Flow Catalogues.
 
 <div>
 
-Repo location: documents/build-plan-backend-v1.html
+Portal page: Backend Build Plan v1
 
 </div>
 
@@ -32003,7 +32001,7 @@ Week 1
 
 | Day  | Date            | Workstream                     | Execution Scope                                                                                                     | Dependency                          | Commit / Output Rule                               |
 |------|-----------------|--------------------------------|---------------------------------------------------------------------------------------------------------------------|-------------------------------------|----------------------------------------------------|
-| W1D1 | Mon 6 Jul 2026  | Repo foundation and contracts  | Create NestJS hexagonal structure, Prisma baseline, response/error shapes, OpenAPI shell, health/version endpoints. | Unblocks mobile/admin scaffolding.  | docs(backend): publish initial API contract shell  |
+| W1D1 | Mon 6 Jul 2026  | Project foundation and contracts  | Create NestJS hexagonal structure, Prisma baseline, response/error shapes, OpenAPI shell, health/version endpoints. | Unblocks mobile/admin scaffolding.  | docs(backend): publish initial API contract shell  |
 | W1D2 | Tue 7 Jul 2026  | Auth contract stubs            | Implement auth/profile/PIN/session DTOs and stub handlers with stable response shapes.                              | Unblocks mobile auth screens.       | feat(auth): add auth contract stubs                |
 | W1D3 | Wed 8 Jul 2026  | Auth implementation            | Implement register, login, OTP email-first/SMS fallback, refresh rotation, social auth adapter shell.               | Supports mobile registration/login. | feat(auth): implement registration and login       |
 | W1D4 | Thu 9 Jul 2026  | Profile, mode, PIN, sessions   | Implement /me, profile update, mode, PIN setup/verify/reset, device/session revoke.                                 | Supports mobile profile/security.   | feat(identity): implement profile pin and sessions |
@@ -32321,7 +32319,7 @@ Backend Build Execution Plan v1 for Codex and AI-agent execution.
 
 #### Document Location
 
-`documents/build-plan-backend-v1.html`
+**Backend Build Plan v1** in the documentation portal
 
 </div>
 
@@ -32343,10 +32341,9 @@ Protected HTML documents must include the documentation auth guard script before
 
 # QA / Go-Live Readiness Checklist v1
 
-> AI-agent Markdown equivalent of `qa-go-live-readiness-checklist-v1.html`.
+> Agent Markdown version of the matching documentation portal page.
 >
-> Human-readable HTML source: `../qa-go-live-readiness-checklist-v1.html`.
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
 
 <div class="section cover">
 
@@ -32428,7 +32425,7 @@ Go-Live Target**14 Sep 2026**
 
 <div class="meta-card">
 
-Repo Path**documents/qa-go-live-readiness-checklist-v1.html**
+Portal Page**documents/qa-go-live-readiness-checklist-v1.html**
 
 </div>
 
@@ -32514,7 +32511,7 @@ QA must trace every acceptance decision back to the source documents. If product
 
 <div class="table-wrap">
 
-| Document                               | Repo Path                                           | QA Use                                                            |
+| Document                               | Portal Page                                           | QA Use                                                            |
 |----------------------------------------|-----------------------------------------------------|-------------------------------------------------------------------|
 | Main Enterprise Architecture v1        | documents/main-enterprise-architecture-v1.html      | Top-level source of truth.                                        |
 | Mobile Flow Catalogue v1               | documents/mobile-flow-catalogue-v1.html             | Closed mobile flows and recovery subflows.                        |
@@ -33322,7 +33319,7 @@ QA / Go-Live Readiness Checklist v1 for final launch acceptance.
 
 #### Document Location
 
-`documents/qa-go-live-readiness-checklist-v1.html`
+**QA Go-Live Readiness Checklist v1** in the documentation portal
 
 </div>
 

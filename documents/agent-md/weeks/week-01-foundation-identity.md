@@ -4,11 +4,16 @@
 
 This is the focused AI-agent execution pack for Week 1 of the Work2Cash build plan.
 
+Before using this weekly pack with Codex or any AI agent, download the required Markdown files from the documentation portal UI.
+
 Use this file with:
 
-- `../downloads/shared-ai-agent-execution-rules-v1.md`
-- the relevant team brief in `../downloads/`
-- the specific contract/model/provider Markdown document needed for the task
+- **AGENTS.md Usage Guide** from **Team Markdown Downloads**.
+- **Shared Execution Rules** from **Team Markdown Downloads**.
+- The relevant team brief from **Team Markdown Downloads**.
+- The relevant flow catalogue from its portal page using **Download agent Markdown**.
+- **Full Project Markdown** from **Team Markdown Downloads** when broad context is required.
+- Any specific contract, model, provider or source document needed for the task using **Download agent Markdown** on that document page.
 
 Do not load the full HTML documents for normal implementation work.
 
@@ -52,7 +57,7 @@ Mobile can complete app entry/auth/profile shell; admin can enter protected dash
 
 | Day | Date | Workstream | Execution Scope | Dependency | Commit / Output Rule |
 | --- | --- | --- | --- | --- | --- |
-| W1D1 | Mon 6 Jul 2026 | Repo foundation and contracts | Create NestJS hexagonal structure, Prisma baseline, response/error shapes, OpenAPI shell, health/version endpoints. | Unblocks mobile/admin scaffolding. | docs(backend): publish initial API contract shell |
+| W1D1 | Mon 6 Jul 2026 | Project foundation and contracts | Create NestJS hexagonal structure, Prisma baseline, response/error shapes, OpenAPI shell, health/version endpoints. | Unblocks mobile/admin scaffolding. | docs(backend): publish initial API contract shell |
 | W1D2 | Tue 7 Jul 2026 | Auth contract stubs | Implement auth/profile/PIN/session DTOs and stub handlers with stable response shapes. | Unblocks mobile auth screens. | feat(auth): add auth contract stubs |
 | W1D3 | Wed 8 Jul 2026 | Auth implementation | Implement register, login, OTP email-first/SMS fallback, refresh rotation, social auth adapter shell. | Supports mobile registration/login. | feat(auth): implement registration and login |
 | W1D4 | Thu 9 Jul 2026 | Profile, mode, PIN, sessions | Implement /me, profile update, mode, PIN setup/verify/reset, device/session revoke. | Supports mobile profile/security. | feat(identity): implement profile pin and sessions |
@@ -77,11 +82,11 @@ Mobile controls implementation order. Backend must publish contracts/stubs befor
 ## AI Agent Prompt Template
 
 ```text
-Read these Markdown files only:
-- documents/downloads/shared-ai-agent-execution-rules-v1.md
-- documents/downloads/[team]-team-build-brief-v1.md
-- documents/agent-md/weeks/week-01-foundation-identity.md
-- documents/agent-md/[specific-source-document].md
+Read these Markdown files downloaded from the documentation portal UI only:
+- Shared Execution Rules
+- [Team] Team Markdown Brief
+- This weekly execution pack
+- [Specific source document downloaded from its portal page]
 
 Do not read HTML files unless I explicitly provide a section.
 
