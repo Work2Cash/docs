@@ -34,6 +34,7 @@
     .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
     .badge { border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.1); border-radius:999px; padding:7px 13px; font-size:12px; font-weight:800; }
     .cover-foot { border-top:1px solid rgba(255,255,255,.18); padding-top:24px; display:flex; justify-content:space-between; gap:24px; color:rgba(255,255,255,.66); font-size:13px; }
+    .cover-foot code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     .sticky { position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); backdrop-filter:blur(12px); border-bottom:2px solid var(--brand); }
     .sticky-inner { max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:12px 24px; }
     .sticky strong { color:var(--header); }
@@ -107,6 +108,7 @@
     footer { background:var(--header); color:#D0D5DD; padding:34px 24px; }
     .footer-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
     footer h4 { color:white; margin-top:0; }
+    footer code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     footer p, footer li { color:#CBD5E1; font-size:13px; }
     @media(max-width:900px) {
       .meta-grid,.card-grid,.toc-grid,.footer-inner { grid-template-columns:1fr; }
@@ -148,7 +150,7 @@
       </div>
     </div>
     <div class="cover-foot">
-      <span>Recommended repo location: <code>documents/admin-flow-catalogue-v1.html</code></span>
+      <span>Portal page: <code>Admin Flow Catalogue v1</code></span>
       <span>Protected docs pages must include <code>guard.js</code></span>
     </div>
   </section>
@@ -3699,7 +3701,7 @@ WHAT COMES AFTER:
           <div class="card"><span>Operations</span><h4>Admin outcomes clear</h4><p>Non-technical team members can understand what action to take and what happens after the action.</p></div>
           <div class="card"><span>Governance</span><h4>Audit trail enforced</h4><p>High-risk changes require reason, permission, and traceable audit records.</p></div>
         </div>
-        <div class="callout amber"><strong>Publishing Rule</strong><p>When this file is added to the GitHub documentation repo, place it under documents/admin-flow-catalogue-v1.html and keep the auth guard script included.</p></div>
+        <div class="callout amber"><strong>Publishing Rule</strong><p>When this file is added to the documentation portal, publish it as Admin Flow Catalogue v1 and keep the auth guard script included.</p></div>
     </section>
     
   </main>
@@ -3708,7 +3710,7 @@ WHAT COMES AFTER:
     <div class="footer-inner">
       <div><h4>Work2Cash</h4><p>Admin web flow catalogue for team-facing documentation.</p></div>
       <div><h4>Scope</h4><p>Admin dashboard only. Mobile flows remain in the separate mobile flow catalogue.</p></div>
-      <div><h4>Security Note</h4><p>Do not place secrets, API keys, production credentials or private user data inside the public docs repository.</p></div>
+      <div><h4>Security Note</h4><p>Do not place secrets, API keys, production credentials or private user data inside the public documentation portal.</p></div>
     </div>
   </footer>
 </body>

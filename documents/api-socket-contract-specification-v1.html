@@ -88,6 +88,7 @@
     .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
     .badge { border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.1); border-radius:999px; padding:7px 13px; font-size:12px; font-weight:800; }
     .cover-foot { border-top:1px solid rgba(255,255,255,.18); padding-top:24px; display:flex; justify-content:space-between; gap:24px; color:rgba(255,255,255,.66); font-size:13px; }
+    .cover-foot code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     .sticky {
       position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); backdrop-filter:blur(12px);
       border-bottom:2px solid var(--brand);
@@ -155,6 +156,7 @@
     footer { background:var(--header); color:#D0D5DD; padding:34px 24px; }
     .footer-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
     footer h4 { color:white; margin-top:0; }
+    footer code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     footer p, footer li { color:#CBD5E1; font-size:13px; }
     @media (max-width:900px) {
       .meta-grid, .card-grid, .toc-grid, .footer-inner, .two-col { grid-template-columns:1fr; }
@@ -773,7 +775,7 @@ Escrow release or hold                Worker + REST observable state</pre>
         <li>Admin maps each closed admin flow to its required API and permission policy.</li>
         <li>Every payment, wallet, webhook, payout, media finalization, and task state transition endpoint has idempotency coverage.</li>
         <li>Every admin high-impact endpoint writes audit logs and captures reason.</li>
-        <li>Every protected document page in the GitHub Pages docs repo includes <code>../assets/js/guard.js</code>.</li>
+        <li>Every protected document page in the GitHub Pages documentation portal includes <code>../assets/js/guard.js</code>.</li>
         <li>Contract tests cover success, validation failure, auth failure, forbidden state, duplicate request, and provider retry cases.</li>
         <li>Frontend loading standards are implemented: skeletons for fetches and blur overlay with spinning Work2Cash logo for POST/PATCH submissions.</li>
         <li>Privacy review confirms exact address, real phone number, KYC data, provider secrets, and hidden media are not leaked.</li>
@@ -785,8 +787,8 @@ Escrow release or hold                Worker + REST observable state</pre>
   <footer>
     <div class="footer-inner">
       <div><h4>Work2Cash</h4><p>API & Socket Contract Specification v1 for the team-facing documentation portal.</p></div>
-      <div><h4>Document Location</h4><p><code>documents/api-socket-contract-specification-v1.html</code></p></div>
-      <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
+      <div><h4>Portal Page</h4><p><code>API & Socket Contract Specification v1</code></p></div>
+      <div><h4>Guard Requirement</h4><p>Protected HTML document pages must include the documentation auth guard script before closing body.</p></div>
     </div>
   </footer>
 </body>

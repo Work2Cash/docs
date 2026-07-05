@@ -78,6 +78,7 @@
     .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
     .badge { border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.1); border-radius:999px; padding:7px 13px; font-size:12px; font-weight:800; }
     .cover-foot { border-top:1px solid rgba(255,255,255,.18); padding-top:24px; display:flex; justify-content:space-between; gap:24px; color:rgba(255,255,255,.66); font-size:13px; }
+    .cover-foot code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     .sticky {
       position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); backdrop-filter:blur(12px);
       border-bottom:2px solid var(--brand);
@@ -164,6 +165,7 @@
     footer { background:var(--header); color:#D0D5DD; padding:34px 24px; }
     .footer-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
     footer h4 { color:white; margin-top:0; }
+    footer code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     footer p, footer li { color:#CBD5E1; font-size:13px; }
     @media (max-width:900px) {
       .meta-grid, .card-grid, .toc-grid, .footer-inner { grid-template-columns:1fr; }
@@ -201,7 +203,7 @@
     </div>
     <div class="cover-foot">
       <div>Prepared for Work2Cash team-facing documentation.</div>
-      <div>Place as <code>documents/mobile-flow-catalogue-v1.html</code> in the docs repo.</div>
+      <div>Portal page: <code>Mobile Flow Catalogue v1</code></div>
     </div>
   </section>
   <header class="sticky">
@@ -4513,7 +4515,7 @@ WHAT COMES AFTER:
     <div class="footer-inner">
       <div><h4>Work2Cash</h4><p>Mobile flow source document for product, implementation, and QA alignment.</p></div>
       <div><h4>Source of Truth</h4><p>This expands the Main Enterprise Architecture v1 document and should be linked from it.</p></div>
-      <div><h4>Security</h4><p>For GitHub Pages docs, include <code>../assets/js/guard.js</code> when publishing under <code>documents/</code>.</p></div>
+      <div><h4>Security</h4><p>For GitHub Pages docs, include <code>../assets/js/guard.js</code> when publishing under the protected documents section.</p></div>
     </div>
   </footer>
 </body>

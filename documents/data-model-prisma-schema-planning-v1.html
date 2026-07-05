@@ -88,6 +88,7 @@
     .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
     .badge { border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.1); border-radius:999px; padding:7px 13px; font-size:12px; font-weight:800; }
     .cover-foot { border-top:1px solid rgba(255,255,255,.18); padding-top:24px; display:flex; justify-content:space-between; gap:24px; color:rgba(255,255,255,.66); font-size:13px; }
+    .cover-foot code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     .sticky {
       position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); backdrop-filter:blur(12px);
       border-bottom:2px solid var(--brand);
@@ -155,6 +156,7 @@
     footer { background:var(--header); color:#D0D5DD; padding:34px 24px; }
     .footer-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
     footer h4 { color:white; margin-top:0; }
+    footer code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     footer p, footer li { color:#CBD5E1; font-size:13px; }
     @media (max-width:900px) {
       .meta-grid, .card-grid, .toc-grid, .footer-inner, .two-col { grid-template-columns:1fr; }
@@ -200,7 +202,7 @@
     </div>
     <div class="cover-foot">
       <div>Source of truth: Enterprise Architecture v1, API & Socket Contract v1, Mobile/Admin Flow Catalogues.</div>
-      <div>Target repo location: documents/data-model-prisma-schema-planning-v1.html</div>
+      <div>Portal page: Data Model & Prisma Schema Planning v1</div>
     </div>
   </section>
 
@@ -870,15 +872,15 @@ model UseCaseExecutionLog {
         <li>Seed data includes launch task categories, commission tiers, provider registry and payout batch rules.</li>
         <li>Migrations are reviewed in phases and no destructive production migration runs without backup and restore testing.</li>
       </ul>
-      <div class="callout green"><strong>Repo placement</strong><p>Publish this document as <code>documents/data-model-prisma-schema-planning-v1.html</code> in the Work2Cash docs repository and link it from the main architecture resource list. The file name can retain planning for continuity, but the document content is now the execution baseline.</p></div>
+      <div class="callout green"><strong>Portal publication</strong><p>Publish this document as <strong>Data Model & Prisma Schema Planning v1</strong> in the Work2Cash documentation portal and link it from the main architecture resource list. The file name can retain planning for continuity, but the document content is now the execution baseline.</p></div>
     </section>
   </main>
 
   <footer>
     <div class="footer-inner">
       <div><h4>Work2Cash</h4><p>Data Model & Prisma Schema Execution Baseline v1 for backend, mobile, admin, QA and operations alignment.</p></div>
-      <div><h4>Document Location</h4><p><code>documents/data-model-prisma-schema-planning-v1.html</code></p></div>
-      <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
+      <div><h4>Portal Page</h4><p><code>Data Model & Prisma Schema Planning v1</code></p></div>
+      <div><h4>Guard Requirement</h4><p>Protected HTML document pages must include the documentation auth guard script before closing body.</p></div>
     </div>
   </footer>
 </body>

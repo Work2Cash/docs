@@ -88,6 +88,7 @@
     .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
     .badge { border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.1); border-radius:999px; padding:7px 13px; font-size:12px; font-weight:800; }
     .cover-foot { border-top:1px solid rgba(255,255,255,.18); padding-top:24px; display:flex; justify-content:space-between; gap:24px; color:rgba(255,255,255,.66); font-size:13px; }
+    .cover-foot code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     .sticky {
       position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); backdrop-filter:blur(12px);
       border-bottom:2px solid var(--brand);
@@ -155,6 +156,7 @@
     footer { background:var(--header); color:#D0D5DD; padding:34px 24px; }
     .footer-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
     footer h4 { color:white; margin-top:0; }
+    footer code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     footer p, footer li { color:#CBD5E1; font-size:13px; }
     @media (max-width:900px) {
       .meta-grid, .card-grid, .toc-grid, .footer-inner, .two-col { grid-template-columns:1fr; }
@@ -200,7 +202,7 @@
     </div>
     <div class="cover-foot">
       <div>Source of truth: Enterprise Architecture v1, API & Socket Contract v1, Data Model & Prisma Execution Baseline v1.</div>
-      <div>Target repo location: documents/provider-integration-cost-control-v1.html</div>
+      <div>Portal page: Provider Integration & Cost Control v1</div>
     </div>
   </section>
 
@@ -441,7 +443,7 @@ Provider callback
       <div class="table-wrap"><table><thead><tr><th>Surface</th><th>Environment</th><th>URL</th><th>Purpose</th><th>Secret Rule</th></tr></thead><tbody><tr><td>API</td><td>Production</td><td>https://api.work2cash.ng</td><td>REST source of truth.</td><td>Provider live keys only after go-live approval.</td></tr><tr><td>Socket</td><td>Production</td><td>https://socket.work2cash.ng</td><td>Socket.IO for task chat, support chat, tracking and presence.</td><td>Token auth and Valkey adapter when scaled.</td></tr><tr><td>Admin</td><td>Production</td><td>https://admin.work2cash.ng</td><td>Operations dashboard.</td><td>Admin TOTP and RBAC required.</td></tr><tr><td>API</td><td>Staging</td><td>https://api-staging.work2cash.ng</td><td>Staging REST API.</td><td>Sandbox/test keys only.</td></tr><tr><td>Socket</td><td>Staging</td><td>https://socket-staging.work2cash.ng</td><td>Staging socket gateway.</td><td>No production user data.</td></tr><tr><td>Website/Admin</td><td>Staging</td><td>https://staging.work2cash.ng</td><td>Staging web/admin surface.</td><td>Password-gated documentation remains separate from app auth.</td></tr></tbody></table></div>
       <h3>Secret Groups</h3>
       <div class="table-wrap"><table><thead><tr><th>Provider</th><th>Expected Environment Variables</th><th>Rule</th></tr></thead><tbody><tr><td>Paystack</td><td>PAYSTACK_SECRET_KEY, PAYSTACK_PUBLIC_KEY, PAYSTACK_WEBHOOK_SECRET, PAYSTACK_BASE_URL</td><td>Staging uses test keys. Production uses live keys only after approval.</td></tr><tr><td>Moniepoint</td><td>MONIEPOINT_CLIENT_ID, MONIEPOINT_CLIENT_SECRET, MONIEPOINT_WEBHOOK_SECRET, MONIEPOINT_BASE_URL</td><td>Names can be adjusted to official SDK/API naming during implementation.</td></tr><tr><td>Smile ID</td><td>SMILE_ID_PARTNER_ID, SMILE_ID_API_KEY, SMILE_ID_WEBHOOK_SECRET, SMILE_ID_BASE_URL</td><td>Never expose to mobile/admin frontend.</td></tr><tr><td>Google Maps</td><td>GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_BASE_URL, GOOGLE_MAPS_BUDGET_LIMIT</td><td>Restrict key by API, domain/IP where possible.</td></tr><tr><td>Termii</td><td>TERMII_API_KEY, TERMII_SENDER_ID, TERMII_BASE_URL</td><td>Use only for fallback/critical SMS.</td></tr><tr><td>Email</td><td>RESEND_API_KEY, SENDGRID_API_KEY, EMAIL_PROVIDER</td><td>EMAIL_PROVIDER controls adapter selection.</td></tr><tr><td>Firebase</td><td>FCM_SERVER_CREDENTIALS, FIREBASE_PROJECT_ID</td><td>Store server credentials only on backend/worker environment.</td></tr><tr><td>Sentry</td><td>SENTRY_DSN_BACKEND, SENTRY_DSN_ADMIN, SENTRY_DSN_FLUTTER, SENTRY_ENVIRONMENT</td><td>Scrub sensitive data before sending events.</td></tr><tr><td>Shorebird</td><td>SHOREBIRD_TOKEN, SHOREBIRD_APP_ID</td><td>CI/mobile release context only.</td></tr><tr><td>Masked Calls</td><td>CALL_PROVIDER, INFOBIP_API_KEY, AFRICAS_TALKING_API_KEY, VONAGE_API_KEY, SINCH_API_KEY</td><td>Only configure provider after validation.</td></tr><tr><td>Object Storage</td><td>S3_ENDPOINT, S3_REGION, S3_BUCKET_MEDIA, S3_BUCKET_BACKUPS, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY</td><td>Use separate buckets/prefixes for media and backups.</td></tr></tbody></table></div>
-      <div class="callout amber"><strong>Secret handling</strong><p>Raw passwords, API keys, webhook secrets, service account credentials and production provider credentials must never be committed to the docs repo or application repository.</p></div>
+      <div class="callout amber"><strong>Secret handling</strong><p>Raw passwords, API keys, webhook secrets, service account credentials and production provider credentials must never be committed to the documentation portal or application repository.</p></div>
     </section>
 
     <section id="adapters" class="section">
@@ -545,15 +547,15 @@ Provider callback
         <li>Backups are restored successfully in staging before production go-live.</li>
         <li>Provider pricing is revalidated from official sources before go-live.</li>
       </ul>
-      <div class="callout green"><strong>Repo placement</strong><p>Publish this document as <code>documents/provider-integration-cost-control-v1.html</code> in the Work2Cash docs repository and link it from the main architecture resource list.</p></div>
+      <div class="callout green"><strong>Portal publication</strong><p>Publish this document as <strong>Provider Integration & Cost Control v1</strong> in the Work2Cash documentation portal and link it from the main architecture resource list.</p></div>
     </section>
   </main>
 
   <footer>
     <div class="footer-inner">
       <div><h4>Work2Cash</h4><p>Provider Integration & Cost Control v1 for execution across backend, mobile, admin, DevOps and QA.</p></div>
-      <div><h4>Document Location</h4><p><code>documents/provider-integration-cost-control-v1.html</code></p></div>
-      <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
+      <div><h4>Portal Page</h4><p><code>Provider Integration & Cost Control v1</code></p></div>
+      <div><h4>Guard Requirement</h4><p>Protected HTML document pages must include the documentation auth guard script before closing body.</p></div>
     </div>
   </footer>
 </body>
