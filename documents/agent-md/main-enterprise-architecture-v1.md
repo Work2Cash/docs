@@ -1028,6 +1028,20 @@ Part VII
 
 The infrastructure strategy prioritizes low fixed cost, self-hosting, provider abstraction, and clear fallback paths if latency or provider capability fails.
 
+### Current Approved Staging Cost Baseline
+
+Staging provider: Contabo. Selected plan: Cloud 20 with 6 vCPU cores, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port, EU region, Ubuntu, AutoBackup disabled and no private networking. Add-on: 250GB Object Storage in European Union.
+
+| Item | Value |
+|---|---|
+| Monthly staging infrastructure | €10/month: €7.50 Cloud 20 + €2.50 object storage |
+| Estimated monthly Naira value | ₦18,000/month using €1 = ₦1,800 |
+| Domain first-month cost | ₦9,890: ₦9,200 base + ₦690 VAT |
+| First-month direct estimate | ₦27,890 including domain and one Contabo month |
+| Safe first-month approval | ₦40,000 for domain, server, object storage, VAT/FX/payment variance and checkout buffer |
+
+> AutoBackup is disabled, so backups must be configured from the server to the 250GB object storage. Server storage alone is not the backup strategy.
+
 ### Provider Register
 
 <div class="table-wrap">
@@ -1064,10 +1078,10 @@ Use Contabo for lean staging and Hetzner first for production because of cost. I
 
 <div class="table-wrap">
 
-| Environment                | Provider / Plan                                                               | Monthly USD | Monthly NGN @ ₦1,600/\$ | Yearly NGN            |
+| Environment | Provider / Plan | Monthly Price | NGN Budget Note | Yearly Budget Note |
 |----------------------------|-------------------------------------------------------------------------------|-------------|-------------------------|-----------------------|
-| Staging                    | Contabo staging VPS baseline - verify current plan and pricing before provisioning | TBD          | TBD                    | TBD                   |
-| Staging + optional storage | Contabo staging VPS plus object/storage add-on if needed                         | TBD          | TBD                    | TBD                   |
+| Staging | Contabo Cloud 20 - 6 vCPU, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port, EU region, Ubuntu | €7.50/month | ₦13,500/month at €1 = ₦1,800 | Recalculate from live invoice |
+| Staging object storage | Contabo 250GB Object Storage - European Union add-on | €2.50/month | ₦4,500/month at €1 = ₦1,800 | Recalculate from live invoice |
 | Production Primary         | Hetzner CX43 app + CX43 data + CX23 monitoring + \$5 storage                  | \$50.27     | ₦80,432                 | ₦965,184              |
 | Production Budget Buffer   | Primary production target buffer                                              | \$60-\$80   | ₦96,000-₦128,000        | ₦1,152,000-₦1,536,000 |
 | Production Fallback        | DigitalOcean 16GB/8vCPU app + 16GB/8vCPU data + 4GB/2vCPU monitoring + Spaces | \$221       | ₦353,600                | ₦4,243,200            |

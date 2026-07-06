@@ -227,6 +227,26 @@ Strategy
 
 </div>
 
+## Current Approved Staging Cost Baseline
+
+This is the selected staging baseline for Work2Cash. It is separate from optional provider-testing reserves and production hosting comparisons.
+
+| Item | Selection | Cost |
+|---|---|---|
+| Domain | work2cash.ng via WhoGoHost: ₦9,200 base + 7.5% VAT = ₦690 | ₦9,890 total |
+| Staging server | Contabo Cloud 20, EU region, Ubuntu; 6 vCPU cores, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port | €7.50/month |
+| Object storage | 250GB Object Storage in EU | €2.50/month |
+| Contabo monthly total | Server + object storage | €10/month |
+| Naira estimate | €1 = ₦1,800 | ₦18,000/month |
+| First-month direct estimate | Domain + Contabo monthly | ₦27,890 |
+| Safe approval budget | Includes checkout/FX/payment variance | ₦40,000 |
+
+The real recurring staging infrastructure cost is €10/month before FX/payment variation. The safe first-month approval amount is ₦40,000 because it includes the domain purchase, Contabo monthly cost, VAT/FX/payment variance, and checkout buffer.
+
+> AutoBackup is disabled. The technical team must configure backups from the server to the 250GB object storage. Server storage alone is not the backup strategy.
+
+> UK region is not selected. If UK is later selected, add €1.60/month, making Contabo monthly total €11.60/month.
+
 ## Provider Strategy
 
 <div class="diagram">
@@ -310,7 +330,7 @@ Registry
 | Hosting                | Hetzner                                      | First-choice production hosting path. Contabo is the staging baseline.            | Self-host NestJS, Postgres, Valkey, BullMQ, monitoring stack where selected.               | First-choice infrastructure           | Latency must be measured from Nigeria before final production commitment.                                                    |
 | Hosting                | DigitalOcean                                 | Production fallback if Hetzner latency becomes unacceptable. | Alternative app/data/monitoring server setup and Spaces/S3-compatible storage.             | Fallback infrastructure               | Keep migration plan ready and object storage compatible.                                                                     |
 | Object/Backup Storage  | DigitalOcean Spaces or S3-compatible storage | Media, backup and export storage.                            | Task proof media, backups, generated exports.                                              | Active option                         | Use signed URLs, lifecycle policies and backup restore tests.                                                                |
-| Domain                 | WhoGoHost                                    | Domain registrar for work2cash.ng.                           | Domain purchase and DNS ownership.                                                         | Active provider                       | Domain baseline: NGN 9,200 + 7.5% VAT = NGN 9,890 excluding bank transfer/payment charges.                                   |
+| Domain                 | WhoGoHost                                    | Domain registrar for work2cash.ng.                           | Domain purchase and DNS ownership.                                                         | Active provider                       | Domain baseline: ₦9,200 + 7.5% VAT = ₦690; total ₦9,890 excluding bank transfer/payment charges.                                   |
 | Analytics              | Firebase Analytics                           | Basic mobile analytics.                                      | Event-level mobile analytics where useful.                                                 | Deferred/light usage                  | Product analytics is intentionally not a core MVP dependency.                                                                |
 
 </div>
@@ -567,9 +587,9 @@ The table below captures Work2Cash budgeting assumptions. Any external provider 
 
 | Item                     | Baseline                                          | Execution Note                                                            |
 |--------------------------|---------------------------------------------------|---------------------------------------------------------------------------|
-| Exchange rate assumption | USD 1 = NGN 1,600                                 | Project budgeting baseline. Revalidate before payments/provisioning.      |
-| Domain                   | NGN 9,200 + 7.5% VAT = NGN 9,890                  | WhoGoHost baseline excluding bank transfer/payment charges.               |
-| Staging hosting          | Contabo staging VPS baseline from project source         | Staging VPS sizing and pricing must be revalidated before provisioning.                |
+| Exchange rate assumption | €1 = ₦1,800                                 | Working exchange estimate for Contabo staging. Convert at payment date.      |
+| Domain                   | ₦9,200 + 7.5% VAT = ₦690; total ₦9,890                  | WhoGoHost domain baseline; included in the first-month direct estimate.               |
+| Staging hosting          | Contabo Cloud 20: 6 vCPU, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port, EU region, Ubuntu. | €7.50/month from selected plan; no AutoBackup; no private networking. |
 | Production first choice  | Hetzner self-hosted production                    | Selected for cost; latency from Nigeria must be measured.                 |
 | Production fallback      | DigitalOcean multi-server production              | Use if Hetzner latency or operational risk becomes unacceptable.          |
 | Production budget buffer | USD 60-80 monthly buffer                          | Infrastructure/provider overage buffer from architecture baseline.        |
@@ -758,7 +778,7 @@ Checklist
 
 **Portal publication**
 
-Publish this document as `Provider Integration & Cost Control v1` in the Work2Cash documentation portalsitory and link it from the main architecture resource list.
+Publish this document as `Provider Integration & Cost Control v1` in the Work2Cash documentation portal and link it from the main architecture resource list.
 
 </div>
 
