@@ -1040,6 +1040,19 @@ Part VII
 
 The infrastructure strategy prioritizes low fixed cost, self-hosting, provider abstraction, and clear fallback paths if latency or provider capability fails.
 
+### Current Approved Production Cost Baseline
+
+Production provider: DigitalOcean. Hetzner is not available for this project and is not the selected production provider. Contabo remains the selected staging baseline.
+
+| Item | Value |
+|---|---|
+| App server | DigitalOcean Basic Droplet, 16GB RAM, 8 vCPU, 320GB SSD - $96/month |
+| Data server | DigitalOcean Basic Droplet, 16GB RAM, 8 vCPU, 320GB SSD - $96/month |
+| Monitoring server | DigitalOcean Basic Droplet, 4GB RAM, 2 vCPU, 80GB SSD - $24/month |
+| Object storage | DigitalOcean Spaces, 250GiB storage / 1TiB outbound transfer baseline - $5/month |
+| Total production baseline | $221/month; ₦353,600/month at ₦1,600/$ |
+| Yearly production baseline | $2,652/year; ₦4,243,200/year |
+
 ### Current Approved Staging Cost Baseline
 
 Staging provider: Contabo. Selected plan: Cloud 20 with 6 vCPU cores, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port, EU region, Ubuntu, AutoBackup disabled and no private networking. Add-on: 250GB Object Storage in European Union.
@@ -1084,7 +1097,7 @@ Staging provider: Contabo. Selected plan: Cloud 20 with 6 vCPU cores, 12GB RAM, 
 
 **Production Strategy**
 
-Use Contabo for lean staging and Hetzner first for production because of cost. If Nigerian latency or routing is unacceptable after testing, move the app and data servers together to DigitalOcean London/Frankfurt.
+Use Contabo for lean staging and DigitalOcean for production. DigitalOcean is the active production baseline for app, data, monitoring and object storage.
 
 </div>
 
@@ -1094,9 +1107,11 @@ Use Contabo for lean staging and Hetzner first for production because of cost. I
 |----------------------------|-------------------------------------------------------------------------------|-------------|-------------------------|-----------------------|
 | Staging | Contabo Cloud 20 - 6 vCPU, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port, EU region, Ubuntu | €7.50/month | ₦13,500/month at €1 = ₦1,800 | Recalculate from live invoice |
 | Staging object storage | Contabo 250GB Object Storage - European Union add-on | €2.50/month | ₦4,500/month at €1 = ₦1,800 | Recalculate from live invoice |
-| Production Primary         | Hetzner CX43 app + CX43 data + CX23 monitoring + \$5 storage                  | \$50.27     | ₦80,432                 | ₦965,184              |
-| Production Budget Buffer   | Primary production target buffer                                              | \$60-\$80   | ₦96,000-₦128,000        | ₦1,152,000-₦1,536,000 |
-| Production Fallback        | DigitalOcean 16GB/8vCPU app + 16GB/8vCPU data + 4GB/2vCPU monitoring + Spaces | \$221       | ₦353,600                | ₦4,243,200            |
+| Production App Server | DigitalOcean Basic Droplet - 16GB RAM, 8 vCPU, 320GB SSD | $96/month | ₦153,600/month | ₦1,843,200/year |
+| Production Data Server | DigitalOcean Basic Droplet - 16GB RAM, 8 vCPU, 320GB SSD | $96/month | ₦153,600/month | ₦1,843,200/year |
+| Production Monitoring Server | DigitalOcean Basic Droplet - 4GB RAM, 2 vCPU, 80GB SSD | $24/month | ₦38,400/month | ₦460,800/year |
+| Production Object Storage | DigitalOcean Spaces - 250GiB storage / 1TiB outbound transfer baseline | $5/month | ₦8,000/month | ₦96,000/year |
+| Total Production Baseline | DigitalOcean production infrastructure | $221/month | ₦353,600/month | ₦4,243,200/year |
 
 </div>
 
@@ -1130,7 +1145,7 @@ Use Contabo for lean staging and Hetzner first for production because of cost. I
 
 - DigitalOcean pricing checked against official Droplets pricing page for \$96/month 16GB/8vCPU and \$24/month 4GB/2vCPU planning assumptions.
 - DigitalOcean Spaces \$5/month planning assumption checked against official Spaces pricing documentation.
-- Hetzner pricing baseline is confirmed from Hetzner official source (https://www.hetzner.com/cloud/cost-optimized/); prices still must be revalidated before provisioning because providers can change pricing.
+- DigitalOcean production pricing baseline is based on Basic Droplet and Spaces planning values; prices still must be revalidated before provisioning because providers can change pricing.
 - All provider prices exclude VAT and may change before launch.
 
 </div>
@@ -1450,7 +1465,7 @@ This section records key architecture decisions, tradeoffs, unresolved items, an
 | Unified User model                   | A Nigerian user may hire and earn from the same account  | Permission logic must be enforced through mode, profile, and wallet type |
 | Separate API and Socket domains      | Clean routing, scaling, monitoring, and future migration | More DNS/proxy configuration                                             |
 | Self-host infrastructure             | Lower fixed cost and control                             | Team owns backups, updates, monitoring, restore drills                   |
-| Hetzner first, DigitalOcean fallback | Cost-first production with latency fallback              | Must test Nigerian networks before launch                                |
+| Contabo staging, DigitalOcean production | Contabo keeps staging lean; DigitalOcean is the active production baseline | Monitor production cost and capacity before scaling |
 | Task browse sorted by distance       | Avoid hiding useful work strictly by radius              | Tasker and Task Owner decisions must factor ETA and arrival time         |
 | Proxy dial-in masked calls           | Protect phone numbers while using normal dialer/airtime  | Provider capability and cost must be validated during development        |
 | Static legal pages first             | Safer and faster for MVP                                 | Admin-managed legal content deferred                                     |
@@ -1463,7 +1478,7 @@ This section records key architecture decisions, tradeoffs, unresolved items, an
 
 | Risk                    | Impact      | Mitigation                                                                                        |
 |-------------------------|-------------|---------------------------------------------------------------------------------------------------|
-| USD cost spikes         | High        | Batch paid APIs, use Contabo for lean staging, use Hetzner first for production, track provider costs, guard Google Maps, monitor masked calls |
+| USD cost spikes         | High        | Batch paid APIs, use Contabo for lean staging, use DigitalOcean for production, track provider costs, guard Google Maps, monitor masked calls |
 | Payment webhook failure | Critical    | Signature verification, webhook logs, reconciliation cron, backend-confirmed state                |
 | Wallet ledger mismatch  | Critical    | Append-only ledger, hourly checks, admin reason/audit for manual actions                          |
 | Identity fraud          | High        | Smile ID KYC, device/session monitoring, risk flags, admin review                                 |
@@ -1606,7 +1621,6 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 - DigitalOcean Droplets pricing: https://www.digitalocean.com/pricing/droplets
 - DigitalOcean Spaces pricing: https://docs.digitalocean.com/products/spaces/details/pricing/
-- Hetzner Cloud cost-optimized pricing: https://www.hetzner.com/cloud/cost-optimized/
 - Nigeria Data Protection Commission: https://ndpc.gov.ng/
 
 </div>
@@ -25993,7 +26007,7 @@ These are corrections needed in the main architecture document so it stays align
 | <span class="badge green">Resolved</span>    | Main architecture ETA guard corrected.                    | Old 10+ minutes / 25% rule has been replaced.                                                                                                   | Main architecture now uses the ETA Cost Guard: 5-minute guard plus next 10% total-journey milestone, then reset timer/milestone after refresh.      |
 | <span class="badge green">Resolved</span>    | Main architecture legal publishing corrected.             | Separate /legal/... page list has been removed from the source-of-truth appendix.                                                               | Main architecture now points to the combined legal pack at Legal & User-Facing Documents Pack v1.                                      |
 | <span class="badge green">Resolved</span>    | Main architecture documentation governance added.         | GitHub documentation portal setup, soft password gate, auth guard, guard checker, PR governance and resource links are now included.                       | Main architecture now lists the team-facing resource paths for generated and planned documents.                                                     |
-| <span class="badge green">Resolved</span>    | Hetzner source wording corrected.                         | Screenshot-baseline wording has been removed.                                                                                                   | Main architecture now states the pricing baseline is confirmed from Hetzner official source while still requiring revalidation before provisioning. |
+| <span class="badge green">Resolved</span> | Production infrastructure baseline corrected. | Hetzner is no longer available for this project. | Main architecture now uses DigitalOcean as the active production baseline while Contabo remains staging. |
 | <span class="badge amber">Open Design</span> | Figma category names differ from accepted category names. | Figma uses Home-Based, Compound/Outdoor, Office/Shop, Short Term Support/Event Support. Accepted categories are Home, Errands, Office, Support. | Treat Figma labels as visual references only. Product copy and admin catalog should use Home, Errands, Office, Support.                             |
 
 </div>
@@ -27031,7 +27045,7 @@ Work2Cash separates API and Socket domains so traffic can scale independently wh
 | Environment | Surface       | URL                                   | Purpose                                                     | Notes                                           |
 |-------------|---------------|---------------------------------------|-------------------------------------------------------------|-------------------------------------------------|
 | Production  | Website       | `https://work2cash.ng`                | Public product site and download entry.                     | www redirects to root domain.                   |
-| Production  | API           | `https://api.work2cash.ng`            | REST API for mobile, admin, webhooks where provider allows. | Primary durable contract surface.               |
+| Production  | API           | `https://api.work2cash.ng`            | REST API for mobile, admin, webhooks where provider allows. | Primary durable contract surface hosted on the DigitalOcean production baseline.               |
 | Production  | Admin         | `https://admin.work2cash.ng`          | Next.js admin dashboard.                                    | Admin TOTP and RBAC required.                   |
 | Production  | Socket        | `https://socket.work2cash.ng`         | Socket.IO gateway for real-time features.                   | Uses token auth and Valkey adapter when scaled. |
 | Staging     | Website/Admin | `https://staging.work2cash.ng`        | Staging web/admin surface.                                  | Contabo Cloud 20 staging: 6 vCPU, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port, EU region, Ubuntu, no AutoBackup, no private networking. Add 250GB EU Object Storage. Total Contabo staging cost is €10/month, approximately ₦18,000/month at €1 = ₦1,800.                |
@@ -29657,7 +29671,7 @@ Payments**Paystack + Moniepoint**
 
 <div class="meta-card">
 
-Hosting**Contabo Staging / Hetzner Production**
+Hosting**Contabo Staging / DigitalOcean Production**
 
 </div>
 
@@ -29799,6 +29813,23 @@ Strategy
 
 </div>
 
+
+## Current Approved Production Cost Baseline
+
+DigitalOcean is the active production infrastructure baseline for Work2Cash. Hetzner is not available for this project and is not the selected production provider.
+
+| Item | Selection | Cost |
+|---|---|---|
+| App server | DigitalOcean Basic Droplet, 16GB RAM, 8 vCPU, 320GB SSD | $96/month |
+| Data server | DigitalOcean Basic Droplet, 16GB RAM, 8 vCPU, 320GB SSD | $96/month |
+| Monitoring server | DigitalOcean Basic Droplet, 4GB RAM, 2 vCPU, 80GB SSD | $24/month |
+| DigitalOcean Spaces | 250GiB storage / 1TiB outbound transfer baseline | $5/month |
+| Total production baseline | App + data + monitoring + Spaces | $221/month |
+| Monthly NGN estimate | $221 at ₦1,600/$ | ₦353,600/month |
+| Yearly production baseline | $2,652/year at ₦1,600/$ | ₦4,243,200/year |
+
+Production provider is DigitalOcean. DigitalOcean is no longer a fallback; it is the active production baseline. Contabo remains the selected staging baseline.
+
 ## Current Approved Staging Cost Baseline
 
 This is the selected staging baseline for Work2Cash. It is separate from optional provider-testing reserves and production hosting comparisons.
@@ -29899,8 +29930,7 @@ Registry
 | Masked Calls           | Africa's Talking                             | Secondary candidate for masked calls.                        | Fallback voice masking candidate.                                                          | Candidate to validate                 | Confirm Nigeria number support and proxy dial-in feasibility.                                                                |
 | Masked Calls           | Vonage                                       | Fallback masked call provider.                               | Fallback if local candidates fail.                                                         | Fallback                              | Do not depend on it until Nigeria voice-capable number support is verified.                                                  |
 | Masked Calls           | Sinch                                        | Enterprise fallback.                                         | Fallback if scale/compliance requires enterprise provider.                                 | Fallback                              | Likely higher-cost path; validate only if needed.                                                                            |
-| Hosting                | Hetzner                                      | First-choice production hosting path. Contabo is the staging baseline.            | Self-host NestJS, Postgres, Valkey, BullMQ, monitoring stack where selected.               | First-choice infrastructure           | Latency must be measured from Nigeria before final production commitment.                                                    |
-| Hosting                | DigitalOcean                                 | Production fallback if Hetzner latency becomes unacceptable. | Alternative app/data/monitoring server setup and Spaces/S3-compatible storage.             | Fallback infrastructure               | Keep migration plan ready and object storage compatible.                                                                     |
+| Hosting | DigitalOcean | Active production hosting baseline. | App server, data server, monitoring server and Spaces object storage. | Selected production infrastructure | Use DigitalOcean production sizing and monitor before scaling. |
 | Object/Backup Storage  | DigitalOcean Spaces or S3-compatible storage | Media, backup and export storage.                            | Task proof media, backups, generated exports.                                              | Active option                         | Use signed URLs, lifecycle policies and backup restore tests.                                                                |
 | Domain                 | WhoGoHost                                    | Domain registrar for work2cash.ng.                           | Domain purchase and DNS ownership.                                                         | Active provider                       | Domain baseline: ₦9,200 + 7.5% VAT = ₦690; total ₦9,890 excluding bank transfer/payment charges.                                   |
 | Analytics              | Firebase Analytics                           | Basic mobile analytics.                                      | Event-level mobile analytics where useful.                                                 | Deferred/light usage                  | Product analytics is intentionally not a core MVP dependency.                                                                |
@@ -30162,9 +30192,7 @@ The table below captures Work2Cash budgeting assumptions. Any external provider 
 | Exchange rate assumption | €1 = ₦1,800                                 | Working exchange estimate for Contabo staging. Convert at payment date.      |
 | Domain                   | ₦9,200 + 7.5% VAT = ₦690; total ₦9,890                  | WhoGoHost domain baseline; included in the first-month direct estimate.               |
 | Staging hosting          | Contabo Cloud 20: 6 vCPU, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port, EU region, Ubuntu. | €7.50/month from selected plan; no AutoBackup; no private networking. |
-| Production first choice  | Hetzner self-hosted production                    | Selected for cost; latency from Nigeria must be measured.                 |
-| Production fallback      | DigitalOcean multi-server production              | Use if Hetzner latency or operational risk becomes unacceptable.          |
-| Production budget buffer | USD 60-80 monthly buffer                          | Infrastructure/provider overage buffer from architecture baseline.        |
+| Production baseline | DigitalOcean app + data + monitoring + Spaces | $221/month; ₦353,600/month at ₦1,600/$; ₦4,243,200/year. |
 | Variable provider costs  | Maps, KYC, SMS, email, masked calls, payment fees | Track by use case and alert before budget drift becomes operational risk. |
 
 </div>
@@ -30173,7 +30201,7 @@ The table below captures Work2Cash budgeting assumptions. Any external provider 
 
 **Pricing verification gate**
 
-Provider pricing is operationally unstable. Before go-live, verify Paystack, Moniepoint, Smile ID, Google Maps, Termii, email, hosting, object storage and masked-call pricing from official provider sources and update this document if the baseline changes.
+Provider pricing is operationally unstable. Before go-live, verify Paystack, Moniepoint, Smile ID, Google Maps, Termii, email, Contabo staging, DigitalOcean production, object storage and masked-call pricing from official provider sources and update this document if the baseline changes.
 
 </div>
 
