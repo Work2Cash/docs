@@ -1,8 +1,9 @@
 # Provider Integration & Cost Control v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `provider-integration-cost-control-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Provider Integration & Cost Control v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -84,7 +85,7 @@ Payments**Paystack + Moniepoint**
 
 <div class="meta-card">
 
-Hosting**Hetzner First**
+Hosting**Contabo Staging / Hetzner Production**
 
 </div>
 
@@ -306,7 +307,7 @@ Registry
 | Masked Calls           | Africa's Talking                             | Secondary candidate for masked calls.                        | Fallback voice masking candidate.                                                          | Candidate to validate                 | Confirm Nigeria number support and proxy dial-in feasibility.                                                                |
 | Masked Calls           | Vonage                                       | Fallback masked call provider.                               | Fallback if local candidates fail.                                                         | Fallback                              | Do not depend on it until Nigeria voice-capable number support is verified.                                                  |
 | Masked Calls           | Sinch                                        | Enterprise fallback.                                         | Fallback if scale/compliance requires enterprise provider.                                 | Fallback                              | Likely higher-cost path; validate only if needed.                                                                            |
-| Hosting                | Hetzner                                      | First-choice production and staging hosting path.            | Self-host NestJS, Postgres, Valkey, BullMQ, monitoring stack where selected.               | First-choice infrastructure           | Latency must be measured from Nigeria before final production commitment.                                                    |
+| Hosting                | Hetzner                                      | First-choice production hosting path. Contabo is the staging baseline.            | Self-host NestJS, Postgres, Valkey, BullMQ, monitoring stack where selected.               | First-choice infrastructure           | Latency must be measured from Nigeria before final production commitment.                                                    |
 | Hosting                | DigitalOcean                                 | Production fallback if Hetzner latency becomes unacceptable. | Alternative app/data/monitoring server setup and Spaces/S3-compatible storage.             | Fallback infrastructure               | Keep migration plan ready and object storage compatible.                                                                     |
 | Object/Backup Storage  | DigitalOcean Spaces or S3-compatible storage | Media, backup and export storage.                            | Task proof media, backups, generated exports.                                              | Active option                         | Use signed URLs, lifecycle policies and backup restore tests.                                                                |
 | Domain                 | WhoGoHost                                    | Domain registrar for work2cash.ng.                           | Domain purchase and DNS ownership.                                                         | Active provider                       | Domain baseline: NGN 9,200 + 7.5% VAT = NGN 9,890 excluding bank transfer/payment charges.                                   |
@@ -568,7 +569,7 @@ The table below captures Work2Cash budgeting assumptions. Any external provider 
 |--------------------------|---------------------------------------------------|---------------------------------------------------------------------------|
 | Exchange rate assumption | USD 1 = NGN 1,600                                 | Project budgeting baseline. Revalidate before payments/provisioning.      |
 | Domain                   | NGN 9,200 + 7.5% VAT = NGN 9,890                  | WhoGoHost baseline excluding bank transfer/payment charges.               |
-| Staging hosting          | Hetzner CX33 baseline from project source         | 4 vCPU, 8GB RAM, 80GB SSD. Revalidate before provisioning.                |
+| Staging hosting          | Contabo staging VPS baseline from project source         | Staging VPS sizing and pricing must be revalidated before provisioning.                |
 | Production first choice  | Hetzner self-hosted production                    | Selected for cost; latency from Nigeria must be measured.                 |
 | Production fallback      | DigitalOcean multi-server production              | Use if Hetzner latency or operational risk becomes unacceptable.          |
 | Production budget buffer | USD 60-80 monthly buffer                          | Infrastructure/provider overage buffer from architecture baseline.        |
@@ -755,9 +756,9 @@ Checklist
 
 <div class="callout green">
 
-**Portal publication note**
+**Portal publication**
 
-Publish this document as **Provider Integration & Cost Control v1** in the Work2Cash documentation portal and link it from the main architecture resource list.
+Publish this document as `Provider Integration & Cost Control v1` in the Work2Cash documentation portalsitory and link it from the main architecture resource list.
 
 </div>
 
@@ -777,9 +778,9 @@ Provider Integration & Cost Control v1 for execution across backend, mobile, adm
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**Provider Integration & Cost Control v1** in the documentation portal
+`Provider Integration & Cost Control v1`
 
 </div>
 

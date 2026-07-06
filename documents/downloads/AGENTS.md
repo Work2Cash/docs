@@ -134,7 +134,7 @@ Admin Flow Catalogue agent Markdown
 API & Socket Contract Specification agent Markdown
 ```
 
-Add **Data Model & Prisma Schema Planning agent Markdown** when the task needs model names, enum names, audit expectations or admin state behavior.
+Add `Data Model & Prisma Schema Planning agent Markdown` when the task needs model names, enum names, audit expectations or admin state behavior.
 
 ## Backend Team Agent Context
 

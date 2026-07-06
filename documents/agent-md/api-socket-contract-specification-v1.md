@@ -1,8 +1,9 @@
 # API & Socket Contract Specification v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `api-socket-contract-specification-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.API & Socket Contract Specification v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -269,7 +270,7 @@ Work2Cash separates API and Socket domains so traffic can scale independently wh
 | Production  | API           | `https://api.work2cash.ng`            | REST API for mobile, admin, webhooks where provider allows. | Primary durable contract surface.               |
 | Production  | Admin         | `https://admin.work2cash.ng`          | Next.js admin dashboard.                                    | Admin TOTP and RBAC required.                   |
 | Production  | Socket        | `https://socket.work2cash.ng`         | Socket.IO gateway for real-time features.                   | Uses token auth and Valkey adapter when scaled. |
-| Staging     | Website/Admin | `https://staging.work2cash.ng`        | Staging web/admin surface.                                  | Ultra-lean Hetzner staging path.                |
+| Staging     | Website/Admin | `https://staging.work2cash.ng`        | Staging web/admin surface.                                  | Ultra-lean Contabo staging path; plan and pricing must be revalidated before provisioning.                |
 | Staging     | API           | `https://api-staging.work2cash.ng`    | Staging REST API.                                           | Used by staging mobile/admin builds.            |
 | Staging     | Socket        | `https://socket-staging.work2cash.ng` | Staging Socket.IO gateway.                                  | Used by staging mobile/admin builds.            |
 
@@ -1416,9 +1417,9 @@ API & Socket Contract Specification v1 for the team-facing documentation portal.
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**API & Socket Contract Specification v1** in the documentation portal
+`API & Socket Contract Specification v1`
 
 </div>
 

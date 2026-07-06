@@ -295,8 +295,6 @@
   .doc-hub-actions {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     gap: 10px;
   }
   .doc-hub-links {
@@ -337,37 +335,13 @@
   @media (max-width: 620px) {
     .doc-hub-nav { padding: 0 16px; }
     .doc-hub-card { border-radius: 14px; padding: 14px; }
-    .doc-hub-top { align-items: center; flex-direction: column; gap: 8px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
     .doc-hub-links { grid-template-columns: 1fr; }
     .team-downloads { padding: 0 16px; }
     .team-downloads-card { border-radius: 14px; padding: 14px; }
   }
 </style>
 
-
-<style id="work2cash-wide-layout">
-  .sticky-inner,
-  main,
-  .footer-inner,
-  .doc-hub-nav,
-  .team-downloads,
-  .cover-inner,
-  footer > div {
-    width: 90%;
-    max-width: none;
-  }
-  @media (max-width: 900px) {
-    .sticky-inner,
-    main,
-    .footer-inner,
-    .doc-hub-nav,
-    .team-downloads,
-    .cover-inner,
-    footer > div {
-      width: 100%;
-    }
-  }
-</style>
 <nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
   <div class="doc-hub-card">
     <div class="doc-hub-top">
@@ -378,7 +352,7 @@
       </div>
     </div>
     <div class="doc-hub-links">
-      <a href="./main-enterprise-architecture-v1.html">Main Enterprise Architecture v1</a><a href="./screen-to-feature-map-v1.html">Screen To Feature Map</a><a href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a href="./flow-alignment-review-v1.html">Flow Alignment Review v1</a><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a><a href="./api-socket-contract-specification-v1.html">API &amp; Socket Contract Specification v1</a><a href="./data-model-prisma-schema-planning-v1.html" aria-current="page">Data Model &amp; Prisma Schema Planning v1</a><a href="./provider-integration-cost-control-v1.html">Provider Integration &amp; Cost Control v1</a><a href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html">Admin Build Plan v1</a><a href="./build-plan-backend-v1.html">Backend Build Plan v1</a><a href="./qa-go-live-readiness-checklist-v1.html">QA / Go-Live Readiness Checklist v1</a>
+      <a href="Main Enterprise Architecture v1">Main Enterprise Architecture v1</a><a href="Screen To Feature Map v1">Screen To Feature Map</a><a href="Mobile Flow Catalogue v1">Mobile Flow Catalogue v1</a><a href="Admin Flow Catalogue v1">Admin Flow Catalogue v1</a><a href="Flow Alignment Review v1">Flow Alignment Review v1</a><a href="Legal & User-Facing Documents Pack v1">Legal &amp; User-Facing Documents Pack v1</a><a href="API & Socket Contract Specification v1">API &amp; Socket Contract Specification v1</a><a href="Data Model & Prisma Schema Planning v1" aria-current="page">Data Model &amp; Prisma Schema Planning v1</a><a href="Provider Integration & Cost Control v1">Provider Integration &amp; Cost Control v1</a><a href="Mobile Build Plan v1">Mobile Build Plan v1</a><a href="Admin Build Plan v1">Admin Build Plan v1</a><a href="Backend Build Plan v1">Backend Build Plan v1</a><a href="QA / Go-Live Readiness Checklist v1">QA / Go-Live Readiness Checklist v1</a>
     </div>
   </div>
 </nav>
@@ -872,7 +846,7 @@ model UseCaseExecutionLog {
         <li>Seed data includes launch task categories, commission tiers, provider registry and payout batch rules.</li>
         <li>Migrations are reviewed in phases and no destructive production migration runs without backup and restore testing.</li>
       </ul>
-      <div class="callout green"><strong>Portal publication</strong><p>Publish this document as <strong>Data Model & Prisma Schema Planning v1</strong> in the Work2Cash documentation portal and link it from the main architecture resource list. The file name can retain planning for continuity, but the document content is now the execution baseline.</p></div>
+      <div class="callout green"><strong>Portal publication</strong><p>Publish this document as <code>Data Model & Prisma Schema Planning v1</code> in the Work2Cash documentation portalsitory and link it from the main architecture resource list. The file name can retain planning for continuity, but the document content is now the execution baseline.</p></div>
     </section>
   </main>
 
@@ -880,7 +854,7 @@ model UseCaseExecutionLog {
     <div class="footer-inner">
       <div><h4>Work2Cash</h4><p>Data Model & Prisma Schema Execution Baseline v1 for backend, mobile, admin, QA and operations alignment.</p></div>
       <div><h4>Portal Page</h4><p><code>Data Model & Prisma Schema Planning v1</code></p></div>
-      <div><h4>Guard Requirement</h4><p>Protected HTML document pages must include the documentation auth guard script before closing body.</p></div>
+      <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
     </div>
   </footer>
 </body>

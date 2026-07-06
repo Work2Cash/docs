@@ -2,35 +2,20 @@
 
 ## Purpose
 
-This Markdown brief is the execution companion for the **Backend Build Plan v1** page in the documentation portal.
+This Markdown brief is the execution companion for `Backend Build Plan v1`.
 
 Backend delivery is mobile-led and contract-first. Publish stable DTOs, response shapes, OpenAPI paths, socket event names and stubs early, then replace stubs with real use cases without breaking mobile/admin integration.
 
-## AI Context Guard
-
-If this is the only Work2Cash Markdown file the user provided, do not give implementation steps yet.
-
-First tell the user to return to the documentation portal UI and download these files:
-
-1. Open **Mobile Flow Catalogue v1** from the document portal, then click **Download agent Markdown**.
-2. Open **Weekly Execution Packs**, then download the active week Markdown.
-3. Open **Backend Build Plan v1**, then use **Team Markdown Downloads** to download **Full Project Markdown**.
-
-Explain that the mobile flow document is required because backend delivery is mobile-led, the weekly pack is required to understand the current execution sequence, and the full source-of-truth document is required to understand product, architecture, provider, data, legal and launch constraints. For admin-facing backend work, also tell the user to open **Admin Flow Catalogue v1** and click **Download agent Markdown**. After those files are provided, continue with the task.
-
 ## Required Reading Order
 
-Download these from the documentation portal UI before implementation:
-
-1. **Shared Execution Rules** from **Team Markdown Downloads**.
-2. **Backend Team Markdown Brief** from **Team Markdown Downloads**.
-3. The active weekly execution pack from **Weekly Execution Packs**.
-4. **Mobile Flow Catalogue v1** using **Download agent Markdown** because backend delivery is mobile-led.
-5. **API & Socket Contract Specification v1** using **Download agent Markdown** on that page.
-6. **Data Model & Prisma Schema Planning v1** using **Download agent Markdown** on that page.
-7. **Provider Integration & Cost Control v1** using **Download agent Markdown** when the task touches providers, payment, KYC, notifications, maps, media, monitoring, backups, queues or cache.
-8. **Admin Flow Catalogue v1** using **Download agent Markdown** when the task supports admin-facing backend behavior.
-9. **Full Project Markdown** from **Team Markdown Downloads** only when broad project context is required.
+1. `Main Enterprise Architecture v1`
+2. `API & Socket Contract Specification v1`
+3. `Data Model & Prisma Schema Planning v1`
+4. `Provider Integration & Cost Control v1`
+5. `Mobile Flow Catalogue v1`
+6. `Admin Flow Catalogue v1`
+7. `Backend Build Plan v1`
+8. `QA / Go-Live Readiness Checklist v1`
 
 ## Architecture Rules
 

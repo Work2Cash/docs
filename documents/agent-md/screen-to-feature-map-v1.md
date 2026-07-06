@@ -1,8 +1,9 @@
 # Screen To Feature Map
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `screen-to-feature-map-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Screen To Feature Map v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="cover">
 

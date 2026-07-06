@@ -1,20 +1,9 @@
 # Mobile Build Plan v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `build-plan-mobile-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
-
-## AI Context Guard
-
-If this is the only Work2Cash Markdown file the user provided, do not give implementation steps yet.
-
-First tell the user to return to the documentation portal UI and download these files:
-
-1. Open **Mobile Flow Catalogue v1** from the document portal, then click **Download agent Markdown**.
-2. Open **Weekly Execution Packs**, then download the active week Markdown.
-3. Open **Mobile Build Plan v1**, then use **Team Markdown Downloads** to download **Full Project Markdown**.
-
-Explain that the mobile flow document is required to understand exact app flows, the weekly pack is required to understand the current execution sequence, and the full source-of-truth document is required to understand product, architecture, provider, data, legal and launch constraints. After those files are provided, continue with the task.
+> Human-readable HTML source: `.Mobile Build Plan v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -663,9 +652,9 @@ Mobile Build Execution Plan v1 for Codex and AI-agent execution.
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**Mobile Build Plan v1** in the documentation portal
+`Mobile Build Plan v1`
 
 </div>
 

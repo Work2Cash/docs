@@ -293,8 +293,6 @@
   .doc-hub-actions {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     gap: 10px;
   }
   .doc-hub-links {
@@ -335,37 +333,13 @@
   @media (max-width: 620px) {
     .doc-hub-nav { padding: 0 16px; }
     .doc-hub-card { border-radius: 14px; padding: 14px; }
-    .doc-hub-top { align-items: center; flex-direction: column; gap: 8px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
     .doc-hub-links { grid-template-columns: 1fr; }
     .team-downloads { padding: 0 16px; }
     .team-downloads-card { border-radius: 14px; padding: 14px; }
   }
 </style>
 
-
-<style id="work2cash-wide-layout">
-  .sticky-inner,
-  main,
-  .footer-inner,
-  .doc-hub-nav,
-  .team-downloads,
-  .cover-inner,
-  footer > div {
-    width: 90%;
-    max-width: none;
-  }
-  @media (max-width: 900px) {
-    .sticky-inner,
-    main,
-    .footer-inner,
-    .doc-hub-nav,
-    .team-downloads,
-    .cover-inner,
-    footer > div {
-      width: 100%;
-    }
-  }
-</style>
 <nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
   <div class="doc-hub-card">
     <div class="doc-hub-top">
@@ -376,7 +350,7 @@
       </div>
     </div>
     <div class="doc-hub-links">
-      <a href="./main-enterprise-architecture-v1.html">Main Enterprise Architecture v1</a><a href="./screen-to-feature-map-v1.html">Screen To Feature Map</a><a href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a href="./flow-alignment-review-v1.html">Flow Alignment Review v1</a><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a><a href="./api-socket-contract-specification-v1.html">API &amp; Socket Contract Specification v1</a><a href="./data-model-prisma-schema-planning-v1.html">Data Model &amp; Prisma Schema Planning v1</a><a href="./provider-integration-cost-control-v1.html">Provider Integration &amp; Cost Control v1</a><a href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html">Admin Build Plan v1</a><a href="./build-plan-backend-v1.html" aria-current="page">Backend Build Plan v1</a><a href="./qa-go-live-readiness-checklist-v1.html">QA / Go-Live Readiness Checklist v1</a>
+      <a href="Main Enterprise Architecture v1">Main Enterprise Architecture v1</a><a href="Screen To Feature Map v1">Screen To Feature Map</a><a href="Mobile Flow Catalogue v1">Mobile Flow Catalogue v1</a><a href="Admin Flow Catalogue v1">Admin Flow Catalogue v1</a><a href="Flow Alignment Review v1">Flow Alignment Review v1</a><a href="Legal & User-Facing Documents Pack v1">Legal &amp; User-Facing Documents Pack v1</a><a href="API & Socket Contract Specification v1">API &amp; Socket Contract Specification v1</a><a href="Data Model & Prisma Schema Planning v1">Data Model &amp; Prisma Schema Planning v1</a><a href="Provider Integration & Cost Control v1">Provider Integration &amp; Cost Control v1</a><a href="Mobile Build Plan v1">Mobile Build Plan v1</a><a href="Admin Build Plan v1">Admin Build Plan v1</a><a href="Backend Build Plan v1" aria-current="page">Backend Build Plan v1</a><a href="QA / Go-Live Readiness Checklist v1">QA / Go-Live Readiness Checklist v1</a>
     </div>
   </div>
 </nav>
@@ -384,10 +358,8 @@
 <section class="team-downloads" aria-label="Team Markdown downloads">
   <div class="team-downloads-card">
     <strong>Team Markdown Downloads</strong>
-    <p>Download these Markdown files for Codex or any AI agent. Start with AGENTS.md; it explains how the agent should use the files. Before asking for next steps, also download the active weekly execution pack below.</p>
+    <p>Download these Markdown files for Codex or any AI agent. Start with AGENTS.md; it explains how the agent should use the files.</p>
     <div class="team-downloads-links"><a href="./downloads/AGENTS.md" download>AGENTS.md Usage Guide</a><a href="./agent-md/work2cash-full-source-of-truth-v1.md" download>Full Project Markdown</a><a href="./downloads/backend-team-build-brief-v1.md" download>Backend Team Markdown Brief</a><a href="./downloads/shared-ai-agent-execution-rules-v1.md" download>Shared Execution Rules</a><a href="./agent-md/weeks/weekly-execution-index.md" download>Weekly Execution Index</a></div>
-    <p><strong>Required Weekly Execution Pack</strong> Download the current week Markdown and give it to your agent with the Backend Team Markdown Brief, Shared Execution Rules, Mobile Flow Catalogue and Full Project Markdown. For admin-facing backend work, also download Admin Flow Catalogue.</p>
-    <div class="team-downloads-links"><a href="./agent-md/weeks/week-01-foundation-identity.md" download>Week 1 - Foundation and Identity</a><a href="./agent-md/weeks/week-02-tasker-task-creation-payment.md" download>Week 2 - Tasker, Task Creation and Payment</a><a href="./agent-md/weeks/week-03-discovery-matching-execution-start.md" download>Week 3 - Discovery, Matching and Execution Start</a><a href="./agent-md/weeks/week-04-completion-finance-support.md" download>Week 4 - Completion, Finance and Support</a><a href="./agent-md/weeks/week-05-integration-recovery-full-flow-qa.md" download>Week 5 - Integration, Recovery and Full Flow QA</a><a href="./agent-md/weeks/week-06-hardening-security-performance.md" download>Week 6 - Hardening, Security and Performance</a><a href="./agent-md/weeks/week-07-release-candidate-operations-dry-run.md" download>Week 7 - Release Candidate and Operations Dry Run</a><a href="./agent-md/weeks/week-08-stabilization-freeze.md" download>Week 8 - Stabilization and Freeze</a></div>
   </div>
 </section>
 
@@ -456,7 +428,6 @@ Use case result
           <div class="eyebrow">Week 1</div>
           <h3>Week 1 - Foundation, Identity And Contract Availability</h3>
           <p><strong>Goal:</strong> Create the shared project foundations and unblock mobile/admin with stable auth, profile, PIN, session, admin auth and dashboard contracts.</p>
-          <p><strong>Required agent pack:</strong> <a href="./agent-md/weeks/week-01-foundation-identity.md" download>Week 1 - Foundation and Identity</a>. Download this weekly Markdown and give it to your agent before asking for next steps.</p>
           <p><strong>Week exit:</strong> Mobile can complete app entry/auth/profile shell; admin can enter protected dashboard shell; backend has stable response/error shapes and OpenAPI shell.</p>
           <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W1D1</td><td>Mon 6 Jul 2026</td><td>Repo foundation and contracts</td><td>Create NestJS hexagonal structure, Prisma baseline, response/error shapes, OpenAPI shell, health/version endpoints.</td><td>Unblocks mobile/admin scaffolding.</td><td>docs(backend): publish initial API contract shell</td></tr><tr><td>W1D2</td><td>Tue 7 Jul 2026</td><td>Auth contract stubs</td><td>Implement auth/profile/PIN/session DTOs and stub handlers with stable response shapes.</td><td>Unblocks mobile auth screens.</td><td>feat(auth): add auth contract stubs</td></tr><tr><td>W1D3</td><td>Wed 8 Jul 2026</td><td>Auth implementation</td><td>Implement register, login, OTP email-first/SMS fallback, refresh rotation, social auth adapter shell.</td><td>Supports mobile registration/login.</td><td>feat(auth): implement registration and login</td></tr><tr><td>W1D4</td><td>Thu 9 Jul 2026</td><td>Profile, mode, PIN, sessions</td><td>Implement /me, profile update, mode, PIN setup/verify/reset, device/session revoke.</td><td>Supports mobile profile/security.</td><td>feat(identity): implement profile pin and sessions</td></tr><tr><td>W1D5</td><td>Fri 10 Jul 2026</td><td>Admin auth and dashboard stubs</td><td>Implement admin auth/TOTP stubs, dashboard summary stub, RBAC model seed.</td><td>Unblocks admin shell.</td><td>feat(admin): add auth and dashboard stubs</td></tr></tbody></table></div>
         </article>
@@ -465,7 +436,6 @@ Use case result
           <div class="eyebrow">Week 2</div>
           <h3>Week 2 - Tasker Activation, Task Creation And Funding</h3>
           <p><strong>Goal:</strong> Build the flows that allow Taskers to become eligible and Task Owners to create, locate, upload proof for and fund tasks.</p>
-          <p><strong>Required agent pack:</strong> <a href="./agent-md/weeks/week-02-tasker-task-creation-payment.md" download>Week 2 - Tasker, Task Creation and Payment</a>. Download this weekly Markdown and give it to your agent before asking for next steps.</p>
           <p><strong>Week exit:</strong> Tasker activation/KYC, task catalog, task draft, location, media, payment intent and broadcast/direct offer contracts are usable on staging.</p>
           <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W2D1</td><td>Mon 13 Jul 2026</td><td>Tasker/KYC APIs</td><td>Implement TaskerProfile, KYC use cases, Smile ID adapter shell, KYC status and admin re-verification.</td><td>Unblocks mobile Tasker activation/admin KYC.</td><td>feat(kyc): implement tasker activation contracts</td></tr><tr><td>W2D2</td><td>Tue 14 Jul 2026</td><td>Catalog/task draft APIs</td><td>Implement categories/types, task draft, amount validation, required arrival time.</td><td>Unblocks mobile task creation.</td><td>feat(tasks): implement catalog and task draft</td></tr><tr><td>W2D3</td><td>Wed 15 Jul 2026</td><td>Location/media APIs</td><td>Implement geocode, pin confirmation, task site Nigeria validation, media signed upload/finalize.</td><td>Unblocks mobile location/proof.</td><td>feat(tasks): implement location and media contracts</td></tr><tr><td>W2D4</td><td>Thu 16 Jul 2026</td><td>Payment/escrow APIs</td><td>Implement payment intent, verify, Paystack/Moniepoint adapter shell, ProviderWebhookEvent, escrow creation.</td><td>Unblocks mobile funding.</td><td>feat(payments): implement payment and escrow foundation</td></tr><tr><td>W2D5</td><td>Fri 17 Jul 2026</td><td>Broadcast/direct offer APIs</td><td>Implement broadcast, favorites, direct offers, FCM notification job shell.</td><td>Unblocks mobile discovery/direct offer.</td><td>feat(matching): implement broadcast and direct offers</td></tr></tbody></table></div>
         </article>
@@ -474,7 +444,6 @@ Use case result
           <div class="eyebrow">Week 3</div>
           <h3>Week 3 - Discovery, Matching And Active Task Start</h3>
           <p><strong>Goal:</strong> Build public discovery, Tasker interest, Task Owner selection and the first half of active execution.</p>
-          <p><strong>Required agent pack:</strong> <a href="./agent-md/weeks/week-03-discovery-matching-execution-start.md" download>Week 3 - Discovery, Matching and Execution Start</a>. Download this weekly Markdown and give it to your agent before asking for next steps.</p>
           <p><strong>Week exit:</strong> A funded task can move from broadcast/direct offer through Tasker interest, Task Owner acceptance and active task start with chat/tracking foundations.</p>
           <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W3D1</td><td>Mon 20 Jul 2026</td><td>Discovery APIs</td><td>Implement Tasker task list, location filter, nearest-first sorting, limited public preview.</td><td>Unblocks mobile Tasker discovery.</td><td>feat(discovery): implement task browsing</td></tr><tr><td>W3D2</td><td>Tue 21 Jul 2026</td><td>Interest/accept APIs</td><td>Implement Tasker interest, arrival confirmation, direct offer accept/decline, eligibility guards.</td><td>Unblocks Tasker commitment.</td><td>feat(matching): implement tasker interest and acceptance</td></tr><tr><td>W3D3</td><td>Wed 22 Jul 2026</td><td>Candidate/selection APIs</td><td>Implement candidate list with ETA snapshots, Task Owner accept/reject, rejection logging.</td><td>Unblocks Task Owner selection.</td><td>feat(matching): implement candidate selection</td></tr><tr><td>W3D4</td><td>Thu 23 Jul 2026</td><td>Task execution state APIs</td><td>Implement start journey, arrived, begin, state guards and TaskStatusEvent.</td><td>Unblocks active task screen.</td><td>feat(tasks): implement execution state transitions</td></tr><tr><td>W3D5</td><td>Fri 24 Jul 2026</td><td>Socket/chat/tracking</td><td>Implement Socket.IO auth, task rooms, support rooms shell, tracking events, ETA guard, chat persistence queue.</td><td>Unblocks active task communication.</td><td>feat(socket): implement task chat and tracking</td></tr></tbody></table></div>
         </article>
@@ -483,7 +452,6 @@ Use case result
           <div class="eyebrow">Week 4</div>
           <h3>Week 4 - Completion, Exceptions, Trust And Finance</h3>
           <p><strong>Goal:</strong> Close the task lifecycle with completion, settlement, cancellation, no-show, reports, ratings, favorites, wallet, withdrawal and support.</p>
-          <p><strong>Required agent pack:</strong> <a href="./agent-md/weeks/week-04-completion-finance-support.md" download>Week 4 - Completion, Finance and Support</a>. Download this weekly Markdown and give it to your agent before asking for next steps.</p>
           <p><strong>Week exit:</strong> A task can finish cleanly or enter a governed exception path; affected wallet, payout, report and admin review states are visible.</p>
           <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W4D1</td><td>Mon 27 Jul 2026</td><td>Completion/settlement</td><td>Implement completion proof, request completion, confirm completion, commission snapshot, escrow release/hold.</td><td>Unblocks settlement.</td><td>feat(settlement): implement completion and escrow release</td></tr><tr><td>W4D2</td><td>Tue 28 Jul 2026</td><td>Cancellation/reports</td><td>Implement cancellation, no-show, reports, warning/strike, settlement hold use cases.</td><td>Unblocks exception flows/admin reports.</td><td>feat(risk): implement cancellation reports and penalties</td></tr><tr><td>W4D3</td><td>Wed 29 Jul 2026</td><td>Ratings/favorites/rebook</td><td>Implement ratings, review moderation foundation, favorite add/remove, rebook.</td><td>Unblocks retention flows.</td><td>feat(retention): implement ratings favorites and rebook</td></tr><tr><td>W4D4</td><td>Thu 30 Jul 2026</td><td>Wallet/withdrawal</td><td>Implement wallets, ledger, payout account, PIN-confirmed withdrawal, payout batch models.</td><td>Unblocks finance flows.</td><td>feat(finance): implement wallet and withdrawal</td></tr><tr><td>W4D5</td><td>Fri 31 Jul 2026</td><td>Support/emergency</td><td>Implement support sessions, emergency support, support socket completion, case linking.</td><td>Unblocks support flows/admin support.</td><td>feat(support): implement support and emergency</td></tr></tbody></table></div>
         </article>
@@ -492,7 +460,6 @@ Use case result
           <div class="eyebrow">Week 5</div>
           <h3>Week 5 - Operational Integration, Recovery And Full Flow QA</h3>
           <p><strong>Goal:</strong> Complete secondary flows, operational admin coverage, provider validation, recovery behavior and end-to-end flow QA.</p>
-          <p><strong>Required agent pack:</strong> <a href="./agent-md/weeks/week-05-integration-recovery-full-flow-qa.md" download>Week 5 - Integration, Recovery and Full Flow QA</a>. Download this weekly Markdown and give it to your agent before asking for next steps.</p>
           <p><strong>Week exit:</strong> All planned flows have working happy paths and documented exception paths on staging with defect lists by flow/module.</p>
           <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W5D1</td><td>Mon 3 Aug 2026</td><td>Admin operational APIs</td><td>Implement admin users, tasks, finance, reports, media, ratings, config APIs.</td><td>Unblocks admin complete modules.</td><td>feat(admin): implement operational APIs</td></tr><tr><td>W5D2</td><td>Tue 4 Aug 2026</td><td>Referral and notification APIs</td><td>Implement referral reward tracking, notifications list/read, announcements.</td><td>Unblocks mobile referral/admin announcements.</td><td>feat(growth): implement referral and notifications</td></tr><tr><td>W5D3</td><td>Wed 5 Aug 2026</td><td>Provider hardening</td><td>Validate Paystack, Moniepoint, Smile ID, Google Maps, Termii, FCM, Sentry, object storage in staging.</td><td>Unblocks provider QA.</td><td>fix(providers): harden staging integrations</td></tr><tr><td>W5D4</td><td>Thu 6 Aug 2026</td><td>Operations/monitoring</td><td>Implement use-case health, queue audit, provider request logs, metrics, backup status.</td><td>Unblocks admin monitoring.</td><td>feat(ops): implement use case health and monitoring</td></tr><tr><td>W5D5</td><td>Fri 7 Aug 2026</td><td>Integrated defect pass</td><td>Fix defects from mobile/admin full-flow QA, contract mismatches, state recovery issues.</td><td>All teams integration.</td><td>fix(integration): resolve full flow defects</td></tr></tbody></table></div>
         </article>
@@ -501,7 +468,6 @@ Use case result
           <div class="eyebrow">Week 6</div>
           <h3>Week 6 - Hardening, Security And Performance</h3>
           <p><strong>Goal:</strong> Fix integration defects, harden performance/security/provider behavior, improve recovery paths and close major technical gaps.</p>
-          <p><strong>Required agent pack:</strong> <a href="./agent-md/weeks/week-06-hardening-security-performance.md" download>Week 6 - Hardening, Security and Performance</a>. Download this weekly Markdown and give it to your agent before asking for next steps.</p>
           <p><strong>Week exit:</strong> Critical defects from Week 5 are resolved or owned, and core flows are stable enough for release-candidate preparation.</p>
           <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W6D1</td><td>Mon 10 Aug 2026</td><td>Security and idempotency hardening</td><td>Review auth, PIN, TOTP, webhooks, ledger idempotency, admin audit, rate limits.</td><td>Release hardening.</td><td>fix(security): harden auth webhooks and idempotency</td></tr><tr><td>W6D2</td><td>Tue 11 Aug 2026</td><td>Performance/load pass</td><td>Load test critical endpoints, socket rooms, queues, DB indexes, backup jobs.</td><td>Release performance.</td><td>perf(api): optimize critical flows</td></tr><tr><td>W6D3</td><td>Wed 12 Aug 2026</td><td>Provider recovery hardening</td><td>Harden payment/KYC/maps/FCM/media retry, timeout, reconciliation and status recovery paths.</td><td>Provider staging validation.</td><td>fix(providers): harden recovery paths</td></tr><tr><td>W6D4</td><td>Thu 13 Aug 2026</td><td>Security review fixes</td><td>Fix findings from webhook, PIN, TOTP, RBAC, media permission, masked-call and log-scrubbing review.</td><td>Security review.</td><td>fix(security): resolve privacy and access findings</td></tr><tr><td>W6D5</td><td>Fri 14 Aug 2026</td><td>Hardening review</td><td>Close major backend defects and produce release-candidate blocker list.</td><td>All backend modules.</td><td>chore(release): prepare backend blocker list</td></tr></tbody></table></div>
         </article>
@@ -510,7 +476,6 @@ Use case result
           <div class="eyebrow">Week 7</div>
           <h3>Week 7 - Release Candidate Preparation And Operational Dry Runs</h3>
           <p><strong>Goal:</strong> Prepare mobile, admin and backend release candidates while running provider, payout, monitoring, backup and support dry runs.</p>
-          <p><strong>Required agent pack:</strong> <a href="./agent-md/weeks/week-07-release-candidate-operations-dry-run.md" download>Week 7 - Release Candidate and Operations Dry Run</a>. Download this weekly Markdown and give it to your agent before asking for next steps.</p>
           <p><strong>Week exit:</strong> Release candidates are available on staging with provider validation evidence, backup restore proof and operational handover notes.</p>
           <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W7D1</td><td>Mon 17 Aug 2026</td><td>Release candidate backend preparation</td><td>Freeze API contracts, generate OpenAPI, migration notes and environment checklist.</td><td>Frontend RC prep.</td><td>chore(release): prepare backend release candidate</td></tr><tr><td>W7D2</td><td>Tue 18 Aug 2026</td><td>Backup and restore dry run</td><td>Run Postgres backup, object storage upload, restore to staging/temp database and evidence capture.</td><td>Backup storage configured.</td><td>chore(ops): prove backup restore flow</td></tr><tr><td>W7D3</td><td>Wed 19 Aug 2026</td><td>Payout and finance dry run</td><td>Run payout batch, ledger consistency, reconciliation, failed/partial transfer and disputed Tasker exclusion tests.</td><td>Finance provider staging.</td><td>test(finance): validate payout batch dry run</td></tr><tr><td>W7D4</td><td>Thu 20 Aug 2026</td><td>Provider validation report</td><td>Finalize Paystack, Moniepoint, Smile ID, Google Maps, Termii, FCM, Sentry, storage and Shorebird evidence.</td><td>All provider staging endpoints.</td><td>docs(providers): publish validation report</td></tr><tr><td>W7D5</td><td>Fri 21 Aug 2026</td><td>Backend release candidate</td><td>Tag backend release candidate and hand over to formal QA.</td><td>Stable staging.</td><td>chore(release): tag backend release candidate</td></tr></tbody></table></div>
         </article>
@@ -519,7 +484,6 @@ Use case result
           <div class="eyebrow">Week 8</div>
           <h3>Week 8 - Stabilization, Go-Live Rehearsal And Build Freeze</h3>
           <p><strong>Goal:</strong> Complete final defect pass, go-live rehearsal, documentation handover and controlled build freeze before formal testing starts.</p>
-          <p><strong>Required agent pack:</strong> <a href="./agent-md/weeks/week-08-stabilization-freeze.md" download>Week 8 - Stabilization and Freeze</a>. Download this weekly Markdown and give it to your agent before asking for next steps.</p>
           <p><strong>Week exit:</strong> Builds are frozen for the two-week testing window. Only blocker fixes are allowed after this point.</p>
           <div class="table-wrap"><table><thead><tr><th>Day</th><th>Date</th><th>Workstream</th><th>Execution Scope</th><th>Dependency</th><th>Commit / Output Rule</th></tr></thead><tbody><tr><td>W8D1</td><td>Mon 24 Aug 2026</td><td>Stabilization sprint</td><td>Apply approved release-candidate fixes only.</td><td>RC defect list.</td><td>fix(release): resolve approved rc defects</td></tr><tr><td>W8D2</td><td>Tue 25 Aug 2026</td><td>Final backend defect pass</td><td>Re-test fixed defects, run migrations, queues, sockets, webhooks and financial consistency checks.</td><td>Stable staging.</td><td>test(release): verify backend critical paths</td></tr><tr><td>W8D3</td><td>Wed 26 Aug 2026</td><td>Go-live rehearsal</td><td>Run production-style deployment rehearsal, rollback rehearsal, backup restore proof and provider smoke tests.</td><td>Production-like staging.</td><td>chore(release): run go live rehearsal</td></tr><tr><td>W8D4</td><td>Thu 27 Aug 2026</td><td>Backend handover</td><td>Finalize runbooks, env checklist, provider escalation notes, monitoring alerts and support handover.</td><td>Final docs.</td><td>docs(ops): finalize backend handover</td></tr><tr><td>W8D5</td><td>Fri 28 Aug 2026</td><td>Backend build freeze</td><td>Freeze backend build for formal testing weeks.</td><td>Stable staging.</td><td>chore(release): freeze backend build</td></tr></tbody></table></div>
         </article>
@@ -575,7 +539,7 @@ Commit message:</pre></div>
     <div class="footer-inner">
       <div><h4>Work2Cash</h4><p>Backend Build Execution Plan v1 for Codex and AI-agent execution.</p></div>
       <div><h4>Portal Page</h4><p><code>Backend Build Plan v1</code></p></div>
-      <div><h4>Guard Requirement</h4><p>Protected HTML document pages must include the documentation auth guard script before closing body.</p></div>
+      <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
     </div>
   </footer>
 </body>

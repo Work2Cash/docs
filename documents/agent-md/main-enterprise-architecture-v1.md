@@ -1,8 +1,9 @@
 # Main Enterprise Architecture v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `main-enterprise-architecture-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Main Enterprise Architecture v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -1057,7 +1058,7 @@ The infrastructure strategy prioritizes low fixed cost, self-hosting, provider a
 
 **Production Strategy**
 
-Use Hetzner first for production because of cost. If Nigerian latency or routing is unacceptable after testing, move the app and data servers together to DigitalOcean London/Frankfurt.
+Use Contabo for lean staging and Hetzner first for production because of cost. If Nigerian latency or routing is unacceptable after testing, move the app and data servers together to DigitalOcean London/Frankfurt.
 
 </div>
 
@@ -1065,8 +1066,8 @@ Use Hetzner first for production because of cost. If Nigerian latency or routing
 
 | Environment                | Provider / Plan                                                               | Monthly USD | Monthly NGN @ ₦1,600/\$ | Yearly NGN            |
 |----------------------------|-------------------------------------------------------------------------------|-------------|-------------------------|-----------------------|
-| Staging                    | Hetzner CX33 - 4 vCPU, 8GB RAM, 80GB SSD                                      | \$10.59     | ₦16,944                 | ₦203,328              |
-| Staging + optional storage | CX33 + \$5 storage                                                            | \$15.59     | ₦24,944                 | ₦299,328              |
+| Staging                    | Contabo staging VPS baseline - verify current plan and pricing before provisioning | TBD          | TBD                    | TBD                   |
+| Staging + optional storage | Contabo staging VPS plus object/storage add-on if needed                         | TBD          | TBD                    | TBD                   |
 | Production Primary         | Hetzner CX43 app + CX43 data + CX23 monitoring + \$5 storage                  | \$50.27     | ₦80,432                 | ₦965,184              |
 | Production Budget Buffer   | Primary production target buffer                                              | \$60-\$80   | ₦96,000-₦128,000        | ₦1,152,000-₦1,536,000 |
 | Production Fallback        | DigitalOcean 16GB/8vCPU app + 16GB/8vCPU data + 4GB/2vCPU monitoring + Spaces | \$221       | ₦353,600                | ₦4,243,200            |
@@ -1436,7 +1437,7 @@ This section records key architecture decisions, tradeoffs, unresolved items, an
 
 | Risk                    | Impact      | Mitigation                                                                                        |
 |-------------------------|-------------|---------------------------------------------------------------------------------------------------|
-| USD cost spikes         | High        | Batch paid APIs, use Hetzner first, track provider costs, guard Google Maps, monitor masked calls |
+| USD cost spikes         | High        | Batch paid APIs, use Contabo for lean staging, use Hetzner first for production, track provider costs, guard Google Maps, monitor masked calls |
 | Payment webhook failure | Critical    | Signature verification, webhook logs, reconciliation cron, backend-confirmed state                |
 | Wallet ledger mismatch  | Critical    | Append-only ledger, hourly checks, admin reason/audit for manual actions                          |
 | Identity fraud          | High        | Smile ID KYC, device/session monitoring, risk flags, admin review                                 |
@@ -1486,30 +1487,30 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 <div class="table-wrap">
 
-| Resource                              | Docs Portal Page / Link                                 | Purpose                                                                                                                     |
+| Resource                              | Portal Page                                 | Purpose                                                                                                                     |
 |---------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Main Enterprise Architecture v1       | documents/main-enterprise-architecture-v1.html        | Top-level source of truth for architecture, product, infrastructure, provider, security, timeline and governance decisions. |
-| Mobile Flow Catalogue v1              | documents/mobile-flow-catalogue-v1.html               | Closed mobile flows, subflows, dependencies, recovery paths and screen silhouettes.                                         |
-| Admin Flow Catalogue v1               | documents/admin-flow-catalogue-v1.html                | Closed admin web flows, dependencies, recovery paths and dashboard silhouettes.                                             |
-| Flow Alignment Review v1              | documents/flow-alignment-review-v1.html               | Comparison and decision tracker for Figma, mobile/admin flow catalogues and architecture alignment.                         |
-| Legal & User-Facing Documents Pack    | documents/legal_user_facing_documents_pack_v1.html    | Combined legal/user-facing pack. Separate /legal/... pages are not used for MVP docs publishing.                            |
-| API & Socket Contract Specification   | documents/api-socket-contract-specification-v1.html   | Planned contract document for REST, socket, webhook, events, queues and response shapes.                                    |
-| Data Model & Prisma Schema Planning   | documents/data-model-prisma-schema-planning-v1.html   | Planned entity, relationship, enum and migration planning document.                                                         |
-| Provider Integration & Cost Control   | documents/provider-integration-cost-control-v1.html   | Planned provider, hosting, pricing, cost guard and operations document.                                                     |
-| Build / Implementation Execution Plan | documents/build-implementation-execution-plan-v1.html | Planned team-by-team build timeline and execution tracker.                                                                  |
-| QA / Go-Live Readiness Checklist      | documents/qa-go-live-readiness-checklist-v1.html      | Planned QA, launch, rollback, provider validation and go-live checklist.                                                    |
+| Main Enterprise Architecture v1       | Main Enterprise Architecture v1        | Top-level source of truth for architecture, product, infrastructure, provider, security, timeline and governance decisions. |
+| Mobile Flow Catalogue v1              | Mobile Flow Catalogue v1               | Closed mobile flows, subflows, dependencies, recovery paths and screen silhouettes.                                         |
+| Admin Flow Catalogue v1               | Admin Flow Catalogue v1                | Closed admin web flows, dependencies, recovery paths and dashboard silhouettes.                                             |
+| Flow Alignment Review v1              | Flow Alignment Review v1               | Comparison and decision tracker for Figma, mobile/admin flow catalogues and architecture alignment.                         |
+| Legal & User-Facing Documents Pack    | Legal & User-Facing Documents Pack v1    | Combined legal/user-facing pack. Separate /legal/... pages are not used for MVP docs publishing.                            |
+| API & Socket Contract Specification   | API & Socket Contract Specification v1   | Planned contract document for REST, socket, webhook, events, queues and response shapes.                                    |
+| Data Model & Prisma Schema Planning   | Data Model & Prisma Schema Planning v1   | Planned entity, relationship, enum and migration planning document.                                                         |
+| Provider Integration & Cost Control   | Provider Integration & Cost Control v1   | Planned provider, hosting, pricing, cost guard and operations document.                                                     |
+| Build / Implementation Execution Plan | Build / Implementation Execution Plan v1 | Planned team-by-team build timeline and execution tracker.                                                                  |
+| QA / Go-Live Readiness Checklist      | QA / Go-Live Readiness Checklist v1      | Planned QA, launch, rollback, provider validation and go-live checklist.                                                    |
 
 </div>
 
 ### GitHub Documentation Governance
 
-- The `docs` project is the team-facing Work2Cash documentation portal.
+- Repository name: docs. It is the team-facing Work2Cash documentation portal.
 - GitHub Pages deploys through GitHub Actions from a clean \_site folder.
 - The deployment artifact should include index.html, documents/, assets/, and optional 404.html.
 - GitHub Pages source is GitHub Actions.
 - index.html is the password gate landing page. Protected documents use client-side auth guard only; this is soft protection, not server-side security.
 - Every protected HTML file under documents/ must include: `<script src="../assets/js/guard.js"></script>`.
-- scripts/apply.guard.js must recursively scan documents/ and fail deployment if a protected HTML file lacks guard.js.
+- scripts/apply.guard.js must recursively scan protected document pages and fail deployment if a protected HTML file lacks guard.js.
 - No secrets, API keys, production credentials, private user data, sensitive payment data, or confidential operational secrets should be stored in the documentation portal.
 - Documentation changes enter main through PRs. No direct push to main. Commits should be one clear documentation update at a time.
 
@@ -1523,7 +1524,7 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 | 2     | Mobile Flow Catalogue                        | Generated and aligned                   |
 | 3     | Admin Flow Catalogue                         | Generated and aligned                   |
 | 4     | Flow Alignment Review                        | Generated and resolved-decision tracker |
-| 5     | Legal & User-Facing Documents Pack           | Combined pack; publish under documents/ |
+| 5     | Legal & User-Facing Documents Pack           | Combined pack; publish as a protected document page |
 | 6     | API & Socket Contract Specification          | Planned                                 |
 | 7     | Data Model & Prisma Schema Planning Document | Planned                                 |
 | 8     | Provider Integration & Cost Control Document | Planned                                 |
@@ -1538,7 +1539,7 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 | Document                              | Location                                           | Publishing Rule                                                                                                                  |
 |---------------------------------------|----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| Legal & User-Facing Documents Pack v1 | documents/legal_user_facing_documents_pack_v1.html | Main architecture links to ./legal_user_facing_documents_pack_v1.html. Separate /legal/... pages are not published for MVP docs. |
+| Legal & User-Facing Documents Pack v1 | Legal & User-Facing Documents Pack v1 | Main architecture links to Legal & User-Facing Documents Pack v1. Separate /legal/... pages are not published for MVP docs. |
 
 </div>
 

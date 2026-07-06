@@ -2,17 +2,7 @@
 
 This file concatenates the AI-readable Markdown equivalents of the Work2Cash documentation set.
 
-Use it only when an agent needs broad project context. For implementation, prefer **AI Agent Start Here**, **Shared Execution Rules**, the relevant team brief and the relevant weekly pack downloaded from the documentation portal UI.
-
-## AI Context Guard
-
-If an agent receives this full source file without the active weekly execution pack, it must not give implementation steps yet. It should first ask the user to return to the documentation portal UI, open **Weekly Execution Packs**, and download the current week Markdown.
-
-For team-specific work, the agent should also ask for the relevant flow Markdown from its portal page using **Download agent Markdown**:
-
-- Mobile: **Mobile Flow Catalogue v1**
-- Admin: **Admin Flow Catalogue v1**
-- Backend: **Mobile Flow Catalogue v1**; for admin-facing backend work, also **Admin Flow Catalogue v1**
+Use it only when an agent needs broad project context. For implementation, prefer `ai-agent-start-here.md`, the shared execution rules, the relevant team brief and the relevant weekly pack.
 
 
 ---
@@ -22,9 +12,10 @@ For team-specific work, the agent should also ask for the relevant flow Markdown
 
 # Main Enterprise Architecture v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `main-enterprise-architecture-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Main Enterprise Architecture v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -1079,7 +1070,7 @@ The infrastructure strategy prioritizes low fixed cost, self-hosting, provider a
 
 **Production Strategy**
 
-Use Hetzner first for production because of cost. If Nigerian latency or routing is unacceptable after testing, move the app and data servers together to DigitalOcean London/Frankfurt.
+Use Contabo for lean staging and Hetzner first for production because of cost. If Nigerian latency or routing is unacceptable after testing, move the app and data servers together to DigitalOcean London/Frankfurt.
 
 </div>
 
@@ -1087,8 +1078,8 @@ Use Hetzner first for production because of cost. If Nigerian latency or routing
 
 | Environment                | Provider / Plan                                                               | Monthly USD | Monthly NGN @ ₦1,600/\$ | Yearly NGN            |
 |----------------------------|-------------------------------------------------------------------------------|-------------|-------------------------|-----------------------|
-| Staging                    | Hetzner CX33 - 4 vCPU, 8GB RAM, 80GB SSD                                      | \$10.59     | ₦16,944                 | ₦203,328              |
-| Staging + optional storage | CX33 + \$5 storage                                                            | \$15.59     | ₦24,944                 | ₦299,328              |
+| Staging                    | Contabo staging VPS baseline - verify current plan and pricing before provisioning | TBD          | TBD                    | TBD                   |
+| Staging + optional storage | Contabo staging VPS plus object/storage add-on if needed                         | TBD          | TBD                    | TBD                   |
 | Production Primary         | Hetzner CX43 app + CX43 data + CX23 monitoring + \$5 storage                  | \$50.27     | ₦80,432                 | ₦965,184              |
 | Production Budget Buffer   | Primary production target buffer                                              | \$60-\$80   | ₦96,000-₦128,000        | ₦1,152,000-₦1,536,000 |
 | Production Fallback        | DigitalOcean 16GB/8vCPU app + 16GB/8vCPU data + 4GB/2vCPU monitoring + Spaces | \$221       | ₦353,600                | ₦4,243,200            |
@@ -1458,7 +1449,7 @@ This section records key architecture decisions, tradeoffs, unresolved items, an
 
 | Risk                    | Impact      | Mitigation                                                                                        |
 |-------------------------|-------------|---------------------------------------------------------------------------------------------------|
-| USD cost spikes         | High        | Batch paid APIs, use Hetzner first, track provider costs, guard Google Maps, monitor masked calls |
+| USD cost spikes         | High        | Batch paid APIs, use Contabo for lean staging, use Hetzner first for production, track provider costs, guard Google Maps, monitor masked calls |
 | Payment webhook failure | Critical    | Signature verification, webhook logs, reconciliation cron, backend-confirmed state                |
 | Wallet ledger mismatch  | Critical    | Append-only ledger, hourly checks, admin reason/audit for manual actions                          |
 | Identity fraud          | High        | Smile ID KYC, device/session monitoring, risk flags, admin review                                 |
@@ -1508,30 +1499,30 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 <div class="table-wrap">
 
-| Resource                              | Docs Portal Page / Link                                 | Purpose                                                                                                                     |
+| Resource                              | Portal Page                                 | Purpose                                                                                                                     |
 |---------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Main Enterprise Architecture v1       | documents/main-enterprise-architecture-v1.html        | Top-level source of truth for architecture, product, infrastructure, provider, security, timeline and governance decisions. |
-| Mobile Flow Catalogue v1              | documents/mobile-flow-catalogue-v1.html               | Closed mobile flows, subflows, dependencies, recovery paths and screen silhouettes.                                         |
-| Admin Flow Catalogue v1               | documents/admin-flow-catalogue-v1.html                | Closed admin web flows, dependencies, recovery paths and dashboard silhouettes.                                             |
-| Flow Alignment Review v1              | documents/flow-alignment-review-v1.html               | Comparison and decision tracker for Figma, mobile/admin flow catalogues and architecture alignment.                         |
-| Legal & User-Facing Documents Pack    | documents/legal_user_facing_documents_pack_v1.html    | Combined legal/user-facing pack. Separate /legal/... pages are not used for MVP docs publishing.                            |
-| API & Socket Contract Specification   | documents/api-socket-contract-specification-v1.html   | Planned contract document for REST, socket, webhook, events, queues and response shapes.                                    |
-| Data Model & Prisma Schema Planning   | documents/data-model-prisma-schema-planning-v1.html   | Planned entity, relationship, enum and migration planning document.                                                         |
-| Provider Integration & Cost Control   | documents/provider-integration-cost-control-v1.html   | Planned provider, hosting, pricing, cost guard and operations document.                                                     |
-| Build / Implementation Execution Plan | documents/build-implementation-execution-plan-v1.html | Planned team-by-team build timeline and execution tracker.                                                                  |
-| QA / Go-Live Readiness Checklist      | documents/qa-go-live-readiness-checklist-v1.html      | Planned QA, launch, rollback, provider validation and go-live checklist.                                                    |
+| Main Enterprise Architecture v1       | Main Enterprise Architecture v1        | Top-level source of truth for architecture, product, infrastructure, provider, security, timeline and governance decisions. |
+| Mobile Flow Catalogue v1              | Mobile Flow Catalogue v1               | Closed mobile flows, subflows, dependencies, recovery paths and screen silhouettes.                                         |
+| Admin Flow Catalogue v1               | Admin Flow Catalogue v1                | Closed admin web flows, dependencies, recovery paths and dashboard silhouettes.                                             |
+| Flow Alignment Review v1              | Flow Alignment Review v1               | Comparison and decision tracker for Figma, mobile/admin flow catalogues and architecture alignment.                         |
+| Legal & User-Facing Documents Pack    | Legal & User-Facing Documents Pack v1    | Combined legal/user-facing pack. Separate /legal/... pages are not used for MVP docs publishing.                            |
+| API & Socket Contract Specification   | API & Socket Contract Specification v1   | Planned contract document for REST, socket, webhook, events, queues and response shapes.                                    |
+| Data Model & Prisma Schema Planning   | Data Model & Prisma Schema Planning v1   | Planned entity, relationship, enum and migration planning document.                                                         |
+| Provider Integration & Cost Control   | Provider Integration & Cost Control v1   | Planned provider, hosting, pricing, cost guard and operations document.                                                     |
+| Build / Implementation Execution Plan | Build / Implementation Execution Plan v1 | Planned team-by-team build timeline and execution tracker.                                                                  |
+| QA / Go-Live Readiness Checklist      | QA / Go-Live Readiness Checklist v1      | Planned QA, launch, rollback, provider validation and go-live checklist.                                                    |
 
 </div>
 
 ### GitHub Documentation Governance
 
-- The `docs` project is the team-facing Work2Cash documentation portal.
+- Repository name: docs. It is the team-facing Work2Cash documentation portal.
 - GitHub Pages deploys through GitHub Actions from a clean \_site folder.
 - The deployment artifact should include index.html, documents/, assets/, and optional 404.html.
 - GitHub Pages source is GitHub Actions.
 - index.html is the password gate landing page. Protected documents use client-side auth guard only; this is soft protection, not server-side security.
 - Every protected HTML file under documents/ must include: `<script src="../assets/js/guard.js"></script>`.
-- scripts/apply.guard.js must recursively scan documents/ and fail deployment if a protected HTML file lacks guard.js.
+- scripts/apply.guard.js must recursively scan protected document pages and fail deployment if a protected HTML file lacks guard.js.
 - No secrets, API keys, production credentials, private user data, sensitive payment data, or confidential operational secrets should be stored in the documentation portal.
 - Documentation changes enter main through PRs. No direct push to main. Commits should be one clear documentation update at a time.
 
@@ -1545,7 +1536,7 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 | 2     | Mobile Flow Catalogue                        | Generated and aligned                   |
 | 3     | Admin Flow Catalogue                         | Generated and aligned                   |
 | 4     | Flow Alignment Review                        | Generated and resolved-decision tracker |
-| 5     | Legal & User-Facing Documents Pack           | Combined pack; publish under documents/ |
+| 5     | Legal & User-Facing Documents Pack           | Combined pack; publish as a protected document page |
 | 6     | API & Socket Contract Specification          | Planned                                 |
 | 7     | Data Model & Prisma Schema Planning Document | Planned                                 |
 | 8     | Provider Integration & Cost Control Document | Planned                                 |
@@ -1560,7 +1551,7 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 | Document                              | Location                                           | Publishing Rule                                                                                                                  |
 |---------------------------------------|----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| Legal & User-Facing Documents Pack v1 | documents/legal_user_facing_documents_pack_v1.html | Main architecture links to ./legal_user_facing_documents_pack_v1.html. Separate /legal/... pages are not published for MVP docs. |
+| Legal & User-Facing Documents Pack v1 | Legal & User-Facing Documents Pack v1 | Main architecture links to Legal & User-Facing Documents Pack v1. Separate /legal/... pages are not published for MVP docs. |
 
 </div>
 
@@ -1644,9 +1635,10 @@ HTML master architecture draft. Legal pack regeneration comes after architecture
 
 # Screen To Feature Map
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `screen-to-feature-map-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Screen To Feature Map v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="cover">
 
@@ -2533,9 +2525,10 @@ Prepared for Work2Cash product and engineering handover Standalone HTML document
 
 # Mobile Flow Catalogue v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `mobile-flow-catalogue-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Mobile Flow Catalogue v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -2617,7 +2610,7 @@ Prepared for Work2Cash team-facing documentation.
 
 <div>
 
-Portal page: Mobile Flow Catalogue v1.
+Portal page: `Mobile Flow Catalogue v1`.
 
 </div>
 
@@ -15620,7 +15613,7 @@ This expands the Main Enterprise Architecture v1 document and should be linked f
 
 #### Security
 
-For GitHub Pages docs, include `../assets/js/guard.js` when publishing under `documents/`.
+For GitHub Pages docs, include `../assets/js/guard.js` when publishing under the protected documents section.
 
 </div>
 
@@ -15634,9 +15627,10 @@ For GitHub Pages docs, include `../assets/js/guard.js` when publishing under `do
 
 # Admin Flow Catalogue v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `admin-flow-catalogue-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Admin Flow Catalogue v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -15706,7 +15700,7 @@ Version**1.0**
 
 <div class="cover-foot">
 
-Portal page: Admin Flow Catalogue v1. Protected docs pages must include `guard.js`.
+Portal page: `Admin Flow Catalogue v1` Protected docs pages must include `guard.js`
 
 </div>
 
@@ -25850,7 +25844,7 @@ High-risk changes require reason, permission, and traceable audit records.
 
 **Publishing Rule**
 
-When this page is published in the documentation portal, keep the auth guard script included.
+When this file is added to the documentation portal, place it under Admin Flow Catalogue v1 and keep the auth guard script included.
 
 </div>
 
@@ -25880,7 +25874,7 @@ Admin dashboard only. Mobile flows remain in the separate mobile flow catalogue.
 
 #### Security Note
 
-Do not place secrets, API keys, production credentials or private user data inside the public documentation portal.
+Do not place secrets, API keys, production credentials or private user data inside the documentation portalsitory.
 
 </div>
 
@@ -25894,9 +25888,10 @@ Do not place secrets, API keys, production credentials or private user data insi
 
 # Flow Alignment Review v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `flow-alignment-review-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Flow Alignment Review v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -25982,7 +25977,7 @@ These are corrections needed in the main architecture document so it stays align
 | Priority                                     | Finding                                                   | Evidence                                                                                                                                        | Required Correction                                                                                                                                 |
 |----------------------------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | <span class="badge green">Resolved</span>    | Main architecture ETA guard corrected.                    | Old 10+ minutes / 25% rule has been replaced.                                                                                                   | Main architecture now uses the ETA Cost Guard: 5-minute guard plus next 10% total-journey milestone, then reset timer/milestone after refresh.      |
-| <span class="badge green">Resolved</span>    | Main architecture legal publishing corrected.             | Separate /legal/... page list has been removed from the source-of-truth appendix.                                                               | Main architecture now points to the combined legal pack at documents/legal_user_facing_documents_pack_v1.html.                                      |
+| <span class="badge green">Resolved</span>    | Main architecture legal publishing corrected.             | Separate /legal/... page list has been removed from the source-of-truth appendix.                                                               | Main architecture now points to the combined legal pack at Legal & User-Facing Documents Pack v1.                                      |
 | <span class="badge green">Resolved</span>    | Main architecture documentation governance added.         | GitHub documentation portal setup, soft password gate, auth guard, guard checker, PR governance and resource links are now included.                       | Main architecture now lists the team-facing resource paths for generated and planned documents.                                                     |
 | <span class="badge green">Resolved</span>    | Hetzner source wording corrected.                         | Screenshot-baseline wording has been removed.                                                                                                   | Main architecture now states the pricing baseline is confirmed from Hetzner official source while still requiring revalidation before provisioning. |
 | <span class="badge amber">Open Design</span> | Figma category names differ from accepted category names. | Figma uses Home-Based, Compound/Outdoor, Office/Shop, Short Term Support/Event Support. Accepted categories are Home, Errands, Office, Support. | Treat Figma labels as visual references only. Product copy and admin catalog should use Home, Errands, Office, Support.                             |
@@ -26091,7 +26086,7 @@ Update the flow catalogues first, then update Figma copy/screens to match the ac
 
 <div>
 
-Recommended documentation portal page: Flow Alignment Review v1
+Portal page: `Flow Alignment Review v1`
 
 </div>
 
@@ -26103,9 +26098,10 @@ Recommended documentation portal page: Flow Alignment Review v1
 
 # Legal & User-Facing Documents Pack v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `legal_user_facing_documents_pack_v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Legal & User-Facing Documents Pack v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -26754,9 +26750,10 @@ Work2Cash Legal & User-Facing Documents Draft - Prepared for Traceworka - Draft 
 
 # API & Socket Contract Specification v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `api-socket-contract-specification-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.API & Socket Contract Specification v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -27023,7 +27020,7 @@ Work2Cash separates API and Socket domains so traffic can scale independently wh
 | Production  | API           | `https://api.work2cash.ng`            | REST API for mobile, admin, webhooks where provider allows. | Primary durable contract surface.               |
 | Production  | Admin         | `https://admin.work2cash.ng`          | Next.js admin dashboard.                                    | Admin TOTP and RBAC required.                   |
 | Production  | Socket        | `https://socket.work2cash.ng`         | Socket.IO gateway for real-time features.                   | Uses token auth and Valkey adapter when scaled. |
-| Staging     | Website/Admin | `https://staging.work2cash.ng`        | Staging web/admin surface.                                  | Ultra-lean Hetzner staging path.                |
+| Staging     | Website/Admin | `https://staging.work2cash.ng`        | Staging web/admin surface.                                  | Ultra-lean Contabo staging path; plan and pricing must be revalidated before provisioning.                |
 | Staging     | API           | `https://api-staging.work2cash.ng`    | Staging REST API.                                           | Used by staging mobile/admin builds.            |
 | Staging     | Socket        | `https://socket-staging.work2cash.ng` | Staging Socket.IO gateway.                                  | Used by staging mobile/admin builds.            |
 
@@ -28170,9 +28167,9 @@ API & Socket Contract Specification v1 for the team-facing documentation portal.
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**API & Socket Contract Specification v1** in the documentation portal
+`API & Socket Contract Specification v1`
 
 </div>
 
@@ -28194,9 +28191,10 @@ Protected HTML documents must include the documentation auth guard script before
 
 # Data Model & Prisma Schema Planning v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `data-model-prisma-schema-planning-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Data Model & Prisma Schema Planning v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -29514,9 +29512,9 @@ Checklist
 
 <div class="callout green">
 
-**Portal publication note**
+**Portal publication**
 
-Publish this document as **Data Model & Prisma Schema Planning v1** in the Work2Cash documentation portal and link it from the main architecture resource list.
+Publish this document as `Data Model & Prisma Schema Planning v1` in the Work2Cash documentation portalsitory and link it from the main architecture resource list. The file name can retain planning for continuity, but the document content is now the execution baseline.
 
 </div>
 
@@ -29536,9 +29534,9 @@ Data Model & Prisma Schema Execution Baseline v1 for backend, mobile, admin, QA 
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**Data Model & Prisma Schema Planning v1** in the documentation portal
+`Data Model & Prisma Schema Planning v1`
 
 </div>
 
@@ -29560,9 +29558,10 @@ Protected HTML documents must include the documentation auth guard script before
 
 # Provider Integration & Cost Control v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `provider-integration-cost-control-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Provider Integration & Cost Control v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -29644,7 +29643,7 @@ Payments**Paystack + Moniepoint**
 
 <div class="meta-card">
 
-Hosting**Hetzner First**
+Hosting**Contabo Staging / Hetzner Production**
 
 </div>
 
@@ -29866,7 +29865,7 @@ Registry
 | Masked Calls           | Africa's Talking                             | Secondary candidate for masked calls.                        | Fallback voice masking candidate.                                                          | Candidate to validate                 | Confirm Nigeria number support and proxy dial-in feasibility.                                                                |
 | Masked Calls           | Vonage                                       | Fallback masked call provider.                               | Fallback if local candidates fail.                                                         | Fallback                              | Do not depend on it until Nigeria voice-capable number support is verified.                                                  |
 | Masked Calls           | Sinch                                        | Enterprise fallback.                                         | Fallback if scale/compliance requires enterprise provider.                                 | Fallback                              | Likely higher-cost path; validate only if needed.                                                                            |
-| Hosting                | Hetzner                                      | First-choice production and staging hosting path.            | Self-host NestJS, Postgres, Valkey, BullMQ, monitoring stack where selected.               | First-choice infrastructure           | Latency must be measured from Nigeria before final production commitment.                                                    |
+| Hosting                | Hetzner                                      | First-choice production hosting path. Contabo is the staging baseline.            | Self-host NestJS, Postgres, Valkey, BullMQ, monitoring stack where selected.               | First-choice infrastructure           | Latency must be measured from Nigeria before final production commitment.                                                    |
 | Hosting                | DigitalOcean                                 | Production fallback if Hetzner latency becomes unacceptable. | Alternative app/data/monitoring server setup and Spaces/S3-compatible storage.             | Fallback infrastructure               | Keep migration plan ready and object storage compatible.                                                                     |
 | Object/Backup Storage  | DigitalOcean Spaces or S3-compatible storage | Media, backup and export storage.                            | Task proof media, backups, generated exports.                                              | Active option                         | Use signed URLs, lifecycle policies and backup restore tests.                                                                |
 | Domain                 | WhoGoHost                                    | Domain registrar for work2cash.ng.                           | Domain purchase and DNS ownership.                                                         | Active provider                       | Domain baseline: NGN 9,200 + 7.5% VAT = NGN 9,890 excluding bank transfer/payment charges.                                   |
@@ -30128,7 +30127,7 @@ The table below captures Work2Cash budgeting assumptions. Any external provider 
 |--------------------------|---------------------------------------------------|---------------------------------------------------------------------------|
 | Exchange rate assumption | USD 1 = NGN 1,600                                 | Project budgeting baseline. Revalidate before payments/provisioning.      |
 | Domain                   | NGN 9,200 + 7.5% VAT = NGN 9,890                  | WhoGoHost baseline excluding bank transfer/payment charges.               |
-| Staging hosting          | Hetzner CX33 baseline from project source         | 4 vCPU, 8GB RAM, 80GB SSD. Revalidate before provisioning.                |
+| Staging hosting          | Contabo staging VPS baseline from project source         | Staging VPS sizing and pricing must be revalidated before provisioning.                |
 | Production first choice  | Hetzner self-hosted production                    | Selected for cost; latency from Nigeria must be measured.                 |
 | Production fallback      | DigitalOcean multi-server production              | Use if Hetzner latency or operational risk becomes unacceptable.          |
 | Production budget buffer | USD 60-80 monthly buffer                          | Infrastructure/provider overage buffer from architecture baseline.        |
@@ -30315,9 +30314,9 @@ Checklist
 
 <div class="callout green">
 
-**Portal publication note**
+**Portal publication**
 
-Publish this document as **Provider Integration & Cost Control v1** in the Work2Cash documentation portal and link it from the main architecture resource list.
+Publish this document as `Provider Integration & Cost Control v1` in the Work2Cash documentation portalsitory and link it from the main architecture resource list.
 
 </div>
 
@@ -30337,9 +30336,9 @@ Provider Integration & Cost Control v1 for execution across backend, mobile, adm
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**Provider Integration & Cost Control v1** in the documentation portal
+`Provider Integration & Cost Control v1`
 
 </div>
 
@@ -30361,9 +30360,10 @@ Protected HTML documents must include the documentation auth guard script before
 
 # Mobile Build Plan v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `build-plan-mobile-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Mobile Build Plan v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -31012,9 +31012,9 @@ Mobile Build Execution Plan v1 for Codex and AI-agent execution.
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**Mobile Build Plan v1** in the documentation portal
+`Mobile Build Plan v1`
 
 </div>
 
@@ -31036,9 +31036,10 @@ Protected HTML documents must include the documentation auth guard script before
 
 # Admin Build Plan v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `build-plan-admin-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Admin Build Plan v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -31656,9 +31657,9 @@ Admin Build Execution Plan v1 for Codex and AI-agent execution.
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**Admin Build Plan v1** in the documentation portal
+`Admin Build Plan v1`
 
 </div>
 
@@ -31680,9 +31681,10 @@ Protected HTML documents must include the documentation auth guard script before
 
 # Backend Build Plan v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `build-plan-backend-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Backend Build Plan v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -32001,7 +32003,7 @@ Week 1
 
 | Day  | Date            | Workstream                     | Execution Scope                                                                                                     | Dependency                          | Commit / Output Rule                               |
 |------|-----------------|--------------------------------|---------------------------------------------------------------------------------------------------------------------|-------------------------------------|----------------------------------------------------|
-| W1D1 | Mon 6 Jul 2026  | Project foundation and contracts  | Create NestJS hexagonal structure, Prisma baseline, response/error shapes, OpenAPI shell, health/version endpoints. | Unblocks mobile/admin scaffolding.  | docs(backend): publish initial API contract shell  |
+| W1D1 | Mon 6 Jul 2026  | Repo foundation and contracts  | Create NestJS hexagonal structure, Prisma baseline, response/error shapes, OpenAPI shell, health/version endpoints. | Unblocks mobile/admin scaffolding.  | docs(backend): publish initial API contract shell  |
 | W1D2 | Tue 7 Jul 2026  | Auth contract stubs            | Implement auth/profile/PIN/session DTOs and stub handlers with stable response shapes.                              | Unblocks mobile auth screens.       | feat(auth): add auth contract stubs                |
 | W1D3 | Wed 8 Jul 2026  | Auth implementation            | Implement register, login, OTP email-first/SMS fallback, refresh rotation, social auth adapter shell.               | Supports mobile registration/login. | feat(auth): implement registration and login       |
 | W1D4 | Thu 9 Jul 2026  | Profile, mode, PIN, sessions   | Implement /me, profile update, mode, PIN setup/verify/reset, device/session revoke.                                 | Supports mobile profile/security.   | feat(identity): implement profile pin and sessions |
@@ -32317,9 +32319,9 @@ Backend Build Execution Plan v1 for Codex and AI-agent execution.
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**Backend Build Plan v1** in the documentation portal
+`Backend Build Plan v1`
 
 </div>
 
@@ -32341,9 +32343,10 @@ Protected HTML documents must include the documentation auth guard script before
 
 # QA / Go-Live Readiness Checklist v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `qa-go-live-readiness-checklist-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.QA / Go-Live Readiness Checklist v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -32425,7 +32428,7 @@ Go-Live Target**14 Sep 2026**
 
 <div class="meta-card">
 
-Portal Page**documents/qa-go-live-readiness-checklist-v1.html**
+Portal Page**QA / Go-Live Readiness Checklist v1**
 
 </div>
 
@@ -32513,17 +32516,17 @@ QA must trace every acceptance decision back to the source documents. If product
 
 | Document                               | Portal Page                                           | QA Use                                                            |
 |----------------------------------------|-----------------------------------------------------|-------------------------------------------------------------------|
-| Main Enterprise Architecture v1        | documents/main-enterprise-architecture-v1.html      | Top-level source of truth.                                        |
-| Mobile Flow Catalogue v1               | documents/mobile-flow-catalogue-v1.html             | Closed mobile flows and recovery subflows.                        |
-| Admin Flow Catalogue v1                | documents/admin-flow-catalogue-v1.html              | Closed admin web flows and operational dependencies.              |
-| Flow Alignment Review v1               | documents/flow-alignment-review-v1.html             | Alignment decisions across Figma, mobile, admin and architecture. |
-| Legal & User-Facing Documents Pack v1  | documents/legal_user_facing_documents_pack_v1.html  | Combined user-facing policy pack.                                 |
-| API & Socket Contract Specification v1 | documents/api-socket-contract-specification-v1.html | REST, socket, webhook, queue and response contracts.              |
-| Data Model & Prisma Schema Planning v1 | documents/data-model-prisma-schema-planning-v1.html | Data model and schema execution baseline.                         |
-| Provider Integration & Cost Control v1 | documents/provider-integration-cost-control-v1.html | Provider adapters, webhooks, costs and go-live validations.       |
-| Mobile Build Plan v1                   | documents/build-plan-mobile-v1.html                 | Mobile-led implementation order.                                  |
-| Admin Build Plan v1                    | documents/build-plan-admin-v1.html                  | Admin execution plan following mobile outcomes.                   |
-| Backend Build Plan v1                  | documents/build-plan-backend-v1.html                | Backend execution plan following mobile needs.                    |
+| Main Enterprise Architecture v1        | Main Enterprise Architecture v1      | Top-level source of truth.                                        |
+| Mobile Flow Catalogue v1               | Mobile Flow Catalogue v1             | Closed mobile flows and recovery subflows.                        |
+| Admin Flow Catalogue v1                | Admin Flow Catalogue v1              | Closed admin web flows and operational dependencies.              |
+| Flow Alignment Review v1               | Flow Alignment Review v1             | Alignment decisions across Figma, mobile, admin and architecture. |
+| Legal & User-Facing Documents Pack v1  | Legal & User-Facing Documents Pack v1  | Combined user-facing policy pack.                                 |
+| API & Socket Contract Specification v1 | API & Socket Contract Specification v1 | REST, socket, webhook, queue and response contracts.              |
+| Data Model & Prisma Schema Planning v1 | Data Model & Prisma Schema Planning v1 | Data model and schema execution baseline.                         |
+| Provider Integration & Cost Control v1 | Provider Integration & Cost Control v1 | Provider adapters, webhooks, costs and go-live validations.       |
+| Mobile Build Plan v1                   | Mobile Build Plan v1                 | Mobile-led implementation order.                                  |
+| Admin Build Plan v1                    | Admin Build Plan v1                  | Admin execution plan following mobile outcomes.                   |
+| Backend Build Plan v1                  | Backend Build Plan v1                | Backend execution plan following mobile needs.                    |
 
 </div>
 
@@ -33317,9 +33320,9 @@ QA / Go-Live Readiness Checklist v1 for final launch acceptance.
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**QA Go-Live Readiness Checklist v1** in the documentation portal
+`QA / Go-Live Readiness Checklist v1`
 
 </div>
 

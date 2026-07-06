@@ -15,12 +15,12 @@ Use these files for focused implementation context. Each weekly pack includes th
 
 ## How To Use With An Agent
 
-Download these from the documentation portal UI and give them to the agent:
+Give the agent:
 
-1. **AGENTS.md Usage Guide** from Team Markdown Downloads.
-2. **Shared Execution Rules** from Team Markdown Downloads.
-3. The relevant team brief from Team Markdown Downloads.
-4. The relevant weekly pack from **Weekly Execution Packs**.
-5. The specific source document downloaded from its portal page.
+1. `documents/downloads/AGENTS.md`
+2. `documents/downloads/shared-ai-agent-execution-rules-v1.md`
+3. The relevant team brief
+4. The relevant weekly pack from this folder
+5. The specific source document needed for the task
 
 Do not use the full source-of-truth Markdown unless the task needs broad cross-document context.
