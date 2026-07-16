@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="KYC Review Contract Group — Work2Cash Phase 1 documentation pilot.">
+  <title>CONTRACT-KYC-REVIEW — KYC Review Contract Group | Work2Cash Docs</title>
+  <link rel="stylesheet" href="../../../assets/css/pilot-docs.css">
+  <script src="../../../assets/js/guard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to document</a>
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">Work2Cash Docs</a>
+    <nav aria-label="Document navigation">
+      <a href="../index.html">Phase 1 pilots</a>
+      <a href="../../agent-md/pilots/contracts/kyc-review-contract-group.md" download>Download agent Markdown</a>
+    </nav>
+  </header>
+  <div class="page-shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Pilots</a><span aria-hidden="true">/</span><span>Contracts</span>
+    </nav>
+    <header class="document-hero">
+      <div class="eyebrow">api-contract-group · CONTRACT-KYC-REVIEW</div>
+      <h1>KYC Review Contract Group</h1>
+      <p class="audience"><strong>Written for:</strong> Junior admin developers, Backend, QA, Product, AI agents</p>
+      <div class="status-row">
+        <span class="status status-pilot-draft-with-gaps">pilot-draft-with-gaps</span>
+        <span>Version 0.1</span>
+        <span>Reviewed 2026-07-17</span>
+      </div>
+    </header>
+    <div class="document-grid">
+      <aside>
+        <nav class="toc" aria-labelledby="toc-title">
+    <h2 id="toc-title">On this page</h2>
+    <ol><li class="toc-level-2"><a href="#in-plain-english">In plain English</a></li><li class="toc-level-2"><a href="#why-this-group-exists">Why this group exists</a></li><li class="toc-level-2"><a href="#contract-status-summary">Contract status summary</a></li><li class="toc-level-2"><a href="#shared-access-and-safety-rules">Shared access and safety rules</a></li><li class="toc-level-2"><a href="#get-admin-users-userid">GET /admin/users/{userId}</a></li><li class="toc-level-3"><a href="#business-purpose">Business purpose</a></li><li class="toc-level-3"><a href="#preconditions">Preconditions</a></li><li class="toc-level-3"><a href="#minimum-kyc-review-response-shape">Minimum KYC review response shape</a></li><li class="toc-level-3"><a href="#expected-errors">Expected errors</a></li><li class="toc-level-2"><a href="#post-admin-kyc-kycid-request-reverification">POST /admin/kyc/{kycId}/request-reverification</a></li><li class="toc-level-3"><a href="#business-purpose-2">Business purpose</a></li><li class="toc-level-3"><a href="#request-requirements">Request requirements</a></li><li class="toc-level-3"><a href="#success-response">Success response</a></li><li class="toc-level-3"><a href="#expected-errors-2">Expected errors</a></li><li class="toc-level-2"><a href="#missing-approve-and-reject-contracts">Missing approve and reject contracts</a></li><li class="toc-level-2"><a href="#state-and-side-effects">State and side effects</a></li><li class="toc-level-2"><a href="#required-contract-tests">Required contract tests</a></li></ol>
+  </nav>
+        <section class="metadata" aria-labelledby="metadata-title">
+          <h2 id="metadata-title">Document details</h2>
+          <dl>
+            <dt>Owner</dt><dd>Backend Team</dd>
+            <dt>Reviewers</dt><dd>Technical Lead, Admin Lead, Product Lead, QA</dd>
+            <dt>Authority</dt><dd>API and Socket Contract Specification v1</dd>
+            <dt>Related</dt><dd>AF-04 Tasker and KYC Review, SF-03 Tasker KYC, KycVerification, TaskerProfile</dd>
+          </dl>
+        </section>
+      </aside>
+      <main id="content" class="document-content" tabindex="-1">
+        <p class="generated-note"><strong>Phase 1 pilot:</strong> This page is generated from <code>content/pilots/contracts/kyc-review-contract-group.md</code>. Edit the canonical Markdown source, not this HTML file.</p>
+        <h2 id="in-plain-english">In plain English</h2>
+<p>These contracts give the admin dashboard enough verified information to review a Tasker&#39;s KYC case and apply an authorized outcome. The current contract names the user-detail and request-reverification paths, but exact approve, reject, queue and reconciliation paths remain gaps that must be resolved before implementation.</p>
+<h2 id="why-this-group-exists">Why this group exists</h2>
+<p>AF-04 cannot be implemented safely from screen assumptions. Backend and admin must agree on permissions, safe response data, state conflicts, reason capture, audit behavior and provider reconciliation.</p>
+<h2 id="contract-status-summary">Contract status summary</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Capability</th><th scope="col">Current contract status</th><th scope="col">Required action</th></tr></thead><tbody><tr><td>View linked user and KYC context</td><td>Named: <code>GET /admin/users/{userId}</code></td><td>Define the exact safe KYC summary/detail fields.</td></tr><tr><td>Request KYC re-verification</td><td>Named: <code>POST /admin/kyc/{kycId}/request-reverification</code></td><td>Define DTO, permission, errors, idempotency and audit response.</td></tr><tr><td>List/filter KYC queue</td><td>Missing exact accepted path</td><td>Add formally to the API contract and OpenAPI before frontend implementation.</td></tr><tr><td>View a dedicated KYC case</td><td>Missing exact accepted path</td><td>Decide whether user detail is sufficient or add a dedicated detail contract.</td></tr><tr><td>Approve KYC</td><td>Missing exact accepted path</td><td>Add formally; do not invent a frontend path.</td></tr><tr><td>Reject KYC</td><td>Missing exact accepted path</td><td>Add formally; do not invent a frontend path.</td></tr><tr><td>Reconcile Smile ID status</td><td>Missing exact accepted admin path</td><td>Add a cost-guarded provider reconciliation contract or route through AF-19.</td></tr></tbody></table></div>
+<h2 id="shared-access-and-safety-rules">Shared access and safety rules</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Rule</th><th scope="col">Requirement</th></tr></thead><tbody><tr><td>Authentication</td><td>Valid admin access token and active admin session.</td></tr><tr><td>View permission</td><td>KYC view permission; sensitive evidence may require an additional permission.</td></tr><tr><td>Decision permission</td><td>Separate approve, reject, re-verification or escalation permission as accepted by RBAC design.</td></tr><tr><td>TOTP</td><td>Required for high-impact decisions if the final RBAC policy classifies them accordingly.</td></tr><tr><td>Sensitive data</td><td>Return only minimum operational KYC data; never return provider secrets or unnecessary raw identifiers/biometric payloads.</td></tr><tr><td>Audit</td><td>Mutation responses must identify the resulting status and audit record/request ID.</td></tr><tr><td>State conflict</td><td>Reject stale mutations with the current status/version so the admin refreshes before retrying.</td></tr><tr><td>Idempotency</td><td>Mutations require an idempotency key or equivalent duplicate-action protection.</td></tr></tbody></table></div>
+<h2 id="get-admin-users-userid">GET /admin/users/{userId}</h2>
+<h3 id="business-purpose">Business purpose</h3>
+<p>Returns the permission-gated user, Tasker and KYC context required to enter AF-04 from User Management.</p>
+<h3 id="preconditions">Preconditions</h3>
+<ul><li>The user exists.</li><li>The admin has access to User Management and KYC summary fields.</li><li>More sensitive evidence remains behind an additional controlled access path.</li></ul>
+<h3 id="minimum-kyc-review-response-shape">Minimum KYC review response shape</h3>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;userId&quot;: &quot;usr_123&quot;,
+    &quot;accountStatus&quot;: &quot;ACTIVE&quot;,
+    &quot;taskerProfile&quot;: {
+      &quot;taskerProfileId&quot;: &quot;tpr_123&quot;,
+      &quot;isActive&quot;: false,
+      &quot;kycStatus&quot;: &quot;PENDING&quot;
+    },
+    &quot;kycSummary&quot;: {
+      &quot;kycId&quot;: &quot;kyc_123&quot;,
+      &quot;provider&quot;: &quot;SMILE_ID&quot;,
+      &quot;identifierType&quot;: &quot;NIN&quot;,
+      &quot;status&quot;: &quot;PENDING&quot;,
+      &quot;submittedAt&quot;: &quot;2026-07-17T08:00:00Z&quot;,
+      &quot;providerResultAvailable&quot;: true,
+      &quot;evidenceAccessAvailable&quot;: true
+    }
+  },
+  &quot;meta&quot;: {
+    &quot;requestId&quot;: &quot;req_123&quot;
+  }
+}</code></pre>
+<p>The final response must use the repository-wide response standard and may redact fields according to permission.</p>
+<h3 id="expected-errors">Expected errors</h3>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Code</th><th scope="col">Condition</th><th scope="col">Admin behavior</th></tr></thead><tbody><tr><td>UNAUTHORIZED</td><td>Admin session is missing or expired.</td><td>Return to admin authentication without exposing case data.</td></tr><tr><td>FORBIDDEN</td><td>Admin lacks user/KYC view permission.</td><td>Show a clear forbidden state.</td></tr><tr><td>NOT_FOUND</td><td>User does not exist or is not visible to the role.</td><td>Show safe not-found behavior.</td></tr><tr><td>DEPENDENCY_UNAVAILABLE</td><td>Required protected evidence summary cannot be loaded.</td><td>Keep the case read-only and provide retry/escalation.</td></tr></tbody></table></div>
+<h2 id="post-admin-kyc-kycid-request-reverification">POST /admin/kyc/{kycId}/request-reverification</h2>
+<h3 id="business-purpose-2">Business purpose</h3>
+<p>Records that the Tasker must correct and resubmit KYC information before activation can continue.</p>
+<h3 id="request-requirements">Request requirements</h3>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Field</th><th scope="col">Requirement</th></tr></thead><tbody><tr><td><code>reasonCode</code></td><td>Required stable reason value.</td></tr><tr><td><code>note</code></td><td>Required human-readable guidance that does not expose provider internals.</td></tr><tr><td><code>requiredSteps</code></td><td>Accepted resubmission steps, such as identifier correction or biometric recapture.</td></tr><tr><td><code>expectedVersion</code></td><td>Current case version/status guard to prevent stale overwrite.</td></tr><tr><td><code>Idempotency-Key</code></td><td>Required duplicate-action protection.</td></tr></tbody></table></div>
+<pre><code class="language-json">{
+  &quot;reasonCode&quot;: &quot;BIOMETRIC_RECAPTURE_REQUIRED&quot;,
+  &quot;note&quot;: &quot;Please repeat the live face capture in good lighting.&quot;,
+  &quot;requiredSteps&quot;: [&quot;FACE_CAPTURE&quot;],
+  &quot;expectedVersion&quot;: 3
+}</code></pre>
+<h3 id="success-response">Success response</h3>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;kycId&quot;: &quot;kyc_123&quot;,
+    &quot;status&quot;: &quot;REQUIRES_REVERIFICATION&quot;,
+    &quot;taskerActive&quot;: false,
+    &quot;notificationStatus&quot;: &quot;QUEUED&quot;,
+    &quot;auditId&quot;: &quot;aud_123&quot;
+  },
+  &quot;meta&quot;: {
+    &quot;requestId&quot;: &quot;req_123&quot;
+  }
+}</code></pre>
+<h3 id="expected-errors-2">Expected errors</h3>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Code</th><th scope="col">Condition</th><th scope="col">Admin behavior</th></tr></thead><tbody><tr><td>FORBIDDEN</td><td>Admin lacks the action permission.</td><td>Keep the case read-only.</td></tr><tr><td>VALIDATION_ERROR</td><td>Reason, note or required steps are invalid.</td><td>Show field-level correction.</td></tr><tr><td>INVALID_STATE</td><td>Current KYC state cannot request re-verification.</td><td>Refresh and show the authoritative state.</td></tr><tr><td>STATE_CONFLICT</td><td>Another reviewer changed the case.</td><td>Reload before deciding again.</td></tr><tr><td>DUPLICATE_REQUEST</td><td>The same idempotency key was already processed.</td><td>Display the original result without applying twice.</td></tr></tbody></table></div>
+<h2 id="missing-approve-and-reject-contracts">Missing approve and reject contracts</h2>
+<p>The current repository does not define accepted exact paths for these actions. Before an admin developer implements approve or reject:</p>
+<ul><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Product and Backend agree on the allowed state transitions.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Stable endpoint paths are added to the API contract and OpenAPI.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Request DTOs include reason/note rules and expected state/version.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Response DTOs include resulting KYC status, Tasker activation result, audit ID and notification status.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> RBAC and TOTP rules are explicit.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Idempotency and simultaneous-review behavior are explicit.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Privacy and redaction behavior are explicit.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> QA cases are linked.</li></ul>
+<h2 id="state-and-side-effects">State and side effects</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Action</th><th scope="col">Records</th><th scope="col">Side effects</th></tr></thead><tbody><tr><td>View context</td><td>User, TaskerProfile, KycVerification, safe provider/audit summaries</td><td>Evidence-access audit where required.</td></tr><tr><td>Request re-verification</td><td>KycVerification/KycAttempt workflow state, AdminAuditLog</td><td>Tasker notification and mobile resubmission requirement.</td></tr><tr><td>Approve, once contracted</td><td>KycVerification, TaskerProfile, AdminAuditLog</td><td>Activation eligibility and Tasker notification.</td></tr><tr><td>Reject, once contracted</td><td>KycVerification, TaskerProfile, AdminAuditLog</td><td>Tasker remains blocked and receives safe guidance.</td></tr><tr><td>Reconcile, once contracted</td><td>ProviderRequestLog, ProviderWebhookEvent, KycVerification</td><td>Safe provider check, job/audit visibility and possible AF-19 handoff.</td></tr></tbody></table></div>
+<h2 id="required-contract-tests">Required contract tests</h2>
+<ul><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Authentication and every required permission.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Redaction of raw identifiers, biometrics and provider secrets.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Valid state transitions.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Invalid-state and stale-version conflict.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Duplicate idempotency key returns the original outcome.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Audit record completeness.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Notification job creation without making notification delivery the source of truth.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Provider delayed/failed/duplicate event behavior.</li></ul>
+      </main>
+    </div>
+  </div>
+  <footer>Work2Cash documentation · Phase 1 restructuring pilot</footer>
+</body>
+</html>

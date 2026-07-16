@@ -35,6 +35,9 @@ jobs:
             echo "No guard verification script found. Skipping."
           fi
 
+      - name: Verify generated pilot documents
+        run: node scripts/generate-pilot-docs.js --check
+
       - name: Prepare site folder
         run: |
           rm -rf _site

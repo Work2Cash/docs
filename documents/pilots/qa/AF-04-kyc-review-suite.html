@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AF-04 KYC Review Reference Suite — Work2Cash Phase 1 documentation pilot.">
+  <title>QA-AF-04 — AF-04 KYC Review Reference Suite | Work2Cash Docs</title>
+  <link rel="stylesheet" href="../../../assets/css/pilot-docs.css">
+  <script src="../../../assets/js/guard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to document</a>
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">Work2Cash Docs</a>
+    <nav aria-label="Document navigation">
+      <a href="../index.html">Phase 1 pilots</a>
+      <a href="../../agent-md/pilots/qa/AF-04-kyc-review-suite.md" download>Download agent Markdown</a>
+    </nav>
+  </header>
+  <div class="page-shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Pilots</a><span aria-hidden="true">/</span><span>Qa</span>
+    </nav>
+    <header class="document-hero">
+      <div class="eyebrow">qa-suite · QA-AF-04</div>
+      <h1>AF-04 KYC Review Reference Suite</h1>
+      <p class="audience"><strong>Written for:</strong> QA, Junior admin/backend developers, Product, AI agents</p>
+      <div class="status-row">
+        <span class="status status-pilot-draft-blocked-by-contract-gaps">pilot-draft-blocked-by-contract-gaps</span>
+        <span>Version 0.1</span>
+        <span>Reviewed 2026-07-17</span>
+      </div>
+    </header>
+    <div class="document-grid">
+      <aside>
+        <nav class="toc" aria-labelledby="toc-title">
+    <h2 id="toc-title">On this page</h2>
+    <ol><li class="toc-level-2"><a href="#purpose">Purpose</a></li><li class="toc-level-2"><a href="#current-readiness">Current readiness</a></li><li class="toc-level-2"><a href="#traceability">Traceability</a></li><li class="toc-level-2"><a href="#shared-setup">Shared setup</a></li><li class="toc-level-2"><a href="#qa-af04-01-view-a-kyc-case-safely">QA-AF04-01 — View a KYC case safely</a></li><li class="toc-level-3"><a href="#preconditions">Preconditions</a></li><li class="toc-level-3"><a href="#final-expected-state">Final expected state</a></li><li class="toc-level-2"><a href="#qa-af04-02-approve-an-eligible-tasker">QA-AF04-02 — Approve an eligible Tasker</a></li><li class="toc-level-3"><a href="#status">Status</a></li><li class="toc-level-3"><a href="#preconditions-2">Preconditions</a></li><li class="toc-level-2"><a href="#qa-af04-03-request-re-verification">QA-AF04-03 — Request re-verification</a></li><li class="toc-level-3"><a href="#preconditions-3">Preconditions</a></li><li class="toc-level-2"><a href="#qa-af04-04-reject-with-reason">QA-AF04-04 — Reject with reason</a></li><li class="toc-level-3"><a href="#status-2">Status</a></li><li class="toc-level-3"><a href="#preconditions-4">Preconditions</a></li><li class="toc-level-2"><a href="#qa-af04-05-missing-or-delayed-smile-id-result">QA-AF04-05 — Missing or delayed Smile ID result</a></li><li class="toc-level-3"><a href="#preconditions-5">Preconditions</a></li><li class="toc-level-2"><a href="#qa-af04-06-duplicate-provider-callback">QA-AF04-06 — Duplicate provider callback</a></li><li class="toc-level-2"><a href="#qa-af04-07-permission-and-redaction-matrix">QA-AF04-07 — Permission and redaction matrix</a></li><li class="toc-level-2"><a href="#qa-af04-08-simultaneous-review-conflict">QA-AF04-08 — Simultaneous review conflict</a></li><li class="toc-level-2"><a href="#qa-af04-09-notification-failure">QA-AF04-09 — Notification failure</a></li><li class="toc-level-2"><a href="#suite-completion-checklist">Suite completion checklist</a></li></ol>
+  </nav>
+        <section class="metadata" aria-labelledby="metadata-title">
+          <h2 id="metadata-title">Document details</h2>
+          <dl>
+            <dt>Owner</dt><dd>QA</dd>
+            <dt>Reviewers</dt><dd>Product Lead, Technical Lead, Admin Lead, Backend Lead</dd>
+            <dt>Authority</dt><dd>AF-04 Tasker and KYC Review and QA Readiness Rules</dd>
+            <dt>Related</dt><dd>AF-04, KYC Review Contract Group, Tasker Activation and KYC Data Domain</dd>
+          </dl>
+        </section>
+      </aside>
+      <main id="content" class="document-content" tabindex="-1">
+        <p class="generated-note"><strong>Phase 1 pilot:</strong> This page is generated from <code>content/pilots/qa/AF-04-kyc-review-suite.md</code>. Edit the canonical Markdown source, not this HTML file.</p>
+        <h2 id="purpose">Purpose</h2>
+<p>This suite proves that authorized admins can make safe, traceable KYC decisions while unauthorized users, stale reviews, provider delays and sensitive-data exposure are handled correctly.</p>
+<h2 id="current-readiness">Current readiness</h2>
+<p>The suite can define expected behavior now, but approve, reject, dedicated queue/detail and provider-reconciliation tests remain blocked until their exact API contracts are formally accepted.</p>
+<h2 id="traceability">Traceability</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Type</th><th scope="col">Reference</th><th scope="col">What is covered</th></tr></thead><tbody><tr><td>Flow</td><td>AF-04 — Tasker and KYC Review</td><td>Entry, review, branches, endings, handoffs and recovery.</td></tr><tr><td>Contract</td><td>KYC Review Contract Group</td><td>Auth, permissions, request/response, state conflict and idempotency.</td></tr><tr><td>Data</td><td>TaskerProfile, KycVerification, KycAttempt, ProviderWebhookEvent, AdminAuditLog</td><td>State, history, duplicate protection, privacy and audit.</td></tr><tr><td>Provider</td><td>Smile ID</td><td>Success, delay, failure and duplicate callback behavior.</td></tr></tbody></table></div>
+<h2 id="shared-setup">Shared setup</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Field</th><th scope="col">Value</th></tr></thead><tbody><tr><td>Environment</td><td>Staging with Smile ID sandbox or deterministic provider adapter fixture.</td></tr><tr><td>Builds</td><td>Record backend commit, admin build and schema migration version before execution.</td></tr><tr><td>Admin roles</td><td>KYC viewer, KYC reviewer, Risk reviewer and unauthorized admin.</td></tr><tr><td>Tasker cases</td><td>Pending approval, correctable mismatch, verified rejection, provider delay, duplicate callback and already-decided case.</td></tr><tr><td>Evidence</td><td>Screenshots, request IDs, safe provider references, audit IDs, database assertions and notification job IDs.</td></tr></tbody></table></div>
+<h2 id="qa-af04-01-view-a-kyc-case-safely">QA-AF04-01 — View a KYC case safely</h2>
+<h3 id="preconditions">Preconditions</h3>
+<ul><li>A User, TaskerProfile and pending KycVerification exist.</li><li>The admin has KYC view permission but not unrestricted provider-secret access.</li></ul>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Step</th><th scope="col">Action</th><th scope="col">Expected result</th><th scope="col">Evidence</th></tr></thead><tbody><tr><td>1</td><td>Sign in through admin login and TOTP.</td><td>Protected dashboard session is established.</td><td>Session/request ID.</td></tr><tr><td>2</td><td>Open the linked user/KYC detail.</td><td>Safe profile, status, provider result availability and previous decision context appear.</td><td>Screenshot and response.</td></tr><tr><td>3</td><td>Inspect displayed identity fields.</td><td>Raw NIN/BVN, biometric payloads and provider secrets are absent or properly redacted.</td><td>Redaction screenshot and response review.</td></tr><tr><td>4</td><td>Check access logging where required.</td><td>Evidence/detail access has the required audit trace.</td><td>Audit ID.</td></tr></tbody></table></div>
+<h3 id="final-expected-state">Final expected state</h3>
+<ul><li>The KYC record remains unchanged.</li><li>The admin has enough safe context to continue review.</li><li>Sensitive values are not exposed.</li></ul>
+<h2 id="qa-af04-02-approve-an-eligible-tasker">QA-AF04-02 — Approve an eligible Tasker</h2>
+<h3 id="status">Status</h3>
+<p>Blocked until the approve endpoint, DTO, permission and state-transition contract are accepted.</p>
+<h3 id="preconditions-2">Preconditions</h3>
+<ul><li>Provider result and evidence satisfy approval policy.</li><li>No blocking RiskFlag exists.</li><li>Admin has approve permission.</li></ul>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Step</th><th scope="col">Action</th><th scope="col">Expected result</th><th scope="col">Evidence</th></tr></thead><tbody><tr><td>1</td><td>Open the eligible case.</td><td>Current status is PENDING and evidence is complete.</td><td>Screenshot/request ID.</td></tr><tr><td>2</td><td>Select Approve and confirm.</td><td>Backend rechecks permission and current state.</td><td>Mutation request ID.</td></tr><tr><td>3</td><td>Refresh case and Tasker profile.</td><td>KYC is APPROVED and Tasker activation reflects all profile rules.</td><td>Response/database assertion.</td></tr><tr><td>4</td><td>Inspect audit and notification.</td><td>One complete audit record exists and one safe notification is queued.</td><td>Audit and job IDs.</td></tr></tbody></table></div>
+<h2 id="qa-af04-03-request-re-verification">QA-AF04-03 — Request re-verification</h2>
+<h3 id="preconditions-3">Preconditions</h3>
+<ul><li>Pending case has a correctable biometric or identity-input issue.</li><li>Admin has re-verification permission.</li></ul>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Step</th><th scope="col">Action</th><th scope="col">Expected result</th><th scope="col">Evidence</th></tr></thead><tbody><tr><td>1</td><td>Choose Request Re-verification without a reason.</td><td>Submission is blocked with field guidance.</td><td>Screenshot.</td></tr><tr><td>2</td><td>Provide a stable reason, safe note and required step.</td><td>Confirmation preview shows Tasker impact.</td><td>Screenshot.</td></tr><tr><td>3</td><td>Submit with an idempotency key.</td><td>Status becomes REQUIRES_REVERIFICATION and Tasker remains inactive.</td><td>Response/request ID.</td></tr><tr><td>4</td><td>Repeat the same request with the same key.</td><td>Original result is returned; no duplicate audit or notification is created.</td><td>Response and record counts.</td></tr><tr><td>5</td><td>Inspect Tasker-facing status.</td><td>Tasker sees the required next step without provider internals.</td><td>Mobile/API evidence.</td></tr></tbody></table></div>
+<h2 id="qa-af04-04-reject-with-reason">QA-AF04-04 — Reject with reason</h2>
+<h3 id="status-2">Status</h3>
+<p>Blocked until the reject endpoint, DTO and permission contract are accepted.</p>
+<h3 id="preconditions-4">Preconditions</h3>
+<ul><li>Verified evidence satisfies an accepted rejection rule.</li><li>Admin has reject permission.</li></ul>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Step</th><th scope="col">Action</th><th scope="col">Expected result</th><th scope="col">Evidence</th></tr></thead><tbody><tr><td>1</td><td>Select Reject without a reason.</td><td>Submission is blocked.</td><td>Screenshot.</td></tr><tr><td>2</td><td>Enter accepted reason/note and confirm.</td><td>Backend records one valid transition and audit event.</td><td>Response and audit ID.</td></tr><tr><td>3</td><td>Refresh Tasker profile.</td><td>KYC is REJECTED and Tasker remains inactive.</td><td>Response/database assertion.</td></tr><tr><td>4</td><td>Inspect notification.</td><td>Tasker receives safe outcome and next step.</td><td>Job/message evidence.</td></tr></tbody></table></div>
+<h2 id="qa-af04-05-missing-or-delayed-smile-id-result">QA-AF04-05 — Missing or delayed Smile ID result</h2>
+<h3 id="preconditions-5">Preconditions</h3>
+<ul><li>KYC submission exists but verified callback/status is unavailable.</li></ul>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Step</th><th scope="col">Action</th><th scope="col">Expected result</th><th scope="col">Evidence</th></tr></thead><tbody><tr><td>1</td><td>Open the case.</td><td>Status remains PENDING; UI does not suggest guessed approval/rejection.</td><td>Screenshot.</td></tr><tr><td>2</td><td>Trigger the accepted reconciliation action when available.</td><td>One cost-guarded provider check or queued operation occurs.</td><td>Provider request/job ID.</td></tr><tr><td>3</td><td>Simulate continued provider delay.</td><td>Case remains pending and can hand off to AF-19.</td><td>Status and monitoring evidence.</td></tr><tr><td>4</td><td>Deliver the verified provider event.</td><td>Case refresh shows the verified result without duplicate processing.</td><td>Event/request ID.</td></tr></tbody></table></div>
+<h2 id="qa-af04-06-duplicate-provider-callback">QA-AF04-06 — Duplicate provider callback</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Step</th><th scope="col">Action</th><th scope="col">Expected result</th><th scope="col">Evidence</th></tr></thead><tbody><tr><td>1</td><td>Deliver one valid Smile ID callback.</td><td>One ProviderWebhookEvent is processed.</td><td>Event ID and record count.</td></tr><tr><td>2</td><td>Deliver the same provider event again.</td><td>Duplicate is ignored or marked duplicate safely.</td><td>Record count and logs.</td></tr><tr><td>3</td><td>Inspect KYC and audit state.</td><td>No duplicate state transition, admin decision or notification exists.</td><td>Database/audit/job assertions.</td></tr></tbody></table></div>
+<h2 id="qa-af04-07-permission-and-redaction-matrix">QA-AF04-07 — Permission and redaction matrix</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Actor</th><th scope="col">View case</th><th scope="col">View protected evidence</th><th scope="col">Apply decision</th><th scope="col">Expected result</th></tr></thead><tbody><tr><td>KYC viewer</td><td>Yes</td><td>According to policy</td><td>No</td><td>Read-only safe view.</td></tr><tr><td>KYC reviewer</td><td>Yes</td><td>According to policy</td><td>Accepted KYC actions</td><td>Controlled action UI.</td></tr><tr><td>Risk reviewer</td><td>Linked risk context</td><td>According to risk policy</td><td>Risk actions, not arbitrary KYC mutation unless granted</td><td>Clear role boundary.</td></tr><tr><td>Unauthorized admin</td><td>No or safe summary only</td><td>No</td><td>No</td><td>Forbidden state without leakage.</td></tr></tbody></table></div>
+<h2 id="qa-af04-08-simultaneous-review-conflict">QA-AF04-08 — Simultaneous review conflict</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Step</th><th scope="col">Action</th><th scope="col">Expected result</th><th scope="col">Evidence</th></tr></thead><tbody><tr><td>1</td><td>Admin A and Admin B open the same PENDING case.</td><td>Both see the same current version.</td><td>Responses.</td></tr><tr><td>2</td><td>Admin A records an allowed decision.</td><td>State and version change once.</td><td>Response/audit ID.</td></tr><tr><td>3</td><td>Admin B submits the stale decision.</td><td>Backend returns state conflict/current truth and applies nothing.</td><td>Conflict response and record counts.</td></tr><tr><td>4</td><td>Admin B refreshes.</td><td>New authoritative state and decision history appear.</td><td>Screenshot/response.</td></tr></tbody></table></div>
+<h2 id="qa-af04-09-notification-failure">QA-AF04-09 — Notification failure</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Step</th><th scope="col">Action</th><th scope="col">Expected result</th><th scope="col">Evidence</th></tr></thead><tbody><tr><td>1</td><td>Record an allowed KYC decision while notification adapter is unavailable.</td><td>Authoritative KYC decision succeeds once if transaction/outbox rules allow.</td><td>Response/audit ID.</td></tr><tr><td>2</td><td>Inspect delivery status.</td><td>Failed or retryable notification is visible operationally.</td><td>Queue/job evidence.</td></tr><tr><td>3</td><td>Open mobile/app status.</td><td>Backend status shows the decision even without push delivery.</td><td>API/mobile evidence.</td></tr><tr><td>4</td><td>Restore adapter and retry safely.</td><td>One user notification is delivered without duplicating the decision.</td><td>Delivery/job evidence.</td></tr></tbody></table></div>
+<h2 id="suite-completion-checklist">Suite completion checklist</h2>
+<ul><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Exact queue, detail, approve, reject and reconciliation contracts are accepted.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> KycAttempt fields and re-verification history are implemented.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Every test records environment and build versions.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Every pass/fail result includes evidence.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Permission and privacy review passes.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Provider delay and duplicate behavior passes.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Audit fields are complete.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Product, QA and Technical Lead accept the suite results.</li></ul>
+      </main>
+    </div>
+  </div>
+  <footer>Work2Cash documentation · Phase 1 restructuring pilot</footer>
+</body>
+</html>

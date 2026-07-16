@@ -829,20 +829,20 @@ Every canonical document or content unit must include:
 
 ## Phase 1: Templates and Reference Pilots
 
-- [ ] Create the main-flow template.
-- [ ] Create the reusable-subflow template.
-- [ ] Create the screen template.
-- [ ] Create the build-task template.
-- [ ] Create the API endpoint template.
-- [ ] Create the data-model template.
-- [ ] Create the provider template.
-- [ ] Create the QA test-case template.
-- [ ] Create the architecture-decision template.
-- [ ] Rewrite MF-06 as the mobile reference flow.
-- [ ] Rewrite AF-04 as the admin reference flow.
-- [ ] Create one reference endpoint group.
-- [ ] Create one reference data-domain document.
-- [ ] Create one reference QA suite.
+- [x] Create the main-flow template.
+- [x] Create the reusable-subflow template.
+- [x] Create the screen template.
+- [x] Create the build-task template.
+- [x] Create the API endpoint template.
+- [x] Create the data-model template.
+- [x] Create the provider template.
+- [x] Create the QA test-case template.
+- [x] Create the architecture-decision template.
+- [x] Rewrite MF-06 as the mobile reference flow.
+- [x] Rewrite AF-04 as the admin reference flow.
+- [x] Create one reference endpoint group.
+- [x] Create one reference data-domain document.
+- [x] Create one reference QA suite.
 - [ ] Test the pilots with a non-technical reader.
 - [ ] Test the pilots with a junior developer.
 - [ ] Revise templates based on observed misunderstandings.
@@ -851,7 +851,25 @@ Every canonical document or content unit must include:
 
 - [ ] A non-technical reader can explain the pilot flow correctly.
 - [ ] A junior developer can identify prerequisites, steps, branches, outputs, recovery and tests without external lookup.
-- [ ] Human HTML and agent Markdown can be generated from the same pilot source.
+- [x] Human HTML and agent Markdown can be generated from the same pilot source.
+
+### Phase 1 implementation evidence — 17 July 2026
+
+- [x] Nine canonical templates created in `content/templates/`.
+- [x] Canonical MF-06 and AF-04 sources created in `content/pilots/flows/`.
+- [x] KYC endpoint-group, data-domain and QA-suite pilot sources created in `content/pilots/`.
+- [x] Human pilot index and pages generated in `documents/pilots/`.
+- [x] Clean agent Markdown index and documents generated in `documents/agent-md/pilots/`.
+- [x] Generator validates metadata, document-type sections, local references, anchors, document guards and agent-Markdown cleanliness.
+- [x] GitHub Pages deployment rejects generated pilot drift through `node scripts/generate-pilot-docs.js --check`.
+- [x] Repeatable reader-session protocol created in `logs/phase-1-pilot-usability-review.md`.
+- [ ] Desktop and mobile-width visual review completed; the audit environment had no available interactive browser session.
+- [ ] Product, Risk/Compliance and team leads resolve the AF-04 approve, reject, queue/detail and reconciliation contract gaps documented by the pilot.
+- [ ] Backend and Data owners formally define the `KycAttempt` schema and relationship documented by the pilot.
+- [ ] External non-technical usability session completed and evidence recorded.
+- [ ] External junior-developer usability session completed and evidence recorded.
+
+Phase 1 remains **in progress** until the two external usability reviews are completed and the templates are revised from observed misunderstandings. The pilots are therefore isolated from the active catalogue rather than presented as approved replacements.
 
 ## Phase 2: Flow Migration
 
@@ -1004,7 +1022,7 @@ The restructuring is complete only when all of the following are true:
 | Phase | Status | Owner | Target | Notes |
 | --- | --- | --- | --- | --- |
 | Phase 0 - Stop drift | Not started | Technical Lead | TBD | Begin with canonical-source rules and broken links |
-| Phase 1 - Templates and pilots | Not started | Product + Technical Lead | TBD | Validate MF-06 and AF-04 first |
+| Phase 1 - Templates and pilots | In progress | Product + Technical Lead | TBD | Sources and generation complete; external reader tests and contract decisions remain |
 | Phase 2 - Flow migration | Not started | Product + Team Leads | TBD | Mobile and admin catalogues |
 | Phase 3 - Execution planning | Not started | Project + Technical Lead | TBD | Canonical task register |
 | Phase 4 - Technical references | Not started | Technical Lead + Engineers | TBD | Contracts, models, providers and infrastructure |
@@ -1024,3 +1042,4 @@ Use this section to record reviews of the restructuring plan.
 | Date | Change | Author | Approval |
 | --- | --- | --- | --- |
 | 16 July 2026 | Initial repository-wide audit and restructuring checklist created | Codex, under Technical Lead direction | Pending |
+| 17 July 2026 | Phase 1 templates, canonical pilots, generated human/agent outputs and CI drift checks added | Codex, under Product and Technical Lead direction | Pending external usability review |

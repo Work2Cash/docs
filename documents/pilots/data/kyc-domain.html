@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tasker Activation and KYC Data Domain — Work2Cash Phase 1 documentation pilot.">
+  <title>DATA-KYC — Tasker Activation and KYC Data Domain | Work2Cash Docs</title>
+  <link rel="stylesheet" href="../../../assets/css/pilot-docs.css">
+  <script src="../../../assets/js/guard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to document</a>
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">Work2Cash Docs</a>
+    <nav aria-label="Document navigation">
+      <a href="../index.html">Phase 1 pilots</a>
+      <a href="../../agent-md/pilots/data/kyc-domain.md" download>Download agent Markdown</a>
+    </nav>
+  </header>
+  <div class="page-shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Pilots</a><span aria-hidden="true">/</span><span>Data</span>
+    </nav>
+    <header class="document-hero">
+      <div class="eyebrow">data-domain · DATA-KYC</div>
+      <h1>Tasker Activation and KYC Data Domain</h1>
+      <p class="audience"><strong>Written for:</strong> Non-technical team, Junior backend/admin developers, Product, QA, AI agents</p>
+      <div class="status-row">
+        <span class="status status-pilot-draft-with-gaps">pilot-draft-with-gaps</span>
+        <span>Version 0.1</span>
+        <span>Reviewed 2026-07-17</span>
+      </div>
+    </header>
+    <div class="document-grid">
+      <aside>
+        <nav class="toc" aria-labelledby="toc-title">
+    <h2 id="toc-title">On this page</h2>
+    <ol><li class="toc-level-2"><a href="#in-plain-english">In plain English</a></li><li class="toc-level-2"><a href="#why-this-domain-exists">Why this domain exists</a></li><li class="toc-level-2"><a href="#domain-relationship">Domain relationship</a></li><li class="toc-level-2"><a href="#taskerprofile">TaskerProfile</a></li><li class="toc-level-3"><a href="#business-meaning">Business meaning</a></li><li class="toc-level-3"><a href="#ownership-and-lifecycle">Ownership and lifecycle</a></li><li class="toc-level-3"><a href="#important-fields">Important fields</a></li><li class="toc-level-3"><a href="#constraints-and-indexes">Constraints and indexes</a></li><li class="toc-level-2"><a href="#kycverification">KycVerification</a></li><li class="toc-level-3"><a href="#business-meaning-2">Business meaning</a></li><li class="toc-level-3"><a href="#ownership-and-lifecycle-2">Ownership and lifecycle</a></li><li class="toc-level-3"><a href="#important-fields-2">Important fields</a></li><li class="toc-level-3"><a href="#constraints-and-indexes-2">Constraints and indexes</a></li><li class="toc-level-2"><a href="#kycattempt-gap">KycAttempt gap</a></li><li class="toc-level-2"><a href="#supporting-records">Supporting records</a></li><li class="toc-level-2"><a href="#state-transitions">State transitions</a></li><li class="toc-level-2"><a href="#privacy-access-and-retention">Privacy, access and retention</a></li><li class="toc-level-2"><a href="#traceability">Traceability</a></li><li class="toc-level-2"><a href="#implementation-and-migration-status">Implementation and migration status</a></li><li class="toc-level-2"><a href="#required-tests">Required tests</a></li></ol>
+  </nav>
+        <section class="metadata" aria-labelledby="metadata-title">
+          <h2 id="metadata-title">Document details</h2>
+          <dl>
+            <dt>Owner</dt><dd>Backend Team</dd>
+            <dt>Reviewers</dt><dd>Technical Lead, Product Lead, Security and Privacy, QA</dd>
+            <dt>Authority</dt><dd>Data Model and Prisma Schema Execution Baseline v1</dd>
+            <dt>Related</dt><dd>SF-03 Tasker KYC, MF-05 Tasker Activation, AF-04 Tasker and KYC Review, KYC Review Contract Group</dd>
+          </dl>
+        </section>
+      </aside>
+      <main id="content" class="document-content" tabindex="-1">
+        <p class="generated-note"><strong>Phase 1 pilot:</strong> This page is generated from <code>content/pilots/data/kyc-domain.md</code>. Edit the canonical Markdown source, not this HTML file.</p>
+        <h2 id="in-plain-english">In plain English</h2>
+<p>This domain records whether a person who wants to work as a Tasker has completed the required profile and identity checks. It preserves provider attempts and admin decisions so Work2Cash can recover from delays, investigate fraud and explain why Tasker work access is allowed or blocked.</p>
+<h2 id="why-this-domain-exists">Why this domain exists</h2>
+<p>The general User account is not enough to prove a person may perform tasks. Work2Cash needs separate Tasker readiness and KYC history without creating a separate login identity or exposing sensitive provider data.</p>
+<h2 id="domain-relationship">Domain relationship</h2>
+<pre><code class="language-text">User
+  -&gt; TaskerProfile
+       -&gt; KycVerification
+            -&gt; KycAttempt (required by the catalogue; baseline fields still need completion)
+       -&gt; PayoutAccount
+
+Smile ID callback
+  -&gt; ProviderWebhookEvent
+  -&gt; KYC use case
+  -&gt; KycVerification status
+  -&gt; TaskerProfile activation eligibility
+  -&gt; AdminAuditLog for manual decisions</code></pre>
+<h2 id="taskerprofile">TaskerProfile</h2>
+<h3 id="business-meaning">Business meaning</h3>
+<p>The Tasker-specific extension of one Work2Cash User. It stores readiness to earn, selected work information and an activation summary.</p>
+<h3 id="ownership-and-lifecycle">Ownership and lifecycle</h3>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Question</th><th scope="col">Answer</th></tr></thead><tbody><tr><td>Created by</td><td>MF-05 Tasker Activation when a user chooses to earn.</td></tr><tr><td>Read by</td><td>Mobile Tasker mode, matching eligibility, AF-03 User Management and AF-04 KYC Review.</td></tr><tr><td>Updated by</td><td>Accepted Tasker profile, KYC and operational use cases; never directly from a controller or admin database control.</td></tr><tr><td>Active when</td><td>Required profile rules pass and KYC is approved with no blocking restriction.</td></tr><tr><td>Retained when</td><td>The user stops working or is restricted; historical relationships remain available for audit and disputes.</td></tr></tbody></table></div>
+<h3 id="important-fields">Important fields</h3>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Field</th><th scope="col">Meaning</th><th scope="col">Required</th><th scope="col">Sensitive</th></tr></thead><tbody><tr><td><code>userId</code></td><td>Links the Tasker role to the one unified User account.</td><td>Yes and unique</td><td>Personal linkage.</td></tr><tr><td><code>bio</code></td><td>Tasker-provided work introduction.</td><td>Optional</td><td>No, subject to moderation.</td></tr><tr><td><code>isActive</code></td><td>Summary of whether Tasker work actions are currently available.</td><td>Yes</td><td>Operational.</td></tr><tr><td><code>kycStatus</code></td><td>Current KYC summary used for access decisions.</td><td>Yes</td><td>Sensitive operational identity status.</td></tr><tr><td><code>maxTravelKm</code></td><td>Tasker work-preference distance.</td><td>Optional</td><td>Location preference.</td></tr><tr><td><code>completedTaskCount</code></td><td>Settled task count used by product rules.</td><td>Yes</td><td>Operational.</td></tr><tr><td><code>averageRating</code></td><td>Aggregated marketplace reputation.</td><td>Optional</td><td>Operational.</td></tr></tbody></table></div>
+<h3 id="constraints-and-indexes">Constraints and indexes</h3>
+<ul><li><code>userId</code> must remain unique so one User cannot have duplicate TaskerProfile records.</li><li>Index <code>isActive</code> and <code>kycStatus</code> for eligibility and operations queries.</li><li><code>isActive</code> must not become true merely because the frontend reports completion.</li></ul>
+<h2 id="kycverification">KycVerification</h2>
+<h3 id="business-meaning-2">Business meaning</h3>
+<p>One provider-backed identity-verification case for a Tasker, including the identifier route, provider job reference, status and safe outcome information.</p>
+<h3 id="ownership-and-lifecycle-2">Ownership and lifecycle</h3>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Question</th><th scope="col">Answer</th></tr></thead><tbody><tr><td>Created by</td><td>SF-03 KYC start use case.</td></tr><tr><td>Read by</td><td>KYC status recovery, AF-04 review, provider reconciliation and risk investigation.</td></tr><tr><td>Updated by</td><td>Verified provider events, safe reconciliation and authorized audited admin decisions.</td></tr><tr><td>Ends when</td><td>Approved, rejected, failed or superseded by an explicitly linked re-verification attempt; never silently deleted.</td></tr></tbody></table></div>
+<h3 id="important-fields-2">Important fields</h3>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Field</th><th scope="col">Meaning</th><th scope="col">Required</th><th scope="col">Sensitive</th></tr></thead><tbody><tr><td><code>taskerProfileId</code></td><td>Tasker being verified.</td><td>Yes</td><td>Identity linkage.</td></tr><tr><td><code>provider</code></td><td>Identity provider, currently Smile ID.</td><td>Yes</td><td>Operational.</td></tr><tr><td><code>identifierType</code></td><td>Accepted identity route such as NIN or BVN.</td><td>Yes</td><td>Sensitive category; raw value should not be exposed here unnecessarily.</td></tr><tr><td><code>status</code></td><td>NOT_STARTED, PENDING, APPROVED, REJECTED, REQUIRES_REVERIFICATION or FAILED.</td><td>Yes</td><td>Sensitive operational identity result.</td></tr><tr><td><code>providerJobId</code></td><td>Safe provider reference used for reconciliation.</td><td>Optional until created</td><td>Sensitive operational reference.</td></tr><tr><td><code>submittedAt</code></td><td>Submission time.</td><td>Yes</td><td>Operational.</td></tr><tr><td><code>decidedAt</code></td><td>Final/manual decision time.</td><td>Optional</td><td>Operational.</td></tr><tr><td><code>failureReason</code></td><td>Sanitized reason suitable for operations.</td><td>Optional</td><td>Potentially sensitive; must be sanitized.</td></tr></tbody></table></div>
+<h3 id="constraints-and-indexes-2">Constraints and indexes</h3>
+<ul><li>Index <code>taskerProfileId</code> and <code>status</code> for Tasker and queue queries.</li><li>Index <code>provider</code> and <code>providerJobId</code> for reconciliation.</li><li>Provider event IDs and internal idempotency keys must prevent duplicate processing.</li><li>The record must not store provider secrets or unnecessary raw provider payloads.</li></ul>
+<h2 id="kycattempt-gap">KycAttempt gap</h2>
+<p>The model catalogue and flow requirements reference <code>KycAttempt</code>, but the current Prisma baseline snippet does not define its exact fields. The domain requires an explicit attempt record so resubmission history is not overwritten.</p>
+<p>Before implementation:</p>
+<ul><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Define the relationship between KycVerification and KycAttempt.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Define attempt number or stable attempt identity.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Define provider job/reference uniqueness.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Define submitted, completed and failure timestamps.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Define sanitized failure and requested-step fields.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Define which attempt is current without deleting history.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Define retention and restricted-access rules.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Add API-to-model traceability and migrations.</li></ul>
+<h2 id="supporting-records">Supporting records</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Model</th><th scope="col">Meaning in this domain</th><th scope="col">Key rule</th></tr></thead><tbody><tr><td>User</td><td>One account identity shared by Task Owner and Tasker modes.</td><td>Do not create a second login user for Tasker.</td></tr><tr><td>ProviderRequestLog</td><td>Safe record of provider calls and outcomes.</td><td>Never store secrets; cost and request ID must be observable.</td></tr><tr><td>ProviderWebhookEvent</td><td>Deduplicated provider callback record.</td><td><code>provider + eventId</code> must be unique.</td></tr><tr><td>RiskFlag</td><td>Identity or behavior concern requiring specialist review.</td><td>Access and resolution are audited.</td></tr><tr><td>AdminAuditLog</td><td>Immutable evidence of manual review actions.</td><td>Capture actor, action, target, reason, request ID and timestamp.</td></tr></tbody></table></div>
+<h2 id="state-transitions">State transitions</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">From</th><th scope="col">Action</th><th scope="col">To</th><th scope="col">Guard</th></tr></thead><tbody><tr><td>NOT_STARTED</td><td>Valid KYC start</td><td>PENDING</td><td>TaskerProfile exists and consent/input rules pass.</td></tr><tr><td>PENDING</td><td>Verified provider approval or authorized review</td><td>APPROVED</td><td>Provider/evidence and risk rules pass.</td></tr><tr><td>PENDING</td><td>Correctable evidence issue</td><td>REQUIRES_REVERIFICATION</td><td>Authorized reason and required next step are recorded.</td></tr><tr><td>PENDING</td><td>Verified non-correctable failure</td><td>REJECTED</td><td>Authorized decision and audit evidence exist.</td></tr><tr><td>PENDING</td><td>Provider/processing failure</td><td>FAILED or remains PENDING according to policy</td><td>Failure is verified; do not guess outcome.</td></tr><tr><td>REQUIRES_REVERIFICATION</td><td>New valid submission</td><td>PENDING</td><td>New attempt is preserved and linked.</td></tr><tr><td>Any reviewable state</td><td>Risk escalation</td><td>Manual/risk handling without false activation</td><td>RiskFlag and audit context are recorded.</td></tr></tbody></table></div>
+<h2 id="privacy-access-and-retention">Privacy, access and retention</h2>
+<ul><li>KYC identifiers and biometric references are highly sensitive.</li><li>Store the minimum provider metadata needed for operations, audit and reconciliation.</li><li>Prefer provider-managed or restricted object references for biometric evidence.</li><li>Do not return raw NIN, BVN, biometric payloads or provider secrets to normal admin views.</li><li>Evidence access must be role-restricted, time-limited where practical and audited.</li><li>KYC, provider and audit history must not be hard-deleted in normal operations.</li><li>Final retention periods require legal approval and must be applied consistently to primary data and backups.</li></ul>
+<h2 id="traceability">Traceability</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Type</th><th scope="col">Reference</th><th scope="col">Relationship</th></tr></thead><tbody><tr><td>Mobile flow</td><td>MF-05 — Tasker Activation and SF-03 — Tasker KYC</td><td>Creates profile and provider-backed verification attempts.</td></tr><tr><td>Admin flow</td><td>AF-04 — Tasker and KYC Review</td><td>Reads evidence and applies authorized audited decisions.</td></tr><tr><td>Contract</td><td>KYC Review Contract Group</td><td>Supplies safe admin reads, decisions and provider reconciliation.</td></tr><tr><td>Provider</td><td>Smile ID</td><td>Produces identity and biometric verification result.</td></tr><tr><td>QA</td><td>AF-04 KYC Review Reference Suite</td><td>Verifies lifecycle, privacy, permissions, recovery and audit.</td></tr></tbody></table></div>
+<h2 id="implementation-and-migration-status">Implementation and migration status</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Item</th><th scope="col">Status</th><th scope="col">Required action</th></tr></thead><tbody><tr><td>TaskerProfile baseline</td><td>Documented</td><td>Validate implementation against accepted activation rules.</td></tr><tr><td>KycVerification baseline</td><td>Documented</td><td>Add explicit concurrency/version behavior and decision metadata if needed.</td></tr><tr><td>KycAttempt</td><td>Contract/model gap</td><td>Define before re-verification implementation.</td></tr><tr><td>ProviderWebhookEvent</td><td>Documented elsewhere</td><td>Verify unique provider event constraint.</td></tr><tr><td>AdminAuditLog</td><td>Documented elsewhere</td><td>Verify required KYC action fields and evidence-access audit.</td></tr></tbody></table></div>
+<h2 id="required-tests">Required tests</h2>
+<ul><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> One User has at most one TaskerProfile.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> TaskerProfile cannot activate before KYC and profile rules pass.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Valid and invalid KYC state transitions.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Re-verification creates/preserves attempt history rather than overwriting it.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Duplicate provider events are idempotent.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Simultaneous admin review cannot overwrite a newer decision.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Raw identifiers, biometrics and provider secrets are not returned or logged.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Audit records are immutable and complete.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Retention and restricted-access behavior follows approved policy.</li></ul>
+      </main>
+    </div>
+  </div>
+  <footer>Work2Cash documentation · Phase 1 restructuring pilot</footer>
+</body>
+</html>
