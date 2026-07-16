@@ -468,6 +468,7 @@
   </style>
 </head>
 <body>
+  <aside data-phase0-registry role="note" style="padding:10px 18px;background:#fff3df;color:#5f3700;border-bottom:1px solid #e9c46a;font:600 13px/1.5 Arial,sans-serif;text-align:center">Lifecycle: <strong>In Review</strong> · Approval: <strong>Pending</strong> · Owner: <strong>Product Lead</strong> · <a href="./document-registry.html#design-001" style="color:#123b78">View DESIGN-001 in the Document Registry</a></aside>
   <header class="cover">
     <div class="logo-row">
       <div class="logo">W2C</div>
@@ -638,7 +639,7 @@
       </div>
     </div>
     <div class="doc-hub-links">
-      <a href="Main Enterprise Architecture v1">Main Enterprise Architecture v1</a><a href="Screen To Feature Map v1" aria-current="page">Screen To Feature Map</a><a href="Mobile Flow Catalogue v1">Mobile Flow Catalogue v1</a><a href="Admin Flow Catalogue v1">Admin Flow Catalogue v1</a><a href="Flow Alignment Review v1">Flow Alignment Review v1</a><a href="Legal & User-Facing Documents Pack v1">Legal &amp; User-Facing Documents Pack v1</a><a href="API & Socket Contract Specification v1">API &amp; Socket Contract Specification v1</a><a href="Data Model & Prisma Schema Planning v1">Data Model &amp; Prisma Schema Planning v1</a><a href="Provider Integration & Cost Control v1">Provider Integration &amp; Cost Control v1</a><a href="Mobile Build Plan v1">Mobile Build Plan v1</a><a href="Admin Build Plan v1">Admin Build Plan v1</a><a href="Backend Build Plan v1">Backend Build Plan v1</a><a href="QA / Go-Live Readiness Checklist v1">QA / Go-Live Readiness Checklist v1</a>
+      <a href="./main-enterprise-architecture-v1.html">Main Enterprise Architecture v1</a><a href="./screen-to-feature-map-v1.html" aria-current="page">Screen To Feature Map</a><a href="./mobile-flow-catalogue-v1.html">Mobile Flow Catalogue v1</a><a href="./admin-flow-catalogue-v1.html">Admin Flow Catalogue v1</a><a href="./flow-alignment-review-v1.html">Flow Alignment Review v1</a><a href="./legal_user_facing_documents_pack_v1.html">Legal &amp; User-Facing Documents Pack v1</a><a href="./api-socket-contract-specification-v1.html">API &amp; Socket Contract Specification v1</a><a href="./data-model-prisma-schema-planning-v1.html">Data Model &amp; Prisma Schema Planning v1</a><a href="./provider-integration-cost-control-v1.html">Provider Integration &amp; Cost Control v1</a><a href="./build-plan-mobile-v1.html">Mobile Build Plan v1</a><a href="./build-plan-admin-v1.html">Admin Build Plan v1</a><a href="./build-plan-backend-v1.html">Backend Build Plan v1</a><a href="./qa-go-live-readiness-checklist-v1.html">QA / Go-Live Readiness Checklist v1</a>
     </div>
   </div>
 </nav>
@@ -863,7 +864,7 @@
         <div class="flow">
           <div class="node"><strong>Create Task</strong><span>Category, details, checklist, photos, schedule.</span></div>
           <div class="node"><strong>Find Tasker</strong><span>Redis proximity, filtered candidates, ETA batch.</span></div>
-          <div class="node warning-node"><strong>Fund Escrow</strong><span>Virtual account, OPay, USSD, wallet.</span></div>
+          <div class="node warning-node"><strong>Fund Escrow</strong><span>Virtual account, Moniepoint, USSD, wallet.</span></div>
           <div class="node"><strong>Track Work</strong><span>Map, chat, timer, progress checklist.</span></div>
           <div class="node success-node"><strong>Complete</strong><span>Confirm, release funds, rate tasker.</span></div>
         </div>
@@ -930,7 +931,7 @@
             </tr>
             <tr>
               <td>Make payment</td>
-              <td>Bank transfer, virtual account, USSD, OPay, wallet.</td>
+              <td>Bank transfer, virtual account, USSD, Moniepoint, wallet.</td>
               <td>Payment initialization, provider reference, webhook reconciliation.</td>
               <td>Card entry must not be the default path.</td>
             </tr>
@@ -970,7 +971,7 @@
 
       <div class="callout critical">
         <div class="callout-label">Payment UX Correction</div>
-        <p>Any card-looking design should be interpreted as saved funding options, not a forced card form. The default production flow is bank transfer, virtual account, USSD, OPay, and wallet balance.</p>
+        <p>Any card-looking design should be interpreted as saved funding options, not a forced card form. The default production flow is bank transfer, virtual account, USSD, Moniepoint, and wallet balance.</p>
       </div>
     </section>
 
@@ -1005,7 +1006,7 @@
             </tr>
             <tr>
               <td>Availability</td>
-              <td>Days available, working hours, max distance, auto-accept.</td>
+              <td>Days available, working hours, maximum travel distance and preferred categories; auto-accept is excluded.</td>
               <td>Availability schedule, service radius, task matching filters.</td>
               <td><span class="pill pill-blue">MVP</span></td>
             </tr>
@@ -1142,8 +1143,8 @@
               <td>Operations</td>
             </tr>
             <tr>
-              <td>Force cancel / reassign</td>
-              <td>Admin cancels or reassigns problematic tasks.</td>
+              <td>Controlled force cancel</td>
+              <td>Admin may force-cancel a task under policy; admin cannot select a replacement Tasker.</td>
               <td>Reason capture, refund/penalty decision, notification.</td>
               <td>Operations Lead</td>
             </tr>
@@ -1241,7 +1242,7 @@ Analytics</code></pre>
           <ul class="checklist">
             <li>Smile ID behind <code>KycProviderPort</code>.</li>
             <li>Google Maps behind <code>RoutingProviderPort</code>.</li>
-            <li>Paystack and OPay behind <code>PaymentProviderPort</code>.</li>
+            <li>Paystack and Moniepoint behind <code>PaymentProviderPort</code>.</li>
             <li>FCM behind <code>PushNotificationPort</code>.</li>
           </ul>
         </div>

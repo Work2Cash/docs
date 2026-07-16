@@ -1,9 +1,28 @@
-# Document Versioning Policy
+# Work2Cash Documentation Versioning Policy
 
-The Main Enterprise Architecture v1 document is the active source of truth.
+## Version format
 
-Version updates must be explicit.
+Canonical documents use `major.minor` versions.
 
-Minor corrections may keep the same version if they do not change product, architecture, payment, security, legal, or operational decisions.
+- Increase the minor version for clarification, structure, traceability or non-behavioral corrections.
+- Increase the major version for changes to product behavior, architecture, finance, security, privacy, providers, legal obligations, operational policy or public contracts.
+- Generated outputs inherit the canonical source version and must not invent a separate content version.
+- Combined context packs carry a generation date and the source versions they contain.
 
-Major changes require a new version label.
+## Review dates
+
+- `lastReviewed` records subject-matter review, not file modification.
+- `nextReview` must be assigned when a document becomes approved or active.
+- A document with no evidenced review date remains `draft` or `in-review`.
+- Passing automated checks does not count as product, legal, security or technical approval.
+
+## Supersession
+
+- A superseding registry entry must name the replaced document.
+- Superseded files remain available only when historical traceability is useful.
+- Portal navigation must lead readers to the current entry, not silently to a superseded file.
+- Archived or superseded agent files must not be included in normal context packs.
+
+## Legacy v1 documents
+
+The existing v1 HTML and agent-Markdown pairs predate deterministic generation. Their version labels remain v1 during Phase 0, but the registry marks them `in-review` and `legacy-transitional-source` or `legacy-derived-frozen`. Publication does not imply formal approval.

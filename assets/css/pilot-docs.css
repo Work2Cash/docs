@@ -126,6 +126,17 @@ tbody tr:nth-child(even) { background: #fafcff; }
 .pilot-card h2 { margin: 7px 0 8px; line-height: 1.25; }
 .pilot-card p { color: var(--muted); }
 
+.registry-summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 24px; }
+.registry-summary div { padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); box-shadow: var(--shadow); }
+.registry-summary strong { display: block; color: var(--brand-dark); font-size: 30px; line-height: 1; }
+.registry-summary span { color: var(--muted); font-size: 13px; }
+.registry-content { padding: clamp(20px, 3vw, 40px); }
+.registry-table { min-width: 1300px; }
+.registry-table td { max-width: 310px; }
+.registry-table td p, .registry-table td ul { margin: 6px 0; }
+.registry-table td ul { padding-left: 18px; }
+.registry-type { color: var(--muted); font-size: 11px; text-transform: uppercase; }
+
 footer { padding: 32px 20px 46px; color: var(--muted); text-align: center; font-size: 13px; }
 
 @media (max-width: 900px) {
@@ -138,6 +149,7 @@ footer { padding: 32px 20px 46px; color: var(--muted); text-align: center; font-
   .page-shell, .index-shell { width: min(100% - 24px, 1440px); }
   .document-hero, .index-hero { border-radius: 16px; }
   .document-grid > aside, .pilot-grid { grid-template-columns: 1fr; }
+  .registry-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .document-content { border-radius: 12px; }
 }
 

@@ -2,7 +2,7 @@
 
 This repository contains the official Work2Cash project documentation for the product, backend, mobile, admin frontend, infrastructure, QA, and stakeholder teams.
 
-The Main Enterprise Architecture v1 document is the primary source of truth.
+The Main Enterprise Architecture v1 document is the designated provisional controlling baseline while formal approval remains pending. Use the Document Registry to check current authority and lifecycle.
 
 ## Published Documentation Site
 
@@ -12,9 +12,11 @@ https://work2cash.github.io/docs/
 
 ## Governance
 
-Only the Technical Lead is allowed to edit, push, merge, or publish documentation changes.
+Repository changes follow `governance/editing-policy.md`, `governance/lifecycle-policy.md` and `governance/versioning-policy.md`.
 
-Team members should consume the documents through the GitHub Pages site.
+The machine-readable registry is `governance/document-registry.json`. Human and agent views are generated from it.
+
+Generated outputs must not be edited directly. Run `node scripts/validate-docs.js` before handoff.
 
 ## Legal Documents
 

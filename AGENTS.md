@@ -1,169 +1,116 @@
 # AGENTS.md
 
-This documentation portal contains the Work2Cash team documents.
+This repository is the Work2Cash documentation portal. These rules tell Codex and other AI agents how to select context, resolve authority and execute Mobile, Admin Frontend and Backend tasks safely.
 
-Use this file to teach Codex or any other AI coding agent how to read the Work2Cash Markdown documents and execute tasks correctly for Mobile, Admin Frontend and Backend.
+## Start with the registry
 
-## Role Of This Portal
+Before relying on a document, check `governance/document-registry.md` or the portal **Document Registry** page for its owner, lifecycle, approval, authority and artifact class.
 
-- HTML documents are for human/team reading.
-- Markdown documents are for Codex and other AI agents.
-- The Main Enterprise Architecture remains the controlling source of truth.
-- Teams should download the Markdown files relevant to their work and provide them to their agent of choice.
+- Human-facing HTML is for team reading.
+- Clean agent Markdown is for AI context.
+- Canonical sources control generated outputs.
+- Legacy HTML/Markdown pairs are transitional and may contain duplication or presentation markup.
+- The Full Project Markdown bundle is non-canonical and must not resolve conflicts.
 
-## AI Context Guard
+## Authority and conflict rules
 
-If an agent receives only one team-specific Markdown brief or build-plan Markdown file, it must not give implementation steps yet. It should first ask the user to return to the documentation portal UI and download the relevant flow Markdown, the active weekly execution pack, and **Full Project Markdown**.
+Use the authority order in `governance/lifecycle-policy.md`:
 
-Tell teams where to download the files:
+1. Approved architecture decisions.
+2. Active Main Enterprise Architecture for cross-platform rules.
+3. Active domain sources for flows, contracts, data, providers, security, legal or operations.
+4. Build tasks and weekly packs for scheduling only.
+5. Generated outputs, which inherit their source authority.
+6. Legacy, draft, in-review and combined context artifacts.
 
-- Mobile: open **Mobile Flow Catalogue v1** and click **Download agent Markdown**.
-- Admin: open **Admin Flow Catalogue v1** and click **Download agent Markdown**.
-- Backend: open **Mobile Flow Catalogue v1** and click **Download agent Markdown**; for admin-facing backend work, also open **Admin Flow Catalogue v1** and click **Download agent Markdown**.
-- Active week: open **Weekly Execution Packs** and download the current week Markdown.
-- Full source context: open the relevant team **Build Plan v1** page and use **Team Markdown Downloads** to download **Full Project Markdown**.
+The current Main Enterprise Architecture v1 is the designated provisional controlling baseline while formal approval remains pending. If provisional sources conflict on behavior, contracts, data, security, finance, privacy or legal meaning, identify the conflict and request a decision before implementation.
 
-## Primary Agent Files
+## Minimum implementation context
 
-Start here from the documentation portal:
+If an agent receives only a team brief or build plan, it must not give implementation steps yet. It should request:
 
-- Open **AI Agent Start Here**.
-
-Use shared rules for every task:
-
-- Open any team build plan page, then use **Team Markdown Downloads** to download **Shared Execution Rules**.
-
-Use the relevant team brief from **Team Markdown Downloads** on the matching build plan page:
-
-- **Mobile Team Markdown Brief**
-- **Admin Team Markdown Brief**
-- **Backend Team Markdown Brief**
-
-Use weekly packs for focused execution. Open **Weekly Execution Packs** from the portal, then download the active week:
-
-- Week 1 - Foundation and Identity
-- Week 2 - Tasker, Task Creation and Payment
-- Week 3 - Discovery, Matching and Execution Start
-- Week 4 - Completion, Finance and Support
-- Week 5 - Integration, Recovery and Full Flow QA
-- Week 6 - Hardening, Security and Performance
-- Week 7 - Release Candidate and Operations Dry Run
-- Week 8 - Stabilization and Freeze
-
-Use full project context only when necessary:
-
-- Use **Team Markdown Downloads** to download **Full Project Markdown**.
-
-## How Teams Should Download And Use The Files
-
-Each team should open its build plan page in the documentation portal and use the **Team Markdown Downloads** section. Flow Markdown files are downloaded from their flow document pages using **Download agent Markdown**.
-
-Download:
-
-1. **AGENTS.md Usage Guide**
-2. **Shared Execution Rules**
-3. The team-specific brief:
-   - Mobile: **Mobile Team Markdown Brief**
-   - Admin: **Admin Team Markdown Brief**
-   - Backend: **Backend Team Markdown Brief**
-4. The weekly execution pack for the current week.
-5. Any specific source document needed for the task.
-
-If an agent needs broad project context, provide:
-
-- **Full Project Markdown**
-
-Do not use the full project Markdown by default for every task. It is large. Use weekly packs for focused execution.
-
-## Agent Reading Strategy
-
-For normal implementation tasks, do not read every document.
-
-Use this order:
-
-1. **Shared Execution Rules**
+1. Shared Execution Rules.
 2. The relevant team brief.
-3. The relevant weekly pack.
-4. The specific source document needed for the task, such as API contracts or data model planning.
+3. The active weekly execution pack, if a week has been formally selected.
+4. The specific flow or domain source required for the task.
+5. The relevant API/socket contract.
+6. Data-model or provider documentation when the task touches those areas.
 
-Only use **Full Project Markdown** when the task requires broad context across product, architecture, flows, providers, data model, build plan and launch rules.
+Request **Full Project Markdown** only for onboarding, architecture review, cross-document consistency checks or genuinely cross-platform work. Do not require it for normal focused implementation.
 
-## Codex Usage Pattern
+If no active week is identified in the registry or execution index, ask the user which week is active rather than assuming from calendar dates.
 
-For Codex, paste or attach the files in this order:
+## Where to download context
 
-```text
-Read these Markdown files only:
-1. AGENTS.md
-2. Shared Execution Rules
-3. [Team] Team Markdown Brief
-4. [Current Week] Execution Pack
-5. [Specific source document downloaded from its portal page]
+- Mobile flows: open **Mobile Flow Catalogue v1** and select **Download agent Markdown**.
+- Admin flows: open **Admin Flow Catalogue v1** and select **Download agent Markdown**.
+- Backend mobile-facing work: use the relevant Mobile Flow Catalogue section.
+- Backend admin-facing work: also use the relevant Admin Flow Catalogue section.
+- Shared rules and team briefs: use **Team Markdown Downloads** on the relevant build-plan page.
+- Weekly packs: open **Weekly Execution Packs** and select the formally active week.
+- Broad context only: use **Full Project Markdown** from Team Markdown Downloads.
 
-Do not read HTML files unless I provide a specific section.
+## Team context sets
 
-Now execute this task:
-[task block]
-```
-
-## Mobile Team Agent Context
-
-Use these files for normal mobile implementation:
+### Mobile
 
 ```text
 AGENTS.md
 Shared Execution Rules
 Mobile Team Markdown Brief
-[Current Week] Execution Pack
-Mobile Flow Catalogue agent Markdown
-API & Socket Contract Specification agent Markdown
+[Formally active week] Execution Pack
+Relevant Mobile Flow
+Relevant API & Socket Contract section
 ```
 
-Add **Provider Integration & Cost Control agent Markdown** when the task touches payment, KYC, FCM, maps, SMS, Sentry, Shorebird or media storage.
+Add provider documentation for payment, KYC, FCM, maps, SMS, Sentry, Shorebird or media storage.
 
-## Admin Team Agent Context
-
-Use these files for normal admin implementation:
+### Admin Frontend
 
 ```text
 AGENTS.md
 Shared Execution Rules
 Admin Team Markdown Brief
-[Current Week] Execution Pack
-Admin Flow Catalogue agent Markdown
-API & Socket Contract Specification agent Markdown
+[Formally active week] Execution Pack
+Relevant Admin Flow
+Relevant API & Socket Contract section
 ```
 
-Add `Data Model & Prisma Schema Planning agent Markdown` when the task needs model names, enum names, audit expectations or admin state behavior.
+Add data-model documentation for model names, enums, audit behavior or admin state transitions.
 
-## Backend Team Agent Context
-
-Use these files for normal backend implementation:
+### Backend
 
 ```text
 AGENTS.md
 Shared Execution Rules
 Backend Team Markdown Brief
-[Current Week] Execution Pack
-API & Socket Contract Specification agent Markdown
-Data Model & Prisma Schema Planning agent Markdown
+[Formally active week] Execution Pack
+Relevant Mobile and/or Admin Flow
+Relevant API & Socket Contract section
+Relevant Data Model section
 ```
 
-Add **Provider Integration & Cost Control agent Markdown** when the task touches Paystack, Moniepoint, Smile ID, Google Maps, Termii, FCM, Sentry, Shorebird, object storage, backups, Valkey or BullMQ.
+Add provider documentation for Paystack, Moniepoint, Smile ID, Google Maps, Termii, FCM, Sentry, Shorebird, object storage, backups, Valkey or BullMQ.
 
-## Full Context Usage
+## Task execution rule
 
-Use the full source file only for onboarding, architecture review, cross-document consistency checks or tasks where the agent must understand the whole platform.
+Before implementing, state:
 
-Download **Full Project Markdown** from **Team Markdown Downloads**.
+- The controlling source and its registry status.
+- The flow or task being implemented.
+- Required contracts, models and providers.
+- Known gaps or conflicts.
+- Acceptance criteria and required tests.
 
-For coding tasks, prefer the smaller weekly and team files.
+Do not invent missing endpoint paths, model fields, provider behavior or product decisions. A named contract or schema gap is a blocker to that portion of implementation, not permission to guess.
 
-## Forbidden Assumptions
+## Forbidden assumptions
 
 - Do not use `activeMode`; use `mode`.
 - Do not add Facebook login.
 - Do not add card-entry-first payment UX.
+- Do not use OPay; MVP payment providers are Paystack and Moniepoint.
+- Do not create Tasker auto-accept behavior.
 - Do not create admin task reassignment.
 - Do not make direct offers socket-based.
 - Do not make disputes live chat.
@@ -171,11 +118,13 @@ For coding tasks, prefer the smaller weekly and team files.
 - Do not expose exact addresses, full proof media, real phone numbers, KYC data or payment secrets.
 - Do not introduce paid provider auto-refresh loops.
 
-## Commit Discipline
+## Documentation editing
 
-Commit feature by feature or fix by fix.
-
-Do not stack unrelated work in one commit.
+- Follow `governance/editing-policy.md` and `governance/versioning-policy.md`.
+- Edit canonical sources, not generated outputs.
+- Treat legacy documents as transitional and avoid adding duplicated prose.
+- Run `node scripts/validate-docs.js` before handoff.
+- Commit feature by feature or fix by fix; do not stack unrelated work.
 
 Examples:
 

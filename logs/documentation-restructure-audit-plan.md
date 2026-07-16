@@ -32,7 +32,7 @@ The repository contains comprehensive product and technical knowledge, but the i
 
 ### Confirmed findings
 
-- [ ] Repair 169 broken cross-document links across the 13 human HTML documents.
+- [x] Repair 169 broken cross-document links across the 13 human HTML documents.
 - [ ] Reduce the approximately 2.9 MB agent documentation footprint through focused context packs and clean Markdown.
 - [ ] Replace the 33,399-line Full Project Markdown bundle with a generated, versioned agent-context artifact.
 - [ ] Split the 13,095-line mobile flow catalogue into independently readable flow and subflow files.
@@ -810,22 +810,35 @@ Every canonical document or content unit must include:
 
 ## Phase 0: Stop Further Drift
 
-- [ ] Approve the canonical-source model.
-- [ ] Freeze direct edits to generated HTML and agent Markdown.
-- [ ] Create the document registry.
-- [ ] Define document lifecycle statuses.
-- [ ] Repair the 169 broken cross-document links.
-- [ ] Resolve AGENTS.md context and authority contradictions.
-- [ ] Correct known stale product assumptions.
-- [ ] Correct stale Planned, Draft, Active and Pending labels.
-- [ ] Establish initial link and metadata CI checks.
+- [x] Approve the canonical-source model.
+- [x] Freeze direct edits to generated HTML and agent Markdown.
+- [x] Create the document registry.
+- [x] Define document lifecycle statuses.
+- [x] Repair the 169 broken cross-document links.
+- [x] Resolve AGENTS.md context and authority contradictions.
+- [x] Correct known stale product assumptions.
+- [x] Correct stale Planned, Draft, Active and Pending labels.
+- [x] Establish initial link and metadata CI checks.
 
 ### Phase 0 exit criteria
 
-- [ ] No known broken document navigation remains.
-- [ ] Every active document has an owner and status.
-- [ ] Canonical versus generated files are identified.
-- [ ] New documentation changes cannot silently increase drift.
+- [x] No known broken document navigation remains.
+- [x] Every active document has an owner and status.
+- [x] Canonical versus generated files are identified.
+- [x] New documentation changes cannot silently increase drift.
+
+### Phase 0 implementation evidence — 17 July 2026
+
+- [x] Machine-readable source created at `governance/document-registry.json` with generated human and agent views.
+- [x] Editing, lifecycle/authority and versioning policies activated in `governance/`.
+- [x] All legacy v1 document families classified honestly as transitional or legacy-derived rather than falsely generated.
+- [x] Legacy product/technical documents without approval evidence marked `in-review` and `pending` in the registry.
+- [x] One-time reconciliation repaired 169 navigation links and 57 known stale-content occurrences.
+- [x] Portal guidance now starts with lifecycle and authority rather than treating every published file as approved.
+- [x] CI validates registry drift, required metadata, local links, anchors, duplicate IDs, guards, known stale phrases and generated pilots.
+- [x] Detailed evidence and residual approvals recorded in `logs/phase-0-execution-log.md`.
+
+Phase 0 is **complete**. Formal approval of legacy content, active-week selection and deterministic migration remain explicitly tracked work for later phases rather than hidden Phase 0 assumptions.
 
 ## Phase 1: Templates and Reference Pilots
 
@@ -1021,7 +1034,7 @@ The restructuring is complete only when all of the following are true:
 
 | Phase | Status | Owner | Target | Notes |
 | --- | --- | --- | --- | --- |
-| Phase 0 - Stop drift | Not started | Technical Lead | TBD | Begin with canonical-source rules and broken links |
+| Phase 0 - Stop drift | Complete | Technical Lead | 17 Jul 2026 | Governance, registry, link repair and CI controls established |
 | Phase 1 - Templates and pilots | In progress | Product + Technical Lead | TBD | Sources and generation complete; external reader tests and contract decisions remain |
 | Phase 2 - Flow migration | Not started | Product + Team Leads | TBD | Mobile and admin catalogues |
 | Phase 3 - Execution planning | Not started | Project + Technical Lead | TBD | Canonical task register |
@@ -1043,3 +1056,4 @@ Use this section to record reviews of the restructuring plan.
 | --- | --- | --- | --- |
 | 16 July 2026 | Initial repository-wide audit and restructuring checklist created | Codex, under Technical Lead direction | Pending |
 | 17 July 2026 | Phase 1 templates, canonical pilots, generated human/agent outputs and CI drift checks added | Codex, under Product and Technical Lead direction | Pending external usability review |
+| 17 July 2026 | Phase 0 governance, registry, 169-link repair, drift reconciliation and repository-wide CI completed | Codex, under Product and Technical Lead direction | Governance active; legacy content approvals pending |

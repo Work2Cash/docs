@@ -1523,11 +1523,11 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 | Admin Flow Catalogue v1               | Admin Flow Catalogue v1                | Closed admin web flows, dependencies, recovery paths and dashboard silhouettes.                                             |
 | Flow Alignment Review v1              | Flow Alignment Review v1               | Comparison and decision tracker for Figma, mobile/admin flow catalogues and architecture alignment.                         |
 | Legal & User-Facing Documents Pack    | Legal & User-Facing Documents Pack v1    | Combined legal/user-facing pack. Separate /legal/... pages are not used for MVP docs publishing.                            |
-| API & Socket Contract Specification   | API & Socket Contract Specification v1   | Planned contract document for REST, socket, webhook, events, queues and response shapes.                                    |
-| Data Model & Prisma Schema Planning   | Data Model & Prisma Schema Planning v1   | Planned entity, relationship, enum and migration planning document.                                                         |
-| Provider Integration & Cost Control   | Provider Integration & Cost Control v1   | Planned provider, hosting, pricing, cost guard and operations document.                                                     |
-| Build / Implementation Execution Plan | Build / Implementation Execution Plan v1 | Planned team-by-team build timeline and execution tracker.                                                                  |
-| QA / Go-Live Readiness Checklist      | QA / Go-Live Readiness Checklist v1      | Planned QA, launch, rollback, provider validation and go-live checklist.                                                    |
+| API & Socket Contract Specification   | API & Socket Contract Specification v1   | Published contract baseline for REST, socket, webhook, events, queues and response shapes; formal review pending.                                    |
+| Data Model & Prisma Schema Planning   | Data Model & Prisma Schema Planning v1   | Published entity, relationship, enum and migration baseline; formal review pending.                                                         |
+| Provider Integration & Cost Control   | Provider Integration & Cost Control v1   | Published provider, hosting, pricing, cost guard and operations baseline; formal review pending.                                                     |
+| Build / Implementation Execution Plan | Build / Implementation Execution Plan v1 | Published team-by-team build timeline and execution baseline; formal review pending.                                                                  |
+| QA / Go-Live Readiness Checklist      | QA / Go-Live Readiness Checklist v1      | Published QA, launch, rollback, provider validation and go-live baseline; formal review pending.                                                    |
 
 </div>
 
@@ -1549,16 +1549,16 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 | Order | Document                                     | Status                                  |
 |-------|----------------------------------------------|-----------------------------------------|
-| 1     | Main Enterprise Architecture Document        | Active source of truth                  |
-| 2     | Mobile Flow Catalogue                        | Generated and aligned                   |
-| 3     | Admin Flow Catalogue                         | Generated and aligned                   |
-| 4     | Flow Alignment Review                        | Generated and resolved-decision tracker |
-| 5     | Legal & User-Facing Documents Pack           | Combined pack; publish as a protected document page |
-| 6     | API & Socket Contract Specification          | Planned                                 |
-| 7     | Data Model & Prisma Schema Planning Document | Planned                                 |
-| 8     | Provider Integration & Cost Control Document | Planned                                 |
-| 9     | Build / Implementation Execution Plan        | Planned                                 |
-| 10    | QA / Go-Live Readiness Checklist             | Planned                                 |
+| 1     | Main Enterprise Architecture Document        | Published provisional controlling baseline; formal approval pending                  |
+| 2     | Mobile Flow Catalogue                        | Published provisional catalogue; formal approval pending                   |
+| 3     | Admin Flow Catalogue                         | Published provisional catalogue; formal approval pending                   |
+| 4     | Flow Alignment Review                        | Published provisional decision tracker; formal approval pending |
+| 5     | Legal & User-Facing Documents Pack           | Published protected pack; formal review pending |
+| 6     | API & Socket Contract Specification          | Published; formal review pending                                 |
+| 7     | Data Model & Prisma Schema Planning Document | Published; formal review pending                                 |
+| 8     | Provider Integration & Cost Control Document | Published; formal review pending                                 |
+| 9     | Build / Implementation Execution Plan        | Published; formal review pending                                 |
+| 10    | QA / Go-Live Readiness Checklist             | Published; formal review pending                                 |
 
 </div>
 
@@ -1637,7 +1637,7 @@ Company, sponsor, owner, prepared by, and final approver: Traceworka.
 
 #### Status
 
-HTML master architecture draft. Legal pack regeneration comes after architecture sign-off.
+Published provisional architecture baseline. Formal product and technical approval remains pending; see the Document Registry.
 
 </div>
 

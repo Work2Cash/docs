@@ -1535,11 +1535,11 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 | Admin Flow Catalogue v1               | Admin Flow Catalogue v1                | Closed admin web flows, dependencies, recovery paths and dashboard silhouettes.                                             |
 | Flow Alignment Review v1              | Flow Alignment Review v1               | Comparison and decision tracker for Figma, mobile/admin flow catalogues and architecture alignment.                         |
 | Legal & User-Facing Documents Pack    | Legal & User-Facing Documents Pack v1    | Combined legal/user-facing pack. Separate /legal/... pages are not used for MVP docs publishing.                            |
-| API & Socket Contract Specification   | API & Socket Contract Specification v1   | Planned contract document for REST, socket, webhook, events, queues and response shapes.                                    |
-| Data Model & Prisma Schema Planning   | Data Model & Prisma Schema Planning v1   | Planned entity, relationship, enum and migration planning document.                                                         |
-| Provider Integration & Cost Control   | Provider Integration & Cost Control v1   | Planned provider, hosting, pricing, cost guard and operations document.                                                     |
-| Build / Implementation Execution Plan | Build / Implementation Execution Plan v1 | Planned team-by-team build timeline and execution tracker.                                                                  |
-| QA / Go-Live Readiness Checklist      | QA / Go-Live Readiness Checklist v1      | Planned QA, launch, rollback, provider validation and go-live checklist.                                                    |
+| API & Socket Contract Specification   | API & Socket Contract Specification v1   | Published contract baseline for REST, socket, webhook, events, queues and response shapes; formal review pending.                                    |
+| Data Model & Prisma Schema Planning   | Data Model & Prisma Schema Planning v1   | Published entity, relationship, enum and migration baseline; formal review pending.                                                         |
+| Provider Integration & Cost Control   | Provider Integration & Cost Control v1   | Published provider, hosting, pricing, cost guard and operations baseline; formal review pending.                                                     |
+| Build / Implementation Execution Plan | Build / Implementation Execution Plan v1 | Published team-by-team build timeline and execution baseline; formal review pending.                                                                  |
+| QA / Go-Live Readiness Checklist      | QA / Go-Live Readiness Checklist v1      | Published QA, launch, rollback, provider validation and go-live baseline; formal review pending.                                                    |
 
 </div>
 
@@ -1561,16 +1561,16 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 | Order | Document                                     | Status                                  |
 |-------|----------------------------------------------|-----------------------------------------|
-| 1     | Main Enterprise Architecture Document        | Active source of truth                  |
-| 2     | Mobile Flow Catalogue                        | Generated and aligned                   |
-| 3     | Admin Flow Catalogue                         | Generated and aligned                   |
-| 4     | Flow Alignment Review                        | Generated and resolved-decision tracker |
-| 5     | Legal & User-Facing Documents Pack           | Combined pack; publish as a protected document page |
-| 6     | API & Socket Contract Specification          | Planned                                 |
-| 7     | Data Model & Prisma Schema Planning Document | Planned                                 |
-| 8     | Provider Integration & Cost Control Document | Planned                                 |
-| 9     | Build / Implementation Execution Plan        | Planned                                 |
-| 10    | QA / Go-Live Readiness Checklist             | Planned                                 |
+| 1     | Main Enterprise Architecture Document        | Published provisional controlling baseline; formal approval pending                  |
+| 2     | Mobile Flow Catalogue                        | Published provisional catalogue; formal approval pending                   |
+| 3     | Admin Flow Catalogue                         | Published provisional catalogue; formal approval pending                   |
+| 4     | Flow Alignment Review                        | Published provisional decision tracker; formal approval pending |
+| 5     | Legal & User-Facing Documents Pack           | Published protected pack; formal review pending |
+| 6     | API & Socket Contract Specification          | Published; formal review pending                                 |
+| 7     | Data Model & Prisma Schema Planning Document | Published; formal review pending                                 |
+| 8     | Provider Integration & Cost Control Document | Published; formal review pending                                 |
+| 9     | Build / Implementation Execution Plan        | Published; formal review pending                                 |
+| 10    | QA / Go-Live Readiness Checklist             | Published; formal review pending                                 |
 
 </div>
 
@@ -1649,7 +1649,7 @@ Company, sponsor, owner, prepared by, and final approver: Traceworka.
 
 #### Status
 
-HTML master architecture draft. Legal pack regeneration comes after architecture sign-off.
+Published provisional architecture baseline. Formal product and technical approval remains pending; see the Document Registry.
 
 </div>
 
@@ -2096,7 +2096,7 @@ The Task Owner lane lets a user describe a task, set a fair budget, pay into esc
 
 <div class="node warning-node">
 
-**Fund Escrow**Virtual account, OPay, USSD, wallet.
+**Fund Escrow**Virtual account, Moniepoint, USSD, wallet.
 
 </div>
 
@@ -2128,7 +2128,7 @@ The Task Owner lane lets a user describe a task, set a fair budget, pay into esc
 | Location                      | Saved address or current location.                                            | Address book, coordinates, geocoding cache.                                | Cache paid geocoding results when terms allow.           |
 | Available taskers             | Nearby taskers with ETA, distance, rating, service fit.                       | Valkey `GEOSEARCH` first, paid ETA only after filtering.                   | Batch ETA requests and enforce quotas.                   |
 | Booking summary               | Selected task, cost breakdown, secure payment note.                           | Pending booking, escrow intent, service fee computation.                   | Show transparent pricing before payment.                 |
-| Make payment                  | Bank transfer, virtual account, USSD, OPay, wallet.                           | Payment initialization, provider reference, webhook reconciliation.        | Card entry must not be the default path.                 |
+| Make payment                  | Bank transfer, virtual account, USSD, Moniepoint, wallet.                           | Payment initialization, provider reference, webhook reconciliation.        | Card entry must not be the default path.                 |
 | Payment success / receipt     | Payment received, receipt, QR/download.                                       | Ledger credit, escrow hold, receipt generation.                            | Do not trust the client UI without webhook confirmation. |
 | Task in progress              | Timer, task progress, chat, emergency support.                                | Task state machine, WebSocket chat, support escalation.                    | Works with intermittent connectivity.                    |
 | Task complete / rating        | Owner confirms completion and rates tasker.                                   | Escrow release, two-sided review, rating aggregation.                      | Include dispute window before auto-release if needed.    |
@@ -2145,7 +2145,7 @@ Payment UX Correction
 
 </div>
 
-Any card-looking design should be interpreted as saved funding options, not a forced card form. The default production flow is bank transfer, virtual account, USSD, OPay, and wallet balance.
+Any card-looking design should be interpreted as saved funding options, not a forced card form. The default production flow is bank transfer, virtual account, USSD, Moniepoint, and wallet balance.
 
 </div>
 
@@ -2175,7 +2175,7 @@ The Tasker lane activates after KYC and profile setup. It covers availability, t
 |-------------------------------|------------------------------------------------------------------------|---------------------------------------------------------------------|--------------------------------------------|
 | Complete Tasker profile       | Gender, DOB, phone, address, location, state, bank details.            | `TaskerProfile`, KYC gate, payout destination setup.                | <span class="pill pill-blue">MVP</span>    |
 | Select task                   | Choose categories and sub-skills the tasker can perform.               | Tasker skills relation and category eligibility.                    | <span class="pill pill-blue">MVP</span>    |
-| Availability                  | Days available, working hours, max distance, auto-accept.              | Availability schedule, service radius, task matching filters.       | <span class="pill pill-blue">MVP</span>    |
+| Availability                  | Days available, working hours, maximum travel distance and preferred categories; auto-accept is excluded.              | Availability schedule, service radius, task matching filters.       | <span class="pill pill-blue">MVP</span>    |
 | Pricing info                  | Minimum acceptable price and pricing guidance.                         | Tasker pricing preference bounded by platform minimum.              | <span class="pill pill-green">Trust</span> |
 | Enable location               | Allow app to find nearby jobs.                                         | Location permission, online status, Valkey geo index update.        | <span class="pill pill-blue">MVP</span>    |
 | Task request                  | Incoming job with owner, distance, task details, price, accept/reject. | Real-time job offer, expiry, atomic assignment lock.                | <span class="pill pill-blue">MVP</span>    |
@@ -2262,7 +2262,7 @@ The admin dashboard is not just reporting. It is the operating console for KYC, 
 | User management         | List, search, filter, view, suspend, ban users.                       | Admin user query APIs and account status workflow.             | Admin, Support Lead |
 | KYC verification        | Review selfie, ID, verification status, approve/reject.               | KYC moderation workflow, provider data, audit trail.           | KYC Reviewer, Admin |
 | Task management         | All tasks by status, category, amount, owner, tasker.                 | Task search, task timeline, intervention endpoints.            | Operations          |
-| Force cancel / reassign | Admin cancels or reassigns problematic tasks.                         | Reason capture, refund/penalty decision, notification.         | Operations Lead     |
+| Controlled force cancel | Admin may force-cancel a task under policy; admin cannot select a replacement Tasker.                         | Reason capture, refund/penalty decision, notification.         | Operations Lead     |
 | Wallet and escrow       | Held funds, wallet activity, task settlement state.                   | Ledger query, escrow status, settlement audit trail.           | Finance             |
 | Withdrawals             | Approve/reject withdrawal requests.                                   | Payout approval workflow, payout adapter, withdrawal status.   | Finance Lead        |
 | Disputes and support    | Complaint details, evidence, admin decision, resolution tracking.     | Support ticket module, dispute states, evidence attachments.   | Support, Operations |
@@ -2349,7 +2349,7 @@ Analytics
 
 - Smile ID behind `KycProviderPort`.
 - Google Maps behind `RoutingProviderPort`.
-- Paystack and OPay behind `PaymentProviderPort`.
+- Paystack and Moniepoint behind `PaymentProviderPort`.
 - FCM behind `PushNotificationPort`.
 
 </div>

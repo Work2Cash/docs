@@ -2,6 +2,8 @@
 
 Use these files for focused implementation context. Each weekly pack includes the goal, exit condition, Mobile tasks, Backend tasks, Admin tasks, cross-team dependency rule and AI-agent task template for that week.
 
+> **Lifecycle notice:** No active week is formally recorded in the Document Registry. The Project or Technical Lead must identify the active week. Calendar dates alone do not activate a pack.
+
 ## Weeks
 
 - [Week 1 - Foundation and Identity](./week-01-foundation-identity.md)

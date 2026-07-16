@@ -24,6 +24,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Verify generated document registry
+        run: node scripts/generate-document-registry.js --check
+
+      - name: Validate documentation metadata and navigation
+        run: node scripts/validate-docs.js
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 

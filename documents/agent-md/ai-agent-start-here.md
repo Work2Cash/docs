@@ -2,9 +2,9 @@
 
 ## Purpose
 
-This folder contains Markdown equivalents of the Work2Cash HTML documentation.
+This folder contains AI-readable Work2Cash documentation. Check `document-registry.md` before relying on a file.
 
-The HTML files are for human reading and presentation. The Markdown files are for Codex and other AI agents because they are easier to parse and cheaper in tokens than full HTML.
+Some Markdown files are legacy exports containing presentation HTML. They remain transitional until regenerated from canonical sources. Publication does not mean formal approval.
 
 ## Recommended Agent Workflow
 
@@ -18,13 +18,14 @@ Use this layered context pattern:
    - mobile-team-build-brief-v1.md
    - admin-team-build-brief-v1.md
    - backend-team-build-brief-v1.md
-3. the relevant weekly execution pack in `weeks/`
-4. only the specific source-of-truth Markdown document needed for the task
+3. the relevant weekly execution pack in `weeks/`, only when the active week is formally identified
+4. the specific flow, contract, model or provider document needed for the task
 ```
 
 ## Preferred Files For Implementation
 
 - Agent usage guide: `../../AGENTS.md`
+- Document authority and lifecycle: `document-registry.md`
 - Full project context: `work2cash-full-source-of-truth-v1.md`
 - Week 1: `weeks/week-01-foundation-identity.md`
 - Week 2: `weeks/week-02-tasker-task-creation-payment.md`
@@ -76,13 +77,13 @@ Task:
    - Admin Build Plan
    - Backend Build Plan
 3. Use the **Team Markdown Downloads** panel.
-4. Download `AGENTS.md`, the shared execution rules, your team brief, the full project Markdown if needed and the weekly pack for the active build week.
+4. Download `AGENTS.md`, the shared execution rules, your team brief, the specific source documents and the weekly pack only when the active build week is formally identified.
 5. Give those Markdown files to Codex or your agent of choice before asking it to implement a task.
 
 Tell the agent: `AGENTS.md explains how to use the Work2Cash Markdown files. Follow it before coding.`
 
 ## Important Rule
 
-The Main Enterprise Architecture remains the controlling source of truth. If a Markdown equivalent conflicts with a later accepted decision, stop and ask for clarification before implementation.
+The Main Enterprise Architecture v1 is the designated provisional controlling baseline while formal approval is pending. Follow the authority order in `AGENTS.md` and the registry. If provisional sources conflict on material behavior, stop and request a decision before implementation.
 
-Do not read `work2cash-full-source-of-truth-v1.md` by default. It is available for broad project understanding, but weekly packs are the preferred execution context.
+Do not read `work2cash-full-source-of-truth-v1.md` by default and never treat it as independently authoritative. It is a legacy-derived bundle for broad context; focused source documents are preferred.
