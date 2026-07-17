@@ -37,13 +37,13 @@
 | CONTRACT-REFERRAL-001 | Referral Contract Group | approved | approved | Backend Lead | canonical-source | `content/contracts/referral-contract-group.md`; `documents/contracts/referral-contract-group.html`; `documents/agent-md/contracts/referral-contract-group.md`; `documents/contracts/index.html`; `documents/agent-md/contracts/README.md`; `scripts/validate-referral-contract.js` |
 | DATA-001 | Data Model and Prisma Schema Planning v1 | in-review | pending | Backend Lead | legacy-transitional-source | `documents/data-model-prisma-schema-planning-v1.html`; `documents/agent-md/data-model-prisma-schema-planning-v1.md` |
 | PROVIDER-001 | Provider Integration and Cost Control v1 | in-review | pending | Infrastructure Lead | legacy-transitional-source | `documents/provider-integration-cost-control-v1.html`; `documents/agent-md/provider-integration-cost-control-v1.md` |
-| PLAN-MOBILE-001 | Mobile Build Plan v1 | in-review | pending | Mobile Lead | legacy-transitional-source | `documents/build-plan-mobile-v1.html`; `documents/agent-md/build-plan-mobile-v1.md` |
-| PLAN-ADMIN-001 | Admin Build Plan v1 | in-review | pending | Admin Lead | legacy-transitional-source | `documents/build-plan-admin-v1.html`; `documents/agent-md/build-plan-admin-v1.md` |
-| PLAN-BACKEND-001 | Backend Build Plan v1 | in-review | pending | Backend Lead | legacy-transitional-source | `documents/build-plan-backend-v1.html`; `documents/agent-md/build-plan-backend-v1.md` |
+| PLAN-MOBILE-001 | Mobile Build Plan v1 | superseded | approved | Mobile Lead | legacy-transitional-source | `documents/build-plan-mobile-v1.html`; `documents/agent-md/build-plan-mobile-v1.md` |
+| PLAN-ADMIN-001 | Admin Build Plan v1 | superseded | approved | Admin Lead | legacy-transitional-source | `documents/build-plan-admin-v1.html`; `documents/agent-md/build-plan-admin-v1.md` |
+| PLAN-BACKEND-001 | Backend Build Plan v1 | superseded | approved | Backend Lead | legacy-transitional-source | `documents/build-plan-backend-v1.html`; `documents/agent-md/build-plan-backend-v1.md` |
 | QA-001 | QA and Go-Live Readiness Checklist v1 | in-review | pending | QA Lead | legacy-transitional-source | `documents/qa-go-live-readiness-checklist-v1.html`; `documents/agent-md/qa-go-live-readiness-checklist-v1.md` |
-| AI-START-001 | AI Agent Start Here | in-review | pending | Technical Lead | legacy-transitional-source | `documents/agent-md/ai-agent-start-here.md` |
-| TEAM-PACKS-001 | Shared Execution Rules and Team Briefs | in-review | pending | Technical Lead | legacy-transitional-source | `documents/downloads/shared-ai-agent-execution-rules-v1.md`; `documents/downloads/mobile-team-build-brief-v1.md`; `documents/downloads/admin-team-build-brief-v1.md`; `documents/downloads/backend-team-build-brief-v1.md` |
-| WEEK-PACKS-001 | Weekly Execution Packs | in-review | pending | Project Lead | legacy-transitional-source | `documents/agent-md/weeks/weekly-execution-index.md`; `documents/agent-md/weeks/week-01-foundation-identity.md`; `documents/agent-md/weeks/week-02-tasker-task-creation-payment.md`; `documents/agent-md/weeks/week-03-discovery-matching-execution-start.md`; `documents/agent-md/weeks/week-04-completion-finance-support.md`; `documents/agent-md/weeks/week-05-integration-recovery-full-flow-qa.md`; `documents/agent-md/weeks/week-06-hardening-security-performance.md`; `documents/agent-md/weeks/week-07-release-candidate-operations-dry-run.md`; `documents/agent-md/weeks/week-08-stabilization-freeze.md` |
+| AI-START-001 | AI Agent Start Here | active | approved | Technical Lead | legacy-transitional-source | `documents/agent-md/ai-agent-start-here.md` |
+| TEAM-PACKS-001 | Shared Execution Rules and Team Briefs | active | approved | Technical Lead | legacy-transitional-source | `documents/downloads/shared-ai-agent-execution-rules-v1.md`; `documents/downloads/mobile-team-build-brief-v1.md`; `documents/downloads/admin-team-build-brief-v1.md`; `documents/downloads/backend-team-build-brief-v1.md` |
+| WEEK-PACKS-001 | Weekly Execution Packs | superseded | approved | Project Lead | legacy-transitional-source | `documents/agent-md/weeks/weekly-execution-index.md`; `documents/agent-md/weeks/week-01-foundation-identity.md`; `documents/agent-md/weeks/week-02-tasker-task-creation-payment.md`; `documents/agent-md/weeks/week-03-discovery-matching-execution-start.md`; `documents/agent-md/weeks/week-04-completion-finance-support.md`; `documents/agent-md/weeks/week-05-integration-recovery-full-flow-qa.md`; `documents/agent-md/weeks/week-06-hardening-security-performance.md`; `documents/agent-md/weeks/week-07-release-candidate-operations-dry-run.md`; `documents/agent-md/weeks/week-08-stabilization-freeze.md` |
 | FULL-CONTEXT-001 | Work2Cash Full Project Markdown | in-review | pending | Technical Lead | legacy-derived-frozen | `documents/agent-md/work2cash-full-source-of-truth-v1.md` |
 | PILOT-MF06-001 | MF-06 Create and Fund Task Pilot | approved | approved | Product Lead | canonical-source | `content/pilots/flows/mobile/MF-06-create-and-fund-task.md`; `documents/pilots/flows/mobile/MF-06-create-and-fund-task.html`; `documents/agent-md/pilots/flows/mobile/MF-06-create-and-fund-task.md` |
 | PILOT-AF04-001 | AF-04 KYC Review Pilot | approved | approved | Product Lead | canonical-source | `content/pilots/flows/admin/AF-04-kyc-review.md`; `documents/pilots/flows/admin/AF-04-kyc-review.html`; `documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md` |
@@ -51,6 +51,7 @@
 | PILOT-KYC-DATA-001 | Tasker Activation and KYC Data Domain Pilot | approved | approved | Backend Lead | canonical-source | `content/pilots/data/kyc-domain.md`; `documents/pilots/data/kyc-domain.html`; `documents/agent-md/pilots/data/kyc-domain.md` |
 | PILOT-QA-AF04-001 | AF-04 KYC Review Reference QA Suite | approved | approved | QA Lead | canonical-source | `content/pilots/qa/AF-04-kyc-review-suite.md`; `documents/pilots/qa/AF-04-kyc-review-suite.html`; `documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md` |
 | FLOW-LIB-001 | Phase 2 Standalone Flow Library | active | approved | Product Lead | canonical-source | `logs/phase-2-execution-log.md`; `logs/phase-2-flow-migration-inventory.md`; `documents/flows/index.html`; `documents/agent-md/flows/README.md`; `documents/flows/dependency-map.html`; `documents/agent-md/flows/dependency-map.md`; `documents/flows/combined-flow-library.html`; `documents/agent-md/flows/combined-flow-library.md` |
+| TASK-LIB-001 | Phase 3 Canonical Build Task and Weekly Execution Library | active | approved | Project Lead | canonical-source | `content/tasks/plan-metadata.json`; `logs/phase-3-task-migration-inventory.md`; `logs/phase-3-execution-log.md`; `documents/planning/index.html`; `documents/agent-md/planning/README.md`; `documents/planning/mobile-build-plan.html`; `documents/planning/admin-build-plan.html`; `documents/planning/backend-build-plan.html`; `documents/planning/qa-traceability.html`; `documents/agent-md/planning/qa-traceability.md` |
 
 ## Detailed records
 
@@ -375,10 +376,10 @@ Costs and provider capabilities require dated validation before purchase or impl
 | Owner | Mobile Lead |
 | Required reviewers | Technical Lead, Product Lead, Backend Lead, QA |
 | Version | 1 |
-| Lifecycle | in-review |
-| Approval | pending |
+| Lifecycle | superseded |
+| Approval | approved |
 | Publication | published |
-| Last reviewed | Not recorded |
+| Last reviewed | 2026-07-17 |
 | Next review | Not scheduled |
 | Authority | Approved flows, contracts and task register |
 | Artifact class | legacy-transitional-source |
@@ -388,7 +389,7 @@ Costs and provider capabilities require dated validation before purchase or impl
 | Supersedes | None |
 | Tags | build-plan |
 
-Calendar dates do not prove work status; active week is not formally recorded.
+Superseded combined Mobile task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Mobile plan.
 
 ### PLAN-ADMIN-001 — Admin Build Plan v1
 
@@ -399,10 +400,10 @@ Calendar dates do not prove work status; active week is not formally recorded.
 | Owner | Admin Lead |
 | Required reviewers | Technical Lead, Product Lead, Backend Lead, QA |
 | Version | 1 |
-| Lifecycle | in-review |
-| Approval | pending |
+| Lifecycle | superseded |
+| Approval | approved |
 | Publication | published |
-| Last reviewed | Not recorded |
+| Last reviewed | 2026-07-17 |
 | Next review | Not scheduled |
 | Authority | Approved flows, contracts and task register |
 | Artifact class | legacy-transitional-source |
@@ -412,7 +413,7 @@ Calendar dates do not prove work status; active week is not formally recorded.
 | Supersedes | None |
 | Tags | build-plan |
 
-Calendar dates do not prove work status; active week is not formally recorded.
+Superseded combined Admin task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Admin plan.
 
 ### PLAN-BACKEND-001 — Backend Build Plan v1
 
@@ -423,10 +424,10 @@ Calendar dates do not prove work status; active week is not formally recorded.
 | Owner | Backend Lead |
 | Required reviewers | Technical Lead, Product Lead, Mobile Lead, Admin Lead, QA |
 | Version | 1 |
-| Lifecycle | in-review |
-| Approval | pending |
+| Lifecycle | superseded |
+| Approval | approved |
 | Publication | published |
-| Last reviewed | Not recorded |
+| Last reviewed | 2026-07-17 |
 | Next review | Not scheduled |
 | Authority | Approved flows, contracts and task register |
 | Artifact class | legacy-transitional-source |
@@ -436,7 +437,7 @@ Calendar dates do not prove work status; active week is not formally recorded.
 | Supersedes | None |
 | Tags | build-plan |
 
-Calendar dates do not prove work status; active week is not formally recorded.
+Superseded combined Backend task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Backend plan.
 
 ### QA-001 — QA and Go-Live Readiness Checklist v1
 
@@ -471,11 +472,11 @@ Checklist publication does not mean release gates have passed.
 | Owner | Technical Lead |
 | Required reviewers | Mobile Lead, Admin Lead, Backend Lead |
 | Version | 1 |
-| Lifecycle | in-review |
-| Approval | pending |
+| Lifecycle | active |
+| Approval | approved |
 | Publication | published |
-| Last reviewed | Not recorded |
-| Next review | Not scheduled |
+| Last reviewed | 2026-07-17 |
+| Next review | 2026-10-17 |
 | Authority | AGENTS.md |
 | Artifact class | legacy-transitional-source |
 | Current source | `documents/agent-md/ai-agent-start-here.md` |
@@ -484,7 +485,7 @@ Checklist publication does not mean release gates have passed.
 | Supersedes | None |
 | Tags | agent-guidance |
 
-Must agree with AGENTS.md; focused context is preferred.
+Aligned with AGENTS.md and the Phase 3 Team to Week to Day workflow. Use one team-week Markdown and select its embedded daily prompt.
 
 ### TEAM-PACKS-001 — Shared Execution Rules and Team Briefs
 
@@ -495,11 +496,11 @@ Must agree with AGENTS.md; focused context is preferred.
 | Owner | Technical Lead |
 | Required reviewers | Product Lead, Mobile Lead, Admin Lead, Backend Lead |
 | Version | 1 |
-| Lifecycle | in-review |
-| Approval | pending |
+| Lifecycle | active |
+| Approval | approved |
 | Publication | published |
-| Last reviewed | Not recorded |
-| Next review | Not scheduled |
+| Last reviewed | 2026-07-17 |
+| Next review | 2026-10-17 |
 | Authority | AGENTS.md and approved source documents |
 | Artifact class | legacy-transitional-source |
 | Current source | `documents/downloads/shared-ai-agent-execution-rules-v1.md` |
@@ -508,7 +509,7 @@ Must agree with AGENTS.md; focused context is preferred.
 | Supersedes | None |
 | Tags | agent-context-pack |
 
-Context packs narrow work; they do not define product behavior.
+Active focused context inputs used with Phase 3 team-week Markdown packs and embedded daily prompts. These packs narrow work; they do not define product behavior.
 
 ### WEEK-PACKS-001 — Weekly Execution Packs
 
@@ -519,10 +520,10 @@ Context packs narrow work; they do not define product behavior.
 | Owner | Project Lead |
 | Required reviewers | Technical Lead, Product Lead, Team leads |
 | Version | 1 |
-| Lifecycle | in-review |
-| Approval | pending |
+| Lifecycle | superseded |
+| Approval | approved |
 | Publication | published |
-| Last reviewed | Not recorded |
+| Last reviewed | 2026-07-17 |
 | Next review | Not scheduled |
 | Authority | Approved task register and build plans |
 | Artifact class | legacy-transitional-source |
@@ -532,7 +533,7 @@ Context packs narrow work; they do not define product behavior.
 | Supersedes | None |
 | Tags | agent-context-pack |
 
-No active week is formally selected; calendar dates must not be used to infer execution state.
+Superseded manually duplicated weekly packs retained as migration evidence. Use the generated TASK-LIB-001 team packs organized by week and day.
 
 ### FULL-CONTEXT-001 — Work2Cash Full Project Markdown
 
@@ -702,6 +703,30 @@ Approved Phase 1 reference with eleven executable cases; deployed build, migrati
 
 Active canonical flow family containing all 72 approved standalone sources: 24 mobile main, 13 mobile subflows, 24 admin main and 11 admin subflows. Human/agent indexes, dependency maps and optional combined catalogues are generated.
 
+### TASK-LIB-001 — Phase 3 Canonical Build Task and Weekly Execution Library
+
+| Field | Value |
+| --- | --- |
+| Type | execution-planning-migration |
+| Audience | Junior Mobile developers, Junior Admin developers, Junior Backend developers, Team leads, QA, AI agents |
+| Owner | Project Lead |
+| Required reviewers | Technical Lead, Product Lead, Mobile Lead, Admin Lead, Backend Lead, QA |
+| Version | 1.0 |
+| Lifecycle | active |
+| Approval | approved |
+| Publication | published |
+| Last reviewed | 2026-07-17 |
+| Next review | 2026-10-17 |
+| Authority | Approved flows, accepted contract decisions and approved Phase 3 delivery order |
+| Artifact class | canonical-source |
+| Current source | `content/tasks/plan-metadata.json` |
+| Other artifacts | `logs/phase-3-task-migration-inventory.md`, `logs/phase-3-execution-log.md`, `documents/planning/index.html`, `documents/agent-md/planning/README.md`, `documents/planning/mobile-build-plan.html`, `documents/planning/admin-build-plan.html`, `documents/planning/backend-build-plan.html`, `documents/planning/qa-traceability.html`, `documents/agent-md/planning/qa-traceability.md` |
+| Migration phase | Phase 3 |
+| Supersedes | PLAN-MOBILE-001, PLAN-ADMIN-001, PLAN-BACKEND-001 and WEEK-PACKS-001 |
+| Tags | task-library, weekly-execution, phase-3, junior-developers |
+
+Active planning family with 25 canonical team-week Markdown sources containing 125 task records: 120 migrated legacy tasks plus five Admin integration tasks. Human and agent execution outputs are also weekly; no standalone daily Markdown source, HTML task page or task-agent export is maintained. The primary junior-developer path is Team Build Plan to Week to Day. Every week begins with a Monday-to-Friday five-day map; every day has an explicit start boundary, finish boundary, implementation steps, tests, commit and embedded agent prompt. Delivery order is Admin construction, Mobile and Backend construction, Admin Integration, then cross-platform hardening.
+
 
 ## Pending approvals
 
@@ -712,13 +737,7 @@ Active canonical flow family containing all 72 approved standalone sources: 24 m
 - [ ] **CONTRACT-001 — API and Socket Contract Specification v1:** Technical Lead, Mobile Lead, Admin Lead, QA.
 - [ ] **DATA-001 — Data Model and Prisma Schema Planning v1:** Technical Lead, Data owner, Security.
 - [ ] **PROVIDER-001 — Provider Integration and Cost Control v1:** Technical Lead, Backend Lead, Finance, Security.
-- [ ] **PLAN-MOBILE-001 — Mobile Build Plan v1:** Technical Lead, Product Lead, Backend Lead, QA.
-- [ ] **PLAN-ADMIN-001 — Admin Build Plan v1:** Technical Lead, Product Lead, Backend Lead, QA.
-- [ ] **PLAN-BACKEND-001 — Backend Build Plan v1:** Technical Lead, Product Lead, Mobile Lead, Admin Lead, QA.
 - [ ] **QA-001 — QA and Go-Live Readiness Checklist v1:** Technical Lead, Product Lead, Infrastructure Lead, Operations.
-- [ ] **AI-START-001 — AI Agent Start Here:** Mobile Lead, Admin Lead, Backend Lead.
-- [ ] **TEAM-PACKS-001 — Shared Execution Rules and Team Briefs:** Product Lead, Mobile Lead, Admin Lead, Backend Lead.
-- [ ] **WEEK-PACKS-001 — Weekly Execution Packs:** Technical Lead, Product Lead, Team leads.
 - [ ] **FULL-CONTEXT-001 — Work2Cash Full Project Markdown:** Product Lead.
 
 ## Legacy migration queue
@@ -732,11 +751,11 @@ Active canonical flow family containing all 72 approved standalone sources: 24 m
 - [ ] **CONTRACT-001:** migrate in Phase 4. Published provisional contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026. The former MF-17/AF-15 referral gap is resolved by the higher-specificity approved CONTRACT-REFERRAL-001 decision and must be merged into the wider specification during Phase 4.
 - [ ] **DATA-001:** migrate in Phase 4. The Phase 1 KYC pilot defines KycAttempt; merge and full-schema validation remain scheduled for Phase 4.
 - [ ] **PROVIDER-001:** migrate in Phase 4. Costs and provider capabilities require dated validation before purchase or implementation.
-- [ ] **PLAN-MOBILE-001:** migrate in Phase 3. Calendar dates do not prove work status; active week is not formally recorded.
-- [ ] **PLAN-ADMIN-001:** migrate in Phase 3. Calendar dates do not prove work status; active week is not formally recorded.
-- [ ] **PLAN-BACKEND-001:** migrate in Phase 3. Calendar dates do not prove work status; active week is not formally recorded.
+- [ ] **PLAN-MOBILE-001:** migrate in Phase 3. Superseded combined Mobile task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Mobile plan.
+- [ ] **PLAN-ADMIN-001:** migrate in Phase 3. Superseded combined Admin task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Admin plan.
+- [ ] **PLAN-BACKEND-001:** migrate in Phase 3. Superseded combined Backend task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Backend plan.
 - [ ] **QA-001:** migrate in Phase 5. Checklist publication does not mean release gates have passed.
-- [ ] **AI-START-001:** migrate in Phase 3. Must agree with AGENTS.md; focused context is preferred.
-- [ ] **TEAM-PACKS-001:** migrate in Phase 3. Context packs narrow work; they do not define product behavior.
-- [ ] **WEEK-PACKS-001:** migrate in Phase 3. No active week is formally selected; calendar dates must not be used to infer execution state.
+- [ ] **AI-START-001:** migrate in Phase 3. Aligned with AGENTS.md and the Phase 3 Team to Week to Day workflow. Use one team-week Markdown and select its embedded daily prompt.
+- [ ] **TEAM-PACKS-001:** migrate in Phase 3. Active focused context inputs used with Phase 3 team-week Markdown packs and embedded daily prompts. These packs narrow work; they do not define product behavior.
+- [ ] **WEEK-PACKS-001:** migrate in Phase 3. Superseded manually duplicated weekly packs retained as migration evidence. Use the generated TASK-LIB-001 team packs organized by week and day.
 - [ ] **FULL-CONTEXT-001:** migrate in Phase 6. Large non-canonical bundle without a current deterministic generator. Use only for broad context.

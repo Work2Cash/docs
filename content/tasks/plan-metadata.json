@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "status": "planned",
+  "activeStage": null,
+  "activeWeek": null,
+  "owner": "Project Lead",
+  "reviewers": ["Technical Lead", "Product Lead", "Mobile Lead", "Admin Lead", "Backend Lead", "QA"],
+  "statusRule": "Delivery stages control sequencing. Legacy calendar dates and week labels are reference slots only; they do not activate work or prove completion. Status changes require owner decisions and evidence.",
+  "stages": [
+    {
+      "order": 1,
+      "id": "admin-ui-construction",
+      "slug": "admin-ui-construction",
+      "title": "Admin UI Construction",
+      "teams": ["Admin"],
+      "goal": "Build the approved Admin flows and states against contract-shaped fixtures without waiting for Mobile or Backend implementation.",
+      "exit": "Admin UI cards pass component, permission, accessibility, fixture-state and recovery tests; real-system integration remains explicitly owned by Stage 3."
+    },
+    {
+      "order": 2,
+      "id": "mobile-backend-construction",
+      "slug": "mobile-backend-construction",
+      "title": "Mobile and Backend Construction",
+      "teams": ["Mobile", "Backend"],
+      "goal": "Build authoritative Backend behavior and Mobile journeys while preserving the contracts already used by Admin fixtures.",
+      "exit": "Backend and Mobile cards through their construction scope have accepted contracts, tests and staging evidence ready for Admin integration."
+    },
+    {
+      "order": 3,
+      "id": "admin-integration",
+      "slug": "admin-integration",
+      "title": "Admin Integration",
+      "teams": ["Admin"],
+      "goal": "Replace Admin fixtures with real permissioned Backend contracts and persisted Mobile outcomes, domain by domain.",
+      "exit": "All five Admin integration cards pass real-contract, stale-state, authorization, audit and end-to-end recovery checks."
+    },
+    {
+      "order": 4,
+      "id": "cross-platform-hardening-release",
+      "slug": "cross-platform-hardening-release",
+      "title": "Cross-Platform Hardening and Release",
+      "teams": ["Mobile", "Backend", "Admin"],
+      "goal": "Run cross-platform integration, security, performance, recovery, release-candidate and freeze work after Admin integration.",
+      "exit": "Release evidence, operational dry runs, critical-defect decisions and the controlled build freeze are accepted."
+    }
+  ],
+  "weeks": [
+    {
+      "number": 1,
+      "slug": "foundation-identity",
+      "title": "Foundation, Identity and Contract Availability",
+      "start": "Mon 6 Jul 2026",
+      "end": "Fri 10 Jul 2026",
+      "goal": "Create the shared project foundations and unblock mobile and admin with stable auth, profile, PIN, session, admin auth and dashboard contracts.",
+      "exit": "Mobile can complete the app-entry, authentication and profile shell; Admin can enter the protected dashboard shell; Backend has stable response and error shapes plus an OpenAPI shell."
+    },
+    {
+      "number": 2,
+      "slug": "tasker-task-creation-payment",
+      "title": "Tasker Activation, Task Creation and Funding",
+      "start": "Mon 13 Jul 2026",
+      "end": "Fri 17 Jul 2026",
+      "goal": "Build the flows that allow Taskers to become eligible and Task Owners to create, locate, attach media to and fund tasks.",
+      "exit": "Tasker activation and KYC, catalog, task draft, location, media, payment intent and broadcast or direct-offer contracts are usable on staging."
+    },
+    {
+      "number": 3,
+      "slug": "discovery-matching-execution-start",
+      "title": "Discovery, Matching and Active Task Start",
+      "start": "Mon 20 Jul 2026",
+      "end": "Fri 24 Jul 2026",
+      "goal": "Build public discovery, Tasker interest, Task Owner selection and the first half of active execution.",
+      "exit": "A funded task can move from broadcast or direct offer through Tasker interest, Task Owner acceptance and active-task start with chat and tracking foundations."
+    },
+    {
+      "number": 4,
+      "slug": "completion-finance-support",
+      "title": "Completion, Exceptions, Trust and Finance",
+      "start": "Mon 27 Jul 2026",
+      "end": "Fri 31 Jul 2026",
+      "goal": "Close the task lifecycle with completion, settlement, cancellation, no-show, reports, ratings, favorites, wallet, withdrawal and support.",
+      "exit": "A task can finish cleanly or enter a governed exception path; affected wallet, payout, report and admin-review states are visible."
+    },
+    {
+      "number": 5,
+      "slug": "integration-recovery-full-flow-qa",
+      "title": "Operational Integration, Recovery and Full-Flow QA",
+      "start": "Mon 3 Aug 2026",
+      "end": "Fri 7 Aug 2026",
+      "goal": "Complete secondary flows, operational admin coverage, provider validation, recovery behavior and end-to-end flow QA.",
+      "exit": "All planned flows have working happy paths and documented exception paths on staging with defect lists by flow or module."
+    },
+    {
+      "number": 6,
+      "slug": "hardening-security-performance",
+      "title": "Hardening, Security and Performance",
+      "start": "Mon 10 Aug 2026",
+      "end": "Fri 14 Aug 2026",
+      "goal": "Fix integration defects, harden performance, security and provider behavior, improve recovery paths and close major technical gaps.",
+      "exit": "Critical Week 5 defects are resolved or owned, and core flows are stable enough for release-candidate preparation."
+    },
+    {
+      "number": 7,
+      "slug": "release-candidate-operations-dry-run",
+      "title": "Release Candidate Preparation and Operational Dry Runs",
+      "start": "Mon 17 Aug 2026",
+      "end": "Fri 21 Aug 2026",
+      "goal": "Prepare Mobile, Admin and Backend release candidates while running provider, payout, monitoring, backup and support dry runs.",
+      "exit": "Release candidates are available on staging with provider-validation evidence, backup-restore proof and operational handover notes."
+    },
+    {
+      "number": 8,
+      "slug": "stabilization-freeze",
+      "title": "Stabilization, Go-Live Rehearsal and Build Freeze",
+      "start": "Mon 24 Aug 2026",
+      "end": "Fri 28 Aug 2026",
+      "goal": "Complete the final defect pass, go-live rehearsal, documentation handover and controlled build freeze before formal testing starts.",
+      "exit": "Builds are frozen for the two-week testing window. Only blocker fixes are allowed after this point."
+    }
+  ]
+}

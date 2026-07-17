@@ -1,5 +1,7 @@
 # Admin Build Plan v1
 
+> **Superseded:** retained as migration evidence. Use `planning/admin-build-plan.md` for the active week-by-week and day-by-day Admin plan.
+
 > AI-agent Markdown equivalent of `build-plan-admin-v1.html`.
 >
 > Human-readable HTML source: `.Admin Build Plan v1`.

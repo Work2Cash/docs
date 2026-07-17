@@ -109,6 +109,25 @@ a:focus-visible, [tabindex]:focus-visible { outline: 3px solid #ffbf47; outline-
 .task-item { list-style: none; margin-left: -1.5em; }
 .task-item input { width: 1.05em; height: 1.05em; margin-right: 0.4em; vertical-align: -0.1em; }
 
+.day-plan-card {
+  margin: 48px 0;
+  padding: clamp(20px, 3vw, 38px);
+  scroll-margin-top: 20px;
+  border: 2px solid #c9d9f2;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f7faff 0, #fff 180px);
+  box-shadow: 0 12px 30px rgba(15, 42, 68, 0.08);
+}
+.document-content .day-plan-card h2 { margin-top: 8px; padding-top: 0; border-top: 0; }
+.day-boundary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0 24px;
+}
+.day-boundary p { margin: 0; padding: 14px 16px; border-radius: 10px; background: #eaf2ff; }
+.day-navigation { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); font-weight: 800; }
+
 .table-wrap { width: 100%; margin: 18px 0 28px; overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
 table { width: 100%; min-width: 680px; border-collapse: collapse; font-size: 14px; line-height: 1.5; }
 th, td { padding: 12px 14px; vertical-align: top; text-align: left; border-bottom: 1px solid var(--line); }
@@ -149,6 +168,7 @@ footer { padding: 32px 20px 46px; color: var(--muted); text-align: center; font-
   .page-shell, .index-shell { width: min(100% - 24px, 1440px); }
   .document-hero, .index-hero { border-radius: 16px; }
   .document-grid > aside, .pilot-grid { grid-template-columns: 1fr; }
+  .day-boundary { grid-template-columns: 1fr; }
   .registry-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .document-content { border-radius: 12px; }
 }

@@ -499,10 +499,10 @@
         "QA"
       ],
       "version": "1",
-      "status": "in-review",
-      "approval": "pending",
+      "status": "superseded",
+      "approval": "approved",
       "publication": "published",
-      "lastReviewed": null,
+      "lastReviewed": "2026-07-17",
       "nextReview": null,
       "authority": "Approved flows, contracts and task register",
       "artifactClass": "legacy-transitional-source",
@@ -511,7 +511,7 @@
         "documents/agent-md/build-plan-mobile-v1.md"
       ],
       "migrationPhase": "Phase 3",
-      "notes": "Calendar dates do not prove work status; active week is not formally recorded.",
+      "notes": "Superseded combined Mobile task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Mobile plan.",
       "supersedes": null,
       "tags": [
         "build-plan"
@@ -535,10 +535,10 @@
         "QA"
       ],
       "version": "1",
-      "status": "in-review",
-      "approval": "pending",
+      "status": "superseded",
+      "approval": "approved",
       "publication": "published",
-      "lastReviewed": null,
+      "lastReviewed": "2026-07-17",
       "nextReview": null,
       "authority": "Approved flows, contracts and task register",
       "artifactClass": "legacy-transitional-source",
@@ -547,7 +547,7 @@
         "documents/agent-md/build-plan-admin-v1.md"
       ],
       "migrationPhase": "Phase 3",
-      "notes": "Calendar dates do not prove work status; active week is not formally recorded.",
+      "notes": "Superseded combined Admin task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Admin plan.",
       "supersedes": null,
       "tags": [
         "build-plan"
@@ -573,10 +573,10 @@
         "QA"
       ],
       "version": "1",
-      "status": "in-review",
-      "approval": "pending",
+      "status": "superseded",
+      "approval": "approved",
       "publication": "published",
-      "lastReviewed": null,
+      "lastReviewed": "2026-07-17",
       "nextReview": null,
       "authority": "Approved flows, contracts and task register",
       "artifactClass": "legacy-transitional-source",
@@ -585,7 +585,7 @@
         "documents/agent-md/build-plan-backend-v1.md"
       ],
       "migrationPhase": "Phase 3",
-      "notes": "Calendar dates do not prove work status; active week is not formally recorded.",
+      "notes": "Superseded combined Backend task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Backend plan.",
       "supersedes": null,
       "tags": [
         "build-plan"
@@ -641,17 +641,17 @@
         "Backend Lead"
       ],
       "version": "1",
-      "status": "in-review",
-      "approval": "pending",
+      "status": "active",
+      "approval": "approved",
       "publication": "published",
-      "lastReviewed": null,
-      "nextReview": null,
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
       "authority": "AGENTS.md",
       "artifactClass": "legacy-transitional-source",
       "currentSource": "documents/agent-md/ai-agent-start-here.md",
       "artifacts": [],
       "migrationPhase": "Phase 3",
-      "notes": "Must agree with AGENTS.md; focused context is preferred.",
+      "notes": "Aligned with AGENTS.md and the Phase 3 Team to Week to Day workflow. Use one team-week Markdown and select its embedded daily prompt.",
       "supersedes": null,
       "tags": [
         "agent-guidance"
@@ -675,11 +675,11 @@
         "Backend Lead"
       ],
       "version": "1",
-      "status": "in-review",
-      "approval": "pending",
+      "status": "active",
+      "approval": "approved",
       "publication": "published",
-      "lastReviewed": null,
-      "nextReview": null,
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
       "authority": "AGENTS.md and approved source documents",
       "artifactClass": "legacy-transitional-source",
       "currentSource": "documents/downloads/shared-ai-agent-execution-rules-v1.md",
@@ -689,7 +689,7 @@
         "documents/downloads/backend-team-build-brief-v1.md"
       ],
       "migrationPhase": "Phase 3",
-      "notes": "Context packs narrow work; they do not define product behavior.",
+      "notes": "Active focused context inputs used with Phase 3 team-week Markdown packs and embedded daily prompts. These packs narrow work; they do not define product behavior.",
       "supersedes": null,
       "tags": [
         "agent-context-pack"
@@ -710,10 +710,10 @@
         "Team leads"
       ],
       "version": "1",
-      "status": "in-review",
-      "approval": "pending",
+      "status": "superseded",
+      "approval": "approved",
       "publication": "published",
-      "lastReviewed": null,
+      "lastReviewed": "2026-07-17",
       "nextReview": null,
       "authority": "Approved task register and build plans",
       "artifactClass": "legacy-transitional-source",
@@ -729,7 +729,7 @@
         "documents/agent-md/weeks/week-08-stabilization-freeze.md"
       ],
       "migrationPhase": "Phase 3",
-      "notes": "No active week is formally selected; calendar dates must not be used to infer execution state.",
+      "notes": "Superseded manually duplicated weekly packs retained as migration evidence. Use the generated TASK-LIB-001 team packs organized by week and day.",
       "supersedes": null,
       "tags": [
         "agent-context-pack"
@@ -1014,6 +1014,57 @@
         "flow-library",
         "phase-2",
         "migration"
+      ]
+    },
+    {
+      "id": "TASK-LIB-001",
+      "title": "Phase 3 Canonical Build Task and Weekly Execution Library",
+      "type": "execution-planning-migration",
+      "audience": [
+        "Junior Mobile developers",
+        "Junior Admin developers",
+        "Junior Backend developers",
+        "Team leads",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Project Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Product Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "QA"
+      ],
+      "version": "1.0",
+      "status": "active",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Approved flows, accepted contract decisions and approved Phase 3 delivery order",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/tasks/plan-metadata.json",
+      "artifacts": [
+        "logs/phase-3-task-migration-inventory.md",
+        "logs/phase-3-execution-log.md",
+        "documents/planning/index.html",
+        "documents/agent-md/planning/README.md",
+        "documents/planning/mobile-build-plan.html",
+        "documents/planning/admin-build-plan.html",
+        "documents/planning/backend-build-plan.html",
+        "documents/planning/qa-traceability.html",
+        "documents/agent-md/planning/qa-traceability.md"
+      ],
+      "migrationPhase": "Phase 3",
+      "notes": "Active planning family with 25 canonical team-week Markdown sources containing 125 task records: 120 migrated legacy tasks plus five Admin integration tasks. Human and agent execution outputs are also weekly; no standalone daily Markdown source, HTML task page or task-agent export is maintained. The primary junior-developer path is Team Build Plan to Week to Day. Every week begins with a Monday-to-Friday five-day map; every day has an explicit start boundary, finish boundary, implementation steps, tests, commit and embedded agent prompt. Delivery order is Admin construction, Mobile and Backend construction, Admin Integration, then cross-platform hardening.",
+      "supersedes": "PLAN-MOBILE-001, PLAN-ADMIN-001, PLAN-BACKEND-001 and WEEK-PACKS-001",
+      "tags": [
+        "task-library",
+        "weekly-execution",
+        "phase-3",
+        "junior-developers"
       ]
     }
   ]

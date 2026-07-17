@@ -19,7 +19,7 @@ Use the authority order in `governance/lifecycle-policy.md`:
 1. Approved architecture decisions.
 2. Active Main Enterprise Architecture for cross-platform rules.
 3. Active domain sources for flows, contracts, data, providers, security, legal or operations.
-4. Build tasks and weekly packs for scheduling only.
+4. Build tasks and generated team weekly packs for scheduling only; legacy planning documents are historical references.
 5. Generated outputs, which inherit their source authority.
 6. Legacy, draft, in-review and combined context artifacts.
 
@@ -31,14 +31,15 @@ If an agent receives only a team brief or build plan, it must not give implement
 
 1. Shared Execution Rules.
 2. The relevant team brief.
-3. The active weekly execution pack, if a week has been formally selected.
-4. The specific flow or domain source required for the task.
-5. The relevant API/socket contract.
-6. Data-model or provider documentation when the task touches those areas.
+3. The active team weekly execution pack and assigned day.
+4. The assigned day and embedded agent prompt inside that weekly pack.
+5. The specific flow or domain source required for the task.
+6. The relevant API/socket contract.
+7. Data-model or provider documentation when the task touches those areas.
 
 Request **Full Project Markdown** only for onboarding, architecture review, cross-document consistency checks or genuinely cross-platform work. Do not require it for normal focused implementation.
 
-If no active week is identified in the registry or execution index, ask the user which week is active rather than assuming from calendar dates.
+If no active delivery stage, team week or day is identified, ask which is active rather than assuming from calendar dates or legacy week labels.
 
 ## Where to download context
 
@@ -48,8 +49,11 @@ If no active week is identified in the registry or execution index, ask the user
 - Backend admin-facing work: use the relevant standalone `AF`/`ASF` agent Markdown.
 - Flow relationships: use the generated **Flow Dependency Map**; use the combined catalogue only for broad cross-flow review.
 - Accepted contract-gap decisions: open **Canonical Contract Decision Library**. Referral work must use `CONTRACT-REFERRAL-001` instead of inventing or reviving the former MF-17/AF-15 gap.
-- Shared rules and team briefs: use **Team Markdown Downloads** on the relevant build-plan page.
-- Weekly packs: open **Weekly Execution Packs** and select the formally active week.
+- Build plans: open **Phase 3 Execution Planning Library**, choose the team, then the active week and day.
+- Build tasks: use the daily section inside the active team-week HTML page; standalone daily task pages are not generated.
+- Agent execution: download the team weekly Markdown; it contains Day 1 through Day 5 and an agent prompt inside each day.
+- Shared rules and team briefs: use the repository downloads section or the relevant legacy build-plan download links during transition.
+- Legacy weekly packs and combined build plans: use only as migration evidence; they no longer control work.
 - Broad context only: use **Full Project Markdown** from Team Markdown Downloads.
 
 ## Team context sets
@@ -60,7 +64,8 @@ If no active week is identified in the registry or execution index, ask the user
 AGENTS.md
 Shared Execution Rules
 Mobile Team Markdown Brief
-[Formally active week] Execution Pack
+[Active Mobile week] Focused Execution Pack
+[Assigned day and embedded MOB agent prompt]
 Relevant Mobile Flow
 Relevant API & Socket Contract section
 ```
@@ -73,7 +78,8 @@ Add provider documentation for payment, KYC, FCM, maps, SMS, Sentry, Shorebird o
 AGENTS.md
 Shared Execution Rules
 Admin Team Markdown Brief
-[Formally active week] Execution Pack
+[Active Admin week] Focused Execution Pack
+[Assigned day and embedded ADM agent prompt]
 Relevant Admin Flow
 Relevant API & Socket Contract section
 ```
@@ -86,7 +92,8 @@ Add data-model documentation for model names, enums, audit behavior or admin sta
 AGENTS.md
 Shared Execution Rules
 Backend Team Markdown Brief
-[Formally active week] Execution Pack
+[Active Backend week] Focused Execution Pack
+[Assigned day and embedded BE agent prompt]
 Relevant Mobile and/or Admin Flow
 Relevant API & Socket Contract section
 Relevant Data Model section
@@ -127,6 +134,7 @@ Do not invent missing endpoint paths, model fields, provider behavior or product
 - Treat legacy documents as transitional and avoid adding duplicated prose.
 - For flow changes, edit `content/flows/`, then run `node scripts/generate-flow-docs.js` and `node scripts/generate-flow-migration-inventory.js`.
 - For accepted contract-gap decisions, edit `content/contracts/`, then run `node scripts/generate-contract-docs.js`. Referral changes must also pass `node scripts/validate-referral-contract.js`.
+- For task changes, edit the relevant weekly source in `content/tasks/<team>/week-*.md` (or the Admin Integration Week), then run `node scripts/generate-task-docs.js`, `node scripts/generate-task-migration-inventory.js` and `node scripts/generate-execution-plans.js`.
 - Run `node scripts/validate-docs.js` before handoff.
 - Commit feature by feature or fix by fix; do not stack unrelated work.
 
@@ -137,5 +145,5 @@ feat(auth): implement email-first otp login
 feat(mobile-task): add task location pin confirmation
 feat(admin-kyc): implement kyc review queue
 fix(wallet): prevent duplicate escrow release
-docs(agents): update weekly execution pack
+docs(agents): update daily execution pack
 ```

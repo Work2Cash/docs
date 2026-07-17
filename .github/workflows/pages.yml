@@ -42,6 +42,21 @@ jobs:
       - name: Verify the accepted referral contract decision
         run: node scripts/validate-referral-contract.js
 
+      - name: Verify all legacy tasks have canonical Phase 3 sources
+        run: node scripts/migrate-legacy-task-sources.js --check
+
+      - name: Verify canonical tasks are consolidated into weekly source packs
+        run: node scripts/consolidate-task-sources.js --check
+
+      - name: Verify generated Phase 3 task inventory
+        run: node scripts/generate-task-migration-inventory.js --check
+
+      - name: Verify generated Phase 3 task documents
+        run: node scripts/generate-task-docs.js --check
+
+      - name: Verify generated Phase 3 weekly plans and embedded daily prompts
+        run: node scripts/generate-execution-plans.js --check
+
       - name: Validate documentation metadata and navigation
         run: node scripts/validate-docs.js
 

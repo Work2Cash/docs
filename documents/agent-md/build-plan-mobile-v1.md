@@ -1,5 +1,7 @@
 # Mobile Build Plan v1
 
+> **Superseded:** retained as migration evidence. Use `planning/mobile-build-plan.md` for the active week-by-week and day-by-day Mobile plan.
+
 > AI-agent Markdown equivalent of `build-plan-mobile-v1.html`.
 >
 > Human-readable HTML source: `.Mobile Build Plan v1`.

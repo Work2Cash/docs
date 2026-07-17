@@ -1,5 +1,7 @@
 # Backend Build Plan v1
 
+> **Superseded:** retained as migration evidence. Use `planning/backend-build-plan.md` for the active week-by-week and day-by-day Backend plan.
+
 > AI-agent Markdown equivalent of `build-plan-backend-v1.html`.
 >
 > Human-readable HTML source: `.Backend Build Plan v1`.

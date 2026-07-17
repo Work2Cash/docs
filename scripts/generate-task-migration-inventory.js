@@ -1,0 +1,152 @@
+#!/usr/bin/env node
+
+"use strict";
+
+const fs = require("node:fs");
+const path = require("node:path");
+const { walkTaskWeekSources } = require("./task-week-source.js");
+
+const ROOT = path.resolve(__dirname, "..");
+const WEEK_ROOT = path.join(ROOT, "documents", "agent-md", "weeks");
+const TASK_ROOT = path.join(ROOT, "content", "tasks");
+const OUTPUT = path.join(ROOT, "logs", "phase-3-task-migration-inventory.md");
+const CHECK_ONLY = process.argv.includes("--check");
+const PHASE_3_ADDITIONS = new Set(["ADM-INT-01", "ADM-INT-02", "ADM-INT-03", "ADM-INT-04", "ADM-INT-05"]);
+const TEAMS = [
+  { heading: "Mobile Tasks", name: "Mobile", prefix: "MOB" },
+  { heading: "Backend Tasks", name: "Backend", prefix: "BE" },
+  { heading: "Admin Tasks", name: "Admin", prefix: "ADM" },
+];
+
+function posix(value) {
+  return value.split(path.sep).join("/");
+}
+
+function walk(directory) {
+  if (!fs.existsSync(directory)) return [];
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const target = path.join(directory, entry.name);
+    return entry.isDirectory() ? walk(target) : entry.isFile() && entry.name.endsWith(".md") ? [target] : [];
+  }).sort();
+}
+
+function cells(line) {
+  return line.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map((cell) => cell.trim());
+}
+
+function legacyTasks() {
+  const files = fs.readdirSync(WEEK_ROOT)
+    .filter((name) => /^week-\d{2}-.+\.md$/.test(name))
+    .sort()
+    .map((name) => path.join(WEEK_ROOT, name));
+  const tasks = [];
+  for (const file of files) {
+    const raw = fs.readFileSync(file, "utf8").replace(/\r\n/g, "\n");
+    const weekMatch = path.basename(file).match(/^week-(\d{2})-/);
+    const week = Number(weekMatch[1]);
+    for (const team of TEAMS) {
+      const marker = `## ${team.heading}\n`;
+      const start = raw.indexOf(marker);
+      if (start < 0) throw new Error(`${posix(path.relative(ROOT, file))}: missing ${team.heading}`);
+      const remainder = raw.slice(start + marker.length);
+      const end = remainder.search(/^## /m);
+      const section = end < 0 ? remainder : remainder.slice(0, end);
+      const rows = section.split("\n").filter((line) => /^\| W\d+D\d+ \|/.test(line));
+      if (rows.length !== 5) throw new Error(`${path.basename(file)} ${team.name}: expected 5 tasks, found ${rows.length}`);
+      for (const row of rows) {
+        const values = cells(row);
+        if (values.length !== 6) throw new Error(`${path.basename(file)}: invalid task row: ${row}`);
+        tasks.push({
+          id: `${team.prefix}-${values[0]}`,
+          legacySlot: values[0],
+          week,
+          team: team.name,
+          date: values[1],
+          title: values[2],
+          scope: values[3],
+          dependency: values[4],
+          outputRule: values[5],
+          source: posix(path.relative(ROOT, file)),
+        });
+      }
+    }
+  }
+  if (files.length !== 8) throw new Error(`expected 8 weekly packs, found ${files.length}`);
+  if (tasks.length !== 120) throw new Error(`expected 120 legacy task rows, found ${tasks.length}`);
+  const ids = tasks.map((task) => task.id);
+  const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index);
+  if (duplicates.length) throw new Error(`duplicate canonical task IDs: ${[...new Set(duplicates)].join(", ")}`);
+  return tasks;
+}
+
+function canonicalTasks() {
+  const records = new Map();
+  for (const document of walkTaskWeekSources(TASK_ROOT)) {
+    const metadata = document.metadata;
+    if (!metadata.id || !metadata.title || !metadata.status || !metadata.version) {
+      throw new Error(`${posix(path.relative(ROOT, document.source))}: incomplete task metadata`);
+    }
+    if (records.has(metadata.id)) throw new Error(`duplicate canonical source for ${metadata.id}`);
+    records.set(metadata.id, { ...metadata, source: posix(path.relative(ROOT, document.source)) });
+  }
+  return records;
+}
+
+function render(tasks, canonical) {
+  const counts = Object.fromEntries(TEAMS.map((team) => [team.name, tasks.filter((task) => task.team === team.name).length]));
+  const migrated = tasks.filter((task) => canonical.has(task.id));
+  const unknown = [...canonical.keys()].filter((id) => !tasks.some((task) => task.id === id) && !PHASE_3_ADDITIONS.has(id));
+  if (unknown.length) throw new Error(`canonical task IDs absent from legacy weekly packs: ${unknown.join(", ")}`);
+  const missingAdditions = [...PHASE_3_ADDITIONS].filter((id) => !canonical.has(id));
+  if (missingAdditions.length) throw new Error(`approved delivery-order additions missing: ${missingAdditions.join(", ")}`);
+  const rows = tasks.map((task) => {
+    const record = canonical.get(task.id);
+    const state = record ? `${record.status} v${record.version}` : "Not migrated";
+    const target = record ? `\`${record.source}\`` : "—";
+    return `| ${task.id} | ${task.legacySlot} | ${task.week} | ${task.team} | ${task.title} | ${state} | ${target} |`;
+  }).join("\n");
+  return `# Phase 3 Task Migration Inventory
+
+> Generated by \`node scripts/generate-task-migration-inventory.js\`. Do not edit manually. Calendar dates are legacy planning data and do not prove execution status.
+
+## Summary
+
+| Measure | Count |
+| --- | ---: |
+| Legacy weekly packs | 8 |
+| Legacy task rows | ${tasks.length} |
+| Mobile tasks | ${counts.Mobile} |
+| Backend tasks | ${counts.Backend} |
+| Admin tasks | ${counts.Admin} |
+| Approved Stage 3 integration additions | ${PHASE_3_ADDITIONS.size} |
+| Canonical task records | ${canonical.size} |
+| Canonical team-week source packs | 25 |
+| Remaining migrations | ${tasks.length - migrated.length} |
+
+The old \`WnDn\` labels collide across teams. Phase 3 prefixes every slot with \`MOB-\`, \`BE-\` or \`ADM-\` so references are globally unambiguous. Five \`ADM-INT-\` cards were added after approval to own real Admin integration separately from fixture-driven Admin UI construction.
+
+## Approved delivery-order additions
+
+| Canonical ID | Purpose | Canonical source |
+| --- | --- | --- |
+${[...PHASE_3_ADDITIONS].map((id) => `| ${id} | Stage 3 Admin integration | \`${canonical.get(id).source}\` |`).join("\n")}
+
+## Inventory
+
+| Canonical ID | Legacy slot | Week | Team | Legacy title | Migration state | Canonical source |
+| --- | --- | ---: | --- | --- | --- | --- |
+${rows}
+`;
+}
+
+const output = render(legacyTasks(), canonicalTasks());
+if (CHECK_ONLY) {
+  if (!fs.existsSync(OUTPUT) || fs.readFileSync(OUTPUT, "utf8") !== output) {
+    throw new Error("Phase 3 task migration inventory is stale; run node scripts/generate-task-migration-inventory.js");
+  }
+  console.log("Phase 3 task migration inventory is current: 120 legacy rows and 5 additions checked.");
+} else {
+  fs.mkdirSync(path.dirname(OUTPUT), { recursive: true });
+  fs.writeFileSync(OUTPUT, output);
+  console.log("Generated Phase 3 task migration inventory: 120 legacy rows and 5 additions.");
+}

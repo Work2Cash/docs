@@ -18,8 +18,9 @@ Use this layered context pattern:
    - mobile-team-build-brief-v1.md
    - admin-team-build-brief-v1.md
    - backend-team-build-brief-v1.md
-3. the relevant weekly execution pack in `weeks/`, only when the active week is formally identified
-4. the specific flow, contract, model or provider document needed for the task
+3. the active team weekly pack in `planning/weeks/<team>/`
+4. the assigned day and embedded agent prompt inside that weekly pack
+5. the specific flow, contract, model or provider source named by that day
 ```
 
 ## Preferred Files For Implementation
@@ -27,14 +28,11 @@ Use this layered context pattern:
 - Agent usage guide: `../../AGENTS.md`
 - Document authority and lifecycle: `document-registry.md`
 - Full project context: `work2cash-full-source-of-truth-v1.md`
-- Week 1: `weeks/week-01-foundation-identity.md`
-- Week 2: `weeks/week-02-tasker-task-creation-payment.md`
-- Week 3: `weeks/week-03-discovery-matching-execution-start.md`
-- Week 4: `weeks/week-04-completion-finance-support.md`
-- Week 5: `weeks/week-05-integration-recovery-full-flow-qa.md`
-- Week 6: `weeks/week-06-hardening-security-performance.md`
-- Week 7: `weeks/week-07-release-candidate-operations-dry-run.md`
-- Week 8: `weeks/week-08-stabilization-freeze.md`
+- Phase 3 planning index: `planning/README.md`
+- Mobile plan: `planning/mobile-build-plan.md`
+- Admin plan: `planning/admin-build-plan.md`
+- Backend plan: `planning/backend-build-plan.md`
+- Weekly execution packs: `planning/weeks/<team>/`
 
 ## When To Use Each Markdown Document
 
@@ -47,9 +45,10 @@ Use this layered context pattern:
 - `api-socket-contract-specification-v1.md` - REST, socket, webhook, queue, event and response-shape contracts.
 - `data-model-prisma-schema-planning-v1.md` - Prisma/data-model execution baseline and API-to-model traceability.
 - `provider-integration-cost-control-v1.md` - Provider strategy, adapter rules, webhooks, validation and cost controls.
-- `build-plan-mobile-v1.md` - Mobile-led Flutter execution plan by week and day.
-- `build-plan-admin-v1.md` - Next.js admin execution plan that follows mobile outcomes.
-- `build-plan-backend-v1.md` - NestJS backend execution plan that follows mobile needs.
+- `planning/mobile-build-plan.md` - Active Mobile week-by-week entry point.
+- `planning/admin-build-plan.md` - Active Admin construction, integration and hardening entry point.
+- `planning/backend-build-plan.md` - Active Backend week-by-week entry point.
+- `build-plan-mobile-v1.md`, `build-plan-admin-v1.md` and `build-plan-backend-v1.md` - superseded migration evidence.
 - `qa-go-live-readiness-checklist-v1.md` - Final QA gates, provider validation, blockers, rollback and go/no-go checklist.
 
 ## Practical Prompt Pattern
@@ -59,26 +58,18 @@ Read these Markdown files only:
 - AGENTS.md
 - documents/downloads/shared-ai-agent-execution-rules-v1.md
 - documents/downloads/backend-team-build-brief-v1.md
-- documents/agent-md/weeks/week-02-tasker-task-creation-payment.md
-- API & Socket Contract Specification v1 agent Markdown
-- Data Model & Prisma Schema Planning v1 agent Markdown
+- documents/agent-md/planning/weeks/backend/week-02-tasker-task-creation-payment.md
 
 Do not read the HTML documents unless I provide a specific section.
-
-Task:
-[paste task block here]
 ```
 
 ## Team Download Instructions
 
 1. Open the documentation portal.
-2. Go to your team build plan page:
-   - Mobile Build Plan
-   - Admin Build Plan
-   - Backend Build Plan
-3. Use the **Team Markdown Downloads** panel.
-4. Download `AGENTS.md`, the shared execution rules, your team brief, the specific source documents and the weekly pack only when the active build week is formally identified.
-5. Give those Markdown files to Codex or your agent of choice before asking it to implement a task.
+2. Open **Phase 3 Execution Planning Library**.
+3. Choose your team, week and assigned day.
+4. Download that team's weekly agent Markdown.
+5. Tell the agent which day is active; the matching prompt is embedded under that day.
 
 Tell the agent: `AGENTS.md explains how to use the Work2Cash Markdown files. Follow it before coding.`
 

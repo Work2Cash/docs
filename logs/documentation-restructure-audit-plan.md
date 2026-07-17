@@ -364,81 +364,95 @@ Every canonical document or content unit must include:
 
 ## Workstream 6: Build Plans
 
+### Intended reader
+
+- [x] Treat the build plans as technical execution guides for junior developers.
+- [x] Organize the primary reading path as **Team Build Plan -> Week -> Day -> Task**.
+- [x] Keep each day understandable without requiring the reader to scan other weeks.
+- [x] Show only the dependencies and references needed for that day.
+- [x] Keep deeper architecture, flow and contract detail behind links instead of repeating it.
+
 ### Current weaknesses to correct
 
-- [ ] Explain why each task exists.
-- [ ] Connect every task to its flow or architectural outcome.
-- [ ] State previous work and true prerequisites.
-- [ ] Replace vague dependencies with named, explained dependencies.
-- [ ] Add explicit inputs and outputs.
-- [ ] Add acceptance criteria.
-- [ ] Add required tests and evidence.
-- [ ] Add owner, reviewer and status.
-- [ ] Add blocker escalation and carry-over rules.
-- [ ] Add what the task unlocks afterward.
-- [ ] Remove duplicated task definitions across plans and weekly packs.
+- [x] Explain why each task exists.
+- [x] Connect every task to its flow or architectural outcome.
+- [x] State previous work and true prerequisites.
+- [x] Replace vague dependencies with named, explained dependencies.
+- [x] Add explicit inputs and outputs.
+- [x] Add acceptance criteria.
+- [x] Add required tests and evidence.
+- [x] Add owner, reviewer and status.
+- [x] Add blocker escalation and carry-over rules.
+- [x] Add what the task unlocks afterward.
+- [x] Remove duplicated task definitions across plans and weekly packs.
 
-### Canonical build-task template
+### Concise daily task template
 
-- [ ] Task ID.
-- [ ] Title.
-- [ ] Team.
-- [ ] Owner.
-- [ ] Reviewer/acceptor.
-- [ ] Status.
-- [ ] Plain-language outcome.
-- [ ] Why it matters.
-- [ ] Flow references.
-- [ ] Architecture decision references.
-- [ ] Dependencies and readiness checks.
-- [ ] Required contracts and data.
-- [ ] Implementation scope.
-- [ ] Explicitly out of scope.
-- [ ] Expected files or modules.
-- [ ] Permission, security and audit expectations.
-- [ ] Provider dependencies.
-- [ ] Acceptance criteria.
-- [ ] Required automated tests.
-- [ ] Required manual tests.
-- [ ] Evidence to attach.
-- [ ] Definition of done.
-- [ ] What this task unlocks.
-- [ ] Commit message.
+- [x] Task ID.
+- [x] Title.
+- [x] Team.
+- [x] Status.
+- [x] What you are building today.
+- [x] Why it is needed.
+- [x] What must already be ready.
+- [x] Ordered implementation steps.
+- [x] Important technical rules and exclusions.
+- [x] Required flow, contract, model or provider links.
+- [x] Tests to run.
+- [x] What must be working at the end of the day.
+- [x] What becomes possible next.
+- [x] Recommended end-of-day commit message.
+
+Ownership, review, evidence and blocker details should appear only where they affect
+the developer's work. They must not overwhelm the daily instructions.
 
 ### Plan outputs
 
-- [ ] Generate the Mobile Build Plan from canonical tasks.
-- [ ] Generate the Admin Build Plan from canonical tasks.
-- [ ] Generate the Backend Build Plan from canonical tasks.
-- [ ] Generate weekly packs from the same canonical tasks.
-- [ ] Generate team-specific agent task prompts.
-- [ ] Generate QA traceability from task IDs.
+- [x] Generate the Mobile Build Plan as weeks containing day-by-day work.
+- [x] Generate the Admin Build Plan as weeks containing day-by-day work.
+- [x] Generate the Backend Build Plan as weeks containing day-by-day work.
+- [x] Generate each weekly page from the same canonical task records.
+- [x] Make the weekly page the primary junior-developer work surface.
+- [x] Keep task records inside canonical team-week sources and generate human execution pages only at team-week level.
+- [x] Do not generate standalone task-agent Markdown; consolidate executable agent context into the team-week pack.
+- [x] Generate one team-specific agent Markdown per week with the five daily prompts embedded.
+- [x] Generate QA traceability from task IDs.
 
 ## Workstream 7: Weekly Execution Packs
 
 ### Required weekly-pack structure
 
-- [ ] Week number, dates, owner and status.
-- [ ] Plain-language week outcome.
-- [ ] Work completed in the previous week.
-- [ ] Carry-over work.
-- [ ] Required week-start conditions.
-- [ ] Current status by team.
-- [ ] Cross-team dependency map.
-- [ ] Detailed task cards.
-- [ ] Blockers and blocker owners.
-- [ ] Decisions required.
-- [ ] Risks to the next week.
-- [ ] End-of-week demonstration.
-- [ ] Exit evidence.
-- [ ] Retrospective and follow-up actions.
+- [x] Week number, title and technical outcome.
+- [x] What must be ready before the week begins.
+- [x] Day 1 section.
+- [x] Day 2 section.
+- [x] Day 3 section.
+- [x] Day 4 section.
+- [x] Day 5 section.
+- [x] End-of-week result and demonstration.
+- [x] Carry-over work, only when present.
+
+### Required daily structure
+
+- [x] Today's goal.
+- [x] What was completed before today.
+- [x] Tasks in implementation order.
+- [x] Dependencies or blockers that affect today.
+- [x] Tests to run today.
+- [x] End-of-day working result.
+- [x] Recommended commit message for the day's completed work.
+- [x] What tomorrow depends on.
 
 ### Weekly-pack controls
 
-- [ ] Identify the active week on the portal.
-- [ ] Distinguish Planned, In Progress, Blocked, In Review, Done and Carried Over.
-- [ ] Keep historical weekly packs immutable after closure except for documented corrections.
-- [ ] Ensure agent packs include only the relevant team, week, rules and source references.
+- [x] Provide team, week and day navigation on the portal without claiming an active schedule.
+- [x] Distinguish Planned, In Progress, Blocked, In Review, Done and Carried Over.
+- [x] Keep historical weekly packs immutable after closure except for documented corrections.
+- [x] Give each team its own focused weekly page.
+- [x] Show cross-team dependencies only on the day they affect.
+- [x] Avoid repeating full task, flow, contract or model documents inside a weekly page.
+- [x] Ensure agent packs include only the relevant team, week, rules and source references.
+- [x] Embed a focused agent prompt under each day inside the relevant team-week Markdown.
 
 ## Workstream 8: API and Socket Contracts
 
@@ -922,20 +936,30 @@ Phase 2 is **complete**. All 72 flows are approved standalone canonical sources,
 
 ## Phase 3: Execution Planning Migration
 
-- [ ] Create the canonical task register.
-- [ ] Migrate Mobile Build Plan tasks.
-- [ ] Migrate Admin Build Plan tasks.
-- [ ] Migrate Backend Build Plan tasks.
-- [ ] Generate all weekly execution packs.
-- [ ] Add live statuses, blockers, owners and carry-over.
-- [ ] Add evidence and acceptance fields.
-- [ ] Link tasks to flows, contracts, models, providers and QA.
+- [x] Create the canonical task register behind the generated plans.
+- [x] Restructure the Mobile Build Plan by week, then by day.
+- [x] Restructure the Admin Build Plan by week, then by day.
+- [x] Restructure the Backend Build Plan by week, then by day.
+- [x] Give each day a concise, ordered technical task list for junior developers.
+- [x] Add only the statuses, blockers and cross-team dependencies relevant to that day.
+- [x] Link to flows, contracts, models and providers instead of copying their full content.
+- [x] Generate team-specific weekly pages from the canonical tasks.
+- [x] Generate team-specific weekly agent Markdown with each scheduled day's prompt embedded.
+- [x] Include a recommended commit message for every day.
+
+Phase 3 is **complete**. The active execution-planning library contains 125
+canonical tasks, team plans organized by week and day, a separate Admin
+Integration Week and 25 team-week agent packs containing 125 embedded day prompts.
 
 ### Phase 3 exit criteria
 
-- [ ] Every scheduled task can be executed from its own task card.
-- [ ] No task definition is manually duplicated across plans and weekly packs.
-- [ ] Cross-team blockers and handoffs are explicit.
+- [x] A junior developer can open one week, select one day and understand what to build.
+- [x] Each day explains what must already exist and what the completed work unlocks next.
+- [x] Each daily task has clear implementation steps, tests and a working end result.
+- [x] Every day includes a recommended commit message.
+- [x] Every team-week has one focused agent Markdown containing Day 1 through Day 5 and their prompts.
+- [x] No task definition is manually duplicated across plans and weekly packs.
+- [x] Cross-team blockers and handoffs appear on the day they matter.
 
 ## Phase 4: Technical Reference Migration
 
@@ -1055,7 +1079,7 @@ The restructuring is complete only when all of the following are true:
 | Phase 0 - Stop drift | Complete | Technical Lead | 17 Jul 2026 | Governance, registry, link repair and CI controls established |
 | Phase 1 - Templates and pilots | Complete | Product + Technical Lead | 17 Jul 2026 | Approved reference format and five pilot sources ready for Phase 2 migration |
 | Phase 2 - Flow migration | Complete | Product + Team Leads | 17 Jul 2026 | All 72 standalone flows active; legacy combined catalogues superseded |
-| Phase 3 - Execution planning | Not started | Project + Technical Lead | TBD | Canonical task register |
+| Phase 3 - Execution planning | Complete | Project + Technical Lead | 17 Jul 2026 | 25 canonical team-week sources containing 125 task records; 25 team-week agent packs with 125 embedded prompts |
 | Phase 4 - Technical references | Not started | Technical Lead + Engineers | TBD | Contracts, models, providers and infrastructure |
 | Phase 5 - QA, legal and governance | Not started | QA + Legal + Leads | TBD | Evidence and approval maturity |
 | Phase 6 - Portal and generation | Not started | Technical Lead | TBD | Final outputs and validation |
@@ -1083,3 +1107,5 @@ Use this section to record reviews of the restructuring plan.
 | 17 July 2026 | Transformation-only approval confirmed and remaining 69 flows migrated into the active standalone library | Repository-owner direction implemented by Codex | Phase 2 complete; technical ID/title conflicts deferred explicitly to Phase 4 |
 | 17 July 2026 | Six mobile flow-to-contract ID/title collisions reconciled without changing approved behavior | Codex, under Product and Technical Lead direction | Five mappings resolved from existing contracts; the deferred MF-17 referral gap was subsequently closed by CONTRACT-REFERRAL-001 |
 | 17 July 2026 | MF-17 and AF-15 referral contract gap closed with CONTRACT-REFERRAL-001 | Repository-owner direction implemented by Codex | Exact referral paths and ownership rules approved; Phase 4 must merge them into OpenAPI |
+| 17 July 2026 | Phase 3 migrated 120 legacy tasks, added five Admin integration tasks and generated team plans by week/day with embedded agent prompts | Repository-owner direction implemented by Codex | Phase 3 complete without an additional review gate |
+| 17 July 2026 | Clarified every Monday-to-Friday week and consolidated agent context into one Markdown per team-week | Repository-owner direction implemented by Codex | Separate daily prompt files and standalone task-agent exports removed; each weekly Markdown now contains five embedded prompts |
