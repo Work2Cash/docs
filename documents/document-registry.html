@@ -14,7 +14,7 @@
   <main id="content" class="index-shell" tabindex="-1">
     <header class="index-hero"><div class="eyebrow">Governance · Phase 0</div><h1>Document Registry</h1><p>Check ownership, lifecycle, approval and authority before relying on a document. Published does not necessarily mean approved.</p></header>
     <section class="notice" aria-labelledby="registry-warning"><h2 id="registry-warning">Current authority warning</h2><p>The Main Enterprise Architecture v1 is the designated provisional baseline, but formal approval is pending. Material cross-document conflicts must be resolved before implementation.</p></section>
-    <section class="registry-summary" aria-label="Registry summary"><div><strong>28</strong><span>registered families</span></div><div><strong>7</strong><span>active</span></div><div><strong>9</strong><span>pending approval</span></div><div><strong>17</strong><span>legacy families</span></div></section>
+    <section class="registry-summary" aria-label="Registry summary"><div><strong>29</strong><span>registered families</span></div><div><strong>7</strong><span>active</span></div><div><strong>10</strong><span>pending approval</span></div><div><strong>17</strong><span>legacy families</span></div></section>
     <section class="document-content registry-content" aria-labelledby="register-title">
       <p class="generated-note"><strong>Generated registry:</strong> Edit <code>governance/document-registry.json</code>, not this page.</p>
       <h2 id="register-title">Registered documents</h2>
@@ -47,19 +47,19 @@
     </tr>
 <tr id="arch-001">
       <td><strong>ARCH-001</strong><br><span class="registry-type">architecture</span></td>
-      <td><strong>Main Enterprise Architecture v1</strong><p>Formal approval evidence is missing; agent Markdown is a legacy export.</p></td>
-      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td><strong>Main Enterprise Architecture v1</strong><p>Frozen Phase 4 migration evidence. Use TECH-REF-001 for current architecture and operations reading. Formal approval of the migrated architecture records remains pending.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
       <td>Technical Lead<br><small>Reviewers: Product Lead, Infrastructure Lead, Security, Finance, Operations</small></td>
-      <td>legacy-transitional-source<br><small>Designated provisional controlling baseline pending formal approval</small></td>
+      <td>legacy-derived-frozen<br><small>Designated provisional controlling baseline pending formal approval</small></td>
       <td><strong>Source</strong><br><a href="../documents/main-enterprise-architecture-v1.html">documents/main-enterprise-architecture-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/main-enterprise-architecture-v1.md">documents/agent-md/main-enterprise-architecture-v1.md</a></li></ul></td>
       <td>Not recorded<br><small>Next: Not scheduled</small></td>
     </tr>
 <tr id="design-001">
       <td><strong>DESIGN-001</strong><br><span class="registry-type">design-map</span></td>
-      <td><strong>Screen To Feature Map v1</strong><p>Phase 0 reconciles known provider, auto-accept and admin-reassignment drift.</p></td>
-      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td><strong>Screen To Feature Map v1</strong><p>Frozen Phase 4 migration evidence. Use TECH-REF-001 Screen-to-Feature Reference, where known provider, KYC, category, payment, auto-accept and admin-reassignment drift is corrected and remaining design evidence is marked.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
       <td>Product Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Admin Lead, Backend Lead</small></td>
-      <td>legacy-transitional-source<br><small>Main Enterprise Architecture v1</small></td>
+      <td>legacy-derived-frozen<br><small>Main Enterprise Architecture v1</small></td>
       <td><strong>Source</strong><br><a href="../documents/screen-to-feature-map-v1.html">documents/screen-to-feature-map-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/screen-to-feature-map-v1.md">documents/agent-md/screen-to-feature-map-v1.md</a></li></ul></td>
       <td>Not recorded<br><small>Next: Not scheduled</small></td>
     </tr>
@@ -101,10 +101,10 @@
     </tr>
 <tr id="contract-001">
       <td><strong>CONTRACT-001</strong><br><span class="registry-type">technical-contract</span></td>
-      <td><strong>API and Socket Contract Specification v1</strong><p>Published provisional contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026. The former MF-17/AF-15 referral gap is resolved by the higher-specificity approved CONTRACT-REFERRAL-001 decision and must be merged into the wider specification during Phase 4.</p></td>
-      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td><strong>API and Socket Contract Specification v1</strong><p>Frozen Phase 4 migration evidence. Use TECH-REF-001 API, Socket and OpenAPI Reference. Approved referral and KYC decisions are merged there with higher authority; remaining contract gaps are explicit.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
       <td>Backend Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Admin Lead, QA</small></td>
-      <td>legacy-transitional-source<br><small>Main Enterprise Architecture and approved flows</small></td>
+      <td>legacy-derived-frozen<br><small>Main Enterprise Architecture and approved flows</small></td>
       <td><strong>Source</strong><br><a href="../documents/api-socket-contract-specification-v1.html">documents/api-socket-contract-specification-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/api-socket-contract-specification-v1.md">documents/agent-md/api-socket-contract-specification-v1.md</a></li></ul></td>
       <td>Not recorded<br><small>Next: Not scheduled</small></td>
     </tr>
@@ -119,19 +119,19 @@
     </tr>
 <tr id="data-001">
       <td><strong>DATA-001</strong><br><span class="registry-type">data-model</span></td>
-      <td><strong>Data Model and Prisma Schema Planning v1</strong><p>The Phase 1 KYC pilot defines KycAttempt; merge and full-schema validation remain scheduled for Phase 4.</p></td>
-      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td><strong>Data Model and Prisma Schema Planning v1</strong><p>Frozen Phase 4 migration evidence. Use TECH-REF-001 Data Model Reference. KycAttempt is merged from the approved pilot and conceptual models remain clearly separated from executable Prisma baselines.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
       <td>Backend Lead<br><small>Reviewers: Technical Lead, Data owner, Security</small></td>
-      <td>legacy-transitional-source<br><small>Main Enterprise Architecture and approved contracts</small></td>
+      <td>legacy-derived-frozen<br><small>Main Enterprise Architecture and approved contracts</small></td>
       <td><strong>Source</strong><br><a href="../documents/data-model-prisma-schema-planning-v1.html">documents/data-model-prisma-schema-planning-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/data-model-prisma-schema-planning-v1.md">documents/agent-md/data-model-prisma-schema-planning-v1.md</a></li></ul></td>
       <td>Not recorded<br><small>Next: Not scheduled</small></td>
     </tr>
 <tr id="provider-001">
       <td><strong>PROVIDER-001</strong><br><span class="registry-type">provider-operations</span></td>
-      <td><strong>Provider Integration and Cost Control v1</strong><p>Costs and provider capabilities require dated validation before purchase or implementation.</p></td>
-      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td><strong>Provider Integration and Cost Control v1</strong><p>Frozen Phase 4 migration evidence. Use TECH-REF-001 Platform Architecture and Operations. Costs and provider capabilities still require dated official validation before purchase or go-live.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
       <td>Infrastructure Lead<br><small>Reviewers: Technical Lead, Backend Lead, Finance, Security</small></td>
-      <td>legacy-transitional-source<br><small>Main Enterprise Architecture and validated provider contracts</small></td>
+      <td>legacy-derived-frozen<br><small>Main Enterprise Architecture and validated provider contracts</small></td>
       <td><strong>Source</strong><br><a href="../documents/provider-integration-cost-control-v1.html">documents/provider-integration-cost-control-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/provider-integration-cost-control-v1.md">documents/agent-md/provider-integration-cost-control-v1.md</a></li></ul></td>
       <td>Not recorded<br><small>Next: Not scheduled</small></td>
     </tr>
@@ -268,6 +268,15 @@
       <td>Project Lead<br><small>Reviewers: Technical Lead, Product Lead, Mobile Lead, Admin Lead, Backend Lead, QA</small></td>
       <td>canonical-source<br><small>Approved flows, accepted contract decisions and approved Phase 3 delivery order</small></td>
       <td><strong>Source</strong><br><a href="../content/tasks/plan-metadata.json">content/tasks/plan-metadata.json</a><br><strong>Artifacts</strong><ul><li><a href="../logs/phase-3-task-migration-inventory.md">logs/phase-3-task-migration-inventory.md</a></li><li><a href="../logs/phase-3-execution-log.md">logs/phase-3-execution-log.md</a></li><li><a href="../documents/planning/index.html">documents/planning/index.html</a></li><li><a href="../documents/agent-md/planning/README.md">documents/agent-md/planning/README.md</a></li><li><a href="../documents/planning/mobile-build-plan.html">documents/planning/mobile-build-plan.html</a></li><li><a href="../documents/planning/admin-build-plan.html">documents/planning/admin-build-plan.html</a></li><li><a href="../documents/planning/backend-build-plan.html">documents/planning/backend-build-plan.html</a></li><li><a href="../documents/planning/qa-traceability.html">documents/planning/qa-traceability.html</a></li><li><a href="../documents/agent-md/planning/qa-traceability.md">documents/agent-md/planning/qa-traceability.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="tech-ref-001">
+      <td><strong>TECH-REF-001</strong><br><span class="registry-type">technical-reference-migration</span></td>
+      <td><strong>Phase 4 Consolidated Technical Reference Library</strong><p>Consolidates the legacy architecture, contract, data, provider and screen families into five human pages, four focused agent packs and one generated OpenAPI baseline. Its 342 anchored records are sections inside those families, not standalone required-reading documents. Approved referral and KYC decisions retain higher authority; provisional gaps remain explicit blockers.</p></td>
+      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td>Technical Lead<br><small>Reviewers: Product Lead, Mobile Lead, Admin Lead, Backend Lead, Infrastructure Lead, Security, Finance, Operations, QA</small></td>
+      <td>canonical-source<br><small>Approved standalone flows and accepted contract decisions, with explicitly marked provisional architecture, contract, schema, provider and design baselines</small></td>
+      <td><strong>Source</strong><br><a href="../content/technical/library.json">content/technical/library.json</a><br><strong>Artifacts</strong><ul><li><a href="../content/technical/contracts.json">content/technical/contracts.json</a></li><li><a href="../content/technical/data.json">content/technical/data.json</a></li><li><a href="../content/technical/platform.json">content/technical/platform.json</a></li><li><a href="../content/technical/screens.json">content/technical/screens.json</a></li><li><a href="../documents/technical/index.html">documents/technical/index.html</a></li><li><a href="../documents/technical/contracts.html">documents/technical/contracts.html</a></li><li><a href="../documents/technical/data.html">documents/technical/data.html</a></li><li><a href="../documents/technical/platform.html">documents/technical/platform.html</a></li><li><a href="../documents/technical/screens.html">documents/technical/screens.html</a></li><li><a href="../documents/technical/openapi/work2cash-v1.json">documents/technical/openapi/work2cash-v1.json</a></li><li><a href="../documents/agent-md/technical/contracts.md">documents/agent-md/technical/contracts.md</a></li><li><a href="../documents/agent-md/technical/data.md">documents/agent-md/technical/data.md</a></li><li><a href="../documents/agent-md/technical/platform.md">documents/agent-md/technical/platform.md</a></li><li><a href="../documents/agent-md/technical/screens.md">documents/agent-md/technical/screens.md</a></li><li><a href="../logs/phase-4-execution-log.md">logs/phase-4-execution-log.md</a></li><li><a href="../logs/phase-4-technical-migration-inventory.md">logs/phase-4-technical-migration-inventory.md</a></li><li><a href="../logs/phase-4-technical-gap-register.md">logs/phase-4-technical-gap-register.md</a></li><li><a href="../scripts/bootstrap-phase4-technical-sources.js">scripts/bootstrap-phase4-technical-sources.js</a></li><li><a href="../scripts/generate-technical-docs.js">scripts/generate-technical-docs.js</a></li></ul></td>
       <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
     </tr></tbody></table></div>
     </section>

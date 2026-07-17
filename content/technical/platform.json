@@ -1,0 +1,1828 @@
+{
+  "id": "TECH-PLATFORM-001",
+  "slug": "platform",
+  "title": "Platform Architecture and Operations",
+  "description": "Architecture, infrastructure, providers, cost controls, disaster recovery and incident runbooks in one role-filtered reference.",
+  "audience": "Infrastructure, Backend, Security, Finance, Operations and AI agents",
+  "owner": "Technical Lead",
+  "reviewers": [
+    "Infrastructure Lead",
+    "Backend Lead",
+    "Security",
+    "Finance",
+    "Operations"
+  ],
+  "status": "in-review",
+  "version": "1.0",
+  "lastReviewed": "2026-07-17",
+  "authority": "Provisional Main Enterprise Architecture and validated provider decisions",
+  "sourceNotes": [
+    "Commercial prices and provider capabilities are not approved by migration alone; official evidence is required before spend or go-live.",
+    "Production commands, credentials, personal contacts and confidential incident data must remain outside this public repository."
+  ],
+  "sharedRules": [
+    "PostgreSQL is durable truth; Valkey, queues and sockets are recoverable supporting systems.",
+    "Staging uses sandbox credentials and no production personal data.",
+    "External providers are accessed through adapters with logging, idempotency and disablement controls.",
+    "Backups require off-server storage and successful restore evidence.",
+    "No paid provider auto-refresh loops."
+  ],
+  "records": [
+    {
+      "id": "ARCH-01",
+      "type": "architecture",
+      "title": "System context and responsibility boundary",
+      "domain": "Architecture",
+      "status": "provisional-baseline",
+      "summary": "Flutter mobile and Next.js Admin consume a NestJS API. PostgreSQL owns durable truth; Valkey supports cache, presence, geospatial lookup, queues and socket scaling; workers own background processing; object storage holds controlled media and backup artifacts.",
+      "facts": [
+        {
+          "label": "Mobile",
+          "value": "Flutter application for Task Owner and Tasker modes"
+        },
+        {
+          "label": "Admin",
+          "value": "Next.js operations dashboard with TOTP and RBAC"
+        },
+        {
+          "label": "Backend",
+          "value": "NestJS hexagonal modules, REST, Socket.IO, workers and scheduler"
+        },
+        {
+          "label": "Durable data",
+          "value": "PostgreSQL"
+        },
+        {
+          "label": "Transient/fast state",
+          "value": "Valkey and BullMQ"
+        }
+      ],
+      "rules": [
+        "Provider adapters remain outside core use cases.",
+        "Socket and cache state never replace persisted business truth."
+      ],
+      "dependencies": [
+        "Approved architecture decisions",
+        "Contracts",
+        "Data model"
+      ],
+      "gaps": [
+        "Formal architecture approval remains pending."
+      ],
+      "source": "Main Enterprise Architecture v1"
+    },
+    {
+      "id": "ARCH-02",
+      "type": "architecture",
+      "title": "Production topology",
+      "domain": "Infrastructure",
+      "status": "provisional-baseline",
+      "summary": "The provisional production baseline separates application, data and monitoring responsibilities and uses S3-compatible object storage. Exact network diagrams, region, sizing and failover require infrastructure approval before provisioning.",
+      "facts": [
+        {
+          "label": "Application plane",
+          "value": "API, socket gateway, workers and reverse proxy"
+        },
+        {
+          "label": "Data plane",
+          "value": "PostgreSQL and privately reachable Valkey"
+        },
+        {
+          "label": "Monitoring plane",
+          "value": "Logs, metrics, alerts and Sentry integration"
+        },
+        {
+          "label": "Storage",
+          "value": "DigitalOcean Spaces or approved S3-compatible object storage"
+        }
+      ],
+      "rules": [
+        "PostgreSQL and Valkey are not publicly exposed.",
+        "Use TLS, hardened SSH, least privilege, firewall rules and separated secrets."
+      ],
+      "dependencies": [
+        "DigitalOcean production baseline",
+        "DNS/TLS inventory",
+        "Backup and restore runbooks"
+      ],
+      "gaps": [
+        "Approved region, IP plan, firewall matrix, capacity test and failover design are not recorded."
+      ],
+      "source": "Main Enterprise Architecture v1 and Provider Integration baseline"
+    },
+    {
+      "id": "ARCH-03",
+      "type": "architecture",
+      "title": "Staging topology",
+      "domain": "Infrastructure",
+      "status": "provisional-baseline",
+      "summary": "Staging uses isolated infrastructure, sandbox provider credentials and synthetic data. It must never contain production user, KYC, payment or secret material.",
+      "facts": [
+        {
+          "label": "Host baseline",
+          "value": "Contabo staging baseline recorded in July 2026; revalidate before purchase"
+        },
+        {
+          "label": "Provider mode",
+          "value": "Sandbox or test credentials only"
+        },
+        {
+          "label": "Data",
+          "value": "Synthetic or explicitly approved non-production data"
+        },
+        {
+          "label": "Backups",
+          "value": "Off-server backup required because legacy baseline did not include automatic backup"
+        }
+      ],
+      "rules": [
+        "Production keys and personal data are forbidden in staging.",
+        "Run restore drills before declaring backup readiness."
+      ],
+      "dependencies": [
+        "Infrastructure owner",
+        "Provider sandboxes",
+        "Deployment and restore runbooks"
+      ],
+      "gaps": [
+        "Private network availability, exact retention and environment access roster require approval."
+      ],
+      "source": "Main Enterprise Architecture v1 and Provider Integration baseline"
+    },
+    {
+      "id": "ARCH-04",
+      "type": "architecture",
+      "title": "Network, DNS, TLS and secret boundaries",
+      "domain": "Infrastructure",
+      "status": "decision-required",
+      "summary": "Public entry points terminate TLS at controlled reverse proxies; data services remain private. Secrets belong in protected environment/secret storage and are never stored in this documentation repository.",
+      "facts": [
+        {
+          "label": "Public surfaces",
+          "value": "API, Socket and Admin hosts"
+        },
+        {
+          "label": "Private services",
+          "value": "PostgreSQL, Valkey, workers' internal control paths and backup credentials"
+        },
+        {
+          "label": "Secret rule",
+          "value": "Environment/secret store only; least privilege and rotation evidence required"
+        }
+      ],
+      "rules": [
+        "No database or Valkey public exposure.",
+        "Separate staging and production credentials.",
+        "Audit privileged access and secret rotation."
+      ],
+      "dependencies": [
+        "DNS owner",
+        "Infrastructure owner",
+        "Security reviewer"
+      ],
+      "gaps": [
+        "DNS registrar roles, TLS renewal ownership, firewall ports, VPN/private access and rotation schedule require explicit records."
+      ],
+      "source": "Main Enterprise Architecture v1"
+    },
+    {
+      "id": "ARCH-05",
+      "type": "architecture",
+      "title": "Monitoring, capacity and cost controls",
+      "domain": "Operations",
+      "status": "provisional-baseline",
+      "summary": "Monitor API/socket health, provider calls, payment reconciliation, queues, PostgreSQL, Valkey, backups and budget consumption. Alerts must name an owner and lead to a runbook.",
+      "facts": [
+        {
+          "label": "Core signals",
+          "value": "Availability, latency, error rate, queue age/failure, database saturation, Valkey memory/eviction, backup freshness"
+        },
+        {
+          "label": "Provider signals",
+          "value": "Request count, duration, failure, duplicate events and estimated cost where known"
+        },
+        {
+          "label": "Cost trigger",
+          "value": "Unexpected usage or spend requires feature/config review before scaling"
+        }
+      ],
+      "rules": [
+        "Paid provider calls require budget logging and guards.",
+        "No paid auto-refresh loops.",
+        "An alert without ownership and recovery action is incomplete."
+      ],
+      "dependencies": [
+        "Monitoring owner",
+        "Provider catalogue",
+        "Incident runbooks"
+      ],
+      "gaps": [
+        "Final thresholds, paging rota, dashboards and capacity-test evidence require operational approval."
+      ],
+      "source": "Main Enterprise Architecture v1 and Provider Integration baseline"
+    },
+    {
+      "id": "ARCH-06",
+      "type": "architecture",
+      "title": "Disaster recovery policy",
+      "domain": "Recovery",
+      "status": "provisional-baseline",
+      "summary": "Recovery prioritizes data integrity, authoritative money state and controlled restoration. Off-server PostgreSQL backups and tested restore procedures are mandatory; server disks alone are not backups.",
+      "facts": [
+        {
+          "label": "Restore drills",
+          "value": "Weekly in staging and monthly after launch in the provisional baseline"
+        },
+        {
+          "label": "Evidence",
+          "value": "Backup ID, checksum, restore target, duration, validation result and owner"
+        },
+        {
+          "label": "Priority",
+          "value": "PostgreSQL and money/audit truth before caches, queues or derived views"
+        }
+      ],
+      "rules": [
+        "Never restore over production without incident authority and a verified recovery point.",
+        "Rebuild transient Valkey state from durable records where possible."
+      ],
+      "dependencies": [
+        "PostgreSQL backup/restore runbooks",
+        "Object storage",
+        "Incident commander"
+      ],
+      "gaps": [
+        "Approved RPO, RTO, backup encryption/key ownership and regional recovery design require formal approval."
+      ],
+      "source": "Main Enterprise Architecture v1"
+    },
+    {
+      "id": "PROVIDER-01",
+      "type": "provider",
+      "title": "Paystack",
+      "domain": "Payments - Collections",
+      "status": "selected-unverified",
+      "summary": "Primary collection rail alongside Moniepoint.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Task Owner cardless payment, bank transfer, payment redirect/status, webhook confirmation."
+        },
+        {
+          "label": "Selection status",
+          "value": "Active MVP provider"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Verify current pricing, supported channels, webhook signatures and settlement behavior before go-live.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Keep payment or payout pending; reconcile authoritative provider state and never report money success early.",
+        "fallback": "Moniepoint when validated and enabled",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-02",
+      "type": "provider",
+      "title": "Moniepoint",
+      "domain": "Payments - Collections",
+      "status": "selected-unverified",
+      "summary": "Primary collection rail alongside Paystack.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Task Owner payment, provider status, webhook confirmation."
+        },
+        {
+          "label": "Selection status",
+          "value": "Active MVP provider"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Verify online checkout/API availability, webhook reliability, bank transfer flow and settlement behavior before go-live.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Keep payment or payout pending; reconcile authoritative provider state and never report money success early.",
+        "fallback": "Paystack when validated and enabled",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-03",
+      "type": "provider",
+      "title": "Paystack Transfers",
+      "domain": "Payouts",
+      "status": "selected-unverified",
+      "summary": "Transfer rail for Tasker withdrawals where appropriate.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Bulk payout batch processing on 14th and 28th."
+        },
+        {
+          "label": "Selection status",
+          "value": "Active MVP provider"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Verify transfer fees, bank coverage, transfer limits, reversal behavior and compliance requirements.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Keep payment or payout pending; reconcile authoritative provider state and never report money success early.",
+        "fallback": "Moniepoint when validated and enabled",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-04",
+      "type": "provider",
+      "title": "Moniepoint",
+      "domain": "Payouts",
+      "status": "selected-unverified",
+      "summary": "Transfer rail for payout batches where appropriate.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Bulk payout batch processing and reconciliation."
+        },
+        {
+          "label": "Selection status",
+          "value": "Active MVP provider"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Verify transfer API, bulk transfer support, pricing, limits and settlement operations.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Keep payment or payout pending; reconcile authoritative provider state and never report money success early.",
+        "fallback": "Paystack when validated and enabled",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-05",
+      "type": "provider",
+      "title": "Smile ID",
+      "domain": "KYC",
+      "status": "selected-unverified",
+      "summary": "Identity verification provider.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "NIN/BVN + biometric face match for Tasker activation."
+        },
+        {
+          "label": "Selection status",
+          "value": "Active MVP provider"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Verify Nigeria product availability, pricing, callback signatures, required consent wording and data retention requirements.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Keep KYC pending or route to manual review; never activate a Tasker from client or callback text alone.",
+        "fallback": "No automatic provider swap unless the adapter, product state and operations approval explicitly allow it",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-06",
+      "type": "provider",
+      "title": "Google Maps Platform",
+      "domain": "Maps",
+      "status": "selected-unverified",
+      "summary": "Paid maps/routing/geocoding provider.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Geocoding manual address, ETA snapshots, traffic-aware arrival estimate."
+        },
+        {
+          "label": "Selection status",
+          "value": "Active MVP provider with strict guard"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Distance/route pricing changes frequently. Configure billing alerts and enforce ETA guard.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Use cached coordinates or last permitted ETA and disable paid refresh until the budget/provider guard recovers.",
+        "fallback": "Cached result, manual address/pin confirmation and guarded later retry",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-07",
+      "type": "provider",
+      "title": "Firebase Cloud Messaging",
+      "domain": "Push Notifications",
+      "status": "selected-unverified",
+      "summary": "Primary device wake and push notification channel.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "New task alerts, direct offers, chat/support notifications, critical task updates."
+        },
+        {
+          "label": "Selection status",
+          "value": "Active MVP provider"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Keep FCM tokens fresh and handle aggressive Android background killing.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Persist the notification outcome and allow the app to fetch authoritative state when delivery fails.",
+        "fallback": "No automatic provider swap unless the adapter, product state and operations approval explicitly allow it",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-08",
+      "type": "provider",
+      "title": "Termii",
+      "domain": "SMS",
+      "status": "selected-unverified",
+      "summary": "SMS fallback for critical OTP and critical notifications.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "OTP fallback after email, critical account/payment/support messages only."
+        },
+        {
+          "label": "Selection status",
+          "value": "Active MVP provider"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "SMS can become expensive; use only where email/push is insufficient.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Persist the notification outcome and allow the app to fetch authoritative state when delivery fails.",
+        "fallback": "Email remains primary; support path for critical account recovery",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-09",
+      "type": "provider",
+      "title": "Resend",
+      "domain": "Email",
+      "status": "candidate",
+      "summary": "Phase 1 transactional email provider.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "OTP email, receipts, account notifications, support emails."
+        },
+        {
+          "label": "Selection status",
+          "value": "Phase 1 provider"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Use React Email templates and monitor free/pro limits.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Persist the notification outcome and allow the app to fetch authoritative state when delivery fails.",
+        "fallback": "SendGrid after deferred-provider validation",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-10",
+      "type": "provider",
+      "title": "SendGrid",
+      "domain": "Email",
+      "status": "deferred",
+      "summary": "Later email provider when volume/deliverability requires it.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "High-volume transactional email and dedicated IP needs."
+        },
+        {
+          "label": "Selection status",
+          "value": "Deferred provider"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Switch via email adapter without changing use cases.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Persist the notification outcome and allow the app to fetch authoritative state when delivery fails.",
+        "fallback": "Resend",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-11",
+      "type": "provider",
+      "title": "Sentry",
+      "domain": "Monitoring",
+      "status": "candidate",
+      "summary": "Error monitoring.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Backend, Flutter and Next.js error tracking."
+        },
+        {
+          "label": "Selection status",
+          "value": "Developer/free plan baseline"
+        },
+        {
+          "label": "Owner",
+          "value": "Infrastructure Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Avoid sending PII, KYC payloads, provider secrets or payment-sensitive values.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Sentry failure must produce a visible degraded or retryable state with logged evidence.",
+        "fallback": "No automatic provider swap unless the adapter, product state and operations approval explicitly allow it",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-12",
+      "type": "provider",
+      "title": "Shorebird",
+      "domain": "Mobile Updates",
+      "status": "selected-unverified",
+      "summary": "Flutter patch delivery.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Post-release Dart patch updates where allowed."
+        },
+        {
+          "label": "Selection status",
+          "value": "Active mobile provider"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Do not use for native changes requiring app store release.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Shorebird failure must produce a visible degraded or retryable state with logged evidence.",
+        "fallback": "No automatic provider swap unless the adapter, product state and operations approval explicitly allow it",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-13",
+      "type": "provider",
+      "title": "Infobip",
+      "domain": "Masked Calls",
+      "status": "candidate",
+      "summary": "Primary candidate for proxy dial-in masked calls.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Task-bound call masking without exposing phone numbers."
+        },
+        {
+          "label": "Selection status",
+          "value": "Candidate to validate"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Confirm Nigerian voice number availability, local airtime behavior, carrier reliability and pricing.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Disable masked calls and retain chat/voice-note alternatives; never reveal real phone numbers.",
+        "fallback": "Feature disablement, then the next validated provider candidate; chat remains available",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-14",
+      "type": "provider",
+      "title": "Africa's Talking",
+      "domain": "Masked Calls",
+      "status": "candidate",
+      "summary": "Secondary candidate for masked calls.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Fallback voice masking candidate."
+        },
+        {
+          "label": "Selection status",
+          "value": "Candidate to validate"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Confirm Nigeria number support and proxy dial-in feasibility.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Disable masked calls and retain chat/voice-note alternatives; never reveal real phone numbers.",
+        "fallback": "Feature disablement, then the next validated provider candidate; chat remains available",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-15",
+      "type": "provider",
+      "title": "Vonage",
+      "domain": "Masked Calls",
+      "status": "candidate",
+      "summary": "Fallback masked call provider.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Fallback if local candidates fail."
+        },
+        {
+          "label": "Selection status",
+          "value": "Fallback"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Do not depend on it until Nigeria voice-capable number support is verified.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Disable masked calls and retain chat/voice-note alternatives; never reveal real phone numbers.",
+        "fallback": "Feature disablement, then the next validated provider candidate; chat remains available",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-16",
+      "type": "provider",
+      "title": "Sinch",
+      "domain": "Masked Calls",
+      "status": "candidate",
+      "summary": "Enterprise fallback.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Fallback if scale/compliance requires enterprise provider."
+        },
+        {
+          "label": "Selection status",
+          "value": "Fallback"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Likely higher-cost path; validate only if needed.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Disable masked calls and retain chat/voice-note alternatives; never reveal real phone numbers.",
+        "fallback": "Feature disablement, then the next validated provider candidate; chat remains available",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-17",
+      "type": "provider",
+      "title": "DigitalOcean",
+      "domain": "Hosting",
+      "status": "selected-unverified",
+      "summary": "Active production hosting baseline.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "App server, data server, monitoring server and Spaces object storage."
+        },
+        {
+          "label": "Selection status",
+          "value": "Selected production infrastructure"
+        },
+        {
+          "label": "Owner",
+          "value": "Infrastructure Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Use DigitalOcean production sizing and monitor before scaling.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Enter the relevant incident runbook, protect data integrity and restore only from verified evidence.",
+        "fallback": "No automatic provider swap unless the adapter, product state and operations approval explicitly allow it",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-18",
+      "type": "provider",
+      "title": "DigitalOcean Spaces or S3-compatible storage",
+      "domain": "Object/Backup Storage",
+      "status": "selected-unverified",
+      "summary": "Media, backup and export storage.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Task proof media, backups, generated exports."
+        },
+        {
+          "label": "Selection status",
+          "value": "Active option"
+        },
+        {
+          "label": "Owner",
+          "value": "Infrastructure Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Use signed URLs, lifecycle policies and backup restore tests.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Enter the relevant incident runbook, protect data integrity and restore only from verified evidence.",
+        "fallback": "No automatic provider swap unless the adapter, product state and operations approval explicitly allow it",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-19",
+      "type": "provider",
+      "title": "WhoGoHost",
+      "domain": "Domain",
+      "status": "selected-unverified",
+      "summary": "Domain registrar for work2cash.ng.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Domain purchase and DNS ownership."
+        },
+        {
+          "label": "Selection status",
+          "value": "Active provider"
+        },
+        {
+          "label": "Owner",
+          "value": "Infrastructure Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Domain baseline: ₦9,200 + 7.5% VAT = ₦690; total ₦9,890 excluding bank transfer/payment charges.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Enter the relevant incident runbook, protect data integrity and restore only from verified evidence.",
+        "fallback": "No automatic provider swap unless the adapter, product state and operations approval explicitly allow it",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "PROVIDER-20",
+      "type": "provider",
+      "title": "Firebase Analytics",
+      "domain": "Analytics",
+      "status": "deferred",
+      "summary": "Basic mobile analytics.",
+      "facts": [
+        {
+          "label": "Work2Cash use",
+          "value": "Event-level mobile analytics where useful."
+        },
+        {
+          "label": "Selection status",
+          "value": "Deferred/light usage"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Sandbox validation",
+          "value": "Evidence not recorded in the migrated baseline"
+        },
+        {
+          "label": "Production validation",
+          "value": "Not approved by this migration"
+        },
+        {
+          "label": "Pricing",
+          "value": "Legacy July 2026 baseline only; verify against an official source before spend or go-live"
+        }
+      ],
+      "rules": [
+        "Product analytics is intentionally not a core MVP dependency.",
+        "Use a provider adapter; controllers and use cases do not call provider SDKs directly.",
+        "Never commit keys, secrets, raw provider payloads or production credentials."
+      ],
+      "dependencies": [
+        "Provider adapter",
+        "ProviderRequestLog",
+        "Feature/config guard",
+        "Operations owner"
+      ],
+      "gaps": [
+        "Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.",
+        "Confirm data-processing, retention, webhook/signature and support-escalation terms."
+      ],
+      "recovery": {
+        "failure": "Firebase Analytics failure must produce a visible degraded or retryable state with logged evidence.",
+        "fallback": "No automatic provider swap unless the adapter, product state and operations approval explicitly allow it",
+        "disablement": "Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident."
+      },
+      "source": "Legacy Provider Integration and Cost Control v1; commercial facts require revalidation"
+    },
+    {
+      "id": "RUNBOOK-01",
+      "type": "runbook",
+      "title": "Deployment",
+      "domain": "Operations runbook",
+      "status": "operational-baseline",
+      "summary": "Deploy an approved artifact after checks and migration review.",
+      "facts": [
+        {
+          "label": "Owner",
+          "value": "Release owner"
+        },
+        {
+          "label": "Trigger",
+          "value": "Deployment is required or its monitoring alert fires."
+        },
+        {
+          "label": "Safe state",
+          "value": "Stop and rollback if health, migrations or smoke tests fail."
+        },
+        {
+          "label": "Evidence",
+          "value": "Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner"
+        }
+      ],
+      "rules": [
+        "Stop and rollback if health, migrations or smoke tests fail.",
+        "Escalate when authority, data integrity, money state, security or recovery evidence is uncertain."
+      ],
+      "dependencies": [
+        "Monitoring/alert",
+        "Named owner",
+        "Relevant architecture/provider record"
+      ],
+      "gaps": [
+        "Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository."
+      ],
+      "source": "Phase 4 operational migration based on the provisional architecture baseline"
+    },
+    {
+      "id": "RUNBOOK-02",
+      "type": "runbook",
+      "title": "Rollback",
+      "domain": "Operations runbook",
+      "status": "operational-baseline",
+      "summary": "Freeze further rollout, preserve evidence and restore the last verified application artifact.",
+      "facts": [
+        {
+          "label": "Owner",
+          "value": "Release owner"
+        },
+        {
+          "label": "Trigger",
+          "value": "Rollback is required or its monitoring alert fires."
+        },
+        {
+          "label": "Safe state",
+          "value": "Never reverse an irreversible database change without a reviewed recovery plan."
+        },
+        {
+          "label": "Evidence",
+          "value": "Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner"
+        }
+      ],
+      "rules": [
+        "Never reverse an irreversible database change without a reviewed recovery plan.",
+        "Escalate when authority, data integrity, money state, security or recovery evidence is uncertain."
+      ],
+      "dependencies": [
+        "Monitoring/alert",
+        "Named owner",
+        "Relevant architecture/provider record"
+      ],
+      "gaps": [
+        "Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository."
+      ],
+      "source": "Phase 4 operational migration based on the provisional architecture baseline"
+    },
+    {
+      "id": "RUNBOOK-03",
+      "type": "runbook",
+      "title": "PostgreSQL backup",
+      "domain": "Operations runbook",
+      "status": "operational-baseline",
+      "summary": "Create encrypted off-server backup, verify completion/checksum and record freshness.",
+      "facts": [
+        {
+          "label": "Owner",
+          "value": "Infrastructure Lead"
+        },
+        {
+          "label": "Trigger",
+          "value": "PostgreSQL backup is required or its monitoring alert fires."
+        },
+        {
+          "label": "Safe state",
+          "value": "Alert on failure or staleness; server-local files alone do not count."
+        },
+        {
+          "label": "Evidence",
+          "value": "Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner"
+        }
+      ],
+      "rules": [
+        "Alert on failure or staleness; server-local files alone do not count.",
+        "Escalate when authority, data integrity, money state, security or recovery evidence is uncertain."
+      ],
+      "dependencies": [
+        "Monitoring/alert",
+        "Named owner",
+        "Relevant architecture/provider record"
+      ],
+      "gaps": [
+        "Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository."
+      ],
+      "source": "Phase 4 operational migration based on the provisional architecture baseline"
+    },
+    {
+      "id": "RUNBOOK-04",
+      "type": "runbook",
+      "title": "PostgreSQL restore",
+      "domain": "Operations runbook",
+      "status": "operational-baseline",
+      "summary": "Restore into an isolated target, validate schema and critical money/audit records, then obtain cutover authority.",
+      "facts": [
+        {
+          "label": "Owner",
+          "value": "Infrastructure Lead"
+        },
+        {
+          "label": "Trigger",
+          "value": "PostgreSQL restore is required or its monitoring alert fires."
+        },
+        {
+          "label": "Safe state",
+          "value": "Do not overwrite production as the first restore test."
+        },
+        {
+          "label": "Evidence",
+          "value": "Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner"
+        }
+      ],
+      "rules": [
+        "Do not overwrite production as the first restore test.",
+        "Escalate when authority, data integrity, money state, security or recovery evidence is uncertain."
+      ],
+      "dependencies": [
+        "Monitoring/alert",
+        "Named owner",
+        "Relevant architecture/provider record"
+      ],
+      "gaps": [
+        "Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository."
+      ],
+      "source": "Phase 4 operational migration based on the provisional architecture baseline"
+    },
+    {
+      "id": "RUNBOOK-05",
+      "type": "runbook",
+      "title": "Provider outage",
+      "domain": "Operations runbook",
+      "status": "operational-baseline",
+      "summary": "Mark the provider degraded, preserve pending state, disable unsafe actions and activate only validated fallback.",
+      "facts": [
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Trigger",
+          "value": "Provider outage is required or its monitoring alert fires."
+        },
+        {
+          "label": "Safe state",
+          "value": "Never mark provider work successful because a fallback UI appeared."
+        },
+        {
+          "label": "Evidence",
+          "value": "Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner"
+        }
+      ],
+      "rules": [
+        "Never mark provider work successful because a fallback UI appeared.",
+        "Escalate when authority, data integrity, money state, security or recovery evidence is uncertain."
+      ],
+      "dependencies": [
+        "Monitoring/alert",
+        "Named owner",
+        "Relevant architecture/provider record"
+      ],
+      "gaps": [
+        "Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository."
+      ],
+      "source": "Phase 4 operational migration based on the provisional architecture baseline"
+    },
+    {
+      "id": "RUNBOOK-06",
+      "type": "runbook",
+      "title": "Payment reconciliation",
+      "domain": "Operations runbook",
+      "status": "operational-baseline",
+      "summary": "Compare provider events, Payment, ledger and escrow records by reference and request ID.",
+      "facts": [
+        {
+          "label": "Owner",
+          "value": "Finance Operations"
+        },
+        {
+          "label": "Trigger",
+          "value": "Payment reconciliation is required or its monitoring alert fires."
+        },
+        {
+          "label": "Safe state",
+          "value": "Apply idempotent correction through governed finance use cases; never edit balances directly."
+        },
+        {
+          "label": "Evidence",
+          "value": "Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner"
+        }
+      ],
+      "rules": [
+        "Apply idempotent correction through governed finance use cases; never edit balances directly.",
+        "Escalate when authority, data integrity, money state, security or recovery evidence is uncertain."
+      ],
+      "dependencies": [
+        "Monitoring/alert",
+        "Named owner",
+        "Relevant architecture/provider record"
+      ],
+      "gaps": [
+        "Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository."
+      ],
+      "source": "Phase 4 operational migration based on the provisional architecture baseline"
+    },
+    {
+      "id": "RUNBOOK-07",
+      "type": "runbook",
+      "title": "Queue failure or stalled jobs",
+      "domain": "Operations runbook",
+      "status": "operational-baseline",
+      "summary": "Identify affected queue/job age, stop duplicate producers if necessary and replay only idempotent jobs.",
+      "facts": [
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Trigger",
+          "value": "Queue failure or stalled jobs is required or its monitoring alert fires."
+        },
+        {
+          "label": "Safe state",
+          "value": "Preserve failed payload references and correlation evidence."
+        },
+        {
+          "label": "Evidence",
+          "value": "Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner"
+        }
+      ],
+      "rules": [
+        "Preserve failed payload references and correlation evidence.",
+        "Escalate when authority, data integrity, money state, security or recovery evidence is uncertain."
+      ],
+      "dependencies": [
+        "Monitoring/alert",
+        "Named owner",
+        "Relevant architecture/provider record"
+      ],
+      "gaps": [
+        "Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository."
+      ],
+      "source": "Phase 4 operational migration based on the provisional architecture baseline"
+    },
+    {
+      "id": "RUNBOOK-08",
+      "type": "runbook",
+      "title": "Object-storage failure",
+      "domain": "Operations runbook",
+      "status": "operational-baseline",
+      "summary": "Disable unsafe upload paths, retain metadata in retryable state and verify bucket/network/credentials.",
+      "facts": [
+        {
+          "label": "Owner",
+          "value": "Infrastructure Lead"
+        },
+        {
+          "label": "Trigger",
+          "value": "Object-storage failure is required or its monitoring alert fires."
+        },
+        {
+          "label": "Safe state",
+          "value": "Never expose storage keys or make private evidence public as a workaround."
+        },
+        {
+          "label": "Evidence",
+          "value": "Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner"
+        }
+      ],
+      "rules": [
+        "Never expose storage keys or make private evidence public as a workaround.",
+        "Escalate when authority, data integrity, money state, security or recovery evidence is uncertain."
+      ],
+      "dependencies": [
+        "Monitoring/alert",
+        "Named owner",
+        "Relevant architecture/provider record"
+      ],
+      "gaps": [
+        "Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository."
+      ],
+      "source": "Phase 4 operational migration based on the provisional architecture baseline"
+    },
+    {
+      "id": "RUNBOOK-09",
+      "type": "runbook",
+      "title": "DNS or certificate incident",
+      "domain": "Operations runbook",
+      "status": "operational-baseline",
+      "summary": "Confirm ownership, current records, certificate status and blast radius before controlled correction.",
+      "facts": [
+        {
+          "label": "Owner",
+          "value": "Infrastructure Lead"
+        },
+        {
+          "label": "Trigger",
+          "value": "DNS or certificate incident is required or its monitoring alert fires."
+        },
+        {
+          "label": "Safe state",
+          "value": "Protect against unauthorized DNS changes and record every emergency action."
+        },
+        {
+          "label": "Evidence",
+          "value": "Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner"
+        }
+      ],
+      "rules": [
+        "Protect against unauthorized DNS changes and record every emergency action.",
+        "Escalate when authority, data integrity, money state, security or recovery evidence is uncertain."
+      ],
+      "dependencies": [
+        "Monitoring/alert",
+        "Named owner",
+        "Relevant architecture/provider record"
+      ],
+      "gaps": [
+        "Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository."
+      ],
+      "source": "Phase 4 operational migration based on the provisional architecture baseline"
+    },
+    {
+      "id": "RUNBOOK-10",
+      "type": "runbook",
+      "title": "Security incident",
+      "domain": "Operations runbook",
+      "status": "operational-baseline",
+      "summary": "Contain access, preserve logs, rotate affected secrets and establish incident command.",
+      "facts": [
+        {
+          "label": "Owner",
+          "value": "Security Lead"
+        },
+        {
+          "label": "Trigger",
+          "value": "Security incident is required or its monitoring alert fires."
+        },
+        {
+          "label": "Safe state",
+          "value": "Do not delete evidence or publish personal/security details in this repository."
+        },
+        {
+          "label": "Evidence",
+          "value": "Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner"
+        }
+      ],
+      "rules": [
+        "Do not delete evidence or publish personal/security details in this repository.",
+        "Escalate when authority, data integrity, money state, security or recovery evidence is uncertain."
+      ],
+      "dependencies": [
+        "Monitoring/alert",
+        "Named owner",
+        "Relevant architecture/provider record"
+      ],
+      "gaps": [
+        "Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository."
+      ],
+      "source": "Phase 4 operational migration based on the provisional architecture baseline"
+    },
+    {
+      "id": "RUNBOOK-11",
+      "type": "runbook",
+      "title": "Data-exposure incident",
+      "domain": "Operations runbook",
+      "status": "operational-baseline",
+      "summary": "Stop further exposure, identify affected data/people, preserve evidence and follow notification/legal decision processes.",
+      "facts": [
+        {
+          "label": "Owner",
+          "value": "Privacy and Security Lead"
+        },
+        {
+          "label": "Trigger",
+          "value": "Data-exposure incident is required or its monitoring alert fires."
+        },
+        {
+          "label": "Safe state",
+          "value": "Do not copy exposed data into tickets, chat or documentation."
+        },
+        {
+          "label": "Evidence",
+          "value": "Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner"
+        }
+      ],
+      "rules": [
+        "Do not copy exposed data into tickets, chat or documentation.",
+        "Escalate when authority, data integrity, money state, security or recovery evidence is uncertain."
+      ],
+      "dependencies": [
+        "Monitoring/alert",
+        "Named owner",
+        "Relevant architecture/provider record"
+      ],
+      "gaps": [
+        "Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository."
+      ],
+      "source": "Phase 4 operational migration based on the provisional architecture baseline"
+    },
+    {
+      "id": "RUNBOOK-12",
+      "type": "runbook",
+      "title": "Capacity and cost review",
+      "domain": "Operations runbook",
+      "status": "operational-baseline",
+      "summary": "Review utilization, queue age, provider usage and forecast before resizing or enabling paid features.",
+      "facts": [
+        {
+          "label": "Owner",
+          "value": "Infrastructure and Finance"
+        },
+        {
+          "label": "Trigger",
+          "value": "Capacity and cost review is required or its monitoring alert fires."
+        },
+        {
+          "label": "Safe state",
+          "value": "Scaling or provider changes require evidence, owner and budget approval."
+        },
+        {
+          "label": "Evidence",
+          "value": "Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner"
+        }
+      ],
+      "rules": [
+        "Scaling or provider changes require evidence, owner and budget approval.",
+        "Escalate when authority, data integrity, money state, security or recovery evidence is uncertain."
+      ],
+      "dependencies": [
+        "Monitoring/alert",
+        "Named owner",
+        "Relevant architecture/provider record"
+      ],
+      "gaps": [
+        "Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository."
+      ],
+      "source": "Phase 4 operational migration based on the provisional architecture baseline"
+    }
+  ]
+}

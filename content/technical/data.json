@@ -1,0 +1,3644 @@
+{
+  "id": "TECH-DATA-001",
+  "slug": "data",
+  "title": "Data Model Reference",
+  "description": "A business-first catalogue of models, enums, ownership, privacy and schema readiness. Conceptual records and executable Prisma baselines are clearly distinguished.",
+  "audience": "Backend, Admin, QA, Security and AI agents",
+  "owner": "Backend Lead",
+  "reviewers": [
+    "Technical Lead",
+    "Data owner",
+    "Security and Privacy"
+  ],
+  "status": "in-review",
+  "version": "1.0",
+  "lastReviewed": "2026-07-17",
+  "authority": "Approved contracts and flows, with the provisional data-model execution baseline",
+  "sourceNotes": [
+    "KycAttempt incorporates the approved Phase 1 KYC data-domain reference.",
+    "A planned conceptual model is not permission to invent fields or apply a migration."
+  ],
+  "sharedRules": [
+    "Use mode, never activeMode.",
+    "Keep one User account; Task Owner and Tasker responsibilities remain explicit.",
+    "Keep Task Owner and Tasker wallets as separate records.",
+    "Ledger entries are immutable evidence; a cached balance is never the only money truth.",
+    "Exact addresses, KYC evidence, phone numbers and payment secrets require restricted access."
+  ],
+  "records": [
+    {
+      "id": "MODEL-ADMIN-08",
+      "type": "data-model",
+      "title": "AdminAuditLog",
+      "domain": "Admin and operations",
+      "status": "execution-baseline",
+      "summary": "Immutable admin/security/finance/risk audit record.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Immutable admin/security/finance/risk audit record."
+        },
+        {
+          "label": "Important rule",
+          "value": "Every high-impact admin action must write audit reason and actor."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Admin and operations"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Every high-impact admin action must write audit reason and actor."
+      ],
+      "dependencies": [
+        "Admin and operations",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model AdminAuditLog {\n  id            String          @id @default(cuid())\n  actorAdminId  String?\n  action        String\n  risk          AdminActionRisk @default(LOW)\n  targetType    String?\n  targetId      String?\n  reason        String?\n  requestId     String?\n  ipAddress     String?\n  metadata      Json?\n  createdAt     DateTime        @default(now())\n\n  @@index([actorAdminId, createdAt])\n  @@index([targetType, targetId])\n  @@index([risk, createdAt])\n}"
+    },
+    {
+      "id": "MODEL-ADMIN-03",
+      "type": "data-model",
+      "title": "AdminPermission",
+      "domain": "Admin and operations",
+      "status": "planned",
+      "summary": "AdminPermission supports the admin and operations domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative AdminPermission record for Admin and operations."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Admin and operations"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Admin and operations",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-ADMIN-02",
+      "type": "data-model",
+      "title": "AdminRole",
+      "domain": "Admin and operations",
+      "status": "planned",
+      "summary": "AdminRole supports the admin and operations domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative AdminRole record for Admin and operations."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Admin and operations"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Admin and operations",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-ADMIN-04",
+      "type": "data-model",
+      "title": "AdminRolePermission",
+      "domain": "Admin and operations",
+      "status": "planned",
+      "summary": "AdminRolePermission supports the admin and operations domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative AdminRolePermission record for Admin and operations."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Admin and operations"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Admin and operations",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-ADMIN-06",
+      "type": "data-model",
+      "title": "AdminSession",
+      "domain": "Admin and operations",
+      "status": "planned",
+      "summary": "AdminSession supports the admin and operations domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative AdminSession record for Admin and operations."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Admin and operations"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Admin and operations",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-ADMIN-07",
+      "type": "data-model",
+      "title": "AdminTotpCredential",
+      "domain": "Admin and operations",
+      "status": "planned",
+      "summary": "AdminTotpCredential supports the admin and operations domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative AdminTotpCredential record for Admin and operations."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Admin and operations"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Admin and operations",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-ADMIN-01",
+      "type": "data-model",
+      "title": "AdminUser",
+      "domain": "Admin and operations",
+      "status": "planned",
+      "summary": "AdminUser supports the admin and operations domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative AdminUser record for Admin and operations."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Admin and operations"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Admin and operations",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-ADMIN-05",
+      "type": "data-model",
+      "title": "AdminUserRole",
+      "domain": "Admin and operations",
+      "status": "planned",
+      "summary": "AdminUserRole supports the admin and operations domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative AdminUserRole record for Admin and operations."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Admin and operations"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Admin and operations",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-CATALOG-04",
+      "type": "data-model",
+      "title": "PlatformCoverageRule",
+      "domain": "Catalog and coverage",
+      "status": "planned",
+      "summary": "PlatformCoverageRule supports the catalog and coverage domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative PlatformCoverageRule record for Catalog and coverage."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Catalog and coverage"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Catalog and coverage",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-CATALOG-03",
+      "type": "data-model",
+      "title": "ServiceZone",
+      "domain": "Catalog and coverage",
+      "status": "planned",
+      "summary": "ServiceZone supports the catalog and coverage domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative ServiceZone record for Catalog and coverage."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Catalog and coverage"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Catalog and coverage",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-CATALOG-01",
+      "type": "data-model",
+      "title": "TaskCategory",
+      "domain": "Catalog and coverage",
+      "status": "planned",
+      "summary": "TaskCategory supports the catalog and coverage domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative TaskCategory record for Catalog and coverage."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Catalog and coverage"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Catalog and coverage",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-CATALOG-02",
+      "type": "data-model",
+      "title": "TaskType",
+      "domain": "Catalog and coverage",
+      "status": "planned",
+      "summary": "TaskType supports the catalog and coverage domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative TaskType record for Catalog and coverage."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Catalog and coverage"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Catalog and coverage",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-COMMUNICATION-01",
+      "type": "data-model",
+      "title": "ChatMessage",
+      "domain": "Communication and support",
+      "status": "execution-baseline",
+      "summary": "ChatMessage supports the communication and support domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative ChatMessage record for Communication and support."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Communication and support"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Communication and support",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model ChatMessage {\n  id          String      @id @default(cuid())\n  taskId      String?\n  supportSessionId String?\n  senderId    String\n  type        MessageType @default(TEXT)\n  body        String?\n  mediaId     String?\n  sentAt      DateTime    @default(now())\n  readAt      DateTime?\n\n  @@index([taskId, sentAt])\n  @@index([supportSessionId, sentAt])\n}"
+    },
+    {
+      "id": "MODEL-COMMUNICATION-05",
+      "type": "data-model",
+      "title": "CommunicationAuditLog",
+      "domain": "Communication and support",
+      "status": "planned",
+      "summary": "CommunicationAuditLog supports the communication and support domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative CommunicationAuditLog record for Communication and support."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Communication and support"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Communication and support",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-COMMUNICATION-03",
+      "type": "data-model",
+      "title": "SupportMessage",
+      "domain": "Communication and support",
+      "status": "planned",
+      "summary": "SupportMessage supports the communication and support domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative SupportMessage record for Communication and support."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Communication and support"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Communication and support",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-COMMUNICATION-02",
+      "type": "data-model",
+      "title": "SupportSession",
+      "domain": "Communication and support",
+      "status": "planned",
+      "summary": "SupportSession supports the communication and support domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative SupportSession record for Communication and support."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Communication and support"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Communication and support",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-COMMUNICATION-04",
+      "type": "data-model",
+      "title": "TaskCallSession",
+      "domain": "Communication and support",
+      "status": "execution-baseline",
+      "summary": "Masked proxy call session.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Masked proxy call session."
+        },
+        {
+          "label": "Important rule",
+          "value": "Task-bound, time-limited, no real phone numbers exposed."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Communication and support"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Task-bound, time-limited, no real phone numbers exposed."
+      ],
+      "dependencies": [
+        "Communication and support",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model TaskCallSession {\n  id                  String      @id @default(cuid())\n  taskId              String\n  callerUserId        String\n  recipientUserId     String\n  provider            ProviderName\n  proxyNumber         String\n  providerSessionId   String?\n  status              CallSessionStatus @default(ACTIVE)\n  expiresAt           DateTime\n  startedAt           DateTime?\n  endedAt             DateTime?\n  createdAt           DateTime    @default(now())\n\n  @@index([taskId, status])\n  @@index([callerUserId, createdAt])\n}"
+    },
+    {
+      "id": "MODEL-IDENTITY-08",
+      "type": "data-model",
+      "title": "NotificationPreference",
+      "domain": "Identity and access",
+      "status": "planned",
+      "summary": "NotificationPreference supports the identity and access domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative NotificationPreference record for Identity and access."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Identity and access"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Identity and access",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-IDENTITY-04",
+      "type": "data-model",
+      "title": "OtpChallenge",
+      "domain": "Identity and access",
+      "status": "planned",
+      "summary": "OtpChallenge supports the identity and access domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative OtpChallenge record for Identity and access."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Identity and access"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Identity and access",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-IDENTITY-09",
+      "type": "data-model",
+      "title": "SavedAddress",
+      "domain": "Identity and access",
+      "status": "planned",
+      "summary": "SavedAddress supports the identity and access domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative SavedAddress record for Identity and access."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Identity and access"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Identity and access",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-IDENTITY-07",
+      "type": "data-model",
+      "title": "SecurityPinCredential",
+      "domain": "Identity and access",
+      "status": "planned",
+      "summary": "SecurityPinCredential supports the identity and access domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative SecurityPinCredential record for Identity and access."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Identity and access"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Identity and access",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-IDENTITY-03",
+      "type": "data-model",
+      "title": "SocialAccount",
+      "domain": "Identity and access",
+      "status": "planned",
+      "summary": "SocialAccount supports the identity and access domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative SocialAccount record for Identity and access."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Identity and access"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Identity and access",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-IDENTITY-01",
+      "type": "data-model",
+      "title": "User",
+      "domain": "Identity and access",
+      "status": "execution-baseline",
+      "summary": "Root account identity. A user can be Task Owner, Tasker, or both.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Root account identity. A user can be Task Owner, Tasker, or both."
+        },
+        {
+          "label": "Important rule",
+          "value": "Do not split client/tasker auth tables. Keep one account model."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Identity and access"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Do not split client/tasker auth tables. Keep one account model."
+      ],
+      "dependencies": [
+        "Identity and access",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model User {\n  id              String      @id @default(cuid())\n  email           String?     @unique\n  phone           String?     @unique\n  displayName     String?\n  avatarUrl       String?\n  mode            UserMode    @default(TASK_OWNER)\n  status          UserStatus  @default(ACTIVE)\n  emailVerifiedAt DateTime?\n  phoneVerifiedAt DateTime?\n  createdAt       DateTime    @default(now())\n  updatedAt       DateTime    @updatedAt\n\n  credentials     UserCredential?\n  socialAccounts  SocialAccount[]\n  sessions        UserSession[]\n  taskerProfile   TaskerProfile?\n  wallets         Wallet[]\n  ownedTasks      Task[]      @relation(\"TaskOwnerTasks\")\n  acceptedTasks   Task[]      @relation(\"AcceptedTaskerTasks\")\n\n  @@index([mode, status])\n  @@index([createdAt])\n}"
+    },
+    {
+      "id": "MODEL-IDENTITY-02",
+      "type": "data-model",
+      "title": "UserCredential",
+      "domain": "Identity and access",
+      "status": "planned",
+      "summary": "UserCredential supports the identity and access domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative UserCredential record for Identity and access."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Identity and access"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Identity and access",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-IDENTITY-06",
+      "type": "data-model",
+      "title": "UserDevice",
+      "domain": "Identity and access",
+      "status": "planned",
+      "summary": "UserDevice supports the identity and access domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative UserDevice record for Identity and access."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Identity and access"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Identity and access",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-IDENTITY-05",
+      "type": "data-model",
+      "title": "UserSession",
+      "domain": "Identity and access",
+      "status": "planned",
+      "summary": "UserSession supports the identity and access domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative UserSession record for Identity and access."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Identity and access"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Identity and access",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-OPERATIONS-02",
+      "type": "data-model",
+      "title": "OutboxEvent",
+      "domain": "Providers and jobs",
+      "status": "planned",
+      "summary": "OutboxEvent supports the providers and jobs domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative OutboxEvent record for Providers and jobs."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Providers and jobs"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Providers and jobs",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-OPERATIONS-05",
+      "type": "data-model",
+      "title": "ProviderRequestLog",
+      "domain": "Providers and jobs",
+      "status": "planned",
+      "summary": "ProviderRequestLog supports the providers and jobs domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative ProviderRequestLog record for Providers and jobs."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Providers and jobs"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Providers and jobs",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-OPERATIONS-03",
+      "type": "data-model",
+      "title": "QueueJobAudit",
+      "domain": "Providers and jobs",
+      "status": "planned",
+      "summary": "QueueJobAudit supports the providers and jobs domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative QueueJobAudit record for Providers and jobs."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Providers and jobs"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Providers and jobs",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-OPERATIONS-04",
+      "type": "data-model",
+      "title": "RemoteConfig",
+      "domain": "Providers and jobs",
+      "status": "planned",
+      "summary": "RemoteConfig supports the providers and jobs domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative RemoteConfig record for Providers and jobs."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Providers and jobs"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Providers and jobs",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-OPERATIONS-01",
+      "type": "data-model",
+      "title": "UseCaseExecutionLog",
+      "domain": "Providers and jobs",
+      "status": "execution-baseline",
+      "summary": "Backend use-case invocation health record.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Backend use-case invocation health record."
+        },
+        {
+          "label": "Important rule",
+          "value": "Tracks use case last used, success/failure, duration and error code."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Providers and jobs"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Tracks use case last used, success/failure, duration and error code."
+      ],
+      "dependencies": [
+        "Providers and jobs",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model UseCaseExecutionLog {\n  id            String   @id @default(cuid())\n  useCaseName   String\n  success       Boolean\n  errorCode     String?\n  durationMs    Int?\n  requestId     String?\n  actorId       String?\n  resourceType  String?\n  resourceId    String?\n  lastUsedAt    DateTime @default(now())\n\n  @@index([useCaseName, lastUsedAt])\n  @@index([success, useCaseName])\n}"
+    },
+    {
+      "id": "MODEL-RISK-06",
+      "type": "data-model",
+      "title": "Rating",
+      "domain": "Risk and trust",
+      "status": "planned",
+      "summary": "Rating supports the risk and trust domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative Rating record for Risk and trust."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Risk and trust"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Risk and trust",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-REFERRAL-02",
+      "type": "data-model",
+      "title": "ReferralAttribution",
+      "domain": "Risk and trust",
+      "status": "planned",
+      "summary": "ReferralAttribution supports the risk and trust domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative ReferralAttribution record for Risk and trust."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Risk and trust"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Risk and trust",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-REFERRAL-01",
+      "type": "data-model",
+      "title": "ReferralCode",
+      "domain": "Risk and trust",
+      "status": "planned",
+      "summary": "ReferralCode supports the risk and trust domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative ReferralCode record for Risk and trust."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Risk and trust"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Risk and trust",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-REFERRAL-03",
+      "type": "data-model",
+      "title": "ReferralReward",
+      "domain": "Risk and trust",
+      "status": "planned",
+      "summary": "ReferralReward supports the risk and trust domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative ReferralReward record for Risk and trust."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Risk and trust"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Risk and trust",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-RISK-07",
+      "type": "data-model",
+      "title": "ReviewModeration",
+      "domain": "Risk and trust",
+      "status": "planned",
+      "summary": "ReviewModeration supports the risk and trust domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative ReviewModeration record for Risk and trust."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Risk and trust"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Risk and trust",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-RISK-04",
+      "type": "data-model",
+      "title": "RiskFlag",
+      "domain": "Risk and trust",
+      "status": "planned",
+      "summary": "RiskFlag supports the risk and trust domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative RiskFlag record for Risk and trust."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Risk and trust"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Risk and trust",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-RISK-03",
+      "type": "data-model",
+      "title": "Strike",
+      "domain": "Risk and trust",
+      "status": "planned",
+      "summary": "Strike supports the risk and trust domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative Strike record for Risk and trust."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Risk and trust"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Risk and trust",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-RISK-01",
+      "type": "data-model",
+      "title": "TaskReport",
+      "domain": "Risk and trust",
+      "status": "planned",
+      "summary": "Structured task-linked report/dispute.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Structured task-linked report/dispute."
+        },
+        {
+          "label": "Important rule",
+          "value": "Can cover no-show, refusal, unsafe media, off-platform solicitation, completion refusal."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Risk and trust"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Can cover no-show, refusal, unsafe media, off-platform solicitation, completion refusal."
+      ],
+      "dependencies": [
+        "Risk and trust",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-RISK-05",
+      "type": "data-model",
+      "title": "TrustScoreEvent",
+      "domain": "Risk and trust",
+      "status": "planned",
+      "summary": "TrustScoreEvent supports the risk and trust domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative TrustScoreEvent record for Risk and trust."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Risk and trust"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Risk and trust",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-RISK-02",
+      "type": "data-model",
+      "title": "Warning",
+      "domain": "Risk and trust",
+      "status": "planned",
+      "summary": "Warning supports the risk and trust domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative Warning record for Risk and trust."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Risk and trust"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Risk and trust",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "ENUM-16",
+      "type": "enum",
+      "title": "AdminActionRisk",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Determines TOTP/reason/audit controls.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "LOW, MEDIUM, HIGH, CRITICAL"
+        },
+        {
+          "label": "Purpose",
+          "value": "Determines TOTP/reason/audit controls."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-05",
+      "type": "enum",
+      "title": "DirectTaskOfferStatus",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Direct favorite offer lifecycle.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "SENT, VIEWED, ACCEPTED, DECLINED, EXPIRED, CANCELLED, TASKER_UNAVAILABLE"
+        },
+        {
+          "label": "Purpose",
+          "value": "Direct favorite offer lifecycle."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-10",
+      "type": "enum",
+      "title": "EscrowStatus",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Escrow lifecycle.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "HELD, RELEASED, DISPUTED, REFUNDED, PARTIALLY_REFUNDED"
+        },
+        {
+          "label": "Purpose",
+          "value": "Escrow lifecycle."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-06",
+      "type": "enum",
+      "title": "FavoriteTaskerStatus",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Task Owner favorite Tasker relationship state.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "ACTIVE, REMOVED, BLOCKED"
+        },
+        {
+          "label": "Purpose",
+          "value": "Task Owner favorite Tasker relationship state."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-03",
+      "type": "enum",
+      "title": "KycStatus",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Controls Tasker activation.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "NOT_STARTED, PENDING, APPROVED, REJECTED, REQUIRES_REVERIFICATION, FAILED"
+        },
+        {
+          "label": "Purpose",
+          "value": "Controls Tasker activation."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-09",
+      "type": "enum",
+      "title": "PaymentStatus",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Provider collection state.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "INITIATED, PENDING, SUCCESSFUL, FAILED, EXPIRED, REVERSED"
+        },
+        {
+          "label": "Purpose",
+          "value": "Provider collection state."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-12",
+      "type": "enum",
+      "title": "PayoutBatchStatus",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Bulk payout lifecycle.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "DRAFT, READY_FOR_APPROVAL, APPROVED, PROCESSING, COMPLETED, PARTIALLY_FAILED, FAILED, CANCELLED"
+        },
+        {
+          "label": "Purpose",
+          "value": "Bulk payout lifecycle."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-17",
+      "type": "enum",
+      "title": "ProviderName",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Provider integration vocabulary.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "PAYSTACK, MONIEPOINT, SMILE_ID, TERMII, FCM, RESEND, SHOREBIRD, SENTRY, INFOBIP, AFRICAS_TALKING, VONAGE, SINCH, GOOGLE_MAPS"
+        },
+        {
+          "label": "Purpose",
+          "value": "Provider integration vocabulary."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-15",
+      "type": "enum",
+      "title": "StrikeActorType",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Strike owner.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "TASK_OWNER, TASKER"
+        },
+        {
+          "label": "Purpose",
+          "value": "Strike owner."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-07",
+      "type": "enum",
+      "title": "TaskMediaPurpose",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Determines access and validation rules.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "OWNER_PROOF, TASKER_COMPLETION_PROOF, REPORT_EVIDENCE, CHAT_VOICE_NOTE, SUPPORT_ATTACHMENT"
+        },
+        {
+          "label": "Purpose",
+          "value": "Determines access and validation rules."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-08",
+      "type": "enum",
+      "title": "TaskMediaStatus",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Moderation and lifecycle state.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "UPLOADING, ACTIVE, REMOVED, REJECTED"
+        },
+        {
+          "label": "Purpose",
+          "value": "Moderation and lifecycle state."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-13",
+      "type": "enum",
+      "title": "TaskReportStatus",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Report/dispute workflow.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "OPEN, UNDER_REVIEW, EVIDENCE_REQUESTED, RESOLVED, DISMISSED, ESCALATED"
+        },
+        {
+          "label": "Purpose",
+          "value": "Report/dispute workflow."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-04",
+      "type": "enum",
+      "title": "TaskStatus",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Central task state machine.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "DRAFT, PENDING_PAYMENT, PAID, DIRECT_OFFER_SENT, DIRECT_OFFER_EXPIRED, BROADCASTING, ACCEPTED, TASKER_EN_ROUTE, ARRIVED, IN_PROGRESS, COMPLETION_REQUESTED, COMPLETED, DISPUTED, CANCELLED, EXPIRED, REFUNDED"
+        },
+        {
+          "label": "Purpose",
+          "value": "Central task state machine."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-01",
+      "type": "enum",
+      "title": "UserMode",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Current app mode. Field name is mode.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "TASK_OWNER, TASKER"
+        },
+        {
+          "label": "Purpose",
+          "value": "Current app mode. Field name is mode."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "The field name is mode; activeMode is forbidden."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-02",
+      "type": "enum",
+      "title": "WalletType",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Separates funds by purpose and withdrawal policy.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "TASK_OWNER, TASKER, PLATFORM, REFERRAL"
+        },
+        {
+          "label": "Purpose",
+          "value": "Separates funds by purpose and withdrawal policy."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-14",
+      "type": "enum",
+      "title": "WarningActorType",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Warning owner.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "TASK_OWNER, TASKER"
+        },
+        {
+          "label": "Purpose",
+          "value": "Warning owner."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "ENUM-11",
+      "type": "enum",
+      "title": "WithdrawalStatus",
+      "domain": "Shared state vocabulary",
+      "status": "execution-baseline",
+      "summary": "Withdrawal and batch state.",
+      "facts": [
+        {
+          "label": "Values",
+          "value": "REQUESTED, QUEUED_FOR_BATCH, PROCESSING, SUCCESSFUL, FAILED, REVERSED, FLAGGED, CANCELLED"
+        },
+        {
+          "label": "Purpose",
+          "value": "Withdrawal and batch state."
+        },
+        {
+          "label": "Change rule",
+          "value": "Additions require contract review; renames require data migration and consumer coordination."
+        }
+      ],
+      "rules": [
+        "Use the same value in API, database, frontend and QA references."
+      ],
+      "dependencies": [
+        "Contracts",
+        "Flows",
+        "QA"
+      ],
+      "gaps": [
+        "Confirm values against every approved flow before schema freeze."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1"
+    },
+    {
+      "id": "MODEL-TASK-05",
+      "type": "data-model",
+      "title": "DirectTaskOffer",
+      "domain": "Task marketplace",
+      "status": "planned",
+      "summary": "DirectTaskOffer supports the task marketplace domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative DirectTaskOffer record for Task marketplace."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Task marketplace"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Task marketplace",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-TASK-06",
+      "type": "data-model",
+      "title": "FavoriteTasker",
+      "domain": "Task marketplace",
+      "status": "planned",
+      "summary": "FavoriteTasker supports the task marketplace domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative FavoriteTasker record for Task marketplace."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Task marketplace"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Task marketplace",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-TASK-01",
+      "type": "data-model",
+      "title": "Task",
+      "domain": "Task marketplace",
+      "status": "execution-baseline",
+      "summary": "Central marketplace work request.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Central marketplace work request."
+        },
+        {
+          "label": "Important rule",
+          "value": "Owns status, amount, category, task owner, accepted tasker, timing, privacy boundaries."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Task marketplace"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Owns status, amount, category, task owner, accepted tasker, timing, privacy boundaries."
+      ],
+      "dependencies": [
+        "Task marketplace",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model Task {\n  id                String      @id @default(cuid())\n  taskOwnerId       String\n  taskOwner         User        @relation(\"TaskOwnerTasks\", fields: [taskOwnerId], references: [id])\n  acceptedTaskerId  String?\n  acceptedTasker    User?       @relation(\"AcceptedTaskerTasks\", fields: [acceptedTaskerId], references: [id])\n  categoryId        String\n  taskTypeId        String\n  title             String\n  description       String\n  amountKobo        BigInt\n  commissionBps     Int         @default(2000)\n  status            TaskStatus  @default(DRAFT)\n  requiredArrivalAt DateTime?\n  acceptedAt        DateTime?\n  startedJourneyAt  DateTime?\n  arrivedAt         DateTime?\n  beganAt           DateTime?\n  completedAt       DateTime?\n  cancelledAt       DateTime?\n  createdAt         DateTime    @default(now())\n  updatedAt         DateTime    @updatedAt\n\n  location          TaskLocation?\n  media             TaskMedia[]\n  interests         TaskInterest[]\n  directOffers      DirectTaskOffer[]\n  statusEvents      TaskStatusEvent[]\n  reports           TaskReport[]\n  escrow            Escrow?\n\n  @@index([status, createdAt])\n  @@index([taskOwnerId, status])\n  @@index([acceptedTaskerId, status])\n  @@index([categoryId, status])\n}"
+    },
+    {
+      "id": "MODEL-TASK-09",
+      "type": "data-model",
+      "title": "TaskEtaSnapshot",
+      "domain": "Task marketplace",
+      "status": "planned",
+      "summary": "TaskEtaSnapshot supports the task marketplace domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative TaskEtaSnapshot record for Task marketplace."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Task marketplace"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Task marketplace",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-TASK-04",
+      "type": "data-model",
+      "title": "TaskInterest",
+      "domain": "Task marketplace",
+      "status": "planned",
+      "summary": "TaskInterest supports the task marketplace domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative TaskInterest record for Task marketplace."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Task marketplace"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Task marketplace",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-TASK-02",
+      "type": "data-model",
+      "title": "TaskLocation",
+      "domain": "Task marketplace",
+      "status": "execution-baseline",
+      "summary": "Task site address, geocode, pin confirmation and privacy metadata.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Task site address, geocode, pin confirmation and privacy metadata."
+        },
+        {
+          "label": "Important rule",
+          "value": "Task site must be in Nigeria. Exact address shown only after eligibility."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Task marketplace"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Task site must be in Nigeria. Exact address shown only after eligibility."
+      ],
+      "dependencies": [
+        "Task marketplace",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model TaskLocation {\n  id              String   @id @default(cuid())\n  taskId          String   @unique\n  task            Task     @relation(fields: [taskId], references: [id])\n  countryCode     String   @default(\"NG\")\n  state           String?\n  city            String?\n  addressText     String\n  latitude        Decimal  @db.Decimal(10, 7)\n  longitude       Decimal  @db.Decimal(10, 7)\n  pinConfirmedAt  DateTime?\n  geocodeProvider ProviderName?\n\n  @@index([countryCode, state, city])\n}"
+    },
+    {
+      "id": "MODEL-TASK-03",
+      "type": "data-model",
+      "title": "TaskMedia",
+      "domain": "Task marketplace",
+      "status": "planned",
+      "summary": "Proof media for work to be done, completion proof, report evidence and voice-note metadata where applicable.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Proof media for work to be done, completion proof, report evidence and voice-note metadata where applicable."
+        },
+        {
+          "label": "Important rule",
+          "value": "Photos/videos up to 50MB per file for task proof. Permission-controlled access."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Task marketplace"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Photos/videos up to 50MB per file for task proof. Permission-controlled access."
+      ],
+      "dependencies": [
+        "Task marketplace",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-TASK-07",
+      "type": "data-model",
+      "title": "TaskOwnerRejection",
+      "domain": "Task marketplace",
+      "status": "planned",
+      "summary": "TaskOwnerRejection supports the task marketplace domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative TaskOwnerRejection record for Task marketplace."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Task marketplace"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Task marketplace",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-TASK-08",
+      "type": "data-model",
+      "title": "TaskStatusEvent",
+      "domain": "Task marketplace",
+      "status": "planned",
+      "summary": "TaskStatusEvent supports the task marketplace domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative TaskStatusEvent record for Task marketplace."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Task marketplace"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Task marketplace",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-TASK-10",
+      "type": "data-model",
+      "title": "TaskTrackingSample",
+      "domain": "Task marketplace",
+      "status": "planned",
+      "summary": "TaskTrackingSample supports the task marketplace domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative TaskTrackingSample record for Task marketplace."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Task marketplace"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Task marketplace",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-TASKER-06",
+      "type": "data-model",
+      "title": "KycAttempt",
+      "domain": "Tasker activation and KYC",
+      "status": "approved-reference",
+      "summary": "KycAttempt supports the tasker activation and kyc domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative KycAttempt record for Tasker activation and KYC."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Tasker activation and KYC"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Approved KYC pilot definition"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Tasker activation and KYC",
+        "Approved KYC data-domain pilot"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Approved Phase 1 KYC data-domain pilot merged with the legacy data baseline",
+      "schema": null
+    },
+    {
+      "id": "MODEL-TASKER-05",
+      "type": "data-model",
+      "title": "KycVerification",
+      "domain": "Tasker activation and KYC",
+      "status": "execution-baseline",
+      "summary": "KycVerification supports the tasker activation and kyc domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative KycVerification record for Tasker activation and KYC."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Tasker activation and KYC"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Tasker activation and KYC",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model KycVerification {\n  id                String      @id @default(cuid())\n  taskerProfileId   String\n  taskerProfile     TaskerProfile @relation(fields: [taskerProfileId], references: [id])\n  provider          ProviderName @default(SMILE_ID)\n  identifierType    KycIdentifierType\n  status            KycStatus\n  providerJobId     String?\n  submittedAt       DateTime    @default(now())\n  decidedAt         DateTime?\n  failureReason     String?\n\n  @@index([taskerProfileId, status])\n  @@index([provider, providerJobId])\n}"
+    },
+    {
+      "id": "MODEL-TASKER-04",
+      "type": "data-model",
+      "title": "TaskerAvailabilitySnapshot",
+      "domain": "Tasker activation and KYC",
+      "status": "planned",
+      "summary": "TaskerAvailabilitySnapshot supports the tasker activation and kyc domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative TaskerAvailabilitySnapshot record for Tasker activation and KYC."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Tasker activation and KYC"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Tasker activation and KYC",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-TASKER-03",
+      "type": "data-model",
+      "title": "TaskerPreference",
+      "domain": "Tasker activation and KYC",
+      "status": "planned",
+      "summary": "TaskerPreference supports the tasker activation and kyc domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative TaskerPreference record for Tasker activation and KYC."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Tasker activation and KYC"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Tasker activation and KYC",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-TASKER-01",
+      "type": "data-model",
+      "title": "TaskerProfile",
+      "domain": "Tasker activation and KYC",
+      "status": "execution-baseline",
+      "summary": "Tasker-specific profile, skills, bio, KYC activation and availability readiness.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Tasker-specific profile, skills, bio, KYC activation and availability readiness."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only present/active when user wants to earn as Tasker."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Tasker activation and KYC"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Only present/active when user wants to earn as Tasker."
+      ],
+      "dependencies": [
+        "Tasker activation and KYC",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model TaskerProfile {\n  id               String       @id @default(cuid())\n  userId           String       @unique\n  user             User         @relation(fields: [userId], references: [id])\n  bio              String?\n  isActive         Boolean      @default(false)\n  kycStatus        KycStatus    @default(NOT_STARTED)\n  maxTravelKm      Int?\n  completedTaskCount Int        @default(0)\n  averageRating    Decimal?     @db.Decimal(3, 2)\n  createdAt        DateTime     @default(now())\n  updatedAt        DateTime     @updatedAt\n\n  kycVerifications KycVerification[]\n  payoutAccounts   PayoutAccount[]\n\n  @@index([isActive, kycStatus])\n}"
+    },
+    {
+      "id": "MODEL-TASKER-02",
+      "type": "data-model",
+      "title": "TaskerSkill",
+      "domain": "Tasker activation and KYC",
+      "status": "planned",
+      "summary": "TaskerSkill supports the tasker activation and kyc domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative TaskerSkill record for Tasker activation and KYC."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Tasker activation and KYC"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Tasker activation and KYC",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-FINANCE-06",
+      "type": "data-model",
+      "title": "Escrow",
+      "domain": "Wallet, escrow and payouts",
+      "status": "execution-baseline",
+      "summary": "Held funds for a task before completion or dispute outcome.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Held funds for a task before completion or dispute outcome."
+        },
+        {
+          "label": "Important rule",
+          "value": "Release, refund and hold transitions must be auditable."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Wallet, escrow and payouts"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Release, refund and hold transitions must be auditable."
+      ],
+      "dependencies": [
+        "Wallet, escrow and payouts",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model Escrow {\n  id          String       @id @default(cuid())\n  taskId      String       @unique\n  task        Task         @relation(fields: [taskId], references: [id])\n  amountKobo  BigInt\n  status      EscrowStatus @default(HELD)\n  heldAt      DateTime     @default(now())\n  releasedAt  DateTime?\n  refundedAt  DateTime?\n}"
+    },
+    {
+      "id": "MODEL-FINANCE-03",
+      "type": "data-model",
+      "title": "Payment",
+      "domain": "Wallet, escrow and payouts",
+      "status": "planned",
+      "summary": "High-level payment record for provider collection.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "High-level payment record for provider collection."
+        },
+        {
+          "label": "Important rule",
+          "value": "Frontend redirect is not final truth; webhook/backend verification is."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Wallet, escrow and payouts"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Frontend redirect is not final truth; webhook/backend verification is."
+      ],
+      "dependencies": [
+        "Wallet, escrow and payouts",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-FINANCE-04",
+      "type": "data-model",
+      "title": "PaymentAttempt",
+      "domain": "Wallet, escrow and payouts",
+      "status": "planned",
+      "summary": "PaymentAttempt supports the wallet, escrow and payouts domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative PaymentAttempt record for Wallet, escrow and payouts."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Wallet, escrow and payouts"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Wallet, escrow and payouts",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-FINANCE-09",
+      "type": "data-model",
+      "title": "PayoutAccount",
+      "domain": "Wallet, escrow and payouts",
+      "status": "planned",
+      "summary": "PayoutAccount supports the wallet, escrow and payouts domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative PayoutAccount record for Wallet, escrow and payouts."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Wallet, escrow and payouts"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Wallet, escrow and payouts",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-FINANCE-11",
+      "type": "data-model",
+      "title": "PayoutBatch",
+      "domain": "Wallet, escrow and payouts",
+      "status": "execution-baseline",
+      "summary": "Bulk payout run for eligible withdrawal requests.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Bulk payout run for eligible withdrawal requests."
+        },
+        {
+          "label": "Important rule",
+          "value": "Use Paystack/Moniepoint transfer rails; disputed Taskers require authorization."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Wallet, escrow and payouts"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Use Paystack/Moniepoint transfer rails; disputed Taskers require authorization."
+      ],
+      "dependencies": [
+        "Wallet, escrow and payouts",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model PayoutBatch {\n  id             String            @id @default(cuid())\n  batchDate      DateTime\n  status         PayoutBatchStatus @default(DRAFT)\n  provider       ProviderName\n  totalAmountKobo BigInt           @default(0)\n  itemCount      Int               @default(0)\n  approvedById   String?\n  approvedAt     DateTime?\n  createdAt      DateTime          @default(now())\n\n  items          PayoutBatchItem[]\n\n  @@index([batchDate, status])\n}"
+    },
+    {
+      "id": "MODEL-FINANCE-12",
+      "type": "data-model",
+      "title": "PayoutBatchItem",
+      "domain": "Wallet, escrow and payouts",
+      "status": "execution-baseline",
+      "summary": "PayoutBatchItem supports the wallet, escrow and payouts domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative PayoutBatchItem record for Wallet, escrow and payouts."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Wallet, escrow and payouts"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Wallet, escrow and payouts",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model PayoutBatchItem {\n  id                  String            @id @default(cuid())\n  payoutBatchId       String\n  payoutBatch         PayoutBatch       @relation(fields: [payoutBatchId], references: [id])\n  withdrawalRequestId String            @unique\n  withdrawalRequest   WithdrawalRequest @relation(fields: [withdrawalRequestId], references: [id])\n  status              WithdrawalStatus\n  providerReference   String?\n  failureReason       String?\n}"
+    },
+    {
+      "id": "MODEL-FINANCE-05",
+      "type": "data-model",
+      "title": "ProviderWebhookEvent",
+      "domain": "Wallet, escrow and payouts",
+      "status": "planned",
+      "summary": "ProviderWebhookEvent supports the wallet, escrow and payouts domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative ProviderWebhookEvent record for Wallet, escrow and payouts."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Wallet, escrow and payouts"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Wallet, escrow and payouts",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-FINANCE-07",
+      "type": "data-model",
+      "title": "TaskSettlement",
+      "domain": "Wallet, escrow and payouts",
+      "status": "planned",
+      "summary": "TaskSettlement supports the wallet, escrow and payouts domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative TaskSettlement record for Wallet, escrow and payouts."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Wallet, escrow and payouts"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Wallet, escrow and payouts",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-FINANCE-08",
+      "type": "data-model",
+      "title": "TaskSettlementHold",
+      "domain": "Wallet, escrow and payouts",
+      "status": "planned",
+      "summary": "TaskSettlementHold supports the wallet, escrow and payouts domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative TaskSettlementHold record for Wallet, escrow and payouts."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Wallet, escrow and payouts"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Internal application data; confirm field-level classification"
+        },
+        {
+          "label": "Schema status",
+          "value": "Conceptual model; executable schema not yet recorded"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Wallet, escrow and payouts",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": null
+    },
+    {
+      "id": "MODEL-FINANCE-01",
+      "type": "data-model",
+      "title": "Wallet",
+      "domain": "Wallet, escrow and payouts",
+      "status": "execution-baseline",
+      "summary": "Separate wallet per user and wallet type.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Separate wallet per user and wallet type."
+        },
+        {
+          "label": "Important rule",
+          "value": "Task Owner wallet and Tasker wallet must be different records."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Wallet, escrow and payouts"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Task Owner wallet and Tasker wallet must be different records."
+      ],
+      "dependencies": [
+        "Wallet, escrow and payouts",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model Wallet {\n  id           String     @id @default(cuid())\n  userId       String\n  user         User       @relation(fields: [userId], references: [id])\n  type         WalletType\n  currency     String     @default(\"NGN\")\n  balanceKobo  BigInt     @default(0)\n  lockedKobo   BigInt     @default(0)\n  createdAt    DateTime   @default(now())\n  updatedAt    DateTime   @updatedAt\n\n  entries      WalletLedgerEntry[]\n\n  @@unique([userId, type, currency])\n}"
+    },
+    {
+      "id": "MODEL-FINANCE-02",
+      "type": "data-model",
+      "title": "WalletLedgerEntry",
+      "domain": "Wallet, escrow and payouts",
+      "status": "execution-baseline",
+      "summary": "WalletLedgerEntry supports the wallet, escrow and payouts domain.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Persist the authoritative WalletLedgerEntry record for Wallet, escrow and payouts."
+        },
+        {
+          "label": "Important rule",
+          "value": "Only the owning backend module writes this model directly."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Wallet, escrow and payouts"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Preserve domain ownership and historical integrity."
+      ],
+      "dependencies": [
+        "Wallet, escrow and payouts",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model WalletLedgerEntry {\n  id                 String   @id @default(cuid())\n  walletId           String\n  wallet             Wallet   @relation(fields: [walletId], references: [id])\n  direction          LedgerDirection\n  amountKobo         BigInt\n  balanceAfterKobo   BigInt\n  reason             LedgerReason\n  taskId             String?\n  transactionGroupId String\n  idempotencyKey     String?  @unique\n  createdAt          DateTime @default(now())\n\n  @@index([walletId, createdAt])\n  @@index([transactionGroupId])\n}"
+    },
+    {
+      "id": "MODEL-FINANCE-10",
+      "type": "data-model",
+      "title": "WithdrawalRequest",
+      "domain": "Wallet, escrow and payouts",
+      "status": "execution-baseline",
+      "summary": "Tasker withdrawal request waiting for payout batch.",
+      "facts": [
+        {
+          "label": "Business responsibility",
+          "value": "Tasker withdrawal request waiting for payout batch."
+        },
+        {
+          "label": "Important rule",
+          "value": "Minimum NGN 1,000; PIN required; batch dates 14th and 28th."
+        },
+        {
+          "label": "Owning domain",
+          "value": "Wallet, escrow and payouts"
+        },
+        {
+          "label": "Sensitive-data classification",
+          "value": "Sensitive or restricted; apply least privilege and audit rules"
+        },
+        {
+          "label": "Schema status",
+          "value": "Legacy Prisma execution baseline exists"
+        }
+      ],
+      "rules": [
+        "Durable state lives in PostgreSQL; Valkey is not the authoritative record.",
+        "State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.",
+        "Minimum NGN 1,000; PIN required; batch dates 14th and 28th."
+      ],
+      "dependencies": [
+        "Wallet, escrow and payouts",
+        "Related contract and flow records"
+      ],
+      "gaps": [
+        "Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations."
+      ],
+      "source": "Legacy Data Model and Prisma Schema Planning v1",
+      "schema": "model WithdrawalRequest {\n  id              String           @id @default(cuid())\n  taskerId        String\n  walletId        String\n  amountKobo      BigInt\n  status          WithdrawalStatus @default(REQUESTED)\n  payoutBatchItem PayoutBatchItem?\n  requestedAt     DateTime         @default(now())\n  processedAt     DateTime?\n  idempotencyKey  String?          @unique\n\n  @@index([taskerId, status])\n  @@index([requestedAt])\n}"
+    }
+  ]
+}

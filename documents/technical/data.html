@@ -1,0 +1,2022 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A business-first catalogue of models, enums, ownership, privacy and schema readiness. Conceptual records and executable Prisma baselines are clearly distinguished.">
+  <title>Data Model Reference | Work2Cash Docs</title>
+  <link rel="stylesheet" href="../../assets/css/pilot-docs.css">
+  <script src="../../assets/js/guard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to technical records</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html">Work2Cash Docs</a>
+    <nav aria-label="Technical reference navigation">
+      <a href="index.html">Technical reference</a>
+      <a href="../agent-md/technical/data.md" download>Download agent pack</a>
+      
+    </nav>
+  </header>
+  <main id="content" class="technical-shell" tabindex="-1">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Technical Reference</a><span aria-hidden="true">/</span><span>Data Model Reference</span></nav>
+    <header class="document-hero technical-hero">
+      <div class="eyebrow">Phase 4 · Consolidated technical library</div>
+      <h1>Data Model Reference</h1>
+      <p class="audience">A business-first catalogue of models, enums, ownership, privacy and schema readiness. Conceptual records and executable Prisma baselines are clearly distinguished.</p>
+      <div class="status-row"><span class="status status-in-review">in-review</span><span>Version 1.0</span><span>86 records</span></div>
+    </header>
+
+    <section class="technical-intro" aria-labelledby="how-to-use-title">
+      <div>
+        <h2 id="how-to-use-title">How to use this page</h2>
+        <p>Search by name, path, model, provider, screen or rule. Filter by domain, then open only the record required for the current task. Every record has its own direct link.</p>
+        <ul><li>KycAttempt incorporates the approved Phase 1 KYC data-domain reference.</li><li>A planned conceptual model is not permission to invent fields or apply a migration.</li></ul>
+      </div>
+      <dl class="technical-metadata">
+    <div><dt>Owner</dt><dd>Backend Lead</dd></div>
+    <div><dt>Reviewers</dt><dd>Technical Lead, Data owner, Security and Privacy</dd></div>
+    <div><dt>Authority</dt><dd>Approved contracts and flows, with the provisional data-model execution baseline</dd></div>
+    <div><dt>Last reviewed</dt><dd>2026-07-17</dd></div>
+  </dl>
+    </section>
+
+    <section class="technical-rules" aria-labelledby="shared-rules-title">
+      <h2 id="shared-rules-title">Rules that apply to every record</h2>
+      <ul><li>Use mode, never activeMode.</li><li>Keep one User account; Task Owner and Tasker responsibilities remain explicit.</li><li>Keep Task Owner and Tasker wallets as separate records.</li><li>Ledger entries are immutable evidence; a cached balance is never the only money truth.</li><li>Exact addresses, KYC evidence, phone numbers and payment secrets require restricted access.</li></ul>
+    </section>
+
+    <section class="technical-controls" aria-label="Find technical records">
+      <label><span>Search</span><input type="search" data-technical-search placeholder="Search data model reference" autocomplete="off"></label>
+      <label><span>Domain</span><select data-technical-domain><option value="">All domains</option><option value="Admin and operations">Admin and operations</option><option value="Catalog and coverage">Catalog and coverage</option><option value="Communication and support">Communication and support</option><option value="Identity and access">Identity and access</option><option value="Providers and jobs">Providers and jobs</option><option value="Risk and trust">Risk and trust</option><option value="Shared state vocabulary">Shared state vocabulary</option><option value="Task marketplace">Task marketplace</option><option value="Tasker activation and KYC">Tasker activation and KYC</option><option value="Wallet, escrow and payouts">Wallet, escrow and payouts</option></select></label>
+      <div class="technical-result-count" data-technical-result-count aria-live="polite">86 records shown</div>
+    </section>
+
+    <section class="technical-status-summary" aria-label="Record status summary">
+      <span><strong>32</strong> execution-baseline</span><span><strong>53</strong> planned</span><span><strong>1</strong> approved-reference</span>
+    </section>
+
+    <section class="technical-record-list" aria-label="Data Model Reference records">
+      <details class="technical-record" id="model-admin-08" data-technical-record data-domain="Admin and operations">
+    <summary>
+      <span class="technical-record-id">MODEL-ADMIN-08</span>
+      <span class="technical-record-title">AdminAuditLog</span>
+      <span class="technical-record-badges"><span>Admin and operations</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Immutable admin/security/finance/risk audit record.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Immutable admin/security/finance/risk audit record.</dd></div><div><dt>Important rule</dt><dd>Every high-impact admin action must write audit reason and actor.</dd></div><div><dt>Owning domain</dt><dd>Admin and operations</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Every high-impact admin action must write audit reason and actor.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin and operations</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model AdminAuditLog {
+  id            String          @id @default(cuid())
+  actorAdminId  String?
+  action        String
+  risk          AdminActionRisk @default(LOW)
+  targetType    String?
+  targetId      String?
+  reason        String?
+  requestId     String?
+  ipAddress     String?
+  metadata      Json?
+  createdAt     DateTime        @default(now())
+
+  @@index([actorAdminId, createdAt])
+  @@index([targetType, targetId])
+  @@index([risk, createdAt])
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-admin-08">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-admin-03" data-technical-record data-domain="Admin and operations">
+    <summary>
+      <span class="technical-record-id">MODEL-ADMIN-03</span>
+      <span class="technical-record-title">AdminPermission</span>
+      <span class="technical-record-badges"><span>Admin and operations</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">AdminPermission supports the admin and operations domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative AdminPermission record for Admin and operations.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Admin and operations</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin and operations</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-admin-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-admin-02" data-technical-record data-domain="Admin and operations">
+    <summary>
+      <span class="technical-record-id">MODEL-ADMIN-02</span>
+      <span class="technical-record-title">AdminRole</span>
+      <span class="technical-record-badges"><span>Admin and operations</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">AdminRole supports the admin and operations domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative AdminRole record for Admin and operations.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Admin and operations</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin and operations</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-admin-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-admin-04" data-technical-record data-domain="Admin and operations">
+    <summary>
+      <span class="technical-record-id">MODEL-ADMIN-04</span>
+      <span class="technical-record-title">AdminRolePermission</span>
+      <span class="technical-record-badges"><span>Admin and operations</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">AdminRolePermission supports the admin and operations domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative AdminRolePermission record for Admin and operations.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Admin and operations</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin and operations</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-admin-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-admin-06" data-technical-record data-domain="Admin and operations">
+    <summary>
+      <span class="technical-record-id">MODEL-ADMIN-06</span>
+      <span class="technical-record-title">AdminSession</span>
+      <span class="technical-record-badges"><span>Admin and operations</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">AdminSession supports the admin and operations domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative AdminSession record for Admin and operations.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Admin and operations</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin and operations</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-admin-06">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-admin-07" data-technical-record data-domain="Admin and operations">
+    <summary>
+      <span class="technical-record-id">MODEL-ADMIN-07</span>
+      <span class="technical-record-title">AdminTotpCredential</span>
+      <span class="technical-record-badges"><span>Admin and operations</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">AdminTotpCredential supports the admin and operations domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative AdminTotpCredential record for Admin and operations.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Admin and operations</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin and operations</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-admin-07">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-admin-01" data-technical-record data-domain="Admin and operations">
+    <summary>
+      <span class="technical-record-id">MODEL-ADMIN-01</span>
+      <span class="technical-record-title">AdminUser</span>
+      <span class="technical-record-badges"><span>Admin and operations</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">AdminUser supports the admin and operations domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative AdminUser record for Admin and operations.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Admin and operations</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin and operations</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-admin-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-admin-05" data-technical-record data-domain="Admin and operations">
+    <summary>
+      <span class="technical-record-id">MODEL-ADMIN-05</span>
+      <span class="technical-record-title">AdminUserRole</span>
+      <span class="technical-record-badges"><span>Admin and operations</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">AdminUserRole supports the admin and operations domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative AdminUserRole record for Admin and operations.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Admin and operations</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin and operations</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-admin-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-catalog-04" data-technical-record data-domain="Catalog and coverage">
+    <summary>
+      <span class="technical-record-id">MODEL-CATALOG-04</span>
+      <span class="technical-record-title">PlatformCoverageRule</span>
+      <span class="technical-record-badges"><span>Catalog and coverage</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">PlatformCoverageRule supports the catalog and coverage domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative PlatformCoverageRule record for Catalog and coverage.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Catalog and coverage</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Catalog and coverage</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-catalog-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-catalog-03" data-technical-record data-domain="Catalog and coverage">
+    <summary>
+      <span class="technical-record-id">MODEL-CATALOG-03</span>
+      <span class="technical-record-title">ServiceZone</span>
+      <span class="technical-record-badges"><span>Catalog and coverage</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">ServiceZone supports the catalog and coverage domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative ServiceZone record for Catalog and coverage.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Catalog and coverage</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Catalog and coverage</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-catalog-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-catalog-01" data-technical-record data-domain="Catalog and coverage">
+    <summary>
+      <span class="technical-record-id">MODEL-CATALOG-01</span>
+      <span class="technical-record-title">TaskCategory</span>
+      <span class="technical-record-badges"><span>Catalog and coverage</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">TaskCategory supports the catalog and coverage domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative TaskCategory record for Catalog and coverage.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Catalog and coverage</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Catalog and coverage</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-catalog-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-catalog-02" data-technical-record data-domain="Catalog and coverage">
+    <summary>
+      <span class="technical-record-id">MODEL-CATALOG-02</span>
+      <span class="technical-record-title">TaskType</span>
+      <span class="technical-record-badges"><span>Catalog and coverage</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">TaskType supports the catalog and coverage domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative TaskType record for Catalog and coverage.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Catalog and coverage</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Catalog and coverage</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-catalog-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-communication-01" data-technical-record data-domain="Communication and support">
+    <summary>
+      <span class="technical-record-id">MODEL-COMMUNICATION-01</span>
+      <span class="technical-record-title">ChatMessage</span>
+      <span class="technical-record-badges"><span>Communication and support</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">ChatMessage supports the communication and support domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative ChatMessage record for Communication and support.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Communication and support</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Communication and support</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model ChatMessage {
+  id          String      @id @default(cuid())
+  taskId      String?
+  supportSessionId String?
+  senderId    String
+  type        MessageType @default(TEXT)
+  body        String?
+  mediaId     String?
+  sentAt      DateTime    @default(now())
+  readAt      DateTime?
+
+  @@index([taskId, sentAt])
+  @@index([supportSessionId, sentAt])
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-communication-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-communication-05" data-technical-record data-domain="Communication and support">
+    <summary>
+      <span class="technical-record-id">MODEL-COMMUNICATION-05</span>
+      <span class="technical-record-title">CommunicationAuditLog</span>
+      <span class="technical-record-badges"><span>Communication and support</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">CommunicationAuditLog supports the communication and support domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative CommunicationAuditLog record for Communication and support.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Communication and support</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Communication and support</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-communication-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-communication-03" data-technical-record data-domain="Communication and support">
+    <summary>
+      <span class="technical-record-id">MODEL-COMMUNICATION-03</span>
+      <span class="technical-record-title">SupportMessage</span>
+      <span class="technical-record-badges"><span>Communication and support</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">SupportMessage supports the communication and support domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative SupportMessage record for Communication and support.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Communication and support</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Communication and support</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-communication-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-communication-02" data-technical-record data-domain="Communication and support">
+    <summary>
+      <span class="technical-record-id">MODEL-COMMUNICATION-02</span>
+      <span class="technical-record-title">SupportSession</span>
+      <span class="technical-record-badges"><span>Communication and support</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">SupportSession supports the communication and support domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative SupportSession record for Communication and support.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Communication and support</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Communication and support</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-communication-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-communication-04" data-technical-record data-domain="Communication and support">
+    <summary>
+      <span class="technical-record-id">MODEL-COMMUNICATION-04</span>
+      <span class="technical-record-title">TaskCallSession</span>
+      <span class="technical-record-badges"><span>Communication and support</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Masked proxy call session.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Masked proxy call session.</dd></div><div><dt>Important rule</dt><dd>Task-bound, time-limited, no real phone numbers exposed.</dd></div><div><dt>Owning domain</dt><dd>Communication and support</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Task-bound, time-limited, no real phone numbers exposed.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Communication and support</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model TaskCallSession {
+  id                  String      @id @default(cuid())
+  taskId              String
+  callerUserId        String
+  recipientUserId     String
+  provider            ProviderName
+  proxyNumber         String
+  providerSessionId   String?
+  status              CallSessionStatus @default(ACTIVE)
+  expiresAt           DateTime
+  startedAt           DateTime?
+  endedAt             DateTime?
+  createdAt           DateTime    @default(now())
+
+  @@index([taskId, status])
+  @@index([callerUserId, createdAt])
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-communication-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-identity-08" data-technical-record data-domain="Identity and access">
+    <summary>
+      <span class="technical-record-id">MODEL-IDENTITY-08</span>
+      <span class="technical-record-title">NotificationPreference</span>
+      <span class="technical-record-badges"><span>Identity and access</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">NotificationPreference supports the identity and access domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative NotificationPreference record for Identity and access.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Identity and access</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Identity and access</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-identity-08">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-identity-04" data-technical-record data-domain="Identity and access">
+    <summary>
+      <span class="technical-record-id">MODEL-IDENTITY-04</span>
+      <span class="technical-record-title">OtpChallenge</span>
+      <span class="technical-record-badges"><span>Identity and access</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">OtpChallenge supports the identity and access domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative OtpChallenge record for Identity and access.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Identity and access</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Identity and access</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-identity-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-identity-09" data-technical-record data-domain="Identity and access">
+    <summary>
+      <span class="technical-record-id">MODEL-IDENTITY-09</span>
+      <span class="technical-record-title">SavedAddress</span>
+      <span class="technical-record-badges"><span>Identity and access</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">SavedAddress supports the identity and access domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative SavedAddress record for Identity and access.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Identity and access</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Identity and access</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-identity-09">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-identity-07" data-technical-record data-domain="Identity and access">
+    <summary>
+      <span class="technical-record-id">MODEL-IDENTITY-07</span>
+      <span class="technical-record-title">SecurityPinCredential</span>
+      <span class="technical-record-badges"><span>Identity and access</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">SecurityPinCredential supports the identity and access domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative SecurityPinCredential record for Identity and access.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Identity and access</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Identity and access</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-identity-07">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-identity-03" data-technical-record data-domain="Identity and access">
+    <summary>
+      <span class="technical-record-id">MODEL-IDENTITY-03</span>
+      <span class="technical-record-title">SocialAccount</span>
+      <span class="technical-record-badges"><span>Identity and access</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">SocialAccount supports the identity and access domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative SocialAccount record for Identity and access.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Identity and access</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Identity and access</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-identity-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-identity-01" data-technical-record data-domain="Identity and access">
+    <summary>
+      <span class="technical-record-id">MODEL-IDENTITY-01</span>
+      <span class="technical-record-title">User</span>
+      <span class="technical-record-badges"><span>Identity and access</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Root account identity. A user can be Task Owner, Tasker, or both.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Root account identity. A user can be Task Owner, Tasker, or both.</dd></div><div><dt>Important rule</dt><dd>Do not split client/tasker auth tables. Keep one account model.</dd></div><div><dt>Owning domain</dt><dd>Identity and access</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Do not split client/tasker auth tables. Keep one account model.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Identity and access</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model User {
+  id              String      @id @default(cuid())
+  email           String?     @unique
+  phone           String?     @unique
+  displayName     String?
+  avatarUrl       String?
+  mode            UserMode    @default(TASK_OWNER)
+  status          UserStatus  @default(ACTIVE)
+  emailVerifiedAt DateTime?
+  phoneVerifiedAt DateTime?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  credentials     UserCredential?
+  socialAccounts  SocialAccount[]
+  sessions        UserSession[]
+  taskerProfile   TaskerProfile?
+  wallets         Wallet[]
+  ownedTasks      Task[]      @relation(&quot;TaskOwnerTasks&quot;)
+  acceptedTasks   Task[]      @relation(&quot;AcceptedTaskerTasks&quot;)
+
+  @@index([mode, status])
+  @@index([createdAt])
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-identity-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-identity-02" data-technical-record data-domain="Identity and access">
+    <summary>
+      <span class="technical-record-id">MODEL-IDENTITY-02</span>
+      <span class="technical-record-title">UserCredential</span>
+      <span class="technical-record-badges"><span>Identity and access</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">UserCredential supports the identity and access domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative UserCredential record for Identity and access.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Identity and access</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Identity and access</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-identity-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-identity-06" data-technical-record data-domain="Identity and access">
+    <summary>
+      <span class="technical-record-id">MODEL-IDENTITY-06</span>
+      <span class="technical-record-title">UserDevice</span>
+      <span class="technical-record-badges"><span>Identity and access</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">UserDevice supports the identity and access domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative UserDevice record for Identity and access.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Identity and access</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Identity and access</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-identity-06">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-identity-05" data-technical-record data-domain="Identity and access">
+    <summary>
+      <span class="technical-record-id">MODEL-IDENTITY-05</span>
+      <span class="technical-record-title">UserSession</span>
+      <span class="technical-record-badges"><span>Identity and access</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">UserSession supports the identity and access domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative UserSession record for Identity and access.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Identity and access</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Identity and access</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-identity-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-operations-02" data-technical-record data-domain="Providers and jobs">
+    <summary>
+      <span class="technical-record-id">MODEL-OPERATIONS-02</span>
+      <span class="technical-record-title">OutboxEvent</span>
+      <span class="technical-record-badges"><span>Providers and jobs</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">OutboxEvent supports the providers and jobs domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative OutboxEvent record for Providers and jobs.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Providers and jobs</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Providers and jobs</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-operations-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-operations-05" data-technical-record data-domain="Providers and jobs">
+    <summary>
+      <span class="technical-record-id">MODEL-OPERATIONS-05</span>
+      <span class="technical-record-title">ProviderRequestLog</span>
+      <span class="technical-record-badges"><span>Providers and jobs</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">ProviderRequestLog supports the providers and jobs domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative ProviderRequestLog record for Providers and jobs.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Providers and jobs</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Providers and jobs</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-operations-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-operations-03" data-technical-record data-domain="Providers and jobs">
+    <summary>
+      <span class="technical-record-id">MODEL-OPERATIONS-03</span>
+      <span class="technical-record-title">QueueJobAudit</span>
+      <span class="technical-record-badges"><span>Providers and jobs</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">QueueJobAudit supports the providers and jobs domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative QueueJobAudit record for Providers and jobs.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Providers and jobs</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Providers and jobs</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-operations-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-operations-04" data-technical-record data-domain="Providers and jobs">
+    <summary>
+      <span class="technical-record-id">MODEL-OPERATIONS-04</span>
+      <span class="technical-record-title">RemoteConfig</span>
+      <span class="technical-record-badges"><span>Providers and jobs</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">RemoteConfig supports the providers and jobs domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative RemoteConfig record for Providers and jobs.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Providers and jobs</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Providers and jobs</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-operations-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-operations-01" data-technical-record data-domain="Providers and jobs">
+    <summary>
+      <span class="technical-record-id">MODEL-OPERATIONS-01</span>
+      <span class="technical-record-title">UseCaseExecutionLog</span>
+      <span class="technical-record-badges"><span>Providers and jobs</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Backend use-case invocation health record.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Backend use-case invocation health record.</dd></div><div><dt>Important rule</dt><dd>Tracks use case last used, success/failure, duration and error code.</dd></div><div><dt>Owning domain</dt><dd>Providers and jobs</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Tracks use case last used, success/failure, duration and error code.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Providers and jobs</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model UseCaseExecutionLog {
+  id            String   @id @default(cuid())
+  useCaseName   String
+  success       Boolean
+  errorCode     String?
+  durationMs    Int?
+  requestId     String?
+  actorId       String?
+  resourceType  String?
+  resourceId    String?
+  lastUsedAt    DateTime @default(now())
+
+  @@index([useCaseName, lastUsedAt])
+  @@index([success, useCaseName])
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-operations-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-risk-06" data-technical-record data-domain="Risk and trust">
+    <summary>
+      <span class="technical-record-id">MODEL-RISK-06</span>
+      <span class="technical-record-title">Rating</span>
+      <span class="technical-record-badges"><span>Risk and trust</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Rating supports the risk and trust domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative Rating record for Risk and trust.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Risk and trust</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Risk and trust</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-risk-06">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-referral-02" data-technical-record data-domain="Risk and trust">
+    <summary>
+      <span class="technical-record-id">MODEL-REFERRAL-02</span>
+      <span class="technical-record-title">ReferralAttribution</span>
+      <span class="technical-record-badges"><span>Risk and trust</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">ReferralAttribution supports the risk and trust domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative ReferralAttribution record for Risk and trust.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Risk and trust</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Risk and trust</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-referral-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-referral-01" data-technical-record data-domain="Risk and trust">
+    <summary>
+      <span class="technical-record-id">MODEL-REFERRAL-01</span>
+      <span class="technical-record-title">ReferralCode</span>
+      <span class="technical-record-badges"><span>Risk and trust</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">ReferralCode supports the risk and trust domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative ReferralCode record for Risk and trust.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Risk and trust</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Risk and trust</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-referral-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-referral-03" data-technical-record data-domain="Risk and trust">
+    <summary>
+      <span class="technical-record-id">MODEL-REFERRAL-03</span>
+      <span class="technical-record-title">ReferralReward</span>
+      <span class="technical-record-badges"><span>Risk and trust</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">ReferralReward supports the risk and trust domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative ReferralReward record for Risk and trust.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Risk and trust</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Risk and trust</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-referral-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-risk-07" data-technical-record data-domain="Risk and trust">
+    <summary>
+      <span class="technical-record-id">MODEL-RISK-07</span>
+      <span class="technical-record-title">ReviewModeration</span>
+      <span class="technical-record-badges"><span>Risk and trust</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">ReviewModeration supports the risk and trust domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative ReviewModeration record for Risk and trust.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Risk and trust</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Risk and trust</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-risk-07">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-risk-04" data-technical-record data-domain="Risk and trust">
+    <summary>
+      <span class="technical-record-id">MODEL-RISK-04</span>
+      <span class="technical-record-title">RiskFlag</span>
+      <span class="technical-record-badges"><span>Risk and trust</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">RiskFlag supports the risk and trust domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative RiskFlag record for Risk and trust.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Risk and trust</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Risk and trust</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-risk-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-risk-03" data-technical-record data-domain="Risk and trust">
+    <summary>
+      <span class="technical-record-id">MODEL-RISK-03</span>
+      <span class="technical-record-title">Strike</span>
+      <span class="technical-record-badges"><span>Risk and trust</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Strike supports the risk and trust domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative Strike record for Risk and trust.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Risk and trust</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Risk and trust</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-risk-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-risk-01" data-technical-record data-domain="Risk and trust">
+    <summary>
+      <span class="technical-record-id">MODEL-RISK-01</span>
+      <span class="technical-record-title">TaskReport</span>
+      <span class="technical-record-badges"><span>Risk and trust</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Structured task-linked report/dispute.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Structured task-linked report/dispute.</dd></div><div><dt>Important rule</dt><dd>Can cover no-show, refusal, unsafe media, off-platform solicitation, completion refusal.</dd></div><div><dt>Owning domain</dt><dd>Risk and trust</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Can cover no-show, refusal, unsafe media, off-platform solicitation, completion refusal.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Risk and trust</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-risk-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-risk-05" data-technical-record data-domain="Risk and trust">
+    <summary>
+      <span class="technical-record-id">MODEL-RISK-05</span>
+      <span class="technical-record-title">TrustScoreEvent</span>
+      <span class="technical-record-badges"><span>Risk and trust</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">TrustScoreEvent supports the risk and trust domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative TrustScoreEvent record for Risk and trust.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Risk and trust</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Risk and trust</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-risk-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-risk-02" data-technical-record data-domain="Risk and trust">
+    <summary>
+      <span class="technical-record-id">MODEL-RISK-02</span>
+      <span class="technical-record-title">Warning</span>
+      <span class="technical-record-badges"><span>Risk and trust</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Warning supports the risk and trust domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative Warning record for Risk and trust.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Risk and trust</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Risk and trust</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-risk-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-16" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-16</span>
+      <span class="technical-record-title">AdminActionRisk</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Determines TOTP/reason/audit controls.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>LOW, MEDIUM, HIGH, CRITICAL</dd></div><div><dt>Purpose</dt><dd>Determines TOTP/reason/audit controls.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-16">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-05" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-05</span>
+      <span class="technical-record-title">DirectTaskOfferStatus</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Direct favorite offer lifecycle.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>SENT, VIEWED, ACCEPTED, DECLINED, EXPIRED, CANCELLED, TASKER_UNAVAILABLE</dd></div><div><dt>Purpose</dt><dd>Direct favorite offer lifecycle.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-10" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-10</span>
+      <span class="technical-record-title">EscrowStatus</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Escrow lifecycle.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>HELD, RELEASED, DISPUTED, REFUNDED, PARTIALLY_REFUNDED</dd></div><div><dt>Purpose</dt><dd>Escrow lifecycle.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-10">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-06" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-06</span>
+      <span class="technical-record-title">FavoriteTaskerStatus</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Task Owner favorite Tasker relationship state.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>ACTIVE, REMOVED, BLOCKED</dd></div><div><dt>Purpose</dt><dd>Task Owner favorite Tasker relationship state.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-06">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-03" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-03</span>
+      <span class="technical-record-title">KycStatus</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Controls Tasker activation.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>NOT_STARTED, PENDING, APPROVED, REJECTED, REQUIRES_REVERIFICATION, FAILED</dd></div><div><dt>Purpose</dt><dd>Controls Tasker activation.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-09" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-09</span>
+      <span class="technical-record-title">PaymentStatus</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Provider collection state.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>INITIATED, PENDING, SUCCESSFUL, FAILED, EXPIRED, REVERSED</dd></div><div><dt>Purpose</dt><dd>Provider collection state.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-09">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-12" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-12</span>
+      <span class="technical-record-title">PayoutBatchStatus</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Bulk payout lifecycle.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>DRAFT, READY_FOR_APPROVAL, APPROVED, PROCESSING, COMPLETED, PARTIALLY_FAILED, FAILED, CANCELLED</dd></div><div><dt>Purpose</dt><dd>Bulk payout lifecycle.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-12">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-17" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-17</span>
+      <span class="technical-record-title">ProviderName</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Provider integration vocabulary.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>PAYSTACK, MONIEPOINT, SMILE_ID, TERMII, FCM, RESEND, SHOREBIRD, SENTRY, INFOBIP, AFRICAS_TALKING, VONAGE, SINCH, GOOGLE_MAPS</dd></div><div><dt>Purpose</dt><dd>Provider integration vocabulary.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-17">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-15" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-15</span>
+      <span class="technical-record-title">StrikeActorType</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Strike owner.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>TASK_OWNER, TASKER</dd></div><div><dt>Purpose</dt><dd>Strike owner.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-15">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-07" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-07</span>
+      <span class="technical-record-title">TaskMediaPurpose</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Determines access and validation rules.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>OWNER_PROOF, TASKER_COMPLETION_PROOF, REPORT_EVIDENCE, CHAT_VOICE_NOTE, SUPPORT_ATTACHMENT</dd></div><div><dt>Purpose</dt><dd>Determines access and validation rules.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-07">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-08" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-08</span>
+      <span class="technical-record-title">TaskMediaStatus</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Moderation and lifecycle state.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>UPLOADING, ACTIVE, REMOVED, REJECTED</dd></div><div><dt>Purpose</dt><dd>Moderation and lifecycle state.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-08">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-13" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-13</span>
+      <span class="technical-record-title">TaskReportStatus</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Report/dispute workflow.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>OPEN, UNDER_REVIEW, EVIDENCE_REQUESTED, RESOLVED, DISMISSED, ESCALATED</dd></div><div><dt>Purpose</dt><dd>Report/dispute workflow.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-13">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-04" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-04</span>
+      <span class="technical-record-title">TaskStatus</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Central task state machine.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>DRAFT, PENDING_PAYMENT, PAID, DIRECT_OFFER_SENT, DIRECT_OFFER_EXPIRED, BROADCASTING, ACCEPTED, TASKER_EN_ROUTE, ARRIVED, IN_PROGRESS, COMPLETION_REQUESTED, COMPLETED, DISPUTED, CANCELLED, EXPIRED, REFUNDED</dd></div><div><dt>Purpose</dt><dd>Central task state machine.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-01" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-01</span>
+      <span class="technical-record-title">UserMode</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Current app mode. Field name is mode.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>TASK_OWNER, TASKER</dd></div><div><dt>Purpose</dt><dd>Current app mode. Field name is mode.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>The field name is mode; activeMode is forbidden.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-02" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-02</span>
+      <span class="technical-record-title">WalletType</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Separates funds by purpose and withdrawal policy.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>TASK_OWNER, TASKER, PLATFORM, REFERRAL</dd></div><div><dt>Purpose</dt><dd>Separates funds by purpose and withdrawal policy.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-14" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-14</span>
+      <span class="technical-record-title">WarningActorType</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Warning owner.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>TASK_OWNER, TASKER</dd></div><div><dt>Purpose</dt><dd>Warning owner.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-14">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="enum-11" data-technical-record data-domain="Shared state vocabulary">
+    <summary>
+      <span class="technical-record-id">ENUM-11</span>
+      <span class="technical-record-title">WithdrawalStatus</span>
+      <span class="technical-record-badges"><span>Shared state vocabulary</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Withdrawal and batch state.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Values</dt><dd>REQUESTED, QUEUED_FOR_BATCH, PROCESSING, SUCCESSFUL, FAILED, REVERSED, FLAGGED, CANCELLED</dd></div><div><dt>Purpose</dt><dd>Withdrawal and batch state.</dd></div><div><dt>Change rule</dt><dd>Additions require contract review; renames require data migration and consumer coordination.</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use the same value in API, database, frontend and QA references.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Contracts</li><li>Flows</li><li>QA</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm values against every approved flow before schema freeze.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#enum-11">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-task-05" data-technical-record data-domain="Task marketplace">
+    <summary>
+      <span class="technical-record-id">MODEL-TASK-05</span>
+      <span class="technical-record-title">DirectTaskOffer</span>
+      <span class="technical-record-badges"><span>Task marketplace</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">DirectTaskOffer supports the task marketplace domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative DirectTaskOffer record for Task marketplace.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Task marketplace</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Task marketplace</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-task-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-task-06" data-technical-record data-domain="Task marketplace">
+    <summary>
+      <span class="technical-record-id">MODEL-TASK-06</span>
+      <span class="technical-record-title">FavoriteTasker</span>
+      <span class="technical-record-badges"><span>Task marketplace</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">FavoriteTasker supports the task marketplace domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative FavoriteTasker record for Task marketplace.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Task marketplace</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Task marketplace</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-task-06">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-task-01" data-technical-record data-domain="Task marketplace">
+    <summary>
+      <span class="technical-record-id">MODEL-TASK-01</span>
+      <span class="technical-record-title">Task</span>
+      <span class="technical-record-badges"><span>Task marketplace</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Central marketplace work request.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Central marketplace work request.</dd></div><div><dt>Important rule</dt><dd>Owns status, amount, category, task owner, accepted tasker, timing, privacy boundaries.</dd></div><div><dt>Owning domain</dt><dd>Task marketplace</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Owns status, amount, category, task owner, accepted tasker, timing, privacy boundaries.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Task marketplace</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model Task {
+  id                String      @id @default(cuid())
+  taskOwnerId       String
+  taskOwner         User        @relation(&quot;TaskOwnerTasks&quot;, fields: [taskOwnerId], references: [id])
+  acceptedTaskerId  String?
+  acceptedTasker    User?       @relation(&quot;AcceptedTaskerTasks&quot;, fields: [acceptedTaskerId], references: [id])
+  categoryId        String
+  taskTypeId        String
+  title             String
+  description       String
+  amountKobo        BigInt
+  commissionBps     Int         @default(2000)
+  status            TaskStatus  @default(DRAFT)
+  requiredArrivalAt DateTime?
+  acceptedAt        DateTime?
+  startedJourneyAt  DateTime?
+  arrivedAt         DateTime?
+  beganAt           DateTime?
+  completedAt       DateTime?
+  cancelledAt       DateTime?
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+
+  location          TaskLocation?
+  media             TaskMedia[]
+  interests         TaskInterest[]
+  directOffers      DirectTaskOffer[]
+  statusEvents      TaskStatusEvent[]
+  reports           TaskReport[]
+  escrow            Escrow?
+
+  @@index([status, createdAt])
+  @@index([taskOwnerId, status])
+  @@index([acceptedTaskerId, status])
+  @@index([categoryId, status])
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-task-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-task-09" data-technical-record data-domain="Task marketplace">
+    <summary>
+      <span class="technical-record-id">MODEL-TASK-09</span>
+      <span class="technical-record-title">TaskEtaSnapshot</span>
+      <span class="technical-record-badges"><span>Task marketplace</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">TaskEtaSnapshot supports the task marketplace domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative TaskEtaSnapshot record for Task marketplace.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Task marketplace</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Task marketplace</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-task-09">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-task-04" data-technical-record data-domain="Task marketplace">
+    <summary>
+      <span class="technical-record-id">MODEL-TASK-04</span>
+      <span class="technical-record-title">TaskInterest</span>
+      <span class="technical-record-badges"><span>Task marketplace</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">TaskInterest supports the task marketplace domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative TaskInterest record for Task marketplace.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Task marketplace</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Task marketplace</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-task-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-task-02" data-technical-record data-domain="Task marketplace">
+    <summary>
+      <span class="technical-record-id">MODEL-TASK-02</span>
+      <span class="technical-record-title">TaskLocation</span>
+      <span class="technical-record-badges"><span>Task marketplace</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Task site address, geocode, pin confirmation and privacy metadata.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Task site address, geocode, pin confirmation and privacy metadata.</dd></div><div><dt>Important rule</dt><dd>Task site must be in Nigeria. Exact address shown only after eligibility.</dd></div><div><dt>Owning domain</dt><dd>Task marketplace</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Task site must be in Nigeria. Exact address shown only after eligibility.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Task marketplace</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model TaskLocation {
+  id              String   @id @default(cuid())
+  taskId          String   @unique
+  task            Task     @relation(fields: [taskId], references: [id])
+  countryCode     String   @default(&quot;NG&quot;)
+  state           String?
+  city            String?
+  addressText     String
+  latitude        Decimal  @db.Decimal(10, 7)
+  longitude       Decimal  @db.Decimal(10, 7)
+  pinConfirmedAt  DateTime?
+  geocodeProvider ProviderName?
+
+  @@index([countryCode, state, city])
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-task-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-task-03" data-technical-record data-domain="Task marketplace">
+    <summary>
+      <span class="technical-record-id">MODEL-TASK-03</span>
+      <span class="technical-record-title">TaskMedia</span>
+      <span class="technical-record-badges"><span>Task marketplace</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Proof media for work to be done, completion proof, report evidence and voice-note metadata where applicable.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Proof media for work to be done, completion proof, report evidence and voice-note metadata where applicable.</dd></div><div><dt>Important rule</dt><dd>Photos/videos up to 50MB per file for task proof. Permission-controlled access.</dd></div><div><dt>Owning domain</dt><dd>Task marketplace</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Photos/videos up to 50MB per file for task proof. Permission-controlled access.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Task marketplace</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-task-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-task-07" data-technical-record data-domain="Task marketplace">
+    <summary>
+      <span class="technical-record-id">MODEL-TASK-07</span>
+      <span class="technical-record-title">TaskOwnerRejection</span>
+      <span class="technical-record-badges"><span>Task marketplace</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">TaskOwnerRejection supports the task marketplace domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative TaskOwnerRejection record for Task marketplace.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Task marketplace</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Task marketplace</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-task-07">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-task-08" data-technical-record data-domain="Task marketplace">
+    <summary>
+      <span class="technical-record-id">MODEL-TASK-08</span>
+      <span class="technical-record-title">TaskStatusEvent</span>
+      <span class="technical-record-badges"><span>Task marketplace</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">TaskStatusEvent supports the task marketplace domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative TaskStatusEvent record for Task marketplace.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Task marketplace</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Task marketplace</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-task-08">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-task-10" data-technical-record data-domain="Task marketplace">
+    <summary>
+      <span class="technical-record-id">MODEL-TASK-10</span>
+      <span class="technical-record-title">TaskTrackingSample</span>
+      <span class="technical-record-badges"><span>Task marketplace</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">TaskTrackingSample supports the task marketplace domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative TaskTrackingSample record for Task marketplace.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Task marketplace</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Task marketplace</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-task-10">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-tasker-06" data-technical-record data-domain="Tasker activation and KYC">
+    <summary>
+      <span class="technical-record-id">MODEL-TASKER-06</span>
+      <span class="technical-record-title">KycAttempt</span>
+      <span class="technical-record-badges"><span>Tasker activation and KYC</span><span class="status status-approved-reference">approved-reference</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">KycAttempt supports the tasker activation and kyc domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative KycAttempt record for Tasker activation and KYC.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Tasker activation and KYC</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Approved KYC pilot definition</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Tasker activation and KYC</li><li>Approved KYC data-domain pilot</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Approved Phase 1 KYC data-domain pilot merged with the legacy data baseline</p>
+      <a class="record-anchor" href="#model-tasker-06">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-tasker-05" data-technical-record data-domain="Tasker activation and KYC">
+    <summary>
+      <span class="technical-record-id">MODEL-TASKER-05</span>
+      <span class="technical-record-title">KycVerification</span>
+      <span class="technical-record-badges"><span>Tasker activation and KYC</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">KycVerification supports the tasker activation and kyc domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative KycVerification record for Tasker activation and KYC.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Tasker activation and KYC</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Tasker activation and KYC</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model KycVerification {
+  id                String      @id @default(cuid())
+  taskerProfileId   String
+  taskerProfile     TaskerProfile @relation(fields: [taskerProfileId], references: [id])
+  provider          ProviderName @default(SMILE_ID)
+  identifierType    KycIdentifierType
+  status            KycStatus
+  providerJobId     String?
+  submittedAt       DateTime    @default(now())
+  decidedAt         DateTime?
+  failureReason     String?
+
+  @@index([taskerProfileId, status])
+  @@index([provider, providerJobId])
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-tasker-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-tasker-04" data-technical-record data-domain="Tasker activation and KYC">
+    <summary>
+      <span class="technical-record-id">MODEL-TASKER-04</span>
+      <span class="technical-record-title">TaskerAvailabilitySnapshot</span>
+      <span class="technical-record-badges"><span>Tasker activation and KYC</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">TaskerAvailabilitySnapshot supports the tasker activation and kyc domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative TaskerAvailabilitySnapshot record for Tasker activation and KYC.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Tasker activation and KYC</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Tasker activation and KYC</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-tasker-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-tasker-03" data-technical-record data-domain="Tasker activation and KYC">
+    <summary>
+      <span class="technical-record-id">MODEL-TASKER-03</span>
+      <span class="technical-record-title">TaskerPreference</span>
+      <span class="technical-record-badges"><span>Tasker activation and KYC</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">TaskerPreference supports the tasker activation and kyc domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative TaskerPreference record for Tasker activation and KYC.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Tasker activation and KYC</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Tasker activation and KYC</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-tasker-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-tasker-01" data-technical-record data-domain="Tasker activation and KYC">
+    <summary>
+      <span class="technical-record-id">MODEL-TASKER-01</span>
+      <span class="technical-record-title">TaskerProfile</span>
+      <span class="technical-record-badges"><span>Tasker activation and KYC</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Tasker-specific profile, skills, bio, KYC activation and availability readiness.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Tasker-specific profile, skills, bio, KYC activation and availability readiness.</dd></div><div><dt>Important rule</dt><dd>Only present/active when user wants to earn as Tasker.</dd></div><div><dt>Owning domain</dt><dd>Tasker activation and KYC</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Only present/active when user wants to earn as Tasker.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Tasker activation and KYC</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model TaskerProfile {
+  id               String       @id @default(cuid())
+  userId           String       @unique
+  user             User         @relation(fields: [userId], references: [id])
+  bio              String?
+  isActive         Boolean      @default(false)
+  kycStatus        KycStatus    @default(NOT_STARTED)
+  maxTravelKm      Int?
+  completedTaskCount Int        @default(0)
+  averageRating    Decimal?     @db.Decimal(3, 2)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  kycVerifications KycVerification[]
+  payoutAccounts   PayoutAccount[]
+
+  @@index([isActive, kycStatus])
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-tasker-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-tasker-02" data-technical-record data-domain="Tasker activation and KYC">
+    <summary>
+      <span class="technical-record-id">MODEL-TASKER-02</span>
+      <span class="technical-record-title">TaskerSkill</span>
+      <span class="technical-record-badges"><span>Tasker activation and KYC</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">TaskerSkill supports the tasker activation and kyc domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative TaskerSkill record for Tasker activation and KYC.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Tasker activation and KYC</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Tasker activation and KYC</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-tasker-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-finance-06" data-technical-record data-domain="Wallet, escrow and payouts">
+    <summary>
+      <span class="technical-record-id">MODEL-FINANCE-06</span>
+      <span class="technical-record-title">Escrow</span>
+      <span class="technical-record-badges"><span>Wallet, escrow and payouts</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Held funds for a task before completion or dispute outcome.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Held funds for a task before completion or dispute outcome.</dd></div><div><dt>Important rule</dt><dd>Release, refund and hold transitions must be auditable.</dd></div><div><dt>Owning domain</dt><dd>Wallet, escrow and payouts</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Release, refund and hold transitions must be auditable.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Wallet, escrow and payouts</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model Escrow {
+  id          String       @id @default(cuid())
+  taskId      String       @unique
+  task        Task         @relation(fields: [taskId], references: [id])
+  amountKobo  BigInt
+  status      EscrowStatus @default(HELD)
+  heldAt      DateTime     @default(now())
+  releasedAt  DateTime?
+  refundedAt  DateTime?
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-finance-06">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-finance-03" data-technical-record data-domain="Wallet, escrow and payouts">
+    <summary>
+      <span class="technical-record-id">MODEL-FINANCE-03</span>
+      <span class="technical-record-title">Payment</span>
+      <span class="technical-record-badges"><span>Wallet, escrow and payouts</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">High-level payment record for provider collection.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>High-level payment record for provider collection.</dd></div><div><dt>Important rule</dt><dd>Frontend redirect is not final truth; webhook/backend verification is.</dd></div><div><dt>Owning domain</dt><dd>Wallet, escrow and payouts</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Frontend redirect is not final truth; webhook/backend verification is.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Wallet, escrow and payouts</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-finance-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-finance-04" data-technical-record data-domain="Wallet, escrow and payouts">
+    <summary>
+      <span class="technical-record-id">MODEL-FINANCE-04</span>
+      <span class="technical-record-title">PaymentAttempt</span>
+      <span class="technical-record-badges"><span>Wallet, escrow and payouts</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">PaymentAttempt supports the wallet, escrow and payouts domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative PaymentAttempt record for Wallet, escrow and payouts.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Wallet, escrow and payouts</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Wallet, escrow and payouts</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-finance-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-finance-09" data-technical-record data-domain="Wallet, escrow and payouts">
+    <summary>
+      <span class="technical-record-id">MODEL-FINANCE-09</span>
+      <span class="technical-record-title">PayoutAccount</span>
+      <span class="technical-record-badges"><span>Wallet, escrow and payouts</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">PayoutAccount supports the wallet, escrow and payouts domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative PayoutAccount record for Wallet, escrow and payouts.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Wallet, escrow and payouts</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Wallet, escrow and payouts</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-finance-09">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-finance-11" data-technical-record data-domain="Wallet, escrow and payouts">
+    <summary>
+      <span class="technical-record-id">MODEL-FINANCE-11</span>
+      <span class="technical-record-title">PayoutBatch</span>
+      <span class="technical-record-badges"><span>Wallet, escrow and payouts</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Bulk payout run for eligible withdrawal requests.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Bulk payout run for eligible withdrawal requests.</dd></div><div><dt>Important rule</dt><dd>Use Paystack/Moniepoint transfer rails; disputed Taskers require authorization.</dd></div><div><dt>Owning domain</dt><dd>Wallet, escrow and payouts</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Use Paystack/Moniepoint transfer rails; disputed Taskers require authorization.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Wallet, escrow and payouts</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model PayoutBatch {
+  id             String            @id @default(cuid())
+  batchDate      DateTime
+  status         PayoutBatchStatus @default(DRAFT)
+  provider       ProviderName
+  totalAmountKobo BigInt           @default(0)
+  itemCount      Int               @default(0)
+  approvedById   String?
+  approvedAt     DateTime?
+  createdAt      DateTime          @default(now())
+
+  items          PayoutBatchItem[]
+
+  @@index([batchDate, status])
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-finance-11">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-finance-12" data-technical-record data-domain="Wallet, escrow and payouts">
+    <summary>
+      <span class="technical-record-id">MODEL-FINANCE-12</span>
+      <span class="technical-record-title">PayoutBatchItem</span>
+      <span class="technical-record-badges"><span>Wallet, escrow and payouts</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">PayoutBatchItem supports the wallet, escrow and payouts domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative PayoutBatchItem record for Wallet, escrow and payouts.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Wallet, escrow and payouts</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Wallet, escrow and payouts</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model PayoutBatchItem {
+  id                  String            @id @default(cuid())
+  payoutBatchId       String
+  payoutBatch         PayoutBatch       @relation(fields: [payoutBatchId], references: [id])
+  withdrawalRequestId String            @unique
+  withdrawalRequest   WithdrawalRequest @relation(fields: [withdrawalRequestId], references: [id])
+  status              WithdrawalStatus
+  providerReference   String?
+  failureReason       String?
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-finance-12">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-finance-05" data-technical-record data-domain="Wallet, escrow and payouts">
+    <summary>
+      <span class="technical-record-id">MODEL-FINANCE-05</span>
+      <span class="technical-record-title">ProviderWebhookEvent</span>
+      <span class="technical-record-badges"><span>Wallet, escrow and payouts</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">ProviderWebhookEvent supports the wallet, escrow and payouts domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative ProviderWebhookEvent record for Wallet, escrow and payouts.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Wallet, escrow and payouts</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Wallet, escrow and payouts</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-finance-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-finance-07" data-technical-record data-domain="Wallet, escrow and payouts">
+    <summary>
+      <span class="technical-record-id">MODEL-FINANCE-07</span>
+      <span class="technical-record-title">TaskSettlement</span>
+      <span class="technical-record-badges"><span>Wallet, escrow and payouts</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">TaskSettlement supports the wallet, escrow and payouts domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative TaskSettlement record for Wallet, escrow and payouts.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Wallet, escrow and payouts</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Wallet, escrow and payouts</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-finance-07">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-finance-08" data-technical-record data-domain="Wallet, escrow and payouts">
+    <summary>
+      <span class="technical-record-id">MODEL-FINANCE-08</span>
+      <span class="technical-record-title">TaskSettlementHold</span>
+      <span class="technical-record-badges"><span>Wallet, escrow and payouts</span><span class="status status-planned">planned</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">TaskSettlementHold supports the wallet, escrow and payouts domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative TaskSettlementHold record for Wallet, escrow and payouts.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Wallet, escrow and payouts</dd></div><div><dt>Sensitive-data classification</dt><dd>Internal application data; confirm field-level classification</dd></div><div><dt>Schema status</dt><dd>Conceptual model; executable schema not yet recorded</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Wallet, escrow and payouts</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Executable fields, relations, indexes, retention and migration are not fully defined; implementation is blocked until resolved.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-finance-08">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-finance-01" data-technical-record data-domain="Wallet, escrow and payouts">
+    <summary>
+      <span class="technical-record-id">MODEL-FINANCE-01</span>
+      <span class="technical-record-title">Wallet</span>
+      <span class="technical-record-badges"><span>Wallet, escrow and payouts</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Separate wallet per user and wallet type.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Separate wallet per user and wallet type.</dd></div><div><dt>Important rule</dt><dd>Task Owner wallet and Tasker wallet must be different records.</dd></div><div><dt>Owning domain</dt><dd>Wallet, escrow and payouts</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Task Owner wallet and Tasker wallet must be different records.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Wallet, escrow and payouts</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model Wallet {
+  id           String     @id @default(cuid())
+  userId       String
+  user         User       @relation(fields: [userId], references: [id])
+  type         WalletType
+  currency     String     @default(&quot;NGN&quot;)
+  balanceKobo  BigInt     @default(0)
+  lockedKobo   BigInt     @default(0)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  entries      WalletLedgerEntry[]
+
+  @@unique([userId, type, currency])
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-finance-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-finance-02" data-technical-record data-domain="Wallet, escrow and payouts">
+    <summary>
+      <span class="technical-record-id">MODEL-FINANCE-02</span>
+      <span class="technical-record-title">WalletLedgerEntry</span>
+      <span class="technical-record-badges"><span>Wallet, escrow and payouts</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">WalletLedgerEntry supports the wallet, escrow and payouts domain.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Persist the authoritative WalletLedgerEntry record for Wallet, escrow and payouts.</dd></div><div><dt>Important rule</dt><dd>Only the owning backend module writes this model directly.</dd></div><div><dt>Owning domain</dt><dd>Wallet, escrow and payouts</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Preserve domain ownership and historical integrity.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Wallet, escrow and payouts</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model WalletLedgerEntry {
+  id                 String   @id @default(cuid())
+  walletId           String
+  wallet             Wallet   @relation(fields: [walletId], references: [id])
+  direction          LedgerDirection
+  amountKobo         BigInt
+  balanceAfterKobo   BigInt
+  reason             LedgerReason
+  taskId             String?
+  transactionGroupId String
+  idempotencyKey     String?  @unique
+  createdAt          DateTime @default(now())
+
+  @@index([walletId, createdAt])
+  @@index([transactionGroupId])
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-finance-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="model-finance-10" data-technical-record data-domain="Wallet, escrow and payouts">
+    <summary>
+      <span class="technical-record-id">MODEL-FINANCE-10</span>
+      <span class="technical-record-title">WithdrawalRequest</span>
+      <span class="technical-record-badges"><span>Wallet, escrow and payouts</span><span class="status status-execution-baseline">execution-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Tasker withdrawal request waiting for payout batch.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Business responsibility</dt><dd>Tasker withdrawal request waiting for payout batch.</dd></div><div><dt>Important rule</dt><dd>Minimum NGN 1,000; PIN required; batch dates 14th and 28th.</dd></div><div><dt>Owning domain</dt><dd>Wallet, escrow and payouts</dd></div><div><dt>Sensitive-data classification</dt><dd>Sensitive or restricted; apply least privilege and audit rules</dd></div><div><dt>Schema status</dt><dd>Legacy Prisma execution baseline exists</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Durable state lives in PostgreSQL; Valkey is not the authoritative record.</li><li>State-changing writes require transaction, idempotency and audit behavior appropriate to the domain.</li><li>Minimum NGN 1,000; PIN required; batch dates 14th and 28th.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Wallet, escrow and payouts</li><li>Related contract and flow records</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Confirm every field, relation, retention rule and migration against the implementation before applying Prisma migrations.</li></ul></section>
+      <section><h4>Prisma execution baseline</h4><pre><code class="language-prisma">model WithdrawalRequest {
+  id              String           @id @default(cuid())
+  taskerId        String
+  walletId        String
+  amountKobo      BigInt
+  status          WithdrawalStatus @default(REQUESTED)
+  payoutBatchItem PayoutBatchItem?
+  requestedAt     DateTime         @default(now())
+  processedAt     DateTime?
+  idempotencyKey  String?          @unique
+
+  @@index([taskerId, status])
+  @@index([requestedAt])
+}</code></pre></section>
+      <p class="record-source"><strong>Source:</strong> Legacy Data Model and Prisma Schema Planning v1</p>
+      <a class="record-anchor" href="#model-finance-10">Link directly to this record</a>
+    </div>
+  </details>
+      <div class="technical-empty" data-technical-empty hidden><h2>No matching records</h2><p>Clear the search or select another domain.</p></div>
+    </section>
+  </main>
+  <footer>Work2Cash technical reference · Generated from <code>content/technical/data.json</code></footer>
+  <script src="../../assets/js/technical-library.js"></script>
+</body>
+</html>

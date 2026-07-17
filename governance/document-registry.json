@@ -122,19 +122,19 @@
         "Operations"
       ],
       "version": "1",
-      "status": "in-review",
+      "status": "superseded",
       "approval": "pending",
       "publication": "published",
       "lastReviewed": null,
       "nextReview": null,
       "authority": "Designated provisional controlling baseline pending formal approval",
-      "artifactClass": "legacy-transitional-source",
+      "artifactClass": "legacy-derived-frozen",
       "currentSource": "documents/main-enterprise-architecture-v1.html",
       "artifacts": [
         "documents/agent-md/main-enterprise-architecture-v1.md"
       ],
       "migrationPhase": "Phase 4",
-      "notes": "Formal approval evidence is missing; agent Markdown is a legacy export.",
+      "notes": "Frozen Phase 4 migration evidence. Use TECH-REF-001 for current architecture and operations reading. Formal approval of the migrated architecture records remains pending.",
       "supersedes": null,
       "tags": [
         "architecture"
@@ -159,19 +159,19 @@
         "Backend Lead"
       ],
       "version": "1",
-      "status": "in-review",
+      "status": "superseded",
       "approval": "pending",
       "publication": "published",
       "lastReviewed": null,
       "nextReview": null,
       "authority": "Main Enterprise Architecture v1",
-      "artifactClass": "legacy-transitional-source",
+      "artifactClass": "legacy-derived-frozen",
       "currentSource": "documents/screen-to-feature-map-v1.html",
       "artifacts": [
         "documents/agent-md/screen-to-feature-map-v1.md"
       ],
       "migrationPhase": "Phase 4",
-      "notes": "Phase 0 reconciles known provider, auto-accept and admin-reassignment drift.",
+      "notes": "Frozen Phase 4 migration evidence. Use TECH-REF-001 Screen-to-Feature Reference, where known provider, KYC, category, payment, auto-accept and admin-reassignment drift is corrected and remaining design evidence is marked.",
       "supersedes": null,
       "tags": [
         "design-map"
@@ -342,19 +342,19 @@
         "QA"
       ],
       "version": "1",
-      "status": "in-review",
+      "status": "superseded",
       "approval": "pending",
       "publication": "published",
       "lastReviewed": null,
       "nextReview": null,
       "authority": "Main Enterprise Architecture and approved flows",
-      "artifactClass": "legacy-transitional-source",
+      "artifactClass": "legacy-derived-frozen",
       "currentSource": "documents/api-socket-contract-specification-v1.html",
       "artifacts": [
         "documents/agent-md/api-socket-contract-specification-v1.md"
       ],
       "migrationPhase": "Phase 4",
-      "notes": "Published provisional contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026. The former MF-17/AF-15 referral gap is resolved by the higher-specificity approved CONTRACT-REFERRAL-001 decision and must be merged into the wider specification during Phase 4.",
+      "notes": "Frozen Phase 4 migration evidence. Use TECH-REF-001 API, Socket and OpenAPI Reference. Approved referral and KYC decisions are merged there with higher authority; remaining contract gaps are explicit.",
       "supersedes": null,
       "tags": [
         "technical-contract"
@@ -427,19 +427,19 @@
         "Security"
       ],
       "version": "1",
-      "status": "in-review",
+      "status": "superseded",
       "approval": "pending",
       "publication": "published",
       "lastReviewed": null,
       "nextReview": null,
       "authority": "Main Enterprise Architecture and approved contracts",
-      "artifactClass": "legacy-transitional-source",
+      "artifactClass": "legacy-derived-frozen",
       "currentSource": "documents/data-model-prisma-schema-planning-v1.html",
       "artifacts": [
         "documents/agent-md/data-model-prisma-schema-planning-v1.md"
       ],
       "migrationPhase": "Phase 4",
-      "notes": "The Phase 1 KYC pilot defines KycAttempt; merge and full-schema validation remain scheduled for Phase 4.",
+      "notes": "Frozen Phase 4 migration evidence. Use TECH-REF-001 Data Model Reference. KycAttempt is merged from the approved pilot and conceptual models remain clearly separated from executable Prisma baselines.",
       "supersedes": null,
       "tags": [
         "data-model"
@@ -463,19 +463,19 @@
         "Security"
       ],
       "version": "1",
-      "status": "in-review",
+      "status": "superseded",
       "approval": "pending",
       "publication": "published",
       "lastReviewed": null,
       "nextReview": null,
       "authority": "Main Enterprise Architecture and validated provider contracts",
-      "artifactClass": "legacy-transitional-source",
+      "artifactClass": "legacy-derived-frozen",
       "currentSource": "documents/provider-integration-cost-control-v1.html",
       "artifacts": [
         "documents/agent-md/provider-integration-cost-control-v1.md"
       ],
       "migrationPhase": "Phase 4",
-      "notes": "Costs and provider capabilities require dated validation before purchase or implementation.",
+      "notes": "Frozen Phase 4 migration evidence. Use TECH-REF-001 Platform Architecture and Operations. Costs and provider capabilities still require dated official validation before purchase or go-live.",
       "supersedes": null,
       "tags": [
         "provider-operations"
@@ -1065,6 +1065,75 @@
         "weekly-execution",
         "phase-3",
         "junior-developers"
+      ]
+    },
+    {
+      "id": "TECH-REF-001",
+      "title": "Phase 4 Consolidated Technical Reference Library",
+      "type": "technical-reference-migration",
+      "audience": [
+        "Mobile",
+        "Admin",
+        "Backend",
+        "Infrastructure",
+        "Operations",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Technical Lead",
+      "reviewers": [
+        "Product Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "Infrastructure Lead",
+        "Security",
+        "Finance",
+        "Operations",
+        "QA"
+      ],
+      "version": "1.0",
+      "status": "in-review",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Approved standalone flows and accepted contract decisions, with explicitly marked provisional architecture, contract, schema, provider and design baselines",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/technical/library.json",
+      "artifacts": [
+        "content/technical/contracts.json",
+        "content/technical/data.json",
+        "content/technical/platform.json",
+        "content/technical/screens.json",
+        "documents/technical/index.html",
+        "documents/technical/contracts.html",
+        "documents/technical/data.html",
+        "documents/technical/platform.html",
+        "documents/technical/screens.html",
+        "documents/technical/openapi/work2cash-v1.json",
+        "documents/agent-md/technical/contracts.md",
+        "documents/agent-md/technical/data.md",
+        "documents/agent-md/technical/platform.md",
+        "documents/agent-md/technical/screens.md",
+        "logs/phase-4-execution-log.md",
+        "logs/phase-4-technical-migration-inventory.md",
+        "logs/phase-4-technical-gap-register.md",
+        "scripts/bootstrap-phase4-technical-sources.js",
+        "scripts/generate-technical-docs.js"
+      ],
+      "migrationPhase": "Phase 4",
+      "notes": "Consolidates the legacy architecture, contract, data, provider and screen families into five human pages, four focused agent packs and one generated OpenAPI baseline. Its 342 anchored records are sections inside those families, not standalone required-reading documents. Approved referral and KYC decisions retain higher authority; provisional gaps remain explicit blockers.",
+      "supersedes": "ARCH-001, DESIGN-001, CONTRACT-001, DATA-001 and PROVIDER-001",
+      "tags": [
+        "technical-reference",
+        "openapi",
+        "architecture",
+        "contracts",
+        "data",
+        "providers",
+        "screens",
+        "phase-4"
       ]
     }
   ]

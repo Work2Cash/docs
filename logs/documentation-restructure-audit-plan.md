@@ -963,20 +963,42 @@ Integration Week and 25 team-week agent packs containing 125 embedded day prompt
 
 ## Phase 4: Technical Reference Migration
 
-- [ ] Restructure API and Socket contracts by domain.
-- [ ] Add OpenAPI.
-- [ ] Restructure data models by domain.
-- [ ] Restructure provider documentation.
-- [ ] Create infrastructure architecture.
-- [ ] Create operations runbooks.
-- [ ] Correct and restructure the screen-to-feature map.
+- [x] Consolidate the human reading surface into five pages: one technical index and four focused family pages.
+- [x] Consolidate agent context into four focused packs rather than generating one file per endpoint, model, provider or screen.
+- [x] Restructure API, Socket, webhook and queue contracts into searchable, anchored records inside one contract family.
+- [x] Add one generated OpenAPI 3.1 baseline and validate contract-to-operation coverage.
+- [x] Restructure models and enums into searchable, anchored records inside one data family.
+- [x] Combine provider, architecture, infrastructure, cost, disaster-recovery and operations records inside one platform family.
+- [x] Create deployment, rollback, backup, restore, provider, payment, queue, storage, DNS/TLS, security, data-exposure and capacity runbook records.
+- [x] Correct and restructure shared, Task Owner, Tasker and Admin screens inside one screen family.
+- [x] Keep migration inventories and gap registers under `logs/`; they are governance evidence, not required team reading.
+- [x] Link readers directly to records through stable anchors, search and domain filters.
 
 ### Phase 4 exit criteria
 
-- [ ] Every endpoint and model is independently understandable.
-- [ ] Every provider has validation, failure, fallback and ownership data.
-- [ ] Infrastructure responsibilities and recovery processes are explicit.
-- [ ] Known design conflicts are resolved or clearly marked.
+- [x] Every migrated endpoint, socket event, queue, model, enum, provider, architecture area, runbook and screen is independently linkable and locally understandable.
+- [x] Every provider record has ownership, validation state, failure, fallback, disablement and evidence gaps.
+- [x] Infrastructure responsibilities, backup/restore boundaries, monitoring and recovery processes are explicit.
+- [x] Known design conflicts are corrected; missing Figma, DTO, schema, provider, network and approval evidence is clearly marked.
+- [x] The normal portal exposes only five Phase 4 human pages and four focused agent packs.
+
+### Phase 4 implementation evidence — 17 July 2026
+
+- [x] Four canonical technical source families created in `content/technical/`.
+- [x] Five human pages generated in `documents/technical/`: index, contracts, data, platform and screens.
+- [x] Four clean agent packs generated in `documents/agent-md/technical/`; no decorative HTML is allowed.
+- [x] One OpenAPI 3.1 specification generated at `documents/technical/openapi/work2cash-v1.json`.
+- [x] 342 legacy technical records migrated as anchored sections rather than standalone documents.
+- [x] Approved referral and KYC contract decisions merged with higher authority than the provisional legacy contract table.
+- [x] `KycAttempt` merged from the approved Phase 1 data pilot.
+- [x] Known Facebook, generic KYC upload, old category, card-first payment, Tasker auto-accept and Admin reassignment drift corrected.
+- [x] Phase 4 generation and OpenAPI traceability added to CI.
+- [x] Legacy architecture, screen, contract, data and provider pages frozen as superseded migration evidence.
+
+Phase 4 migration implementation is **complete and in review**. The new library
+does not convert provisional technical content into approved product or engineering
+decisions. Its generated gap register identifies the exact portions that still
+require owner or subject-matter approval.
 
 ## Phase 5: QA, Legal and Governance Migration
 

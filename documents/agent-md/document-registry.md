@@ -27,16 +27,16 @@
 | DOC-REG-001 | Work2Cash Document Registry | active | approved | Technical Lead | canonical-source | `governance/document-registry.json`; `governance/document-registry.md`; `documents/document-registry.html`; `documents/agent-md/document-registry.md` |
 | GOV-POL-001 | Documentation Governance Policies | active | approved | Technical Lead | canonical-source | `governance/editing-policy.md`; `governance/versioning-policy.md`; `governance/lifecycle-policy.md`; `governance/review-log.md` |
 | AGENT-GUIDE-001 | Work2Cash AI Agent Repository Instructions | active | approved | Technical Lead | canonical-source | `AGENTS.md`; `documents/downloads/AGENTS.md` |
-| ARCH-001 | Main Enterprise Architecture v1 | in-review | pending | Technical Lead | legacy-transitional-source | `documents/main-enterprise-architecture-v1.html`; `documents/agent-md/main-enterprise-architecture-v1.md` |
-| DESIGN-001 | Screen To Feature Map v1 | in-review | pending | Product Lead | legacy-transitional-source | `documents/screen-to-feature-map-v1.html`; `documents/agent-md/screen-to-feature-map-v1.md` |
+| ARCH-001 | Main Enterprise Architecture v1 | superseded | pending | Technical Lead | legacy-derived-frozen | `documents/main-enterprise-architecture-v1.html`; `documents/agent-md/main-enterprise-architecture-v1.md` |
+| DESIGN-001 | Screen To Feature Map v1 | superseded | pending | Product Lead | legacy-derived-frozen | `documents/screen-to-feature-map-v1.html`; `documents/agent-md/screen-to-feature-map-v1.md` |
 | FLOW-MOBILE-001 | Mobile Flow Catalogue v1 | superseded | approved | Product Lead | legacy-transitional-source | `documents/mobile-flow-catalogue-v1.html`; `documents/agent-md/mobile-flow-catalogue-v1.md` |
 | FLOW-ADMIN-001 | Admin Flow Catalogue v1 | superseded | approved | Product Lead | legacy-transitional-source | `documents/admin-flow-catalogue-v1.html`; `documents/agent-md/admin-flow-catalogue-v1.md` |
 | FLOW-ALIGN-001 | Flow Alignment Review v1 | in-review | pending | Product Lead | legacy-transitional-source | `documents/flow-alignment-review-v1.html`; `documents/agent-md/flow-alignment-review-v1.md` |
 | LEGAL-001 | Legal and User-Facing Documents Pack v1 | in-review | pending | Product Lead | legacy-transitional-source | `documents/legal_user_facing_documents_pack_v1.html`; `documents/agent-md/legal_user_facing_documents_pack_v1.md` |
-| CONTRACT-001 | API and Socket Contract Specification v1 | in-review | pending | Backend Lead | legacy-transitional-source | `documents/api-socket-contract-specification-v1.html`; `documents/agent-md/api-socket-contract-specification-v1.md` |
+| CONTRACT-001 | API and Socket Contract Specification v1 | superseded | pending | Backend Lead | legacy-derived-frozen | `documents/api-socket-contract-specification-v1.html`; `documents/agent-md/api-socket-contract-specification-v1.md` |
 | CONTRACT-REFERRAL-001 | Referral Contract Group | approved | approved | Backend Lead | canonical-source | `content/contracts/referral-contract-group.md`; `documents/contracts/referral-contract-group.html`; `documents/agent-md/contracts/referral-contract-group.md`; `documents/contracts/index.html`; `documents/agent-md/contracts/README.md`; `scripts/validate-referral-contract.js` |
-| DATA-001 | Data Model and Prisma Schema Planning v1 | in-review | pending | Backend Lead | legacy-transitional-source | `documents/data-model-prisma-schema-planning-v1.html`; `documents/agent-md/data-model-prisma-schema-planning-v1.md` |
-| PROVIDER-001 | Provider Integration and Cost Control v1 | in-review | pending | Infrastructure Lead | legacy-transitional-source | `documents/provider-integration-cost-control-v1.html`; `documents/agent-md/provider-integration-cost-control-v1.md` |
+| DATA-001 | Data Model and Prisma Schema Planning v1 | superseded | pending | Backend Lead | legacy-derived-frozen | `documents/data-model-prisma-schema-planning-v1.html`; `documents/agent-md/data-model-prisma-schema-planning-v1.md` |
+| PROVIDER-001 | Provider Integration and Cost Control v1 | superseded | pending | Infrastructure Lead | legacy-derived-frozen | `documents/provider-integration-cost-control-v1.html`; `documents/agent-md/provider-integration-cost-control-v1.md` |
 | PLAN-MOBILE-001 | Mobile Build Plan v1 | superseded | approved | Mobile Lead | legacy-transitional-source | `documents/build-plan-mobile-v1.html`; `documents/agent-md/build-plan-mobile-v1.md` |
 | PLAN-ADMIN-001 | Admin Build Plan v1 | superseded | approved | Admin Lead | legacy-transitional-source | `documents/build-plan-admin-v1.html`; `documents/agent-md/build-plan-admin-v1.md` |
 | PLAN-BACKEND-001 | Backend Build Plan v1 | superseded | approved | Backend Lead | legacy-transitional-source | `documents/build-plan-backend-v1.html`; `documents/agent-md/build-plan-backend-v1.md` |
@@ -52,6 +52,7 @@
 | PILOT-QA-AF04-001 | AF-04 KYC Review Reference QA Suite | approved | approved | QA Lead | canonical-source | `content/pilots/qa/AF-04-kyc-review-suite.md`; `documents/pilots/qa/AF-04-kyc-review-suite.html`; `documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md` |
 | FLOW-LIB-001 | Phase 2 Standalone Flow Library | active | approved | Product Lead | canonical-source | `logs/phase-2-execution-log.md`; `logs/phase-2-flow-migration-inventory.md`; `documents/flows/index.html`; `documents/agent-md/flows/README.md`; `documents/flows/dependency-map.html`; `documents/agent-md/flows/dependency-map.md`; `documents/flows/combined-flow-library.html`; `documents/agent-md/flows/combined-flow-library.md` |
 | TASK-LIB-001 | Phase 3 Canonical Build Task and Weekly Execution Library | active | approved | Project Lead | canonical-source | `content/tasks/plan-metadata.json`; `logs/phase-3-task-migration-inventory.md`; `logs/phase-3-execution-log.md`; `documents/planning/index.html`; `documents/agent-md/planning/README.md`; `documents/planning/mobile-build-plan.html`; `documents/planning/admin-build-plan.html`; `documents/planning/backend-build-plan.html`; `documents/planning/qa-traceability.html`; `documents/agent-md/planning/qa-traceability.md` |
+| TECH-REF-001 | Phase 4 Consolidated Technical Reference Library | in-review | pending | Technical Lead | canonical-source | `content/technical/library.json`; `content/technical/contracts.json`; `content/technical/data.json`; `content/technical/platform.json`; `content/technical/screens.json`; `documents/technical/index.html`; `documents/technical/contracts.html`; `documents/technical/data.html`; `documents/technical/platform.html`; `documents/technical/screens.html`; `documents/technical/openapi/work2cash-v1.json`; `documents/agent-md/technical/contracts.md`; `documents/agent-md/technical/data.md`; `documents/agent-md/technical/platform.md`; `documents/agent-md/technical/screens.md`; `logs/phase-4-execution-log.md`; `logs/phase-4-technical-migration-inventory.md`; `logs/phase-4-technical-gap-register.md`; `scripts/bootstrap-phase4-technical-sources.js`; `scripts/generate-technical-docs.js` |
 
 ## Detailed records
 
@@ -136,20 +137,20 @@ Downloaded copy must be byte-identical to the repository source.
 | Owner | Technical Lead |
 | Required reviewers | Product Lead, Infrastructure Lead, Security, Finance, Operations |
 | Version | 1 |
-| Lifecycle | in-review |
+| Lifecycle | superseded |
 | Approval | pending |
 | Publication | published |
 | Last reviewed | Not recorded |
 | Next review | Not scheduled |
 | Authority | Designated provisional controlling baseline pending formal approval |
-| Artifact class | legacy-transitional-source |
+| Artifact class | legacy-derived-frozen |
 | Current source | `documents/main-enterprise-architecture-v1.html` |
 | Other artifacts | `documents/agent-md/main-enterprise-architecture-v1.md` |
 | Migration phase | Phase 4 |
 | Supersedes | None |
 | Tags | architecture |
 
-Formal approval evidence is missing; agent Markdown is a legacy export.
+Frozen Phase 4 migration evidence. Use TECH-REF-001 for current architecture and operations reading. Formal approval of the migrated architecture records remains pending.
 
 ### DESIGN-001 — Screen To Feature Map v1
 
@@ -160,20 +161,20 @@ Formal approval evidence is missing; agent Markdown is a legacy export.
 | Owner | Product Lead |
 | Required reviewers | Technical Lead, Mobile Lead, Admin Lead, Backend Lead |
 | Version | 1 |
-| Lifecycle | in-review |
+| Lifecycle | superseded |
 | Approval | pending |
 | Publication | published |
 | Last reviewed | Not recorded |
 | Next review | Not scheduled |
 | Authority | Main Enterprise Architecture v1 |
-| Artifact class | legacy-transitional-source |
+| Artifact class | legacy-derived-frozen |
 | Current source | `documents/screen-to-feature-map-v1.html` |
 | Other artifacts | `documents/agent-md/screen-to-feature-map-v1.md` |
 | Migration phase | Phase 4 |
 | Supersedes | None |
 | Tags | design-map |
 
-Phase 0 reconciles known provider, auto-accept and admin-reassignment drift.
+Frozen Phase 4 migration evidence. Use TECH-REF-001 Screen-to-Feature Reference, where known provider, KYC, category, payment, auto-accept and admin-reassignment drift is corrected and remaining design evidence is marked.
 
 ### FLOW-MOBILE-001 — Mobile Flow Catalogue v1
 
@@ -280,20 +281,20 @@ Publication is not legal approval; subject-matter review remains required.
 | Owner | Backend Lead |
 | Required reviewers | Technical Lead, Mobile Lead, Admin Lead, QA |
 | Version | 1 |
-| Lifecycle | in-review |
+| Lifecycle | superseded |
 | Approval | pending |
 | Publication | published |
 | Last reviewed | Not recorded |
 | Next review | Not scheduled |
 | Authority | Main Enterprise Architecture and approved flows |
-| Artifact class | legacy-transitional-source |
+| Artifact class | legacy-derived-frozen |
 | Current source | `documents/api-socket-contract-specification-v1.html` |
 | Other artifacts | `documents/agent-md/api-socket-contract-specification-v1.md` |
 | Migration phase | Phase 4 |
 | Supersedes | None |
 | Tags | technical-contract |
 
-Published provisional contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026. The former MF-17/AF-15 referral gap is resolved by the higher-specificity approved CONTRACT-REFERRAL-001 decision and must be merged into the wider specification during Phase 4.
+Frozen Phase 4 migration evidence. Use TECH-REF-001 API, Socket and OpenAPI Reference. Approved referral and KYC decisions are merged there with higher authority; remaining contract gaps are explicit.
 
 ### CONTRACT-REFERRAL-001 — Referral Contract Group
 
@@ -328,20 +329,20 @@ Closes the referral code/share, registration attribution, progress, reward-statu
 | Owner | Backend Lead |
 | Required reviewers | Technical Lead, Data owner, Security |
 | Version | 1 |
-| Lifecycle | in-review |
+| Lifecycle | superseded |
 | Approval | pending |
 | Publication | published |
 | Last reviewed | Not recorded |
 | Next review | Not scheduled |
 | Authority | Main Enterprise Architecture and approved contracts |
-| Artifact class | legacy-transitional-source |
+| Artifact class | legacy-derived-frozen |
 | Current source | `documents/data-model-prisma-schema-planning-v1.html` |
 | Other artifacts | `documents/agent-md/data-model-prisma-schema-planning-v1.md` |
 | Migration phase | Phase 4 |
 | Supersedes | None |
 | Tags | data-model |
 
-The Phase 1 KYC pilot defines KycAttempt; merge and full-schema validation remain scheduled for Phase 4.
+Frozen Phase 4 migration evidence. Use TECH-REF-001 Data Model Reference. KycAttempt is merged from the approved pilot and conceptual models remain clearly separated from executable Prisma baselines.
 
 ### PROVIDER-001 — Provider Integration and Cost Control v1
 
@@ -352,20 +353,20 @@ The Phase 1 KYC pilot defines KycAttempt; merge and full-schema validation remai
 | Owner | Infrastructure Lead |
 | Required reviewers | Technical Lead, Backend Lead, Finance, Security |
 | Version | 1 |
-| Lifecycle | in-review |
+| Lifecycle | superseded |
 | Approval | pending |
 | Publication | published |
 | Last reviewed | Not recorded |
 | Next review | Not scheduled |
 | Authority | Main Enterprise Architecture and validated provider contracts |
-| Artifact class | legacy-transitional-source |
+| Artifact class | legacy-derived-frozen |
 | Current source | `documents/provider-integration-cost-control-v1.html` |
 | Other artifacts | `documents/agent-md/provider-integration-cost-control-v1.md` |
 | Migration phase | Phase 4 |
 | Supersedes | None |
 | Tags | provider-operations |
 
-Costs and provider capabilities require dated validation before purchase or implementation.
+Frozen Phase 4 migration evidence. Use TECH-REF-001 Platform Architecture and Operations. Costs and provider capabilities still require dated official validation before purchase or go-live.
 
 ### PLAN-MOBILE-001 — Mobile Build Plan v1
 
@@ -727,6 +728,30 @@ Active canonical flow family containing all 72 approved standalone sources: 24 m
 
 Active planning family with 25 canonical team-week Markdown sources containing 125 task records: 120 migrated legacy tasks plus five Admin integration tasks. Human and agent execution outputs are also weekly; no standalone daily Markdown source, HTML task page or task-agent export is maintained. The primary junior-developer path is Team Build Plan to Week to Day. Every week begins with a Monday-to-Friday five-day map; every day has an explicit start boundary, finish boundary, implementation steps, tests, commit and embedded agent prompt. Delivery order is Admin construction, Mobile and Backend construction, Admin Integration, then cross-platform hardening.
 
+### TECH-REF-001 — Phase 4 Consolidated Technical Reference Library
+
+| Field | Value |
+| --- | --- |
+| Type | technical-reference-migration |
+| Audience | Mobile, Admin, Backend, Infrastructure, Operations, QA, AI agents |
+| Owner | Technical Lead |
+| Required reviewers | Product Lead, Mobile Lead, Admin Lead, Backend Lead, Infrastructure Lead, Security, Finance, Operations, QA |
+| Version | 1.0 |
+| Lifecycle | in-review |
+| Approval | pending |
+| Publication | published |
+| Last reviewed | 2026-07-17 |
+| Next review | 2026-10-17 |
+| Authority | Approved standalone flows and accepted contract decisions, with explicitly marked provisional architecture, contract, schema, provider and design baselines |
+| Artifact class | canonical-source |
+| Current source | `content/technical/library.json` |
+| Other artifacts | `content/technical/contracts.json`, `content/technical/data.json`, `content/technical/platform.json`, `content/technical/screens.json`, `documents/technical/index.html`, `documents/technical/contracts.html`, `documents/technical/data.html`, `documents/technical/platform.html`, `documents/technical/screens.html`, `documents/technical/openapi/work2cash-v1.json`, `documents/agent-md/technical/contracts.md`, `documents/agent-md/technical/data.md`, `documents/agent-md/technical/platform.md`, `documents/agent-md/technical/screens.md`, `logs/phase-4-execution-log.md`, `logs/phase-4-technical-migration-inventory.md`, `logs/phase-4-technical-gap-register.md`, `scripts/bootstrap-phase4-technical-sources.js`, `scripts/generate-technical-docs.js` |
+| Migration phase | Phase 4 |
+| Supersedes | ARCH-001, DESIGN-001, CONTRACT-001, DATA-001 and PROVIDER-001 |
+| Tags | technical-reference, openapi, architecture, contracts, data, providers, screens, phase-4 |
+
+Consolidates the legacy architecture, contract, data, provider and screen families into five human pages, four focused agent packs and one generated OpenAPI baseline. Its 342 anchored records are sections inside those families, not standalone required-reading documents. Approved referral and KYC decisions retain higher authority; provisional gaps remain explicit blockers.
+
 
 ## Pending approvals
 
@@ -739,18 +764,19 @@ Active planning family with 25 canonical team-week Markdown sources containing 1
 - [ ] **PROVIDER-001 — Provider Integration and Cost Control v1:** Technical Lead, Backend Lead, Finance, Security.
 - [ ] **QA-001 — QA and Go-Live Readiness Checklist v1:** Technical Lead, Product Lead, Infrastructure Lead, Operations.
 - [ ] **FULL-CONTEXT-001 — Work2Cash Full Project Markdown:** Product Lead.
+- [ ] **TECH-REF-001 — Phase 4 Consolidated Technical Reference Library:** Product Lead, Mobile Lead, Admin Lead, Backend Lead, Infrastructure Lead, Security, Finance, Operations, QA.
 
 ## Legacy migration queue
 
-- [ ] **ARCH-001:** migrate in Phase 4. Formal approval evidence is missing; agent Markdown is a legacy export.
-- [ ] **DESIGN-001:** migrate in Phase 4. Phase 0 reconciles known provider, auto-accept and admin-reassignment drift.
+- [ ] **ARCH-001:** migrate in Phase 4. Frozen Phase 4 migration evidence. Use TECH-REF-001 for current architecture and operations reading. Formal approval of the migrated architecture records remains pending.
+- [ ] **DESIGN-001:** migrate in Phase 4. Frozen Phase 4 migration evidence. Use TECH-REF-001 Screen-to-Feature Reference, where known provider, KYC, category, payment, auto-accept and admin-reassignment drift is corrected and remaining design evidence is marked.
 - [ ] **FLOW-MOBILE-001:** migrate in Phase 2. Approved behavior was migrated into 37 standalone mobile flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.
 - [ ] **FLOW-ADMIN-001:** migrate in Phase 2. Approved behavior was migrated into 35 standalone admin flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.
 - [ ] **FLOW-ALIGN-001:** migrate in Phase 5. Provisional decision tracker until decisions are moved into governed records.
 - [ ] **LEGAL-001:** migrate in Phase 5. Publication is not legal approval; subject-matter review remains required.
-- [ ] **CONTRACT-001:** migrate in Phase 4. Published provisional contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026. The former MF-17/AF-15 referral gap is resolved by the higher-specificity approved CONTRACT-REFERRAL-001 decision and must be merged into the wider specification during Phase 4.
-- [ ] **DATA-001:** migrate in Phase 4. The Phase 1 KYC pilot defines KycAttempt; merge and full-schema validation remain scheduled for Phase 4.
-- [ ] **PROVIDER-001:** migrate in Phase 4. Costs and provider capabilities require dated validation before purchase or implementation.
+- [ ] **CONTRACT-001:** migrate in Phase 4. Frozen Phase 4 migration evidence. Use TECH-REF-001 API, Socket and OpenAPI Reference. Approved referral and KYC decisions are merged there with higher authority; remaining contract gaps are explicit.
+- [ ] **DATA-001:** migrate in Phase 4. Frozen Phase 4 migration evidence. Use TECH-REF-001 Data Model Reference. KycAttempt is merged from the approved pilot and conceptual models remain clearly separated from executable Prisma baselines.
+- [ ] **PROVIDER-001:** migrate in Phase 4. Frozen Phase 4 migration evidence. Use TECH-REF-001 Platform Architecture and Operations. Costs and provider capabilities still require dated official validation before purchase or go-live.
 - [ ] **PLAN-MOBILE-001:** migrate in Phase 3. Superseded combined Mobile task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Mobile plan.
 - [ ] **PLAN-ADMIN-001:** migrate in Phase 3. Superseded combined Admin task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Admin plan.
 - [ ] **PLAN-BACKEND-001:** migrate in Phase 3. Superseded combined Backend task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Backend plan.

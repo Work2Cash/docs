@@ -1,0 +1,44 @@
+{
+  "id": "TECH-REF-001",
+  "title": "Phase 4 Consolidated Technical Reference Library",
+  "version": "1.0",
+  "status": "in-review",
+  "lastReviewed": "2026-07-17",
+  "authority": "Approved flows and decisions, with explicitly marked provisional technical baselines",
+  "families": [
+    {
+      "id": "TECH-CONTRACTS-001",
+      "slug": "contracts",
+      "title": "API, Socket and OpenAPI Reference",
+      "description": "One implementation reference for REST endpoints, socket events, provider callbacks and worker queues. Records are independently linkable; unresolved shapes are explicit blockers rather than implied permission to guess."
+    },
+    {
+      "id": "TECH-DATA-001",
+      "slug": "data",
+      "title": "Data Model Reference",
+      "description": "A business-first catalogue of models, enums, ownership, privacy and schema readiness. Conceptual records and executable Prisma baselines are clearly distinguished."
+    },
+    {
+      "id": "TECH-PLATFORM-001",
+      "slug": "platform",
+      "title": "Platform Architecture and Operations",
+      "description": "Architecture, infrastructure, providers, cost controls, disaster recovery and incident runbooks in one role-filtered reference."
+    },
+    {
+      "id": "TECH-SCREENS-001",
+      "slug": "screens",
+      "title": "Screen-to-Feature Reference",
+      "description": "A corrected, searchable map of shared, Task Owner, Tasker and Admin screens. Each record states purpose, dependencies, safety rules and unresolved design evidence."
+    }
+  ],
+  "legacySources": {
+    "architecture": "documents/agent-md/main-enterprise-architecture-v1.md",
+    "contracts": "documents/agent-md/api-socket-contract-specification-v1.md",
+    "data": "documents/agent-md/data-model-prisma-schema-planning-v1.md",
+    "providers": "documents/agent-md/provider-integration-cost-control-v1.md",
+    "screens": "documents/agent-md/screen-to-feature-map-v1.md",
+    "referral": "content/contracts/referral-contract-group.md",
+    "kyc": "content/pilots/contracts/kyc-review-contract-group.md"
+  },
+  "editRule": "Edit the four JSON family sources after bootstrap; do not rerun this migration script for normal changes."
+}

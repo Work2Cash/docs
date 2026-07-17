@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Architecture, infrastructure, providers, cost controls, disaster recovery and incident runbooks in one role-filtered reference.">
+  <title>Platform Architecture and Operations | Work2Cash Docs</title>
+  <link rel="stylesheet" href="../../assets/css/pilot-docs.css">
+  <script src="../../assets/js/guard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to technical records</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html">Work2Cash Docs</a>
+    <nav aria-label="Technical reference navigation">
+      <a href="index.html">Technical reference</a>
+      <a href="../agent-md/technical/platform.md" download>Download agent pack</a>
+      
+    </nav>
+  </header>
+  <main id="content" class="technical-shell" tabindex="-1">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Technical Reference</a><span aria-hidden="true">/</span><span>Platform Architecture and Operations</span></nav>
+    <header class="document-hero technical-hero">
+      <div class="eyebrow">Phase 4 · Consolidated technical library</div>
+      <h1>Platform Architecture and Operations</h1>
+      <p class="audience">Architecture, infrastructure, providers, cost controls, disaster recovery and incident runbooks in one role-filtered reference.</p>
+      <div class="status-row"><span class="status status-in-review">in-review</span><span>Version 1.0</span><span>38 records</span></div>
+    </header>
+
+    <section class="technical-intro" aria-labelledby="how-to-use-title">
+      <div>
+        <h2 id="how-to-use-title">How to use this page</h2>
+        <p>Search by name, path, model, provider, screen or rule. Filter by domain, then open only the record required for the current task. Every record has its own direct link.</p>
+        <ul><li>Commercial prices and provider capabilities are not approved by migration alone; official evidence is required before spend or go-live.</li><li>Production commands, credentials, personal contacts and confidential incident data must remain outside this public repository.</li></ul>
+      </div>
+      <dl class="technical-metadata">
+    <div><dt>Owner</dt><dd>Technical Lead</dd></div>
+    <div><dt>Reviewers</dt><dd>Infrastructure Lead, Backend Lead, Security, Finance, Operations</dd></div>
+    <div><dt>Authority</dt><dd>Provisional Main Enterprise Architecture and validated provider decisions</dd></div>
+    <div><dt>Last reviewed</dt><dd>2026-07-17</dd></div>
+  </dl>
+    </section>
+
+    <section class="technical-rules" aria-labelledby="shared-rules-title">
+      <h2 id="shared-rules-title">Rules that apply to every record</h2>
+      <ul><li>PostgreSQL is durable truth; Valkey, queues and sockets are recoverable supporting systems.</li><li>Staging uses sandbox credentials and no production personal data.</li><li>External providers are accessed through adapters with logging, idempotency and disablement controls.</li><li>Backups require off-server storage and successful restore evidence.</li><li>No paid provider auto-refresh loops.</li></ul>
+    </section>
+
+    <section class="technical-controls" aria-label="Find technical records">
+      <label><span>Search</span><input type="search" data-technical-search placeholder="Search platform architecture and operations" autocomplete="off"></label>
+      <label><span>Domain</span><select data-technical-domain><option value="">All domains</option><option value="Analytics">Analytics</option><option value="Architecture">Architecture</option><option value="Domain">Domain</option><option value="Email">Email</option><option value="Hosting">Hosting</option><option value="Infrastructure">Infrastructure</option><option value="KYC">KYC</option><option value="Maps">Maps</option><option value="Masked Calls">Masked Calls</option><option value="Mobile Updates">Mobile Updates</option><option value="Monitoring">Monitoring</option><option value="Object/Backup Storage">Object/Backup Storage</option><option value="Operations">Operations</option><option value="Operations runbook">Operations runbook</option><option value="Payments - Collections">Payments - Collections</option><option value="Payouts">Payouts</option><option value="Push Notifications">Push Notifications</option><option value="Recovery">Recovery</option><option value="SMS">SMS</option></select></label>
+      <div class="technical-result-count" data-technical-result-count aria-live="polite">38 records shown</div>
+    </section>
+
+    <section class="technical-status-summary" aria-label="Record status summary">
+      <span><strong>5</strong> provisional-baseline</span><span><strong>1</strong> decision-required</span><span><strong>12</strong> selected-unverified</span><span><strong>6</strong> candidate</span><span><strong>2</strong> deferred</span><span><strong>12</strong> operational-baseline</span>
+    </section>
+
+    <section class="technical-record-list" aria-label="Platform Architecture and Operations records">
+      <details class="technical-record" id="arch-01" data-technical-record data-domain="Architecture">
+    <summary>
+      <span class="technical-record-id">ARCH-01</span>
+      <span class="technical-record-title">System context and responsibility boundary</span>
+      <span class="technical-record-badges"><span>Architecture</span><span class="status status-provisional-baseline">provisional-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Flutter mobile and Next.js Admin consume a NestJS API. PostgreSQL owns durable truth; Valkey supports cache, presence, geospatial lookup, queues and socket scaling; workers own background processing; object storage holds controlled media and backup artifacts.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Mobile</dt><dd>Flutter application for Task Owner and Tasker modes</dd></div><div><dt>Admin</dt><dd>Next.js operations dashboard with TOTP and RBAC</dd></div><div><dt>Backend</dt><dd>NestJS hexagonal modules, REST, Socket.IO, workers and scheduler</dd></div><div><dt>Durable data</dt><dd>PostgreSQL</dd></div><div><dt>Transient/fast state</dt><dd>Valkey and BullMQ</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Provider adapters remain outside core use cases.</li><li>Socket and cache state never replace persisted business truth.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Approved architecture decisions</li><li>Contracts</li><li>Data model</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Formal architecture approval remains pending.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Main Enterprise Architecture v1</p>
+      <a class="record-anchor" href="#arch-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="arch-02" data-technical-record data-domain="Infrastructure">
+    <summary>
+      <span class="technical-record-id">ARCH-02</span>
+      <span class="technical-record-title">Production topology</span>
+      <span class="technical-record-badges"><span>Infrastructure</span><span class="status status-provisional-baseline">provisional-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">The provisional production baseline separates application, data and monitoring responsibilities and uses S3-compatible object storage. Exact network diagrams, region, sizing and failover require infrastructure approval before provisioning.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Application plane</dt><dd>API, socket gateway, workers and reverse proxy</dd></div><div><dt>Data plane</dt><dd>PostgreSQL and privately reachable Valkey</dd></div><div><dt>Monitoring plane</dt><dd>Logs, metrics, alerts and Sentry integration</dd></div><div><dt>Storage</dt><dd>DigitalOcean Spaces or approved S3-compatible object storage</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>PostgreSQL and Valkey are not publicly exposed.</li><li>Use TLS, hardened SSH, least privilege, firewall rules and separated secrets.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>DigitalOcean production baseline</li><li>DNS/TLS inventory</li><li>Backup and restore runbooks</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Approved region, IP plan, firewall matrix, capacity test and failover design are not recorded.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Main Enterprise Architecture v1 and Provider Integration baseline</p>
+      <a class="record-anchor" href="#arch-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="arch-03" data-technical-record data-domain="Infrastructure">
+    <summary>
+      <span class="technical-record-id">ARCH-03</span>
+      <span class="technical-record-title">Staging topology</span>
+      <span class="technical-record-badges"><span>Infrastructure</span><span class="status status-provisional-baseline">provisional-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Staging uses isolated infrastructure, sandbox provider credentials and synthetic data. It must never contain production user, KYC, payment or secret material.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Host baseline</dt><dd>Contabo staging baseline recorded in July 2026; revalidate before purchase</dd></div><div><dt>Provider mode</dt><dd>Sandbox or test credentials only</dd></div><div><dt>Data</dt><dd>Synthetic or explicitly approved non-production data</dd></div><div><dt>Backups</dt><dd>Off-server backup required because legacy baseline did not include automatic backup</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Production keys and personal data are forbidden in staging.</li><li>Run restore drills before declaring backup readiness.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Infrastructure owner</li><li>Provider sandboxes</li><li>Deployment and restore runbooks</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Private network availability, exact retention and environment access roster require approval.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Main Enterprise Architecture v1 and Provider Integration baseline</p>
+      <a class="record-anchor" href="#arch-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="arch-04" data-technical-record data-domain="Infrastructure">
+    <summary>
+      <span class="technical-record-id">ARCH-04</span>
+      <span class="technical-record-title">Network, DNS, TLS and secret boundaries</span>
+      <span class="technical-record-badges"><span>Infrastructure</span><span class="status status-decision-required">decision-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Public entry points terminate TLS at controlled reverse proxies; data services remain private. Secrets belong in protected environment/secret storage and are never stored in this documentation repository.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Public surfaces</dt><dd>API, Socket and Admin hosts</dd></div><div><dt>Private services</dt><dd>PostgreSQL, Valkey, workers&#39; internal control paths and backup credentials</dd></div><div><dt>Secret rule</dt><dd>Environment/secret store only; least privilege and rotation evidence required</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>No database or Valkey public exposure.</li><li>Separate staging and production credentials.</li><li>Audit privileged access and secret rotation.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>DNS owner</li><li>Infrastructure owner</li><li>Security reviewer</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>DNS registrar roles, TLS renewal ownership, firewall ports, VPN/private access and rotation schedule require explicit records.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Main Enterprise Architecture v1</p>
+      <a class="record-anchor" href="#arch-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="arch-05" data-technical-record data-domain="Operations">
+    <summary>
+      <span class="technical-record-id">ARCH-05</span>
+      <span class="technical-record-title">Monitoring, capacity and cost controls</span>
+      <span class="technical-record-badges"><span>Operations</span><span class="status status-provisional-baseline">provisional-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Monitor API/socket health, provider calls, payment reconciliation, queues, PostgreSQL, Valkey, backups and budget consumption. Alerts must name an owner and lead to a runbook.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Core signals</dt><dd>Availability, latency, error rate, queue age/failure, database saturation, Valkey memory/eviction, backup freshness</dd></div><div><dt>Provider signals</dt><dd>Request count, duration, failure, duplicate events and estimated cost where known</dd></div><div><dt>Cost trigger</dt><dd>Unexpected usage or spend requires feature/config review before scaling</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Paid provider calls require budget logging and guards.</li><li>No paid auto-refresh loops.</li><li>An alert without ownership and recovery action is incomplete.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Monitoring owner</li><li>Provider catalogue</li><li>Incident runbooks</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Final thresholds, paging rota, dashboards and capacity-test evidence require operational approval.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Main Enterprise Architecture v1 and Provider Integration baseline</p>
+      <a class="record-anchor" href="#arch-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="arch-06" data-technical-record data-domain="Recovery">
+    <summary>
+      <span class="technical-record-id">ARCH-06</span>
+      <span class="technical-record-title">Disaster recovery policy</span>
+      <span class="technical-record-badges"><span>Recovery</span><span class="status status-provisional-baseline">provisional-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Recovery prioritizes data integrity, authoritative money state and controlled restoration. Off-server PostgreSQL backups and tested restore procedures are mandatory; server disks alone are not backups.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Restore drills</dt><dd>Weekly in staging and monthly after launch in the provisional baseline</dd></div><div><dt>Evidence</dt><dd>Backup ID, checksum, restore target, duration, validation result and owner</dd></div><div><dt>Priority</dt><dd>PostgreSQL and money/audit truth before caches, queues or derived views</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Never restore over production without incident authority and a verified recovery point.</li><li>Rebuild transient Valkey state from durable records where possible.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>PostgreSQL backup/restore runbooks</li><li>Object storage</li><li>Incident commander</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Approved RPO, RTO, backup encryption/key ownership and regional recovery design require formal approval.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Main Enterprise Architecture v1</p>
+      <a class="record-anchor" href="#arch-06">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-01" data-technical-record data-domain="Payments - Collections">
+    <summary>
+      <span class="technical-record-id">PROVIDER-01</span>
+      <span class="technical-record-title">Paystack</span>
+      <span class="technical-record-badges"><span>Payments - Collections</span><span class="status status-selected-unverified">selected-unverified</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Primary collection rail alongside Moniepoint.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Task Owner cardless payment, bank transfer, payment redirect/status, webhook confirmation.</dd></div><div><dt>Selection status</dt><dd>Active MVP provider</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Verify current pricing, supported channels, webhook signatures and settlement behavior before go-live.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Keep payment or payout pending; reconcile authoritative provider state and never report money success early.</dd></div>
+        <div><dt>Fallback</dt><dd>Moniepoint when validated and enabled</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-02" data-technical-record data-domain="Payments - Collections">
+    <summary>
+      <span class="technical-record-id">PROVIDER-02</span>
+      <span class="technical-record-title">Moniepoint</span>
+      <span class="technical-record-badges"><span>Payments - Collections</span><span class="status status-selected-unverified">selected-unverified</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Primary collection rail alongside Paystack.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Task Owner payment, provider status, webhook confirmation.</dd></div><div><dt>Selection status</dt><dd>Active MVP provider</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Verify online checkout/API availability, webhook reliability, bank transfer flow and settlement behavior before go-live.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Keep payment or payout pending; reconcile authoritative provider state and never report money success early.</dd></div>
+        <div><dt>Fallback</dt><dd>Paystack when validated and enabled</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-03" data-technical-record data-domain="Payouts">
+    <summary>
+      <span class="technical-record-id">PROVIDER-03</span>
+      <span class="technical-record-title">Paystack Transfers</span>
+      <span class="technical-record-badges"><span>Payouts</span><span class="status status-selected-unverified">selected-unverified</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Transfer rail for Tasker withdrawals where appropriate.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Bulk payout batch processing on 14th and 28th.</dd></div><div><dt>Selection status</dt><dd>Active MVP provider</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Verify transfer fees, bank coverage, transfer limits, reversal behavior and compliance requirements.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Keep payment or payout pending; reconcile authoritative provider state and never report money success early.</dd></div>
+        <div><dt>Fallback</dt><dd>Moniepoint when validated and enabled</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-04" data-technical-record data-domain="Payouts">
+    <summary>
+      <span class="technical-record-id">PROVIDER-04</span>
+      <span class="technical-record-title">Moniepoint</span>
+      <span class="technical-record-badges"><span>Payouts</span><span class="status status-selected-unverified">selected-unverified</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Transfer rail for payout batches where appropriate.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Bulk payout batch processing and reconciliation.</dd></div><div><dt>Selection status</dt><dd>Active MVP provider</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Verify transfer API, bulk transfer support, pricing, limits and settlement operations.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Keep payment or payout pending; reconcile authoritative provider state and never report money success early.</dd></div>
+        <div><dt>Fallback</dt><dd>Paystack when validated and enabled</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-05" data-technical-record data-domain="KYC">
+    <summary>
+      <span class="technical-record-id">PROVIDER-05</span>
+      <span class="technical-record-title">Smile ID</span>
+      <span class="technical-record-badges"><span>KYC</span><span class="status status-selected-unverified">selected-unverified</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Identity verification provider.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>NIN/BVN + biometric face match for Tasker activation.</dd></div><div><dt>Selection status</dt><dd>Active MVP provider</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Verify Nigeria product availability, pricing, callback signatures, required consent wording and data retention requirements.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Keep KYC pending or route to manual review; never activate a Tasker from client or callback text alone.</dd></div>
+        <div><dt>Fallback</dt><dd>No automatic provider swap unless the adapter, product state and operations approval explicitly allow it</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-06" data-technical-record data-domain="Maps">
+    <summary>
+      <span class="technical-record-id">PROVIDER-06</span>
+      <span class="technical-record-title">Google Maps Platform</span>
+      <span class="technical-record-badges"><span>Maps</span><span class="status status-selected-unverified">selected-unverified</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Paid maps/routing/geocoding provider.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Geocoding manual address, ETA snapshots, traffic-aware arrival estimate.</dd></div><div><dt>Selection status</dt><dd>Active MVP provider with strict guard</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Distance/route pricing changes frequently. Configure billing alerts and enforce ETA guard.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Use cached coordinates or last permitted ETA and disable paid refresh until the budget/provider guard recovers.</dd></div>
+        <div><dt>Fallback</dt><dd>Cached result, manual address/pin confirmation and guarded later retry</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-06">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-07" data-technical-record data-domain="Push Notifications">
+    <summary>
+      <span class="technical-record-id">PROVIDER-07</span>
+      <span class="technical-record-title">Firebase Cloud Messaging</span>
+      <span class="technical-record-badges"><span>Push Notifications</span><span class="status status-selected-unverified">selected-unverified</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Primary device wake and push notification channel.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>New task alerts, direct offers, chat/support notifications, critical task updates.</dd></div><div><dt>Selection status</dt><dd>Active MVP provider</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Keep FCM tokens fresh and handle aggressive Android background killing.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Persist the notification outcome and allow the app to fetch authoritative state when delivery fails.</dd></div>
+        <div><dt>Fallback</dt><dd>No automatic provider swap unless the adapter, product state and operations approval explicitly allow it</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-07">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-08" data-technical-record data-domain="SMS">
+    <summary>
+      <span class="technical-record-id">PROVIDER-08</span>
+      <span class="technical-record-title">Termii</span>
+      <span class="technical-record-badges"><span>SMS</span><span class="status status-selected-unverified">selected-unverified</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">SMS fallback for critical OTP and critical notifications.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>OTP fallback after email, critical account/payment/support messages only.</dd></div><div><dt>Selection status</dt><dd>Active MVP provider</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>SMS can become expensive; use only where email/push is insufficient.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Persist the notification outcome and allow the app to fetch authoritative state when delivery fails.</dd></div>
+        <div><dt>Fallback</dt><dd>Email remains primary; support path for critical account recovery</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-08">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-09" data-technical-record data-domain="Email">
+    <summary>
+      <span class="technical-record-id">PROVIDER-09</span>
+      <span class="technical-record-title">Resend</span>
+      <span class="technical-record-badges"><span>Email</span><span class="status status-candidate">candidate</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Phase 1 transactional email provider.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>OTP email, receipts, account notifications, support emails.</dd></div><div><dt>Selection status</dt><dd>Phase 1 provider</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use React Email templates and monitor free/pro limits.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Persist the notification outcome and allow the app to fetch authoritative state when delivery fails.</dd></div>
+        <div><dt>Fallback</dt><dd>SendGrid after deferred-provider validation</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-09">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-10" data-technical-record data-domain="Email">
+    <summary>
+      <span class="technical-record-id">PROVIDER-10</span>
+      <span class="technical-record-title">SendGrid</span>
+      <span class="technical-record-badges"><span>Email</span><span class="status status-deferred">deferred</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Later email provider when volume/deliverability requires it.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>High-volume transactional email and dedicated IP needs.</dd></div><div><dt>Selection status</dt><dd>Deferred provider</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Switch via email adapter without changing use cases.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Persist the notification outcome and allow the app to fetch authoritative state when delivery fails.</dd></div>
+        <div><dt>Fallback</dt><dd>Resend</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-10">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-11" data-technical-record data-domain="Monitoring">
+    <summary>
+      <span class="technical-record-id">PROVIDER-11</span>
+      <span class="technical-record-title">Sentry</span>
+      <span class="technical-record-badges"><span>Monitoring</span><span class="status status-candidate">candidate</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Error monitoring.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Backend, Flutter and Next.js error tracking.</dd></div><div><dt>Selection status</dt><dd>Developer/free plan baseline</dd></div><div><dt>Owner</dt><dd>Infrastructure Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Avoid sending PII, KYC payloads, provider secrets or payment-sensitive values.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Sentry failure must produce a visible degraded or retryable state with logged evidence.</dd></div>
+        <div><dt>Fallback</dt><dd>No automatic provider swap unless the adapter, product state and operations approval explicitly allow it</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-11">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-12" data-technical-record data-domain="Mobile Updates">
+    <summary>
+      <span class="technical-record-id">PROVIDER-12</span>
+      <span class="technical-record-title">Shorebird</span>
+      <span class="technical-record-badges"><span>Mobile Updates</span><span class="status status-selected-unverified">selected-unverified</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Flutter patch delivery.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Post-release Dart patch updates where allowed.</dd></div><div><dt>Selection status</dt><dd>Active mobile provider</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Do not use for native changes requiring app store release.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Shorebird failure must produce a visible degraded or retryable state with logged evidence.</dd></div>
+        <div><dt>Fallback</dt><dd>No automatic provider swap unless the adapter, product state and operations approval explicitly allow it</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-12">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-13" data-technical-record data-domain="Masked Calls">
+    <summary>
+      <span class="technical-record-id">PROVIDER-13</span>
+      <span class="technical-record-title">Infobip</span>
+      <span class="technical-record-badges"><span>Masked Calls</span><span class="status status-candidate">candidate</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Primary candidate for proxy dial-in masked calls.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Task-bound call masking without exposing phone numbers.</dd></div><div><dt>Selection status</dt><dd>Candidate to validate</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Confirm Nigerian voice number availability, local airtime behavior, carrier reliability and pricing.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Disable masked calls and retain chat/voice-note alternatives; never reveal real phone numbers.</dd></div>
+        <div><dt>Fallback</dt><dd>Feature disablement, then the next validated provider candidate; chat remains available</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-13">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-14" data-technical-record data-domain="Masked Calls">
+    <summary>
+      <span class="technical-record-id">PROVIDER-14</span>
+      <span class="technical-record-title">Africa&#39;s Talking</span>
+      <span class="technical-record-badges"><span>Masked Calls</span><span class="status status-candidate">candidate</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Secondary candidate for masked calls.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Fallback voice masking candidate.</dd></div><div><dt>Selection status</dt><dd>Candidate to validate</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Confirm Nigeria number support and proxy dial-in feasibility.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Disable masked calls and retain chat/voice-note alternatives; never reveal real phone numbers.</dd></div>
+        <div><dt>Fallback</dt><dd>Feature disablement, then the next validated provider candidate; chat remains available</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-14">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-15" data-technical-record data-domain="Masked Calls">
+    <summary>
+      <span class="technical-record-id">PROVIDER-15</span>
+      <span class="technical-record-title">Vonage</span>
+      <span class="technical-record-badges"><span>Masked Calls</span><span class="status status-candidate">candidate</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Fallback masked call provider.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Fallback if local candidates fail.</dd></div><div><dt>Selection status</dt><dd>Fallback</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Do not depend on it until Nigeria voice-capable number support is verified.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Disable masked calls and retain chat/voice-note alternatives; never reveal real phone numbers.</dd></div>
+        <div><dt>Fallback</dt><dd>Feature disablement, then the next validated provider candidate; chat remains available</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-15">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-16" data-technical-record data-domain="Masked Calls">
+    <summary>
+      <span class="technical-record-id">PROVIDER-16</span>
+      <span class="technical-record-title">Sinch</span>
+      <span class="technical-record-badges"><span>Masked Calls</span><span class="status status-candidate">candidate</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Enterprise fallback.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Fallback if scale/compliance requires enterprise provider.</dd></div><div><dt>Selection status</dt><dd>Fallback</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Likely higher-cost path; validate only if needed.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Disable masked calls and retain chat/voice-note alternatives; never reveal real phone numbers.</dd></div>
+        <div><dt>Fallback</dt><dd>Feature disablement, then the next validated provider candidate; chat remains available</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-16">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-17" data-technical-record data-domain="Hosting">
+    <summary>
+      <span class="technical-record-id">PROVIDER-17</span>
+      <span class="technical-record-title">DigitalOcean</span>
+      <span class="technical-record-badges"><span>Hosting</span><span class="status status-selected-unverified">selected-unverified</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Active production hosting baseline.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>App server, data server, monitoring server and Spaces object storage.</dd></div><div><dt>Selection status</dt><dd>Selected production infrastructure</dd></div><div><dt>Owner</dt><dd>Infrastructure Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use DigitalOcean production sizing and monitor before scaling.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Enter the relevant incident runbook, protect data integrity and restore only from verified evidence.</dd></div>
+        <div><dt>Fallback</dt><dd>No automatic provider swap unless the adapter, product state and operations approval explicitly allow it</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-17">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-18" data-technical-record data-domain="Object/Backup Storage">
+    <summary>
+      <span class="technical-record-id">PROVIDER-18</span>
+      <span class="technical-record-title">DigitalOcean Spaces or S3-compatible storage</span>
+      <span class="technical-record-badges"><span>Object/Backup Storage</span><span class="status status-selected-unverified">selected-unverified</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Media, backup and export storage.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Task proof media, backups, generated exports.</dd></div><div><dt>Selection status</dt><dd>Active option</dd></div><div><dt>Owner</dt><dd>Infrastructure Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Use signed URLs, lifecycle policies and backup restore tests.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Enter the relevant incident runbook, protect data integrity and restore only from verified evidence.</dd></div>
+        <div><dt>Fallback</dt><dd>No automatic provider swap unless the adapter, product state and operations approval explicitly allow it</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-18">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-19" data-technical-record data-domain="Domain">
+    <summary>
+      <span class="technical-record-id">PROVIDER-19</span>
+      <span class="technical-record-title">WhoGoHost</span>
+      <span class="technical-record-badges"><span>Domain</span><span class="status status-selected-unverified">selected-unverified</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Domain registrar for work2cash.ng.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Domain purchase and DNS ownership.</dd></div><div><dt>Selection status</dt><dd>Active provider</dd></div><div><dt>Owner</dt><dd>Infrastructure Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Domain baseline: ₦9,200 + 7.5% VAT = ₦690; total ₦9,890 excluding bank transfer/payment charges.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Enter the relevant incident runbook, protect data integrity and restore only from verified evidence.</dd></div>
+        <div><dt>Fallback</dt><dd>No automatic provider swap unless the adapter, product state and operations approval explicitly allow it</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-19">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="provider-20" data-technical-record data-domain="Analytics">
+    <summary>
+      <span class="technical-record-id">PROVIDER-20</span>
+      <span class="technical-record-title">Firebase Analytics</span>
+      <span class="technical-record-badges"><span>Analytics</span><span class="status status-deferred">deferred</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Basic mobile analytics.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Work2Cash use</dt><dd>Event-level mobile analytics where useful.</dd></div><div><dt>Selection status</dt><dd>Deferred/light usage</dd></div><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Sandbox validation</dt><dd>Evidence not recorded in the migrated baseline</dd></div><div><dt>Production validation</dt><dd>Not approved by this migration</dd></div><div><dt>Pricing</dt><dd>Legacy July 2026 baseline only; verify against an official source before spend or go-live</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Product analytics is intentionally not a core MVP dependency.</li><li>Use a provider adapter; controllers and use cases do not call provider SDKs directly.</li><li>Never commit keys, secrets, raw provider payloads or production credentials.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Provider adapter</li><li>ProviderRequestLog</li><li>Feature/config guard</li><li>Operations owner</li></ul></section>
+      </div>
+      <section><h4>Failure, fallback and disablement</h4><dl class="record-facts">
+        <div><dt>Failure state</dt><dd>Firebase Analytics failure must produce a visible degraded or retryable state with logged evidence.</dd></div>
+        <div><dt>Fallback</dt><dd>No automatic provider swap unless the adapter, product state and operations approval explicitly allow it</dd></div>
+        <div><dt>Disablement</dt><dd>Disable when signature/security validation fails, costs exceed guardrails, reliability is unsafe or the responsible owner declares an incident.</dd></div>
+      </dl></section>
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Official pricing URL, verification date, sandbox evidence and production approval are required before go-live.</li><li>Confirm data-processing, retention, webhook/signature and support-escalation terms.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Provider Integration and Cost Control v1; commercial facts require revalidation</p>
+      <a class="record-anchor" href="#provider-20">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="runbook-01" data-technical-record data-domain="Operations runbook">
+    <summary>
+      <span class="technical-record-id">RUNBOOK-01</span>
+      <span class="technical-record-title">Deployment</span>
+      <span class="technical-record-badges"><span>Operations runbook</span><span class="status status-operational-baseline">operational-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Deploy an approved artifact after checks and migration review.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Owner</dt><dd>Release owner</dd></div><div><dt>Trigger</dt><dd>Deployment is required or its monitoring alert fires.</dd></div><div><dt>Safe state</dt><dd>Stop and rollback if health, migrations or smoke tests fail.</dd></div><div><dt>Evidence</dt><dd>Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Stop and rollback if health, migrations or smoke tests fail.</li><li>Escalate when authority, data integrity, money state, security or recovery evidence is uncertain.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Monitoring/alert</li><li>Named owner</li><li>Relevant architecture/provider record</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Phase 4 operational migration based on the provisional architecture baseline</p>
+      <a class="record-anchor" href="#runbook-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="runbook-02" data-technical-record data-domain="Operations runbook">
+    <summary>
+      <span class="technical-record-id">RUNBOOK-02</span>
+      <span class="technical-record-title">Rollback</span>
+      <span class="technical-record-badges"><span>Operations runbook</span><span class="status status-operational-baseline">operational-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Freeze further rollout, preserve evidence and restore the last verified application artifact.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Owner</dt><dd>Release owner</dd></div><div><dt>Trigger</dt><dd>Rollback is required or its monitoring alert fires.</dd></div><div><dt>Safe state</dt><dd>Never reverse an irreversible database change without a reviewed recovery plan.</dd></div><div><dt>Evidence</dt><dd>Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Never reverse an irreversible database change without a reviewed recovery plan.</li><li>Escalate when authority, data integrity, money state, security or recovery evidence is uncertain.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Monitoring/alert</li><li>Named owner</li><li>Relevant architecture/provider record</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Phase 4 operational migration based on the provisional architecture baseline</p>
+      <a class="record-anchor" href="#runbook-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="runbook-03" data-technical-record data-domain="Operations runbook">
+    <summary>
+      <span class="technical-record-id">RUNBOOK-03</span>
+      <span class="technical-record-title">PostgreSQL backup</span>
+      <span class="technical-record-badges"><span>Operations runbook</span><span class="status status-operational-baseline">operational-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Create encrypted off-server backup, verify completion/checksum and record freshness.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Owner</dt><dd>Infrastructure Lead</dd></div><div><dt>Trigger</dt><dd>PostgreSQL backup is required or its monitoring alert fires.</dd></div><div><dt>Safe state</dt><dd>Alert on failure or staleness; server-local files alone do not count.</dd></div><div><dt>Evidence</dt><dd>Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Alert on failure or staleness; server-local files alone do not count.</li><li>Escalate when authority, data integrity, money state, security or recovery evidence is uncertain.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Monitoring/alert</li><li>Named owner</li><li>Relevant architecture/provider record</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Phase 4 operational migration based on the provisional architecture baseline</p>
+      <a class="record-anchor" href="#runbook-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="runbook-04" data-technical-record data-domain="Operations runbook">
+    <summary>
+      <span class="technical-record-id">RUNBOOK-04</span>
+      <span class="technical-record-title">PostgreSQL restore</span>
+      <span class="technical-record-badges"><span>Operations runbook</span><span class="status status-operational-baseline">operational-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Restore into an isolated target, validate schema and critical money/audit records, then obtain cutover authority.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Owner</dt><dd>Infrastructure Lead</dd></div><div><dt>Trigger</dt><dd>PostgreSQL restore is required or its monitoring alert fires.</dd></div><div><dt>Safe state</dt><dd>Do not overwrite production as the first restore test.</dd></div><div><dt>Evidence</dt><dd>Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Do not overwrite production as the first restore test.</li><li>Escalate when authority, data integrity, money state, security or recovery evidence is uncertain.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Monitoring/alert</li><li>Named owner</li><li>Relevant architecture/provider record</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Phase 4 operational migration based on the provisional architecture baseline</p>
+      <a class="record-anchor" href="#runbook-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="runbook-05" data-technical-record data-domain="Operations runbook">
+    <summary>
+      <span class="technical-record-id">RUNBOOK-05</span>
+      <span class="technical-record-title">Provider outage</span>
+      <span class="technical-record-badges"><span>Operations runbook</span><span class="status status-operational-baseline">operational-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Mark the provider degraded, preserve pending state, disable unsafe actions and activate only validated fallback.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Trigger</dt><dd>Provider outage is required or its monitoring alert fires.</dd></div><div><dt>Safe state</dt><dd>Never mark provider work successful because a fallback UI appeared.</dd></div><div><dt>Evidence</dt><dd>Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Never mark provider work successful because a fallback UI appeared.</li><li>Escalate when authority, data integrity, money state, security or recovery evidence is uncertain.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Monitoring/alert</li><li>Named owner</li><li>Relevant architecture/provider record</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Phase 4 operational migration based on the provisional architecture baseline</p>
+      <a class="record-anchor" href="#runbook-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="runbook-06" data-technical-record data-domain="Operations runbook">
+    <summary>
+      <span class="technical-record-id">RUNBOOK-06</span>
+      <span class="technical-record-title">Payment reconciliation</span>
+      <span class="technical-record-badges"><span>Operations runbook</span><span class="status status-operational-baseline">operational-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Compare provider events, Payment, ledger and escrow records by reference and request ID.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Owner</dt><dd>Finance Operations</dd></div><div><dt>Trigger</dt><dd>Payment reconciliation is required or its monitoring alert fires.</dd></div><div><dt>Safe state</dt><dd>Apply idempotent correction through governed finance use cases; never edit balances directly.</dd></div><div><dt>Evidence</dt><dd>Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Apply idempotent correction through governed finance use cases; never edit balances directly.</li><li>Escalate when authority, data integrity, money state, security or recovery evidence is uncertain.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Monitoring/alert</li><li>Named owner</li><li>Relevant architecture/provider record</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Phase 4 operational migration based on the provisional architecture baseline</p>
+      <a class="record-anchor" href="#runbook-06">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="runbook-07" data-technical-record data-domain="Operations runbook">
+    <summary>
+      <span class="technical-record-id">RUNBOOK-07</span>
+      <span class="technical-record-title">Queue failure or stalled jobs</span>
+      <span class="technical-record-badges"><span>Operations runbook</span><span class="status status-operational-baseline">operational-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Identify affected queue/job age, stop duplicate producers if necessary and replay only idempotent jobs.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Owner</dt><dd>Backend Lead</dd></div><div><dt>Trigger</dt><dd>Queue failure or stalled jobs is required or its monitoring alert fires.</dd></div><div><dt>Safe state</dt><dd>Preserve failed payload references and correlation evidence.</dd></div><div><dt>Evidence</dt><dd>Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Preserve failed payload references and correlation evidence.</li><li>Escalate when authority, data integrity, money state, security or recovery evidence is uncertain.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Monitoring/alert</li><li>Named owner</li><li>Relevant architecture/provider record</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Phase 4 operational migration based on the provisional architecture baseline</p>
+      <a class="record-anchor" href="#runbook-07">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="runbook-08" data-technical-record data-domain="Operations runbook">
+    <summary>
+      <span class="technical-record-id">RUNBOOK-08</span>
+      <span class="technical-record-title">Object-storage failure</span>
+      <span class="technical-record-badges"><span>Operations runbook</span><span class="status status-operational-baseline">operational-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Disable unsafe upload paths, retain metadata in retryable state and verify bucket/network/credentials.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Owner</dt><dd>Infrastructure Lead</dd></div><div><dt>Trigger</dt><dd>Object-storage failure is required or its monitoring alert fires.</dd></div><div><dt>Safe state</dt><dd>Never expose storage keys or make private evidence public as a workaround.</dd></div><div><dt>Evidence</dt><dd>Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Never expose storage keys or make private evidence public as a workaround.</li><li>Escalate when authority, data integrity, money state, security or recovery evidence is uncertain.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Monitoring/alert</li><li>Named owner</li><li>Relevant architecture/provider record</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Phase 4 operational migration based on the provisional architecture baseline</p>
+      <a class="record-anchor" href="#runbook-08">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="runbook-09" data-technical-record data-domain="Operations runbook">
+    <summary>
+      <span class="technical-record-id">RUNBOOK-09</span>
+      <span class="technical-record-title">DNS or certificate incident</span>
+      <span class="technical-record-badges"><span>Operations runbook</span><span class="status status-operational-baseline">operational-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Confirm ownership, current records, certificate status and blast radius before controlled correction.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Owner</dt><dd>Infrastructure Lead</dd></div><div><dt>Trigger</dt><dd>DNS or certificate incident is required or its monitoring alert fires.</dd></div><div><dt>Safe state</dt><dd>Protect against unauthorized DNS changes and record every emergency action.</dd></div><div><dt>Evidence</dt><dd>Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Protect against unauthorized DNS changes and record every emergency action.</li><li>Escalate when authority, data integrity, money state, security or recovery evidence is uncertain.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Monitoring/alert</li><li>Named owner</li><li>Relevant architecture/provider record</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Phase 4 operational migration based on the provisional architecture baseline</p>
+      <a class="record-anchor" href="#runbook-09">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="runbook-10" data-technical-record data-domain="Operations runbook">
+    <summary>
+      <span class="technical-record-id">RUNBOOK-10</span>
+      <span class="technical-record-title">Security incident</span>
+      <span class="technical-record-badges"><span>Operations runbook</span><span class="status status-operational-baseline">operational-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Contain access, preserve logs, rotate affected secrets and establish incident command.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Owner</dt><dd>Security Lead</dd></div><div><dt>Trigger</dt><dd>Security incident is required or its monitoring alert fires.</dd></div><div><dt>Safe state</dt><dd>Do not delete evidence or publish personal/security details in this repository.</dd></div><div><dt>Evidence</dt><dd>Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Do not delete evidence or publish personal/security details in this repository.</li><li>Escalate when authority, data integrity, money state, security or recovery evidence is uncertain.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Monitoring/alert</li><li>Named owner</li><li>Relevant architecture/provider record</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Phase 4 operational migration based on the provisional architecture baseline</p>
+      <a class="record-anchor" href="#runbook-10">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="runbook-11" data-technical-record data-domain="Operations runbook">
+    <summary>
+      <span class="technical-record-id">RUNBOOK-11</span>
+      <span class="technical-record-title">Data-exposure incident</span>
+      <span class="technical-record-badges"><span>Operations runbook</span><span class="status status-operational-baseline">operational-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Stop further exposure, identify affected data/people, preserve evidence and follow notification/legal decision processes.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Owner</dt><dd>Privacy and Security Lead</dd></div><div><dt>Trigger</dt><dd>Data-exposure incident is required or its monitoring alert fires.</dd></div><div><dt>Safe state</dt><dd>Do not copy exposed data into tickets, chat or documentation.</dd></div><div><dt>Evidence</dt><dd>Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Do not copy exposed data into tickets, chat or documentation.</li><li>Escalate when authority, data integrity, money state, security or recovery evidence is uncertain.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Monitoring/alert</li><li>Named owner</li><li>Relevant architecture/provider record</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Phase 4 operational migration based on the provisional architecture baseline</p>
+      <a class="record-anchor" href="#runbook-11">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="runbook-12" data-technical-record data-domain="Operations runbook">
+    <summary>
+      <span class="technical-record-id">RUNBOOK-12</span>
+      <span class="technical-record-title">Capacity and cost review</span>
+      <span class="technical-record-badges"><span>Operations runbook</span><span class="status status-operational-baseline">operational-baseline</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Review utilization, queue age, provider usage and forecast before resizing or enabling paid features.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Owner</dt><dd>Infrastructure and Finance</dd></div><div><dt>Trigger</dt><dd>Capacity and cost review is required or its monitoring alert fires.</dd></div><div><dt>Safe state</dt><dd>Scaling or provider changes require evidence, owner and budget approval.</dd></div><div><dt>Evidence</dt><dd>Incident/request ID, actor, timestamps, before/after state, validation result and follow-up owner</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Scaling or provider changes require evidence, owner and budget approval.</li><li>Escalate when authority, data integrity, money state, security or recovery evidence is uncertain.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Monitoring/alert</li><li>Named owner</li><li>Relevant architecture/provider record</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Commands, hostnames, credentials and production-specific contacts belong in protected operational systems, not this public repository.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Phase 4 operational migration based on the provisional architecture baseline</p>
+      <a class="record-anchor" href="#runbook-12">Link directly to this record</a>
+    </div>
+  </details>
+      <div class="technical-empty" data-technical-empty hidden><h2>No matching records</h2><p>Clear the search or select another domain.</p></div>
+    </section>
+  </main>
+  <footer>Work2Cash technical reference · Generated from <code>content/technical/platform.json</code></footer>
+  <script src="../../assets/js/technical-library.js"></script>
+</body>
+</html>
