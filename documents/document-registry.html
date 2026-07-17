@@ -14,7 +14,7 @@
   <main id="content" class="index-shell" tabindex="-1">
     <header class="index-hero"><div class="eyebrow">Governance · Phase 0</div><h1>Document Registry</h1><p>Check ownership, lifecycle, approval and authority before relying on a document. Published does not necessarily mean approved.</p></header>
     <section class="notice" aria-labelledby="registry-warning"><h2 id="registry-warning">Current authority warning</h2><p>The Main Enterprise Architecture v1 is the designated provisional baseline, but formal approval is pending. Material cross-document conflicts must be resolved before implementation.</p></section>
-    <section class="registry-summary" aria-label="Registry summary"><div><strong>26</strong><span>registered families</span></div><div><strong>3</strong><span>active</span></div><div><strong>18</strong><span>pending approval</span></div><div><strong>17</strong><span>legacy families</span></div></section>
+    <section class="registry-summary" aria-label="Registry summary"><div><strong>26</strong><span>registered families</span></div><div><strong>4</strong><span>active</span></div><div><strong>15</strong><span>pending approval</span></div><div><strong>17</strong><span>legacy families</span></div></section>
     <section class="document-content registry-content" aria-labelledby="register-title">
       <p class="generated-note"><strong>Generated registry:</strong> Edit <code>governance/document-registry.json</code>, not this page.</p>
       <h2 id="register-title">Registered documents</h2>
@@ -65,21 +65,21 @@
     </tr>
 <tr id="flow-mobile-001">
       <td><strong>FLOW-MOBILE-001</strong><br><span class="registry-type">flow-catalogue</span></td>
-      <td><strong>Mobile Flow Catalogue v1</strong><p>Will be split into independently readable canonical flow sources.</p></td>
-      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td><strong>Mobile Flow Catalogue v1</strong><p>Approved behavior was migrated into 37 standalone mobile flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>approved approval<br>published</td>
       <td>Product Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Backend Lead, QA</small></td>
       <td>legacy-transitional-source<br><small>Main Enterprise Architecture v1</small></td>
       <td><strong>Source</strong><br><a href="../documents/mobile-flow-catalogue-v1.html">documents/mobile-flow-catalogue-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/mobile-flow-catalogue-v1.md">documents/agent-md/mobile-flow-catalogue-v1.md</a></li></ul></td>
-      <td>Not recorded<br><small>Next: Not scheduled</small></td>
+      <td>2026-07-17<br><small>Next: Not scheduled</small></td>
     </tr>
 <tr id="flow-admin-001">
       <td><strong>FLOW-ADMIN-001</strong><br><span class="registry-type">flow-catalogue</span></td>
-      <td><strong>Admin Flow Catalogue v1</strong><p>Will be split into independently readable canonical flow sources.</p></td>
-      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td><strong>Admin Flow Catalogue v1</strong><p>Approved behavior was migrated into 35 standalone admin flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>approved approval<br>published</td>
       <td>Product Lead<br><small>Reviewers: Technical Lead, Admin Lead, Backend Lead, Operations, QA</small></td>
       <td>legacy-transitional-source<br><small>Main Enterprise Architecture v1</small></td>
       <td><strong>Source</strong><br><a href="../documents/admin-flow-catalogue-v1.html">documents/admin-flow-catalogue-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/admin-flow-catalogue-v1.md">documents/agent-md/admin-flow-catalogue-v1.md</a></li></ul></td>
-      <td>Not recorded<br><small>Next: Not scheduled</small></td>
+      <td>2026-07-17<br><small>Next: Not scheduled</small></td>
     </tr>
 <tr id="flow-align-001">
       <td><strong>FLOW-ALIGN-001</strong><br><span class="registry-type">decision-review</span></td>
@@ -245,12 +245,12 @@
     </tr>
 <tr id="flow-lib-001">
       <td><strong>FLOW-LIB-001</strong><br><span class="registry-type">flow-migration-program</span></td>
-      <td><strong>Phase 2 Standalone Flow Library</strong><p>Phase 2 is in progress. Three of 72 standalone canonical flow sources are approved in the Admin Access batch; the overall library remains in review and the legacy catalogues remain necessary for 69 unmigrated flows.</p></td>
-      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td><strong>Phase 2 Standalone Flow Library</strong><p>Active canonical flow family containing all 72 approved standalone sources: 24 mobile main, 13 mobile subflows, 24 admin main and 11 admin subflows. Human/agent indexes, dependency maps and optional combined catalogues are generated.</p></td>
+      <td><span class="status status-active">active</span><br>approved approval<br>published</td>
       <td>Product Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Admin Lead, Backend Lead, Security and Privacy, QA</small></td>
-      <td>canonical-source<br><small>Approved Phase 1 reference format and the provisional mobile/admin flow catalogues</small></td>
-      <td><strong>Source</strong><br><a href="../logs/phase-2-execution-log.md">logs/phase-2-execution-log.md</a><br><strong>Artifacts</strong><ul><li><a href="../logs/phase-2-flow-migration-inventory.md">logs/phase-2-flow-migration-inventory.md</a></li><li><a href="../documents/flows/index.html">documents/flows/index.html</a></li><li><a href="../documents/agent-md/flows/README.md">documents/agent-md/flows/README.md</a></li></ul></td>
-      <td>2026-07-17<br><small>Next: Not scheduled</small></td>
+      <td>canonical-source<br><small>Approved Mobile and Admin Flow Catalogue v1 behavior in the approved Phase 1 standalone format</small></td>
+      <td><strong>Source</strong><br><a href="../logs/phase-2-execution-log.md">logs/phase-2-execution-log.md</a><br><strong>Artifacts</strong><ul><li><a href="../logs/phase-2-flow-migration-inventory.md">logs/phase-2-flow-migration-inventory.md</a></li><li><a href="../documents/flows/index.html">documents/flows/index.html</a></li><li><a href="../documents/agent-md/flows/README.md">documents/agent-md/flows/README.md</a></li><li><a href="../documents/flows/dependency-map.html">documents/flows/dependency-map.html</a></li><li><a href="../documents/agent-md/flows/dependency-map.md">documents/agent-md/flows/dependency-map.md</a></li><li><a href="../documents/flows/combined-flow-library.html">documents/flows/combined-flow-library.html</a></li><li><a href="../documents/agent-md/flows/combined-flow-library.md">documents/agent-md/flows/combined-flow-library.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
     </tr></tbody></table></div>
     </section>
   </main>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Report / Dispute — Work2Cash Phase 2 flows documentation.">
+  <title>SF-08 — Report / Dispute | Work2Cash Docs</title>
+  <link rel="stylesheet" href="../../../../assets/css/pilot-docs.css">
+  <script src="../../../../assets/js/guard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to document</a>
+  <header class="site-header">
+    <a class="brand" href="../../../../index.html">Work2Cash Docs</a>
+    <nav aria-label="Document navigation">
+      <a href="../../index.html">Phase 2 flows</a>
+      <a href="../../../agent-md/flows/mobile/subflows/SF-08-report-dispute.md" download>Download agent Markdown</a>
+    </nav>
+  </header>
+  <div class="page-shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Flows</a><span aria-hidden="true">/</span><span>Mobile / Subflows</span>
+    </nav>
+    <header class="document-hero">
+      <div class="eyebrow">reusable-subflow · SF-08</div>
+      <h1>Report / Dispute</h1>
+      <p class="audience"><strong>Written for:</strong> Non-technical team, Junior mobile developers, Product, QA, AI agents</p>
+      <div class="status-row">
+        <span class="status status-approved">approved</span>
+        <span>Version 0.1</span>
+        <span>Reviewed 2026-07-17</span>
+        <span>Next review 2026-10-17</span>
+      </div>
+    </header>
+    <div class="document-grid">
+      <aside>
+        <nav class="toc" aria-labelledby="toc-title">
+    <h2 id="toc-title">On this page</h2>
+    <ol><li class="toc-level-2"><a href="#in-plain-english">In plain English</a></li><li class="toc-level-2"><a href="#why-it-is-reusable">Why it is reusable</a></li><li class="toc-level-2"><a href="#called-by">Called by</a></li><li class="toc-level-2"><a href="#inputs">Inputs</a></li><li class="toc-level-2"><a href="#steps">Steps</a></li><li class="toc-level-2"><a href="#outputs">Outputs</a></li><li class="toc-level-2"><a href="#success-return-behavior">Success return behavior</a></li><li class="toc-level-2"><a href="#failure-return-behavior">Failure return behavior</a></li><li class="toc-level-2"><a href="#permissions-and-sensitive-data">Permissions and sensitive data</a></li><li class="toc-level-2"><a href="#implementation-map">Implementation map</a></li><li class="toc-level-2"><a href="#acceptance-criteria">Acceptance criteria</a></li><li class="toc-level-2"><a href="#required-tests">Required tests</a></li></ol>
+  </nav>
+        <section class="metadata" aria-labelledby="metadata-title">
+          <h2 id="metadata-title">Document details</h2>
+          <dl>
+            <dt>Owner</dt><dd>Product Lead</dd>
+            <dt>Reviewers</dt><dd>Technical Lead, Mobile Lead, Backend Lead, QA</dd>
+            <dt>Authority</dt><dd>Approved Mobile Flow Catalogue v1 behavior and approved Phase 1 standalone format</dd>
+            <dt>Related</dt><dd>MF-10, MF-11, MF-12, MF-14, MF-16, MF-22, MF-23</dd>
+          </dl>
+        </section>
+      </aside>
+      <main id="content" class="document-content" tabindex="-1">
+        <p class="generated-note"><strong>Phase 2 flows:</strong> This page is generated from <code>content/flows/mobile/subflows/SF-08-report-dispute.md</code>. Edit the canonical Markdown source, not this HTML file.</p>
+        <h2 id="in-plain-english">In plain English</h2>
+<p>Turns task problems into structured evidence-backed reports for admin review.</p>
+<h2 id="why-it-is-reusable">Why it is reusable</h2>
+<p>Multiple approved flows need this behavior or recovery pattern. Keeping it in SF-08 gives every caller the same inputs, result meaning, privacy rules and safe return behavior.</p>
+<h2 id="called-by">Called by</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Calling flow</th><th scope="col">When it calls this subflow</th><th scope="col">Return destination</th></tr></thead><tbody><tr><td>MF-10 — Active Task Execution</td><td>When the caller needs report / dispute to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr><tr><td>MF-11 — Task Owner Rejection</td><td>When the caller needs report / dispute to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr><tr><td>MF-12 — Cancellation / No-Show</td><td>When the caller needs report / dispute to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr><tr><td>MF-14 — Completion and Settlement</td><td>When the caller needs report / dispute to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr><tr><td>MF-16 — Support Live Chat</td><td>When the caller needs report / dispute to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr><tr><td>MF-22 — Ratings and Reviews</td><td>When the caller needs report / dispute to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr><tr><td>MF-23 — Emergency Support</td><td>When the caller needs report / dispute to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr></tbody></table></div>
+<h2 id="inputs">Inputs</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Input</th><th scope="col">Source</th><th scope="col">Required validation</th></tr></thead><tbody><tr><td>None</td><td>Calling flow or authoritative backend state</td><td>Must exist, belong to the authorized actor and still be current.</td></tr></tbody></table></div>
+<h2 id="steps">Steps</h2>
+<ol><li><strong>Caller:</strong> Select task-linked report reason.</li><li><strong>System/Actor:</strong> Add description.</li><li><strong>System/Actor:</strong> Upload evidence if needed.</li><li><strong>System/Actor:</strong> Submit report.</li><li><strong>System/Actor:</strong> Track report status.</li><li><strong>System/Actor:</strong> Admin resolves, dismisses, escalates, or requests evidence.</li></ol>
+<h2 id="outputs">Outputs</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Output</th><th scope="col">Consumer</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td>Completed</td><td>Calling flow</td><td>Confirmed terminal result returned by SF-08.</td></tr><tr><td>Failed/retry</td><td>Calling flow</td><td>Confirmed terminal result returned by SF-08.</td></tr><tr><td>Abandoned</td><td>Calling flow</td><td>Confirmed terminal result returned by SF-08.</td></tr><tr><td>Pending where provider review is involved</td><td>Calling flow</td><td>Confirmed terminal result returned by SF-08.</td></tr></tbody></table></div>
+<h2 id="success-return-behavior">Success return behavior</h2>
+<p>After success, SF-08 returns control according to: Returns to the calling parent flow. The caller refreshes authoritative state before presenting the result.</p>
+<h2 id="failure-return-behavior">Failure return behavior</h2>
+<ul><li><strong>This subflow fails or is abandoned:</strong> SF-10 Status Recovery / Resume where applicable. The calling flow returns the user to the last valid checkpoint.</li><li><strong>User lacks required permission/contact/provider response:</strong> SF-09 Permission Recovery or provider retry. The app explains the blocker and offers the safest available path.</li><li>The caller resumes at its last valid checkpoint and never assumes the subflow succeeded.</li></ul>
+<h2 id="permissions-and-sensitive-data">Permissions and sensitive data</h2>
+<ul><li>The calling flow&#39;s authentication and permission scope continues to apply inside this subflow.</li><li>Return only the minimum result the caller needs; do not leak protected identity, address, evidence, payment or operational data.</li><li>Logs and errors must not contain credentials, secrets, raw provider payloads or unrestricted personal data.</li><li>Frontend loading or navigation is not proof that the backend operation succeeded.</li></ul>
+<h2 id="implementation-map">Implementation map</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Surface</th><th scope="col">References</th><th scope="col">Responsibility</th></tr></thead><tbody><tr><td>UI</td><td>Shared mobile subflow component/state</td><td>Present consistent input, result and recovery behavior to every caller.</td></tr><tr><td>API/data</td><td>Applicable API and data-domain sources, reconciled during Phase 4</td><td>Validate input and return authoritative, reusable output without inventing an ID mapping.</td></tr><tr><td>Caller contract</td><td>The <code>Called by</code>, <code>Inputs</code>, <code>Outputs</code> and return sections above</td><td>Defines how parent flows enter and resume this subflow.</td></tr></tbody></table></div>
+<h2 id="acceptance-criteria">Acceptance criteria</h2>
+<ul><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Every named caller can enter SF-08 with a clear input and receive a clear success or safe failure result.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Success returns to the caller&#39;s named next step; failure returns to its last valid checkpoint.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> A non-technical reader can explain what the subflow repairs and a junior developer can explain its caller contract.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> No caller bypasses authentication, permission, privacy or backend-authority rules.</li></ul>
+<h2 id="required-tests">Required tests</h2>
+<ul><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Successful use from each caller category.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Missing/invalid input and insufficient permission.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Network interruption, retry, abandonment and re-entry.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Duplicate submission or late result cannot corrupt a later confirmed caller state.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Sensitive-data and error-log redaction.</li></ul>
+      </main>
+    </div>
+  </div>
+  <footer>Work2Cash documentation · Phase 2 flows</footer>
+</body>
+</html>

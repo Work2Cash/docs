@@ -2,6 +2,7 @@
 
 These files are generated from the canonical sources in `content/pilots/`. Do not edit generated files directly.
 
+
 | ID | Document | Type | Status |
 | --- | --- | --- | --- |
 | CONTRACT-KYC-REVIEW | [KYC Review Contract Group](contracts/kyc-review-contract-group.md) | api-contract-group | approved-reference |

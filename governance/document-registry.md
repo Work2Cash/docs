@@ -29,8 +29,8 @@
 | AGENT-GUIDE-001 | Work2Cash AI Agent Repository Instructions | active | approved | Technical Lead | canonical-source | `AGENTS.md`; `documents/downloads/AGENTS.md` |
 | ARCH-001 | Main Enterprise Architecture v1 | in-review | pending | Technical Lead | legacy-transitional-source | `documents/main-enterprise-architecture-v1.html`; `documents/agent-md/main-enterprise-architecture-v1.md` |
 | DESIGN-001 | Screen To Feature Map v1 | in-review | pending | Product Lead | legacy-transitional-source | `documents/screen-to-feature-map-v1.html`; `documents/agent-md/screen-to-feature-map-v1.md` |
-| FLOW-MOBILE-001 | Mobile Flow Catalogue v1 | in-review | pending | Product Lead | legacy-transitional-source | `documents/mobile-flow-catalogue-v1.html`; `documents/agent-md/mobile-flow-catalogue-v1.md` |
-| FLOW-ADMIN-001 | Admin Flow Catalogue v1 | in-review | pending | Product Lead | legacy-transitional-source | `documents/admin-flow-catalogue-v1.html`; `documents/agent-md/admin-flow-catalogue-v1.md` |
+| FLOW-MOBILE-001 | Mobile Flow Catalogue v1 | superseded | approved | Product Lead | legacy-transitional-source | `documents/mobile-flow-catalogue-v1.html`; `documents/agent-md/mobile-flow-catalogue-v1.md` |
+| FLOW-ADMIN-001 | Admin Flow Catalogue v1 | superseded | approved | Product Lead | legacy-transitional-source | `documents/admin-flow-catalogue-v1.html`; `documents/agent-md/admin-flow-catalogue-v1.md` |
 | FLOW-ALIGN-001 | Flow Alignment Review v1 | in-review | pending | Product Lead | legacy-transitional-source | `documents/flow-alignment-review-v1.html`; `documents/agent-md/flow-alignment-review-v1.md` |
 | LEGAL-001 | Legal and User-Facing Documents Pack v1 | in-review | pending | Product Lead | legacy-transitional-source | `documents/legal_user_facing_documents_pack_v1.html`; `documents/agent-md/legal_user_facing_documents_pack_v1.md` |
 | CONTRACT-001 | API and Socket Contract Specification v1 | in-review | pending | Backend Lead | legacy-transitional-source | `documents/api-socket-contract-specification-v1.html`; `documents/agent-md/api-socket-contract-specification-v1.md` |
@@ -49,7 +49,7 @@
 | PILOT-KYC-CONTRACT-001 | KYC Review Contract Group Pilot | approved | approved | Backend Lead | canonical-source | `content/pilots/contracts/kyc-review-contract-group.md`; `documents/pilots/contracts/kyc-review-contract-group.html`; `documents/agent-md/pilots/contracts/kyc-review-contract-group.md` |
 | PILOT-KYC-DATA-001 | Tasker Activation and KYC Data Domain Pilot | approved | approved | Backend Lead | canonical-source | `content/pilots/data/kyc-domain.md`; `documents/pilots/data/kyc-domain.html`; `documents/agent-md/pilots/data/kyc-domain.md` |
 | PILOT-QA-AF04-001 | AF-04 KYC Review Reference QA Suite | approved | approved | QA Lead | canonical-source | `content/pilots/qa/AF-04-kyc-review-suite.md`; `documents/pilots/qa/AF-04-kyc-review-suite.html`; `documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md` |
-| FLOW-LIB-001 | Phase 2 Standalone Flow Library | in-review | pending | Product Lead | canonical-source | `logs/phase-2-execution-log.md`; `logs/phase-2-flow-migration-inventory.md`; `documents/flows/index.html`; `documents/agent-md/flows/README.md` |
+| FLOW-LIB-001 | Phase 2 Standalone Flow Library | active | approved | Product Lead | canonical-source | `logs/phase-2-execution-log.md`; `logs/phase-2-flow-migration-inventory.md`; `documents/flows/index.html`; `documents/agent-md/flows/README.md`; `documents/flows/dependency-map.html`; `documents/agent-md/flows/dependency-map.md`; `documents/flows/combined-flow-library.html`; `documents/agent-md/flows/combined-flow-library.md` |
 
 ## Detailed records
 
@@ -182,10 +182,10 @@ Phase 0 reconciles known provider, auto-accept and admin-reassignment drift.
 | Owner | Product Lead |
 | Required reviewers | Technical Lead, Mobile Lead, Backend Lead, QA |
 | Version | 1 |
-| Lifecycle | in-review |
-| Approval | pending |
+| Lifecycle | superseded |
+| Approval | approved |
 | Publication | published |
-| Last reviewed | Not recorded |
+| Last reviewed | 2026-07-17 |
 | Next review | Not scheduled |
 | Authority | Main Enterprise Architecture v1 |
 | Artifact class | legacy-transitional-source |
@@ -195,7 +195,7 @@ Phase 0 reconciles known provider, auto-accept and admin-reassignment drift.
 | Supersedes | None |
 | Tags | flow-catalogue |
 
-Will be split into independently readable canonical flow sources.
+Approved behavior was migrated into 37 standalone mobile flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.
 
 ### FLOW-ADMIN-001 — Admin Flow Catalogue v1
 
@@ -206,10 +206,10 @@ Will be split into independently readable canonical flow sources.
 | Owner | Product Lead |
 | Required reviewers | Technical Lead, Admin Lead, Backend Lead, Operations, QA |
 | Version | 1 |
-| Lifecycle | in-review |
-| Approval | pending |
+| Lifecycle | superseded |
+| Approval | approved |
 | Publication | published |
-| Last reviewed | Not recorded |
+| Last reviewed | 2026-07-17 |
 | Next review | Not scheduled |
 | Authority | Main Enterprise Architecture v1 |
 | Artifact class | legacy-transitional-source |
@@ -219,7 +219,7 @@ Will be split into independently readable canonical flow sources.
 | Supersedes | None |
 | Tags | flow-catalogue |
 
-Will be split into independently readable canonical flow sources.
+Approved behavior was migrated into 35 standalone admin flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.
 
 ### FLOW-ALIGN-001 — Flow Alignment Review v1
 
@@ -661,29 +661,27 @@ Approved Phase 1 reference with eleven executable cases; deployed build, migrati
 | Audience | Non-technical teams, Mobile, Admin, Backend, QA, AI agents |
 | Owner | Product Lead |
 | Required reviewers | Technical Lead, Mobile Lead, Admin Lead, Backend Lead, Security and Privacy, QA |
-| Version | 0.1 |
-| Lifecycle | in-review |
-| Approval | pending |
+| Version | 1.0 |
+| Lifecycle | active |
+| Approval | approved |
 | Publication | published |
 | Last reviewed | 2026-07-17 |
-| Next review | Not scheduled |
-| Authority | Approved Phase 1 reference format and the provisional mobile/admin flow catalogues |
+| Next review | 2026-10-17 |
+| Authority | Approved Mobile and Admin Flow Catalogue v1 behavior in the approved Phase 1 standalone format |
 | Artifact class | canonical-source |
 | Current source | `logs/phase-2-execution-log.md` |
-| Other artifacts | `logs/phase-2-flow-migration-inventory.md`, `documents/flows/index.html`, `documents/agent-md/flows/README.md` |
+| Other artifacts | `logs/phase-2-flow-migration-inventory.md`, `documents/flows/index.html`, `documents/agent-md/flows/README.md`, `documents/flows/dependency-map.html`, `documents/agent-md/flows/dependency-map.md`, `documents/flows/combined-flow-library.html`, `documents/agent-md/flows/combined-flow-library.md` |
 | Migration phase | Phase 2 |
-| Supersedes | None |
+| Supersedes | FLOW-MOBILE-001 and FLOW-ADMIN-001 |
 | Tags | flow-library, phase-2, migration |
 
-Phase 2 is in progress. Three of 72 standalone canonical flow sources are approved in the Admin Access batch; the overall library remains in review and the legacy catalogues remain necessary for 69 unmigrated flows.
+Active canonical flow family containing all 72 approved standalone sources: 24 mobile main, 13 mobile subflows, 24 admin main and 11 admin subflows. Human/agent indexes, dependency maps and optional combined catalogues are generated.
 
 
 ## Pending approvals
 
 - [ ] **ARCH-001 — Main Enterprise Architecture v1:** Product Lead, Infrastructure Lead, Security, Finance, Operations.
 - [ ] **DESIGN-001 — Screen To Feature Map v1:** Technical Lead, Mobile Lead, Admin Lead, Backend Lead.
-- [ ] **FLOW-MOBILE-001 — Mobile Flow Catalogue v1:** Technical Lead, Mobile Lead, Backend Lead, QA.
-- [ ] **FLOW-ADMIN-001 — Admin Flow Catalogue v1:** Technical Lead, Admin Lead, Backend Lead, Operations, QA.
 - [ ] **FLOW-ALIGN-001 — Flow Alignment Review v1:** Technical Lead, Mobile Lead, Admin Lead, Backend Lead.
 - [ ] **LEGAL-001 — Legal and User-Facing Documents Pack v1:** Legal reviewer, Technical Lead, Privacy reviewer.
 - [ ] **CONTRACT-001 — API and Socket Contract Specification v1:** Technical Lead, Mobile Lead, Admin Lead, QA.
@@ -697,14 +695,13 @@ Phase 2 is in progress. Three of 72 standalone canonical flow sources are approv
 - [ ] **TEAM-PACKS-001 — Shared Execution Rules and Team Briefs:** Product Lead, Mobile Lead, Admin Lead, Backend Lead.
 - [ ] **WEEK-PACKS-001 — Weekly Execution Packs:** Technical Lead, Product Lead, Team leads.
 - [ ] **FULL-CONTEXT-001 — Work2Cash Full Project Markdown:** Product Lead.
-- [ ] **FLOW-LIB-001 — Phase 2 Standalone Flow Library:** Technical Lead, Mobile Lead, Admin Lead, Backend Lead, Security and Privacy, QA.
 
 ## Legacy migration queue
 
 - [ ] **ARCH-001:** migrate in Phase 4. Formal approval evidence is missing; agent Markdown is a legacy export.
 - [ ] **DESIGN-001:** migrate in Phase 4. Phase 0 reconciles known provider, auto-accept and admin-reassignment drift.
-- [ ] **FLOW-MOBILE-001:** migrate in Phase 2. Will be split into independently readable canonical flow sources.
-- [ ] **FLOW-ADMIN-001:** migrate in Phase 2. Will be split into independently readable canonical flow sources.
+- [ ] **FLOW-MOBILE-001:** migrate in Phase 2. Approved behavior was migrated into 37 standalone mobile flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.
+- [ ] **FLOW-ADMIN-001:** migrate in Phase 2. Approved behavior was migrated into 35 standalone admin flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.
 - [ ] **FLOW-ALIGN-001:** migrate in Phase 5. Provisional decision tracker until decisions are moved into governed records.
 - [ ] **LEGAL-001:** migrate in Phase 5. Publication is not legal approval; subject-matter review remains required.
 - [ ] **CONTRACT-001:** migrate in Phase 4. Published contract baseline with known gaps; do not invent missing contracts.

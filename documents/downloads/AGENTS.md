@@ -42,10 +42,11 @@ If no active week is identified in the registry or execution index, ask the user
 
 ## Where to download context
 
-- Mobile flows: open **Mobile Flow Catalogue v1** and select **Download agent Markdown**.
-- Admin flows: open **Admin Flow Catalogue v1** and select **Download agent Markdown**.
-- Backend mobile-facing work: use the relevant Mobile Flow Catalogue section.
-- Backend admin-facing work: also use the relevant Admin Flow Catalogue section.
+- Mobile flows: open **Standalone Flow Library**, select the relevant `MF` or `SF` page and choose **Download agent Markdown**.
+- Admin flows: open **Standalone Flow Library**, select the relevant `AF` or `ASF` page and choose **Download agent Markdown**.
+- Backend mobile-facing work: use the relevant standalone `MF`/`SF` agent Markdown.
+- Backend admin-facing work: use the relevant standalone `AF`/`ASF` agent Markdown.
+- Flow relationships: use the generated **Flow Dependency Map**; use the combined catalogue only for broad cross-flow review.
 - Shared rules and team briefs: use **Team Markdown Downloads** on the relevant build-plan page.
 - Weekly packs: open **Weekly Execution Packs** and select the formally active week.
 - Broad context only: use **Full Project Markdown** from Team Markdown Downloads.
@@ -123,6 +124,7 @@ Do not invent missing endpoint paths, model fields, provider behavior or product
 - Follow `governance/editing-policy.md` and `governance/versioning-policy.md`.
 - Edit canonical sources, not generated outputs.
 - Treat legacy documents as transitional and avoid adding duplicated prose.
+- For flow changes, edit `content/flows/`, then run `node scripts/generate-flow-docs.js` and `node scripts/generate-flow-migration-inventory.js`.
 - Run `node scripts/validate-docs.js` before handoff.
 - Commit feature by feature or fix by fix; do not stack unrelated work.
 

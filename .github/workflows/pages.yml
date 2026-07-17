@@ -30,6 +30,9 @@ jobs:
       - name: Verify generated Phase 2 flow inventory
         run: node scripts/generate-flow-migration-inventory.js --check
 
+      - name: Verify all legacy flows have canonical Phase 2 sources
+        run: node scripts/migrate-legacy-flow-sources.js --check
+
       - name: Verify generated Phase 2 flow documents
         run: node scripts/generate-flow-docs.js --check
 

@@ -459,13 +459,28 @@ function renderHtmlIndex(documents) {
     </article>`;
   }).join("\n");
 
-  const title = FLOW_MODE ? "Phase 2 Flow Library" : "Phase 1 Documentation Pilots";
+  const flowMigrationComplete = FLOW_MODE && documents.length === 72 && documents.every((document) => ["approved", "active"].includes(document.metadata.status));
+  const title = FLOW_MODE ? "Standalone Flow Library" : "Phase 1 Documentation Pilots";
   const description = FLOW_MODE
-    ? "Standalone flows migrated with the approved Phase 1 structure. The library grows batch by batch until it replaces the legacy combined catalogues."
+    ? flowMigrationComplete
+      ? "All 72 approved mobile and admin flows in the standalone format, with explicit dependencies, verbal walkthroughs, next-flow conditions and recovery."
+      : "Standalone flows migrated with the approved Phase 1 structure. The library grows batch by batch until it replaces the legacy combined catalogues."
     : "These pilots test a structure that lets a reader understand one flow or technical area without repeatedly searching other documents. They are not yet replacements for the active catalogues.";
   const notice = FLOW_MODE
-    ? "Migration is in progress. A flow is usable as a Phase 2 migration source only when its page status and migration-inventory record say so; missing flows remain in the legacy catalogues."
+    ? flowMigrationComplete
+      ? "Migration is complete. This is the active flow source; the former mobile and admin combined catalogues are superseded historical evidence."
+      : "Migration is in progress. A flow is usable as a Phase 2 migration source only when its page status and migration-inventory record say so; missing flows remain in the legacy catalogues."
     : "The Phase 1 usability, visual and subject-matter reviews are complete. These are approved reference documents for Phase 2 migration, but they do not replace the complete flow catalogues yet.";
+  const auxiliaryCards = FLOW_MODE ? `<article class="pilot-card">
+      <div class="eyebrow">Relationship reference</div>
+      <h2><a href="dependency-map.html">Flow dependency map</a></h2>
+      <p>Directional dependencies, reusable-subflow calls, callers and possible next flows for all 72 flows.</p>
+    </article>
+    <article class="pilot-card">
+      <div class="eyebrow">Optional combined reference</div>
+      <h2><a href="combined-flow-library.html">Combined flow catalogue</a></h2>
+      <p>All standalone flow content in one generated page. Use individual pages for normal reading.</p>
+    </article>` : "";
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -486,7 +501,7 @@ function renderHtmlIndex(documents) {
       <p>${escapeHtml(description)}</p>
     </header>
     <section class="notice" aria-labelledby="collection-status"><h2 id="collection-status">${FLOW_MODE ? "Migration status" : "Pilot status"}</h2><p>${escapeHtml(notice)}</p></section>
-    <div class="pilot-grid">${cards}</div>
+    <div class="pilot-grid">${auxiliaryCards}${cards}</div>
   </main>
   <footer>Work2Cash documentation · Generated from canonical Markdown sources</footer>
 </body>
@@ -502,6 +517,7 @@ function renderAgentIndex(documents) {
   return `# Work2Cash ${FLOW_MODE ? "Phase 2 flow" : "Phase 1 pilot"} agent Markdown
 
 These files are generated from the canonical sources in \`${FLOW_MODE ? "content/flows/" : "content/pilots/"}\`. Do not edit generated files directly.
+${FLOW_MODE ? "\n- [Flow dependency map](dependency-map.md)\n- [Optional combined flow catalogue](combined-flow-library.md)\n" : ""}
 
 | ID | Document | Type | Status |
 | --- | --- | --- | --- |
@@ -509,6 +525,142 @@ ${rows}
 
 Regenerate with \`${GENERATOR_COMMAND}\`. Validate without writing with \`${GENERATOR_COMMAND} --check\`.
 `;
+}
+
+function sectionBody(document, title) {
+  const marker = `## ${title}\n`;
+  const start = document.body.indexOf(marker);
+  if (start < 0) return "";
+  const remainder = document.body.slice(start + marker.length);
+  const next = remainder.search(/^## /m);
+  return (next < 0 ? remainder : remainder.slice(0, next)).trim();
+}
+
+function tableBodyRows(markdown) {
+  const rows = markdown.split("\n").filter((line) => /^\s*\|/.test(line));
+  if (rows.length < 3) return [];
+  return rows.slice(2).map(splitTableRow);
+}
+
+function flowIds(value) {
+  return [...new Set([...String(value || "").matchAll(/\b((?:ASF|SF|MF|AF)-\d{2})\b/g)].map((match) => match[1]))];
+}
+
+function dependencyRecord(document) {
+  const isMain = document.metadata.type === "main-flow";
+  const dependencyRows = tableBodyRows(sectionBody(document, "Dependencies explained"));
+  const calledByRows = tableBodyRows(sectionBody(document, "Called by"));
+  const nextRows = tableBodyRows(sectionBody(document, "What happens next"));
+  const dependencies = flowIds(dependencyRows.map((row) => row[0]).join(" "));
+  const callers = flowIds(calledByRows.map((row) => row[0]).join(" "));
+  const next = flowIds(nextRows.map((row) => row[1] || row[0]).join(" "));
+  return {
+    id: document.metadata.id,
+    title: document.metadata.title,
+    type: document.metadata.type,
+    dependencies,
+    calls: dependencies.filter((id) => /^(?:ASF|SF)-/.test(id)),
+    callers: isMain ? [] : callers,
+    next,
+  };
+}
+
+function renderDependencyMarkdown(documents) {
+  const records = documents.map(dependencyRecord);
+  const ids = new Set(records.map((record) => record.id));
+  const unknown = records.flatMap((record) => [...record.dependencies, ...record.calls, ...record.callers, ...record.next]
+    .filter((id) => !ids.has(id)).map((id) => `${record.id} -> ${id}`));
+  if (unknown.length) throw new Error(`dependency map contains unknown flow IDs: ${unknown.join(", ")}`);
+  const rows = records.map((record) => `| ${record.id} | ${record.title} | ${record.dependencies.join(", ") || "None"} | ${record.calls.join(", ") || "None"} | ${record.callers.join(", ") || "Not applicable"} | ${record.next.join(", ") || "Return/terminal only"} |`).join("\n");
+  return `# Work2Cash Flow Dependency Map
+
+> Generated from all canonical sources in \`content/flows/\`. Use an individual flow page for the verbal explanation and selection conditions.
+
+| ID | Flow | Depends on | Calls reusable subflows | Called by | Possible next flows |
+| --- | --- | --- | --- | --- | --- |
+${rows}
+`;
+}
+
+function renderCombinedMarkdown(documents) {
+  const sections = documents.map((document) => {
+    const body = document.body
+      .replace(/^# .+\n+/, "")
+      .replace(/^(#{2,5})\s+/gm, (_match, hashes) => `${hashes}# `);
+    return `## ${document.metadata.id} — ${document.metadata.title}\n\n> Status: ${document.metadata.status}; version ${document.metadata.version}; owner: ${document.metadata.owner}.\n\n${body.trim()}`;
+  }).join("\n\n---\n\n");
+  return `# Work2Cash Combined Standalone Flow Catalogue
+
+> Optional generated reference containing all 72 standalone flows. Prefer individual pages for normal reading and focused AI context.
+
+${sections}
+`;
+}
+
+function renderAuxiliaryHtml(filename, title, description, markdown, agentFilename) {
+  const htmlFile = path.join(HTML_ROOT, filename);
+  const homeUrl = relativeUrl(htmlFile, path.join(ROOT, "index.html"));
+  const collectionUrl = relativeUrl(htmlFile, path.join(HTML_ROOT, "index.html"));
+  const cssUrl = relativeUrl(htmlFile, path.join(ROOT, "assets", "css", "pilot-docs.css"));
+  const guardUrl = relativeUrl(htmlFile, path.join(ROOT, "assets", "js", "guard.js"));
+  const agentUrl = relativeUrl(htmlFile, path.join(AGENT_ROOT, agentFilename));
+  const rendered = renderMarkdown(markdown, { stripFirstHeading: true });
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="${escapeHtml(description)}">
+  <title>${escapeHtml(title)} | Work2Cash Docs</title>
+  <link rel="stylesheet" href="${cssUrl}">
+  <script src="${guardUrl}"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header"><a class="brand" href="${homeUrl}">Work2Cash Docs</a><nav aria-label="Document navigation"><a href="${collectionUrl}">Flow library</a><a href="${agentUrl}" download>Download agent Markdown</a></nav></header>
+  <div class="page-shell">
+    <header class="document-hero"><div class="eyebrow">Phase 2 · Generated reference</div><h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p></header>
+    <div class="document-grid"><aside>${renderToc(rendered.headings)}</aside><main id="content" class="document-content" tabindex="-1"><p class="generated-note"><strong>Generated:</strong> Edit canonical files in <code>content/flows/</code>, then run <code>node scripts/generate-flow-docs.js</code>.</p>${rendered.html}</main></div>
+  </div>
+  <footer>Work2Cash documentation · Phase 2 flows</footer>
+</body>
+</html>
+`;
+}
+
+function validateCompleteFlowLibrary(documents) {
+  if (!FLOW_MODE) return;
+  const groups = {
+    "mobile main": documents.filter((document) => /^MF-/.test(document.metadata.id)),
+    "mobile subflow": documents.filter((document) => /^SF-/.test(document.metadata.id)),
+    "admin main": documents.filter((document) => /^AF-/.test(document.metadata.id)),
+    "admin subflow": documents.filter((document) => /^ASF-/.test(document.metadata.id)),
+  };
+  const expected = { "mobile main": 24, "mobile subflow": 13, "admin main": 24, "admin subflow": 11 };
+  const problems = [];
+  for (const [group, items] of Object.entries(groups)) {
+    if (items.length !== expected[group]) problems.push(`${group}: expected ${expected[group]}, found ${items.length}`);
+  }
+  for (const document of documents) {
+    if (document.metadata.type === "main-flow") {
+      const nextRows = tableBodyRows(sectionBody(document, "What happens next"));
+      const failureRows = tableBodyRows(sectionBody(document, "Failure and recovery"));
+      if (!nextRows.length || nextRows.some((row) => row.length < 3 || row.slice(0, 3).some((cell) => !cell.trim()))) {
+        problems.push(`${document.metadata.id}: next-flow table requires condition, destination and reason`);
+      }
+      if (!failureRows.length || failureRows.some((row) => row.length < 4 || row.slice(0, 4).some((cell) => !cell.trim()))) {
+        problems.push(`${document.metadata.id}: failure table requires failure, visible state, recovery and re-entry`);
+      }
+    } else if (document.metadata.type === "reusable-subflow") {
+      for (const [heading, columns] of [["Called by", 3], ["Inputs", 3], ["Outputs", 3]]) {
+        const rows = tableBodyRows(sectionBody(document, heading));
+        if (!rows.length || rows.some((row) => row.length < columns || row.slice(0, columns).some((cell) => !cell.trim()))) {
+          problems.push(`${document.metadata.id}: ${heading} table requires ${columns} populated columns`);
+        }
+      }
+    }
+  }
+  if (problems.length) throw new Error(`complete flow-library validation failed:\n${problems.map((problem) => `- ${problem}`).join("\n")}`);
 }
 
 function buildExpected(documents) {
@@ -519,6 +671,14 @@ function buildExpected(documents) {
   }
   expected.set(path.join(HTML_ROOT, "index.html"), renderHtmlIndex(documents));
   expected.set(path.join(AGENT_ROOT, "README.md"), renderAgentIndex(documents));
+  if (FLOW_MODE) {
+    const dependencyMarkdown = renderDependencyMarkdown(documents);
+    const combinedMarkdown = renderCombinedMarkdown(documents);
+    expected.set(path.join(AGENT_ROOT, "dependency-map.md"), dependencyMarkdown);
+    expected.set(path.join(HTML_ROOT, "dependency-map.html"), renderAuxiliaryHtml("dependency-map.html", "Flow Dependency Map", "Directional dependencies, reusable calls, callers and possible next flows for all 72 standalone flows.", dependencyMarkdown, "dependency-map.md"));
+    expected.set(path.join(AGENT_ROOT, "combined-flow-library.md"), combinedMarkdown);
+    expected.set(path.join(HTML_ROOT, "combined-flow-library.html"), renderAuxiliaryHtml("combined-flow-library.html", "Combined Standalone Flow Catalogue", "Optional combined reference for all 72 standalone mobile and admin flows.", combinedMarkdown, "combined-flow-library.md"));
+  }
   return expected;
 }
 
@@ -643,6 +803,7 @@ try {
     if (ids.has(document.metadata.id)) throw new Error(`Duplicate document id: ${document.metadata.id}`);
     ids.add(document.metadata.id);
   }
+  validateCompleteFlowLibrary(documents);
   const expected = buildExpected(documents);
   validateExpected(expected);
   if (CHECK_ONLY) check(expected);

@@ -27,7 +27,7 @@ Generated outputs must not be edited directly. Run `node scripts/validate-docs.j
 | `content/flows/` | Phase 2 standalone flow HTML and agent Markdown | `node scripts/generate-flow-docs.js` |
 | Legacy mobile/admin catalogues plus `content/flows/` | Phase 2 migration inventory | `node scripts/generate-flow-migration-inventory.js` |
 
-Add `--check` to any command to verify generated files without rewriting them. Phase 2 migration progress and review gates are recorded in `logs/phase-2-execution-log.md`.
+Add `--check` to any command to verify generated files without rewriting them. Phase 2 is complete; its transformation decision, evidence and technical-mapping follow-up are recorded in `logs/phase-2-execution-log.md`.
 
 ## Legal Documents
 

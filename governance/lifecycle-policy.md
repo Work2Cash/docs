@@ -33,12 +33,13 @@ When two documents disagree, use this order:
 
 If a higher-authority source is only `in-review`, treat it as the designated provisional baseline and report material conflicts instead of silently choosing.
 
-## Current Phase 0 authority state
+## Current authority state
 
 - The Main Enterprise Architecture v1 is the designated controlling baseline, but formal approval evidence is not recorded; its lifecycle status is therefore `in-review`.
-- The other legacy v1 documents are published, provisional supporting baselines with pending approval.
+- Other legacy v1 documents remain published provisional supporting baselines unless their registry entry says otherwise.
 - The document registry and governance policies are active for repository control.
-- Phase 1 pilots are approved migration references. They do not replace provisional catalogue content until the relevant Phase 2 migration is completed and activated.
+- The Phase 2 Standalone Flow Library is the active domain source for mobile and admin flows. The two legacy combined flow catalogues are superseded migration evidence.
+- Phase 1 pilots remain approved historical reference examples; their flow content is incorporated into the active Phase 2 library.
 - The Full Project Markdown bundle is non-canonical and legacy-derived; it must never resolve a conflict by itself.
 
 ## Conflict handling

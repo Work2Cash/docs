@@ -196,10 +196,10 @@
         "QA"
       ],
       "version": "1",
-      "status": "in-review",
-      "approval": "pending",
+      "status": "superseded",
+      "approval": "approved",
       "publication": "published",
-      "lastReviewed": null,
+      "lastReviewed": "2026-07-17",
       "nextReview": null,
       "authority": "Main Enterprise Architecture v1",
       "artifactClass": "legacy-transitional-source",
@@ -208,7 +208,7 @@
         "documents/agent-md/mobile-flow-catalogue-v1.md"
       ],
       "migrationPhase": "Phase 2",
-      "notes": "Will be split into independently readable canonical flow sources.",
+      "notes": "Approved behavior was migrated into 37 standalone mobile flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.",
       "supersedes": null,
       "tags": [
         "flow-catalogue"
@@ -235,10 +235,10 @@
         "QA"
       ],
       "version": "1",
-      "status": "in-review",
-      "approval": "pending",
+      "status": "superseded",
+      "approval": "approved",
       "publication": "published",
-      "lastReviewed": null,
+      "lastReviewed": "2026-07-17",
       "nextReview": null,
       "authority": "Main Enterprise Architecture v1",
       "artifactClass": "legacy-transitional-source",
@@ -247,7 +247,7 @@
         "documents/agent-md/admin-flow-catalogue-v1.md"
       ],
       "migrationPhase": "Phase 2",
-      "notes": "Will be split into independently readable canonical flow sources.",
+      "notes": "Approved behavior was migrated into 35 standalone admin flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.",
       "supersedes": null,
       "tags": [
         "flow-catalogue"
@@ -939,23 +939,27 @@
         "Security and Privacy",
         "QA"
       ],
-      "version": "0.1",
-      "status": "in-review",
-      "approval": "pending",
+      "version": "1.0",
+      "status": "active",
+      "approval": "approved",
       "publication": "published",
       "lastReviewed": "2026-07-17",
-      "nextReview": null,
-      "authority": "Approved Phase 1 reference format and the provisional mobile/admin flow catalogues",
+      "nextReview": "2026-10-17",
+      "authority": "Approved Mobile and Admin Flow Catalogue v1 behavior in the approved Phase 1 standalone format",
       "artifactClass": "canonical-source",
       "currentSource": "logs/phase-2-execution-log.md",
       "artifacts": [
         "logs/phase-2-flow-migration-inventory.md",
         "documents/flows/index.html",
-        "documents/agent-md/flows/README.md"
+        "documents/agent-md/flows/README.md",
+        "documents/flows/dependency-map.html",
+        "documents/agent-md/flows/dependency-map.md",
+        "documents/flows/combined-flow-library.html",
+        "documents/agent-md/flows/combined-flow-library.md"
       ],
       "migrationPhase": "Phase 2",
-      "notes": "Phase 2 is in progress. Three of 72 standalone canonical flow sources are approved in the Admin Access batch; the overall library remains in review and the legacy catalogues remain necessary for 69 unmigrated flows.",
-      "supersedes": null,
+      "notes": "Active canonical flow family containing all 72 approved standalone sources: 24 mobile main, 13 mobile subflows, 24 admin main and 11 admin subflows. Human/agent indexes, dependency maps and optional combined catalogues are generated.",
+      "supersedes": "FLOW-MOBILE-001 and FLOW-ADMIN-001",
       "tags": [
         "flow-library",
         "phase-2",

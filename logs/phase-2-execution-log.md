@@ -6,7 +6,7 @@ Migrate all 72 mobile and admin flows from the two legacy combined catalogues in
 
 ## Current status — 17 July 2026
 
-Phase 2 is **in progress**.
+Phase 2 is **complete**.
 
 - [x] Phase 1 reference format approved.
 - [x] Full legacy inventory defined: 24 mobile main flows, 13 mobile subflows, 24 admin main flows and 11 admin subflows.
@@ -14,35 +14,35 @@ Phase 2 is **in progress**.
 - [x] Migration inventory generator and relationship-ID validation added.
 - [x] Batch 1 started with the closed Admin Access dependency set.
 - [x] Batch 1 migration review completed and approved on 17 July 2026.
-- [ ] All 72 canonical flow sources created.
-- [ ] Human and agent indexes cover all 72 flows.
-- [ ] Dependency maps and optional combined catalogues generated.
-- [ ] Phase 2 exit criteria validated.
+- [x] All 72 canonical flow sources created and approved as readability transformations of previously approved behavior.
+- [x] Human and agent indexes cover all 72 flows.
+- [x] Directional dependency maps and optional combined catalogues generated.
+- [x] Phase 2 structural and relationship exit criteria validated.
 
 ## Migration rules
 
 - The approved Phase 1 templates control document structure.
-- Legacy catalogues remain the provisional behavior source until a migrated flow is reviewed.
+- The legacy flow behavior and the standalone method were already approved; migration does not require a new approval meeting for every flow.
 - Existing architecture, API and data references may be linked; missing contracts must be labeled, not invented.
 - Each main flow must include every dependency needed for verbal understanding, plus explicit next-flow conditions and recovery/re-entry behavior.
 - Reusable subflows must state all callers, inputs, outputs and return behavior.
 - Generated HTML and agent Markdown are never edited directly.
-- A migrated page remains `in-review` until its owner and required reviewers accept the standalone result.
+- Human review is required only when automated migration detects a conflict, missing meaning or a behavior change. A readability-only transformation inherits the recorded approval.
 
 ## Planned migration batches
 
 | Batch | Scope | Purpose | Status |
 | --- | --- | --- | --- |
 | 1 | Admin access: AF-01, ASF-01, ASF-11 | Establish login/TOTP and shared loading/error patterns. | Complete: approved on 17 July 2026 |
-| 2 | Mobile entry and identity: MF-01 to MF-03, SF-01, SF-02, SF-10, SF-11, SF-13 | Close launch, registration, login and recovery dependencies. | Queued |
-| 3 | Mobile Tasker activation and task funding: MF-04 to MF-06, SF-03 to SF-06, SF-09 | Migrate home, activation, KYC, location, media and payment foundations. | Queued |
-| 4 | Mobile matching and execution: MF-07 to MF-14, SF-07, SF-08 | Migrate discovery, offers, acceptance, execution, cancellation, withdrawal and settlement. | Queued |
-| 5 | Mobile retention and account controls: MF-15 to MF-24, SF-12 | Migrate favorites, support, referral, settings, security, notifications, ratings, emergency and repeat-task flows. | Queued |
-| 6 | Admin foundation and identity: AF-02 to AF-04, ASF-02 to ASF-06 | Migrate dashboard, users and approved KYC reference into the full library. | Queued |
-| 7 | Admin task/support operations: AF-05 to AF-07, ASF-07, ASF-09 | Migrate monitoring, disputes and support live chat. | Queued |
-| 8 | Admin finance: AF-08 to AF-10, AF-24, ASF-08, ASF-10 | Migrate payments, payouts, wallets, refunds, receipts and reconciliation. | Queued |
-| 9 | Admin catalogue, coverage, media and risk: AF-11 to AF-15 | Migrate operational configuration and trust flows. | Queued |
-| 10 | Admin governance, monitoring and reporting: AF-16 to AF-23 | Migrate config, admin access, audit, jobs, incidents, communications, ratings, analytics and reports. | Queued |
+| 2 | Mobile entry and identity: MF-01 to MF-03, SF-01, SF-02, SF-10, SF-11, SF-13 | Close launch, registration, login and recovery dependencies. | Complete |
+| 3 | Mobile Tasker activation and task funding: MF-04 to MF-06, SF-03 to SF-06, SF-09 | Migrate home, activation, KYC, location, media and payment foundations. | Complete |
+| 4 | Mobile matching and execution: MF-07 to MF-14, SF-07, SF-08 | Migrate discovery, offers, acceptance, execution, cancellation, withdrawal and settlement. | Complete |
+| 5 | Mobile retention and account controls: MF-15 to MF-24, SF-12 | Migrate favorites, support, referral, settings, security, notifications, ratings, emergency and repeat-task flows. | Complete |
+| 6 | Admin foundation and identity: AF-02 to AF-04, ASF-02 to ASF-06 | Migrate dashboard, users and approved KYC reference into the full library. | Complete |
+| 7 | Admin task/support operations: AF-05 to AF-07, ASF-07, ASF-09 | Migrate monitoring, disputes and support live chat. | Complete |
+| 8 | Admin finance: AF-08 to AF-10, AF-24, ASF-08, ASF-10 | Migrate payments, payouts, wallets, refunds, receipts and reconciliation. | Complete |
+| 9 | Admin catalogue, coverage, media and risk: AF-11 to AF-15 | Migrate operational configuration and trust flows. | Complete |
+| 10 | Admin governance, monitoring and reporting: AF-16 to AF-23 | Migrate config, admin access, audit, jobs, incidents, communications, ratings, analytics and reports. | Complete |
 
 ## Batch 1 evidence
 
@@ -77,3 +77,30 @@ The repository owner confirmed that all Batch 1 review gates and reviewer roles 
 | Backend Lead | Approve | None reported |
 | Security and Privacy | Approve | None reported |
 | QA | Approve | None reported |
+
+## Phase 2 transformation approval — 17 July 2026
+
+The repository owner clarified that the existing flow behavior and the new standalone format were already approved. The remaining work was a readability transformation, not product re-approval. All 69 remaining sources therefore inherit approval when the migration preserves the legacy entry, steps, endings, handoffs and recovery and passes automated structure/relationship validation.
+
+- [x] All 72 legacy IDs have one canonical source under `content/flows/`.
+- [x] All canonical sources use an approved lifecycle state and include the next review date.
+- [x] All main flows include prerequisites, verbal walkthrough, branches, endings, next-flow conditions and recovery/re-entry.
+- [x] All reusable subflows include callers, inputs, outputs and success/failure return behavior.
+- [x] All referenced flow IDs exist.
+- [x] Known API traceability ID/title conflicts were not imported; Phase 4 must reconcile technical mappings by behavior and title.
+- [x] Mobile/admin legacy combined catalogues are retained as superseded migration evidence.
+
+## Phase 4 technical reconciliation queue
+
+The API contract's mobile flow traceability table uses several IDs for different titles than the approved Mobile Flow Catalogue. Phase 2 preserved the approved flow catalogue and did not attach the mismatched endpoint rows.
+
+| ID | Active standalone flow title | API traceability-table title | Phase 4 action |
+| --- | --- | --- | --- |
+| MF-01 | First App Launch and Entry Decision | Registration | Remap endpoints by behavior and correct the traceability ID/title. |
+| MF-02 | Registration | Login | Remap endpoints by behavior and correct the traceability ID/title. |
+| MF-03 | Login / Session Recovery | Onboarding and Mode Setup | Remap endpoints by behavior and correct the traceability ID/title. |
+| MF-11 | Task Owner Rejection | Completion and Settlement | Resolve the collision with the active rejection and completion flows. |
+| MF-14 | Completion and Settlement | Task History | Resolve the collision and add the correct task-history mapping where required. |
+| MF-17 | Referral | Notifications | Resolve the collision with MF-20 Notification Center and Preferences. |
+
+Until Phase 4 resolves these rows, engineers must match technical contracts by approved behavior and title and report conflicts rather than trusting the mismatched ID alone.

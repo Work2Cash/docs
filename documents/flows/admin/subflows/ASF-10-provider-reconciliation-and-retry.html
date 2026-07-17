@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Provider Reconciliation and Retry — Work2Cash Phase 2 flows documentation.">
+  <title>ASF-10 — Provider Reconciliation and Retry | Work2Cash Docs</title>
+  <link rel="stylesheet" href="../../../../assets/css/pilot-docs.css">
+  <script src="../../../../assets/js/guard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to document</a>
+  <header class="site-header">
+    <a class="brand" href="../../../../index.html">Work2Cash Docs</a>
+    <nav aria-label="Document navigation">
+      <a href="../../index.html">Phase 2 flows</a>
+      <a href="../../../agent-md/flows/admin/subflows/ASF-10-provider-reconciliation-and-retry.md" download>Download agent Markdown</a>
+    </nav>
+  </header>
+  <div class="page-shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Flows</a><span aria-hidden="true">/</span><span>Admin / Subflows</span>
+    </nav>
+    <header class="document-hero">
+      <div class="eyebrow">reusable-subflow · ASF-10</div>
+      <h1>Provider Reconciliation and Retry</h1>
+      <p class="audience"><strong>Written for:</strong> Non-technical team, Junior admin developers, Product, QA, AI agents</p>
+      <div class="status-row">
+        <span class="status status-approved">approved</span>
+        <span>Version 0.1</span>
+        <span>Reviewed 2026-07-17</span>
+        <span>Next review 2026-10-17</span>
+      </div>
+    </header>
+    <div class="document-grid">
+      <aside>
+        <nav class="toc" aria-labelledby="toc-title">
+    <h2 id="toc-title">On this page</h2>
+    <ol><li class="toc-level-2"><a href="#in-plain-english">In plain English</a></li><li class="toc-level-2"><a href="#why-it-is-reusable">Why it is reusable</a></li><li class="toc-level-2"><a href="#called-by">Called by</a></li><li class="toc-level-2"><a href="#inputs">Inputs</a></li><li class="toc-level-2"><a href="#steps">Steps</a></li><li class="toc-level-2"><a href="#outputs">Outputs</a></li><li class="toc-level-2"><a href="#success-return-behavior">Success return behavior</a></li><li class="toc-level-2"><a href="#failure-return-behavior">Failure return behavior</a></li><li class="toc-level-2"><a href="#permissions-and-sensitive-data">Permissions and sensitive data</a></li><li class="toc-level-2"><a href="#implementation-map">Implementation map</a></li><li class="toc-level-2"><a href="#acceptance-criteria">Acceptance criteria</a></li><li class="toc-level-2"><a href="#required-tests">Required tests</a></li></ol>
+  </nav>
+        <section class="metadata" aria-labelledby="metadata-title">
+          <h2 id="metadata-title">Document details</h2>
+          <dl>
+            <dt>Owner</dt><dd>Admin Lead</dd>
+            <dt>Reviewers</dt><dd>Technical Lead, Admin Lead, Backend Lead, QA</dd>
+            <dt>Authority</dt><dd>Approved Admin Flow Catalogue v1 behavior and approved Phase 1 standalone format</dd>
+            <dt>Related</dt><dd>AF-04, AF-08, AF-09, AF-19, AF-10, AF-24</dd>
+          </dl>
+        </section>
+      </aside>
+      <main id="content" class="document-content" tabindex="-1">
+        <p class="generated-note"><strong>Phase 2 flows:</strong> This page is generated from <code>content/flows/admin/subflows/ASF-10-provider-reconciliation-and-retry.md</code>. Edit the canonical Markdown source, not this HTML file.</p>
+        <h2 id="in-plain-english">In plain English</h2>
+<p>Checks provider events against Work2Cash records and retries failed safe operations where allowed. Fixes mismatches from Paystack, Moniepoint, Smile ID, Termii, FCM, masked call provider, webhooks, BullMQ jobs and payout batches.</p>
+<h2 id="why-it-is-reusable">Why it is reusable</h2>
+<p>Multiple approved flows need this behavior or recovery pattern. Keeping it in ASF-10 gives every caller the same inputs, result meaning, privacy rules and safe return behavior.</p>
+<h2 id="called-by">Called by</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Calling flow</th><th scope="col">When it calls this subflow</th><th scope="col">Return destination</th></tr></thead><tbody><tr><td>AF-04 — Tasker and KYC Review</td><td>When the caller needs provider reconciliation and retry to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr><tr><td>AF-08 — Finance: Payments, Escrow and Reconciliation</td><td>When the caller needs provider reconciliation and retry to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr><tr><td>AF-09 — Withdrawal and Payout Batch Operations</td><td>When the caller needs provider reconciliation and retry to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr><tr><td>AF-10 — Wallet, Refund and Excess Funding Support</td><td>When the caller needs provider reconciliation and retry to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr><tr><td>AF-19 — Use Case Health and Background Job Monitoring</td><td>When the caller needs provider reconciliation and retry to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr><tr><td>AF-24 — Receipt and Transaction Review</td><td>When the caller needs provider reconciliation and retry to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr><tr><td>AF-04, AF-08, AF-09, AF-19</td><td>When the caller needs provider reconciliation and retry to continue or recover safely.</td><td>The caller&#39;s last valid checkpoint after a confirmed result.</td></tr></tbody></table></div>
+<h2 id="inputs">Inputs</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Input</th><th scope="col">Source</th><th scope="col">Required validation</th></tr></thead><tbody><tr><td>Calling-flow context, actor/session and relevant authoritative record</td><td>Calling flow or authoritative backend state</td><td>Must exist, belong to the authorized actor and still be current.</td></tr></tbody></table></div>
+<h2 id="steps">Steps</h2>
+<ol><li><strong>Caller:</strong> The calling flow passes the current record, actor context and requested operation.</li><li><strong>System/Actor:</strong> The system validates access and performs Checks provider events against Work2Cash records and retries failed safe operations where allowed..</li><li><strong>System/Actor:</strong> The subflow returns a confirmed success result or a safe failure/recovery result to the caller.</li></ol>
+<h2 id="outputs">Outputs</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Output</th><th scope="col">Consumer</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td>Confirmed success, safe failure/retry or abandoned result</td><td>Calling flow</td><td>Confirmed terminal result returned by ASF-10.</td></tr></tbody></table></div>
+<h2 id="success-return-behavior">Success return behavior</h2>
+<p>ASF-10 returns to the calling flow at its next approved step. The caller refreshes authoritative state before presenting the result.</p>
+<h2 id="failure-return-behavior">Failure return behavior</h2>
+<ul><li>Fixes mismatches from Paystack, Moniepoint, Smile ID, Termii, FCM, masked call provider, webhooks, BullMQ jobs and payout batches.</li><li>The caller resumes at its last valid checkpoint and never assumes the subflow succeeded.</li></ul>
+<h2 id="permissions-and-sensitive-data">Permissions and sensitive data</h2>
+<ul><li>The calling flow&#39;s authentication and permission scope continues to apply inside this subflow.</li><li>Return only the minimum result the caller needs; do not leak protected identity, address, evidence, payment or operational data.</li><li>Logs and errors must not contain credentials, secrets, raw provider payloads or unrestricted personal data.</li><li>Frontend loading or navigation is not proof that the backend operation succeeded.</li></ul>
+<h2 id="implementation-map">Implementation map</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Surface</th><th scope="col">References</th><th scope="col">Responsibility</th></tr></thead><tbody><tr><td>UI</td><td>Shared admin subflow component/state</td><td>Present consistent input, result and recovery behavior to every caller.</td></tr><tr><td>API/data</td><td>Applicable API and data-domain sources, reconciled during Phase 4</td><td>Validate input and return authoritative, reusable output without inventing an ID mapping.</td></tr><tr><td>Caller contract</td><td>The <code>Called by</code>, <code>Inputs</code>, <code>Outputs</code> and return sections above</td><td>Defines how parent flows enter and resume this subflow.</td></tr></tbody></table></div>
+<h2 id="acceptance-criteria">Acceptance criteria</h2>
+<ul><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Every named caller can enter ASF-10 with a clear input and receive a clear success or safe failure result.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Success returns to the caller&#39;s named next step; failure returns to its last valid checkpoint.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> A non-technical reader can explain what the subflow repairs and a junior developer can explain its caller contract.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> No caller bypasses authentication, permission, privacy or backend-authority rules.</li></ul>
+<h2 id="required-tests">Required tests</h2>
+<ul><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Successful use from each caller category.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Missing/invalid input and insufficient permission.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Network interruption, retry, abandonment and re-entry.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Duplicate submission or late result cannot corrupt a later confirmed caller state.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Sensitive-data and error-log redaction.</li></ul>
+      </main>
+    </div>
+  </div>
+  <footer>Work2Cash documentation · Phase 2 flows</footer>
+</body>
+</html>
