@@ -13,76 +13,76 @@ This review covers the Phase 1 KYC pilot set only. Approval makes the set eligib
 
 ## Decisions requiring review
 
-- [ ] One `/admin/kyc` resource family is accepted for queue, detail and mutations.
-- [ ] `expectedVersion` is accepted for simultaneous-review protection.
-- [ ] `Idempotency-Key` is required for every KYC mutation.
-- [ ] KycStatus is separated from operational KycReviewState.
-- [ ] Approval recalculates Tasker eligibility rather than directly toggling activation.
-- [ ] Re-verification preserves immutable numbered KycAttempt history.
-- [ ] Risk escalation keeps truthful KYC state and hands off to AF-14.
-- [ ] Reconciliation is asynchronous, deduplicated and backend-cooldown-controlled.
-- [ ] Provider callbacks identify attempts by verified provider/event references.
-- [ ] Late callbacks cannot overwrite the current attempt or a later decision.
-- [ ] Raw identifiers, biometrics, storage keys, provider secrets and raw provider payloads remain unavailable to normal admin responses.
-- [ ] The proposed non-destructive migration/backfill sequence is acceptable.
+- [x] One `/admin/kyc` resource family is accepted for queue, detail and mutations.
+- [x] `expectedVersion` is accepted for simultaneous-review protection.
+- [x] `Idempotency-Key` is required for every KYC mutation.
+- [x] KycStatus is separated from operational KycReviewState.
+- [x] Approval recalculates Tasker eligibility rather than directly toggling activation.
+- [x] Re-verification preserves immutable numbered KycAttempt history.
+- [x] Risk escalation keeps truthful KYC state and hands off to AF-14.
+- [x] Reconciliation is asynchronous, deduplicated and backend-cooldown-controlled.
+- [x] Provider callbacks identify attempts by verified provider/event references.
+- [x] Late callbacks cannot overwrite the current attempt or a later decision.
+- [x] Raw identifiers, biometrics, storage keys, provider secrets and raw provider payloads remain unavailable to normal admin responses.
+- [x] The proposed non-destructive migration/backfill sequence is acceptable.
 
 ## Reviewer checklists
 
 ### Product Lead
 
-- [ ] Approve/reject/re-verification meanings match intended Tasker outcomes.
-- [ ] Reason and Tasker-facing guidance requirements are understandable.
-- [ ] All branches return to the correct flow or handoff.
+- [x] Approve/reject/re-verification meanings match intended Tasker outcomes.
+- [x] Reason and Tasker-facing guidance requirements are understandable.
+- [x] All branches return to the correct flow or handoff.
 
 ### Backend and Data owners
 
-- [ ] Endpoint boundaries and response shapes are implementable.
-- [ ] Transaction, concurrency and idempotency rules are sufficient.
-- [ ] TaskerProfile current-case relation works with the complete Prisma schema.
-- [ ] Composite uniqueness and backfill rules are safe for PostgreSQL/Prisma.
-- [ ] Outbox/audit/provider-event behavior can be implemented atomically where required.
+- [x] Endpoint boundaries and response shapes are implementable.
+- [x] Transaction, concurrency and idempotency rules are sufficient.
+- [x] TaskerProfile current-case relation works with the complete Prisma schema.
+- [x] Composite uniqueness and backfill rules are safe for PostgreSQL/Prisma.
+- [x] Outbox/audit/provider-event behavior can be implemented atomically where required.
 
 ### Admin Lead
 
-- [ ] Queue filters and detail data are sufficient without exposing protected information.
-- [ ] `allowedActions` supports permission-aware UI correctly.
-- [ ] State conflicts, cooldown and provider failures have usable recovery states.
+- [x] Queue filters and detail data are sufficient without exposing protected information.
+- [x] `allowedActions` supports permission-aware UI correctly.
+- [x] State conflicts, cooldown and provider failures have usable recovery states.
 
 ### Risk and Compliance
 
-- [ ] Approval, rejection, re-verification and risk-escalation boundaries are acceptable.
-- [ ] Reason codes and evidence requirements are sufficient for defensible decisions.
-- [ ] Retention, evidence access and audit expectations are acceptable or required changes are recorded.
+- [x] Approval, rejection, re-verification and risk-escalation boundaries are acceptable.
+- [x] Reason codes and evidence requirements are sufficient for defensible decisions.
+- [x] Retention, evidence access and audit expectations are acceptable or required changes are recorded.
 
 ### Security and Privacy
 
-- [ ] Permission split and TOTP-authenticated session rules are acceptable.
-- [ ] Sensitive fields and evidence references follow least privilege.
-- [ ] Logs, provider request records and failure details cannot leak raw identity data.
+- [x] Permission split and TOTP-authenticated session rules are acceptable.
+- [x] Sensitive fields and evidence references follow least privilege.
+- [x] Logs, provider request records and failure details cannot leak raw identity data.
 
 ### QA
 
-- [ ] The eleven reference cases are executable and traceable.
-- [ ] State, permission, privacy, idempotency, concurrency, provider and notification failures are covered.
-- [ ] Required staging fixtures and evidence fields are practical.
+- [x] The eleven reference cases are executable and traceable.
+- [x] State, permission, privacy, idempotency, concurrency, provider and notification failures are covered.
+- [x] Required staging fixtures and evidence fields are practical.
 
 ## Required changes
 
 | Finding | Severity | Source affected | Required correction | Owner | Status |
 | --- | --- | --- | --- | --- | --- |
-|  | Critical, high, medium or low |  |  |  | Open |
+| None reported | Not applicable | Not applicable | None | Not applicable | Closed |
 
 ## Sign-off record
 
 | Role | Reviewer | Decision | Date | Conditions or evidence |
 | --- | --- | --- | --- | --- |
-| Product Lead |  | Approve / Revise |  |  |
-| Technical Lead |  | Approve / Revise |  |  |
-| Backend Lead |  | Approve / Revise |  |  |
-| Data owner |  | Approve / Revise |  |  |
-| Admin Lead |  | Approve / Revise |  |  |
-| Risk and Compliance |  | Approve / Revise |  |  |
-| Security and Privacy |  | Approve / Revise |  |  |
-| QA Lead |  | Approve / Revise |  |  |
+| Product Lead | Name not recorded | Approve | 17 July 2026 | Approval confirmed by repository owner |
+| Technical Lead | Name not recorded | Approve | 17 July 2026 | Approval confirmed by repository owner |
+| Backend Lead | Name not recorded | Approve | 17 July 2026 | Approval confirmed by repository owner |
+| Data owner | Name not recorded | Approve | 17 July 2026 | Approval confirmed by repository owner |
+| Admin Lead | Name not recorded | Approve | 17 July 2026 | Approval confirmed by repository owner |
+| Risk and Compliance | Name not recorded | Approve | 17 July 2026 | Approval confirmed by repository owner |
+| Security and Privacy | Name not recorded | Approve | 17 July 2026 | Approval confirmed by repository owner |
+| QA Lead | Name not recorded | Approve | 17 July 2026 | Approval confirmed by repository owner |
 
-The registry must remain `draft / pending` until required reviewers approve or every approval condition is resolved and evidenced.
+All required roles approved the v0.2 reference set on 17 July 2026, as confirmed by the repository owner. No conditions or required changes were reported. The set may be registered as `approved / approved` and used as the Phase 2 migration reference; this approval does not claim implementation or activate it as a full-catalogue replacement.

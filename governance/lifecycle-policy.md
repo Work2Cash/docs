@@ -38,7 +38,7 @@ If a higher-authority source is only `in-review`, treat it as the designated pro
 - The Main Enterprise Architecture v1 is the designated controlling baseline, but formal approval evidence is not recorded; its lifecycle status is therefore `in-review`.
 - The other legacy v1 documents are published, provisional supporting baselines with pending approval.
 - The document registry and governance policies are active for repository control.
-- Phase 1 pilots are drafts and do not replace active or provisional catalogue content.
+- Phase 1 pilots are approved migration references. They do not replace provisional catalogue content until the relevant Phase 2 migration is completed and activated.
 - The Full Project Markdown bundle is non-canonical and legacy-derived; it must never resolve a conflict by itself.
 
 ## Conflict handling

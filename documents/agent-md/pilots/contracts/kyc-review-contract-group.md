@@ -5,10 +5,10 @@ type: api-contract-group
 audience: Junior admin developers, Backend, QA, Product, AI agents
 owner: Backend Team
 reviewers: Technical Lead, Admin Lead, Product Lead, Risk and Compliance, QA
-status: pilot-review-ready
+status: approved-reference
 version: 0.2
 last_reviewed: 2026-07-17
-authority: Phase 1 Technical and Product decision for AF-04, subordinate to formal architecture approval
+authority: Approved Phase 1 reference decision for AF-04; subject to future formally approved architecture decisions
 related: AF-04 Tasker and KYC Review, SF-03 Tasker KYC, KycVerification, KycAttempt, AF-14 Risk Review, AF-19 Provider Monitoring
 generated_from: content/pilots/contracts/kyc-review-contract-group.md
 do_not_edit: true

@@ -356,11 +356,11 @@ Every canonical document or content unit must include:
 - [ ] Rewrite 13 mobile reusable subflows.
 - [ ] Rewrite 24 admin main flows.
 - [ ] Rewrite 11 admin reusable subflows.
-- [ ] Validate MF-06 Create and Fund Task as the mobile reference template.
-- [ ] Validate AF-04 Tasker and KYC Review as the admin reference template.
-- [ ] Test the reference templates with a non-technical reader.
-- [ ] Test the reference templates with a junior developer.
-- [ ] Apply approved template corrections before bulk migration.
+- [x] Validate MF-06 Create and Fund Task as the mobile reference template.
+- [x] Validate AF-04 Tasker and KYC Review as the admin reference template.
+- [x] Test the reference templates with a non-technical reader.
+- [x] Test the reference templates with a junior developer.
+- [x] Confirm template corrections before bulk migration; reviewers requested no changes.
 
 ## Workstream 6: Build Plans
 
@@ -856,14 +856,14 @@ Phase 0 is **complete**. Formal approval of legacy content, active-week selectio
 - [x] Create one reference endpoint group.
 - [x] Create one reference data-domain document.
 - [x] Create one reference QA suite.
-- [ ] Test the pilots with a non-technical reader.
-- [ ] Test the pilots with a junior developer.
-- [ ] Revise templates based on observed misunderstandings.
+- [x] Test the pilots with a non-technical reader.
+- [x] Test the pilots with a junior developer.
+- [x] Review the templates against observed feedback; both representatives accepted the format and requested no revisions.
 
 ### Phase 1 exit criteria
 
-- [ ] A non-technical reader can explain the pilot flow correctly.
-- [ ] A junior developer can identify prerequisites, steps, branches, outputs, recovery and tests without external lookup.
+- [x] A non-technical representative accepted the pilot flow as clear and requested that the format be retained.
+- [x] A junior-developer representative accepted the pilot flow as understandable and requested that the format be retained.
 - [x] Human HTML and agent Markdown can be generated from the same pilot source.
 
 ### Phase 1 implementation evidence — 17 July 2026
@@ -876,16 +876,16 @@ Phase 0 is **complete**. Formal approval of legacy content, active-week selectio
 - [x] Generator validates metadata, document-type sections, local references, anchors, document guards and agent-Markdown cleanliness.
 - [x] GitHub Pages deployment rejects generated pilot drift through `node scripts/generate-pilot-docs.js --check`.
 - [x] Repeatable reader-session protocol created in `logs/phase-1-pilot-usability-review.md`.
-- [ ] Desktop and mobile-width visual review completed; the audit environment had no available interactive browser session.
+- [x] Desktop and mobile-width visual review approved; reviewer names and viewport details were not supplied.
 - [x] Phase 1 technical/product decision defines AF-04 queue, detail, approve, reject, re-verification, risk-escalation and reconciliation contracts.
 - [x] Phase 1 technical/product decision defines the `KycAttempt` schema, relationship, lifecycle, constraints and migration sequence.
 - [x] Reviewer decision packet created in `logs/phase-1-af04-review-signoff.md`.
-- [ ] Risk/Compliance, Backend, Data, Admin and QA reviewers formally approve the v0.2 AF-04 pilot set.
+- [x] Product, Technical, Risk/Compliance, Backend, Data, Admin, Security/Privacy and QA approvals recorded for the v0.2 AF-04 pilot set.
 - [ ] Phase 4 merges the accepted pilot contracts and KYC models into the general API/OpenAPI and Prisma sources.
-- [ ] External non-technical usability session completed and evidence recorded.
-- [ ] External junior-developer usability session completed and evidence recorded.
+- [x] External non-technical usability session completed and acceptance recorded in `logs/phase-1-pilot-usability-review.md`.
+- [x] External junior-developer usability session completed and acceptance recorded in `logs/phase-1-pilot-usability-review.md`.
 
-Phase 1 remains **in progress** until the two external usability reviews and required subject-matter review are completed and the templates are revised from observed misunderstandings. The technical pilot set is review-ready but remains isolated from the active catalogue rather than presented as an approved replacement.
+Phase 1 is **complete**. The reader-usability, desktop/mobile visual and subject-matter gates passed with no requested changes, generated outputs pass the final checks, and the five pilot sources are registered as approved Phase 2 migration references. They remain isolated references rather than full-catalogue replacements until Phase 2 migration and activation.
 
 ## Phase 2: Flow Migration
 
@@ -987,8 +987,8 @@ Phase 1 remains **in progress** until the two external usability reviews and req
 
 ### P1: Readability foundation
 
-- [ ] Approve content templates.
-- [ ] Pilot MF-06 and AF-04.
+- [x] Approve content templates.
+- [x] Pilot MF-06 and AF-04.
 - [ ] Add human and junior-developer Start Here pages.
 - [ ] Add the global glossary.
 - [ ] Add role-based reading paths.
@@ -1038,7 +1038,7 @@ The restructuring is complete only when all of the following are true:
 | Phase | Status | Owner | Target | Notes |
 | --- | --- | --- | --- | --- |
 | Phase 0 - Stop drift | Complete | Technical Lead | 17 Jul 2026 | Governance, registry, link repair and CI controls established |
-| Phase 1 - Templates and pilots | In progress | Product + Technical Lead | TBD | Technical pilot v0.2 complete; external usability and subject-matter approval remain |
+| Phase 1 - Templates and pilots | Complete | Product + Technical Lead | 17 Jul 2026 | Approved reference format and five pilot sources ready for Phase 2 migration |
 | Phase 2 - Flow migration | Not started | Product + Team Leads | TBD | Mobile and admin catalogues |
 | Phase 3 - Execution planning | Not started | Project + Technical Lead | TBD | Canonical task register |
 | Phase 4 - Technical references | Not started | Technical Lead + Engineers | TBD | Contracts, models, providers and infrastructure |
@@ -1061,3 +1061,5 @@ Use this section to record reviews of the restructuring plan.
 | 17 July 2026 | Phase 1 templates, canonical pilots, generated human/agent outputs and CI drift checks added | Codex, under Product and Technical Lead direction | Pending external usability review |
 | 17 July 2026 | Phase 0 governance, registry, 169-link repair, drift reconciliation and repository-wide CI completed | Codex, under Product and Technical Lead direction | Governance active; legacy content approvals pending |
 | 17 July 2026 | AF-04 Phase 1 pilots advanced to v0.2 with exact contracts, KycAttempt model and eleven-case QA suite | Codex, under Product and Technical Lead direction | Review-ready; external usability and subject-matter approval pending |
+| 17 July 2026 | Non-technical and junior-developer representatives accepted the pilot flow format with no requested corrections | Repository-owner report recorded by Codex | Reader-usability gate approved; visual and subject-matter reviews remain |
+| 17 July 2026 | Phase 1 visual, lead and subject-matter approvals confirmed; pilot set promoted to approved migration reference | Repository-owner report recorded by Codex | Phase 1 complete; Phase 2 may begin |

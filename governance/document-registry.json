@@ -735,11 +735,11 @@
         "QA"
       ],
       "version": "0.1",
-      "status": "draft",
-      "approval": "pending",
+      "status": "approved",
+      "approval": "approved",
       "publication": "published",
       "lastReviewed": "2026-07-17",
-      "nextReview": null,
+      "nextReview": "2026-10-17",
       "authority": "Main Enterprise Architecture and Mobile Flow Catalogue v1",
       "artifactClass": "canonical-source",
       "currentSource": "content/pilots/flows/mobile/MF-06-create-and-fund-task.md",
@@ -748,7 +748,7 @@
         "documents/agent-md/pilots/flows/mobile/MF-06-create-and-fund-task.md"
       ],
       "migrationPhase": "Phase 1",
-      "notes": "Isolated pilot; does not replace the catalogue until usability review and approval.",
+      "notes": "Approved Phase 1 migration reference; it does not replace the complete mobile catalogue until Phase 2 migration and activation.",
       "supersedes": null,
       "tags": [
         "main-flow-pilot"
@@ -774,11 +774,11 @@
         "QA"
       ],
       "version": "0.2",
-      "status": "draft",
-      "approval": "pending",
+      "status": "approved",
+      "approval": "approved",
       "publication": "published",
       "lastReviewed": "2026-07-17",
-      "nextReview": null,
+      "nextReview": "2026-10-17",
       "authority": "Main Enterprise Architecture and Admin Flow Catalogue v1",
       "artifactClass": "canonical-source",
       "currentSource": "content/pilots/flows/admin/AF-04-kyc-review.md",
@@ -787,7 +787,7 @@
         "documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md"
       ],
       "migrationPhase": "Phase 1",
-      "notes": "Standalone flow pilot with exact v0.2 technical traceability; external usability and required reviewer approval remain.",
+      "notes": "Approved standalone Phase 1 migration reference with exact v0.2 technical traceability; it is not a full-catalogue replacement.",
       "supersedes": null,
       "tags": [
         "main-flow-pilot",
@@ -815,12 +815,12 @@
         "QA"
       ],
       "version": "0.2",
-      "status": "draft",
-      "approval": "pending",
+      "status": "approved",
+      "approval": "approved",
       "publication": "published",
       "lastReviewed": "2026-07-17",
-      "nextReview": null,
-      "authority": "Phase 1 Technical and Product decision for AF-04, subordinate to formal architecture approval",
+      "nextReview": "2026-10-17",
+      "authority": "Approved Phase 1 reference decision for AF-04; subject to future formally approved architecture decisions",
       "artifactClass": "canonical-source",
       "currentSource": "content/pilots/contracts/kyc-review-contract-group.md",
       "artifacts": [
@@ -828,7 +828,7 @@
         "documents/agent-md/pilots/contracts/kyc-review-contract-group.md"
       ],
       "migrationPhase": "Phase 1",
-      "notes": "Exact v0.2 paths, DTOs, permissions, concurrency, idempotency and reconciliation are defined; Phase 4 merge remains.",
+      "notes": "Approved Phase 1 reference defining exact v0.2 paths, DTOs, permissions, concurrency, idempotency and reconciliation; Phase 4 merge remains.",
       "supersedes": null,
       "tags": [
         "technical-contract-pilot",
@@ -856,12 +856,12 @@
         "QA"
       ],
       "version": "0.2",
-      "status": "draft",
-      "approval": "pending",
+      "status": "approved",
+      "approval": "approved",
       "publication": "published",
       "lastReviewed": "2026-07-17",
-      "nextReview": null,
-      "authority": "Phase 1 Technical and Product decision for the KYC domain, subordinate to formal architecture approval",
+      "nextReview": "2026-10-17",
+      "authority": "Approved Phase 1 reference decision for the KYC domain; subject to future formally approved architecture decisions",
       "artifactClass": "canonical-source",
       "currentSource": "content/pilots/data/kyc-domain.md",
       "artifacts": [
@@ -869,7 +869,7 @@
         "documents/agent-md/pilots/data/kyc-domain.md"
       ],
       "migrationPhase": "Phase 1",
-      "notes": "KycVerification review/version and immutable numbered KycAttempt behavior are defined; full-schema merge and migration remain.",
+      "notes": "Approved Phase 1 reference defining KycVerification review/version and immutable numbered KycAttempt behavior; full-schema merge and migration remain.",
       "supersedes": null,
       "tags": [
         "data-domain-pilot",
@@ -897,11 +897,11 @@
         "Risk and Compliance"
       ],
       "version": "0.2",
-      "status": "draft",
-      "approval": "pending",
+      "status": "approved",
+      "approval": "approved",
       "publication": "published",
       "lastReviewed": "2026-07-17",
-      "nextReview": null,
+      "nextReview": "2026-10-17",
       "authority": "AF-04 v0.2 flow, KYC contract v0.2 and KYC data domain v0.2",
       "artifactClass": "canonical-source",
       "currentSource": "content/pilots/qa/AF-04-kyc-review-suite.md",
@@ -910,7 +910,7 @@
         "documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md"
       ],
       "migrationPhase": "Phase 1",
-      "notes": "Eleven executable reference cases are defined; deployed build, migration and provider-fixture evidence remain.",
+      "notes": "Approved Phase 1 reference with eleven executable cases; deployed build, migration and provider-fixture evidence remain implementation-stage requirements.",
       "supersedes": null,
       "tags": [
         "qa-suite-pilot",

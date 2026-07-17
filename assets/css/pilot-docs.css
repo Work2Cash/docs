@@ -80,7 +80,7 @@ a:focus-visible, [tabindex]:focus-visible { outline: 3px solid #ffbf47; outline-
 
 .status-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; color: inherit; font-size: 13px; font-weight: 800; }
 .status { display: inline-flex; padding: 5px 10px; border-radius: 999px; color: var(--warning); background: var(--warning-bg); }
-.status-approved, .status-active { color: var(--success); background: var(--success-bg); }
+.status-approved, .status-approved-reference, .status-active { color: var(--success); background: var(--success-bg); }
 .status-blocked, .status-rejected { color: var(--danger); background: var(--danger-bg); }
 
 .document-grid { display: grid; grid-template-columns: minmax(240px, 320px) minmax(0, 1fr); gap: 24px; align-items: start; }

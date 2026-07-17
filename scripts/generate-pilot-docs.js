@@ -457,7 +457,7 @@ function renderHtmlIndex(documents) {
       <h1>Standalone pilot documents</h1>
       <p>These pilots test a structure that lets a reader understand one flow or technical area without repeatedly searching other documents. They are not yet replacements for the active catalogues.</p>
     </header>
-    <section class="notice" aria-labelledby="pilot-status"><h2 id="pilot-status">Pilot status</h2><p>Internal structural checks are automated. Non-technical and junior-developer usability reviews are still required before promotion.</p></section>
+    <section class="notice" aria-labelledby="pilot-status"><h2 id="pilot-status">Pilot status</h2><p>The Phase 1 usability, visual and subject-matter reviews are complete. These are approved reference documents for Phase 2 migration, but they do not replace the complete flow catalogues yet.</p></section>
     <div class="pilot-grid">${cards}</div>
   </main>
   <footer>Work2Cash documentation · Generated from canonical Markdown sources</footer>

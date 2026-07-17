@@ -44,11 +44,11 @@
 | TEAM-PACKS-001 | Shared Execution Rules and Team Briefs | in-review | pending | Technical Lead | legacy-transitional-source | `documents/downloads/shared-ai-agent-execution-rules-v1.md`; `documents/downloads/mobile-team-build-brief-v1.md`; `documents/downloads/admin-team-build-brief-v1.md`; `documents/downloads/backend-team-build-brief-v1.md` |
 | WEEK-PACKS-001 | Weekly Execution Packs | in-review | pending | Project Lead | legacy-transitional-source | `documents/agent-md/weeks/weekly-execution-index.md`; `documents/agent-md/weeks/week-01-foundation-identity.md`; `documents/agent-md/weeks/week-02-tasker-task-creation-payment.md`; `documents/agent-md/weeks/week-03-discovery-matching-execution-start.md`; `documents/agent-md/weeks/week-04-completion-finance-support.md`; `documents/agent-md/weeks/week-05-integration-recovery-full-flow-qa.md`; `documents/agent-md/weeks/week-06-hardening-security-performance.md`; `documents/agent-md/weeks/week-07-release-candidate-operations-dry-run.md`; `documents/agent-md/weeks/week-08-stabilization-freeze.md` |
 | FULL-CONTEXT-001 | Work2Cash Full Project Markdown | in-review | pending | Technical Lead | legacy-derived-frozen | `documents/agent-md/work2cash-full-source-of-truth-v1.md` |
-| PILOT-MF06-001 | MF-06 Create and Fund Task Pilot | draft | pending | Product Lead | canonical-source | `content/pilots/flows/mobile/MF-06-create-and-fund-task.md`; `documents/pilots/flows/mobile/MF-06-create-and-fund-task.html`; `documents/agent-md/pilots/flows/mobile/MF-06-create-and-fund-task.md` |
-| PILOT-AF04-001 | AF-04 KYC Review Pilot | draft | pending | Product Lead | canonical-source | `content/pilots/flows/admin/AF-04-kyc-review.md`; `documents/pilots/flows/admin/AF-04-kyc-review.html`; `documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md` |
-| PILOT-KYC-CONTRACT-001 | KYC Review Contract Group Pilot | draft | pending | Backend Lead | canonical-source | `content/pilots/contracts/kyc-review-contract-group.md`; `documents/pilots/contracts/kyc-review-contract-group.html`; `documents/agent-md/pilots/contracts/kyc-review-contract-group.md` |
-| PILOT-KYC-DATA-001 | Tasker Activation and KYC Data Domain Pilot | draft | pending | Backend Lead | canonical-source | `content/pilots/data/kyc-domain.md`; `documents/pilots/data/kyc-domain.html`; `documents/agent-md/pilots/data/kyc-domain.md` |
-| PILOT-QA-AF04-001 | AF-04 KYC Review Reference QA Suite | draft | pending | QA Lead | canonical-source | `content/pilots/qa/AF-04-kyc-review-suite.md`; `documents/pilots/qa/AF-04-kyc-review-suite.html`; `documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md` |
+| PILOT-MF06-001 | MF-06 Create and Fund Task Pilot | approved | approved | Product Lead | canonical-source | `content/pilots/flows/mobile/MF-06-create-and-fund-task.md`; `documents/pilots/flows/mobile/MF-06-create-and-fund-task.html`; `documents/agent-md/pilots/flows/mobile/MF-06-create-and-fund-task.md` |
+| PILOT-AF04-001 | AF-04 KYC Review Pilot | approved | approved | Product Lead | canonical-source | `content/pilots/flows/admin/AF-04-kyc-review.md`; `documents/pilots/flows/admin/AF-04-kyc-review.html`; `documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md` |
+| PILOT-KYC-CONTRACT-001 | KYC Review Contract Group Pilot | approved | approved | Backend Lead | canonical-source | `content/pilots/contracts/kyc-review-contract-group.md`; `documents/pilots/contracts/kyc-review-contract-group.html`; `documents/agent-md/pilots/contracts/kyc-review-contract-group.md` |
+| PILOT-KYC-DATA-001 | Tasker Activation and KYC Data Domain Pilot | approved | approved | Backend Lead | canonical-source | `content/pilots/data/kyc-domain.md`; `documents/pilots/data/kyc-domain.html`; `documents/agent-md/pilots/data/kyc-domain.md` |
+| PILOT-QA-AF04-001 | AF-04 KYC Review Reference QA Suite | approved | approved | QA Lead | canonical-source | `content/pilots/qa/AF-04-kyc-review-suite.md`; `documents/pilots/qa/AF-04-kyc-review-suite.html`; `documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md` |
 
 ## Detailed records
 
@@ -541,11 +541,11 @@ Large non-canonical bundle without a current deterministic generator. Use only f
 | Owner | Product Lead |
 | Required reviewers | Technical Lead, Mobile Lead, Backend Lead, Finance, QA |
 | Version | 0.1 |
-| Lifecycle | draft |
-| Approval | pending |
+| Lifecycle | approved |
+| Approval | approved |
 | Publication | published |
 | Last reviewed | 2026-07-17 |
-| Next review | Not scheduled |
+| Next review | 2026-10-17 |
 | Authority | Main Enterprise Architecture and Mobile Flow Catalogue v1 |
 | Artifact class | canonical-source |
 | Current source | `content/pilots/flows/mobile/MF-06-create-and-fund-task.md` |
@@ -554,7 +554,7 @@ Large non-canonical bundle without a current deterministic generator. Use only f
 | Supersedes | None |
 | Tags | main-flow-pilot |
 
-Isolated pilot; does not replace the catalogue until usability review and approval.
+Approved Phase 1 migration reference; it does not replace the complete mobile catalogue until Phase 2 migration and activation.
 
 ### PILOT-AF04-001 — AF-04 KYC Review Pilot
 
@@ -565,11 +565,11 @@ Isolated pilot; does not replace the catalogue until usability review and approv
 | Owner | Product Lead |
 | Required reviewers | Technical Lead, Admin Lead, Backend Lead, Risk and Compliance, QA |
 | Version | 0.2 |
-| Lifecycle | draft |
-| Approval | pending |
+| Lifecycle | approved |
+| Approval | approved |
 | Publication | published |
 | Last reviewed | 2026-07-17 |
-| Next review | Not scheduled |
+| Next review | 2026-10-17 |
 | Authority | Main Enterprise Architecture and Admin Flow Catalogue v1 |
 | Artifact class | canonical-source |
 | Current source | `content/pilots/flows/admin/AF-04-kyc-review.md` |
@@ -578,7 +578,7 @@ Isolated pilot; does not replace the catalogue until usability review and approv
 | Supersedes | None |
 | Tags | main-flow-pilot, admin, kyc |
 
-Standalone flow pilot with exact v0.2 technical traceability; external usability and required reviewer approval remain.
+Approved standalone Phase 1 migration reference with exact v0.2 technical traceability; it is not a full-catalogue replacement.
 
 ### PILOT-KYC-CONTRACT-001 — KYC Review Contract Group Pilot
 
@@ -589,12 +589,12 @@ Standalone flow pilot with exact v0.2 technical traceability; external usability
 | Owner | Backend Lead |
 | Required reviewers | Technical Lead, Admin Lead, Product Lead, Risk and Compliance, QA |
 | Version | 0.2 |
-| Lifecycle | draft |
-| Approval | pending |
+| Lifecycle | approved |
+| Approval | approved |
 | Publication | published |
 | Last reviewed | 2026-07-17 |
-| Next review | Not scheduled |
-| Authority | Phase 1 Technical and Product decision for AF-04, subordinate to formal architecture approval |
+| Next review | 2026-10-17 |
+| Authority | Approved Phase 1 reference decision for AF-04; subject to future formally approved architecture decisions |
 | Artifact class | canonical-source |
 | Current source | `content/pilots/contracts/kyc-review-contract-group.md` |
 | Other artifacts | `documents/pilots/contracts/kyc-review-contract-group.html`, `documents/agent-md/pilots/contracts/kyc-review-contract-group.md` |
@@ -602,7 +602,7 @@ Standalone flow pilot with exact v0.2 technical traceability; external usability
 | Supersedes | None |
 | Tags | technical-contract-pilot, admin, kyc |
 
-Exact v0.2 paths, DTOs, permissions, concurrency, idempotency and reconciliation are defined; Phase 4 merge remains.
+Approved Phase 1 reference defining exact v0.2 paths, DTOs, permissions, concurrency, idempotency and reconciliation; Phase 4 merge remains.
 
 ### PILOT-KYC-DATA-001 — Tasker Activation and KYC Data Domain Pilot
 
@@ -613,12 +613,12 @@ Exact v0.2 paths, DTOs, permissions, concurrency, idempotency and reconciliation
 | Owner | Backend Lead |
 | Required reviewers | Technical Lead, Product Lead, Data owner, Security and Privacy, QA |
 | Version | 0.2 |
-| Lifecycle | draft |
-| Approval | pending |
+| Lifecycle | approved |
+| Approval | approved |
 | Publication | published |
 | Last reviewed | 2026-07-17 |
-| Next review | Not scheduled |
-| Authority | Phase 1 Technical and Product decision for the KYC domain, subordinate to formal architecture approval |
+| Next review | 2026-10-17 |
+| Authority | Approved Phase 1 reference decision for the KYC domain; subject to future formally approved architecture decisions |
 | Artifact class | canonical-source |
 | Current source | `content/pilots/data/kyc-domain.md` |
 | Other artifacts | `documents/pilots/data/kyc-domain.html`, `documents/agent-md/pilots/data/kyc-domain.md` |
@@ -626,7 +626,7 @@ Exact v0.2 paths, DTOs, permissions, concurrency, idempotency and reconciliation
 | Supersedes | None |
 | Tags | data-domain-pilot, kyc, prisma |
 
-KycVerification review/version and immutable numbered KycAttempt behavior are defined; full-schema merge and migration remain.
+Approved Phase 1 reference defining KycVerification review/version and immutable numbered KycAttempt behavior; full-schema merge and migration remain.
 
 ### PILOT-QA-AF04-001 — AF-04 KYC Review Reference QA Suite
 
@@ -637,11 +637,11 @@ KycVerification review/version and immutable numbered KycAttempt behavior are de
 | Owner | QA Lead |
 | Required reviewers | Product Lead, Technical Lead, Admin Lead, Backend Lead, Risk and Compliance |
 | Version | 0.2 |
-| Lifecycle | draft |
-| Approval | pending |
+| Lifecycle | approved |
+| Approval | approved |
 | Publication | published |
 | Last reviewed | 2026-07-17 |
-| Next review | Not scheduled |
+| Next review | 2026-10-17 |
 | Authority | AF-04 v0.2 flow, KYC contract v0.2 and KYC data domain v0.2 |
 | Artifact class | canonical-source |
 | Current source | `content/pilots/qa/AF-04-kyc-review-suite.md` |
@@ -650,7 +650,7 @@ KycVerification review/version and immutable numbered KycAttempt behavior are de
 | Supersedes | None |
 | Tags | qa-suite-pilot, admin, kyc |
 
-Eleven executable reference cases are defined; deployed build, migration and provider-fixture evidence remain.
+Approved Phase 1 reference with eleven executable cases; deployed build, migration and provider-fixture evidence remain implementation-stage requirements.
 
 
 ## Pending approvals
@@ -672,11 +672,6 @@ Eleven executable reference cases are defined; deployed build, migration and pro
 - [ ] **TEAM-PACKS-001 — Shared Execution Rules and Team Briefs:** Product Lead, Mobile Lead, Admin Lead, Backend Lead.
 - [ ] **WEEK-PACKS-001 — Weekly Execution Packs:** Technical Lead, Product Lead, Team leads.
 - [ ] **FULL-CONTEXT-001 — Work2Cash Full Project Markdown:** Product Lead.
-- [ ] **PILOT-MF06-001 — MF-06 Create and Fund Task Pilot:** Technical Lead, Mobile Lead, Backend Lead, Finance, QA.
-- [ ] **PILOT-AF04-001 — AF-04 KYC Review Pilot:** Technical Lead, Admin Lead, Backend Lead, Risk and Compliance, QA.
-- [ ] **PILOT-KYC-CONTRACT-001 — KYC Review Contract Group Pilot:** Technical Lead, Admin Lead, Product Lead, Risk and Compliance, QA.
-- [ ] **PILOT-KYC-DATA-001 — Tasker Activation and KYC Data Domain Pilot:** Technical Lead, Product Lead, Data owner, Security and Privacy, QA.
-- [ ] **PILOT-QA-AF04-001 — AF-04 KYC Review Reference QA Suite:** Product Lead, Technical Lead, Admin Lead, Backend Lead, Risk and Compliance.
 
 ## Legacy migration queue
 

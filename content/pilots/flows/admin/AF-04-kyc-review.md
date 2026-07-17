@@ -5,7 +5,7 @@ type: main-flow
 audience: Non-technical operations, Junior admin developers, Backend, Product, QA, AI agents
 owner: Product Lead
 reviewers: Technical Lead, Admin Lead, Backend Lead, Risk and Compliance, QA
-status: pilot-review-ready
+status: approved-reference
 version: 0.2
 last_reviewed: 2026-07-17
 authority: Main Enterprise Architecture and Admin Flow Catalogue v1

@@ -5,7 +5,7 @@ type: main-flow
 audience: Non-technical team, Junior mobile developers, Backend, Product, QA, AI agents
 owner: Product Lead
 reviewers: Technical Lead, Mobile Lead, Backend Lead, QA
-status: pilot-draft
+status: approved-reference
 version: 0.1
 last_reviewed: 2026-07-17
 authority: Main Enterprise Architecture and Mobile Flow Catalogue v1

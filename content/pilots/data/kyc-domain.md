@@ -5,10 +5,10 @@ type: data-domain
 audience: Non-technical team, Junior backend/admin developers, Product, QA, AI agents
 owner: Backend Team
 reviewers: Technical Lead, Product Lead, Security and Privacy, QA
-status: pilot-review-ready
+status: approved-reference
 version: 0.2
 last_reviewed: 2026-07-17
-authority: Phase 1 Technical and Product decision for the KYC domain, subordinate to formal architecture approval
+authority: Approved Phase 1 reference decision for the KYC domain; subject to future formally approved architecture decisions
 related: SF-03 Tasker KYC, MF-05 Tasker Activation, AF-04 Tasker and KYC Review, KYC Review Contract Group
 ---
 

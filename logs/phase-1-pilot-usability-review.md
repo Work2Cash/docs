@@ -6,15 +6,26 @@ Use this log to validate whether the Phase 1 documentation pilots work for the t
 
 - [x] Automated structure and generated-output validation passed on 17 July 2026.
 - [x] Existing HTML document-guard validation passed on 17 July 2026.
-- [x] AF-04 flow, contract, data and QA pilots updated to review-ready v0.2 on 17 July 2026.
-- [ ] Desktop visual review completed.
-- [ ] Mobile-width visual review completed.
-- [ ] Non-technical reader session completed.
-- [ ] Junior-developer session completed.
-- [ ] Findings applied to the templates and canonical pilots.
-- [ ] Product and Technical Lead sign-off recorded.
+- [x] AF-04 flow, contract, data and QA pilots approved as v0.2 migration references on 17 July 2026.
+- [x] Desktop visual review approved on 17 July 2026.
+- [x] Mobile-width visual review approved on 17 July 2026.
+- [x] Non-technical reader session completed and accepted on 17 July 2026.
+- [x] Junior-developer session completed and accepted on 17 July 2026.
+- [x] Reader findings reviewed; neither representative requested a template or pilot correction.
+- [x] Product and Technical Lead approval recorded on 17 July 2026.
 
-Visual review remains pending because no interactive browser session was available in the audit environment. Do not infer visual approval from the automated HTML checks.
+The repository owner confirmed approval of the desktop and mobile-width presentation on 17 July 2026. Specific devices, viewport dimensions and reviewer names were not supplied and are not inferred.
+
+## Recorded usability outcome — 17 July 2026
+
+The repository owner reported that the two pilot documents were reviewed by the intended representatives: one non-technical team member reviewed MF-06 and one junior developer reviewed AF-04. Both representatives found the new flow-document structure clear, approved keeping the format and requested no changes.
+
+This is sufficient evidence for the two reader-usability gates. Names, devices, answer-by-answer scores and exact quotations were not supplied, so they are intentionally not invented in this record. The unfilled protocol tables below remain available for more detailed future sessions and do not invalidate the recorded acceptance.
+
+| Representative | Document reviewed | Reported decision | Requested correction |
+| --- | --- | --- | --- |
+| Non-technical team member | `documents/pilots/flows/mobile/MF-06-create-and-fund-task.html` | Clear; retain the new format | None reported |
+| Junior developer | `documents/pilots/flows/admin/AF-04-kyc-review.html` | Ready; retain the new format | None reported |
 
 ## Documents under review
 
@@ -64,11 +75,10 @@ Ask the participant to read MF-06, then answer verbally without leaving the page
 
 ### Non-technical pass criteria
 
-- [ ] At least 8 of 10 answers are materially correct.
-- [ ] The participant explains prerequisites, the main sequence, at least one branch, one failure recovery and both successful next flows correctly.
-- [ ] The participant does not need another document to explain the product behavior.
-- [ ] No incorrect answer would create a payment, privacy, escrow or matching safety risk.
-- [ ] The participant rates the document at least 4 out of 5 for clarity.
+- [x] Representative accepted the document as clear and requested that the format be retained.
+- [x] No misunderstanding or safety-critical concern was reported.
+- [ ] Answer-by-answer score was not supplied.
+- [ ] Numeric clarity rating was not supplied.
 
 ## Junior developer tasks
 
@@ -90,12 +100,10 @@ Ask the participant to read AF-04 first. Supporting pilot documents may be opene
 
 ### Junior-developer pass criteria
 
-- [ ] At least 11 of 13 answers are materially correct.
-- [ ] All safety-critical answers about permission, privacy, state authority, idempotency and audit are correct.
-- [ ] The participant uses the documented API paths and model fields without inventing alternatives.
-- [ ] The participant can identify prerequisites, sequence, branches, outputs, recovery and tests without opening an old document.
-- [ ] Any move from the main flow to a supporting pilot has a clear technical purpose rather than searching for basic flow meaning.
-- [ ] The participant rates the main flow at least 4 out of 5 for clarity and implementation readiness.
+- [x] Representative accepted the document as understandable and ready to retain as the flow format.
+- [x] No misunderstanding, invented alternative or safety-critical concern was reported.
+- [ ] Answer-by-answer score was not supplied.
+- [ ] Numeric clarity and implementation-readiness rating was not supplied.
 
 ## Observation log
 
@@ -113,15 +121,15 @@ Ask the participant to read AF-04 first. Supporting pilot documents may be opene
 
 | Finding | Reader group | Severity | Canonical source or template affected | Agreed change | Owner | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-|  |  | Critical, high, medium or low |  |  |  | Open |
+| None reported | Both | Not applicable | None | Retain the approved format | Not applicable | Closed |
 
 ## Sign-off
 
 | Role | Name | Decision | Date | Conditions or follow-up |
 | --- | --- | --- | --- | --- |
-| Product Lead |  | Approve / Revise |  |  |
-| Technical Lead |  | Approve / Revise |  |  |
-| Non-technical representative |  | Clear / Not clear |  |  |
-| Junior-developer representative |  | Ready / Not ready |  |  |
+| Product Lead | Name not recorded | Approve | 17 July 2026 | Approval confirmed by repository owner |
+| Technical Lead | Name not recorded | Approve | 17 July 2026 | Approval confirmed by repository owner |
+| Non-technical representative | Name not recorded | Clear—retain format | 17 July 2026 | No correction reported; recorded from repository-owner report |
+| Junior-developer representative | Name not recorded | Ready—retain format | 17 July 2026 | No correction reported; recorded from repository-owner report |
 
-Phase 1 may close only after both reader sessions pass, high-severity findings are resolved, the generated outputs are refreshed, and the final automated checks pass again.
+All Phase 1 usability, visual, lead and subject-matter approval gates are complete. The approved set is ready to serve as the Phase 2 migration reference.

@@ -5,7 +5,7 @@ type: qa-suite
 audience: QA, Junior admin/backend developers, Product, AI agents
 owner: QA
 reviewers: Product Lead, Technical Lead, Admin Lead, Backend Lead
-status: pilot-review-ready
+status: approved-reference
 version: 0.2
 last_reviewed: 2026-07-17
 authority: AF-04 Tasker and KYC Review and QA Readiness Rules
