@@ -893,10 +893,23 @@ Phase 1 is **complete**. The reader-usability, desktop/mobile visual and subject
 - [ ] Migrate all mobile main flows.
 - [ ] Migrate all admin subflows.
 - [ ] Migrate all admin main flows.
-- [ ] Generate flow indexes.
+- [x] Generate incremental flow indexes for currently migrated sources.
 - [ ] Generate dependency maps.
 - [ ] Generate combined catalogues for optional reference.
-- [ ] Validate all flow relationships.
+- [x] Validate all flow IDs and relationships used by currently migrated sources; full-library validation remains pending.
+
+### Phase 2 implementation evidence — 17 July 2026
+
+- [x] Complete 72-flow inventory generated in `logs/phase-2-flow-migration-inventory.md`.
+- [x] Migration totals verified: 24 mobile main, 13 mobile subflows, 24 admin main and 11 admin subflows.
+- [x] `scripts/generate-flow-docs.js` generates Phase 2 human HTML and agent Markdown from `content/flows/`.
+- [x] `scripts/generate-flow-migration-inventory.js` detects catalogue-count drift, duplicate IDs and unknown canonical flow references.
+- [x] CI rejects stale Phase 2 indexes, pages, agent Markdown and migration inventory.
+- [x] Batch 1 Admin Access sources created for AF-01, ASF-01 and ASF-11.
+- [ ] Batch 1 required reviewer approval recorded.
+- [ ] Remaining 69 canonical flow sources created and reviewed.
+
+Phase 2 is **in progress**. The deterministic migration path and complete inventory are established, and Batch 1 contains three in-review standalone sources. Unmigrated flows continue to rely on the provisional legacy catalogues until their batch is completed and approved.
 
 ### Phase 2 exit criteria
 
@@ -1039,7 +1052,7 @@ The restructuring is complete only when all of the following are true:
 | --- | --- | --- | --- | --- |
 | Phase 0 - Stop drift | Complete | Technical Lead | 17 Jul 2026 | Governance, registry, link repair and CI controls established |
 | Phase 1 - Templates and pilots | Complete | Product + Technical Lead | 17 Jul 2026 | Approved reference format and five pilot sources ready for Phase 2 migration |
-| Phase 2 - Flow migration | Not started | Product + Team Leads | TBD | Mobile and admin catalogues |
+| Phase 2 - Flow migration | In progress | Product + Team Leads | TBD | 72 flows inventoried; Admin Access Batch 1 has three in-review canonical sources |
 | Phase 3 - Execution planning | Not started | Project + Technical Lead | TBD | Canonical task register |
 | Phase 4 - Technical references | Not started | Technical Lead + Engineers | TBD | Contracts, models, providers and infrastructure |
 | Phase 5 - QA, legal and governance | Not started | QA + Legal + Leads | TBD | Evidence and approval maturity |
@@ -1063,3 +1076,4 @@ Use this section to record reviews of the restructuring plan.
 | 17 July 2026 | AF-04 Phase 1 pilots advanced to v0.2 with exact contracts, KycAttempt model and eleven-case QA suite | Codex, under Product and Technical Lead direction | Review-ready; external usability and subject-matter approval pending |
 | 17 July 2026 | Non-technical and junior-developer representatives accepted the pilot flow format with no requested corrections | Repository-owner report recorded by Codex | Reader-usability gate approved; visual and subject-matter reviews remain |
 | 17 July 2026 | Phase 1 visual, lead and subject-matter approvals confirmed; pilot set promoted to approved migration reference | Repository-owner report recorded by Codex | Phase 1 complete; Phase 2 may begin |
+| 17 July 2026 | Phase 2 started with a 72-flow inventory, deterministic generation and the three-source Admin Access batch | Codex, under Product and Technical Lead direction | In progress; Batch 1 review pending |

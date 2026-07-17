@@ -27,6 +27,12 @@ jobs:
       - name: Verify generated document registry
         run: node scripts/generate-document-registry.js --check
 
+      - name: Verify generated Phase 2 flow inventory
+        run: node scripts/generate-flow-migration-inventory.js --check
+
+      - name: Verify generated Phase 2 flow documents
+        run: node scripts/generate-flow-docs.js --check
+
       - name: Validate documentation metadata and navigation
         run: node scripts/validate-docs.js
 

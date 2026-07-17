@@ -917,6 +917,50 @@
         "admin",
         "kyc"
       ]
+    },
+    {
+      "id": "FLOW-LIB-001",
+      "title": "Phase 2 Standalone Flow Library",
+      "type": "flow-migration-program",
+      "audience": [
+        "Non-technical teams",
+        "Mobile",
+        "Admin",
+        "Backend",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Product Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "Security and Privacy",
+        "QA"
+      ],
+      "version": "0.1",
+      "status": "in-review",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": null,
+      "authority": "Approved Phase 1 reference format and the provisional mobile/admin flow catalogues",
+      "artifactClass": "canonical-source",
+      "currentSource": "logs/phase-2-execution-log.md",
+      "artifacts": [
+        "logs/phase-2-flow-migration-inventory.md",
+        "documents/flows/index.html",
+        "documents/agent-md/flows/README.md"
+      ],
+      "migrationPhase": "Phase 2",
+      "notes": "Phase 2 is in progress. Three of 72 standalone canonical flow sources exist in the first Admin Access batch; the legacy catalogues remain necessary for unmigrated flows.",
+      "supersedes": null,
+      "tags": [
+        "flow-library",
+        "phase-2",
+        "migration"
+      ]
     }
   ]
 }

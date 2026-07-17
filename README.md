@@ -18,6 +18,17 @@ The machine-readable registry is `governance/document-registry.json`. Human and 
 
 Generated outputs must not be edited directly. Run `node scripts/validate-docs.js` before handoff.
 
+## Documentation Generation
+
+| Source | Generated outputs | Command |
+| --- | --- | --- |
+| `governance/document-registry.json` | Human, agent and HTML registry views | `node scripts/generate-document-registry.js` |
+| `content/pilots/` | Approved Phase 1 reference pages | `node scripts/generate-pilot-docs.js` |
+| `content/flows/` | Phase 2 standalone flow HTML and agent Markdown | `node scripts/generate-flow-docs.js` |
+| Legacy mobile/admin catalogues plus `content/flows/` | Phase 2 migration inventory | `node scripts/generate-flow-migration-inventory.js` |
+
+Add `--check` to any command to verify generated files without rewriting them. Phase 2 migration progress and review gates are recorded in `logs/phase-2-execution-log.md`.
+
 ## Legal Documents
 
 The documentation site uses one combined legal document:

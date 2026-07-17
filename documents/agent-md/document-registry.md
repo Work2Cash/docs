@@ -49,6 +49,7 @@
 | PILOT-KYC-CONTRACT-001 | KYC Review Contract Group Pilot | approved | approved | Backend Lead | canonical-source | `content/pilots/contracts/kyc-review-contract-group.md`; `documents/pilots/contracts/kyc-review-contract-group.html`; `documents/agent-md/pilots/contracts/kyc-review-contract-group.md` |
 | PILOT-KYC-DATA-001 | Tasker Activation and KYC Data Domain Pilot | approved | approved | Backend Lead | canonical-source | `content/pilots/data/kyc-domain.md`; `documents/pilots/data/kyc-domain.html`; `documents/agent-md/pilots/data/kyc-domain.md` |
 | PILOT-QA-AF04-001 | AF-04 KYC Review Reference QA Suite | approved | approved | QA Lead | canonical-source | `content/pilots/qa/AF-04-kyc-review-suite.md`; `documents/pilots/qa/AF-04-kyc-review-suite.html`; `documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md` |
+| FLOW-LIB-001 | Phase 2 Standalone Flow Library | in-review | pending | Product Lead | canonical-source | `logs/phase-2-execution-log.md`; `logs/phase-2-flow-migration-inventory.md`; `documents/flows/index.html`; `documents/agent-md/flows/README.md` |
 
 ## Detailed records
 
@@ -652,6 +653,30 @@ Approved Phase 1 reference defining KycVerification review/version and immutable
 
 Approved Phase 1 reference with eleven executable cases; deployed build, migration and provider-fixture evidence remain implementation-stage requirements.
 
+### FLOW-LIB-001 — Phase 2 Standalone Flow Library
+
+| Field | Value |
+| --- | --- |
+| Type | flow-migration-program |
+| Audience | Non-technical teams, Mobile, Admin, Backend, QA, AI agents |
+| Owner | Product Lead |
+| Required reviewers | Technical Lead, Mobile Lead, Admin Lead, Backend Lead, Security and Privacy, QA |
+| Version | 0.1 |
+| Lifecycle | in-review |
+| Approval | pending |
+| Publication | published |
+| Last reviewed | 2026-07-17 |
+| Next review | Not scheduled |
+| Authority | Approved Phase 1 reference format and the provisional mobile/admin flow catalogues |
+| Artifact class | canonical-source |
+| Current source | `logs/phase-2-execution-log.md` |
+| Other artifacts | `logs/phase-2-flow-migration-inventory.md`, `documents/flows/index.html`, `documents/agent-md/flows/README.md` |
+| Migration phase | Phase 2 |
+| Supersedes | None |
+| Tags | flow-library, phase-2, migration |
+
+Phase 2 is in progress. Three of 72 standalone canonical flow sources exist in the first Admin Access batch; the legacy catalogues remain necessary for unmigrated flows.
+
 
 ## Pending approvals
 
@@ -672,6 +697,7 @@ Approved Phase 1 reference with eleven executable cases; deployed build, migrati
 - [ ] **TEAM-PACKS-001 — Shared Execution Rules and Team Briefs:** Product Lead, Mobile Lead, Admin Lead, Backend Lead.
 - [ ] **WEEK-PACKS-001 — Weekly Execution Packs:** Technical Lead, Product Lead, Team leads.
 - [ ] **FULL-CONTEXT-001 — Work2Cash Full Project Markdown:** Product Lead.
+- [ ] **FLOW-LIB-001 — Phase 2 Standalone Flow Library:** Technical Lead, Mobile Lead, Admin Lead, Backend Lead, Security and Privacy, QA.
 
 ## Legacy migration queue
 

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Admin Login and TOTP Verification — Work2Cash Phase 2 flows documentation.">
+  <title>ASF-01 — Admin Login and TOTP Verification | Work2Cash Docs</title>
+  <link rel="stylesheet" href="../../../../assets/css/pilot-docs.css">
+  <script src="../../../../assets/js/guard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to document</a>
+  <header class="site-header">
+    <a class="brand" href="../../../../index.html">Work2Cash Docs</a>
+    <nav aria-label="Document navigation">
+      <a href="../../index.html">Phase 2 flows</a>
+      <a href="../../../agent-md/flows/admin/subflows/ASF-01-admin-login-totp.md" download>Download agent Markdown</a>
+    </nav>
+  </header>
+  <div class="page-shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Flows</a><span aria-hidden="true">/</span><span>Admin / Subflows</span>
+    </nav>
+    <header class="document-hero">
+      <div class="eyebrow">reusable-subflow · ASF-01</div>
+      <h1>Admin Login and TOTP Verification</h1>
+      <p class="audience"><strong>Written for:</strong> Non-technical operations, Junior admin developers, Backend, Product, QA, AI agents</p>
+      <div class="status-row">
+        <span class="status status-in-review">in-review</span>
+        <span>Version 0.1</span>
+        <span>Reviewed 2026-07-17</span>
+      </div>
+    </header>
+    <div class="document-grid">
+      <aside>
+        <nav class="toc" aria-labelledby="toc-title">
+    <h2 id="toc-title">On this page</h2>
+    <ol><li class="toc-level-2"><a href="#in-plain-english">In plain English</a></li><li class="toc-level-2"><a href="#why-it-is-reusable">Why it is reusable</a></li><li class="toc-level-2"><a href="#called-by">Called by</a></li><li class="toc-level-2"><a href="#inputs">Inputs</a></li><li class="toc-level-2"><a href="#steps">Steps</a></li><li class="toc-level-2"><a href="#outputs">Outputs</a></li><li class="toc-level-2"><a href="#success-return-behavior">Success return behavior</a></li><li class="toc-level-2"><a href="#failure-return-behavior">Failure return behavior</a></li><li class="toc-level-2"><a href="#permissions-and-sensitive-data">Permissions and sensitive data</a></li><li class="toc-level-2"><a href="#implementation-map">Implementation map</a></li><li class="toc-level-2"><a href="#acceptance-criteria">Acceptance criteria</a></li><li class="toc-level-2"><a href="#required-tests">Required tests</a></li></ol>
+  </nav>
+        <section class="metadata" aria-labelledby="metadata-title">
+          <h2 id="metadata-title">Document details</h2>
+          <dl>
+            <dt>Owner</dt><dd>Technical Lead</dd>
+            <dt>Reviewers</dt><dd>Product Lead, Admin Lead, Backend Lead, Security and Privacy, QA</dd>
+            <dt>Authority</dt><dd>Main Enterprise Architecture v1, Admin Flow Catalogue v1 and API and Socket Contract Specification v1</dd>
+            <dt>Related</dt><dd>AF-01 Admin Entry Login and TOTP, AF-17 Admin Users Roles and Permissions, ASF-11 Empty Loading and Error Recovery</dd>
+          </dl>
+        </section>
+      </aside>
+      <main id="content" class="document-content" tabindex="-1">
+        <p class="generated-note"><strong>Phase 2 flows:</strong> This page is generated from <code>content/flows/admin/subflows/ASF-01-admin-login-totp.md</code>. Edit the canonical Markdown source, not this HTML file.</p>
+        <h2 id="in-plain-english">In plain English</h2>
+<p>This subflow proves that a person entering the dashboard has a valid admin account, knows the account password and possesses the enrolled authenticator used for the time-based one-time password, or TOTP. It creates a full admin session only after both checks succeed.</p>
+<h2 id="why-it-is-reusable">Why it is reusable</h2>
+<p>AF-01 uses the complete login path. Every protected admin page also relies on the same session guard when a session is missing or expired, and sensitive operations may request TOTP again. Keeping those checks in one subflow prevents individual modules from inventing weaker access behavior.</p>
+<h2 id="called-by">Called by</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Calling flow</th><th scope="col">When it calls this subflow</th><th scope="col">Return destination</th></tr></thead><tbody><tr><td>AF-01 — Admin Entry, Login and TOTP</td><td>An admin opens the dashboard without a valid session.</td><td>AF-01 continues to the intended protected page or AF-02 Dashboard Overview.</td></tr><tr><td>AF-02 to AF-24</td><td>A protected page is opened with no session or an expired session.</td><td>The originally requested page after successful login.</td></tr><tr><td>High-impact admin actions</td><td>Policy requires a current TOTP check before the action.</td><td>The calling confirmation step; this does not replace its RBAC or reason checks.</td></tr></tbody></table></div>
+<h2 id="inputs">Inputs</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Input</th><th scope="col">Source</th><th scope="col">Required validation</th></tr></thead><tbody><tr><td>Admin email and password</td><td>Admin login form</td><td>Credentials must match an existing enabled AdminUser without revealing which field was wrong.</td></tr><tr><td>TOTP challenge</td><td>Backend pre-session</td><td>Challenge must belong to the login attempt and must not be treated as a full admin session.</td></tr><tr><td>TOTP code</td><td>Admin authenticator</td><td>Code must pass the backend TOTP and rate-limit checks.</td></tr><tr><td>Intended protected URL</td><td>Dashboard auth guard</td><td>Destination must be an allowed internal admin route; never trust an arbitrary external redirect.</td></tr><tr><td>Admin account state</td><td>AdminUser record</td><td>Disabled accounts cannot receive a dashboard session.</td></tr></tbody></table></div>
+<h2 id="steps">Steps</h2>
+<ol><li><strong>Admin:</strong> Opens the admin login page, either directly or after the auth guard intercepts a protected route.</li><li><strong>Admin:</strong> Enters the admin email and password.</li><li><strong>Backend:</strong> Validates the credentials and confirms that the AdminUser is enabled.</li><li><strong>Backend:</strong> Returns a limited TOTP challenge rather than a full admin session.</li><li><strong>Admin:</strong> Enters the current code from the enrolled authenticator.</li><li><strong>Backend:</strong> Verifies the challenge, code and rate limit.</li><li><strong>Backend:</strong> Creates the AdminSession and records the login metadata needed for audit and security review.</li><li><strong>Dashboard:</strong> Returns the admin to the stored protected route, or to AF-02 when no safe intended route exists.</li></ol>
+<h2 id="outputs">Outputs</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Output</th><th scope="col">Consumer</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td>TOTP challenge</td><td>Admin TOTP screen</td><td>Password validation passed, but full admin access has not been granted.</td></tr><tr><td>Authenticated AdminSession</td><td>Dashboard auth guard and protected APIs</td><td>Password and TOTP checks passed for an enabled admin.</td></tr><tr><td>Safe authentication error</td><td>Admin login or TOTP screen</td><td>Access was not granted; the response does not expose protected account details.</td></tr><tr><td>Login audit/security metadata</td><td>Security monitoring and audit review</td><td>A login success or failure can be investigated without logging secrets or TOTP codes.</td></tr></tbody></table></div>
+<h2 id="success-return-behavior">Success return behavior</h2>
+<p>The subflow returns an authenticated admin session and one safe internal destination. AF-01 then completes at the dashboard or the intended protected page. A sensitive-action TOTP check returns only to the calling action and does not bypass its permission, reason or audit requirements.</p>
+<h2 id="failure-return-behavior">Failure return behavior</h2>
+<p>Wrong credentials, wrong or expired TOTP, rate limiting and disabled-account checks create no full admin session. The admin remains on the relevant access screen with a safe retry or escalation message. An expired session stores only a safe internal route, returns through AF-01 and resumes that route after a new successful login. Repeated or suspicious failures are available to security monitoring.</p>
+<h2 id="permissions-and-sensitive-data">Permissions and sensitive data</h2>
+<ul><li>The login endpoint is public only in the limited sense required to accept admin credentials; it grants no admin permission by itself.</li><li>The TOTP verification endpoint accepts an admin pre-session or an already authenticated admin token where policy requires re-verification.</li><li>Passwords, TOTP secrets, TOTP codes, recovery codes and full session tokens must never appear in logs, UI errors or audit metadata.</li><li>TOTP enrollment and recovery are approved security paths outside this subflow; login must not silently enroll or reset TOTP.</li><li>A valid session does not grant every action. ASF-02 RBAC Permission Gate still controls modules and operations.</li></ul>
+<h2 id="implementation-map">Implementation map</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Surface</th><th scope="col">References</th><th scope="col">Responsibility</th></tr></thead><tbody><tr><td>API</td><td><code>POST /admin/auth/login</code></td><td>Validate admin credentials and create a limited TOTP challenge, not a full session.</td></tr><tr><td>API</td><td><code>POST /admin/auth/totp/verify</code></td><td>Verify the login or sensitive-action TOTP challenge.</td></tr><tr><td>API</td><td><code>POST /admin/auth/logout</code></td><td>Invalidate the current AdminSession when AF-01 logs out.</td></tr><tr><td>Data</td><td>AdminUser, AdminSession, AdminTotpCredential</td><td>Store separate admin identity, session and TOTP credential state.</td></tr><tr><td>Data</td><td>AdminAuditLog</td><td>Preserve required admin/security traceability without secrets.</td></tr><tr><td>UI</td><td>Admin login, TOTP verification and auth guard</td><td>Collect access proof, show safe states and resume only an allowed internal route.</td></tr><tr><td>Socket</td><td>None</td><td>Admin authentication is REST-based; no socket connection is required.</td></tr></tbody></table></div>
+<h2 id="acceptance-criteria">Acceptance criteria</h2>
+<ul><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Valid password alone never creates a full dashboard session.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Valid credentials plus valid TOTP create one authenticated AdminSession and route safely.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Disabled admins, invalid credentials and invalid TOTP cannot open protected pages.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> An expired session can return to the original allowed admin route after successful login.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Errors and logs expose no password, TOTP secret, code, recovery code or session token.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Completing this subflow does not bypass RBAC on the destination page or action.</li></ul>
+<h2 id="required-tests">Required tests</h2>
+<ul><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Valid password and TOTP login.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Wrong password, unknown account and disabled account with non-revealing errors.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Wrong, expired and rate-limited TOTP.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Direct protected-route entry and safe return after login.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Unsafe or external intended URL is rejected in favor of AF-02.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Expired-session recovery and logout invalidation.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Secret and token redaction in logs, monitoring and UI errors.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Authenticated admin without required RBAC permission remains forbidden at the destination.</li></ul>
+      </main>
+    </div>
+  </div>
+  <footer>Work2Cash documentation · Phase 2 flows</footer>
+</body>
+</html>

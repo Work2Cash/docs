@@ -1,0 +1,179 @@
+#!/usr/bin/env node
+
+"use strict";
+
+const fs = require("node:fs");
+const path = require("node:path");
+
+const ROOT = path.resolve(__dirname, "..");
+const CHECK_ONLY = process.argv.includes("--check");
+const OUTPUT = path.join(ROOT, "logs", "phase-2-flow-migration-inventory.md");
+const SOURCES = [
+  {
+    platform: "Mobile",
+    file: path.join(ROOT, "documents", "agent-md", "mobile-flow-catalogue-v1.md"),
+    expected: { main: 24, subflow: 13 },
+  },
+  {
+    platform: "Admin",
+    file: path.join(ROOT, "documents", "agent-md", "admin-flow-catalogue-v1.md"),
+    expected: { main: 24, subflow: 11 },
+  },
+];
+const FLOW_ROOT = path.join(ROOT, "content", "flows");
+
+function toPosix(value) {
+  return value.split(path.sep).join("/");
+}
+
+function walkMarkdown(directory) {
+  if (!fs.existsSync(directory)) return [];
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const target = path.join(directory, entry.name);
+    if (entry.isDirectory()) return walkMarkdown(target);
+    return entry.isFile() && entry.name.endsWith(".md") ? [target] : [];
+  });
+}
+
+function frontmatter(file) {
+  const raw = fs.readFileSync(file, "utf8");
+  const match = raw.match(/^---\n([\s\S]*?)\n---/);
+  if (!match) throw new Error(`${toPosix(path.relative(ROOT, file))}: missing front matter`);
+  const metadata = {};
+  for (const line of match[1].split("\n")) {
+    const split = line.indexOf(":");
+    if (split < 1) continue;
+    metadata[line.slice(0, split).trim()] = line.slice(split + 1).trim();
+  }
+  return metadata;
+}
+
+function legacyFlows(source) {
+  const raw = fs.readFileSync(source.file, "utf8");
+  const pattern = /^((?:ASF|SF|MF|AF)-\d{2})\n\n#{3,4}\s+(.+)$/gm;
+  const found = [];
+  for (const match of raw.matchAll(pattern)) {
+    const id = match[1];
+    const belongs = source.platform === "Mobile"
+      ? id.startsWith("MF-") || id.startsWith("SF-")
+      : id.startsWith("AF-") || id.startsWith("ASF-");
+    if (!belongs) continue;
+    const prefix = raw.slice(0, match.index);
+    found.push({
+      id,
+      title: match[2].trim(),
+      platform: source.platform,
+      kind: id.startsWith("MF-") || id.startsWith("AF-") ? "main" : "subflow",
+      legacySource: `${toPosix(path.relative(ROOT, source.file))}:${prefix.split("\n").length}`,
+    });
+  }
+  return found;
+}
+
+function canonicalFiles() {
+  const result = new Map();
+  for (const file of walkMarkdown(FLOW_ROOT)) {
+    const metadata = frontmatter(file);
+    if (!metadata.id) throw new Error(`${toPosix(path.relative(ROOT, file))}: missing id`);
+    if (result.has(metadata.id)) throw new Error(`duplicate canonical flow id: ${metadata.id}`);
+    result.set(metadata.id, {
+      file: toPosix(path.relative(ROOT, file)),
+      status: metadata.status || "not-recorded",
+      raw: fs.readFileSync(file, "utf8"),
+    });
+  }
+  return result;
+}
+
+function validate(flows, canonical) {
+  const problems = [];
+  const ids = new Set(flows.map((flow) => flow.id));
+  if (ids.size !== flows.length) problems.push("legacy catalogue extraction produced duplicate flow IDs");
+
+  for (const source of SOURCES) {
+    for (const kind of ["main", "subflow"]) {
+      const actual = flows.filter((flow) => flow.platform === source.platform && flow.kind === kind).length;
+      if (actual !== source.expected[kind]) {
+        problems.push(`${source.platform} ${kind}: expected ${source.expected[kind]}, found ${actual}`);
+      }
+    }
+  }
+
+  for (const [id, item] of canonical) {
+    if (!ids.has(id)) problems.push(`${id}: canonical flow is absent from legacy flow inventory`);
+    const references = [...item.raw.matchAll(/\b((?:ASF|SF|MF|AF)-\d{2})\b/g)].map((match) => match[1]);
+    for (const reference of references) {
+      if (!ids.has(reference)) problems.push(`${id}: unknown flow reference ${reference}`);
+    }
+  }
+  if (problems.length) throw new Error(problems.join("\n"));
+}
+
+function render(flows, canonical) {
+  const counts = {
+    total: flows.length,
+    migrated: canonical.size,
+    mobileMain: flows.filter((flow) => flow.platform === "Mobile" && flow.kind === "main").length,
+    mobileSub: flows.filter((flow) => flow.platform === "Mobile" && flow.kind === "subflow").length,
+    adminMain: flows.filter((flow) => flow.platform === "Admin" && flow.kind === "main").length,
+    adminSub: flows.filter((flow) => flow.platform === "Admin" && flow.kind === "subflow").length,
+  };
+  const rows = flows.map((flow) => {
+    const item = canonical.get(flow.id);
+    const source = item ? `\`${item.file}\`` : "Not migrated";
+    const status = item ? item.status : "queued";
+    return `| ${flow.id} | ${flow.title} | ${flow.platform} | ${flow.kind} | ${status} | ${source} | \`${flow.legacySource}\` |`;
+  }).join("\n");
+
+  return `# Phase 2 Flow Migration Inventory
+
+> Generated from the two legacy agent catalogues and canonical files under \`content/flows/\`. Do not edit this file directly. Run \`node scripts/generate-flow-migration-inventory.js\`.
+
+## Migration summary
+
+| Measure | Count |
+| --- | ---: |
+| Total flows | ${counts.total} |
+| Canonical Phase 2 sources created | ${counts.migrated} |
+| Remaining | ${counts.total - counts.migrated} |
+| Mobile main flows | ${counts.mobileMain} |
+| Mobile reusable subflows | ${counts.mobileSub} |
+| Admin main flows | ${counts.adminMain} |
+| Admin reusable subflows | ${counts.adminSub} |
+
+## Meaning of status
+
+- \`queued\`: still available only in the legacy combined catalogue.
+- \`in-review\`: canonical standalone source and generated outputs exist, but migration review is not complete.
+- \`approved\` or \`active\`: required review has been recorded according to governance policy.
+
+## Complete flow inventory
+
+| ID | Flow | Platform | Kind | Migration status | Canonical source | Legacy source line |
+| --- | --- | --- | --- | --- | --- | --- |
+${rows}
+`;
+}
+
+function run() {
+  const flows = SOURCES.flatMap(legacyFlows).sort((a, b) => a.platform.localeCompare(b.platform) || a.kind.localeCompare(b.kind) || a.id.localeCompare(b.id));
+  const canonical = canonicalFiles();
+  validate(flows, canonical);
+  const output = render(flows, canonical);
+  if (CHECK_ONLY) {
+    if (!fs.existsSync(OUTPUT) || fs.readFileSync(OUTPUT, "utf8") !== output) {
+      throw new Error(`stale or missing generated inventory: ${toPosix(path.relative(ROOT, OUTPUT))}`);
+    }
+    console.log(`Phase 2 flow inventory is current: ${flows.length} flows, ${canonical.size} canonical sources.`);
+    return;
+  }
+  fs.writeFileSync(OUTPUT, output);
+  console.log(`Generated Phase 2 flow inventory: ${flows.length} flows, ${canonical.size} canonical sources.`);
+}
+
+try {
+  run();
+} catch (error) {
+  console.error(`Phase 2 flow inventory generation failed: ${error.message}`);
+  process.exitCode = 1;
+}

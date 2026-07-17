@@ -1,4 +1,4 @@
-# Work2Cash Phase 1 agent Markdown pilots
+# Work2Cash Phase 1 pilot agent Markdown
 
 These files are generated from the canonical sources in `content/pilots/`. Do not edit generated files directly.
 

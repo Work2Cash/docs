@@ -6,10 +6,14 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const ROOT = path.resolve(__dirname, "..");
-const SOURCE_ROOT = path.join(ROOT, "content", "pilots");
-const HTML_ROOT = path.join(ROOT, "documents", "pilots");
-const AGENT_ROOT = path.join(ROOT, "documents", "agent-md", "pilots");
+const FLOW_MODE = process.argv.includes("--flows");
+const SOURCE_ROOT = path.join(ROOT, "content", FLOW_MODE ? "flows" : "pilots");
+const HTML_ROOT = path.join(ROOT, "documents", FLOW_MODE ? "flows" : "pilots");
+const AGENT_ROOT = path.join(ROOT, "documents", "agent-md", FLOW_MODE ? "flows" : "pilots");
 const CHECK_ONLY = process.argv.includes("--check");
+const COLLECTION_LABEL = FLOW_MODE ? "Phase 2 flows" : "Phase 1 pilots";
+const COLLECTION_SHORT = FLOW_MODE ? "Flows" : "Pilots";
+const GENERATOR_COMMAND = FLOW_MODE ? "node scripts/generate-flow-docs.js" : "node scripts/generate-pilot-docs.js";
 
 const REQUIRED_METADATA = [
   "id",
@@ -48,6 +52,20 @@ const REQUIRED_SECTIONS = {
     "Acceptance criteria",
     "Required tests",
     "Out of scope",
+  ],
+  "reusable-subflow": [
+    "In plain English",
+    "Why it is reusable",
+    "Called by",
+    "Inputs",
+    "Steps",
+    "Outputs",
+    "Success return behavior",
+    "Failure return behavior",
+    "Permissions and sensitive data",
+    "Implementation map",
+    "Acceptance criteria",
+    "Required tests",
   ],
   "api-contract-group": [
     "In plain English",
@@ -135,7 +153,7 @@ function parseDocument(file) {
 function validateSourceStructure(document) {
   const required = REQUIRED_SECTIONS[document.metadata.type];
   if (!required) {
-    throw new Error(`${document.relative}: unsupported pilot document type: ${document.metadata.type}`);
+    throw new Error(`${document.relative}: unsupported canonical document type: ${document.metadata.type}`);
   }
   const headings = [...document.body.matchAll(/^##\s+(.+)$/gm)].map((match) => match[1].trim());
   const missing = required.filter((heading) => !headings.includes(heading));
@@ -349,21 +367,21 @@ function renderHtmlDocument(document) {
   const htmlFile = path.join(HTML_ROOT, document.relative.replace(/\.md$/, ".html"));
   const agentFile = path.join(AGENT_ROOT, document.relative);
   const homeUrl = relativeUrl(htmlFile, path.join(ROOT, "index.html"));
-  const pilotHomeUrl = relativeUrl(htmlFile, path.join(HTML_ROOT, "index.html"));
+  const collectionHomeUrl = relativeUrl(htmlFile, path.join(HTML_ROOT, "index.html"));
   const cssUrl = relativeUrl(htmlFile, path.join(ROOT, "assets", "css", "pilot-docs.css"));
   const guardUrl = relativeUrl(htmlFile, path.join(ROOT, "assets", "js", "guard.js"));
   const agentUrl = relativeUrl(htmlFile, agentFile);
   const sourceLabel = toPosix(path.relative(ROOT, document.source));
   const rendered = renderMarkdown(document.body, { stripFirstHeading: true });
   const trail = document.relative.replace(/\.md$/, "").split("/");
-  const section = trail.length > 1 ? humanLabel(trail.slice(0, -1).join(" / ")) : "Pilot";
+  const section = trail.length > 1 ? humanLabel(trail.slice(0, -1).join(" / ")) : COLLECTION_SHORT;
 
   return `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="${escapeHtml(document.metadata.title)} — Work2Cash Phase 1 documentation pilot.">
+  <meta name="description" content="${escapeHtml(document.metadata.title)} — Work2Cash ${escapeHtml(COLLECTION_LABEL)} documentation.">
   <title>${escapeHtml(document.metadata.id)} — ${escapeHtml(document.metadata.title)} | Work2Cash Docs</title>
   <link rel="stylesheet" href="${cssUrl}">
   <script src="${guardUrl}"></script>
@@ -373,13 +391,13 @@ function renderHtmlDocument(document) {
   <header class="site-header">
     <a class="brand" href="${homeUrl}">Work2Cash Docs</a>
     <nav aria-label="Document navigation">
-      <a href="${pilotHomeUrl}">Phase 1 pilots</a>
+      <a href="${collectionHomeUrl}">${escapeHtml(COLLECTION_LABEL)}</a>
       <a href="${agentUrl}" download>Download agent Markdown</a>
     </nav>
   </header>
   <div class="page-shell">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="${pilotHomeUrl}">Pilots</a><span aria-hidden="true">/</span><span>${escapeHtml(section)}</span>
+      <a href="${collectionHomeUrl}">${escapeHtml(COLLECTION_SHORT)}</a><span aria-hidden="true">/</span><span>${escapeHtml(section)}</span>
     </nav>
     <header class="document-hero">
       <div class="eyebrow">${escapeHtml(document.metadata.type)} · ${escapeHtml(document.metadata.id)}</div>
@@ -405,12 +423,12 @@ function renderHtmlDocument(document) {
         </section>
       </aside>
       <main id="content" class="document-content" tabindex="-1">
-        <p class="generated-note"><strong>Phase 1 pilot:</strong> This page is generated from <code>${escapeHtml(sourceLabel)}</code>. Edit the canonical Markdown source, not this HTML file.</p>
+        <p class="generated-note"><strong>${escapeHtml(COLLECTION_LABEL)}:</strong> This page is generated from <code>${escapeHtml(sourceLabel)}</code>. Edit the canonical Markdown source, not this HTML file.</p>
         ${rendered.html}
       </main>
     </div>
   </div>
-  <footer>Work2Cash documentation · Phase 1 restructuring pilot</footer>
+  <footer>Work2Cash documentation · ${escapeHtml(COLLECTION_LABEL)}</footer>
 </body>
 </html>
 `;
@@ -420,7 +438,7 @@ function renderAgentDocument(document) {
   const sourceLabel = toPosix(path.relative(ROOT, document.source));
   const metadataLines = Object.entries(document.metadata).map(([key, value]) => `${key}: ${value}`);
   metadataLines.push(`generated_from: ${sourceLabel}`, "do_not_edit: true");
-  return `---\n${metadataLines.join("\n")}\n---\n\n> Generated agent document. Edit \`${sourceLabel}\` and rerun \`node scripts/generate-pilot-docs.js\`.\n\n${document.body}`;
+  return `---\n${metadataLines.join("\n")}\n---\n\n> Generated agent document. Edit \`${sourceLabel}\` and rerun \`${GENERATOR_COMMAND}\`.\n\n${document.body}`;
 }
 
 function renderHtmlIndex(documents) {
@@ -438,26 +456,33 @@ function renderHtmlIndex(documents) {
     </article>`;
   }).join("\n");
 
+  const title = FLOW_MODE ? "Phase 2 Flow Library" : "Phase 1 Documentation Pilots";
+  const description = FLOW_MODE
+    ? "Standalone flows migrated with the approved Phase 1 structure. The library grows batch by batch until it replaces the legacy combined catalogues."
+    : "These pilots test a structure that lets a reader understand one flow or technical area without repeatedly searching other documents. They are not yet replacements for the active catalogues.";
+  const notice = FLOW_MODE
+    ? "Migration is in progress. A flow is usable as a Phase 2 migration source only when its page status and registry record say so; missing flows remain in the legacy catalogues."
+    : "The Phase 1 usability, visual and subject-matter reviews are complete. These are approved reference documents for Phase 2 migration, but they do not replace the complete flow catalogues yet.";
   return `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Work2Cash Phase 1 documentation restructuring pilots.">
-  <title>Phase 1 Documentation Pilots | Work2Cash Docs</title>
+  <meta name="description" content="${escapeHtml(title)} — Work2Cash documentation.">
+  <title>${escapeHtml(title)} | Work2Cash Docs</title>
   <link rel="stylesheet" href="${cssUrl}">
   <script src="${guardUrl}"></script>
 </head>
 <body>
-  <a class="skip-link" href="#content">Skip to pilots</a>
+  <a class="skip-link" href="#content">Skip to documents</a>
   <header class="site-header"><a class="brand" href="${homeUrl}">Work2Cash Docs</a><nav aria-label="Document navigation"><a href="${homeUrl}">Portal home</a></nav></header>
   <main id="content" class="index-shell" tabindex="-1">
     <header class="index-hero">
-      <div class="eyebrow">Documentation restructuring · Phase 1</div>
-      <h1>Standalone pilot documents</h1>
-      <p>These pilots test a structure that lets a reader understand one flow or technical area without repeatedly searching other documents. They are not yet replacements for the active catalogues.</p>
+      <div class="eyebrow">Documentation restructuring · ${FLOW_MODE ? "Phase 2" : "Phase 1"}</div>
+      <h1>${escapeHtml(title)}</h1>
+      <p>${escapeHtml(description)}</p>
     </header>
-    <section class="notice" aria-labelledby="pilot-status"><h2 id="pilot-status">Pilot status</h2><p>The Phase 1 usability, visual and subject-matter reviews are complete. These are approved reference documents for Phase 2 migration, but they do not replace the complete flow catalogues yet.</p></section>
+    <section class="notice" aria-labelledby="collection-status"><h2 id="collection-status">${FLOW_MODE ? "Migration status" : "Pilot status"}</h2><p>${escapeHtml(notice)}</p></section>
     <div class="pilot-grid">${cards}</div>
   </main>
   <footer>Work2Cash documentation · Generated from canonical Markdown sources</footer>
@@ -471,15 +496,15 @@ function renderAgentIndex(documents) {
     const target = document.relative;
     return `| ${document.metadata.id} | [${document.metadata.title}](${target}) | ${document.metadata.type} | ${document.metadata.status} |`;
   }).join("\n");
-  return `# Work2Cash Phase 1 agent Markdown pilots
+  return `# Work2Cash ${FLOW_MODE ? "Phase 2 flow" : "Phase 1 pilot"} agent Markdown
 
-These files are generated from the canonical sources in \`content/pilots/\`. Do not edit generated files directly.
+These files are generated from the canonical sources in \`${FLOW_MODE ? "content/flows/" : "content/pilots/"}\`. Do not edit generated files directly.
 
 | ID | Document | Type | Status |
 | --- | --- | --- | --- |
 ${rows}
 
-Regenerate with \`node scripts/generate-pilot-docs.js\`. Validate without writing with \`node scripts/generate-pilot-docs.js --check\`.
+Regenerate with \`${GENERATOR_COMMAND}\`. Validate without writing with \`${GENERATOR_COMMAND} --check\`.
 `;
 }
 
@@ -588,11 +613,11 @@ function check(expected) {
     if (!expected.has(file)) problems.push(`orphaned: ${toPosix(path.relative(ROOT, file))}`);
   }
   if (problems.length) {
-    console.error("Pilot documentation check failed:\n" + problems.map((item) => `- ${item}`).join("\n"));
+    console.error(`${COLLECTION_LABEL} documentation check failed:\n` + problems.map((item) => `- ${item}`).join("\n"));
     process.exitCode = 1;
     return;
   }
-  console.log(`Pilot documentation is current: ${expected.size} generated files checked.`);
+  console.log(`${COLLECTION_LABEL} documentation is current: ${expected.size} generated files checked.`);
 }
 
 function write(expected) {
@@ -603,13 +628,13 @@ function write(expected) {
     fs.mkdirSync(path.dirname(file), { recursive: true });
     fs.writeFileSync(file, contents);
   }
-  console.log(`Generated ${expected.size} files from ${documents.length} canonical pilot sources.`);
+  console.log(`Generated ${expected.size} files from ${documents.length} canonical ${FLOW_MODE ? "flow" : "pilot"} sources.`);
 }
 
 let documents;
 try {
   documents = walkMarkdown(SOURCE_ROOT).map(parseDocument);
-  if (!documents.length) throw new Error("No canonical pilot documents found");
+  if (!documents.length) throw new Error(`No canonical ${FLOW_MODE ? "flow" : "pilot"} documents found`);
   const ids = new Set();
   for (const document of documents) {
     if (ids.has(document.metadata.id)) throw new Error(`Duplicate document id: ${document.metadata.id}`);
@@ -620,6 +645,6 @@ try {
   if (CHECK_ONLY) check(expected);
   else write(expected);
 } catch (error) {
-  console.error(`Pilot documentation generation failed: ${error.message}`);
+  console.error(`${COLLECTION_LABEL} documentation generation failed: ${error.message}`);
   process.exitCode = 1;
 }
