@@ -6,7 +6,7 @@ audience: Non-technical team, Junior mobile developers, Product, QA, AI agents
 owner: Product Lead
 reviewers: Technical Lead, Mobile Lead, Backend Lead, QA
 status: approved
-version: 0.1
+version: 0.2
 last_reviewed: 2026-07-17
 next_review: 2026-10-17
 authority: Approved Mobile Flow Catalogue v1 behavior and approved Phase 1 standalone format
@@ -150,7 +150,7 @@ Rewards users for bringing new users who complete real paid activity. This stand
 
 | Surface | References | Responsibility |
 | --- | --- | --- |
-| API | API and Socket Contract Specification v1, matched by behavior and title during Phase 4 | Provide authoritative reads/mutations. Existing ID-to-title traceability conflicts must not be imported silently. |
+| API | Referral REST endpoints are not yet defined; Phase 4 must define code/share, attribution, progress and reward-status contracts | Do not invent paths; preserve the five-paid-task reward rule until OpenAPI defines exact contracts. |
 | Data | Data Model and Prisma Schema Planning v1 | Store the domain and checkpoint state represented above. |
 | UI | Mobile application | Present the sequence, branches, endings and recovery without redefining backend truth. |
 | Provider/socket | Only where the approved source explicitly requires it | Supply external/durable events without frontend invention or paid auto-refresh loops. |

@@ -87,20 +87,18 @@ The repository owner clarified that the existing flow behavior and the new stand
 - [x] All main flows include prerequisites, verbal walkthrough, branches, endings, next-flow conditions and recovery/re-entry.
 - [x] All reusable subflows include callers, inputs, outputs and success/failure return behavior.
 - [x] All referenced flow IDs exist.
-- [x] Known API traceability ID/title conflicts were not imported; Phase 4 must reconcile technical mappings by behavior and title.
+- [x] Known API traceability ID/title conflicts were reconciled by approved behavior and title on 17 July 2026; MF-17 retains an explicit missing-contract gap.
 - [x] Mobile/admin legacy combined catalogues are retained as superseded migration evidence.
 
-## Phase 4 technical reconciliation queue
+## Technical reconciliation resolution — 17 July 2026
 
-The API contract's mobile flow traceability table uses several IDs for different titles than the approved Mobile Flow Catalogue. Phase 2 preserved the approved flow catalogue and did not attach the mismatched endpoint rows.
+The six mobile ID/title collisions were corrected in both API contract presentations and in the affected standalone flows. Five flows now point to existing contract paths. MF-17 Referral is correctly named and no longer duplicates MF-20 Notifications, but its code/share, attribution, progress and reward-status paths remain an explicit Phase 4 OpenAPI gap.
 
-| ID | Active standalone flow title | API traceability-table title | Phase 4 action |
-| --- | --- | --- | --- |
-| MF-01 | First App Launch and Entry Decision | Registration | Remap endpoints by behavior and correct the traceability ID/title. |
-| MF-02 | Registration | Login | Remap endpoints by behavior and correct the traceability ID/title. |
-| MF-03 | Login / Session Recovery | Onboarding and Mode Setup | Remap endpoints by behavior and correct the traceability ID/title. |
-| MF-11 | Task Owner Rejection | Completion and Settlement | Resolve the collision with the active rejection and completion flows. |
-| MF-14 | Completion and Settlement | Task History | Resolve the collision and add the correct task-history mapping where required. |
-| MF-17 | Referral | Notifications | Resolve the collision with MF-20 Notification Center and Preferences. |
-
-Until Phase 4 resolves these rows, engineers must match technical contracts by approved behavior and title and report conflicts rather than trusting the mismatched ID alone.
+| ID | Active standalone flow title | Resolution |
+| --- | --- | --- |
+| MF-01 | First App Launch and Entry Decision | Mapped to session refresh and authoritative `/me` recovery. |
+| MF-02 | Registration | Mapped to registration, OTP, profile and PIN contracts. |
+| MF-03 | Login / Session Recovery | Mapped to login, social login, refresh and `/me`. |
+| MF-11 | Task Owner Rejection | Mapped to candidate, rejection and report contracts. |
+| MF-14 | Completion and Settlement | Mapped to proof, completion request/confirmation, rating and settlement status contracts. |
+| MF-17 | Referral | Title collision resolved; exact referral REST paths remain deliberately undefined pending OpenAPI work. |

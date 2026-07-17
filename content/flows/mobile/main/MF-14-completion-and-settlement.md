@@ -6,7 +6,7 @@ audience: Non-technical team, Junior mobile developers, Product, QA, AI agents
 owner: Product Lead
 reviewers: Technical Lead, Mobile Lead, Backend Lead, QA
 status: approved
-version: 0.1
+version: 0.2
 last_reviewed: 2026-07-17
 next_review: 2026-10-17
 authority: Approved Mobile Flow Catalogue v1 behavior and approved Phase 1 standalone format
@@ -157,7 +157,7 @@ Finalizes a task and moves money from escrow according to completion or report o
 
 | Surface | References | Responsibility |
 | --- | --- | --- |
-| API | API and Socket Contract Specification v1, matched by behavior and title during Phase 4 | Provide authoritative reads/mutations. Existing ID-to-title traceability conflicts must not be imported silently. |
+| API | `POST /tasker/tasks/{taskId}/completion-proof`; `POST /tasker/tasks/{taskId}/request-completion`; `POST /task-owner/tasks/{taskId}/confirm-completion`; `/tasks/{taskId}/ratings`; wallet/escrow status endpoints | Submit proof, request or confirm completion, settle escrow and enable follow-up rating. |
 | Data | Data Model and Prisma Schema Planning v1 | Store the domain and checkpoint state represented above. |
 | UI | Mobile application | Present the sequence, branches, endings and recovery without redefining backend truth. |
 | Provider/socket | Only where the approved source explicitly requires it | Supply external/durable events without frontend invention or paid auto-refresh loops. |

@@ -5322,7 +5322,7 @@ The subflow keeps the admin in a safe state and states whether anything changed.
 
 ## MF-01 — First App Launch and Entry Decision
 
-> Status: approved; version 0.1; owner: Product Lead.
+> Status: approved; version 0.2; owner: Product Lead.
 
 ### In plain English
 
@@ -5457,7 +5457,7 @@ Decides whether the user should see onboarding, registration, login, or an authe
 
 | Surface | References | Responsibility |
 | --- | --- | --- |
-| API | API and Socket Contract Specification v1, matched by behavior and title during Phase 4 | Provide authoritative reads/mutations. Existing ID-to-title traceability conflicts must not be imported silently. |
+| API | `POST /auth/refresh`; `GET /me` | Restore or verify the session and return the authoritative next action during app entry. |
 | Data | Data Model and Prisma Schema Planning v1 | Store the domain and checkpoint state represented above. |
 | UI | Mobile application | Present the sequence, branches, endings and recovery without redefining backend truth. |
 | Provider/socket | Only where the approved source explicitly requires it | Supply external/durable events without frontend invention or paid auto-refresh loops. |
@@ -5490,7 +5490,7 @@ Decides whether the user should see onboarding, registration, login, or an authe
 
 ## MF-02 — Registration
 
-> Status: approved; version 0.1; owner: Product Lead.
+> Status: approved; version 0.2; owner: Product Lead.
 
 ### In plain English
 
@@ -5625,7 +5625,7 @@ Creates a new Work2Cash user account and brings the user to a complete basic pro
 
 | Surface | References | Responsibility |
 | --- | --- | --- |
-| API | API and Socket Contract Specification v1, matched by behavior and title during Phase 4 | Provide authoritative reads/mutations. Existing ID-to-title traceability conflicts must not be imported silently. |
+| API | `POST /auth/register`; `POST /auth/otp/send`; `POST /auth/otp/verify`; `GET /me`; `PATCH /me/profile`; `POST /me/security-pin/setup` | Create and verify the account, then expose required onboarding actions. |
 | Data | Data Model and Prisma Schema Planning v1 | Store the domain and checkpoint state represented above. |
 | UI | Mobile application | Present the sequence, branches, endings and recovery without redefining backend truth. |
 | Provider/socket | Only where the approved source explicitly requires it | Supply external/durable events without frontend invention or paid auto-refresh loops. |
@@ -5658,7 +5658,7 @@ Creates a new Work2Cash user account and brings the user to a complete basic pro
 
 ## MF-03 — Login / Session Recovery
 
-> Status: approved; version 0.1; owner: Product Lead.
+> Status: approved; version 0.2; owner: Product Lead.
 
 ### In plain English
 
@@ -5812,7 +5812,7 @@ Authenticates returning users and repairs any incomplete onboarding state left b
 
 | Surface | References | Responsibility |
 | --- | --- | --- |
-| API | API and Socket Contract Specification v1, matched by behavior and title during Phase 4 | Provide authoritative reads/mutations. Existing ID-to-title traceability conflicts must not be imported silently. |
+| API | `POST /auth/login`; `POST /auth/social/google`; `POST /auth/social/apple`; `POST /auth/refresh`; `GET /me` | Authenticate or recover the session and route by `nextRequiredAction`. |
 | Data | Data Model and Prisma Schema Planning v1 | Store the domain and checkpoint state represented above. |
 | UI | Mobile application | Present the sequence, branches, endings and recovery without redefining backend truth. |
 | Provider/socket | Only where the approved source explicitly requires it | Supply external/durable events without frontend invention or paid auto-refresh loops. |
@@ -7127,7 +7127,7 @@ Coordinates the accepted task from journey start to completion request. This sta
 
 ## MF-11 — Task Owner Rejection
 
-> Status: approved; version 0.1; owner: Product Lead.
+> Status: approved; version 0.2; owner: Product Lead.
 
 ### In plain English
 
@@ -7261,7 +7261,7 @@ Lets the Task Owner reject a Tasker within controlled rules without breaking the
 
 | Surface | References | Responsibility |
 | --- | --- | --- |
-| API | API and Socket Contract Specification v1, matched by behavior and title during Phase 4 | Provide authoritative reads/mutations. Existing ID-to-title traceability conflicts must not be imported silently. |
+| API | `GET /task-owner/tasks/{taskId}/candidates`; `POST /task-owner/tasks/{taskId}/reject-tasker`; `POST /task-owner/tasks/{taskId}/report` | Show candidate context, apply controlled rejection and escalate contested cases. |
 | Data | Data Model and Prisma Schema Planning v1 | Store the domain and checkpoint state represented above. |
 | UI | Mobile application | Present the sequence, branches, endings and recovery without redefining backend truth. |
 | Provider/socket | Only where the approved source explicitly requires it | Supply external/durable events without frontend invention or paid auto-refresh loops. |
@@ -7649,7 +7649,7 @@ Lets Taskers request earnings withdrawal while Work2Cash batches payouts on agre
 
 ## MF-14 — Completion and Settlement
 
-> Status: approved; version 0.1; owner: Product Lead.
+> Status: approved; version 0.2; owner: Product Lead.
 
 ### In plain English
 
@@ -7793,7 +7793,7 @@ Finalizes a task and moves money from escrow according to completion or report o
 
 | Surface | References | Responsibility |
 | --- | --- | --- |
-| API | API and Socket Contract Specification v1, matched by behavior and title during Phase 4 | Provide authoritative reads/mutations. Existing ID-to-title traceability conflicts must not be imported silently. |
+| API | `POST /tasker/tasks/{taskId}/completion-proof`; `POST /tasker/tasks/{taskId}/request-completion`; `POST /task-owner/tasks/{taskId}/confirm-completion`; `/tasks/{taskId}/ratings`; wallet/escrow status endpoints | Submit proof, request or confirm completion, settle escrow and enable follow-up rating. |
 | Data | Data Model and Prisma Schema Planning v1 | Store the domain and checkpoint state represented above. |
 | UI | Mobile application | Present the sequence, branches, endings and recovery without redefining backend truth. |
 | Provider/socket | Only where the approved source explicitly requires it | Supply external/durable events without frontend invention or paid auto-refresh loops. |
@@ -8170,7 +8170,7 @@ Provides real-time help for account, wallet, payment, task, KYC, and operational
 
 ## MF-17 — Referral
 
-> Status: approved; version 0.1; owner: Product Lead.
+> Status: approved; version 0.2; owner: Product Lead.
 
 ### In plain English
 
@@ -8307,7 +8307,7 @@ Rewards users for bringing new users who complete real paid activity. This stand
 
 | Surface | References | Responsibility |
 | --- | --- | --- |
-| API | API and Socket Contract Specification v1, matched by behavior and title during Phase 4 | Provide authoritative reads/mutations. Existing ID-to-title traceability conflicts must not be imported silently. |
+| API | Referral REST endpoints are not yet defined; Phase 4 must define code/share, attribution, progress and reward-status contracts | Do not invent paths; preserve the five-paid-task reward rule until OpenAPI defines exact contracts. |
 | Data | Data Model and Prisma Schema Planning v1 | Store the domain and checkpoint state represented above. |
 | UI | Mobile application | Present the sequence, branches, endings and recovery without redefining backend truth. |
 | Provider/socket | Only where the approved source explicitly requires it | Supply external/durable events without frontend invention or paid auto-refresh loops. |

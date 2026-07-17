@@ -291,7 +291,7 @@ Publication is not legal approval; subject-matter review remains required.
 | Supersedes | None |
 | Tags | technical-contract |
 
-Published contract baseline with known gaps; do not invent missing contracts.
+Published contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026; exact referral contracts remain a Phase 4 gap and must not be invented.
 
 ### DATA-001 — Data Model and Prisma Schema Planning v1
 
@@ -704,7 +704,7 @@ Active canonical flow family containing all 72 approved standalone sources: 24 m
 - [ ] **FLOW-ADMIN-001:** migrate in Phase 2. Approved behavior was migrated into 35 standalone admin flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.
 - [ ] **FLOW-ALIGN-001:** migrate in Phase 5. Provisional decision tracker until decisions are moved into governed records.
 - [ ] **LEGAL-001:** migrate in Phase 5. Publication is not legal approval; subject-matter review remains required.
-- [ ] **CONTRACT-001:** migrate in Phase 4. Published contract baseline with known gaps; do not invent missing contracts.
+- [ ] **CONTRACT-001:** migrate in Phase 4. Published contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026; exact referral contracts remain a Phase 4 gap and must not be invented.
 - [ ] **DATA-001:** migrate in Phase 4. The Phase 1 KYC pilot defines KycAttempt; merge and full-schema validation remain scheduled for Phase 4.
 - [ ] **PROVIDER-001:** migrate in Phase 4. Costs and provider capabilities require dated validation before purchase or implementation.
 - [ ] **PLAN-MOBILE-001:** migrate in Phase 3. Calendar dates do not prove work status; active week is not formally recorded.
