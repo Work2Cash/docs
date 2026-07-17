@@ -389,7 +389,7 @@
         "documents/agent-md/data-model-prisma-schema-planning-v1.md"
       ],
       "migrationPhase": "Phase 4",
-      "notes": "Published execution baseline with unresolved KycAttempt detail.",
+      "notes": "The Phase 1 KYC pilot defines KycAttempt; merge and full-schema validation remain scheduled for Phase 4.",
       "supersedes": null,
       "tags": [
         "data-model"
@@ -756,8 +756,8 @@
     },
     {
       "id": "PILOT-AF04-001",
-      "title": "AF-04 KYC Review Pilot Set",
-      "type": "cross-document-pilot",
+      "title": "AF-04 KYC Review Pilot",
+      "type": "main-flow-pilot",
       "audience": [
         "Non-technical operations",
         "Admin",
@@ -773,7 +773,7 @@
         "Risk and Compliance",
         "QA"
       ],
-      "version": "0.1",
+      "version": "0.2",
       "status": "draft",
       "approval": "pending",
       "publication": "published",
@@ -783,23 +783,139 @@
       "artifactClass": "canonical-source",
       "currentSource": "content/pilots/flows/admin/AF-04-kyc-review.md",
       "artifacts": [
-        "content/pilots/contracts/kyc-review-contract-group.md",
-        "content/pilots/data/kyc-domain.md",
-        "content/pilots/qa/AF-04-kyc-review-suite.md",
         "documents/pilots/flows/admin/AF-04-kyc-review.html",
+        "documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md"
+      ],
+      "migrationPhase": "Phase 1",
+      "notes": "Standalone flow pilot with exact v0.2 technical traceability; external usability and required reviewer approval remain.",
+      "supersedes": null,
+      "tags": [
+        "main-flow-pilot",
+        "admin",
+        "kyc"
+      ]
+    },
+    {
+      "id": "PILOT-KYC-CONTRACT-001",
+      "title": "KYC Review Contract Group Pilot",
+      "type": "technical-contract-pilot",
+      "audience": [
+        "Admin",
+        "Backend",
+        "QA",
+        "Product",
+        "AI agents"
+      ],
+      "owner": "Backend Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Admin Lead",
+        "Product Lead",
+        "Risk and Compliance",
+        "QA"
+      ],
+      "version": "0.2",
+      "status": "draft",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": null,
+      "authority": "Phase 1 Technical and Product decision for AF-04, subordinate to formal architecture approval",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/pilots/contracts/kyc-review-contract-group.md",
+      "artifacts": [
         "documents/pilots/contracts/kyc-review-contract-group.html",
+        "documents/agent-md/pilots/contracts/kyc-review-contract-group.md"
+      ],
+      "migrationPhase": "Phase 1",
+      "notes": "Exact v0.2 paths, DTOs, permissions, concurrency, idempotency and reconciliation are defined; Phase 4 merge remains.",
+      "supersedes": null,
+      "tags": [
+        "technical-contract-pilot",
+        "admin",
+        "kyc"
+      ]
+    },
+    {
+      "id": "PILOT-KYC-DATA-001",
+      "title": "Tasker Activation and KYC Data Domain Pilot",
+      "type": "data-domain-pilot",
+      "audience": [
+        "Backend",
+        "Admin",
+        "Security and Privacy",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Backend Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Product Lead",
+        "Data owner",
+        "Security and Privacy",
+        "QA"
+      ],
+      "version": "0.2",
+      "status": "draft",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": null,
+      "authority": "Phase 1 Technical and Product decision for the KYC domain, subordinate to formal architecture approval",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/pilots/data/kyc-domain.md",
+      "artifacts": [
         "documents/pilots/data/kyc-domain.html",
+        "documents/agent-md/pilots/data/kyc-domain.md"
+      ],
+      "migrationPhase": "Phase 1",
+      "notes": "KycVerification review/version and immutable numbered KycAttempt behavior are defined; full-schema merge and migration remain.",
+      "supersedes": null,
+      "tags": [
+        "data-domain-pilot",
+        "kyc",
+        "prisma"
+      ]
+    },
+    {
+      "id": "PILOT-QA-AF04-001",
+      "title": "AF-04 KYC Review Reference QA Suite",
+      "type": "qa-suite-pilot",
+      "audience": [
+        "QA",
+        "Admin",
+        "Backend",
+        "Product",
+        "AI agents"
+      ],
+      "owner": "QA Lead",
+      "reviewers": [
+        "Product Lead",
+        "Technical Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "Risk and Compliance"
+      ],
+      "version": "0.2",
+      "status": "draft",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": null,
+      "authority": "AF-04 v0.2 flow, KYC contract v0.2 and KYC data domain v0.2",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/pilots/qa/AF-04-kyc-review-suite.md",
+      "artifacts": [
         "documents/pilots/qa/AF-04-kyc-review-suite.html",
-        "documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md",
-        "documents/agent-md/pilots/contracts/kyc-review-contract-group.md",
-        "documents/agent-md/pilots/data/kyc-domain.md",
         "documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md"
       ],
       "migrationPhase": "Phase 1",
-      "notes": "Isolated pilot with explicit API and KycAttempt blockers.",
+      "notes": "Eleven executable reference cases are defined; deployed build, migration and provider-fixture evidence remain.",
       "supersedes": null,
       "tags": [
-        "cross-document-pilot"
+        "qa-suite-pilot",
+        "admin",
+        "kyc"
       ]
     }
   ]

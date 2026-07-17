@@ -5,10 +5,10 @@ type: data-domain
 audience: Non-technical team, Junior backend/admin developers, Product, QA, AI agents
 owner: Backend Team
 reviewers: Technical Lead, Product Lead, Security and Privacy, QA
-status: pilot-draft-with-gaps
-version: 0.1
+status: pilot-review-ready
+version: 0.2
 last_reviewed: 2026-07-17
-authority: Data Model and Prisma Schema Execution Baseline v1
+authority: Phase 1 Technical and Product decision for the KYC domain, subordinate to formal architecture approval
 related: SF-03 Tasker KYC, MF-05 Tasker Activation, AF-04 Tasker and KYC Review, KYC Review Contract Group
 ---
 
@@ -27,8 +27,9 @@ The general User account is not enough to prove a person may perform tasks. Work
 ```text
 User
   -> TaskerProfile
-       -> KycVerification
-            -> KycAttempt (required by the catalogue; baseline fields still need completion)
+       -> current KycVerification
+       -> KycVerification history
+            -> immutable numbered KycAttempt history
        -> PayoutAccount
 
 Smile ID callback
@@ -63,6 +64,7 @@ The Tasker-specific extension of one Work2Cash User. It stores readiness to earn
 | `bio` | Tasker-provided work introduction. | Optional | No, subject to moderation. |
 | `isActive` | Summary of whether Tasker work actions are currently available. | Yes | Operational. |
 | `kycStatus` | Current KYC summary used for access decisions. | Yes | Sensitive operational identity status. |
+| `currentKycVerificationId` | Points to the one current KYC case while older cases remain historical. | Optional until KYC starts; unique | Sensitive identity linkage. |
 | `maxTravelKm` | Tasker work-preference distance. | Optional | Location preference. |
 | `completedTaskCount` | Settled task count used by product rules. | Yes | Operational. |
 | `averageRating` | Aggregated marketplace reputation. | Optional | Operational. |
@@ -70,14 +72,16 @@ The Tasker-specific extension of one Work2Cash User. It stores readiness to earn
 ### Constraints and indexes
 
 - `userId` must remain unique so one User cannot have duplicate TaskerProfile records.
+- `currentKycVerificationId` is nullable and unique; it points to one case without deleting older cases.
 - Index `isActive` and `kycStatus` for eligibility and operations queries.
 - `isActive` must not become true merely because the frontend reports completion.
+- Changing the current KYC case and the profile's `kycStatus` must happen transactionally.
 
 ## KycVerification
 
 ### Business meaning
 
-One provider-backed identity-verification case for a Tasker, including the identifier route, provider job reference, status and safe outcome information.
+A durable identity-verification case for a Tasker. It owns overall KYC status, operational review state, concurrency version, current decision guidance and an immutable sequence of provider attempts.
 
 ### Ownership and lifecycle
 
@@ -86,42 +90,171 @@ One provider-backed identity-verification case for a Tasker, including the ident
 | Created by | SF-03 KYC start use case. |
 | Read by | KYC status recovery, AF-04 review, provider reconciliation and risk investigation. |
 | Updated by | Verified provider events, safe reconciliation and authorized audited admin decisions. |
-| Ends when | Approved, rejected, failed or superseded by an explicitly linked re-verification attempt; never silently deleted. |
+| Ends when | Approved, rejected, failed or replaced by a later explicitly selected case; re-verification normally creates another attempt in the same case. |
 
 ### Important fields
 
 | Field | Meaning | Required | Sensitive |
 | --- | --- | --- | --- |
 | `taskerProfileId` | Tasker being verified. | Yes | Identity linkage. |
-| `provider` | Identity provider, currently Smile ID. | Yes | Operational. |
-| `identifierType` | Accepted identity route such as NIN or BVN. | Yes | Sensitive category; raw value should not be exposed here unnecessarily. |
 | `status` | NOT_STARTED, PENDING, APPROVED, REJECTED, REQUIRES_REVERIFICATION or FAILED. | Yes | Sensitive operational identity result. |
-| `providerJobId` | Safe provider reference used for reconciliation. | Optional until created | Sensitive operational reference. |
-| `submittedAt` | Submission time. | Yes | Operational. |
+| `reviewState` | UNASSIGNED, IN_REVIEW, WAITING_FOR_PROVIDER, WAITING_FOR_TASKER, WAITING_FOR_RISK or DECIDED. | Yes | Operational review routing. |
+| `version` | Optimistic concurrency value used by admin mutations. | Yes | Operational. |
+| `latestAttemptNumber` | Highest attempt number created for the case. | Yes | Operational. |
+| `requiredSteps` | Current accepted steps the Tasker must repeat after re-verification is requested. | Yes; may be empty | Sensitive operational guidance. |
+| `decisionReasonCode` | Stable current decision or routing reason. | Optional until decision/routing | Sensitive operational result. |
+| `decisionNoteSafe` | Sanitized guidance safe for authorized admin and, where applicable, Tasker display. | Optional | Sensitive; never raw provider detail. |
+| `submittedAt` | First valid submission time. | Optional until submission | Operational. |
 | `decidedAt` | Final/manual decision time. | Optional | Operational. |
-| `failureReason` | Sanitized reason suitable for operations. | Optional | Potentially sensitive; must be sanitized. |
+| `decidedByAdminId` | Admin responsible for a manual final decision. | Optional | Audit linkage. |
 
 ### Constraints and indexes
 
-- Index `taskerProfileId` and `status` for Tasker and queue queries.
-- Index `provider` and `providerJobId` for reconciliation.
+- Index `taskerProfileId`, `status`, `reviewState` and `submittedAt` for Tasker and queue queries.
+- Every successful mutation must compare and increment `version` in one transaction.
+- `latestAttemptNumber` must be updated in the same transaction that creates an attempt.
 - Provider event IDs and internal idempotency keys must prevent duplicate processing.
 - The record must not store provider secrets or unnecessary raw provider payloads.
 
-## KycAttempt gap
+## KycAttempt
 
-The model catalogue and flow requirements reference `KycAttempt`, but the current Prisma baseline snippet does not define its exact fields. The domain requires an explicit attempt record so resubmission history is not overwritten.
+### Business meaning
 
-Before implementation:
+A KycAttempt is one immutable submission to Smile ID inside a KycVerification case. A failed or superseded attempt stays available for audit and recovery; a new submission creates the next number instead of overwriting the earlier provider reference or result.
 
-- [ ] Define the relationship between KycVerification and KycAttempt.
-- [ ] Define attempt number or stable attempt identity.
-- [ ] Define provider job/reference uniqueness.
-- [ ] Define submitted, completed and failure timestamps.
-- [ ] Define sanitized failure and requested-step fields.
-- [ ] Define which attempt is current without deleting history.
-- [ ] Define retention and restricted-access rules.
-- [ ] Add API-to-model traceability and migrations.
+### Attempt statuses
+
+| Status | Meaning |
+| --- | --- |
+| CREATED | Internal attempt exists but a provider submission has not completed. |
+| SUBMITTED | Required identifier/evidence references were accepted for provider submission. |
+| PROVIDER_PENDING | Smile ID accepted the job but has not returned authoritative completion. |
+| PROVIDER_APPROVED | Verified provider result passed the configured provider checks. Final KYC activation may still require policy/admin review. |
+| PROVIDER_REJECTED | Verified provider result failed a provider check. Admin policy determines reject versus correctable re-verification. |
+| FAILED | A verified technical/validation failure ended this attempt. |
+| CANCELLED | Attempt was cancelled before an authoritative provider completion. |
+| SUPERSEDED | A newer attempt became current; this attempt remains immutable history. |
+
+### Important fields
+
+| Field | Meaning | Constraint |
+| --- | --- | --- |
+| `verificationId` | Parent KYC case. | Required foreign key. |
+| `attemptNumber` | Monotonic sequence within the case: 1, 2, 3 and so on. | Unique with `verificationId`; never reused. |
+| `provider` | Provider used for the attempt, currently SMILE_ID. | Required. |
+| `identifierType` | NIN or BVN route used without storing the raw identifier here. | Required. |
+| `status` | Attempt lifecycle status. | Required. |
+| `providerJobId` | Provider job/reference used for callbacks and reconciliation. | Nullable until provider acceptance; unique with provider when present. |
+| `providerRequestLogId` | Safe link to observable request/cost metadata. | Optional foreign key/reference. |
+| `identityMatch` | Safe normalized MATCH, NO_MATCH, REVIEW_REQUIRED or UNKNOWN result. | Required with UNKNOWN default. |
+| `biometricMatch` | Safe normalized biometric outcome. | Required with UNKNOWN default. |
+| `failureCode` | Stable sanitized technical/business failure code. | Optional. |
+| `failureDetailSafe` | Sanitized operational detail without raw payload or personal identity data. | Optional. |
+| `evidenceReference` | Encrypted/restricted reference to provider-managed evidence where policy permits. | Optional and sensitive; never a public URL. |
+| `createdAt` | Attempt creation time. | Required and immutable. |
+| `submittedAt` | Provider submission time. | Optional until submitted. |
+| `providerCompletedAt` | Verified provider completion time. | Optional. |
+| `supersededAt` | Time a newer attempt became current. | Optional. |
+| `updatedAt` | Last controlled lifecycle update. | Required. |
+
+### Current-attempt rule
+
+- The current attempt is the attempt whose `attemptNumber` equals `KycVerification.latestAttemptNumber`.
+- Creating a new attempt locks the verification row, increments `latestAttemptNumber`, marks the previous non-terminal attempt `SUPERSEDED` when appropriate and inserts the new attempt in one transaction.
+- Callback processing selects by `provider + providerJobId`, verifies the signature/event and updates only the matching attempt.
+- A late callback for an older attempt is recorded but cannot overwrite the current case decision automatically.
+
+### Proposed Prisma baseline
+
+```text
+enum KycReviewState {
+  UNASSIGNED
+  IN_REVIEW
+  WAITING_FOR_PROVIDER
+  WAITING_FOR_TASKER
+  WAITING_FOR_RISK
+  DECIDED
+}
+
+enum KycAttemptStatus {
+  CREATED
+  SUBMITTED
+  PROVIDER_PENDING
+  PROVIDER_APPROVED
+  PROVIDER_REJECTED
+  FAILED
+  CANCELLED
+  SUPERSEDED
+}
+
+enum KycMatchOutcome {
+  UNKNOWN
+  MATCH
+  NO_MATCH
+  REVIEW_REQUIRED
+}
+
+model TaskerProfile {
+  id                       String           @id @default(cuid())
+  userId                   String           @unique
+  isActive                 Boolean          @default(false)
+  kycStatus                KycStatus        @default(NOT_STARTED)
+  currentKycVerificationId String?          @unique
+  currentKycVerification   KycVerification? @relation("CurrentTaskerKyc", fields: [currentKycVerificationId], references: [id], onDelete: SetNull)
+  kycVerifications         KycVerification[] @relation("TaskerKycHistory")
+}
+
+model KycVerification {
+  id                    String          @id @default(cuid())
+  taskerProfileId       String
+  taskerProfile         TaskerProfile   @relation("TaskerKycHistory", fields: [taskerProfileId], references: [id])
+  currentForTasker      TaskerProfile?  @relation("CurrentTaskerKyc")
+  status                KycStatus       @default(NOT_STARTED)
+  reviewState           KycReviewState  @default(UNASSIGNED)
+  version               Int             @default(1)
+  latestAttemptNumber   Int             @default(0)
+  requiredSteps         String[]        @default([])
+  decisionReasonCode    String?
+  decisionNoteSafe      String?
+  submittedAt           DateTime?
+  decidedAt             DateTime?
+  decidedByAdminId      String?
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+  attempts              KycAttempt[]
+
+  @@index([taskerProfileId, status])
+  @@index([status, reviewState, submittedAt])
+}
+
+model KycAttempt {
+  id                    String            @id @default(cuid())
+  verificationId        String
+  verification          KycVerification   @relation(fields: [verificationId], references: [id])
+  attemptNumber         Int
+  provider              ProviderName      @default(SMILE_ID)
+  identifierType        KycIdentifierType
+  status                KycAttemptStatus  @default(CREATED)
+  providerJobId         String?
+  providerRequestLogId  String?
+  identityMatch         KycMatchOutcome   @default(UNKNOWN)
+  biometricMatch        KycMatchOutcome   @default(UNKNOWN)
+  failureCode           String?
+  failureDetailSafe     String?
+  evidenceReference     String?
+  submittedAt           DateTime?
+  providerCompletedAt   DateTime?
+  supersededAt          DateTime?
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+
+  @@unique([verificationId, attemptNumber])
+  @@unique([provider, providerJobId])
+  @@index([verificationId, status])
+}
+```
+
+This is the accepted Phase 1 model decision. Phase 4 must merge it into the general Prisma/data-model source and resolve exact relation names against the complete schema before generating a migration.
 
 ## Supporting records
 
@@ -137,13 +270,15 @@ Before implementation:
 
 | From | Action | To | Guard |
 | --- | --- | --- | --- |
-| NOT_STARTED | Valid KYC start | PENDING | TaskerProfile exists and consent/input rules pass. |
-| PENDING | Verified provider approval or authorized review | APPROVED | Provider/evidence and risk rules pass. |
-| PENDING | Correctable evidence issue | REQUIRES_REVERIFICATION | Authorized reason and required next step are recorded. |
-| PENDING | Verified non-correctable failure | REJECTED | Authorized decision and audit evidence exist. |
-| PENDING | Provider/processing failure | FAILED or remains PENDING according to policy | Failure is verified; do not guess outcome. |
-| REQUIRES_REVERIFICATION | New valid submission | PENDING | New attempt is preserved and linked. |
-| Any reviewable state | Risk escalation | Manual/risk handling without false activation | RiskFlag and audit context are recorded. |
+| NOT_STARTED / UNASSIGNED | Valid first submission | PENDING / WAITING_FOR_PROVIDER | TaskerProfile exists; attempt 1 is created transactionally. |
+| PENDING / WAITING_FOR_PROVIDER | Verified result needs admin review | PENDING / IN_REVIEW | Current attempt result is verified and safe summary exists. |
+| PENDING / IN_REVIEW | Authorized approval | APPROVED / DECIDED | Evidence passes, no risk hold, expected version matches. |
+| PENDING / IN_REVIEW | Correctable issue | REQUIRES_REVERIFICATION / WAITING_FOR_TASKER | Reason and required steps are recorded. |
+| PENDING / IN_REVIEW | Verified non-correctable failure | REJECTED / DECIDED | Authorized decision/audit and expected version exist. |
+| PENDING | Provider/processing failure | FAILED or PENDING | Only verified policy outcome applies; do not guess. |
+| REQUIRES_REVERIFICATION / WAITING_FOR_TASKER | New valid submission | PENDING / WAITING_FOR_PROVIDER | Next immutable attempt number is created. |
+| Any reviewable state | Risk escalation | KycStatus unchanged / WAITING_FOR_RISK | RiskFlag and audit context are recorded; activation stays blocked. |
+| WAITING_FOR_RISK | Risk clears case for KYC review | PENDING / IN_REVIEW | Authorized risk outcome and version update exist. |
 
 ## Privacy, access and retention
 
@@ -153,6 +288,8 @@ Before implementation:
 - Do not return raw NIN, BVN, biometric payloads or provider secrets to normal admin views.
 - Evidence access must be role-restricted, time-limited where practical and audited.
 - KYC, provider and audit history must not be hard-deleted in normal operations.
+- `failureDetailSafe` and decision notes must be sanitized before persistence and logging.
+- `evidenceReference` must be encrypted/restricted and must never be returned as a permanent public URL.
 - Final retention periods require legal approval and must be applied consistently to primary data and backups.
 
 ## Traceability
@@ -169,21 +306,36 @@ Before implementation:
 
 | Item | Status | Required action |
 | --- | --- | --- |
-| TaskerProfile baseline | Documented | Validate implementation against accepted activation rules. |
-| KycVerification baseline | Documented | Add explicit concurrency/version behavior and decision metadata if needed. |
-| KycAttempt | Contract/model gap | Define before re-verification implementation. |
+| TaskerProfile current-case pointer | Defined in Phase 1 pilot | Merge and validate relation naming against the full schema. |
+| KycVerification review/version fields | Defined in Phase 1 pilot | Merge into general data model and generate migration. |
+| KycAttempt | Defined in Phase 1 pilot | Implement immutable numbered attempts and callback lookup constraints. |
 | ProviderWebhookEvent | Documented elsewhere | Verify unique provider event constraint. |
 | AdminAuditLog | Documented elsewhere | Verify required KYC action fields and evidence-access audit. |
+
+### Migration sequence
+
+1. Add the three enums and nullable TaskerProfile/KycVerification fields.
+2. Create `KycAttempt` without removing any legacy KycVerification fields.
+3. Backfill one attempt for every existing submitted verification, preserving safe provider reference, status and timestamps.
+4. Set `latestAttemptNumber`, `reviewState`, `version` and each TaskerProfile current-case pointer deterministically.
+5. Add unique/index constraints after duplicate provider references are investigated.
+6. Deploy application code that reads/writes attempts and concurrency versions.
+7. Remove superseded legacy provider fields only in a later reviewed migration after parity evidence passes.
+
+The migration must be reversible before destructive cleanup and must never discard KYC or audit history.
 
 ## Required tests
 
 - [ ] One User has at most one TaskerProfile.
 - [ ] TaskerProfile cannot activate before KYC and profile rules pass.
 - [ ] Valid and invalid KYC state transitions.
+- [ ] Attempt numbers are unique, monotonic and created transactionally.
 - [ ] Re-verification creates/preserves attempt history rather than overwriting it.
+- [ ] Late callback for an older attempt cannot overwrite the current case decision.
 - [ ] Duplicate provider events are idempotent.
 - [ ] Simultaneous admin review cannot overwrite a newer decision.
+- [ ] Exactly one TaskerProfile current-case pointer is selected while historical cases remain readable.
+- [ ] Migration backfill preserves provider references, safe outcomes and timestamps.
 - [ ] Raw identifiers, biometrics and provider secrets are not returned or logged.
 - [ ] Audit records are immutable and complete.
 - [ ] Retention and restricted-access behavior follows approved policy.
-

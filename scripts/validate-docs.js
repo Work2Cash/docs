@@ -101,6 +101,16 @@ function validateRegistry() {
       registeredPaths.add(item);
       if (!fs.existsSync(path.join(ROOT, item))) problems.push(`${entry.id}: registered path does not exist: ${item}`);
     }
+    if (entry.artifactClass === "canonical-source" && entry.currentSource?.endsWith(".md")) {
+      const sourceContents = fs.readFileSync(path.join(ROOT, entry.currentSource), "utf8");
+      const frontMatter = sourceContents.match(/^---\n([\s\S]*?)\n---/);
+      if (frontMatter) {
+        const sourceVersion = frontMatter[1].match(/^version:\s*(.+)$/m)?.[1].trim();
+        if (sourceVersion && sourceVersion !== entry.version) {
+          problems.push(`${entry.id}: registry version ${entry.version} differs from canonical source version ${sourceVersion}`);
+        }
+      }
+    }
     if (entry.artifactClass === "legacy-transitional-source"
       && entry.currentSource
       && path.dirname(entry.currentSource) === "documents"

@@ -5,8 +5,8 @@ type: main-flow
 audience: Non-technical operations, Junior admin developers, Backend, Product, QA, AI agents
 owner: Product Lead
 reviewers: Technical Lead, Admin Lead, Backend Lead, Risk and Compliance, QA
-status: pilot-draft
-version: 0.1
+status: pilot-review-ready
+version: 0.2
 last_reviewed: 2026-07-17
 authority: Main Enterprise Architecture and Admin Flow Catalogue v1
 related: AF-03 User Management, ASF-04 Record Detail Review, ASF-05 Reason and Audit, ASF-06 Evidence Review, ASF-07 Status Change, ASF-10 Provider Reconciliation, AF-14 Risk Review, AF-19 Provider Monitoring
@@ -111,7 +111,7 @@ Work2Cash must prevent unverified or suspicious people from accepting tasks whil
 | --- | --- | --- |
 | User | Read | Supplies account and contact context without exposing credentials. |
 | TaskerProfile | Read and conditionally change | `isActive` remains false unless KYC and profile rules pass. |
-| KycVerification | Read and change | Moves through pending, approved, rejected, requires-reverification or failed/manual-review handling. |
+| KycVerification | Read and change | Moves through KycStatus plus the separate operational review state; version prevents stale overwrite. |
 | KycAttempt | Read and create when a new submission occurs | Preserves attempt history instead of overwriting evidence. |
 | ProviderRequestLog | Read | Shows safe request and status history. |
 | ProviderWebhookEvent | Read and process idempotently | Prevents duplicate callbacks from applying duplicate decisions. |
@@ -196,9 +196,13 @@ Work2Cash must prevent unverified or suspicious people from accepting tasks whil
 | Surface | References | Responsibility |
 | --- | --- | --- |
 | User detail API | `GET /admin/users/{userId}` | Supplies permission-gated user, Tasker and KYC context. |
+| KYC queue API | `GET /admin/kyc` | Lists safe KYC summaries with status, review-state and date filters. |
+| KYC detail API | `GET /admin/kyc/{kycId}` | Supplies safe case, attempt, decision, risk and reconciliation context plus allowed actions. |
+| Approve API | `POST /admin/kyc/{kycId}/approve` | Applies an idempotent, version-guarded approval and recalculates Tasker activation. |
+| Reject API | `POST /admin/kyc/{kycId}/reject` | Applies a reasoned non-correctable rejection and keeps Tasker work access blocked. |
 | Re-verification API | `POST /admin/kyc/{kycId}/request-reverification` | Records a reasoned re-verification decision. |
-| Approve/reject APIs | Contract gap: exact accepted paths are not currently specified | Must be added formally before implementation; do not invent paths in frontend code. |
-| Provider reconciliation | ASF-10 provider status/retry contracts | Checks Smile ID without unsafe repeated calls. |
+| Risk escalation API | `POST /admin/kyc/{kycId}/escalate-risk` | Links AF-14 while preserving truthful pending KYC state. |
+| Provider reconciliation API | `POST /admin/kyc/{kycId}/reconcile` | Queues one asynchronous, cooldown-controlled Smile ID check. |
 | Data | User, TaskerProfile, KycVerification, KycAttempt, ProviderRequestLog, ProviderWebhookEvent, RiskFlag, AdminAuditLog | Persists identity, provider, risk and audit history. |
 | Notification | In-app/FCM/email according to policy | Communicates safe outcome and next action. |
 

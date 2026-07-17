@@ -27,7 +27,7 @@ Phase 0 establishes repository governance and automated drift controls. It does 
 | Check | Before Phase 0 | After Phase 0 |
 | --- | --- | --- |
 | Broken human HTML local references | 169 | 0 |
-| Registered published document families | 0 | 22 |
+| Registered published document families | 0 | 25 |
 | Document lifecycle policy | Missing | Active |
 | Machine-readable registry | Missing | Present and generated into human/agent views |
 | AGENTS.md Full Project context rule | Contradictory | Focused context by default; full bundle only for broad work |
@@ -53,7 +53,7 @@ node scripts/apply.guard.js
 - [ ] Migration of legacy HTML/agent pairs to modular canonical Markdown in later phases.
 - [ ] Deterministic regeneration of the Full Project Agent Context in Phase 6.
 - [ ] Provider pricing and capability validation before procurement or implementation.
-- [ ] AF-04 approve, reject, queue/detail and reconciliation contract decisions surfaced in Phase 1.
-- [ ] Exact KycAttempt schema decision surfaced in Phase 1.
+- [x] AF-04 queue/detail/decision/risk/reconciliation contracts defined in the Phase 1 v0.2 pilot; Phase 4 merge and subject review remain.
+- [x] Exact KycAttempt schema/lifecycle defined in the Phase 1 v0.2 pilot; Phase 4 merge and implementation remain.
 
 These items do not reopen Phase 0 because Phase 0's purpose is to make their state explicit and prevent new silent drift. They remain blockers for approval, implementation or later phase closure where applicable.

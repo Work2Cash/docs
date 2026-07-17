@@ -877,12 +877,15 @@ Phase 0 is **complete**. Formal approval of legacy content, active-week selectio
 - [x] GitHub Pages deployment rejects generated pilot drift through `node scripts/generate-pilot-docs.js --check`.
 - [x] Repeatable reader-session protocol created in `logs/phase-1-pilot-usability-review.md`.
 - [ ] Desktop and mobile-width visual review completed; the audit environment had no available interactive browser session.
-- [ ] Product, Risk/Compliance and team leads resolve the AF-04 approve, reject, queue/detail and reconciliation contract gaps documented by the pilot.
-- [ ] Backend and Data owners formally define the `KycAttempt` schema and relationship documented by the pilot.
+- [x] Phase 1 technical/product decision defines AF-04 queue, detail, approve, reject, re-verification, risk-escalation and reconciliation contracts.
+- [x] Phase 1 technical/product decision defines the `KycAttempt` schema, relationship, lifecycle, constraints and migration sequence.
+- [x] Reviewer decision packet created in `logs/phase-1-af04-review-signoff.md`.
+- [ ] Risk/Compliance, Backend, Data, Admin and QA reviewers formally approve the v0.2 AF-04 pilot set.
+- [ ] Phase 4 merges the accepted pilot contracts and KYC models into the general API/OpenAPI and Prisma sources.
 - [ ] External non-technical usability session completed and evidence recorded.
 - [ ] External junior-developer usability session completed and evidence recorded.
 
-Phase 1 remains **in progress** until the two external usability reviews are completed and the templates are revised from observed misunderstandings. The pilots are therefore isolated from the active catalogue rather than presented as approved replacements.
+Phase 1 remains **in progress** until the two external usability reviews and required subject-matter review are completed and the templates are revised from observed misunderstandings. The technical pilot set is review-ready but remains isolated from the active catalogue rather than presented as an approved replacement.
 
 ## Phase 2: Flow Migration
 
@@ -1035,7 +1038,7 @@ The restructuring is complete only when all of the following are true:
 | Phase | Status | Owner | Target | Notes |
 | --- | --- | --- | --- | --- |
 | Phase 0 - Stop drift | Complete | Technical Lead | 17 Jul 2026 | Governance, registry, link repair and CI controls established |
-| Phase 1 - Templates and pilots | In progress | Product + Technical Lead | TBD | Sources and generation complete; external reader tests and contract decisions remain |
+| Phase 1 - Templates and pilots | In progress | Product + Technical Lead | TBD | Technical pilot v0.2 complete; external usability and subject-matter approval remain |
 | Phase 2 - Flow migration | Not started | Product + Team Leads | TBD | Mobile and admin catalogues |
 | Phase 3 - Execution planning | Not started | Project + Technical Lead | TBD | Canonical task register |
 | Phase 4 - Technical references | Not started | Technical Lead + Engineers | TBD | Contracts, models, providers and infrastructure |
@@ -1057,3 +1060,4 @@ Use this section to record reviews of the restructuring plan.
 | 16 July 2026 | Initial repository-wide audit and restructuring checklist created | Codex, under Technical Lead direction | Pending |
 | 17 July 2026 | Phase 1 templates, canonical pilots, generated human/agent outputs and CI drift checks added | Codex, under Product and Technical Lead direction | Pending external usability review |
 | 17 July 2026 | Phase 0 governance, registry, 169-link repair, drift reconciliation and repository-wide CI completed | Codex, under Product and Technical Lead direction | Governance active; legacy content approvals pending |
+| 17 July 2026 | AF-04 Phase 1 pilots advanced to v0.2 with exact contracts, KycAttempt model and eleven-case QA suite | Codex, under Product and Technical Lead direction | Review-ready; external usability and subject-matter approval pending |

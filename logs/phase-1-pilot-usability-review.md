@@ -6,6 +6,7 @@ Use this log to validate whether the Phase 1 documentation pilots work for the t
 
 - [x] Automated structure and generated-output validation passed on 17 July 2026.
 - [x] Existing HTML document-guard validation passed on 17 July 2026.
+- [x] AF-04 flow, contract, data and QA pilots updated to review-ready v0.2 on 17 July 2026.
 - [ ] Desktop visual review completed.
 - [ ] Mobile-width visual review completed.
 - [ ] Non-technical reader session completed.
@@ -20,7 +21,7 @@ Visual review remains pending because no interactive browser session was availab
 | Reader | Primary pilot | Supporting pilot documents allowed after the standalone-flow questions |
 | --- | --- | --- |
 | Non-technical team member | `documents/pilots/flows/mobile/MF-06-create-and-fund-task.html` | None during the first pass; endpoint, data and QA pilots afterward if relevant. |
-| Junior admin developer | `documents/pilots/flows/admin/AF-04-kyc-review.html` | `contracts/kyc-review-contract-group.html`, `data/kyc-domain.html`, `qa/AF-04-kyc-review-suite.html`. |
+| Junior admin developer | `documents/pilots/flows/admin/AF-04-kyc-review.html` v0.2 | `contracts/kyc-review-contract-group.html`, `data/kyc-domain.html`, `qa/AF-04-kyc-review-suite.html`. |
 
 ## Session rules
 
@@ -80,10 +81,10 @@ Ask the participant to read AF-04 first. Supporting pilot documents may be opene
 - [ ] Identify the records read or changed and the important side effects.
 - [ ] Explain stale-review conflict, duplicate provider event and notification-failure recovery.
 - [ ] Identify the permission, audit and sensitive-data constraints.
-- [ ] Identify the current named endpoints without inventing missing paths.
-- [ ] Identify the approve/reject/queue/detail/reconciliation contract blockers.
+- [ ] Identify the exact queue, detail, approve, reject, re-verification, risk-escalation and reconciliation endpoints.
+- [ ] Explain the expected-version, idempotency, permission and provider-cooldown rules.
 - [ ] Explain the User, TaskerProfile, KycVerification and KycAttempt relationship.
-- [ ] Identify the unresolved KycAttempt schema gap.
+- [ ] Explain how numbered KycAttempts preserve history and how late callbacks are prevented from overwriting the current case.
 - [ ] Select the QA cases needed for happy path, permission, provider delay, duplication and concurrency.
 - [ ] Explain what is explicitly out of scope.
 
@@ -91,7 +92,7 @@ Ask the participant to read AF-04 first. Supporting pilot documents may be opene
 
 - [ ] At least 11 of 13 answers are materially correct.
 - [ ] All safety-critical answers about permission, privacy, state authority, idempotency and audit are correct.
-- [ ] The participant does not invent an API path or a missing model field.
+- [ ] The participant uses the documented API paths and model fields without inventing alternatives.
 - [ ] The participant can identify prerequisites, sequence, branches, outputs, recovery and tests without opening an old document.
 - [ ] Any move from the main flow to a supporting pilot has a clear technical purpose rather than searching for basic flow meaning.
 - [ ] The participant rates the main flow at least 4 out of 5 for clarity and implementation readiness.

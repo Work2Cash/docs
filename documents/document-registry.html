@@ -14,7 +14,7 @@
   <main id="content" class="index-shell" tabindex="-1">
     <header class="index-hero"><div class="eyebrow">Governance · Phase 0</div><h1>Document Registry</h1><p>Check ownership, lifecycle, approval and authority before relying on a document. Published does not necessarily mean approved.</p></header>
     <section class="notice" aria-labelledby="registry-warning"><h2 id="registry-warning">Current authority warning</h2><p>The Main Enterprise Architecture v1 is the designated provisional baseline, but formal approval is pending. Material cross-document conflicts must be resolved before implementation.</p></section>
-    <section class="registry-summary" aria-label="Registry summary"><div><strong>22</strong><span>registered families</span></div><div><strong>3</strong><span>active</span></div><div><strong>19</strong><span>pending approval</span></div><div><strong>17</strong><span>legacy families</span></div></section>
+    <section class="registry-summary" aria-label="Registry summary"><div><strong>25</strong><span>registered families</span></div><div><strong>3</strong><span>active</span></div><div><strong>22</strong><span>pending approval</span></div><div><strong>17</strong><span>legacy families</span></div></section>
     <section class="document-content registry-content" aria-labelledby="register-title">
       <p class="generated-note"><strong>Generated registry:</strong> Edit <code>governance/document-registry.json</code>, not this page.</p>
       <h2 id="register-title">Registered documents</h2>
@@ -110,7 +110,7 @@
     </tr>
 <tr id="data-001">
       <td><strong>DATA-001</strong><br><span class="registry-type">data-model</span></td>
-      <td><strong>Data Model and Prisma Schema Planning v1</strong><p>Published execution baseline with unresolved KycAttempt detail.</p></td>
+      <td><strong>Data Model and Prisma Schema Planning v1</strong><p>The Phase 1 KYC pilot defines KycAttempt; merge and full-schema validation remain scheduled for Phase 4.</p></td>
       <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
       <td>Backend Lead<br><small>Reviewers: Technical Lead, Data owner, Security</small></td>
       <td>legacy-transitional-source<br><small>Main Enterprise Architecture and approved contracts</small></td>
@@ -208,12 +208,39 @@
       <td>2026-07-17<br><small>Next: Not scheduled</small></td>
     </tr>
 <tr id="pilot-af04-001">
-      <td><strong>PILOT-AF04-001</strong><br><span class="registry-type">cross-document-pilot</span></td>
-      <td><strong>AF-04 KYC Review Pilot Set</strong><p>Isolated pilot with explicit API and KycAttempt blockers.</p></td>
+      <td><strong>PILOT-AF04-001</strong><br><span class="registry-type">main-flow-pilot</span></td>
+      <td><strong>AF-04 KYC Review Pilot</strong><p>Standalone flow pilot with exact v0.2 technical traceability; external usability and required reviewer approval remain.</p></td>
       <td><span class="status status-draft">draft</span><br>pending approval<br>published</td>
       <td>Product Lead<br><small>Reviewers: Technical Lead, Admin Lead, Backend Lead, Risk and Compliance, QA</small></td>
       <td>canonical-source<br><small>Main Enterprise Architecture and Admin Flow Catalogue v1</small></td>
-      <td><strong>Source</strong><br><a href="../content/pilots/flows/admin/AF-04-kyc-review.md">content/pilots/flows/admin/AF-04-kyc-review.md</a><br><strong>Artifacts</strong><ul><li><a href="../content/pilots/contracts/kyc-review-contract-group.md">content/pilots/contracts/kyc-review-contract-group.md</a></li><li><a href="../content/pilots/data/kyc-domain.md">content/pilots/data/kyc-domain.md</a></li><li><a href="../content/pilots/qa/AF-04-kyc-review-suite.md">content/pilots/qa/AF-04-kyc-review-suite.md</a></li><li><a href="../documents/pilots/flows/admin/AF-04-kyc-review.html">documents/pilots/flows/admin/AF-04-kyc-review.html</a></li><li><a href="../documents/pilots/contracts/kyc-review-contract-group.html">documents/pilots/contracts/kyc-review-contract-group.html</a></li><li><a href="../documents/pilots/data/kyc-domain.html">documents/pilots/data/kyc-domain.html</a></li><li><a href="../documents/pilots/qa/AF-04-kyc-review-suite.html">documents/pilots/qa/AF-04-kyc-review-suite.html</a></li><li><a href="../documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md">documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md</a></li><li><a href="../documents/agent-md/pilots/contracts/kyc-review-contract-group.md">documents/agent-md/pilots/contracts/kyc-review-contract-group.md</a></li><li><a href="../documents/agent-md/pilots/data/kyc-domain.md">documents/agent-md/pilots/data/kyc-domain.md</a></li><li><a href="../documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md">documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md</a></li></ul></td>
+      <td><strong>Source</strong><br><a href="../content/pilots/flows/admin/AF-04-kyc-review.md">content/pilots/flows/admin/AF-04-kyc-review.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/pilots/flows/admin/AF-04-kyc-review.html">documents/pilots/flows/admin/AF-04-kyc-review.html</a></li><li><a href="../documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md">documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="pilot-kyc-contract-001">
+      <td><strong>PILOT-KYC-CONTRACT-001</strong><br><span class="registry-type">technical-contract-pilot</span></td>
+      <td><strong>KYC Review Contract Group Pilot</strong><p>Exact v0.2 paths, DTOs, permissions, concurrency, idempotency and reconciliation are defined; Phase 4 merge remains.</p></td>
+      <td><span class="status status-draft">draft</span><br>pending approval<br>published</td>
+      <td>Backend Lead<br><small>Reviewers: Technical Lead, Admin Lead, Product Lead, Risk and Compliance, QA</small></td>
+      <td>canonical-source<br><small>Phase 1 Technical and Product decision for AF-04, subordinate to formal architecture approval</small></td>
+      <td><strong>Source</strong><br><a href="../content/pilots/contracts/kyc-review-contract-group.md">content/pilots/contracts/kyc-review-contract-group.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/pilots/contracts/kyc-review-contract-group.html">documents/pilots/contracts/kyc-review-contract-group.html</a></li><li><a href="../documents/agent-md/pilots/contracts/kyc-review-contract-group.md">documents/agent-md/pilots/contracts/kyc-review-contract-group.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="pilot-kyc-data-001">
+      <td><strong>PILOT-KYC-DATA-001</strong><br><span class="registry-type">data-domain-pilot</span></td>
+      <td><strong>Tasker Activation and KYC Data Domain Pilot</strong><p>KycVerification review/version and immutable numbered KycAttempt behavior are defined; full-schema merge and migration remain.</p></td>
+      <td><span class="status status-draft">draft</span><br>pending approval<br>published</td>
+      <td>Backend Lead<br><small>Reviewers: Technical Lead, Product Lead, Data owner, Security and Privacy, QA</small></td>
+      <td>canonical-source<br><small>Phase 1 Technical and Product decision for the KYC domain, subordinate to formal architecture approval</small></td>
+      <td><strong>Source</strong><br><a href="../content/pilots/data/kyc-domain.md">content/pilots/data/kyc-domain.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/pilots/data/kyc-domain.html">documents/pilots/data/kyc-domain.html</a></li><li><a href="../documents/agent-md/pilots/data/kyc-domain.md">documents/agent-md/pilots/data/kyc-domain.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="pilot-qa-af04-001">
+      <td><strong>PILOT-QA-AF04-001</strong><br><span class="registry-type">qa-suite-pilot</span></td>
+      <td><strong>AF-04 KYC Review Reference QA Suite</strong><p>Eleven executable reference cases are defined; deployed build, migration and provider-fixture evidence remain.</p></td>
+      <td><span class="status status-draft">draft</span><br>pending approval<br>published</td>
+      <td>QA Lead<br><small>Reviewers: Product Lead, Technical Lead, Admin Lead, Backend Lead, Risk and Compliance</small></td>
+      <td>canonical-source<br><small>AF-04 v0.2 flow, KYC contract v0.2 and KYC data domain v0.2</small></td>
+      <td><strong>Source</strong><br><a href="../content/pilots/qa/AF-04-kyc-review-suite.md">content/pilots/qa/AF-04-kyc-review-suite.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/pilots/qa/AF-04-kyc-review-suite.html">documents/pilots/qa/AF-04-kyc-review-suite.html</a></li><li><a href="../documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md">documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md</a></li></ul></td>
       <td>2026-07-17<br><small>Next: Not scheduled</small></td>
     </tr></tbody></table></div>
     </section>
