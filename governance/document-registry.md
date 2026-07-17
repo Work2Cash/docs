@@ -675,7 +675,7 @@ Approved Phase 1 reference with eleven executable cases; deployed build, migrati
 | Supersedes | None |
 | Tags | flow-library, phase-2, migration |
 
-Phase 2 is in progress. Three of 72 standalone canonical flow sources exist in the first Admin Access batch; the legacy catalogues remain necessary for unmigrated flows.
+Phase 2 is in progress. Three of 72 standalone canonical flow sources are approved in the Admin Access batch; the overall library remains in review and the legacy catalogues remain necessary for 69 unmigrated flows.
 
 
 ## Pending approvals

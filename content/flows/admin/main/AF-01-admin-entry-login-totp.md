@@ -5,9 +5,10 @@ type: main-flow
 audience: Non-technical operations, Junior admin developers, Backend, Product, QA, AI agents
 owner: Technical Lead
 reviewers: Product Lead, Admin Lead, Backend Lead, Security and Privacy, QA
-status: in-review
+status: approved
 version: 0.1
 last_reviewed: 2026-07-17
+next_review: 2026-10-17
 authority: Main Enterprise Architecture v1, Admin Flow Catalogue v1, API and Socket Contract Specification v1
 related: ASF-01 Admin Login and TOTP Verification, ASF-11 Empty Loading and Error Recovery, AF-02 Admin Dashboard Overview, AF-17 Admin Users Roles and Permissions
 ---

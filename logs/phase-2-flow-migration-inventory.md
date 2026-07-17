@@ -24,7 +24,7 @@
 
 | ID | Flow | Platform | Kind | Migration status | Canonical source | Legacy source line |
 | --- | --- | --- | --- | --- | --- | --- |
-| AF-01 | Admin Entry, Login and TOTP | Admin | main | in-review | `content/flows/admin/main/AF-01-admin-entry-login-totp.md` | `documents/agent-md/admin-flow-catalogue-v1.md:724` |
+| AF-01 | Admin Entry, Login and TOTP | Admin | main | approved | `content/flows/admin/main/AF-01-admin-entry-login-totp.md` | `documents/agent-md/admin-flow-catalogue-v1.md:724` |
 | AF-02 | Admin Dashboard Overview | Admin | main | queued | Not migrated | `documents/agent-md/admin-flow-catalogue-v1.md:1063` |
 | AF-03 | User Management | Admin | main | queued | Not migrated | `documents/agent-md/admin-flow-catalogue-v1.md:1407` |
 | AF-04 | Tasker and KYC Review | Admin | main | queued | Not migrated | `documents/agent-md/admin-flow-catalogue-v1.md:1807` |
@@ -48,7 +48,7 @@
 | AF-22 | Ratings and Reviews Management | Admin | main | queued | Not migrated | `documents/agent-md/admin-flow-catalogue-v1.md:8940` |
 | AF-23 | Basic Analytics and Reports | Admin | main | queued | Not migrated | `documents/agent-md/admin-flow-catalogue-v1.md:9340` |
 | AF-24 | Receipt and Transaction Review | Admin | main | queued | Not migrated | `documents/agent-md/admin-flow-catalogue-v1.md:9736` |
-| ASF-01 | Admin Login and TOTP Verification | Admin | subflow | in-review | `content/flows/admin/subflows/ASF-01-admin-login-totp.md` | `documents/agent-md/admin-flow-catalogue-v1.md:546` |
+| ASF-01 | Admin Login and TOTP Verification | Admin | subflow | approved | `content/flows/admin/subflows/ASF-01-admin-login-totp.md` | `documents/agent-md/admin-flow-catalogue-v1.md:546` |
 | ASF-02 | RBAC Permission Gate | Admin | subflow | queued | Not migrated | `documents/agent-md/admin-flow-catalogue-v1.md:560` |
 | ASF-03 | List, Search, Filter and Pagination | Admin | subflow | queued | Not migrated | `documents/agent-md/admin-flow-catalogue-v1.md:574` |
 | ASF-04 | Record Detail Review | Admin | subflow | queued | Not migrated | `documents/agent-md/admin-flow-catalogue-v1.md:588` |
@@ -58,7 +58,7 @@
 | ASF-08 | Export and Report Generation | Admin | subflow | queued | Not migrated | `documents/agent-md/admin-flow-catalogue-v1.md:644` |
 | ASF-09 | Support Live Chat Assignment | Admin | subflow | queued | Not migrated | `documents/agent-md/admin-flow-catalogue-v1.md:658` |
 | ASF-10 | Provider Reconciliation and Retry | Admin | subflow | queued | Not migrated | `documents/agent-md/admin-flow-catalogue-v1.md:672` |
-| ASF-11 | Empty, Loading and Error Recovery | Admin | subflow | in-review | `content/flows/admin/subflows/ASF-11-empty-loading-error-recovery.md` | `documents/agent-md/admin-flow-catalogue-v1.md:686` |
+| ASF-11 | Empty, Loading and Error Recovery | Admin | subflow | approved | `content/flows/admin/subflows/ASF-11-empty-loading-error-recovery.md` | `documents/agent-md/admin-flow-catalogue-v1.md:686` |
 | MF-01 | First App Launch and Entry Decision | Mobile | main | queued | Not migrated | `documents/agent-md/mobile-flow-catalogue-v1.md:4809` |
 | MF-02 | Registration | Mobile | main | queued | Not migrated | `documents/agent-md/mobile-flow-catalogue-v1.md:5138` |
 | MF-03 | Login / Session Recovery | Mobile | main | queued | Not migrated | `documents/agent-md/mobile-flow-catalogue-v1.md:5467` |

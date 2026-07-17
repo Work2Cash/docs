@@ -5,9 +5,10 @@ type: reusable-subflow
 audience: Non-technical operations, Junior admin developers, Backend, Product, QA, AI agents
 owner: Technical Lead
 reviewers: Product Lead, Admin Lead, Backend Lead, Security and Privacy, QA
-status: in-review
+status: approved
 version: 0.1
 last_reviewed: 2026-07-17
+next_review: 2026-10-17
 authority: Main Enterprise Architecture v1, Admin Flow Catalogue v1 and API and Socket Contract Specification v1
 related: AF-01 Admin Entry Login and TOTP, AF-17 Admin Users Roles and Permissions, ASF-11 Empty Loading and Error Recovery
 ---

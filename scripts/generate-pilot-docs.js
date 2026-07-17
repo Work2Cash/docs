@@ -160,6 +160,9 @@ function validateSourceStructure(document) {
   if (missing.length) {
     throw new Error(`${document.relative}: missing required sections: ${missing.join(", ")}`);
   }
+  if (document.metadata.status === "approved" && !document.metadata.next_review) {
+    throw new Error(`${document.relative}: approved canonical documents require next_review metadata`);
+  }
 }
 
 function escapeHtml(value) {
@@ -407,7 +410,7 @@ function renderHtmlDocument(document) {
         <span class="status status-${slugBase(document.metadata.status)}">${escapeHtml(document.metadata.status)}</span>
         <span>Version ${escapeHtml(document.metadata.version)}</span>
         <span>Reviewed ${escapeHtml(document.metadata.last_reviewed)}</span>
-      </div>
+${document.metadata.next_review ? `        <span>Next review ${escapeHtml(document.metadata.next_review)}</span>\n` : ""}      </div>
     </header>
     <div class="document-grid">
       <aside>
@@ -461,7 +464,7 @@ function renderHtmlIndex(documents) {
     ? "Standalone flows migrated with the approved Phase 1 structure. The library grows batch by batch until it replaces the legacy combined catalogues."
     : "These pilots test a structure that lets a reader understand one flow or technical area without repeatedly searching other documents. They are not yet replacements for the active catalogues.";
   const notice = FLOW_MODE
-    ? "Migration is in progress. A flow is usable as a Phase 2 migration source only when its page status and registry record say so; missing flows remain in the legacy catalogues."
+    ? "Migration is in progress. A flow is usable as a Phase 2 migration source only when its page status and migration-inventory record say so; missing flows remain in the legacy catalogues."
     : "The Phase 1 usability, visual and subject-matter reviews are complete. These are approved reference documents for Phase 2 migration, but they do not replace the complete flow catalogues yet.";
   return `<!doctype html>
 <html lang="en">

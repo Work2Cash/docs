@@ -954,7 +954,7 @@
         "documents/agent-md/flows/README.md"
       ],
       "migrationPhase": "Phase 2",
-      "notes": "Phase 2 is in progress. Three of 72 standalone canonical flow sources exist in the first Admin Access batch; the legacy catalogues remain necessary for unmigrated flows.",
+      "notes": "Phase 2 is in progress. Three of 72 standalone canonical flow sources are approved in the Admin Access batch; the overall library remains in review and the legacy catalogues remain necessary for 69 unmigrated flows.",
       "supersedes": null,
       "tags": [
         "flow-library",

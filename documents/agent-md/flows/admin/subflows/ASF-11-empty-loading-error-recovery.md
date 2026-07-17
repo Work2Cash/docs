@@ -5,9 +5,10 @@ type: reusable-subflow
 audience: Non-technical operations, Junior admin developers, Product, QA, AI agents
 owner: Admin Lead
 reviewers: Product Lead, Technical Lead, Backend Lead, QA
-status: in-review
+status: approved
 version: 0.1
 last_reviewed: 2026-07-17
+next_review: 2026-10-17
 authority: Admin Flow Catalogue v1, Admin Build Plan v1 and API and Socket Contract Specification v1
 related: AF-01 to AF-24, ASF-01 Admin Login and TOTP Verification, ASF-02 RBAC Permission Gate
 generated_from: content/flows/admin/subflows/ASF-11-empty-loading-error-recovery.md
