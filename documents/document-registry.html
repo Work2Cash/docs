@@ -14,7 +14,7 @@
   <main id="content" class="index-shell" tabindex="-1">
     <header class="index-hero"><div class="eyebrow">Governance · Phase 0</div><h1>Document Registry</h1><p>Check ownership, lifecycle, approval and authority before relying on a document. Published does not necessarily mean approved.</p></header>
     <section class="notice" aria-labelledby="registry-warning"><h2 id="registry-warning">Current authority warning</h2><p>The Main Enterprise Architecture v1 is the designated provisional baseline, but formal approval is pending. Material cross-document conflicts must be resolved before implementation.</p></section>
-    <section class="registry-summary" aria-label="Registry summary"><div><strong>26</strong><span>registered families</span></div><div><strong>4</strong><span>active</span></div><div><strong>15</strong><span>pending approval</span></div><div><strong>17</strong><span>legacy families</span></div></section>
+    <section class="registry-summary" aria-label="Registry summary"><div><strong>27</strong><span>registered families</span></div><div><strong>4</strong><span>active</span></div><div><strong>15</strong><span>pending approval</span></div><div><strong>17</strong><span>legacy families</span></div></section>
     <section class="document-content registry-content" aria-labelledby="register-title">
       <p class="generated-note"><strong>Generated registry:</strong> Edit <code>governance/document-registry.json</code>, not this page.</p>
       <h2 id="register-title">Registered documents</h2>
@@ -101,12 +101,21 @@
     </tr>
 <tr id="contract-001">
       <td><strong>CONTRACT-001</strong><br><span class="registry-type">technical-contract</span></td>
-      <td><strong>API and Socket Contract Specification v1</strong><p>Published contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026; exact referral contracts remain a Phase 4 gap and must not be invented.</p></td>
+      <td><strong>API and Socket Contract Specification v1</strong><p>Published provisional contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026. The former MF-17/AF-15 referral gap is resolved by the higher-specificity approved CONTRACT-REFERRAL-001 decision and must be merged into the wider specification during Phase 4.</p></td>
       <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
       <td>Backend Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Admin Lead, QA</small></td>
       <td>legacy-transitional-source<br><small>Main Enterprise Architecture and approved flows</small></td>
       <td><strong>Source</strong><br><a href="../documents/api-socket-contract-specification-v1.html">documents/api-socket-contract-specification-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/api-socket-contract-specification-v1.md">documents/agent-md/api-socket-contract-specification-v1.md</a></li></ul></td>
       <td>Not recorded<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="contract-referral-001">
+      <td><strong>CONTRACT-REFERRAL-001</strong><br><span class="registry-type">technical-contract-decision</span></td>
+      <td><strong>Referral Contract Group</strong><p>Closes the referral code/share, registration attribution, progress, reward-status and Admin review path gap. Registration owns attribution; settlement owns five-paid-task qualification; wallet credit is idempotent backend work; no referral socket or public credit mutation exists.</p></td>
+      <td><span class="status status-approved">approved</span><br>approved approval<br>published</td>
+      <td>Backend Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Admin Lead, Product Lead, Finance, Risk, QA</small></td>
+      <td>canonical-source<br><small>Repository-owner accepted contract decision based on approved MF-02, MF-14, MF-17 and AF-15 behavior</small></td>
+      <td><strong>Source</strong><br><a href="../content/contracts/referral-contract-group.md">content/contracts/referral-contract-group.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/contracts/referral-contract-group.html">documents/contracts/referral-contract-group.html</a></li><li><a href="../documents/agent-md/contracts/referral-contract-group.md">documents/agent-md/contracts/referral-contract-group.md</a></li><li><a href="../documents/contracts/index.html">documents/contracts/index.html</a></li><li><a href="../documents/agent-md/contracts/README.md">documents/agent-md/contracts/README.md</a></li><li><a href="../scripts/validate-referral-contract.js">scripts/validate-referral-contract.js</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
     </tr>
 <tr id="data-001">
       <td><strong>DATA-001</strong><br><span class="registry-type">data-model</span></td>

@@ -34,6 +34,7 @@
 | FLOW-ALIGN-001 | Flow Alignment Review v1 | in-review | pending | Product Lead | legacy-transitional-source | `documents/flow-alignment-review-v1.html`; `documents/agent-md/flow-alignment-review-v1.md` |
 | LEGAL-001 | Legal and User-Facing Documents Pack v1 | in-review | pending | Product Lead | legacy-transitional-source | `documents/legal_user_facing_documents_pack_v1.html`; `documents/agent-md/legal_user_facing_documents_pack_v1.md` |
 | CONTRACT-001 | API and Socket Contract Specification v1 | in-review | pending | Backend Lead | legacy-transitional-source | `documents/api-socket-contract-specification-v1.html`; `documents/agent-md/api-socket-contract-specification-v1.md` |
+| CONTRACT-REFERRAL-001 | Referral Contract Group | approved | approved | Backend Lead | canonical-source | `content/contracts/referral-contract-group.md`; `documents/contracts/referral-contract-group.html`; `documents/agent-md/contracts/referral-contract-group.md`; `documents/contracts/index.html`; `documents/agent-md/contracts/README.md`; `scripts/validate-referral-contract.js` |
 | DATA-001 | Data Model and Prisma Schema Planning v1 | in-review | pending | Backend Lead | legacy-transitional-source | `documents/data-model-prisma-schema-planning-v1.html`; `documents/agent-md/data-model-prisma-schema-planning-v1.md` |
 | PROVIDER-001 | Provider Integration and Cost Control v1 | in-review | pending | Infrastructure Lead | legacy-transitional-source | `documents/provider-integration-cost-control-v1.html`; `documents/agent-md/provider-integration-cost-control-v1.md` |
 | PLAN-MOBILE-001 | Mobile Build Plan v1 | in-review | pending | Mobile Lead | legacy-transitional-source | `documents/build-plan-mobile-v1.html`; `documents/agent-md/build-plan-mobile-v1.md` |
@@ -291,7 +292,31 @@ Publication is not legal approval; subject-matter review remains required.
 | Supersedes | None |
 | Tags | technical-contract |
 
-Published contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026; exact referral contracts remain a Phase 4 gap and must not be invented.
+Published provisional contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026. The former MF-17/AF-15 referral gap is resolved by the higher-specificity approved CONTRACT-REFERRAL-001 decision and must be merged into the wider specification during Phase 4.
+
+### CONTRACT-REFERRAL-001 — Referral Contract Group
+
+| Field | Value |
+| --- | --- |
+| Type | technical-contract-decision |
+| Audience | Mobile, Admin, Backend, Finance, Risk, QA, AI agents |
+| Owner | Backend Lead |
+| Required reviewers | Technical Lead, Mobile Lead, Admin Lead, Product Lead, Finance, Risk, QA |
+| Version | 0.1 |
+| Lifecycle | approved |
+| Approval | approved |
+| Publication | published |
+| Last reviewed | 2026-07-17 |
+| Next review | 2026-10-17 |
+| Authority | Repository-owner accepted contract decision based on approved MF-02, MF-14, MF-17 and AF-15 behavior |
+| Artifact class | canonical-source |
+| Current source | `content/contracts/referral-contract-group.md` |
+| Other artifacts | `documents/contracts/referral-contract-group.html`, `documents/agent-md/contracts/referral-contract-group.md`, `documents/contracts/index.html`, `documents/agent-md/contracts/README.md`, `scripts/validate-referral-contract.js` |
+| Migration phase | Targeted referral contract-gap resolution before Phase 4 |
+| Supersedes | None |
+| Tags | referral, contract-decision, MF-17, AF-15, wallet-credit |
+
+Closes the referral code/share, registration attribution, progress, reward-status and Admin review path gap. Registration owns attribution; settlement owns five-paid-task qualification; wallet credit is idempotent backend work; no referral socket or public credit mutation exists.
 
 ### DATA-001 — Data Model and Prisma Schema Planning v1
 
@@ -704,7 +729,7 @@ Active canonical flow family containing all 72 approved standalone sources: 24 m
 - [ ] **FLOW-ADMIN-001:** migrate in Phase 2. Approved behavior was migrated into 35 standalone admin flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.
 - [ ] **FLOW-ALIGN-001:** migrate in Phase 5. Provisional decision tracker until decisions are moved into governed records.
 - [ ] **LEGAL-001:** migrate in Phase 5. Publication is not legal approval; subject-matter review remains required.
-- [ ] **CONTRACT-001:** migrate in Phase 4. Published contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026; exact referral contracts remain a Phase 4 gap and must not be invented.
+- [ ] **CONTRACT-001:** migrate in Phase 4. Published provisional contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026. The former MF-17/AF-15 referral gap is resolved by the higher-specificity approved CONTRACT-REFERRAL-001 decision and must be merged into the wider specification during Phase 4.
 - [ ] **DATA-001:** migrate in Phase 4. The Phase 1 KYC pilot defines KycAttempt; merge and full-schema validation remain scheduled for Phase 4.
 - [ ] **PROVIDER-001:** migrate in Phase 4. Costs and provider capabilities require dated validation before purchase or implementation.
 - [ ] **PLAN-MOBILE-001:** migrate in Phase 3. Calendar dates do not prove work status; active week is not formally recorded.

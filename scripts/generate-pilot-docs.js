@@ -7,13 +7,16 @@ const path = require("node:path");
 
 const ROOT = path.resolve(__dirname, "..");
 const FLOW_MODE = process.argv.includes("--flows");
-const SOURCE_ROOT = path.join(ROOT, "content", FLOW_MODE ? "flows" : "pilots");
-const HTML_ROOT = path.join(ROOT, "documents", FLOW_MODE ? "flows" : "pilots");
-const AGENT_ROOT = path.join(ROOT, "documents", "agent-md", FLOW_MODE ? "flows" : "pilots");
+const CONTRACT_MODE = process.argv.includes("--contracts");
+if (FLOW_MODE && CONTRACT_MODE) throw new Error("Choose either --flows or --contracts, not both");
+const COLLECTION_KEY = CONTRACT_MODE ? "contracts" : FLOW_MODE ? "flows" : "pilots";
+const SOURCE_ROOT = path.join(ROOT, "content", COLLECTION_KEY);
+const HTML_ROOT = path.join(ROOT, "documents", COLLECTION_KEY);
+const AGENT_ROOT = path.join(ROOT, "documents", "agent-md", COLLECTION_KEY);
 const CHECK_ONLY = process.argv.includes("--check");
-const COLLECTION_LABEL = FLOW_MODE ? "Phase 2 flows" : "Phase 1 pilots";
-const COLLECTION_SHORT = FLOW_MODE ? "Flows" : "Pilots";
-const GENERATOR_COMMAND = FLOW_MODE ? "node scripts/generate-flow-docs.js" : "node scripts/generate-pilot-docs.js";
+const COLLECTION_LABEL = CONTRACT_MODE ? "Canonical contract decisions" : FLOW_MODE ? "Phase 2 flows" : "Phase 1 pilots";
+const COLLECTION_SHORT = CONTRACT_MODE ? "Contracts" : FLOW_MODE ? "Flows" : "Pilots";
+const GENERATOR_COMMAND = CONTRACT_MODE ? "node scripts/generate-contract-docs.js" : FLOW_MODE ? "node scripts/generate-flow-docs.js" : "node scripts/generate-pilot-docs.js";
 
 const REQUIRED_METADATA = [
   "id",
@@ -460,13 +463,17 @@ function renderHtmlIndex(documents) {
   }).join("\n");
 
   const flowMigrationComplete = FLOW_MODE && documents.length === 72 && documents.every((document) => ["approved", "active"].includes(document.metadata.status));
-  const title = FLOW_MODE ? "Standalone Flow Library" : "Phase 1 Documentation Pilots";
-  const description = FLOW_MODE
+  const title = CONTRACT_MODE ? "Canonical Contract Decision Library" : FLOW_MODE ? "Standalone Flow Library" : "Phase 1 Documentation Pilots";
+  const description = CONTRACT_MODE
+    ? "Focused accepted contract decisions that close named implementation gaps before the wider Phase 4 technical-reference migration."
+    : FLOW_MODE
     ? flowMigrationComplete
       ? "All 72 approved mobile and admin flows in the standalone format, with explicit dependencies, verbal walkthroughs, next-flow conditions and recovery."
       : "Standalone flows migrated with the approved Phase 1 structure. The library grows batch by batch until it replaces the legacy combined catalogues."
     : "These pilots test a structure that lets a reader understand one flow or technical area without repeatedly searching other documents. They are not yet replacements for the active catalogues.";
-  const notice = FLOW_MODE
+  const notice = CONTRACT_MODE
+    ? "These decisions control only their named contract gaps. The broader API and Socket Contract Specification remains provisional until Phase 4 migration."
+    : FLOW_MODE
     ? flowMigrationComplete
       ? "Migration is complete. This is the active flow source; the former mobile and admin combined catalogues are superseded historical evidence."
       : "Migration is in progress. A flow is usable as a Phase 2 migration source only when its page status and migration-inventory record say so; missing flows remain in the legacy catalogues."
@@ -496,11 +503,11 @@ function renderHtmlIndex(documents) {
   <header class="site-header"><a class="brand" href="${homeUrl}">Work2Cash Docs</a><nav aria-label="Document navigation"><a href="${homeUrl}">Portal home</a></nav></header>
   <main id="content" class="index-shell" tabindex="-1">
     <header class="index-hero">
-      <div class="eyebrow">Documentation restructuring · ${FLOW_MODE ? "Phase 2" : "Phase 1"}</div>
+      <div class="eyebrow">Documentation restructuring · ${CONTRACT_MODE ? "Gap decisions" : FLOW_MODE ? "Phase 2" : "Phase 1"}</div>
       <h1>${escapeHtml(title)}</h1>
       <p>${escapeHtml(description)}</p>
     </header>
-    <section class="notice" aria-labelledby="collection-status"><h2 id="collection-status">${FLOW_MODE ? "Migration status" : "Pilot status"}</h2><p>${escapeHtml(notice)}</p></section>
+    <section class="notice" aria-labelledby="collection-status"><h2 id="collection-status">${CONTRACT_MODE ? "Authority scope" : FLOW_MODE ? "Migration status" : "Pilot status"}</h2><p>${escapeHtml(notice)}</p></section>
     <div class="pilot-grid">${auxiliaryCards}${cards}</div>
   </main>
   <footer>Work2Cash documentation · Generated from canonical Markdown sources</footer>
@@ -514,9 +521,9 @@ function renderAgentIndex(documents) {
     const target = document.relative;
     return `| ${document.metadata.id} | [${document.metadata.title}](${target}) | ${document.metadata.type} | ${document.metadata.status} |`;
   }).join("\n");
-  return `# Work2Cash ${FLOW_MODE ? "Phase 2 flow" : "Phase 1 pilot"} agent Markdown
+  return `# Work2Cash ${CONTRACT_MODE ? "canonical contract-decision" : FLOW_MODE ? "Phase 2 flow" : "Phase 1 pilot"} agent Markdown
 
-These files are generated from the canonical sources in \`${FLOW_MODE ? "content/flows/" : "content/pilots/"}\`. Do not edit generated files directly.
+These files are generated from the canonical sources in \`content/${COLLECTION_KEY}/\`. Do not edit generated files directly.
 ${FLOW_MODE ? "\n- [Flow dependency map](dependency-map.md)\n- [Optional combined flow catalogue](combined-flow-library.md)\n" : ""}
 
 | ID | Document | Type | Status |
@@ -791,13 +798,13 @@ function write(expected) {
     fs.mkdirSync(path.dirname(file), { recursive: true });
     fs.writeFileSync(file, contents);
   }
-  console.log(`Generated ${expected.size} files from ${documents.length} canonical ${FLOW_MODE ? "flow" : "pilot"} sources.`);
+  console.log(`Generated ${expected.size} files from ${documents.length} canonical ${CONTRACT_MODE ? "contract-decision" : FLOW_MODE ? "flow" : "pilot"} sources.`);
 }
 
 let documents;
 try {
   documents = walkMarkdown(SOURCE_ROOT).map(parseDocument);
-  if (!documents.length) throw new Error(`No canonical ${FLOW_MODE ? "flow" : "pilot"} documents found`);
+  if (!documents.length) throw new Error(`No canonical ${CONTRACT_MODE ? "contract-decision" : FLOW_MODE ? "flow" : "pilot"} documents found`);
   const ids = new Set();
   for (const document of documents) {
     if (ids.has(document.metadata.id)) throw new Error(`Duplicate document id: ${document.metadata.id}`);

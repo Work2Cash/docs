@@ -47,6 +47,7 @@ If no active week is identified in the registry or execution index, ask the user
 - Backend mobile-facing work: use the relevant standalone `MF`/`SF` agent Markdown.
 - Backend admin-facing work: use the relevant standalone `AF`/`ASF` agent Markdown.
 - Flow relationships: use the generated **Flow Dependency Map**; use the combined catalogue only for broad cross-flow review.
+- Accepted contract-gap decisions: open **Canonical Contract Decision Library**. Referral work must use `CONTRACT-REFERRAL-001` instead of inventing or reviving the former MF-17/AF-15 gap.
 - Shared rules and team briefs: use **Team Markdown Downloads** on the relevant build-plan page.
 - Weekly packs: open **Weekly Execution Packs** and select the formally active week.
 - Broad context only: use **Full Project Markdown** from Team Markdown Downloads.
@@ -125,6 +126,7 @@ Do not invent missing endpoint paths, model fields, provider behavior or product
 - Edit canonical sources, not generated outputs.
 - Treat legacy documents as transitional and avoid adding duplicated prose.
 - For flow changes, edit `content/flows/`, then run `node scripts/generate-flow-docs.js` and `node scripts/generate-flow-migration-inventory.js`.
+- For accepted contract-gap decisions, edit `content/contracts/`, then run `node scripts/generate-contract-docs.js`. Referral changes must also pass `node scripts/validate-referral-contract.js`.
 - Run `node scripts/validate-docs.js` before handoff.
 - Commit feature by feature or fix by fix; do not stack unrelated work.
 

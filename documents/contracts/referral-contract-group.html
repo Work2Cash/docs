@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Referral Contract Group — Work2Cash Canonical contract decisions documentation.">
+  <title>CONTRACT-REFERRAL-001 — Referral Contract Group | Work2Cash Docs</title>
+  <link rel="stylesheet" href="../../assets/css/pilot-docs.css">
+  <script src="../../assets/js/guard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to document</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html">Work2Cash Docs</a>
+    <nav aria-label="Document navigation">
+      <a href="index.html">Canonical contract decisions</a>
+      <a href="../agent-md/contracts/referral-contract-group.md" download>Download agent Markdown</a>
+    </nav>
+  </header>
+  <div class="page-shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html">Contracts</a><span aria-hidden="true">/</span><span>Contracts</span>
+    </nav>
+    <header class="document-hero">
+      <div class="eyebrow">api-contract-group · CONTRACT-REFERRAL-001</div>
+      <h1>Referral Contract Group</h1>
+      <p class="audience"><strong>Written for:</strong> Junior mobile developers, Junior admin developers, Backend, QA, Product, AI agents</p>
+      <div class="status-row">
+        <span class="status status-approved-reference">approved-reference</span>
+        <span>Version 0.1</span>
+        <span>Reviewed 2026-07-17</span>
+        <span>Next review 2026-10-17</span>
+      </div>
+    </header>
+    <div class="document-grid">
+      <aside>
+        <nav class="toc" aria-labelledby="toc-title">
+    <h2 id="toc-title">On this page</h2>
+    <ol><li class="toc-level-2"><a href="#in-plain-english">In plain English</a></li><li class="toc-level-2"><a href="#why-this-group-exists">Why this group exists</a></li><li class="toc-level-2"><a href="#contract-status-summary">Contract status summary</a></li><li class="toc-level-2"><a href="#shared-access-and-safety-rules">Shared access and safety rules</a></li><li class="toc-level-3"><a href="#shared-admin-mutation-headers">Shared Admin mutation headers</a></li><li class="toc-level-3"><a href="#shared-admin-mutation-request">Shared Admin mutation request</a></li><li class="toc-level-3"><a href="#shared-admin-mutation-response">Shared Admin mutation response</a></li><li class="toc-level-3"><a href="#shared-errors">Shared errors</a></li><li class="toc-level-2"><a href="#get-referrals-me">GET /referrals/me</a></li><li class="toc-level-3"><a href="#business-purpose">Business purpose</a></li><li class="toc-level-3"><a href="#success-response">Success response</a></li><li class="toc-level-2"><a href="#get-referrals-me-attributions">GET /referrals/me/attributions</a></li><li class="toc-level-3"><a href="#business-purpose-2">Business purpose</a></li><li class="toc-level-3"><a href="#query-parameters">Query parameters</a></li><li class="toc-level-3"><a href="#success-response-2">Success response</a></li><li class="toc-level-2"><a href="#post-auth-register-referral-extension">POST /auth/register referral extension</a></li><li class="toc-level-3"><a href="#business-purpose-3">Business purpose</a></li><li class="toc-level-3"><a href="#request-extension">Request extension</a></li><li class="toc-level-3"><a href="#required-behavior">Required behavior</a></li><li class="toc-level-3"><a href="#response-extension">Response extension</a></li><li class="toc-level-2"><a href="#get-admin-referrals">GET /admin/referrals</a></li><li class="toc-level-3"><a href="#business-purpose-4">Business purpose</a></li><li class="toc-level-3"><a href="#query-parameters-2">Query parameters</a></li><li class="toc-level-2"><a href="#get-admin-referrals-attributionid">GET /admin/referrals/{attributionId}</a></li><li class="toc-level-3"><a href="#business-purpose-5">Business purpose</a></li><li class="toc-level-2"><a href="#post-admin-referrals-attributionid-approve">POST /admin/referrals/{attributionId}/approve</a></li><li class="toc-level-2"><a href="#post-admin-referrals-attributionid-hold">POST /admin/referrals/{attributionId}/hold</a></li><li class="toc-level-2"><a href="#post-admin-referrals-attributionid-reject">POST /admin/referrals/{attributionId}/reject</a></li><li class="toc-level-2"><a href="#post-admin-referrals-attributionid-escalate-risk">POST /admin/referrals/{attributionId}/escalate-risk</a></li><li class="toc-level-2"><a href="#state-and-side-effects">State and side effects</a></li><li class="toc-level-2"><a href="#required-contract-tests">Required contract tests</a></li></ol>
+  </nav>
+        <section class="metadata" aria-labelledby="metadata-title">
+          <h2 id="metadata-title">Document details</h2>
+          <dl>
+            <dt>Owner</dt><dd>Backend Lead</dd>
+            <dt>Reviewers</dt><dd>Technical Lead, Mobile Lead, Admin Lead, Product Lead, Finance, Risk, QA</dd>
+            <dt>Authority</dt><dd>Repository-owner accepted contract decision for MF-17 and AF-15 based on approved flows and Main Enterprise Architecture v1</dd>
+            <dt>Related</dt><dd>MF-02 Registration, MF-14 Completion and Settlement, MF-17 Referral, AF-08 Finance, AF-14 Risk Review, AF-15 Referral Management, AF-18 Audit Log Review, ReferralCode, ReferralAttribution, ReferralReward, WalletLedgerEntry</dd>
+          </dl>
+        </section>
+      </aside>
+      <main id="content" class="document-content" tabindex="-1">
+        <p class="generated-note"><strong>Canonical contract decisions:</strong> This page is generated from <code>content/contracts/referral-contract-group.md</code>. Edit the canonical Markdown source, not this HTML file.</p>
+        <h2 id="in-plain-english">In plain English</h2>
+<p>These contracts let a signed-in user see and share their referral code, follow the progress of people attributed to that code, and see whether a reward is pending, held, rejected or credited. A new user&#39;s referral code is captured by registration. The backend—not the mobile client—counts paid-task completions, qualifies a reward and posts the wallet credit.</p>
+<p>Authorized admins can list and inspect referral attributions, then approve, hold, reject or escalate a reward when manual review is required. Every decision is permission-gated, version-checked, idempotent and audited.</p>
+<h2 id="why-this-group-exists">Why this group exists</h2>
+<p>MF-17 and AF-15 define approved referral behavior, but the provisional API specification previously left code/share, attribution, progress, reward status and admin review paths undefined. That prevented Mobile, Admin, Backend and QA from implementing the same contract without guessing.</p>
+<p>This decision closes only that named gap. It does not claim that the wider Phase 4 contract, schema or OpenAPI migration is complete.</p>
+<h2 id="contract-status-summary">Contract status summary</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Capability</th><th scope="col">Accepted contract</th><th scope="col">Status</th></tr></thead><tbody><tr><td>Get the current user&#39;s referral code, share link and summary</td><td><code>GET /referrals/me</code></td><td>Defined here.</td></tr><tr><td>List the current user&#39;s attributed referrals and progress</td><td><code>GET /referrals/me/attributions</code></td><td>Defined here.</td></tr><tr><td>Attribute a new registration</td><td>Optional <code>referralCode</code> on <code>POST /auth/register</code></td><td>Existing registration path extended here; no separate unauthenticated attribution endpoint.</td></tr><tr><td>List referral records for Admin</td><td><code>GET /admin/referrals</code></td><td>Defined here.</td></tr><tr><td>Read one referral record for Admin</td><td><code>GET /admin/referrals/{attributionId}</code></td><td>Defined here.</td></tr><tr><td>Approve an eligible reward</td><td><code>POST /admin/referrals/{attributionId}/approve</code></td><td>Defined here.</td></tr><tr><td>Hold a reward</td><td><code>POST /admin/referrals/{attributionId}/hold</code></td><td>Defined here.</td></tr><tr><td>Reject a reward</td><td><code>POST /admin/referrals/{attributionId}/reject</code></td><td>Defined here.</td></tr><tr><td>Escalate suspected abuse</td><td><code>POST /admin/referrals/{attributionId}/escalate-risk</code></td><td>Defined here.</td></tr><tr><td>Credit the reward</td><td>No public client or Admin credit endpoint</td><td>Backend settlement/worker responsibility only.</td></tr><tr><td>Realtime updates</td><td>No referral socket contract</td><td>Durable REST state and normal notification delivery are sufficient.</td></tr></tbody></table></div>
+<p>Sharing itself uses the device&#39;s native share sheet with the <code>shareUrl</code> returned by <code>GET /referrals/me</code>. Sharing does not create authoritative referral state and therefore has no mutation endpoint.</p>
+<h2 id="shared-access-and-safety-rules">Shared access and safety rules</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Rule</th><th scope="col">Requirement</th></tr></thead><tbody><tr><td>Mobile authentication</td><td><code>GET /referrals/me</code> and <code>GET /referrals/me/attributions</code> require a valid user access token.</td></tr><tr><td>Registration</td><td><code>POST /auth/register</code> may accept a referral code before authentication. Invalid-code responses must not reveal another user&#39;s private information.</td></tr><tr><td>Admin authentication</td><td>Every Admin contract requires a valid TOTP-authenticated Admin session.</td></tr><tr><td>Admin permissions</td><td>Reads require <code>referrals.read</code>; approve, hold and reject require <code>referrals.review</code>; escalation requires <code>referrals.escalate</code>.</td></tr><tr><td>Backend authority</td><td>The backend owns attribution, paid-task counting, qualification, reward state and wallet credit. Clients never increment progress or credit a reward.</td></tr><tr><td>Qualification rule</td><td>The reward becomes eligible only after the referred user completes five distinct paid tasks whose settlement is authoritative and not reversed.</td></tr><tr><td>Duplicate protection</td><td>One referred user can have at most one confirmed attribution and one reward for the configured five-paid-task threshold.</td></tr><tr><td>Self-referral and abuse</td><td>The backend blocks or holds self-referral, multi-account and other risk signals without exposing detection details to normal users.</td></tr><tr><td>Registration immutability</td><td>After a confirmed attribution is attached to the new account, the client cannot replace its referral code.</td></tr><tr><td>Wallet safety</td><td>Reward credit writes one immutable wallet-ledger entry using an idempotency key derived from the referral reward, not from a client retry.</td></tr><tr><td>Concurrency</td><td>Admin mutations require <code>expectedVersion</code>; stale decisions return <code>STATE_CONFLICT</code>.</td></tr><tr><td>Idempotency</td><td>Admin mutations require <code>Idempotency-Key</code>. Repeating the same logical request returns the original outcome.</td></tr><tr><td>Audit</td><td>Admin decisions record actor, action, attribution, reason, previous/new state, request ID and timestamp.</td></tr><tr><td>Privacy</td><td>Mobile responses expose only the current user&#39;s referral records and a minimized referred-user label. They never expose phone, email, exact address, task details or risk signals.</td></tr><tr><td>Notification</td><td>Notifications are queued after commit. Notification failure never reverses an attribution, decision or wallet credit.</td></tr></tbody></table></div>
+<h3 id="shared-admin-mutation-headers">Shared Admin mutation headers</h3>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Header</th><th scope="col">Requirement</th></tr></thead><tbody><tr><td><code>Authorization</code></td><td>Required Admin bearer token backed by a valid TOTP-authenticated session.</td></tr><tr><td><code>Idempotency-Key</code></td><td>Required unique key for the logical decision.</td></tr><tr><td><code>X-Request-ID</code></td><td>Accepted or generated for traceability.</td></tr></tbody></table></div>
+<h3 id="shared-admin-mutation-request">Shared Admin mutation request</h3>
+<pre><code class="language-json">{
+  &quot;reasonCode&quot;: &quot;ELIGIBILITY_VERIFIED&quot;,
+  &quot;note&quot;: &quot;Five settled paid tasks verified.&quot;,
+  &quot;expectedVersion&quot;: 3
+}</code></pre>
+<p><code>reasonCode</code> is required. <code>note</code> is optional unless the selected reason or policy requires an explanation. The backend validates allowed reason codes for the requested action.</p>
+<h3 id="shared-admin-mutation-response">Shared Admin mutation response</h3>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;attributionId&quot;: &quot;rat_123&quot;,
+    &quot;attributionStatus&quot;: &quot;QUALIFIED&quot;,
+    &quot;reward&quot;: {
+      &quot;rewardId&quot;: &quot;rrw_123&quot;,
+      &quot;status&quot;: &quot;PENDING_CREDIT&quot;,
+      &quot;walletCreditLedgerEntryId&quot;: null
+    },
+    &quot;version&quot;: 4,
+    &quot;auditId&quot;: &quot;aud_123&quot;
+  },
+  &quot;meta&quot;: {
+    &quot;requestId&quot;: &quot;req_123&quot;
+  }
+}</code></pre>
+<h3 id="shared-errors">Shared errors</h3>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">HTTP</th><th scope="col">Code</th><th scope="col">Meaning</th><th scope="col">Consumer behavior</th></tr></thead><tbody><tr><td>400</td><td><code>VALIDATION_ERROR</code></td><td>Required input, cursor, reason or version is malformed.</td><td>Correct the request; do not infer success.</td></tr><tr><td>401</td><td><code>UNAUTHORIZED</code></td><td>User or Admin session is absent or invalid.</td><td>Return to the appropriate authentication flow.</td></tr><tr><td>403</td><td><code>FORBIDDEN</code></td><td>The actor lacks the required permission or ownership.</td><td>Keep the record read-only and show a safe denial.</td></tr><tr><td>404</td><td><code>NOT_FOUND</code></td><td>The referral record does not exist or is not visible to the actor.</td><td>Show a safe not-found state.</td></tr><tr><td>409</td><td><code>INVALID_STATE</code></td><td>The requested action is not valid from the authoritative state.</td><td>Refresh the record and show allowed actions.</td></tr><tr><td>409</td><td><code>STATE_CONFLICT</code></td><td><code>expectedVersion</code> is stale.</td><td>Refresh before making a new decision.</td></tr><tr><td>409</td><td><code>IDEMPOTENCY_KEY_REUSED</code></td><td>The key was reused with different input.</td><td>Use a new key only for a genuinely new action.</td></tr><tr><td>422</td><td><code>REFERRAL_NOT_ELIGIBLE</code></td><td>The code or account cannot create a valid attribution.</td><td>Continue registration without claiming attribution; show approved generic copy.</td></tr><tr><td>423</td><td><code>REWARD_HELD</code></td><td>Risk or manual review blocks credit.</td><td>Show pending/held status; do not retry credit from the client.</td></tr><tr><td>503</td><td><code>DEPENDENCY_UNAVAILABLE</code></td><td>Wallet, ledger or required backend dependency is unavailable.</td><td>Preserve authoritative pending state and allow backend reconciliation.</td></tr></tbody></table></div>
+<h2 id="get-referrals-me">GET /referrals/me</h2>
+<h3 id="business-purpose">Business purpose</h3>
+<p>Returns the signed-in user&#39;s referral code, native-share URL and aggregate progress/reward summary for MF-17.</p>
+<h3 id="success-response">Success response</h3>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;referralCode&quot;: &quot;ADA7K9&quot;,
+    &quot;shareUrl&quot;: &quot;https://work2cash.com/r/ADA7K9&quot;,
+    &quot;summary&quot;: {
+      &quot;registeredCount&quot;: 3,
+      &quot;qualifiedCount&quot;: 1,
+      &quot;pendingRewardCount&quot;: 1,
+      &quot;creditedRewardCount&quot;: 1
+    }
+  },
+  &quot;meta&quot;: {
+    &quot;requestId&quot;: &quot;req_123&quot;
+  }
+}</code></pre>
+<p>The backend may create the user&#39;s ReferralCode lazily on the first successful request. Repeating the request returns the same active code; it must not create multiple active codes.</p>
+<h2 id="get-referrals-me-attributions">GET /referrals/me/attributions</h2>
+<h3 id="business-purpose-2">Business purpose</h3>
+<p>Returns only referrals attributed to the signed-in user, including paid-task progress and reward status.</p>
+<h3 id="query-parameters">Query parameters</h3>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Parameter</th><th scope="col">Requirement</th></tr></thead><tbody><tr><td><code>status</code></td><td>Optional attribution/reward status filter.</td></tr><tr><td><code>cursor</code></td><td>Optional opaque pagination cursor.</td></tr><tr><td><code>limit</code></td><td>Optional and backend-capped.</td></tr></tbody></table></div>
+<h3 id="success-response-2">Success response</h3>
+<pre><code class="language-json">{
+  &quot;data&quot;: [
+    {
+      &quot;attributionId&quot;: &quot;rat_123&quot;,
+      &quot;referredUserLabel&quot;: &quot;A. O.&quot;,
+      &quot;attributionStatus&quot;: &quot;ACTIVE&quot;,
+      &quot;registeredAt&quot;: &quot;2026-07-17T09:00:00Z&quot;,
+      &quot;progress&quot;: {
+        &quot;completedPaidTasks&quot;: 3,
+        &quot;requiredPaidTasks&quot;: 5
+      },
+      &quot;reward&quot;: {
+        &quot;status&quot;: &quot;PENDING&quot;,
+        &quot;creditedAt&quot;: null
+      }
+    }
+  ],
+  &quot;meta&quot;: {
+    &quot;requestId&quot;: &quot;req_123&quot;,
+    &quot;nextCursor&quot;: null
+  }
+}</code></pre>
+<p>Normal users see <code>PENDING</code>, <code>CREDITED</code>, <code>HELD</code> or <code>NOT_ELIGIBLE</code>. They do not receive internal risk reasons, device signals or another user&#39;s task history.</p>
+<h2 id="post-auth-register-referral-extension">POST /auth/register referral extension</h2>
+<h3 id="business-purpose-3">Business purpose</h3>
+<p>Captures referral attribution as part of the existing registration transaction without creating a separate unauthenticated attribution endpoint.</p>
+<h3 id="request-extension">Request extension</h3>
+<pre><code class="language-json">{
+  &quot;email&quot;: &quot;new.user@example.com&quot;,
+  &quot;phone&quot;: &quot;+2348000000000&quot;,
+  &quot;password&quot;: &quot;client-supplied-secret&quot;,
+  &quot;referralCode&quot;: &quot;ADA7K9&quot;
+}</code></pre>
+<p><code>referralCode</code> is optional. The existing registration contract continues to own all other fields and validation.</p>
+<h3 id="required-behavior">Required behavior</h3>
+<ul><li>Validate format and code status without returning referrer identity.</li><li>Record the pending code association during registration, but confirm ReferralAttribution only after the new account completes the existing verification requirement.</li><li>Reject self-referral and already-attributed accounts.</li><li>Do not fail valid account creation solely because an optional referral code is invalid; return approved generic referral feedback so the client can explain that registration succeeded without attribution.</li><li>Once confirmed, attribution is immutable through public client contracts.</li></ul>
+<h3 id="response-extension">Response extension</h3>
+<pre><code class="language-json">{
+  &quot;referralAttribution&quot;: {
+    &quot;status&quot;: &quot;PENDING_ACCOUNT_VERIFICATION&quot;
+  }
+}</code></pre>
+<p>Allowed public values are <code>PENDING_ACCOUNT_VERIFICATION</code>, <code>CONFIRMED</code> and <code>NOT_APPLIED</code>. Internal abuse states are not exposed.</p>
+<h2 id="get-admin-referrals">GET /admin/referrals</h2>
+<h3 id="business-purpose-4">Business purpose</h3>
+<p>Returns the permission-filtered referral review queue for AF-15.</p>
+<h3 id="query-parameters-2">Query parameters</h3>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Parameter</th><th scope="col">Requirement</th></tr></thead><tbody><tr><td><code>attributionStatus</code></td><td>Optional attribution-state filter.</td></tr><tr><td><code>rewardStatus</code></td><td>Optional reward-state filter.</td></tr><tr><td><code>riskStatus</code></td><td>Optional <code>none</code>, <code>flagged</code> or <code>escalated</code> filter.</td></tr><tr><td><code>search</code></td><td>Optional safe search by attribution ID, reward ID or permitted user identifier.</td></tr><tr><td><code>cursor</code></td><td>Optional opaque pagination cursor.</td></tr><tr><td><code>limit</code></td><td>Optional and backend-capped.</td></tr><tr><td><code>sort</code></td><td><code>oldest</code>, <code>newest</code> or <code>priority</code>.</td></tr></tbody></table></div>
+<p>Queue rows contain IDs, minimized user labels, completed-paid-task count, reward state, risk indicator, timestamps and version. They do not contain raw device signals, full task history or wallet secrets.</p>
+<h2 id="get-admin-referrals-attributionid">GET /admin/referrals/{attributionId}</h2>
+<h3 id="business-purpose-5">Business purpose</h3>
+<p>Returns one safe referral decision record with referrer/referred-user summaries, attribution history, authoritative paid-task qualification evidence, reward state, wallet-credit reference, risk-review link and prior decisions.</p>
+<p>The backend returns allowed actions so Admin does not recreate state and permission rules:</p>
+<pre><code class="language-json">{
+  &quot;allowedActions&quot;: {
+    &quot;approve&quot;: true,
+    &quot;hold&quot;: true,
+    &quot;reject&quot;: true,
+    &quot;escalateRisk&quot;: true
+  }
+}</code></pre>
+<p>Paid-task evidence includes only the minimum settlement identifiers, completion timestamps and counted/not-counted reason required for review. Exact addresses, chat, proof media and unrelated payment data are excluded.</p>
+<h2 id="post-admin-referrals-attributionid-approve">POST /admin/referrals/{attributionId}/approve</h2>
+<p>Approves a manually reviewed attribution/reward only when five authoritative paid-task settlements qualify and no blocking risk hold remains. The backend moves the reward to <code>PENDING_CREDIT</code> and queues idempotent wallet-credit work. It does not synchronously trust the Admin client to mark the wallet credited.</p>
+<h2 id="post-admin-referrals-attributionid-hold">POST /admin/referrals/{attributionId}/hold</h2>
+<p>Places the reward in <code>HELD</code> with a required reason while evidence, settlement or risk review is incomplete. Qualification progress remains preserved. Holding never creates or reverses a wallet-ledger entry.</p>
+<h2 id="post-admin-referrals-attributionid-reject">POST /admin/referrals/{attributionId}/reject</h2>
+<p>Marks the reward <code>REJECTED</code> for a confirmed non-qualifying or abusive attribution. It requires a safe reason and cannot reverse an already credited reward; credited-reward correction must use the governed finance/reconciliation process.</p>
+<h2 id="post-admin-referrals-attributionid-escalate-risk">POST /admin/referrals/{attributionId}/escalate-risk</h2>
+<p>Creates or links the AF-14 risk-review record, moves the referral reward to <code>HELD</code>, writes the Admin audit event and returns the permitted risk-case reference. It must not expose internal detection signals to the referrer or referred user.</p>
+<h2 id="state-and-side-effects">State and side effects</h2>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Trigger</th><th scope="col">Authoritative state effect</th><th scope="col">Side effects</th></tr></thead><tbody><tr><td>Valid account verification with referral code</td><td>Creates one confirmed ReferralAttribution.</td><td>Updates referral summary; may queue a safe notification.</td></tr><tr><td>Each authoritative MF-14 settlement</td><td>Recalculates distinct paid-task progress exactly once.</td><td>When count reaches five, creates one ReferralReward in <code>PENDING_CREDIT</code> unless held.</td></tr><tr><td>Reward qualification</td><td>Does not directly trust Mobile or Admin state.</td><td>Queues idempotent wallet-credit work.</td></tr><tr><td>Successful wallet credit</td><td>Moves reward to <code>CREDITED</code> and stores its WalletLedgerEntry reference.</td><td>Queues safe notification; becomes visible through MF-17 and AF-15 reads.</td></tr><tr><td>Wallet-credit failure</td><td>Leaves reward pending/retryable; never reports credited.</td><td>Backend reconciliation retries or escalates without a client credit mutation.</td></tr><tr><td>Admin approve/hold/reject/escalate</td><td>Applies one versioned decision.</td><td>Writes AdminAuditLog and queues any permitted follow-up.</td></tr><tr><td>Settled task later reversed</td><td>Does not silently delete immutable ledger history.</td><td>Routes any required correction through governed finance/risk reconciliation.</td></tr></tbody></table></div>
+<p>Referral progress is event-driven from authoritative settlement records. The mobile and Admin applications must not poll a paid provider or submit completed-task counts.</p>
+<h2 id="required-contract-tests">Required contract tests</h2>
+<ul><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> <code>GET /referrals/me</code> returns one stable active code and share URL for the authenticated user.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> A user cannot read another user&#39;s referral summary or attributions.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Registration without <code>referralCode</code> behaves exactly as before.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> A valid optional code creates one attribution only after account verification.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Invalid, self-referral and already-attributed cases do not reveal referrer identity or create duplicate attribution.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Five distinct authoritative paid-task settlements qualify exactly one reward.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Duplicate settlement events do not increment progress twice or create a second reward.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Pending, held, rejected, retry-required and credited states never display false credit.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Wallet-credit retries create at most one ledger entry for the reward.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Admin list/detail permissions and minimized data are enforced.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> Every Admin action enforces exact permission, valid state, <code>expectedVersion</code>, idempotency and audit.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> A stale Admin decision returns <code>STATE_CONFLICT</code> and preserves current truth.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> An escalated referral is held and linked to AF-14 without exposing internal risk signals.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> An already credited reward cannot be rejected or credited again through referral endpoints.</li><li class="task-item"><input type="checkbox" disabled aria-label="Not completed"> No referral socket or public client wallet-credit mutation exists.</li></ul>
+      </main>
+    </div>
+  </div>
+  <footer>Work2Cash documentation · Canonical contract decisions</footer>
+</body>
+</html>

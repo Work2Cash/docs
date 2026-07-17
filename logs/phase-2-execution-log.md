@@ -87,12 +87,12 @@ The repository owner clarified that the existing flow behavior and the new stand
 - [x] All main flows include prerequisites, verbal walkthrough, branches, endings, next-flow conditions and recovery/re-entry.
 - [x] All reusable subflows include callers, inputs, outputs and success/failure return behavior.
 - [x] All referenced flow IDs exist.
-- [x] Known API traceability ID/title conflicts were reconciled by approved behavior and title on 17 July 2026; MF-17 retains an explicit missing-contract gap.
+- [x] Known API traceability ID/title conflicts were reconciled by approved behavior and title on 17 July 2026; the remaining MF-17/AF-15 contract gap was closed by CONTRACT-REFERRAL-001.
 - [x] Mobile/admin legacy combined catalogues are retained as superseded migration evidence.
 
 ## Technical reconciliation resolution — 17 July 2026
 
-The six mobile ID/title collisions were corrected in both API contract presentations and in the affected standalone flows. Five flows now point to existing contract paths. MF-17 Referral is correctly named and no longer duplicates MF-20 Notifications, but its code/share, attribution, progress and reward-status paths remain an explicit Phase 4 OpenAPI gap.
+The six mobile ID/title collisions were corrected in both API contract presentations and in the affected standalone flows. Five flows point to existing contract paths. MF-17 Referral is correctly named and no longer duplicates MF-20 Notifications. CONTRACT-REFERRAL-001 now defines its code/share, registration attribution, progress and reward-status contracts together with the AF-15 Admin review paths; Phase 4 must merge the accepted decision into the wider OpenAPI source.
 
 | ID | Active standalone flow title | Resolution |
 | --- | --- | --- |
@@ -101,4 +101,4 @@ The six mobile ID/title collisions were corrected in both API contract presentat
 | MF-03 | Login / Session Recovery | Mapped to login, social login, refresh and `/me`. |
 | MF-11 | Task Owner Rejection | Mapped to candidate, rejection and report contracts. |
 | MF-14 | Completion and Settlement | Mapped to proof, completion request/confirmation, rating and settlement status contracts. |
-| MF-17 | Referral | Title collision resolved; exact referral REST paths remain deliberately undefined pending OpenAPI work. |
+| MF-17 | Referral | `GET /referrals/me`, `GET /referrals/me/attributions` and optional `referralCode` on `POST /auth/register`; Admin reads/review mutations are defined in CONTRACT-REFERRAL-001. |

@@ -354,10 +354,60 @@
         "documents/agent-md/api-socket-contract-specification-v1.md"
       ],
       "migrationPhase": "Phase 4",
-      "notes": "Published contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026; exact referral contracts remain a Phase 4 gap and must not be invented.",
+      "notes": "Published provisional contract baseline. Mobile flow ID/title mappings were reconciled on 17 July 2026. The former MF-17/AF-15 referral gap is resolved by the higher-specificity approved CONTRACT-REFERRAL-001 decision and must be merged into the wider specification during Phase 4.",
       "supersedes": null,
       "tags": [
         "technical-contract"
+      ]
+    },
+    {
+      "id": "CONTRACT-REFERRAL-001",
+      "title": "Referral Contract Group",
+      "type": "technical-contract-decision",
+      "audience": [
+        "Mobile",
+        "Admin",
+        "Backend",
+        "Finance",
+        "Risk",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Backend Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Product Lead",
+        "Finance",
+        "Risk",
+        "QA"
+      ],
+      "version": "0.1",
+      "status": "approved",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Repository-owner accepted contract decision based on approved MF-02, MF-14, MF-17 and AF-15 behavior",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/contracts/referral-contract-group.md",
+      "artifacts": [
+        "documents/contracts/referral-contract-group.html",
+        "documents/agent-md/contracts/referral-contract-group.md",
+        "documents/contracts/index.html",
+        "documents/agent-md/contracts/README.md",
+        "scripts/validate-referral-contract.js"
+      ],
+      "migrationPhase": "Targeted referral contract-gap resolution before Phase 4",
+      "notes": "Closes the referral code/share, registration attribution, progress, reward-status and Admin review path gap. Registration owns attribution; settlement owns five-paid-task qualification; wallet credit is idempotent backend work; no referral socket or public credit mutation exists.",
+      "supersedes": null,
+      "tags": [
+        "referral",
+        "contract-decision",
+        "MF-17",
+        "AF-15",
+        "wallet-credit"
       ]
     },
     {

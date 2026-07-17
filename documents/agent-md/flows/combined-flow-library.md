@@ -2590,7 +2590,7 @@ This flow reviews policy violations, warnings, strikes, trust score reductions, 
 
 ## AF-15 — Referral Management
 
-> Status: approved; version 0.1; owner: Product Lead.
+> Status: approved; version 0.2; owner: Product Lead.
 
 ### In plain English
 
@@ -2712,6 +2712,9 @@ This flow manages referral rules and checks reward eligibility. Referral reward 
 - Backend state is authoritative for permissions, payments, provider results and terminal outcomes.
 - A retry must not duplicate a successful mutation or erase a later confirmed state.
 - The actor must receive a clear result or named recovery path; blank and ambiguous endings are not acceptable.
+- Referral reads and decisions use CONTRACT-REFERRAL-001 permissions, version checks, idempotency and audit rules.
+- Admin may approve, hold, reject or escalate eligible referral rewards but cannot directly mark a wallet credit successful.
+- Already credited rewards can be corrected only through the governed finance/reconciliation process.
 
 ### Forbidden behavior
 
@@ -2736,7 +2739,7 @@ This flow manages referral rules and checks reward eligibility. Referral reward 
 
 | Surface | References | Responsibility |
 | --- | --- | --- |
-| API | API and Socket Contract Specification v1, matched by behavior and title during Phase 4 | Provide authoritative reads/mutations. Existing ID-to-title traceability conflicts must not be imported silently. |
+| API | CONTRACT-REFERRAL-001: `GET /admin/referrals`, `GET /admin/referrals/{attributionId}`, and `/approve`, `/hold`, `/reject`, `/escalate-risk` mutations | Provide permission-filtered reads and versioned, idempotent, audited decisions; wallet credit remains backend worker truth. |
 | Data | Data Model and Prisma Schema Planning v1 | Store the domain and checkpoint state represented above. |
 | UI | Admin dashboard | Present the sequence, branches, endings and recovery without redefining backend truth. |
 | Provider/socket | Only where the approved source explicitly requires it | Supply external/durable events without frontend invention or paid auto-refresh loops. |
@@ -8170,7 +8173,7 @@ Provides real-time help for account, wallet, payment, task, KYC, and operational
 
 ## MF-17 — Referral
 
-> Status: approved; version 0.2; owner: Product Lead.
+> Status: approved; version 0.3; owner: Product Lead.
 
 ### In plain English
 
@@ -8286,6 +8289,9 @@ Rewards users for bringing new users who complete real paid activity. This stand
 - Backend state is authoritative for permissions, payments, provider results and terminal outcomes.
 - A retry must not duplicate a successful mutation or erase a later confirmed state.
 - The actor must receive a clear result or named recovery path; blank and ambiguous endings are not acceptable.
+- Referral attribution is captured only through the optional `referralCode` field on `POST /auth/register`; there is no separate unauthenticated attribution mutation.
+- The backend counts five distinct authoritatively settled paid tasks and creates at most one reward and wallet-ledger credit for the attribution.
+- Mobile can read and share referral state but cannot increment progress, qualify a reward or credit a wallet.
 
 ### Forbidden behavior
 
@@ -8307,7 +8313,7 @@ Rewards users for bringing new users who complete real paid activity. This stand
 
 | Surface | References | Responsibility |
 | --- | --- | --- |
-| API | Referral REST endpoints are not yet defined; Phase 4 must define code/share, attribution, progress and reward-status contracts | Do not invent paths; preserve the five-paid-task reward rule until OpenAPI defines exact contracts. |
+| API | CONTRACT-REFERRAL-001: `GET /referrals/me`, `GET /referrals/me/attributions`, optional `referralCode` on `POST /auth/register` | Return code/share, progress and reward status from backend truth; registration owns attribution and no client endpoint credits the wallet. |
 | Data | Data Model and Prisma Schema Planning v1 | Store the domain and checkpoint state represented above. |
 | UI | Mobile application | Present the sequence, branches, endings and recovery without redefining backend truth. |
 | Provider/socket | Only where the approved source explicitly requires it | Supply external/durable events without frontend invention or paid auto-refresh loops. |

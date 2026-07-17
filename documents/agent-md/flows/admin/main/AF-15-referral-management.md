@@ -6,11 +6,11 @@ audience: Non-technical team, Junior admin developers, Product, QA, AI agents
 owner: Product Lead
 reviewers: Technical Lead, Admin Lead, Backend Lead, QA
 status: approved
-version: 0.1
+version: 0.2
 last_reviewed: 2026-07-17
 next_review: 2026-10-17
-authority: Approved Admin Flow Catalogue v1 behavior and approved Phase 1 standalone format
-related: ASF-03, ASF-04, ASF-05, ASF-07, AF-08, AF-14, AF-18
+authority: Approved Admin Flow Catalogue v1 behavior, approved Phase 1 standalone format and CONTRACT-REFERRAL-001
+related: CONTRACT-REFERRAL-001, ASF-03, ASF-04, ASF-05, ASF-07, AF-08, AF-14, AF-18, MF-17
 generated_from: content/flows/admin/main/AF-15-referral-management.md
 do_not_edit: true
 ---
@@ -139,6 +139,9 @@ This flow manages referral rules and checks reward eligibility. Referral reward 
 - Backend state is authoritative for permissions, payments, provider results and terminal outcomes.
 - A retry must not duplicate a successful mutation or erase a later confirmed state.
 - The actor must receive a clear result or named recovery path; blank and ambiguous endings are not acceptable.
+- Referral reads and decisions use CONTRACT-REFERRAL-001 permissions, version checks, idempotency and audit rules.
+- Admin may approve, hold, reject or escalate eligible referral rewards but cannot directly mark a wallet credit successful.
+- Already credited rewards can be corrected only through the governed finance/reconciliation process.
 
 ## Forbidden behavior
 
@@ -163,7 +166,7 @@ This flow manages referral rules and checks reward eligibility. Referral reward 
 
 | Surface | References | Responsibility |
 | --- | --- | --- |
-| API | API and Socket Contract Specification v1, matched by behavior and title during Phase 4 | Provide authoritative reads/mutations. Existing ID-to-title traceability conflicts must not be imported silently. |
+| API | CONTRACT-REFERRAL-001: `GET /admin/referrals`, `GET /admin/referrals/{attributionId}`, and `/approve`, `/hold`, `/reject`, `/escalate-risk` mutations | Provide permission-filtered reads and versioned, idempotent, audited decisions; wallet credit remains backend worker truth. |
 | Data | Data Model and Prisma Schema Planning v1 | Store the domain and checkpoint state represented above. |
 | UI | Admin dashboard | Present the sequence, branches, endings and recovery without redefining backend truth. |
 | Provider/socket | Only where the approved source explicitly requires it | Supply external/durable events without frontend invention or paid auto-refresh loops. |

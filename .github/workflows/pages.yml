@@ -36,6 +36,12 @@ jobs:
       - name: Verify generated Phase 2 flow documents
         run: node scripts/generate-flow-docs.js --check
 
+      - name: Verify canonical contract decisions
+        run: node scripts/generate-contract-docs.js --check
+
+      - name: Verify the accepted referral contract decision
+        run: node scripts/validate-referral-contract.js
+
       - name: Validate documentation metadata and navigation
         run: node scripts/validate-docs.js
 
