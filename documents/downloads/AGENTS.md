@@ -6,6 +6,8 @@ This repository is the Work2Cash documentation portal. These rules tell Codex an
 
 Before relying on a document, check `governance/document-registry.md` or the portal **Document Registry** page for its owner, lifecycle, approval, authority and artifact class.
 
+- Use the Phase 6 portal reader routes when a person or agent knows the task but not the document name.
+- Use portal search for cross-library lookup by ID or term; then open the focused source returned by the search.
 - Human-facing HTML is for team reading.
 - Clean agent Markdown is for AI context.
 - Canonical sources control generated outputs.
@@ -59,7 +61,7 @@ If no active delivery stage, team week or day is identified, ask which is active
 - Agent execution: download the team weekly Markdown; it contains Day 1 through Day 5 and an agent prompt inside each day.
 - Shared rules and team briefs: use the repository downloads section or the relevant legacy build-plan download links during transition.
 - Legacy weekly packs and combined build plans: use only as migration evidence; they no longer control work.
-- Broad context only: use **Full Project Markdown** from Team Markdown Downloads.
+- Broad context only: use the generated **Full Project Agent Context** from AI-agent downloads. It is a compact non-canonical map for onboarding and cross-document review, not an implementation source.
 
 ## Team context sets
 
@@ -141,8 +143,10 @@ Do not invent missing endpoint paths, model fields, provider behavior or product
 - For accepted contract-gap decisions, edit `content/contracts/`, then run `node scripts/generate-contract-docs.js`. Referral changes must also pass `node scripts/validate-referral-contract.js`.
 - For consolidated technical-reference changes, edit the relevant source in `content/technical/`, then run `node scripts/generate-technical-docs.js`. Do not edit `documents/technical/`, `documents/agent-md/technical/` or the generated Phase 4 inventories directly.
 - For assurance, legal/compliance or decision-governance changes, edit the relevant source in `content/assurance/`, then run `node scripts/generate-assurance-docs.js`. Do not edit `documents/assurance/` or `documents/agent-md/assurance/` directly. Legal records remain internal and non-effective until qualified approval and a separate publication decision.
+- For portal reader routes, library cards or glossary changes, edit `content/portal/portal.json`, then run `node scripts/generate-portal.js`. This also regenerates portal search, AI Agent Start Here and Full Project Agent Context.
 - For task changes, edit the relevant weekly source in `content/tasks/<team>/week-*.md` (or the Admin Integration Week), then run `node scripts/generate-task-docs.js`, `node scripts/generate-task-migration-inventory.js` and `node scripts/generate-execution-plans.js`.
 - Run `node scripts/validate-docs.js` before handoff.
+- Run `node scripts/validate-accessibility.js` for portal or human-page changes.
 - Commit feature by feature or fix by fix; do not stack unrelated work.
 
 Examples:

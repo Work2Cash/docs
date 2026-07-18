@@ -63,8 +63,14 @@ jobs:
       - name: Verify consolidated Phase 5 assurance and governance
         run: node scripts/generate-assurance-docs.js --check
 
+      - name: Verify Phase 6 portal, search and agent context
+        run: node scripts/generate-portal.js --check
+
       - name: Validate documentation metadata and navigation
         run: node scripts/validate-docs.js
+
+      - name: Validate current-page accessibility structure
+        run: node scripts/validate-accessibility.js
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

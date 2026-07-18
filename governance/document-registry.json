@@ -640,18 +640,20 @@
         "Admin Lead",
         "Backend Lead"
       ],
-      "version": "1",
+      "version": "2.0",
       "status": "active",
       "approval": "approved",
       "publication": "published",
-      "lastReviewed": "2026-07-17",
-      "nextReview": "2026-10-17",
+      "lastReviewed": "2026-07-18",
+      "nextReview": "2026-10-18",
       "authority": "AGENTS.md",
-      "artifactClass": "legacy-transitional-source",
-      "currentSource": "documents/agent-md/ai-agent-start-here.md",
-      "artifacts": [],
-      "migrationPhase": "Phase 3",
-      "notes": "Aligned with AGENTS.md and the Phase 3 Team to Week to Day workflow. Use one team-week Markdown and select its embedded daily prompt.",
+      "artifactClass": "generated-output",
+      "currentSource": "content/portal/portal.json",
+      "artifacts": [
+        "documents/agent-md/ai-agent-start-here.md"
+      ],
+      "migrationPhase": "Phase 6",
+      "notes": "Generated short context-selection guide aligned with AGENTS.md, reader routes and the focused team-week execution model.",
       "supersedes": null,
       "tags": [
         "agent-guidance"
@@ -737,29 +739,33 @@
     },
     {
       "id": "FULL-CONTEXT-001",
-      "title": "Work2Cash Full Project Markdown",
-      "type": "agent-context-bundle",
+      "title": "Work2Cash Full Project Agent Context",
+      "type": "generated-agent-context-map",
       "audience": [
-        "AI agents"
+        "AI agents",
+        "Technical leads",
+        "Architecture reviewers"
       ],
       "owner": "Technical Lead",
       "reviewers": [
         "Product Lead"
       ],
-      "version": "1",
-      "status": "in-review",
-      "approval": "pending",
+      "version": "2.0",
+      "status": "active",
+      "approval": "approved",
       "publication": "published",
-      "lastReviewed": null,
-      "nextReview": null,
+      "lastReviewed": "2026-07-18",
+      "nextReview": "2026-10-18",
       "authority": "None independently; inherits included source authority",
-      "artifactClass": "legacy-derived-frozen",
-      "currentSource": null,
+      "artifactClass": "generated-output",
+      "currentSource": "content/portal/portal.json",
       "artifacts": [
-        "documents/agent-md/work2cash-full-source-of-truth-v1.md"
+        "documents/agent-md/work2cash-full-source-of-truth-v1.md",
+        "documents/search-index.json",
+        "scripts/generate-portal.js"
       ],
       "migrationPhase": "Phase 6",
-      "notes": "Large non-canonical bundle without a current deterministic generator. Use only for broad context.",
+      "notes": "Generated 765-record cross-project map for onboarding, architecture review and consistency checks. It replaces the former 33,399-line legacy concatenation, contains no decorative HTML and remains non-canonical.",
       "supersedes": null,
       "tags": [
         "agent-context-bundle"
@@ -1200,6 +1206,60 @@
         "decisions",
         "governance",
         "phase-5"
+      ]
+    },
+    {
+      "id": "PORTAL-001",
+      "title": "Phase 6 Documentation Portal and Search",
+      "type": "documentation-portal",
+      "audience": [
+        "Non-technical teams",
+        "Junior developers",
+        "Technical leads",
+        "QA",
+        "Legal",
+        "Privacy",
+        "Operations",
+        "AI agents"
+      ],
+      "owner": "Technical Lead",
+      "reviewers": [
+        "Product Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "QA Lead",
+        "Operations"
+      ],
+      "version": "2.0",
+      "status": "active",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-18",
+      "nextReview": "2026-10-18",
+      "authority": "Documentation governance and the registry status of each linked source",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/portal/portal.json",
+      "artifacts": [
+        "index.html",
+        "documents/search-index.json",
+        "assets/css/portal.css",
+        "assets/js/portal-search.js",
+        "assets/js/gate.js",
+        "governance/documentation-maintenance-guide.md",
+        "logs/phase-6-execution-log.md",
+        "scripts/generate-portal.js",
+        "scripts/validate-accessibility.js"
+      ],
+      "migrationPhase": "Phase 6",
+      "notes": "Final role-based portal with six current libraries, five reader routes, a 765-record cross-library search index and an inline glossary. Superseded documents remain registry evidence and are not exposed in normal navigation. Phase 6 adds no new per-record human pages.",
+      "supersedes": null,
+      "tags": [
+        "portal",
+        "search",
+        "accessibility",
+        "generation",
+        "phase-6"
       ]
     }
   ]

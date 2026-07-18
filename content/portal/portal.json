@@ -1,0 +1,205 @@
+{
+  "id": "PORTAL-001",
+  "title": "Work2Cash Documentation Portal",
+  "version": "2.0",
+  "status": "active",
+  "updated": "2026-07-18",
+  "description": "Find the exact product flow, build day, technical record or assurance control required for the current Work2Cash question.",
+  "readerRoutes": [
+    {
+      "id": "product",
+      "label": "Understand product behavior",
+      "audience": "Non-technical team members",
+      "summary": "Read one standalone flow in plain language, including what starts it, what it depends on, what can go wrong and what happens next.",
+      "startLabel": "Open the Flow Library",
+      "href": "./documents/flows/index.html",
+      "steps": [
+        "Choose Mobile or Admin.",
+        "Open one main flow.",
+        "Use its dependency and next-flow explanations without leaving the page."
+      ]
+    },
+    {
+      "id": "build",
+      "label": "Build today’s assignment",
+      "audience": "Junior developers",
+      "summary": "Choose your team, active week and assigned day. Each day contains prerequisites, build order, tests, result and commit message.",
+      "startLabel": "Open Junior Developer Plans",
+      "href": "./documents/planning/index.html",
+      "steps": [
+        "Choose Admin, Mobile or Backend.",
+        "Open the active week and assigned day.",
+        "Download the one matching team-week agent pack when an AI agent is helping."
+      ]
+    },
+    {
+      "id": "technical",
+      "label": "Implement or review the system",
+      "audience": "Developers and technical leads",
+      "summary": "Search contracts, data, platform operations or screens and link directly to one technical record.",
+      "startLabel": "Open Technical References",
+      "href": "./documents/technical/index.html",
+      "steps": [
+        "Choose one technical family.",
+        "Search for the required record.",
+        "Treat provisional gaps as blockers rather than permission to invent."
+      ]
+    },
+    {
+      "id": "assurance",
+      "label": "Test, approve or govern",
+      "audience": "QA, Legal, Privacy, Product and Operations",
+      "summary": "Open the exact QA suite, legal clause, release gate, decision, question or risk required for the review.",
+      "startLabel": "Open Assurance and Governance",
+      "href": "./documents/assurance/index.html",
+      "steps": [
+        "Choose QA and Release, Legal and Compliance, or Decisions and Governance.",
+        "Open one anchored record.",
+        "Change its state only when the named evidence and authorization exist."
+      ]
+    },
+    {
+      "id": "agents",
+      "label": "Prepare focused AI context",
+      "audience": "AI agents and supervising developers",
+      "summary": "Start with AGENTS.md, then provide only the active team-week, assigned day and relevant flow or technical pack.",
+      "startLabel": "Download AGENTS.md",
+      "href": "./documents/downloads/AGENTS.md",
+      "steps": [
+        "Check authority in the Document Registry.",
+        "Use the smallest focused context set for implementation.",
+        "Use Full Project Agent Context only for onboarding or cross-project review."
+      ]
+    }
+  ],
+  "libraries": [
+    {
+      "id": "DOC-REG-001",
+      "label": "Document Registry",
+      "phase": "Governance",
+      "description": "Ownership, lifecycle, approval, authority and canonical/generated classification.",
+      "href": "./documents/document-registry.html",
+      "audience": "Everyone"
+    },
+    {
+      "id": "FLOW-LIB-001",
+      "label": "Standalone Flow Library",
+      "phase": "Phase 2",
+      "description": "Seventy-two approved Mobile and Admin flows with local dependency and next-step explanations.",
+      "href": "./documents/flows/index.html",
+      "audience": "Product and delivery teams"
+    },
+    {
+      "id": "TASK-LIB-001",
+      "label": "Junior Developer Plans",
+      "phase": "Phase 3",
+      "description": "Team plans organized by week and day, with one agent pack for each team-week.",
+      "href": "./documents/planning/index.html",
+      "audience": "Junior developers and team leads"
+    },
+    {
+      "id": "CONTRACT-REFERRAL-001",
+      "label": "Contract Decision Library",
+      "phase": "Approved decisions",
+      "description": "Accepted contract decisions that close named implementation gaps.",
+      "href": "./documents/contracts/index.html",
+      "audience": "Developers, Product and QA"
+    },
+    {
+      "id": "TECH-REF-001",
+      "label": "Technical Reference Library",
+      "phase": "Phase 4",
+      "description": "Contracts, data, platform operations and screens in four searchable families.",
+      "href": "./documents/technical/index.html",
+      "audience": "Engineering and Operations"
+    },
+    {
+      "id": "ASSURANCE-LIB-001",
+      "label": "Assurance and Governance",
+      "phase": "Phase 5",
+      "description": "QA/release, legal/compliance and decision/governance records in three focused registers.",
+      "href": "./documents/assurance/index.html",
+      "audience": "QA, Legal, Privacy, Product and Operations"
+    }
+  ],
+  "agentDownloads": [
+    {
+      "label": "Repository agent instructions",
+      "description": "Authority, context selection and implementation guardrails.",
+      "href": "./documents/downloads/AGENTS.md"
+    },
+    {
+      "label": "AI Agent Start Here",
+      "description": "Short generated context-selection guide.",
+      "href": "./documents/agent-md/ai-agent-start-here.md"
+    },
+    {
+      "label": "Full Project Agent Context",
+      "description": "Optional generated cross-project inventory for onboarding and consistency review.",
+      "href": "./documents/agent-md/work2cash-full-source-of-truth-v1.md"
+    },
+    {
+      "label": "Agent Document Registry",
+      "description": "Machine-oriented ownership, lifecycle and authority view.",
+      "href": "./documents/agent-md/document-registry.md"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Main flow",
+      "definition": "A complete user or Admin journey with a clear beginning, outcome and next destination."
+    },
+    {
+      "term": "Subflow",
+      "definition": "Reusable behavior used inside one or more main flows, such as OTP, media upload or permission recovery."
+    },
+    {
+      "term": "Contract",
+      "definition": "The agreed request, response, event or error shape that connected systems must follow."
+    },
+    {
+      "term": "OpenAPI",
+      "definition": "A machine-readable description of the current HTTP API baseline; provisional gaps still block invention."
+    },
+    {
+      "term": "Data model",
+      "definition": "A business record, its fields, ownership, relationships, privacy rules and persistence readiness."
+    },
+    {
+      "term": "Provider",
+      "definition": "An external service such as payments, maps, identity verification, messaging or monitoring."
+    },
+    {
+      "term": "Build plan",
+      "definition": "The approved delivery order for a team, separated into weeks and daily working outcomes."
+    },
+    {
+      "term": "Weekly pack",
+      "definition": "One team-specific Markdown file containing Day 1 through Day 5 and the agent prompt for each day."
+    },
+    {
+      "term": "Release gate",
+      "definition": "A required evidence checkpoint that must pass before an authorized Go/No-Go decision."
+    },
+    {
+      "term": "Canonical source",
+      "definition": "The file that must be edited because it controls its generated outputs."
+    },
+    {
+      "term": "Generated output",
+      "definition": "A reproducible reading or agent file that inherits authority from its canonical source and must not be edited directly."
+    },
+    {
+      "term": "Provisional",
+      "definition": "Usable for review and planning but not permission to invent unresolved behavior, schema or policy."
+    },
+    {
+      "term": "Evidence",
+      "definition": "A test result, reviewed artifact, trace, screenshot, log or approval that proves a requirement or gate."
+    },
+    {
+      "term": "Authority",
+      "definition": "The approved source or qualified role that controls a decision when documents differ."
+    }
+  ]
+}

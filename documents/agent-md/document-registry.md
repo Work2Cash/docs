@@ -41,10 +41,10 @@
 | PLAN-ADMIN-001 | Admin Build Plan v1 | superseded | approved | Admin Lead | legacy-transitional-source | `documents/build-plan-admin-v1.html`; `documents/agent-md/build-plan-admin-v1.md` |
 | PLAN-BACKEND-001 | Backend Build Plan v1 | superseded | approved | Backend Lead | legacy-transitional-source | `documents/build-plan-backend-v1.html`; `documents/agent-md/build-plan-backend-v1.md` |
 | QA-001 | QA and Go-Live Readiness Checklist v1 | superseded | pending | QA Lead | legacy-derived-frozen | `documents/qa-go-live-readiness-checklist-v1.html`; `documents/agent-md/qa-go-live-readiness-checklist-v1.md` |
-| AI-START-001 | AI Agent Start Here | active | approved | Technical Lead | legacy-transitional-source | `documents/agent-md/ai-agent-start-here.md` |
+| AI-START-001 | AI Agent Start Here | active | approved | Technical Lead | generated-output | `content/portal/portal.json`; `documents/agent-md/ai-agent-start-here.md` |
 | TEAM-PACKS-001 | Shared Execution Rules and Team Briefs | active | approved | Technical Lead | legacy-transitional-source | `documents/downloads/shared-ai-agent-execution-rules-v1.md`; `documents/downloads/mobile-team-build-brief-v1.md`; `documents/downloads/admin-team-build-brief-v1.md`; `documents/downloads/backend-team-build-brief-v1.md` |
 | WEEK-PACKS-001 | Weekly Execution Packs | superseded | approved | Project Lead | legacy-transitional-source | `documents/agent-md/weeks/weekly-execution-index.md`; `documents/agent-md/weeks/week-01-foundation-identity.md`; `documents/agent-md/weeks/week-02-tasker-task-creation-payment.md`; `documents/agent-md/weeks/week-03-discovery-matching-execution-start.md`; `documents/agent-md/weeks/week-04-completion-finance-support.md`; `documents/agent-md/weeks/week-05-integration-recovery-full-flow-qa.md`; `documents/agent-md/weeks/week-06-hardening-security-performance.md`; `documents/agent-md/weeks/week-07-release-candidate-operations-dry-run.md`; `documents/agent-md/weeks/week-08-stabilization-freeze.md` |
-| FULL-CONTEXT-001 | Work2Cash Full Project Markdown | in-review | pending | Technical Lead | legacy-derived-frozen | `documents/agent-md/work2cash-full-source-of-truth-v1.md` |
+| FULL-CONTEXT-001 | Work2Cash Full Project Agent Context | active | approved | Technical Lead | generated-output | `content/portal/portal.json`; `documents/agent-md/work2cash-full-source-of-truth-v1.md`; `documents/search-index.json`; `scripts/generate-portal.js` |
 | PILOT-MF06-001 | MF-06 Create and Fund Task Pilot | approved | approved | Product Lead | canonical-source | `content/pilots/flows/mobile/MF-06-create-and-fund-task.md`; `documents/pilots/flows/mobile/MF-06-create-and-fund-task.html`; `documents/agent-md/pilots/flows/mobile/MF-06-create-and-fund-task.md` |
 | PILOT-AF04-001 | AF-04 KYC Review Pilot | approved | approved | Product Lead | canonical-source | `content/pilots/flows/admin/AF-04-kyc-review.md`; `documents/pilots/flows/admin/AF-04-kyc-review.html`; `documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md` |
 | PILOT-KYC-CONTRACT-001 | KYC Review Contract Group Pilot | approved | approved | Backend Lead | canonical-source | `content/pilots/contracts/kyc-review-contract-group.md`; `documents/pilots/contracts/kyc-review-contract-group.html`; `documents/agent-md/pilots/contracts/kyc-review-contract-group.md` |
@@ -54,6 +54,7 @@
 | TASK-LIB-001 | Phase 3 Canonical Build Task and Weekly Execution Library | active | approved | Project Lead | canonical-source | `content/tasks/plan-metadata.json`; `logs/phase-3-task-migration-inventory.md`; `logs/phase-3-execution-log.md`; `documents/planning/index.html`; `documents/agent-md/planning/README.md`; `documents/planning/mobile-build-plan.html`; `documents/planning/admin-build-plan.html`; `documents/planning/backend-build-plan.html`; `documents/planning/qa-traceability.html`; `documents/agent-md/planning/qa-traceability.md` |
 | TECH-REF-001 | Phase 4 Consolidated Technical Reference Library | in-review | pending | Technical Lead | canonical-source | `content/technical/library.json`; `content/technical/contracts.json`; `content/technical/data.json`; `content/technical/platform.json`; `content/technical/screens.json`; `documents/technical/index.html`; `documents/technical/contracts.html`; `documents/technical/data.html`; `documents/technical/platform.html`; `documents/technical/screens.html`; `documents/technical/openapi/work2cash-v1.json`; `documents/agent-md/technical/contracts.md`; `documents/agent-md/technical/data.md`; `documents/agent-md/technical/platform.md`; `documents/agent-md/technical/screens.md`; `logs/phase-4-execution-log.md`; `logs/phase-4-technical-migration-inventory.md`; `logs/phase-4-technical-gap-register.md`; `scripts/bootstrap-phase4-technical-sources.js`; `scripts/generate-technical-docs.js` |
 | ASSURANCE-LIB-001 | Phase 5 Consolidated Assurance and Governance Library | in-review | pending | Technical Lead | canonical-source | `content/assurance/library.json`; `content/assurance/qa-release.json`; `content/assurance/legal-compliance.json`; `content/assurance/decisions-governance.json`; `documents/assurance/index.html`; `documents/assurance/qa-release.html`; `documents/assurance/legal-compliance.html`; `documents/assurance/decisions-governance.html`; `documents/agent-md/assurance/qa-release.md`; `documents/agent-md/assurance/legal-compliance.md`; `documents/agent-md/assurance/decisions-governance.md`; `logs/phase-5-execution-log.md`; `scripts/bootstrap-phase5-assurance-sources.js`; `scripts/generate-assurance-docs.js` |
+| PORTAL-001 | Phase 6 Documentation Portal and Search | active | approved | Technical Lead | canonical-source | `content/portal/portal.json`; `index.html`; `documents/search-index.json`; `assets/css/portal.css`; `assets/js/portal-search.js`; `assets/js/gate.js`; `governance/documentation-maintenance-guide.md`; `logs/phase-6-execution-log.md`; `scripts/generate-portal.js`; `scripts/validate-accessibility.js` |
 
 ## Detailed records
 
@@ -473,21 +474,21 @@ Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 QA and Release Assuranc
 | Audience | AI agents, Developers |
 | Owner | Technical Lead |
 | Required reviewers | Mobile Lead, Admin Lead, Backend Lead |
-| Version | 1 |
+| Version | 2.0 |
 | Lifecycle | active |
 | Approval | approved |
 | Publication | published |
-| Last reviewed | 2026-07-17 |
-| Next review | 2026-10-17 |
+| Last reviewed | 2026-07-18 |
+| Next review | 2026-10-18 |
 | Authority | AGENTS.md |
-| Artifact class | legacy-transitional-source |
-| Current source | `documents/agent-md/ai-agent-start-here.md` |
-| Other artifacts | None |
-| Migration phase | Phase 3 |
+| Artifact class | generated-output |
+| Current source | `content/portal/portal.json` |
+| Other artifacts | `documents/agent-md/ai-agent-start-here.md` |
+| Migration phase | Phase 6 |
 | Supersedes | None |
 | Tags | agent-guidance |
 
-Aligned with AGENTS.md and the Phase 3 Team to Week to Day workflow. Use one team-week Markdown and select its embedded daily prompt.
+Generated short context-selection guide aligned with AGENTS.md, reader routes and the focused team-week execution model.
 
 ### TEAM-PACKS-001 — Shared Execution Rules and Team Briefs
 
@@ -537,29 +538,29 @@ Active focused context inputs used with Phase 3 team-week Markdown packs and emb
 
 Superseded manually duplicated weekly packs retained as migration evidence. Use the generated TASK-LIB-001 team packs organized by week and day.
 
-### FULL-CONTEXT-001 — Work2Cash Full Project Markdown
+### FULL-CONTEXT-001 — Work2Cash Full Project Agent Context
 
 | Field | Value |
 | --- | --- |
-| Type | agent-context-bundle |
-| Audience | AI agents |
+| Type | generated-agent-context-map |
+| Audience | AI agents, Technical leads, Architecture reviewers |
 | Owner | Technical Lead |
 | Required reviewers | Product Lead |
-| Version | 1 |
-| Lifecycle | in-review |
-| Approval | pending |
+| Version | 2.0 |
+| Lifecycle | active |
+| Approval | approved |
 | Publication | published |
-| Last reviewed | Not recorded |
-| Next review | Not scheduled |
+| Last reviewed | 2026-07-18 |
+| Next review | 2026-10-18 |
 | Authority | None independently; inherits included source authority |
-| Artifact class | legacy-derived-frozen |
-| Current source | Not recorded |
-| Other artifacts | `documents/agent-md/work2cash-full-source-of-truth-v1.md` |
+| Artifact class | generated-output |
+| Current source | `content/portal/portal.json` |
+| Other artifacts | `documents/agent-md/work2cash-full-source-of-truth-v1.md`, `documents/search-index.json`, `scripts/generate-portal.js` |
 | Migration phase | Phase 6 |
 | Supersedes | None |
 | Tags | agent-context-bundle |
 
-Large non-canonical bundle without a current deterministic generator. Use only for broad context.
+Generated 765-record cross-project map for onboarding, architecture review and consistency checks. It replaces the former 33,399-line legacy concatenation, contains no decorative HTML and remains non-canonical.
 
 ### PILOT-MF06-001 — MF-06 Create and Fund Task Pilot
 
@@ -777,6 +778,30 @@ Consolidates the legacy architecture, contract, data, provider and screen famili
 
 Consolidates QA/release, legal/compliance and decision/governance material into four human pages and three focused agent packs. Its 205 independently linked records are sections within those seven readable files, not standalone required-reading documents. Migration does not pass tests, approve legal wording, authorize release or resolve open decisions.
 
+### PORTAL-001 — Phase 6 Documentation Portal and Search
+
+| Field | Value |
+| --- | --- |
+| Type | documentation-portal |
+| Audience | Non-technical teams, Junior developers, Technical leads, QA, Legal, Privacy, Operations, AI agents |
+| Owner | Technical Lead |
+| Required reviewers | Product Lead, Mobile Lead, Admin Lead, Backend Lead, QA Lead, Operations |
+| Version | 2.0 |
+| Lifecycle | active |
+| Approval | approved |
+| Publication | published |
+| Last reviewed | 2026-07-18 |
+| Next review | 2026-10-18 |
+| Authority | Documentation governance and the registry status of each linked source |
+| Artifact class | canonical-source |
+| Current source | `content/portal/portal.json` |
+| Other artifacts | `index.html`, `documents/search-index.json`, `assets/css/portal.css`, `assets/js/portal-search.js`, `assets/js/gate.js`, `governance/documentation-maintenance-guide.md`, `logs/phase-6-execution-log.md`, `scripts/generate-portal.js`, `scripts/validate-accessibility.js` |
+| Migration phase | Phase 6 |
+| Supersedes | None |
+| Tags | portal, search, accessibility, generation, phase-6 |
+
+Final role-based portal with six current libraries, five reader routes, a 765-record cross-library search index and an inline glossary. Superseded documents remain registry evidence and are not exposed in normal navigation. Phase 6 adds no new per-record human pages.
+
 
 ## Pending approvals
 
@@ -788,7 +813,6 @@ Consolidates QA/release, legal/compliance and decision/governance material into 
 - [ ] **DATA-001 — Data Model and Prisma Schema Planning v1:** Technical Lead, Data owner, Security.
 - [ ] **PROVIDER-001 — Provider Integration and Cost Control v1:** Technical Lead, Backend Lead, Finance, Security.
 - [ ] **QA-001 — QA and Go-Live Readiness Checklist v1:** Technical Lead, Product Lead, Infrastructure Lead, Operations.
-- [ ] **FULL-CONTEXT-001 — Work2Cash Full Project Markdown:** Product Lead.
 - [ ] **TECH-REF-001 — Phase 4 Consolidated Technical Reference Library:** Product Lead, Mobile Lead, Admin Lead, Backend Lead, Infrastructure Lead, Security, Finance, Operations, QA.
 - [ ] **ASSURANCE-LIB-001 — Phase 5 Consolidated Assurance and Governance Library:** QA Lead, Product Lead, Qualified Legal reviewer, Privacy reviewer, Mobile Lead, Admin Lead, Backend Lead, Infrastructure Lead, Operations.
 
@@ -799,6 +823,5 @@ Consolidates QA/release, legal/compliance and decision/governance material into 
 - [ ] **PLAN-MOBILE-001:** migrate in Phase 3. Superseded combined Mobile task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Mobile plan.
 - [ ] **PLAN-ADMIN-001:** migrate in Phase 3. Superseded combined Admin task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Admin plan.
 - [ ] **PLAN-BACKEND-001:** migrate in Phase 3. Superseded combined Backend task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Backend plan.
-- [ ] **AI-START-001:** migrate in Phase 3. Aligned with AGENTS.md and the Phase 3 Team to Week to Day workflow. Use one team-week Markdown and select its embedded daily prompt.
 - [ ] **TEAM-PACKS-001:** migrate in Phase 3. Active focused context inputs used with Phase 3 team-week Markdown packs and embedded daily prompts. These packs narrow work; they do not define product behavior.
 - [ ] **WEEK-PACKS-001:** migrate in Phase 3. Superseded manually duplicated weekly packs retained as migration evidence. Use the generated TASK-LIB-001 team packs organized by week and day.

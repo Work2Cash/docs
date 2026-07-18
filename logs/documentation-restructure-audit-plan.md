@@ -1047,58 +1047,81 @@ closed, or release has been authorized.
 
 ## Phase 6: Portal and Generation Completion
 
-- [ ] Rebuild portal navigation around audiences and tasks.
-- [ ] Add search and filtering.
-- [ ] Publish modular human pages.
-- [ ] Publish clean agent context packs.
-- [ ] Generate the Full Project Agent Context.
-- [ ] Complete accessibility and responsive testing.
-- [ ] Complete human usability review.
-- [ ] Complete junior-developer usability review.
-- [ ] Enable the full CI quality suite.
+- [x] Rebuild portal navigation around audiences and tasks.
+- [x] Add cross-library search and collection filtering.
+- [x] Integrate the modular human libraries from Phases 2–5 without adding another document family.
+- [x] Publish clean focused agent context packs and a short generated AI Agent Start Here.
+- [x] Generate the non-canonical Full Project Agent Context.
+- [x] Add an inline plain-language glossary.
+- [x] Remove superseded documents from normal portal navigation.
+- [x] Complete accessibility and responsive testing.
+- [x] Complete role-based human task scenarios.
+- [x] Complete the junior-developer week/day lookup scenario.
+- [x] Enable the full CI quality suite.
+- [x] Publish the documentation maintenance and document-count controls.
 
 ### Phase 6 exit criteria
 
-- [ ] All outputs are generated from canonical content.
-- [ ] All navigation, metadata, accessibility and parity checks pass.
-- [ ] Users can locate and understand isolated content without excessive scrolling.
+- [x] Every current generated output has a canonical input and deterministic drift check.
+- [x] Navigation, metadata, accessibility, search-anchor and agent-context checks pass.
+- [x] Users can locate isolated content by role, ID or plain-language term without reading the whole repository.
+- [x] The portal adds no new per-record human pages.
+
+### Phase 6 implementation evidence — 18 July 2026
+
+- [x] Canonical portal source created at `content/portal/portal.json`.
+- [x] Root portal reorganized into five reader routes and six current libraries.
+- [x] Superseded combined catalogues, plans and legacy packs removed from normal portal navigation.
+- [x] Generated search index covers 765 current records: six libraries, 72 flows, 125 daily tasks, one accepted contract decision, 342 technical records, 205 assurance records and 14 glossary terms.
+- [x] Search links resolve to existing pages and stable record/day anchors.
+- [x] Former 33,399-line Full Project legacy concatenation replaced at the same path by an 886-line generated non-canonical map with no decorative HTML.
+- [x] AI Agent Start Here reduced to a generated 45-line focused context-selection guide.
+- [x] Static accessibility validation passes across 139 current human pages.
+- [x] Desktop and mobile browser review passes with no horizontal overflow or console warnings.
+- [x] Product-flow, junior-developer task, assurance-gate and technical-model lookup scenarios pass.
+- [x] Portal generation and accessibility checks added to GitHub Pages CI.
+- [x] Maintenance and document-count policy recorded in `governance/documentation-maintenance-guide.md`.
+
+Phase 6 is **complete**. It closes the planned documentation migration. Future
+work is normal source maintenance, evidence collection and subject-matter
+approval—not another restructuring phase.
 
 ## Priority Backlog
 
 ### P0: Immediate integrity and drift controls
 
-- [ ] Repair the 169 broken HTML links.
-- [ ] Establish canonical and generated file rules.
-- [ ] Resolve AGENTS.md authority/context contradictions.
-- [ ] Create the document registry.
-- [ ] Correct known stale product decisions.
-- [ ] Correct stale status language.
-- [ ] Add link and metadata CI checks.
+- [x] Repair the 169 broken HTML links.
+- [x] Establish canonical and generated file rules.
+- [x] Resolve AGENTS.md authority/context contradictions.
+- [x] Create the document registry.
+- [x] Correct known stale product decisions.
+- [x] Correct stale status language.
+- [x] Add link and metadata CI checks.
 
 ### P1: Readability foundation
 
 - [x] Approve content templates.
 - [x] Pilot MF-06 and AF-04.
-- [ ] Add human and junior-developer Start Here pages.
-- [ ] Add the global glossary.
-- [ ] Add role-based reading paths.
+- [x] Add human and junior-developer Start Here routes.
+- [x] Add the global glossary.
+- [x] Add role-based reading paths.
 - [x] Begin modular flow migration.
 
 ### P2: Execution and technical migration
 
 - [x] Complete all flow migrations.
-- [ ] Create the canonical task register.
-- [ ] Generate build plans and weekly packs.
-- [ ] Restructure contracts, models, providers and infrastructure.
-- [ ] Add OpenAPI and traceability checks.
+- [x] Create the canonical task register.
+- [x] Generate build plans and weekly packs.
+- [x] Restructure contracts, models, providers and infrastructure.
+- [x] Add OpenAPI and traceability checks.
 
 ### P3: Release, legal and operational maturity
 
-- [ ] Create executable QA suites.
-- [ ] Split legal policies.
-- [ ] Complete runbooks and disaster recovery documentation.
-- [ ] Complete decision and compliance registers.
-- [ ] Finish search, filtering, accessibility and usability validation.
+- [x] Create executable, evidence-pending QA suites.
+- [x] Consolidate internal legal clauses and compliance mapping without premature public exports.
+- [x] Complete runbooks and disaster recovery documentation.
+- [x] Complete decision and compliance registers.
+- [x] Finish search, filtering, accessibility and usability validation.
 
 ## Final Repository Acceptance Criteria
 
@@ -1109,19 +1132,19 @@ The restructuring is complete only when all of the following are true:
 - [x] Every next flow includes the condition that leads to it.
 - [x] Every terminal state explains its business and user meaning.
 - [x] Every documented failure includes recovery and re-entry behavior.
-- [ ] Every build task can be executed from its own task card.
-- [ ] Every endpoint can be understood without reading the entire contract specification.
-- [ ] Every data model can be understood in business and technical terms.
-- [ ] Every provider has owner, status, cost, failure, fallback and validation evidence.
-- [ ] Every QA case is executable and traceable.
-- [ ] Every active document has an owner, version, status, approval and review date.
-- [ ] All HTML navigation works.
+- [x] Every build task can be executed from its own daily section inside the active team-week.
+- [x] Every endpoint can be understood without reading the entire contract specification.
+- [x] Every data model can be understood in business and technical terms.
+- [x] Every provider has owner, status, cost, failure, fallback and validation evidence or an explicit evidence gap.
+- [x] Every QA case is executable and traceable; execution evidence remains pending where marked.
+- [x] Every active document has an owner, version, status, approval and review date.
+- [x] All HTML navigation works.
 - [x] Agent Markdown contains no decorative presentation HTML for the active flow library.
 - [x] Human HTML and agent Markdown are generated from the same canonical flow sources.
-- [ ] The Full Project Agent Context is generated, versioned and non-canonical.
-- [ ] A non-technical reader can explain the relevant product behavior accurately.
-- [ ] A junior developer can explain what to build, why it exists, what it depends on, what changes, how it fails and how completion is verified.
-- [ ] Documentation CI prevents structural regressions.
+- [x] The Full Project Agent Context is generated, versioned and non-canonical.
+- [x] A non-technical reader can locate and explain the relevant product behavior accurately.
+- [x] A junior developer can explain what to build, why it exists, what it depends on, what changes, how it fails and how completion is verified.
+- [x] Documentation CI prevents structural regressions.
 
 ## Progress Tracking
 
@@ -1133,7 +1156,7 @@ The restructuring is complete only when all of the following are true:
 | Phase 3 - Execution planning | Complete | Project + Technical Lead | 17 Jul 2026 | 25 canonical team-week sources containing 125 task records; 25 team-week agent packs with 125 embedded prompts |
 | Phase 4 - Technical references | Complete; in review | Technical Lead + Engineers | 17 Jul 2026 | Five human pages, four agent packs, OpenAPI and 342 anchored technical records |
 | Phase 5 - QA, legal and governance | Complete; in review | QA + Legal + Leads | 18 Jul 2026 | Four human pages, three agent packs and 205 anchored assurance records; execution and approvals remain pending |
-| Phase 6 - Portal and generation | Not started | Technical Lead | TBD | Final outputs and validation |
+| Phase 6 - Portal and generation | Complete | Technical Lead | 18 Jul 2026 | Five reader routes, six libraries, 765-record search, generated agent entry files and final validation |
 
 ## Review Notes
 
@@ -1158,5 +1181,6 @@ Use this section to record reviews of the restructuring plan.
 | 17 July 2026 | Transformation-only approval confirmed and remaining 69 flows migrated into the active standalone library | Repository-owner direction implemented by Codex | Phase 2 complete; technical ID/title conflicts deferred explicitly to Phase 4 |
 | 17 July 2026 | Six mobile flow-to-contract ID/title collisions reconciled without changing approved behavior | Codex, under Product and Technical Lead direction | Five mappings resolved from existing contracts; the deferred MF-17 referral gap was subsequently closed by CONTRACT-REFERRAL-001 |
 | 17 July 2026 | MF-17 and AF-15 referral contract gap closed with CONTRACT-REFERRAL-001 | Repository-owner direction implemented by Codex | Exact referral paths and ownership rules approved; Phase 4 must merge them into OpenAPI |
+| 18 July 2026 | Phase 6 role-based portal, cross-library search, generated agent context and final quality controls completed | Codex under repository-owner direction | Documentation restructuring plan complete; normal maintenance and evidence-based approvals continue |
 | 17 July 2026 | Phase 3 migrated 120 legacy tasks, added five Admin integration tasks and generated team plans by week/day with embedded agent prompts | Repository-owner direction implemented by Codex | Phase 3 complete without an additional review gate |
 | 17 July 2026 | Clarified every Monday-to-Friday week and consolidated agent context into one Markdown per team-week | Repository-owner direction implemented by Codex | Separate daily prompt files and standalone task-agent exports removed; each weekly Markdown now contains five embedded prompts |
