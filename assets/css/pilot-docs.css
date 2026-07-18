@@ -317,6 +317,50 @@ tbody tr:nth-child(even) { background: #fafcff; }
 .technical-card-types { font-size: 12px; text-transform: capitalize; }
 .technical-card-action { display: inline-flex; margin-top: 6px; font-weight: 900; }
 
+.assurance-hero {
+  background:
+    radial-gradient(circle at 84% 14%, rgba(68, 221, 200, 0.28), transparent 24rem),
+    linear-gradient(135deg, #10253e, #164a59 58%, #0e9384);
+}
+.assurance-index-hero {
+  background:
+    radial-gradient(circle at 88% 16%, rgba(170, 255, 236, 0.3), transparent 25rem),
+    linear-gradient(135deg, #10253e, #155968 60%, #0e9384);
+}
+.assurance-rules {
+  border-color: #a7e3dc;
+  border-left-color: #0e9384;
+  background: #f0fdfa;
+}
+.assurance-controls { border-color: #a7e3dc; }
+.assurance-controls input:focus,
+.assurance-controls select:focus {
+  border-color: #0e9384;
+  outline-color: rgba(14, 147, 132, 0.16);
+}
+.assurance-family-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.assurance-family-card { border-top: 5px solid #0e9384; }
+.assurance-family-card:nth-child(2) { border-top-color: #d97706; }
+.assurance-family-card:nth-child(3) { border-top-color: #6514e8; }
+.assurance-references a { font-weight: 850; }
+.assurance-references span { color: var(--muted); font-size: 13px; }
+.record-complete-note {
+  margin-top: 22px;
+  padding: 14px 18px;
+  border-left: 5px solid #16803c;
+  border-radius: 10px;
+  color: #14532d;
+  background: #f0fdf4;
+}
+.status-not-run,
+.status-open,
+.status-legal-review-required,
+.status-accepted-propagation-open {
+  color: #8a4b08 !important;
+  background: #fff3d6 !important;
+}
+.status-accepted { color: #14532d !important; background: #dcfce7 !important; }
+
 footer { padding: 32px 20px 46px; color: var(--muted); text-align: center; font-size: 13px; }
 
 @media (max-width: 900px) {

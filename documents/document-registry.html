@@ -14,7 +14,7 @@
   <main id="content" class="index-shell" tabindex="-1">
     <header class="index-hero"><div class="eyebrow">Governance · Phase 0</div><h1>Document Registry</h1><p>Check ownership, lifecycle, approval and authority before relying on a document. Published does not necessarily mean approved.</p></header>
     <section class="notice" aria-labelledby="registry-warning"><h2 id="registry-warning">Current authority warning</h2><p>The Main Enterprise Architecture v1 is the designated provisional baseline, but formal approval is pending. Material cross-document conflicts must be resolved before implementation.</p></section>
-    <section class="registry-summary" aria-label="Registry summary"><div><strong>29</strong><span>registered families</span></div><div><strong>7</strong><span>active</span></div><div><strong>10</strong><span>pending approval</span></div><div><strong>17</strong><span>legacy families</span></div></section>
+    <section class="registry-summary" aria-label="Registry summary"><div><strong>30</strong><span>registered families</span></div><div><strong>7</strong><span>active</span></div><div><strong>11</strong><span>pending approval</span></div><div><strong>17</strong><span>legacy families</span></div></section>
     <section class="document-content registry-content" aria-labelledby="register-title">
       <p class="generated-note"><strong>Generated registry:</strong> Edit <code>governance/document-registry.json</code>, not this page.</p>
       <h2 id="register-title">Registered documents</h2>
@@ -83,19 +83,19 @@
     </tr>
 <tr id="flow-align-001">
       <td><strong>FLOW-ALIGN-001</strong><br><span class="registry-type">decision-review</span></td>
-      <td><strong>Flow Alignment Review v1</strong><p>Provisional decision tracker until decisions are moved into governed records.</p></td>
-      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td><strong>Flow Alignment Review v1</strong><p>Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 Decisions and Governance for current accepted decisions, propagation work, open questions and risks.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
       <td>Product Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Admin Lead, Backend Lead</small></td>
-      <td>legacy-transitional-source<br><small>Main Enterprise Architecture v1 and approved decisions</small></td>
+      <td>legacy-derived-frozen<br><small>Main Enterprise Architecture v1 and approved decisions</small></td>
       <td><strong>Source</strong><br><a href="../documents/flow-alignment-review-v1.html">documents/flow-alignment-review-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/flow-alignment-review-v1.md">documents/agent-md/flow-alignment-review-v1.md</a></li></ul></td>
       <td>Not recorded<br><small>Next: Not scheduled</small></td>
     </tr>
 <tr id="legal-001">
       <td><strong>LEGAL-001</strong><br><span class="registry-type">legal</span></td>
-      <td><strong>Legal and User-Facing Documents Pack v1</strong><p>Publication is not legal approval; subject-matter review remains required.</p></td>
-      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td><strong>Legal and User-Facing Documents Pack v1</strong><p>Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 Legal and Compliance. Migrated clauses remain internal, non-effective and subject to qualified legal and privacy review.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
       <td>Product Lead<br><small>Reviewers: Legal reviewer, Technical Lead, Privacy reviewer</small></td>
-      <td>legacy-transitional-source<br><small>Applicable law and formally approved product policy</small></td>
+      <td>legacy-derived-frozen<br><small>Applicable law and formally approved product policy</small></td>
       <td><strong>Source</strong><br><a href="../documents/legal_user_facing_documents_pack_v1.html">documents/legal_user_facing_documents_pack_v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/legal_user_facing_documents_pack_v1.md">documents/agent-md/legal_user_facing_documents_pack_v1.md</a></li></ul></td>
       <td>Not recorded<br><small>Next: Not scheduled</small></td>
     </tr>
@@ -164,10 +164,10 @@
     </tr>
 <tr id="qa-001">
       <td><strong>QA-001</strong><br><span class="registry-type">qa-release</span></td>
-      <td><strong>QA and Go-Live Readiness Checklist v1</strong><p>Checklist publication does not mean release gates have passed.</p></td>
-      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td><strong>QA and Go-Live Readiness Checklist v1</strong><p>Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 QA and Release Assurance. Migration does not mark any test or release gate passed.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
       <td>QA Lead<br><small>Reviewers: Technical Lead, Product Lead, Infrastructure Lead, Operations</small></td>
-      <td>legacy-transitional-source<br><small>Approved product scope, contracts and release policy</small></td>
+      <td>legacy-derived-frozen<br><small>Approved product scope, contracts and release policy</small></td>
       <td><strong>Source</strong><br><a href="../documents/qa-go-live-readiness-checklist-v1.html">documents/qa-go-live-readiness-checklist-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/qa-go-live-readiness-checklist-v1.md">documents/agent-md/qa-go-live-readiness-checklist-v1.md</a></li></ul></td>
       <td>Not recorded<br><small>Next: Not scheduled</small></td>
     </tr>
@@ -278,6 +278,15 @@
       <td>canonical-source<br><small>Approved standalone flows and accepted contract decisions, with explicitly marked provisional architecture, contract, schema, provider and design baselines</small></td>
       <td><strong>Source</strong><br><a href="../content/technical/library.json">content/technical/library.json</a><br><strong>Artifacts</strong><ul><li><a href="../content/technical/contracts.json">content/technical/contracts.json</a></li><li><a href="../content/technical/data.json">content/technical/data.json</a></li><li><a href="../content/technical/platform.json">content/technical/platform.json</a></li><li><a href="../content/technical/screens.json">content/technical/screens.json</a></li><li><a href="../documents/technical/index.html">documents/technical/index.html</a></li><li><a href="../documents/technical/contracts.html">documents/technical/contracts.html</a></li><li><a href="../documents/technical/data.html">documents/technical/data.html</a></li><li><a href="../documents/technical/platform.html">documents/technical/platform.html</a></li><li><a href="../documents/technical/screens.html">documents/technical/screens.html</a></li><li><a href="../documents/technical/openapi/work2cash-v1.json">documents/technical/openapi/work2cash-v1.json</a></li><li><a href="../documents/agent-md/technical/contracts.md">documents/agent-md/technical/contracts.md</a></li><li><a href="../documents/agent-md/technical/data.md">documents/agent-md/technical/data.md</a></li><li><a href="../documents/agent-md/technical/platform.md">documents/agent-md/technical/platform.md</a></li><li><a href="../documents/agent-md/technical/screens.md">documents/agent-md/technical/screens.md</a></li><li><a href="../logs/phase-4-execution-log.md">logs/phase-4-execution-log.md</a></li><li><a href="../logs/phase-4-technical-migration-inventory.md">logs/phase-4-technical-migration-inventory.md</a></li><li><a href="../logs/phase-4-technical-gap-register.md">logs/phase-4-technical-gap-register.md</a></li><li><a href="../scripts/bootstrap-phase4-technical-sources.js">scripts/bootstrap-phase4-technical-sources.js</a></li><li><a href="../scripts/generate-technical-docs.js">scripts/generate-technical-docs.js</a></li></ul></td>
       <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="assurance-lib-001">
+      <td><strong>ASSURANCE-LIB-001</strong><br><span class="registry-type">assurance-governance-migration</span></td>
+      <td><strong>Phase 5 Consolidated Assurance and Governance Library</strong><p>Consolidates QA/release, legal/compliance and decision/governance material into four human pages and three focused agent packs. Its 205 independently linked records are sections within those seven readable files, not standalone required-reading documents. Migration does not pass tests, approve legal wording, authorize release or resolve open decisions.</p></td>
+      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td>Technical Lead<br><small>Reviewers: QA Lead, Product Lead, Qualified Legal reviewer, Privacy reviewer, Mobile Lead, Admin Lead, Backend Lead, Infrastructure Lead, Operations</small></td>
+      <td>canonical-source<br><small>Approved sources, qualified legal authority and evidence-based release governance; record-level statuses preserve pending work</small></td>
+      <td><strong>Source</strong><br><a href="../content/assurance/library.json">content/assurance/library.json</a><br><strong>Artifacts</strong><ul><li><a href="../content/assurance/qa-release.json">content/assurance/qa-release.json</a></li><li><a href="../content/assurance/legal-compliance.json">content/assurance/legal-compliance.json</a></li><li><a href="../content/assurance/decisions-governance.json">content/assurance/decisions-governance.json</a></li><li><a href="../documents/assurance/index.html">documents/assurance/index.html</a></li><li><a href="../documents/assurance/qa-release.html">documents/assurance/qa-release.html</a></li><li><a href="../documents/assurance/legal-compliance.html">documents/assurance/legal-compliance.html</a></li><li><a href="../documents/assurance/decisions-governance.html">documents/assurance/decisions-governance.html</a></li><li><a href="../documents/agent-md/assurance/qa-release.md">documents/agent-md/assurance/qa-release.md</a></li><li><a href="../documents/agent-md/assurance/legal-compliance.md">documents/agent-md/assurance/legal-compliance.md</a></li><li><a href="../documents/agent-md/assurance/decisions-governance.md">documents/agent-md/assurance/decisions-governance.md</a></li><li><a href="../logs/phase-5-execution-log.md">logs/phase-5-execution-log.md</a></li><li><a href="../scripts/bootstrap-phase5-assurance-sources.js">scripts/bootstrap-phase5-assurance-sources.js</a></li><li><a href="../scripts/generate-assurance-docs.js">scripts/generate-assurance-docs.js</a></li></ul></td>
+      <td>2026-07-18<br><small>Next: 2026-10-18</small></td>
     </tr></tbody></table></div>
     </section>
   </main>

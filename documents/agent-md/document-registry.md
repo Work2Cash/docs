@@ -31,8 +31,8 @@
 | DESIGN-001 | Screen To Feature Map v1 | superseded | pending | Product Lead | legacy-derived-frozen | `documents/screen-to-feature-map-v1.html`; `documents/agent-md/screen-to-feature-map-v1.md` |
 | FLOW-MOBILE-001 | Mobile Flow Catalogue v1 | superseded | approved | Product Lead | legacy-transitional-source | `documents/mobile-flow-catalogue-v1.html`; `documents/agent-md/mobile-flow-catalogue-v1.md` |
 | FLOW-ADMIN-001 | Admin Flow Catalogue v1 | superseded | approved | Product Lead | legacy-transitional-source | `documents/admin-flow-catalogue-v1.html`; `documents/agent-md/admin-flow-catalogue-v1.md` |
-| FLOW-ALIGN-001 | Flow Alignment Review v1 | in-review | pending | Product Lead | legacy-transitional-source | `documents/flow-alignment-review-v1.html`; `documents/agent-md/flow-alignment-review-v1.md` |
-| LEGAL-001 | Legal and User-Facing Documents Pack v1 | in-review | pending | Product Lead | legacy-transitional-source | `documents/legal_user_facing_documents_pack_v1.html`; `documents/agent-md/legal_user_facing_documents_pack_v1.md` |
+| FLOW-ALIGN-001 | Flow Alignment Review v1 | superseded | pending | Product Lead | legacy-derived-frozen | `documents/flow-alignment-review-v1.html`; `documents/agent-md/flow-alignment-review-v1.md` |
+| LEGAL-001 | Legal and User-Facing Documents Pack v1 | superseded | pending | Product Lead | legacy-derived-frozen | `documents/legal_user_facing_documents_pack_v1.html`; `documents/agent-md/legal_user_facing_documents_pack_v1.md` |
 | CONTRACT-001 | API and Socket Contract Specification v1 | superseded | pending | Backend Lead | legacy-derived-frozen | `documents/api-socket-contract-specification-v1.html`; `documents/agent-md/api-socket-contract-specification-v1.md` |
 | CONTRACT-REFERRAL-001 | Referral Contract Group | approved | approved | Backend Lead | canonical-source | `content/contracts/referral-contract-group.md`; `documents/contracts/referral-contract-group.html`; `documents/agent-md/contracts/referral-contract-group.md`; `documents/contracts/index.html`; `documents/agent-md/contracts/README.md`; `scripts/validate-referral-contract.js` |
 | DATA-001 | Data Model and Prisma Schema Planning v1 | superseded | pending | Backend Lead | legacy-derived-frozen | `documents/data-model-prisma-schema-planning-v1.html`; `documents/agent-md/data-model-prisma-schema-planning-v1.md` |
@@ -40,7 +40,7 @@
 | PLAN-MOBILE-001 | Mobile Build Plan v1 | superseded | approved | Mobile Lead | legacy-transitional-source | `documents/build-plan-mobile-v1.html`; `documents/agent-md/build-plan-mobile-v1.md` |
 | PLAN-ADMIN-001 | Admin Build Plan v1 | superseded | approved | Admin Lead | legacy-transitional-source | `documents/build-plan-admin-v1.html`; `documents/agent-md/build-plan-admin-v1.md` |
 | PLAN-BACKEND-001 | Backend Build Plan v1 | superseded | approved | Backend Lead | legacy-transitional-source | `documents/build-plan-backend-v1.html`; `documents/agent-md/build-plan-backend-v1.md` |
-| QA-001 | QA and Go-Live Readiness Checklist v1 | in-review | pending | QA Lead | legacy-transitional-source | `documents/qa-go-live-readiness-checklist-v1.html`; `documents/agent-md/qa-go-live-readiness-checklist-v1.md` |
+| QA-001 | QA and Go-Live Readiness Checklist v1 | superseded | pending | QA Lead | legacy-derived-frozen | `documents/qa-go-live-readiness-checklist-v1.html`; `documents/agent-md/qa-go-live-readiness-checklist-v1.md` |
 | AI-START-001 | AI Agent Start Here | active | approved | Technical Lead | legacy-transitional-source | `documents/agent-md/ai-agent-start-here.md` |
 | TEAM-PACKS-001 | Shared Execution Rules and Team Briefs | active | approved | Technical Lead | legacy-transitional-source | `documents/downloads/shared-ai-agent-execution-rules-v1.md`; `documents/downloads/mobile-team-build-brief-v1.md`; `documents/downloads/admin-team-build-brief-v1.md`; `documents/downloads/backend-team-build-brief-v1.md` |
 | WEEK-PACKS-001 | Weekly Execution Packs | superseded | approved | Project Lead | legacy-transitional-source | `documents/agent-md/weeks/weekly-execution-index.md`; `documents/agent-md/weeks/week-01-foundation-identity.md`; `documents/agent-md/weeks/week-02-tasker-task-creation-payment.md`; `documents/agent-md/weeks/week-03-discovery-matching-execution-start.md`; `documents/agent-md/weeks/week-04-completion-finance-support.md`; `documents/agent-md/weeks/week-05-integration-recovery-full-flow-qa.md`; `documents/agent-md/weeks/week-06-hardening-security-performance.md`; `documents/agent-md/weeks/week-07-release-candidate-operations-dry-run.md`; `documents/agent-md/weeks/week-08-stabilization-freeze.md` |
@@ -53,6 +53,7 @@
 | FLOW-LIB-001 | Phase 2 Standalone Flow Library | active | approved | Product Lead | canonical-source | `logs/phase-2-execution-log.md`; `logs/phase-2-flow-migration-inventory.md`; `documents/flows/index.html`; `documents/agent-md/flows/README.md`; `documents/flows/dependency-map.html`; `documents/agent-md/flows/dependency-map.md`; `documents/flows/combined-flow-library.html`; `documents/agent-md/flows/combined-flow-library.md` |
 | TASK-LIB-001 | Phase 3 Canonical Build Task and Weekly Execution Library | active | approved | Project Lead | canonical-source | `content/tasks/plan-metadata.json`; `logs/phase-3-task-migration-inventory.md`; `logs/phase-3-execution-log.md`; `documents/planning/index.html`; `documents/agent-md/planning/README.md`; `documents/planning/mobile-build-plan.html`; `documents/planning/admin-build-plan.html`; `documents/planning/backend-build-plan.html`; `documents/planning/qa-traceability.html`; `documents/agent-md/planning/qa-traceability.md` |
 | TECH-REF-001 | Phase 4 Consolidated Technical Reference Library | in-review | pending | Technical Lead | canonical-source | `content/technical/library.json`; `content/technical/contracts.json`; `content/technical/data.json`; `content/technical/platform.json`; `content/technical/screens.json`; `documents/technical/index.html`; `documents/technical/contracts.html`; `documents/technical/data.html`; `documents/technical/platform.html`; `documents/technical/screens.html`; `documents/technical/openapi/work2cash-v1.json`; `documents/agent-md/technical/contracts.md`; `documents/agent-md/technical/data.md`; `documents/agent-md/technical/platform.md`; `documents/agent-md/technical/screens.md`; `logs/phase-4-execution-log.md`; `logs/phase-4-technical-migration-inventory.md`; `logs/phase-4-technical-gap-register.md`; `scripts/bootstrap-phase4-technical-sources.js`; `scripts/generate-technical-docs.js` |
+| ASSURANCE-LIB-001 | Phase 5 Consolidated Assurance and Governance Library | in-review | pending | Technical Lead | canonical-source | `content/assurance/library.json`; `content/assurance/qa-release.json`; `content/assurance/legal-compliance.json`; `content/assurance/decisions-governance.json`; `documents/assurance/index.html`; `documents/assurance/qa-release.html`; `documents/assurance/legal-compliance.html`; `documents/assurance/decisions-governance.html`; `documents/agent-md/assurance/qa-release.md`; `documents/agent-md/assurance/legal-compliance.md`; `documents/agent-md/assurance/decisions-governance.md`; `logs/phase-5-execution-log.md`; `scripts/bootstrap-phase5-assurance-sources.js`; `scripts/generate-assurance-docs.js` |
 
 ## Detailed records
 
@@ -233,20 +234,20 @@ Approved behavior was migrated into 35 standalone admin flow sources. Retained o
 | Owner | Product Lead |
 | Required reviewers | Technical Lead, Mobile Lead, Admin Lead, Backend Lead |
 | Version | 1 |
-| Lifecycle | in-review |
+| Lifecycle | superseded |
 | Approval | pending |
 | Publication | published |
 | Last reviewed | Not recorded |
 | Next review | Not scheduled |
 | Authority | Main Enterprise Architecture v1 and approved decisions |
-| Artifact class | legacy-transitional-source |
+| Artifact class | legacy-derived-frozen |
 | Current source | `documents/flow-alignment-review-v1.html` |
 | Other artifacts | `documents/agent-md/flow-alignment-review-v1.md` |
 | Migration phase | Phase 5 |
 | Supersedes | None |
 | Tags | decision-review |
 
-Provisional decision tracker until decisions are moved into governed records.
+Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 Decisions and Governance for current accepted decisions, propagation work, open questions and risks.
 
 ### LEGAL-001 — Legal and User-Facing Documents Pack v1
 
@@ -257,20 +258,20 @@ Provisional decision tracker until decisions are moved into governed records.
 | Owner | Product Lead |
 | Required reviewers | Legal reviewer, Technical Lead, Privacy reviewer |
 | Version | 1 |
-| Lifecycle | in-review |
+| Lifecycle | superseded |
 | Approval | pending |
 | Publication | published |
 | Last reviewed | Not recorded |
 | Next review | Not scheduled |
 | Authority | Applicable law and formally approved product policy |
-| Artifact class | legacy-transitional-source |
+| Artifact class | legacy-derived-frozen |
 | Current source | `documents/legal_user_facing_documents_pack_v1.html` |
 | Other artifacts | `documents/agent-md/legal_user_facing_documents_pack_v1.md` |
 | Migration phase | Phase 5 |
 | Supersedes | None |
 | Tags | legal |
 
-Publication is not legal approval; subject-matter review remains required.
+Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 Legal and Compliance. Migrated clauses remain internal, non-effective and subject to qualified legal and privacy review.
 
 ### CONTRACT-001 — API and Socket Contract Specification v1
 
@@ -449,20 +450,20 @@ Superseded combined Backend task reference retained as migration evidence. Use T
 | Owner | QA Lead |
 | Required reviewers | Technical Lead, Product Lead, Infrastructure Lead, Operations |
 | Version | 1 |
-| Lifecycle | in-review |
+| Lifecycle | superseded |
 | Approval | pending |
 | Publication | published |
 | Last reviewed | Not recorded |
 | Next review | Not scheduled |
 | Authority | Approved product scope, contracts and release policy |
-| Artifact class | legacy-transitional-source |
+| Artifact class | legacy-derived-frozen |
 | Current source | `documents/qa-go-live-readiness-checklist-v1.html` |
 | Other artifacts | `documents/agent-md/qa-go-live-readiness-checklist-v1.md` |
 | Migration phase | Phase 5 |
 | Supersedes | None |
 | Tags | qa-release |
 
-Checklist publication does not mean release gates have passed.
+Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 QA and Release Assurance. Migration does not mark any test or release gate passed.
 
 ### AI-START-001 — AI Agent Start Here
 
@@ -752,6 +753,30 @@ Active planning family with 25 canonical team-week Markdown sources containing 1
 
 Consolidates the legacy architecture, contract, data, provider and screen families into five human pages, four focused agent packs and one generated OpenAPI baseline. Its 342 anchored records are sections inside those families, not standalone required-reading documents. Approved referral and KYC decisions retain higher authority; provisional gaps remain explicit blockers.
 
+### ASSURANCE-LIB-001 — Phase 5 Consolidated Assurance and Governance Library
+
+| Field | Value |
+| --- | --- |
+| Type | assurance-governance-migration |
+| Audience | Product, Legal, Privacy, QA, Operations, Mobile, Admin, Backend, Infrastructure, AI agents |
+| Owner | Technical Lead |
+| Required reviewers | QA Lead, Product Lead, Qualified Legal reviewer, Privacy reviewer, Mobile Lead, Admin Lead, Backend Lead, Infrastructure Lead, Operations |
+| Version | 1.0 |
+| Lifecycle | in-review |
+| Approval | pending |
+| Publication | published |
+| Last reviewed | 2026-07-18 |
+| Next review | 2026-10-18 |
+| Authority | Approved sources, qualified legal authority and evidence-based release governance; record-level statuses preserve pending work |
+| Artifact class | canonical-source |
+| Current source | `content/assurance/library.json` |
+| Other artifacts | `content/assurance/qa-release.json`, `content/assurance/legal-compliance.json`, `content/assurance/decisions-governance.json`, `documents/assurance/index.html`, `documents/assurance/qa-release.html`, `documents/assurance/legal-compliance.html`, `documents/assurance/decisions-governance.html`, `documents/agent-md/assurance/qa-release.md`, `documents/agent-md/assurance/legal-compliance.md`, `documents/agent-md/assurance/decisions-governance.md`, `logs/phase-5-execution-log.md`, `scripts/bootstrap-phase5-assurance-sources.js`, `scripts/generate-assurance-docs.js` |
+| Migration phase | Phase 5 |
+| Supersedes | FLOW-ALIGN-001, LEGAL-001 and QA-001 |
+| Tags | assurance, qa, release, legal, compliance, decisions, governance, phase-5 |
+
+Consolidates QA/release, legal/compliance and decision/governance material into four human pages and three focused agent packs. Its 205 independently linked records are sections within those seven readable files, not standalone required-reading documents. Migration does not pass tests, approve legal wording, authorize release or resolve open decisions.
+
 
 ## Pending approvals
 
@@ -765,23 +790,15 @@ Consolidates the legacy architecture, contract, data, provider and screen famili
 - [ ] **QA-001 — QA and Go-Live Readiness Checklist v1:** Technical Lead, Product Lead, Infrastructure Lead, Operations.
 - [ ] **FULL-CONTEXT-001 — Work2Cash Full Project Markdown:** Product Lead.
 - [ ] **TECH-REF-001 — Phase 4 Consolidated Technical Reference Library:** Product Lead, Mobile Lead, Admin Lead, Backend Lead, Infrastructure Lead, Security, Finance, Operations, QA.
+- [ ] **ASSURANCE-LIB-001 — Phase 5 Consolidated Assurance and Governance Library:** QA Lead, Product Lead, Qualified Legal reviewer, Privacy reviewer, Mobile Lead, Admin Lead, Backend Lead, Infrastructure Lead, Operations.
 
 ## Legacy migration queue
 
-- [ ] **ARCH-001:** migrate in Phase 4. Frozen Phase 4 migration evidence. Use TECH-REF-001 for current architecture and operations reading. Formal approval of the migrated architecture records remains pending.
-- [ ] **DESIGN-001:** migrate in Phase 4. Frozen Phase 4 migration evidence. Use TECH-REF-001 Screen-to-Feature Reference, where known provider, KYC, category, payment, auto-accept and admin-reassignment drift is corrected and remaining design evidence is marked.
 - [ ] **FLOW-MOBILE-001:** migrate in Phase 2. Approved behavior was migrated into 37 standalone mobile flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.
 - [ ] **FLOW-ADMIN-001:** migrate in Phase 2. Approved behavior was migrated into 35 standalone admin flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.
-- [ ] **FLOW-ALIGN-001:** migrate in Phase 5. Provisional decision tracker until decisions are moved into governed records.
-- [ ] **LEGAL-001:** migrate in Phase 5. Publication is not legal approval; subject-matter review remains required.
-- [ ] **CONTRACT-001:** migrate in Phase 4. Frozen Phase 4 migration evidence. Use TECH-REF-001 API, Socket and OpenAPI Reference. Approved referral and KYC decisions are merged there with higher authority; remaining contract gaps are explicit.
-- [ ] **DATA-001:** migrate in Phase 4. Frozen Phase 4 migration evidence. Use TECH-REF-001 Data Model Reference. KycAttempt is merged from the approved pilot and conceptual models remain clearly separated from executable Prisma baselines.
-- [ ] **PROVIDER-001:** migrate in Phase 4. Frozen Phase 4 migration evidence. Use TECH-REF-001 Platform Architecture and Operations. Costs and provider capabilities still require dated official validation before purchase or go-live.
 - [ ] **PLAN-MOBILE-001:** migrate in Phase 3. Superseded combined Mobile task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Mobile plan.
 - [ ] **PLAN-ADMIN-001:** migrate in Phase 3. Superseded combined Admin task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Admin plan.
 - [ ] **PLAN-BACKEND-001:** migrate in Phase 3. Superseded combined Backend task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Backend plan.
-- [ ] **QA-001:** migrate in Phase 5. Checklist publication does not mean release gates have passed.
 - [ ] **AI-START-001:** migrate in Phase 3. Aligned with AGENTS.md and the Phase 3 Team to Week to Day workflow. Use one team-week Markdown and select its embedded daily prompt.
 - [ ] **TEAM-PACKS-001:** migrate in Phase 3. Active focused context inputs used with Phase 3 team-week Markdown packs and embedded daily prompts. These packs narrow work; they do not define product behavior.
 - [ ] **WEEK-PACKS-001:** migrate in Phase 3. Superseded manually duplicated weekly packs retained as migration evidence. Use the generated TASK-LIB-001 team packs organized by week and day.
-- [ ] **FULL-CONTEXT-001:** migrate in Phase 6. Large non-canonical bundle without a current deterministic generator. Use only for broad context.

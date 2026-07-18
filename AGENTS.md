@@ -52,6 +52,8 @@ If no active delivery stage, team week or day is identified, ask which is active
 - Technical references: open **Phase 4 Technical Reference Library**, choose Contracts, Data, Platform or Screens, then search for and link directly to the required record. Do not read all four families for a focused task.
 - Agent technical context: download only the relevant one of `documents/agent-md/technical/contracts.md`, `data.md`, `platform.md` or `screens.md`.
 - OpenAPI: use `documents/technical/openapi/work2cash-v1.json`. An operation marked provisional or carrying `x-work2cash-gaps` is not permission to invent its missing schema.
+- Assurance and governance: open **Phase 5 Assurance and Governance Library**, choose QA and Release, Legal and Compliance, or Decisions and Governance, then search for and link directly to the required record. Do not read all three families for focused work.
+- Agent assurance context: download only the relevant one of `documents/agent-md/assurance/qa-release.md`, `legal-compliance.md` or `decisions-governance.md`. A migrated record does not mean a test passed, legal wording was approved, a release was authorized or an open decision was resolved.
 - Build plans: open **Phase 3 Execution Planning Library**, choose the team, then the active week and day.
 - Build tasks: use the daily section inside the active team-week HTML page; standalone daily task pages are not generated.
 - Agent execution: download the team weekly Markdown; it contains Day 1 through Day 5 and an agent prompt inside each day.
@@ -138,6 +140,7 @@ Do not invent missing endpoint paths, model fields, provider behavior or product
 - For flow changes, edit `content/flows/`, then run `node scripts/generate-flow-docs.js` and `node scripts/generate-flow-migration-inventory.js`.
 - For accepted contract-gap decisions, edit `content/contracts/`, then run `node scripts/generate-contract-docs.js`. Referral changes must also pass `node scripts/validate-referral-contract.js`.
 - For consolidated technical-reference changes, edit the relevant source in `content/technical/`, then run `node scripts/generate-technical-docs.js`. Do not edit `documents/technical/`, `documents/agent-md/technical/` or the generated Phase 4 inventories directly.
+- For assurance, legal/compliance or decision-governance changes, edit the relevant source in `content/assurance/`, then run `node scripts/generate-assurance-docs.js`. Do not edit `documents/assurance/` or `documents/agent-md/assurance/` directly. Legal records remain internal and non-effective until qualified approval and a separate publication decision.
 - For task changes, edit the relevant weekly source in `content/tasks/<team>/week-*.md` (or the Admin Integration Week), then run `node scripts/generate-task-docs.js`, `node scripts/generate-task-migration-inventory.js` and `node scripts/generate-execution-plans.js`.
 - Run `node scripts/validate-docs.js` before handoff.
 - Commit feature by feature or fix by fix; do not stack unrelated work.

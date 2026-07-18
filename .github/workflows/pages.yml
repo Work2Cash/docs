@@ -60,6 +60,9 @@ jobs:
       - name: Verify consolidated Phase 4 technical reference and OpenAPI
         run: node scripts/generate-technical-docs.js --check
 
+      - name: Verify consolidated Phase 5 assurance and governance
+        run: node scripts/generate-assurance-docs.js --check
+
       - name: Validate documentation metadata and navigation
         run: node scripts/validate-docs.js
 

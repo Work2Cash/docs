@@ -40,7 +40,7 @@ function renderMarkdown(registry, agent = false) {
     return `| ${entry.id} | ${entry.title} | ${entry.status} | ${entry.approval} | ${entry.owner} | ${entry.artifactClass} | ${files} |`;
   }).join("\n");
   const reviews = registry.entries.filter((entry) => entry.approval === "pending").map((entry) => `- [ ] **${entry.id} — ${entry.title}:** ${entry.reviewers.join(", ")}.`).join("\n");
-  const migrations = registry.entries.filter((entry) => entry.artifactClass.startsWith("legacy-")).map((entry) => `- [ ] **${entry.id}:** migrate in ${entry.migrationPhase}. ${entry.notes}`).join("\n");
+  const migrations = registry.entries.filter((entry) => entry.artifactClass === "legacy-transitional-source").map((entry) => `- [ ] **${entry.id}:** migrate in ${entry.migrationPhase}. ${entry.notes}`).join("\n");
 
   return `# Work2Cash Document Registry
 

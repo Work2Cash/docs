@@ -1,0 +1,3024 @@
+{
+  "id": "ASSURANCE-DECISIONS-001",
+  "slug": "decisions-governance",
+  "title": "Decisions and Governance",
+  "description": "One governed register for accepted decisions, design conflicts, risks, open questions and cross-document propagation.",
+  "audience": "Product, Technical leads, Design, QA, Operations and AI agents",
+  "owner": "Technical Lead",
+  "reviewers": [
+    "Product Lead",
+    "Mobile Lead",
+    "Admin Lead",
+    "Backend Lead",
+    "Design",
+    "QA"
+  ],
+  "status": "in-review",
+  "version": "1.0",
+  "lastReviewed": "2026-07-18",
+  "authority": "Approved decisions and documented repository-owner direction; open records have no implementation authority",
+  "sourceNotes": [
+    "Only accepted decisions control implementation. Open questions, risks and pending propagation remain visible but non-authoritative.",
+    "A decision is not resolved until every affected canonical source, generated output, design, plan and QA record is updated or explicitly excepted."
+  ],
+  "sharedRules": [
+    "Record the decision before changing dependent behavior.",
+    "Name the owner, approver, reason, trade-off, affected scope and closure evidence.",
+    "Rejected, deferred and superseded alternatives cannot re-enter implementation without a new decision.",
+    "Publication or implementation does not prove decision approval.",
+    "Close propagation only with linked evidence."
+  ],
+  "records": [
+    {
+      "id": "DECISION-LEGACY-18",
+      "type": "decision",
+      "title": "Notifications and Announcements",
+      "domain": "Admin product decisions",
+      "status": "accepted",
+      "summary": "Approved for MVP and added to admin catalogue.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Notifications and Announcements"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved for MVP and added to admin catalogue."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-19",
+      "type": "decision",
+      "title": "Ratings and Reviews Management",
+      "domain": "Admin product decisions",
+      "status": "accepted",
+      "summary": "Approved for MVP and added to admin catalogue.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Ratings and Reviews Management"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved for MVP and added to admin catalogue."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-20",
+      "type": "decision",
+      "title": "Basic Analytics and Reports",
+      "domain": "Admin product decisions",
+      "status": "accepted",
+      "summary": "Approved for MVP. Advanced analytics remains deferred.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Basic Analytics and Reports"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved for MVP. Advanced analytics remains deferred."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-21",
+      "type": "decision",
+      "title": "Receipt and Transaction Review",
+      "domain": "Admin product decisions",
+      "status": "accepted",
+      "summary": "Approved as its own MVP admin flow.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Receipt and Transaction Review"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved as its own MVP admin flow."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-22",
+      "type": "decision",
+      "title": "Controlled Force Cancel Task",
+      "domain": "Admin product decisions",
+      "status": "accepted",
+      "summary": "Approved inside Task Operations Monitoring with elevated permission, reason, impact preview and audit.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Controlled Force Cancel Task"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved inside Task Operations Monitoring with elevated permission, reason, impact preview and audit."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-23",
+      "type": "decision",
+      "title": "Admin Reassign Task",
+      "domain": "Admin product decisions",
+      "status": "accepted",
+      "summary": "Rejected. Admin cannot reassign under any condition. Replacement happens through Tasker cancellation or Task Owner rejection rules.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Admin Reassign Task"
+        },
+        {
+          "label": "Decision",
+          "value": "Rejected. Admin cannot reassign under any condition. Replacement happens through Tasker cancellation or Task Owner rejection rules."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-24",
+      "type": "decision",
+      "title": "Request Re-Verification",
+      "domain": "Admin product decisions",
+      "status": "accepted",
+      "summary": "Approved inside KYC review.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Request Re-Verification"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved inside KYC review."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-25",
+      "type": "decision",
+      "title": "Category Disable/Archive Rules",
+      "domain": "Admin product decisions",
+      "status": "accepted",
+      "summary": "Approved. Hard delete only for unused drafts.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Category Disable/Archive Rules"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved. Hard delete only for unused drafts."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-01",
+      "type": "decision",
+      "title": "Main architecture ETA guard corrected.",
+      "domain": "Cross-platform alignment",
+      "status": "accepted",
+      "summary": "Main architecture now uses the ETA Cost Guard: 5-minute guard plus next 10% total-journey milestone, then reset timer/milestone after refresh.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Main architecture ETA guard corrected."
+        },
+        {
+          "label": "Decision",
+          "value": "Main architecture now uses the ETA Cost Guard: 5-minute guard plus next 10% total-journey milestone, then reset timer/milestone after refresh."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Old 10+ minutes / 25% rule has been replaced."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Main architecture now uses the ETA Cost Guard: 5-minute guard plus next 10% total-journey milestone, then reset timer/milestone after refresh."
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-02",
+      "type": "decision",
+      "title": "Main architecture legal publishing corrected.",
+      "domain": "Cross-platform alignment",
+      "status": "accepted",
+      "summary": "Main architecture now points to the combined legal pack at Legal & User-Facing Documents Pack v1.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Main architecture legal publishing corrected."
+        },
+        {
+          "label": "Decision",
+          "value": "Main architecture now points to the combined legal pack at Legal & User-Facing Documents Pack v1."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Separate /legal/... page list has been removed from the source-of-truth appendix."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Main architecture now points to the combined legal pack at Legal & User-Facing Documents Pack v1."
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-03",
+      "type": "decision",
+      "title": "Main architecture documentation governance added.",
+      "domain": "Cross-platform alignment",
+      "status": "accepted",
+      "summary": "Main architecture now lists the team-facing resource paths for generated and planned documents.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Main architecture documentation governance added."
+        },
+        {
+          "label": "Decision",
+          "value": "Main architecture now lists the team-facing resource paths for generated and planned documents."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "GitHub documentation portal setup, soft password gate, auth guard, guard checker, PR governance and resource links are now included."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Main architecture now lists the team-facing resource paths for generated and planned documents."
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-04",
+      "type": "decision",
+      "title": "Production infrastructure baseline corrected.",
+      "domain": "Cross-platform alignment",
+      "status": "accepted",
+      "summary": "Main architecture now uses DigitalOcean as the active production baseline while Contabo remains staging.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Production infrastructure baseline corrected."
+        },
+        {
+          "label": "Decision",
+          "value": "Main architecture now uses DigitalOcean as the active production baseline while Contabo remains staging."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Hetzner is no longer available for this project."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Main architecture now uses DigitalOcean as the active production baseline while Contabo remains staging."
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-05",
+      "type": "decision",
+      "title": "Figma category names differ from accepted category names.",
+      "domain": "Cross-platform alignment",
+      "status": "accepted",
+      "summary": "Treat Figma labels as visual references only. Product copy and admin catalog should use Home, Errands, Office, Support.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Figma category names differ from accepted category names."
+        },
+        {
+          "label": "Decision",
+          "value": "Treat Figma labels as visual references only. Product copy and admin catalog should use Home, Errands, Office, Support."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Figma uses Home-Based, Compound/Outdoor, Office/Shop, Short Term Support/Event Support. Accepted categories are Home, Errands, Office, Support."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Treat Figma labels as visual references only. Product copy and admin catalog should use Home, Errands, Office, Support."
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-26",
+      "type": "decision",
+      "title": "Payment",
+      "domain": "Cross-platform alignment",
+      "status": "accepted-propagation-open",
+      "summary": "Accepted project direction is cardless Paystack + Moniepoint using transfer/USSD/redirect/status flows.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Payment"
+        },
+        {
+          "label": "Decision",
+          "value": "Accepted project direction is cardless Paystack + Moniepoint using transfer/USSD/redirect/status flows."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Figma contains card-based screens and card method labels."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Open: affected design or evidence still requires correction"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Design must be updated before implementation."
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [
+        "Propagation remains open until the affected design/source and validation evidence are linked."
+      ],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-27",
+      "type": "decision",
+      "title": "KYC",
+      "domain": "Cross-platform alignment",
+      "status": "accepted",
+      "summary": "Accepted direction is Smile ID NIN/BVN with biometric match. Admin may still need evidence/manual review screens.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "KYC"
+        },
+        {
+          "label": "Decision",
+          "value": "Accepted direction is Smile ID NIN/BVN with biometric match. Admin may still need evidence/manual review screens."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Figma contains generic document upload and multiple ID types."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Split primary KYC from manual exception review."
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-28",
+      "type": "decision",
+      "title": "Task Categories",
+      "domain": "Cross-platform alignment",
+      "status": "accepted-propagation-open",
+      "summary": "Accepted categories are Home, Errands, Office, Support.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Task Categories"
+        },
+        {
+          "label": "Decision",
+          "value": "Accepted categories are Home, Errands, Office, Support."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Figma still has old grouping labels."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Open: affected design or evidence still requires correction"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Update mobile/admin labels and seed data."
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [
+        "Propagation remains open until the affected design/source and validation evidence are linked."
+      ],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-29",
+      "type": "decision",
+      "title": "Social Auth",
+      "domain": "Cross-platform alignment",
+      "status": "accepted",
+      "summary": "Google and Apple are approved for MVP. Facebook is excluded.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Social Auth"
+        },
+        {
+          "label": "Decision",
+          "value": "Google and Apple are approved for MVP. Facebook is excluded."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Figma shows Google/Apple/Facebook."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Remove Facebook from MVP screens."
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-30",
+      "type": "decision",
+      "title": "Analytics",
+      "domain": "Cross-platform alignment",
+      "status": "accepted",
+      "summary": "Basic operational reports are included in MVP. Advanced analytics remains deferred.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Analytics"
+        },
+        {
+          "label": "Decision",
+          "value": "Basic operational reports are included in MVP. Advanced analytics remains deferred."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Admin design includes Analytics & Report."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Keep MVP reports simple and read-only."
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-DOC-01",
+      "type": "decision",
+      "title": "Execution-plan granularity",
+      "domain": "Documentation decisions",
+      "status": "accepted",
+      "summary": "Junior-developer execution plans remain team-week packs with Day 1 through Day 5 inside each pack.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Execution-plan granularity"
+        },
+        {
+          "label": "Decision",
+          "value": "Junior-developer execution plans remain team-week packs with Day 1 through Day 5 inside each pack."
+        },
+        {
+          "label": "Reason",
+          "value": "Preserve approved MVP scope, security, consistency and focused reading."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Deferred or excluded alternatives require a new governed decision before use."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Technical Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository owner / accepted project direction"
+        },
+        {
+          "label": "Decision date",
+          "value": "Recorded by 18 July 2026"
+        },
+        {
+          "label": "Affected scope",
+          "value": "Phase 3 planning"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Documented; implementation evidence remains task/release specific"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Approved flows, Phase 3 plans and Phase 4 technical records as applicable"
+        }
+      ],
+      "rules": [
+        "Do not silently reopen or contradict an accepted decision.",
+        "A change updates the decision first, then every affected source, output, plan and QA record."
+      ],
+      "dependencies": [
+        "Phase 3 planning",
+        "Document registry",
+        "Review log"
+      ],
+      "gaps": [],
+      "source": "AGENTS.md, approved flows and repository-owner direction"
+    },
+    {
+      "id": "DECISION-DOC-02",
+      "type": "decision",
+      "title": "Technical-reference granularity",
+      "domain": "Documentation decisions",
+      "status": "accepted",
+      "summary": "Phase 4 remains five human pages and four focused agent packs; individual records are anchors, not standalone documents.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Technical-reference granularity"
+        },
+        {
+          "label": "Decision",
+          "value": "Phase 4 remains five human pages and four focused agent packs; individual records are anchors, not standalone documents."
+        },
+        {
+          "label": "Reason",
+          "value": "Preserve approved MVP scope, security, consistency and focused reading."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Deferred or excluded alternatives require a new governed decision before use."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Technical Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository owner / accepted project direction"
+        },
+        {
+          "label": "Decision date",
+          "value": "Recorded by 18 July 2026"
+        },
+        {
+          "label": "Affected scope",
+          "value": "Phase 4 technical library"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Documented; implementation evidence remains task/release specific"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Approved flows, Phase 3 plans and Phase 4 technical records as applicable"
+        }
+      ],
+      "rules": [
+        "Do not silently reopen or contradict an accepted decision.",
+        "A change updates the decision first, then every affected source, output, plan and QA record."
+      ],
+      "dependencies": [
+        "Phase 4 technical library",
+        "Document registry",
+        "Review log"
+      ],
+      "gaps": [],
+      "source": "AGENTS.md, approved flows and repository-owner direction"
+    },
+    {
+      "id": "DECISION-DOC-03",
+      "type": "decision",
+      "title": "Assurance-reference granularity",
+      "domain": "Documentation decisions",
+      "status": "accepted",
+      "summary": "Phase 5 remains four human pages and three focused agent packs; tests, clauses and decisions are anchored records.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Assurance-reference granularity"
+        },
+        {
+          "label": "Decision",
+          "value": "Phase 5 remains four human pages and three focused agent packs; tests, clauses and decisions are anchored records."
+        },
+        {
+          "label": "Reason",
+          "value": "Preserve approved MVP scope, security, consistency and focused reading."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Deferred or excluded alternatives require a new governed decision before use."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Technical Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository owner / accepted project direction"
+        },
+        {
+          "label": "Decision date",
+          "value": "Recorded by 18 July 2026"
+        },
+        {
+          "label": "Affected scope",
+          "value": "Phase 5 assurance library"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Documented; implementation evidence remains task/release specific"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Approved flows, Phase 3 plans and Phase 4 technical records as applicable"
+        }
+      ],
+      "rules": [
+        "Do not silently reopen or contradict an accepted decision.",
+        "A change updates the decision first, then every affected source, output, plan and QA record."
+      ],
+      "dependencies": [
+        "Phase 5 assurance library",
+        "Document registry",
+        "Review log"
+      ],
+      "gaps": [],
+      "source": "AGENTS.md, approved flows and repository-owner direction"
+    },
+    {
+      "id": "DECISION-LEGACY-06",
+      "type": "decision",
+      "title": "Password Recovery",
+      "domain": "Mobile product decisions",
+      "status": "accepted",
+      "summary": "Approved for MVP and added to mobile catalogue.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Password Recovery"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved for MVP and added to mobile catalogue."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-07",
+      "type": "decision",
+      "title": "Google / Apple Social Authentication",
+      "domain": "Mobile product decisions",
+      "status": "accepted",
+      "summary": "Google and Apple approved for MVP. Facebook excluded.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Google / Apple Social Authentication"
+        },
+        {
+          "label": "Decision",
+          "value": "Google and Apple approved for MVP. Facebook excluded."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-08",
+      "type": "decision",
+      "title": "Profile and Settings Management",
+      "domain": "Mobile product decisions",
+      "status": "accepted",
+      "summary": "Approved for MVP and added to mobile catalogue.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Profile and Settings Management"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved for MVP and added to mobile catalogue."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-09",
+      "type": "decision",
+      "title": "Security and Device Management",
+      "domain": "Mobile product decisions",
+      "status": "accepted",
+      "summary": "Approved for MVP. Sensitive actions use PIN; OTP is for recovery/reset.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Security and Device Management"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved for MVP. Sensitive actions use PIN; OTP is for recovery/reset."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-10",
+      "type": "decision",
+      "title": "Notification Center and Preferences",
+      "domain": "Mobile product decisions",
+      "status": "accepted",
+      "summary": "Approved for MVP with FCM primary and Termii SMS fallback for critical messages.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Notification Center and Preferences"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved for MVP with FCM primary and Termii SMS fallback for critical messages."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-11",
+      "type": "decision",
+      "title": "Tasker Availability and Work Preferences",
+      "domain": "Mobile product decisions",
+      "status": "accepted",
+      "summary": "Approved for MVP. Auto Accept is deferred.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Tasker Availability and Work Preferences"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved for MVP. Auto Accept is deferred."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-12",
+      "type": "decision",
+      "title": "Payout Account Setup",
+      "domain": "Mobile product decisions",
+      "status": "accepted",
+      "summary": "Approved for MVP and connected to withdrawal flow.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Payout Account Setup"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved for MVP and connected to withdrawal flow."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-13",
+      "type": "decision",
+      "title": "Ratings and Reviews",
+      "domain": "Mobile product decisions",
+      "status": "accepted",
+      "summary": "Approved for MVP and connected to favorites/trust/admin moderation.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Ratings and Reviews"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved for MVP and connected to favorites/trust/admin moderation."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-14",
+      "type": "decision",
+      "title": "Emergency Support",
+      "domain": "Mobile product decisions",
+      "status": "accepted",
+      "summary": "Approved for MVP as priority support branch.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Emergency Support"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved for MVP as priority support branch."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-15",
+      "type": "decision",
+      "title": "Rebook / Repeat Task",
+      "domain": "Mobile product decisions",
+      "status": "accepted",
+      "summary": "Approved for MVP. Creates a new task and preserves old task immutability.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Rebook / Repeat Task"
+        },
+        {
+          "label": "Decision",
+          "value": "Approved for MVP. Creates a new task and preserves old task immutability."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Recorded as resolved in the legacy alignment review"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Resolved"
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-16",
+      "type": "decision",
+      "title": "Cardless Payment UI",
+      "domain": "Mobile product decisions",
+      "status": "accepted-propagation-open",
+      "summary": "Figma still includes Add Bank Card / card-linked-to-BVN wording.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Cardless Payment UI"
+        },
+        {
+          "label": "Decision",
+          "value": "Figma still includes Add Bank Card / card-linked-to-BVN wording."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Open: affected design or evidence still requires correction"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Replace with Paystack/Moniepoint transfer, USSD, redirect/status or virtual-account style screens."
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [
+        "Propagation remains open until the affected design/source and validation evidence are linked."
+      ],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "DECISION-LEGACY-17",
+      "type": "decision",
+      "title": "KYC UI",
+      "domain": "Mobile product decisions",
+      "status": "accepted-propagation-open",
+      "summary": "Figma still shows generic upload ID/photo screens.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "KYC UI"
+        },
+        {
+          "label": "Decision",
+          "value": "Figma still shows generic upload ID/photo screens."
+        },
+        {
+          "label": "Reason/evidence",
+          "value": "Legacy alignment review"
+        },
+        {
+          "label": "Trade-off",
+          "value": "Preserves the accepted MVP behavior while requiring affected design, source, implementation and QA records to remain aligned."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository-owner accepted decision; individual names not recorded"
+        },
+        {
+          "label": "Decision date",
+          "value": "17 July 2026 migration evidence"
+        },
+        {
+          "label": "Propagation status",
+          "value": "Open: affected design or evidence still requires correction"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Align primary KYC UI to Smile ID NIN/BVN plus live biometric capture. Keep document upload only as manual exception if later approved."
+        }
+      ],
+      "rules": [
+        "Only accepted decisions control implementation.",
+        "Resolved requires every affected canonical source/output to be updated or explicitly excepted."
+      ],
+      "dependencies": [
+        "Approved standalone flows",
+        "Phase 4 technical reference",
+        "Affected Product/Design owner"
+      ],
+      "gaps": [
+        "Propagation remains open until the affected design/source and validation evidence are linked."
+      ],
+      "source": "Legacy Flow Alignment Review v1"
+    },
+    {
+      "id": "QUESTION-01",
+      "type": "open-question",
+      "title": "Legal retention schedule",
+      "domain": "Open questions",
+      "status": "open",
+      "summary": "What exact retention, deletion, anonymization and exception periods apply to each data class?",
+      "facts": [
+        {
+          "label": "Question",
+          "value": "What exact retention, deletion, anonymization and exception periods apply to each data class?"
+        },
+        {
+          "label": "Decision owner",
+          "value": "Qualified Legal and Privacy reviewer"
+        },
+        {
+          "label": "Approver",
+          "value": "Required subject-matter authority"
+        },
+        {
+          "label": "Decision date",
+          "value": "Not decided"
+        },
+        {
+          "label": "Implementation effect",
+          "value": "Blocks only the affected decision or execution scope"
+        }
+      ],
+      "rules": [
+        "Do not infer an answer from calendar dates, legacy labels or adjacent provisional records.",
+        "When decided, create or update the controlling decision and propagate it before closing this question."
+      ],
+      "dependencies": [
+        "Document registry",
+        "Affected technical/legal/plan records"
+      ],
+      "gaps": [
+        "Decision and closure evidence not recorded."
+      ],
+      "source": "Phase 5 open-question register"
+    },
+    {
+      "id": "QUESTION-02",
+      "type": "open-question",
+      "title": "Infrastructure recovery objectives",
+      "domain": "Open questions",
+      "status": "open",
+      "summary": "What RPO/RTO, region, network and failover design receives formal approval?",
+      "facts": [
+        {
+          "label": "Question",
+          "value": "What RPO/RTO, region, network and failover design receives formal approval?"
+        },
+        {
+          "label": "Decision owner",
+          "value": "Infrastructure Lead and Security"
+        },
+        {
+          "label": "Approver",
+          "value": "Required subject-matter authority"
+        },
+        {
+          "label": "Decision date",
+          "value": "Not decided"
+        },
+        {
+          "label": "Implementation effect",
+          "value": "Blocks only the affected decision or execution scope"
+        }
+      ],
+      "rules": [
+        "Do not infer an answer from calendar dates, legacy labels or adjacent provisional records.",
+        "When decided, create or update the controlling decision and propagate it before closing this question."
+      ],
+      "dependencies": [
+        "Document registry",
+        "Affected technical/legal/plan records"
+      ],
+      "gaps": [
+        "Decision and closure evidence not recorded."
+      ],
+      "source": "Phase 5 open-question register"
+    },
+    {
+      "id": "QUESTION-03",
+      "type": "open-question",
+      "title": "Provider production approval",
+      "domain": "Open questions",
+      "status": "open",
+      "summary": "Which providers have current official pricing, sandbox proof, contracts/support terms and production approval?",
+      "facts": [
+        {
+          "label": "Question",
+          "value": "Which providers have current official pricing, sandbox proof, contracts/support terms and production approval?"
+        },
+        {
+          "label": "Decision owner",
+          "value": "Infrastructure, Backend and Finance"
+        },
+        {
+          "label": "Approver",
+          "value": "Required subject-matter authority"
+        },
+        {
+          "label": "Decision date",
+          "value": "Not decided"
+        },
+        {
+          "label": "Implementation effect",
+          "value": "Blocks only the affected decision or execution scope"
+        }
+      ],
+      "rules": [
+        "Do not infer an answer from calendar dates, legacy labels or adjacent provisional records.",
+        "When decided, create or update the controlling decision and propagate it before closing this question."
+      ],
+      "dependencies": [
+        "Document registry",
+        "Affected technical/legal/plan records"
+      ],
+      "gaps": [
+        "Decision and closure evidence not recorded."
+      ],
+      "source": "Phase 5 open-question register"
+    },
+    {
+      "id": "QUESTION-04",
+      "type": "open-question",
+      "title": "Design source of record",
+      "domain": "Open questions",
+      "status": "open",
+      "summary": "Which Figma file/version is the reviewed implementation source for every MVP surface?",
+      "facts": [
+        {
+          "label": "Question",
+          "value": "Which Figma file/version is the reviewed implementation source for every MVP surface?"
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product and Design"
+        },
+        {
+          "label": "Approver",
+          "value": "Required subject-matter authority"
+        },
+        {
+          "label": "Decision date",
+          "value": "Not decided"
+        },
+        {
+          "label": "Implementation effect",
+          "value": "Blocks only the affected decision or execution scope"
+        }
+      ],
+      "rules": [
+        "Do not infer an answer from calendar dates, legacy labels or adjacent provisional records.",
+        "When decided, create or update the controlling decision and propagate it before closing this question."
+      ],
+      "dependencies": [
+        "Document registry",
+        "Affected technical/legal/plan records"
+      ],
+      "gaps": [
+        "Decision and closure evidence not recorded."
+      ],
+      "source": "Phase 5 open-question register"
+    },
+    {
+      "id": "QUESTION-05",
+      "type": "open-question",
+      "title": "Provisional DTO/schema closure",
+      "domain": "Open questions",
+      "status": "open",
+      "summary": "Which Phase 4 contract and model gaps must close before the first integration stage begins?",
+      "facts": [
+        {
+          "label": "Question",
+          "value": "Which Phase 4 contract and model gaps must close before the first integration stage begins?"
+        },
+        {
+          "label": "Decision owner",
+          "value": "Backend Lead and consumer teams"
+        },
+        {
+          "label": "Approver",
+          "value": "Required subject-matter authority"
+        },
+        {
+          "label": "Decision date",
+          "value": "Not decided"
+        },
+        {
+          "label": "Implementation effect",
+          "value": "Blocks only the affected decision or execution scope"
+        }
+      ],
+      "rules": [
+        "Do not infer an answer from calendar dates, legacy labels or adjacent provisional records.",
+        "When decided, create or update the controlling decision and propagate it before closing this question."
+      ],
+      "dependencies": [
+        "Document registry",
+        "Affected technical/legal/plan records"
+      ],
+      "gaps": [
+        "Decision and closure evidence not recorded."
+      ],
+      "source": "Phase 5 open-question register"
+    },
+    {
+      "id": "QUESTION-06",
+      "type": "open-question",
+      "title": "Active delivery context",
+      "domain": "Open questions",
+      "status": "open",
+      "summary": "Which delivery stage, team week and day is active for implementation?",
+      "facts": [
+        {
+          "label": "Question",
+          "value": "Which delivery stage, team week and day is active for implementation?"
+        },
+        {
+          "label": "Decision owner",
+          "value": "Project Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Required subject-matter authority"
+        },
+        {
+          "label": "Decision date",
+          "value": "Not decided"
+        },
+        {
+          "label": "Implementation effect",
+          "value": "Blocks only the affected decision or execution scope"
+        }
+      ],
+      "rules": [
+        "Do not infer an answer from calendar dates, legacy labels or adjacent provisional records.",
+        "When decided, create or update the controlling decision and propagate it before closing this question."
+      ],
+      "dependencies": [
+        "Document registry",
+        "Affected technical/legal/plan records"
+      ],
+      "gaps": [
+        "Decision and closure evidence not recorded."
+      ],
+      "source": "Phase 5 open-question register"
+    },
+    {
+      "id": "DECISION-PRODUCT-01",
+      "type": "decision",
+      "title": "Authentication providers",
+      "domain": "Product decisions",
+      "status": "accepted",
+      "summary": "Google and Apple are allowed for MVP where implemented; Facebook login is excluded.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Authentication providers"
+        },
+        {
+          "label": "Decision",
+          "value": "Google and Apple are allowed for MVP where implemented; Facebook login is excluded."
+        },
+        {
+          "label": "Reason",
+          "value": "Preserve approved MVP scope, security, consistency and focused reading."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Deferred or excluded alternatives require a new governed decision before use."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository owner / accepted project direction"
+        },
+        {
+          "label": "Decision date",
+          "value": "Recorded by 18 July 2026"
+        },
+        {
+          "label": "Affected scope",
+          "value": "Identity flows and screens"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Documented; implementation evidence remains task/release specific"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Approved flows, Phase 3 plans and Phase 4 technical records as applicable"
+        }
+      ],
+      "rules": [
+        "Do not silently reopen or contradict an accepted decision.",
+        "A change updates the decision first, then every affected source, output, plan and QA record."
+      ],
+      "dependencies": [
+        "Identity flows and screens",
+        "Document registry",
+        "Review log"
+      ],
+      "gaps": [],
+      "source": "AGENTS.md, approved flows and repository-owner direction"
+    },
+    {
+      "id": "DECISION-PRODUCT-02",
+      "type": "decision",
+      "title": "Tasker KYC path",
+      "domain": "Product decisions",
+      "status": "accepted",
+      "summary": "Tasker KYC uses Smile ID NIN/BVN and biometric verification. Generic document upload is not the primary MVP path.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Tasker KYC path"
+        },
+        {
+          "label": "Decision",
+          "value": "Tasker KYC uses Smile ID NIN/BVN and biometric verification. Generic document upload is not the primary MVP path."
+        },
+        {
+          "label": "Reason",
+          "value": "Preserve approved MVP scope, security, consistency and focused reading."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Deferred or excluded alternatives require a new governed decision before use."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository owner / accepted project direction"
+        },
+        {
+          "label": "Decision date",
+          "value": "Recorded by 18 July 2026"
+        },
+        {
+          "label": "Affected scope",
+          "value": "KYC flows, screens, contracts and data"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Documented; implementation evidence remains task/release specific"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Approved flows, Phase 3 plans and Phase 4 technical records as applicable"
+        }
+      ],
+      "rules": [
+        "Do not silently reopen or contradict an accepted decision.",
+        "A change updates the decision first, then every affected source, output, plan and QA record."
+      ],
+      "dependencies": [
+        "KYC flows, screens, contracts and data",
+        "Document registry",
+        "Review log"
+      ],
+      "gaps": [],
+      "source": "AGENTS.md, approved flows and repository-owner direction"
+    },
+    {
+      "id": "DECISION-PRODUCT-03",
+      "type": "decision",
+      "title": "MVP task categories",
+      "domain": "Product decisions",
+      "status": "accepted",
+      "summary": "Use Home, Errands, Office and Support.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "MVP task categories"
+        },
+        {
+          "label": "Decision",
+          "value": "Use Home, Errands, Office and Support."
+        },
+        {
+          "label": "Reason",
+          "value": "Preserve approved MVP scope, security, consistency and focused reading."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Deferred or excluded alternatives require a new governed decision before use."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository owner / accepted project direction"
+        },
+        {
+          "label": "Decision date",
+          "value": "Recorded by 18 July 2026"
+        },
+        {
+          "label": "Affected scope",
+          "value": "Catalog, task creation, screens and seed data"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Documented; implementation evidence remains task/release specific"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Approved flows, Phase 3 plans and Phase 4 technical records as applicable"
+        }
+      ],
+      "rules": [
+        "Do not silently reopen or contradict an accepted decision.",
+        "A change updates the decision first, then every affected source, output, plan and QA record."
+      ],
+      "dependencies": [
+        "Catalog, task creation, screens and seed data",
+        "Document registry",
+        "Review log"
+      ],
+      "gaps": [],
+      "source": "AGENTS.md, approved flows and repository-owner direction"
+    },
+    {
+      "id": "DECISION-PRODUCT-04",
+      "type": "decision",
+      "title": "Payment experience",
+      "domain": "Product decisions",
+      "status": "accepted",
+      "summary": "Use cardless-first Paystack and Moniepoint flows; card-entry-first UX is excluded.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Payment experience"
+        },
+        {
+          "label": "Decision",
+          "value": "Use cardless-first Paystack and Moniepoint flows; card-entry-first UX is excluded."
+        },
+        {
+          "label": "Reason",
+          "value": "Preserve approved MVP scope, security, consistency and focused reading."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Deferred or excluded alternatives require a new governed decision before use."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository owner / accepted project direction"
+        },
+        {
+          "label": "Decision date",
+          "value": "Recorded by 18 July 2026"
+        },
+        {
+          "label": "Affected scope",
+          "value": "Payment flows, screens, providers and contracts"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Documented; implementation evidence remains task/release specific"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Approved flows, Phase 3 plans and Phase 4 technical records as applicable"
+        }
+      ],
+      "rules": [
+        "Do not silently reopen or contradict an accepted decision.",
+        "A change updates the decision first, then every affected source, output, plan and QA record."
+      ],
+      "dependencies": [
+        "Payment flows, screens, providers and contracts",
+        "Document registry",
+        "Review log"
+      ],
+      "gaps": [],
+      "source": "AGENTS.md, approved flows and repository-owner direction"
+    },
+    {
+      "id": "DECISION-PRODUCT-05",
+      "type": "decision",
+      "title": "Tasker acceptance",
+      "domain": "Product decisions",
+      "status": "accepted",
+      "summary": "Taskers do not auto-accept tasks.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Tasker acceptance"
+        },
+        {
+          "label": "Decision",
+          "value": "Taskers do not auto-accept tasks."
+        },
+        {
+          "label": "Reason",
+          "value": "Preserve approved MVP scope, security, consistency and focused reading."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Deferred or excluded alternatives require a new governed decision before use."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository owner / accepted project direction"
+        },
+        {
+          "label": "Decision date",
+          "value": "Recorded by 18 July 2026"
+        },
+        {
+          "label": "Affected scope",
+          "value": "Availability, matching and task execution"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Documented; implementation evidence remains task/release specific"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Approved flows, Phase 3 plans and Phase 4 technical records as applicable"
+        }
+      ],
+      "rules": [
+        "Do not silently reopen or contradict an accepted decision.",
+        "A change updates the decision first, then every affected source, output, plan and QA record."
+      ],
+      "dependencies": [
+        "Availability, matching and task execution",
+        "Document registry",
+        "Review log"
+      ],
+      "gaps": [],
+      "source": "AGENTS.md, approved flows and repository-owner direction"
+    },
+    {
+      "id": "DECISION-PRODUCT-06",
+      "type": "decision",
+      "title": "Admin task intervention",
+      "domain": "Product decisions",
+      "status": "accepted",
+      "summary": "Admin may force-cancel under policy but cannot reassign or select a replacement Tasker.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Admin task intervention"
+        },
+        {
+          "label": "Decision",
+          "value": "Admin may force-cancel under policy but cannot reassign or select a replacement Tasker."
+        },
+        {
+          "label": "Reason",
+          "value": "Preserve approved MVP scope, security, consistency and focused reading."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Deferred or excluded alternatives require a new governed decision before use."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository owner / accepted project direction"
+        },
+        {
+          "label": "Decision date",
+          "value": "Recorded by 18 July 2026"
+        },
+        {
+          "label": "Affected scope",
+          "value": "Admin task operations, audit and QA"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Documented; implementation evidence remains task/release specific"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Approved flows, Phase 3 plans and Phase 4 technical records as applicable"
+        }
+      ],
+      "rules": [
+        "Do not silently reopen or contradict an accepted decision.",
+        "A change updates the decision first, then every affected source, output, plan and QA record."
+      ],
+      "dependencies": [
+        "Admin task operations, audit and QA",
+        "Document registry",
+        "Review log"
+      ],
+      "gaps": [],
+      "source": "AGENTS.md, approved flows and repository-owner direction"
+    },
+    {
+      "id": "RISK-01",
+      "type": "risk",
+      "title": "Incomplete contract schemas",
+      "domain": "Risk register",
+      "status": "open",
+      "summary": "Provisional request/response DTO gaps can block consumer/backend integration.",
+      "facts": [
+        {
+          "label": "Severity",
+          "value": "High"
+        },
+        {
+          "label": "Owner",
+          "value": "Backend Lead"
+        },
+        {
+          "label": "Mitigation",
+          "value": "Close Phase 4 contract gaps and rerun contract suites."
+        },
+        {
+          "label": "Release effect",
+          "value": "Requires named acceptance or closure evidence"
+        }
+      ],
+      "rules": [
+        "Record current evidence, residual risk, owner and next review.",
+        "Do not mark closed because documentation exists; link verification evidence."
+      ],
+      "dependencies": [
+        "QA and Release Assurance",
+        "Affected decision and technical records"
+      ],
+      "gaps": [
+        "Current mitigation evidence and residual-risk acceptance are not attached."
+      ],
+      "source": "Phase 5 consolidated risk register"
+    },
+    {
+      "id": "RISK-02",
+      "type": "risk",
+      "title": "Provider capability or pricing drift",
+      "domain": "Risk register",
+      "status": "open",
+      "summary": "Unverified provider terms can cause failed launch behavior or uncontrolled cost.",
+      "facts": [
+        {
+          "label": "Severity",
+          "value": "High"
+        },
+        {
+          "label": "Owner",
+          "value": "Infrastructure and Finance"
+        },
+        {
+          "label": "Mitigation",
+          "value": "Use official dated evidence, sandbox proof, cost guards and disablement."
+        },
+        {
+          "label": "Release effect",
+          "value": "Requires named acceptance or closure evidence"
+        }
+      ],
+      "rules": [
+        "Record current evidence, residual risk, owner and next review.",
+        "Do not mark closed because documentation exists; link verification evidence."
+      ],
+      "dependencies": [
+        "QA and Release Assurance",
+        "Affected decision and technical records"
+      ],
+      "gaps": [
+        "Current mitigation evidence and residual-risk acceptance are not attached."
+      ],
+      "source": "Phase 5 consolidated risk register"
+    },
+    {
+      "id": "RISK-03",
+      "type": "risk",
+      "title": "Legal wording not approved",
+      "domain": "Risk register",
+      "status": "open",
+      "summary": "Draft policy may not meet legal, privacy or consumer-protection obligations.",
+      "facts": [
+        {
+          "label": "Severity",
+          "value": "Critical"
+        },
+        {
+          "label": "Owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Mitigation",
+          "value": "Qualified Legal and Privacy review before publication or enforcement."
+        },
+        {
+          "label": "Release effect",
+          "value": "Blocks Go/No-Go until controlled and evidenced"
+        }
+      ],
+      "rules": [
+        "Record current evidence, residual risk, owner and next review.",
+        "Do not mark closed because documentation exists; link verification evidence."
+      ],
+      "dependencies": [
+        "QA and Release Assurance",
+        "Affected decision and technical records"
+      ],
+      "gaps": [
+        "Current mitigation evidence and residual-risk acceptance are not attached."
+      ],
+      "source": "Phase 5 consolidated risk register"
+    },
+    {
+      "id": "RISK-04",
+      "type": "risk",
+      "title": "Backup without restore evidence",
+      "domain": "Risk register",
+      "status": "open",
+      "summary": "A successful backup job may still be unusable during recovery.",
+      "facts": [
+        {
+          "label": "Severity",
+          "value": "Critical"
+        },
+        {
+          "label": "Owner",
+          "value": "Infrastructure Lead"
+        },
+        {
+          "label": "Mitigation",
+          "value": "Isolated restore drill with verified finance/audit records."
+        },
+        {
+          "label": "Release effect",
+          "value": "Blocks Go/No-Go until controlled and evidenced"
+        }
+      ],
+      "rules": [
+        "Record current evidence, residual risk, owner and next review.",
+        "Do not mark closed because documentation exists; link verification evidence."
+      ],
+      "dependencies": [
+        "QA and Release Assurance",
+        "Affected decision and technical records"
+      ],
+      "gaps": [
+        "Current mitigation evidence and residual-risk acceptance are not attached."
+      ],
+      "source": "Phase 5 consolidated risk register"
+    },
+    {
+      "id": "RISK-05",
+      "type": "risk",
+      "title": "Sensitive-data exposure",
+      "domain": "Risk register",
+      "status": "open",
+      "summary": "KYC, location, phone, media or payment information may leak through UI, logs or tooling.",
+      "facts": [
+        {
+          "label": "Severity",
+          "value": "Critical"
+        },
+        {
+          "label": "Owner",
+          "value": "Security Lead"
+        },
+        {
+          "label": "Mitigation",
+          "value": "Permission, minimization, scrubbing and exposure tests."
+        },
+        {
+          "label": "Release effect",
+          "value": "Blocks Go/No-Go until controlled and evidenced"
+        }
+      ],
+      "rules": [
+        "Record current evidence, residual risk, owner and next review.",
+        "Do not mark closed because documentation exists; link verification evidence."
+      ],
+      "dependencies": [
+        "QA and Release Assurance",
+        "Affected decision and technical records"
+      ],
+      "gaps": [
+        "Current mitigation evidence and residual-risk acceptance are not attached."
+      ],
+      "source": "Phase 5 consolidated risk register"
+    },
+    {
+      "id": "RISK-06",
+      "type": "risk",
+      "title": "Design/source divergence",
+      "domain": "Risk register",
+      "status": "open",
+      "summary": "Figma or UI copy may reintroduce excluded payment, KYC, category, auth or reassignment behavior.",
+      "facts": [
+        {
+          "label": "Severity",
+          "value": "High"
+        },
+        {
+          "label": "Owner",
+          "value": "Product and Design"
+        },
+        {
+          "label": "Mitigation",
+          "value": "Link exact design version and complete propagation review."
+        },
+        {
+          "label": "Release effect",
+          "value": "Requires named acceptance or closure evidence"
+        }
+      ],
+      "rules": [
+        "Record current evidence, residual risk, owner and next review.",
+        "Do not mark closed because documentation exists; link verification evidence."
+      ],
+      "dependencies": [
+        "QA and Release Assurance",
+        "Affected decision and technical records"
+      ],
+      "gaps": [
+        "Current mitigation evidence and residual-risk acceptance are not attached."
+      ],
+      "source": "Phase 5 consolidated risk register"
+    },
+    {
+      "id": "DECISION-TECH-01",
+      "type": "decision",
+      "title": "User mode field",
+      "domain": "Technical decisions",
+      "status": "accepted",
+      "summary": "Use mode. The activeMode field is forbidden.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "User mode field"
+        },
+        {
+          "label": "Decision",
+          "value": "Use mode. The activeMode field is forbidden."
+        },
+        {
+          "label": "Reason",
+          "value": "Preserve approved MVP scope, security, consistency and focused reading."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Deferred or excluded alternatives require a new governed decision before use."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository owner / accepted project direction"
+        },
+        {
+          "label": "Decision date",
+          "value": "Recorded by 18 July 2026"
+        },
+        {
+          "label": "Affected scope",
+          "value": "Mobile state, API and data model"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Documented; implementation evidence remains task/release specific"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Approved flows, Phase 3 plans and Phase 4 technical records as applicable"
+        }
+      ],
+      "rules": [
+        "Do not silently reopen or contradict an accepted decision.",
+        "A change updates the decision first, then every affected source, output, plan and QA record."
+      ],
+      "dependencies": [
+        "Mobile state, API and data model",
+        "Document registry",
+        "Review log"
+      ],
+      "gaps": [],
+      "source": "AGENTS.md, approved flows and repository-owner direction"
+    },
+    {
+      "id": "DECISION-TECH-02",
+      "type": "decision",
+      "title": "Direct offers",
+      "domain": "Technical decisions",
+      "status": "accepted",
+      "summary": "Direct offers use REST and notifications, not sockets.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Direct offers"
+        },
+        {
+          "label": "Decision",
+          "value": "Direct offers use REST and notifications, not sockets."
+        },
+        {
+          "label": "Reason",
+          "value": "Preserve approved MVP scope, security, consistency and focused reading."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Deferred or excluded alternatives require a new governed decision before use."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository owner / accepted project direction"
+        },
+        {
+          "label": "Decision date",
+          "value": "Recorded by 18 July 2026"
+        },
+        {
+          "label": "Affected scope",
+          "value": "Matching contracts and mobile flows"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Documented; implementation evidence remains task/release specific"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Approved flows, Phase 3 plans and Phase 4 technical records as applicable"
+        }
+      ],
+      "rules": [
+        "Do not silently reopen or contradict an accepted decision.",
+        "A change updates the decision first, then every affected source, output, plan and QA record."
+      ],
+      "dependencies": [
+        "Matching contracts and mobile flows",
+        "Document registry",
+        "Review log"
+      ],
+      "gaps": [],
+      "source": "AGENTS.md, approved flows and repository-owner direction"
+    },
+    {
+      "id": "DECISION-TECH-03",
+      "type": "decision",
+      "title": "Dispute interaction",
+      "domain": "Technical decisions",
+      "status": "accepted",
+      "summary": "Disputes use structured reports and review, not live chat.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Dispute interaction"
+        },
+        {
+          "label": "Decision",
+          "value": "Disputes use structured reports and review, not live chat."
+        },
+        {
+          "label": "Reason",
+          "value": "Preserve approved MVP scope, security, consistency and focused reading."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Deferred or excluded alternatives require a new governed decision before use."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository owner / accepted project direction"
+        },
+        {
+          "label": "Decision date",
+          "value": "Recorded by 18 July 2026"
+        },
+        {
+          "label": "Affected scope",
+          "value": "Reports, support and Admin review"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Documented; implementation evidence remains task/release specific"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Approved flows, Phase 3 plans and Phase 4 technical records as applicable"
+        }
+      ],
+      "rules": [
+        "Do not silently reopen or contradict an accepted decision.",
+        "A change updates the decision first, then every affected source, output, plan and QA record."
+      ],
+      "dependencies": [
+        "Reports, support and Admin review",
+        "Document registry",
+        "Review log"
+      ],
+      "gaps": [],
+      "source": "AGENTS.md, approved flows and repository-owner direction"
+    },
+    {
+      "id": "DECISION-TECH-04",
+      "type": "decision",
+      "title": "Payment truth",
+      "domain": "Technical decisions",
+      "status": "accepted",
+      "summary": "Frontend redirects never prove final payment; verified backend/provider evidence controls state.",
+      "facts": [
+        {
+          "label": "Question or conflict",
+          "value": "Payment truth"
+        },
+        {
+          "label": "Decision",
+          "value": "Frontend redirects never prove final payment; verified backend/provider evidence controls state."
+        },
+        {
+          "label": "Reason",
+          "value": "Preserve approved MVP scope, security, consistency and focused reading."
+        },
+        {
+          "label": "Trade-off",
+          "value": "Deferred or excluded alternatives require a new governed decision before use."
+        },
+        {
+          "label": "Decision owner",
+          "value": "Product Lead"
+        },
+        {
+          "label": "Approver",
+          "value": "Repository owner / accepted project direction"
+        },
+        {
+          "label": "Decision date",
+          "value": "Recorded by 18 July 2026"
+        },
+        {
+          "label": "Affected scope",
+          "value": "Payment, ledger, escrow and reconciliation"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Documented; implementation evidence remains task/release specific"
+        },
+        {
+          "label": "Closure evidence",
+          "value": "Approved flows, Phase 3 plans and Phase 4 technical records as applicable"
+        }
+      ],
+      "rules": [
+        "Do not silently reopen or contradict an accepted decision.",
+        "A change updates the decision first, then every affected source, output, plan and QA record."
+      ],
+      "dependencies": [
+        "Payment, ledger, escrow and reconciliation",
+        "Document registry",
+        "Review log"
+      ],
+      "gaps": [],
+      "source": "AGENTS.md, approved flows and repository-owner direction"
+    }
+  ]
+}

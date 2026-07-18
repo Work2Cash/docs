@@ -895,7 +895,7 @@ Phase 0 is **complete**. Formal approval of legacy content, active-week selectio
 - [x] Phase 1 technical/product decision defines the `KycAttempt` schema, relationship, lifecycle, constraints and migration sequence.
 - [x] Reviewer decision packet created in `logs/phase-1-af04-review-signoff.md`.
 - [x] Product, Technical, Risk/Compliance, Backend, Data, Admin, Security/Privacy and QA approvals recorded for the v0.2 AF-04 pilot set.
-- [ ] Phase 4 merges the accepted pilot contracts and KYC models into the general API/OpenAPI and Prisma sources.
+- [x] Phase 4 merges the accepted pilot contracts and KYC models into the general API/OpenAPI and data-model references.
 - [x] External non-technical usability session completed and acceptance recorded in `logs/phase-1-pilot-usability-review.md`.
 - [x] External junior-developer usability session completed and acceptance recorded in `logs/phase-1-pilot-usability-review.md`.
 
@@ -1002,19 +1002,48 @@ require owner or subject-matter approval.
 
 ## Phase 5: QA, Legal and Governance Migration
 
-- [ ] Convert QA checklists into traceable executable test cases.
-- [ ] Create the release evidence register.
-- [ ] Split public legal policies.
-- [ ] Create the legal compliance matrix.
-- [ ] Complete decision and review registers.
-- [ ] Define subject-matter review requirements.
+- [x] Consolidate the human reading surface into four pages: one index and three focused registers.
+- [x] Consolidate agent context into three focused packs rather than creating one file per test, clause, decision, risk or question.
+- [x] Convert the legacy QA checklist into 102 traceable, executable assurance records.
+- [x] Cover all 48 main flows with acceptance suites and add contract, provider, security/recovery and release-gate records.
+- [x] Create eight release gates with explicit evidence and ownership requirements.
+- [x] Consolidate 48 internal legal clauses into one compliance work surface.
+- [x] Keep every migrated legal clause non-effective and marked `legal-review-required`.
+- [x] Link legal reviewers to official statutory reference points without treating those links as legal interpretation or approval.
+- [x] Consolidate 43 decisions, six open questions and six risks into one governed register.
+- [x] Define subject-matter review, propagation and evidence requirements at record level.
+- [x] Freeze the three legacy Phase 5 packs as superseded migration evidence.
+- [x] Add deterministic generation and CI drift validation.
 
 ### Phase 5 exit criteria
 
-- [ ] Every main flow has traceable acceptance tests.
-- [ ] Every launch decision references evidence.
-- [ ] Public policies match actual product behavior.
-- [ ] Every active document has completed governance metadata.
+- [x] Every main flow has a traceable acceptance suite.
+- [x] Every release gate names required evidence and remains Not Run until that evidence exists.
+- [x] Every legal clause maps requirements, dependencies, reviewers and evidence while remaining internal and non-effective.
+- [x] Accepted decisions, propagation work, open questions and risks are independently linkable.
+- [x] Every Phase 5 source family has owner, reviewers, lifecycle, authority and review metadata.
+- [x] The normal portal exposes only four Phase 5 human pages and three focused agent packs.
+- [ ] QA executes the applicable suites and records evidence.
+- [ ] Qualified Legal and Privacy reviewers approve corrected public wording and an effective date.
+- [ ] Authorized owners resolve open decisions and risks required for release.
+- [ ] The release authority records a go/no-go decision against completed gates.
+
+### Phase 5 implementation evidence — 18 July 2026
+
+- [x] Three canonical source families created in `content/assurance/`.
+- [x] Four human pages generated in `documents/assurance/`: index, QA and Release, Legal and Compliance, and Decisions and Governance.
+- [x] Three clean agent packs generated in `documents/agent-md/assurance/`; no decorative HTML is allowed.
+- [x] 205 independently linkable records generated inside the seven readable files rather than as separate documents.
+- [x] QA coverage includes 48 main-flow suites, 17 contract suites, 20 provider suites, nine security/recovery/manual assurance suites and eight release gates.
+- [x] All 102 QA/release records remain `not-run`; migration records structure, not test completion.
+- [x] All 48 legal clauses remain `legal-review-required`, with no effective date and no public-policy export.
+- [x] Decision governance includes 43 decisions, six open questions and six risks; accepted decisions with incomplete propagation remain visibly marked.
+- [x] Registry, portal, AGENTS instructions and GitHub Pages CI updated for the focused Phase 5 reading path.
+
+Phase 5 migration implementation is **complete and in review**. This status means
+the assurance material is now readable, traceable and governed. It does not mean
+QA has passed, legal wording is approved or effective, open governance work is
+closed, or release has been authorized.
 
 ## Phase 6: Portal and Generation Completion
 
@@ -1102,8 +1131,8 @@ The restructuring is complete only when all of the following are true:
 | Phase 1 - Templates and pilots | Complete | Product + Technical Lead | 17 Jul 2026 | Approved reference format and five pilot sources ready for Phase 2 migration |
 | Phase 2 - Flow migration | Complete | Product + Team Leads | 17 Jul 2026 | All 72 standalone flows active; legacy combined catalogues superseded |
 | Phase 3 - Execution planning | Complete | Project + Technical Lead | 17 Jul 2026 | 25 canonical team-week sources containing 125 task records; 25 team-week agent packs with 125 embedded prompts |
-| Phase 4 - Technical references | Not started | Technical Lead + Engineers | TBD | Contracts, models, providers and infrastructure |
-| Phase 5 - QA, legal and governance | Not started | QA + Legal + Leads | TBD | Evidence and approval maturity |
+| Phase 4 - Technical references | Complete; in review | Technical Lead + Engineers | 17 Jul 2026 | Five human pages, four agent packs, OpenAPI and 342 anchored technical records |
+| Phase 5 - QA, legal and governance | Complete; in review | QA + Legal + Leads | 18 Jul 2026 | Four human pages, three agent packs and 205 anchored assurance records; execution and approvals remain pending |
 | Phase 6 - Portal and generation | Not started | Technical Lead | TBD | Final outputs and validation |
 
 ## Review Notes

@@ -34,7 +34,12 @@
     const targetId = decodeURIComponent(window.location.hash.slice(1));
     if (!targetId) return;
     const target = document.getElementById(targetId);
-    if (target?.matches("details")) target.open = true;
+    if (target?.matches("details")) {
+      if (search) search.value = "";
+      if (domain) domain.value = "";
+      applyFilters();
+      target.open = true;
+    }
   }
 
   search?.addEventListener("input", applyFilters);

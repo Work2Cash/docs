@@ -270,19 +270,19 @@
         "Backend Lead"
       ],
       "version": "1",
-      "status": "in-review",
+      "status": "superseded",
       "approval": "pending",
       "publication": "published",
       "lastReviewed": null,
       "nextReview": null,
       "authority": "Main Enterprise Architecture v1 and approved decisions",
-      "artifactClass": "legacy-transitional-source",
+      "artifactClass": "legacy-derived-frozen",
       "currentSource": "documents/flow-alignment-review-v1.html",
       "artifacts": [
         "documents/agent-md/flow-alignment-review-v1.md"
       ],
       "migrationPhase": "Phase 5",
-      "notes": "Provisional decision tracker until decisions are moved into governed records.",
+      "notes": "Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 Decisions and Governance for current accepted decisions, propagation work, open questions and risks.",
       "supersedes": null,
       "tags": [
         "decision-review"
@@ -305,19 +305,19 @@
         "Privacy reviewer"
       ],
       "version": "1",
-      "status": "in-review",
+      "status": "superseded",
       "approval": "pending",
       "publication": "published",
       "lastReviewed": null,
       "nextReview": null,
       "authority": "Applicable law and formally approved product policy",
-      "artifactClass": "legacy-transitional-source",
+      "artifactClass": "legacy-derived-frozen",
       "currentSource": "documents/legal_user_facing_documents_pack_v1.html",
       "artifacts": [
         "documents/agent-md/legal_user_facing_documents_pack_v1.md"
       ],
       "migrationPhase": "Phase 5",
-      "notes": "Publication is not legal approval; subject-matter review remains required.",
+      "notes": "Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 Legal and Compliance. Migrated clauses remain internal, non-effective and subject to qualified legal and privacy review.",
       "supersedes": null,
       "tags": [
         "legal"
@@ -608,19 +608,19 @@
         "Operations"
       ],
       "version": "1",
-      "status": "in-review",
+      "status": "superseded",
       "approval": "pending",
       "publication": "published",
       "lastReviewed": null,
       "nextReview": null,
       "authority": "Approved product scope, contracts and release policy",
-      "artifactClass": "legacy-transitional-source",
+      "artifactClass": "legacy-derived-frozen",
       "currentSource": "documents/qa-go-live-readiness-checklist-v1.html",
       "artifacts": [
         "documents/agent-md/qa-go-live-readiness-checklist-v1.md"
       ],
       "migrationPhase": "Phase 5",
-      "notes": "Checklist publication does not mean release gates have passed.",
+      "notes": "Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 QA and Release Assurance. Migration does not mark any test or release gate passed.",
       "supersedes": null,
       "tags": [
         "qa-release"
@@ -1134,6 +1134,72 @@
         "providers",
         "screens",
         "phase-4"
+      ]
+    },
+    {
+      "id": "ASSURANCE-LIB-001",
+      "title": "Phase 5 Consolidated Assurance and Governance Library",
+      "type": "assurance-governance-migration",
+      "audience": [
+        "Product",
+        "Legal",
+        "Privacy",
+        "QA",
+        "Operations",
+        "Mobile",
+        "Admin",
+        "Backend",
+        "Infrastructure",
+        "AI agents"
+      ],
+      "owner": "Technical Lead",
+      "reviewers": [
+        "QA Lead",
+        "Product Lead",
+        "Qualified Legal reviewer",
+        "Privacy reviewer",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "Infrastructure Lead",
+        "Operations"
+      ],
+      "version": "1.0",
+      "status": "in-review",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": "2026-07-18",
+      "nextReview": "2026-10-18",
+      "authority": "Approved sources, qualified legal authority and evidence-based release governance; record-level statuses preserve pending work",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/assurance/library.json",
+      "artifacts": [
+        "content/assurance/qa-release.json",
+        "content/assurance/legal-compliance.json",
+        "content/assurance/decisions-governance.json",
+        "documents/assurance/index.html",
+        "documents/assurance/qa-release.html",
+        "documents/assurance/legal-compliance.html",
+        "documents/assurance/decisions-governance.html",
+        "documents/agent-md/assurance/qa-release.md",
+        "documents/agent-md/assurance/legal-compliance.md",
+        "documents/agent-md/assurance/decisions-governance.md",
+        "logs/phase-5-execution-log.md",
+        "scripts/bootstrap-phase5-assurance-sources.js",
+        "scripts/generate-assurance-docs.js"
+      ],
+      "migrationPhase": "Phase 5",
+      "notes": "Consolidates QA/release, legal/compliance and decision/governance material into four human pages and three focused agent packs. Its 205 independently linked records are sections within those seven readable files, not standalone required-reading documents. Migration does not pass tests, approve legal wording, authorize release or resolve open decisions.",
+      "supersedes": "FLOW-ALIGN-001, LEGAL-001 and QA-001",
+      "tags": [
+        "assurance",
+        "qa",
+        "release",
+        "legal",
+        "compliance",
+        "decisions",
+        "governance",
+        "phase-5"
       ]
     }
   ]
