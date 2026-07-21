@@ -156,6 +156,7 @@
       color: rgba(255,255,255,0.56);
       font-size: 0.84rem;
     }
+    .cover-footer code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     .confidential {
       display: inline-block;
       border: 1px solid rgba(91,141,239,0.62);
@@ -467,6 +468,7 @@
   </style>
 </head>
 <body>
+  <aside data-phase0-registry role="note" style="padding:10px 18px;background:#fff3df;color:#5f3700;border-bottom:1px solid #e9c46a;font:600 13px/1.5 Arial,sans-serif;text-align:center">Lifecycle: <strong>In Review</strong> · Approval: <strong>Pending</strong> · Owner: <strong>Product Lead</strong> · <a href="./document-registry.html#design-001" style="color:#123b78">View DESIGN-001 in the Document Registry</a></aside>
   <header class="cover">
     <div class="logo-row">
       <div class="logo">W2C</div>
@@ -580,8 +582,6 @@
   .doc-hub-actions {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     gap: 10px;
   }
   .doc-hub-links {
@@ -622,37 +622,13 @@
   @media (max-width: 620px) {
     .doc-hub-nav { padding: 0 16px; }
     .doc-hub-card { border-radius: 14px; padding: 14px; }
-    .doc-hub-top { align-items: center; flex-direction: column; gap: 8px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
     .doc-hub-links { grid-template-columns: 1fr; }
     .team-downloads { padding: 0 16px; }
     .team-downloads-card { border-radius: 14px; padding: 14px; }
   }
 </style>
 
-
-<style id="work2cash-wide-layout">
-  .sticky-inner,
-  main,
-  .footer-inner,
-  .doc-hub-nav,
-  .team-downloads,
-  .cover-inner,
-  footer > div {
-    width: 90%;
-    max-width: none;
-  }
-  @media (max-width: 900px) {
-    .sticky-inner,
-    main,
-    .footer-inner,
-    .doc-hub-nav,
-    .team-downloads,
-    .cover-inner,
-    footer > div {
-      width: 100%;
-    }
-  }
-</style>
 <nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
   <div class="doc-hub-card">
     <div class="doc-hub-top">
@@ -888,7 +864,7 @@
         <div class="flow">
           <div class="node"><strong>Create Task</strong><span>Category, details, checklist, photos, schedule.</span></div>
           <div class="node"><strong>Find Tasker</strong><span>Redis proximity, filtered candidates, ETA batch.</span></div>
-          <div class="node warning-node"><strong>Fund Escrow</strong><span>Virtual account, OPay, USSD, wallet.</span></div>
+          <div class="node warning-node"><strong>Fund Escrow</strong><span>Virtual account, Moniepoint, USSD, wallet.</span></div>
           <div class="node"><strong>Track Work</strong><span>Map, chat, timer, progress checklist.</span></div>
           <div class="node success-node"><strong>Complete</strong><span>Confirm, release funds, rate tasker.</span></div>
         </div>
@@ -955,7 +931,7 @@
             </tr>
             <tr>
               <td>Make payment</td>
-              <td>Bank transfer, virtual account, USSD, OPay, wallet.</td>
+              <td>Bank transfer, virtual account, USSD, Moniepoint, wallet.</td>
               <td>Payment initialization, provider reference, webhook reconciliation.</td>
               <td>Card entry must not be the default path.</td>
             </tr>
@@ -995,7 +971,7 @@
 
       <div class="callout critical">
         <div class="callout-label">Payment UX Correction</div>
-        <p>Any card-looking design should be interpreted as saved funding options, not a forced card form. The default production flow is bank transfer, virtual account, USSD, OPay, and wallet balance.</p>
+        <p>Any card-looking design should be interpreted as saved funding options, not a forced card form. The default production flow is bank transfer, virtual account, USSD, Moniepoint, and wallet balance.</p>
       </div>
     </section>
 
@@ -1030,7 +1006,7 @@
             </tr>
             <tr>
               <td>Availability</td>
-              <td>Days available, working hours, max distance, auto-accept.</td>
+              <td>Days available, working hours, maximum travel distance and preferred categories; auto-accept is excluded.</td>
               <td>Availability schedule, service radius, task matching filters.</td>
               <td><span class="pill pill-blue">MVP</span></td>
             </tr>
@@ -1167,8 +1143,8 @@
               <td>Operations</td>
             </tr>
             <tr>
-              <td>Force cancel / reassign</td>
-              <td>Admin cancels or reassigns problematic tasks.</td>
+              <td>Controlled force cancel</td>
+              <td>Admin may force-cancel a task under policy; admin cannot select a replacement Tasker.</td>
               <td>Reason capture, refund/penalty decision, notification.</td>
               <td>Operations Lead</td>
             </tr>
@@ -1266,7 +1242,7 @@ Analytics</code></pre>
           <ul class="checklist">
             <li>Smile ID behind <code>KycProviderPort</code>.</li>
             <li>Google Maps behind <code>RoutingProviderPort</code>.</li>
-            <li>Paystack and OPay behind <code>PaymentProviderPort</code>.</li>
+            <li>Paystack and Moniepoint behind <code>PaymentProviderPort</code>.</li>
             <li>FCM behind <code>PushNotificationPort</code>.</li>
           </ul>
         </div>

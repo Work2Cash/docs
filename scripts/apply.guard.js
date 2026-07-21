@@ -4,6 +4,7 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const PROTECTED_DIRS = ["documents"];
 const REQUIRED_SCRIPT = "guard.js";
+const LEGACY_SCRIPTS = ["auth-guard.js"];
 const GUARD_PATH = path.join(ROOT, "assets", "js", REQUIRED_SCRIPT);
 
 function walk(dir) {
@@ -36,11 +37,28 @@ function secureFile(file) {
   }
 
   const src = getGuardSrc(file);
-  const guardPattern = new RegExp(
-    `\\n\\s*<script\\s+src=["']${src.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']><\\/script>\\s*`,
+  const exactGuardPattern = new RegExp(
+    `<script\\s+src=["']${src.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']><\\/script>`,
     "g"
   );
-  const withoutExistingGuards = html.replace(guardPattern, "\n");
+  const guardPattern = new RegExp(
+    `\\n\\s*<script\\s+src=["'][^"']*${REQUIRED_SCRIPT.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']><\\/script>\\s*`,
+    "g"
+  );
+  const legacyPattern = new RegExp(
+    `\\n\\s*<script\\s+src=["'][^"']*(?:${LEGACY_SCRIPTS.map((script) =>
+      script.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+    ).join("|")})["']><\\/script>\\s*`,
+    "g"
+  );
+  const exactMatches = html.match(exactGuardPattern) || [];
+  const legacyMatches = html.match(legacyPattern) || [];
+
+  if (exactMatches.length === 1 && legacyMatches.length === 0) {
+    return false;
+  }
+
+  const withoutExistingGuards = html.replace(guardPattern, "\n").replace(legacyPattern, "\n");
   const scriptTag = `${headMatch[0]}\n  <script src="${src}"></script>`;
   const updated = withoutExistingGuards.replace(headMatch[0], scriptTag);
 

@@ -1,8 +1,9 @@
 # Admin Flow Catalogue v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `admin-flow-catalogue-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Admin Flow Catalogue v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -72,7 +73,7 @@ Version**1.0**
 
 <div class="cover-foot">
 
-Portal page: Admin Flow Catalogue v1. Protected docs pages must include `guard.js`.
+Portal page: `Admin Flow Catalogue v1` Protected docs pages must include `guard.js`
 
 </div>
 
@@ -10216,7 +10217,7 @@ High-risk changes require reason, permission, and traceable audit records.
 
 **Publishing Rule**
 
-When this page is published in the documentation portal, keep the auth guard script included.
+When this file is added to the documentation portal, place it under Admin Flow Catalogue v1 and keep the auth guard script included.
 
 </div>
 
@@ -10246,7 +10247,7 @@ Admin dashboard only. Mobile flows remain in the separate mobile flow catalogue.
 
 #### Security Note
 
-Do not place secrets, API keys, production credentials or private user data inside the public documentation portal.
+Do not place secrets, API keys, production credentials or private user data inside the documentation portalsitory.
 
 </div>
 

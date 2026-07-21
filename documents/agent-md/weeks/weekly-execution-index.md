@@ -2,6 +2,8 @@
 
 Use these files for focused implementation context. Each weekly pack includes the goal, exit condition, Mobile tasks, Backend tasks, Admin tasks, cross-team dependency rule and AI-agent task template for that week.
 
+> **Lifecycle notice:** No active week is formally recorded in the Document Registry. The Project or Technical Lead must identify the active week. Calendar dates alone do not activate a pack.
+
 ## Weeks
 
 - [Week 1 - Foundation and Identity](./week-01-foundation-identity.md)
@@ -15,12 +17,12 @@ Use these files for focused implementation context. Each weekly pack includes th
 
 ## How To Use With An Agent
 
-Download these from the documentation portal UI and give them to the agent:
+Give the agent:
 
-1. **AGENTS.md Usage Guide** from Team Markdown Downloads.
-2. **Shared Execution Rules** from Team Markdown Downloads.
-3. The relevant team brief from Team Markdown Downloads.
-4. The relevant weekly pack from **Weekly Execution Packs**.
-5. The specific source document downloaded from its portal page.
+1. `documents/downloads/AGENTS.md`
+2. `documents/downloads/shared-ai-agent-execution-rules-v1.md`
+3. The relevant team brief
+4. The relevant weekly pack from this folder
+5. The specific source document needed for the task
 
 Do not use the full source-of-truth Markdown unless the task needs broad cross-document context.

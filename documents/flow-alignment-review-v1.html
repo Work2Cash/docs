@@ -42,6 +42,7 @@
   </style>
 </head>
 <body>
+  <aside data-phase0-registry role="note" style="padding:10px 18px;background:#fff3df;color:#5f3700;border-bottom:1px solid #e9c46a;font:600 13px/1.5 Arial,sans-serif;text-align:center">Lifecycle: <strong>In Review</strong> · Approval: <strong>Pending</strong> · Owner: <strong>Product Lead</strong> · <a href="./document-registry.html#flow-align-001" style="color:#123b78">View FLOW-ALIGN-001 in the Document Registry</a></aside>
   <section class="cover">
     <div class="logo">W2C</div>
     <h1>Flow Alignment Review v1</h1>
@@ -140,8 +141,6 @@
   .doc-hub-actions {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     gap: 10px;
   }
   .doc-hub-links {
@@ -182,37 +181,13 @@
   @media (max-width: 620px) {
     .doc-hub-nav { padding: 0 16px; }
     .doc-hub-card { border-radius: 14px; padding: 14px; }
-    .doc-hub-top { align-items: center; flex-direction: column; gap: 8px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
     .doc-hub-links { grid-template-columns: 1fr; }
     .team-downloads { padding: 0 16px; }
     .team-downloads-card { border-radius: 14px; padding: 14px; }
   }
 </style>
 
-
-<style id="work2cash-wide-layout">
-  .sticky-inner,
-  main,
-  .footer-inner,
-  .doc-hub-nav,
-  .team-downloads,
-  .cover-inner,
-  footer > div {
-    width: 90%;
-    max-width: none;
-  }
-  @media (max-width: 900px) {
-    .sticky-inner,
-    main,
-    .footer-inner,
-    .doc-hub-nav,
-    .team-downloads,
-    .cover-inner,
-    footer > div {
-      width: 100%;
-    }
-  }
-</style>
 <nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
   <div class="doc-hub-card">
     <div class="doc-hub-top">
@@ -242,7 +217,7 @@
       <div class="eyebrow">Section 2</div>
       <h2>Source-of-Truth Corrections</h2>
       <p class="intro">These are corrections needed in the main architecture document so it stays aligned with the accepted decisions and the newer flow catalogues.</p>
-      <div class='table-wrap'><table><thead><tr><th>Priority</th><th>Finding</th><th>Evidence</th><th>Required Correction</th></tr></thead><tbody><tr><td><span class='badge green'>Resolved</span></td><td>Main architecture ETA guard corrected.</td><td>Old 10+ minutes / 25% rule has been replaced.</td><td>Main architecture now uses the ETA Cost Guard: 5-minute guard plus next 10% total-journey milestone, then reset timer/milestone after refresh.</td></tr><tr><td><span class='badge green'>Resolved</span></td><td>Main architecture legal publishing corrected.</td><td>Separate /legal/... page list has been removed from the source-of-truth appendix.</td><td>Main architecture now points to the combined legal pack at documents/legal_user_facing_documents_pack_v1.html.</td></tr><tr><td><span class='badge green'>Resolved</span></td><td>Main architecture documentation governance added.</td><td>GitHub docs repo setup, soft password gate, auth guard, guard checker, PR governance and resource links are now included.</td><td>Main architecture now lists the team-facing resource paths for generated and planned documents.</td></tr><tr><td><span class='badge green'>Resolved</span></td><td>Hetzner source wording corrected.</td><td>Screenshot-baseline wording has been removed.</td><td>Main architecture now states the pricing baseline is confirmed from Hetzner official source while still requiring revalidation before provisioning.</td></tr><tr><td><span class='badge amber'>Open Design</span></td><td>Figma category names differ from accepted category names.</td><td>Figma uses Home-Based, Compound/Outdoor, Office/Shop, Short Term Support/Event Support. Accepted categories are Home, Errands, Office, Support.</td><td>Treat Figma labels as visual references only. Product copy and admin catalog should use Home, Errands, Office, Support.</td></tr></tbody></table></div>
+      <div class='table-wrap'><table><thead><tr><th>Priority</th><th>Finding</th><th>Evidence</th><th>Required Correction</th></tr></thead><tbody><tr><td><span class='badge green'>Resolved</span></td><td>Main architecture ETA guard corrected.</td><td>Old 10+ minutes / 25% rule has been replaced.</td><td>Main architecture now uses the ETA Cost Guard: 5-minute guard plus next 10% total-journey milestone, then reset timer/milestone after refresh.</td></tr><tr><td><span class='badge green'>Resolved</span></td><td>Main architecture legal publishing corrected.</td><td>Separate /legal/... page list has been removed from the source-of-truth appendix.</td><td>Main architecture now points to the combined legal pack at Legal & User-Facing Documents Pack v1.</td></tr><tr><td><span class='badge green'>Resolved</span></td><td>Main architecture documentation governance added.</td><td>GitHub documentation portal setup, soft password gate, auth guard, guard checker, PR governance and resource links are now included.</td><td>Main architecture now lists the team-facing resource paths for generated and planned documents.</td></tr><tr><td><span class='badge green'>Resolved</span></td><td>Production infrastructure baseline corrected.</td><td>Hetzner is no longer available for this project.</td><td>Main architecture now uses DigitalOcean as the active production baseline while Contabo remains staging.</td></tr><tr><td><span class='badge amber'>Open Design</span></td><td>Figma category names differ from accepted category names.</td><td>Figma uses Home-Based, Compound/Outdoor, Office/Shop, Short Term Support/Event Support. Accepted categories are Home, Errands, Office, Support.</td><td>Treat Figma labels as visual references only. Product copy and admin catalog should use Home, Errands, Office, Support.</td></tr></tbody></table></div>
     </section>
     
     
@@ -270,6 +245,6 @@
     </section>
     
   </main>
-  <footer><div>Recommended docs repo path: <code>documents/flow-alignment-review-v1.html</code></div></footer>
+  <footer><div>Portal page: <code>Flow Alignment Review v1</code></div></footer>
 </body>
 </html>

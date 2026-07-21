@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Work2Cash document ownership, lifecycle, approval, authority and artifact registry.">
+  <title>Document Registry | Work2Cash Docs</title>
+  <link rel="stylesheet" href="../assets/css/pilot-docs.css">
+  <script src="../assets/js/guard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to registry</a>
+  <header class="site-header"><a class="brand" href="../index.html">Work2Cash Docs</a><nav aria-label="Document navigation"><a href="../index.html">Portal home</a><a href="./agent-md/document-registry.md" download>Download agent Markdown</a></nav></header>
+  <main id="content" class="index-shell" tabindex="-1">
+    <header class="index-hero"><div class="eyebrow">Governance · Phase 0</div><h1>Document Registry</h1><p>Check ownership, lifecycle, approval and authority before relying on a document. Published does not necessarily mean approved.</p></header>
+    <section class="notice" aria-labelledby="registry-warning"><h2 id="registry-warning">Current authority warning</h2><p>The Main Enterprise Architecture v1 is the designated provisional baseline, but formal approval is pending. Material cross-document conflicts must be resolved before implementation.</p></section>
+    <section class="registry-summary" aria-label="Registry summary"><div><strong>31</strong><span>registered families</span></div><div><strong>9</strong><span>active</span></div><div><strong>10</strong><span>pending approval</span></div><div><strong>15</strong><span>legacy families</span></div></section>
+    <section class="document-content registry-content" aria-labelledby="register-title">
+      <p class="generated-note"><strong>Generated registry:</strong> Edit <code>governance/document-registry.json</code>, not this page.</p>
+      <h2 id="register-title">Registered documents</h2>
+      <div class="table-wrap" tabindex="0"><table class="registry-table"><thead><tr><th scope="col">ID and type</th><th scope="col">Document</th><th scope="col">Lifecycle</th><th scope="col">Ownership</th><th scope="col">Authority and class</th><th scope="col">Files</th><th scope="col">Review</th></tr></thead><tbody><tr id="doc-reg-001">
+      <td><strong>DOC-REG-001</strong><br><span class="registry-type">governance</span></td>
+      <td><strong>Work2Cash Document Registry</strong><p>Machine-readable registry is canonical; Markdown and HTML views are generated.</p></td>
+      <td><span class="status status-active">active</span><br>approved approval<br>published</td>
+      <td>Technical Lead<br><small>Reviewers: Product Lead</small></td>
+      <td>canonical-source<br><small>Documentation governance</small></td>
+      <td><strong>Source</strong><br><a href="../governance/document-registry.json">governance/document-registry.json</a><br><strong>Artifacts</strong><ul><li><a href="../governance/document-registry.md">governance/document-registry.md</a></li><li><a href="../documents/document-registry.html">documents/document-registry.html</a></li><li><a href="../documents/agent-md/document-registry.md">documents/agent-md/document-registry.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="gov-pol-001">
+      <td><strong>GOV-POL-001</strong><br><span class="registry-type">governance</span></td>
+      <td><strong>Documentation Governance Policies</strong><p>Controls editing, lifecycle, authority, versioning and review evidence.</p></td>
+      <td><span class="status status-active">active</span><br>approved approval<br>internal</td>
+      <td>Technical Lead<br><small>Reviewers: Product Lead</small></td>
+      <td>canonical-source<br><small>Documentation governance</small></td>
+      <td><strong>Source</strong><br><a href="../governance/editing-policy.md">governance/editing-policy.md</a><br><strong>Artifacts</strong><ul><li><a href="../governance/versioning-policy.md">governance/versioning-policy.md</a></li><li><a href="../governance/lifecycle-policy.md">governance/lifecycle-policy.md</a></li><li><a href="../governance/review-log.md">governance/review-log.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="agent-guide-001">
+      <td><strong>AGENT-GUIDE-001</strong><br><span class="registry-type">agent-guidance</span></td>
+      <td><strong>Work2Cash AI Agent Repository Instructions</strong><p>Downloaded copy must be byte-identical to the repository source.</p></td>
+      <td><span class="status status-active">active</span><br>approved approval<br>published</td>
+      <td>Technical Lead<br><small>Reviewers: Product Lead, Mobile Lead, Admin Lead, Backend Lead</small></td>
+      <td>canonical-source<br><small>Documentation governance and active product sources</small></td>
+      <td><strong>Source</strong><br><a href="../AGENTS.md">AGENTS.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/downloads/AGENTS.md">documents/downloads/AGENTS.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="arch-001">
+      <td><strong>ARCH-001</strong><br><span class="registry-type">architecture</span></td>
+      <td><strong>Main Enterprise Architecture v1</strong><p>Frozen Phase 4 migration evidence. Use TECH-REF-001 for current architecture and operations reading. Formal approval of the migrated architecture records remains pending.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
+      <td>Technical Lead<br><small>Reviewers: Product Lead, Infrastructure Lead, Security, Finance, Operations</small></td>
+      <td>legacy-derived-frozen<br><small>Designated provisional controlling baseline pending formal approval</small></td>
+      <td><strong>Source</strong><br><a href="../documents/main-enterprise-architecture-v1.html">documents/main-enterprise-architecture-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/main-enterprise-architecture-v1.md">documents/agent-md/main-enterprise-architecture-v1.md</a></li></ul></td>
+      <td>Not recorded<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="design-001">
+      <td><strong>DESIGN-001</strong><br><span class="registry-type">design-map</span></td>
+      <td><strong>Screen To Feature Map v1</strong><p>Frozen Phase 4 migration evidence. Use TECH-REF-001 Screen-to-Feature Reference, where known provider, KYC, category, payment, auto-accept and admin-reassignment drift is corrected and remaining design evidence is marked.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
+      <td>Product Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Admin Lead, Backend Lead</small></td>
+      <td>legacy-derived-frozen<br><small>Main Enterprise Architecture v1</small></td>
+      <td><strong>Source</strong><br><a href="../documents/screen-to-feature-map-v1.html">documents/screen-to-feature-map-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/screen-to-feature-map-v1.md">documents/agent-md/screen-to-feature-map-v1.md</a></li></ul></td>
+      <td>Not recorded<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="flow-mobile-001">
+      <td><strong>FLOW-MOBILE-001</strong><br><span class="registry-type">flow-catalogue</span></td>
+      <td><strong>Mobile Flow Catalogue v1</strong><p>Approved behavior was migrated into 37 standalone mobile flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>approved approval<br>published</td>
+      <td>Product Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Backend Lead, QA</small></td>
+      <td>legacy-transitional-source<br><small>Main Enterprise Architecture v1</small></td>
+      <td><strong>Source</strong><br><a href="../documents/mobile-flow-catalogue-v1.html">documents/mobile-flow-catalogue-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/mobile-flow-catalogue-v1.md">documents/agent-md/mobile-flow-catalogue-v1.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="flow-admin-001">
+      <td><strong>FLOW-ADMIN-001</strong><br><span class="registry-type">flow-catalogue</span></td>
+      <td><strong>Admin Flow Catalogue v1</strong><p>Approved behavior was migrated into 35 standalone admin flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>approved approval<br>published</td>
+      <td>Product Lead<br><small>Reviewers: Technical Lead, Admin Lead, Backend Lead, Operations, QA</small></td>
+      <td>legacy-transitional-source<br><small>Main Enterprise Architecture v1</small></td>
+      <td><strong>Source</strong><br><a href="../documents/admin-flow-catalogue-v1.html">documents/admin-flow-catalogue-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/admin-flow-catalogue-v1.md">documents/agent-md/admin-flow-catalogue-v1.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="flow-align-001">
+      <td><strong>FLOW-ALIGN-001</strong><br><span class="registry-type">decision-review</span></td>
+      <td><strong>Flow Alignment Review v1</strong><p>Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 Decisions and Governance for current accepted decisions, propagation work, open questions and risks.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
+      <td>Product Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Admin Lead, Backend Lead</small></td>
+      <td>legacy-derived-frozen<br><small>Main Enterprise Architecture v1 and approved decisions</small></td>
+      <td><strong>Source</strong><br><a href="../documents/flow-alignment-review-v1.html">documents/flow-alignment-review-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/flow-alignment-review-v1.md">documents/agent-md/flow-alignment-review-v1.md</a></li></ul></td>
+      <td>Not recorded<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="legal-001">
+      <td><strong>LEGAL-001</strong><br><span class="registry-type">legal</span></td>
+      <td><strong>Legal and User-Facing Documents Pack v1</strong><p>Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 Legal and Compliance. Migrated clauses remain internal, non-effective and subject to qualified legal and privacy review.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
+      <td>Product Lead<br><small>Reviewers: Legal reviewer, Technical Lead, Privacy reviewer</small></td>
+      <td>legacy-derived-frozen<br><small>Applicable law and formally approved product policy</small></td>
+      <td><strong>Source</strong><br><a href="../documents/legal_user_facing_documents_pack_v1.html">documents/legal_user_facing_documents_pack_v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/legal_user_facing_documents_pack_v1.md">documents/agent-md/legal_user_facing_documents_pack_v1.md</a></li></ul></td>
+      <td>Not recorded<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="contract-001">
+      <td><strong>CONTRACT-001</strong><br><span class="registry-type">technical-contract</span></td>
+      <td><strong>API and Socket Contract Specification v1</strong><p>Frozen Phase 4 migration evidence. Use TECH-REF-001 API, Socket and OpenAPI Reference. Approved referral and KYC decisions are merged there with higher authority; remaining contract gaps are explicit.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
+      <td>Backend Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Admin Lead, QA</small></td>
+      <td>legacy-derived-frozen<br><small>Main Enterprise Architecture and approved flows</small></td>
+      <td><strong>Source</strong><br><a href="../documents/api-socket-contract-specification-v1.html">documents/api-socket-contract-specification-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/api-socket-contract-specification-v1.md">documents/agent-md/api-socket-contract-specification-v1.md</a></li></ul></td>
+      <td>Not recorded<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="contract-referral-001">
+      <td><strong>CONTRACT-REFERRAL-001</strong><br><span class="registry-type">technical-contract-decision</span></td>
+      <td><strong>Referral Contract Group</strong><p>Closes the referral code/share, registration attribution, progress, reward-status and Admin review path gap. Registration owns attribution; settlement owns five-paid-task qualification; wallet credit is idempotent backend work; no referral socket or public credit mutation exists.</p></td>
+      <td><span class="status status-approved">approved</span><br>approved approval<br>published</td>
+      <td>Backend Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Admin Lead, Product Lead, Finance, Risk, QA</small></td>
+      <td>canonical-source<br><small>Repository-owner accepted contract decision based on approved MF-02, MF-14, MF-17 and AF-15 behavior</small></td>
+      <td><strong>Source</strong><br><a href="../content/contracts/referral-contract-group.md">content/contracts/referral-contract-group.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/contracts/referral-contract-group.html">documents/contracts/referral-contract-group.html</a></li><li><a href="../documents/agent-md/contracts/referral-contract-group.md">documents/agent-md/contracts/referral-contract-group.md</a></li><li><a href="../documents/contracts/index.html">documents/contracts/index.html</a></li><li><a href="../documents/agent-md/contracts/README.md">documents/agent-md/contracts/README.md</a></li><li><a href="../scripts/validate-referral-contract.js">scripts/validate-referral-contract.js</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="data-001">
+      <td><strong>DATA-001</strong><br><span class="registry-type">data-model</span></td>
+      <td><strong>Data Model and Prisma Schema Planning v1</strong><p>Frozen Phase 4 migration evidence. Use TECH-REF-001 Data Model Reference. KycAttempt is merged from the approved pilot and conceptual models remain clearly separated from executable Prisma baselines.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
+      <td>Backend Lead<br><small>Reviewers: Technical Lead, Data owner, Security</small></td>
+      <td>legacy-derived-frozen<br><small>Main Enterprise Architecture and approved contracts</small></td>
+      <td><strong>Source</strong><br><a href="../documents/data-model-prisma-schema-planning-v1.html">documents/data-model-prisma-schema-planning-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/data-model-prisma-schema-planning-v1.md">documents/agent-md/data-model-prisma-schema-planning-v1.md</a></li></ul></td>
+      <td>Not recorded<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="provider-001">
+      <td><strong>PROVIDER-001</strong><br><span class="registry-type">provider-operations</span></td>
+      <td><strong>Provider Integration and Cost Control v1</strong><p>Frozen Phase 4 migration evidence. Use TECH-REF-001 Platform Architecture and Operations. Costs and provider capabilities still require dated official validation before purchase or go-live.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
+      <td>Infrastructure Lead<br><small>Reviewers: Technical Lead, Backend Lead, Finance, Security</small></td>
+      <td>legacy-derived-frozen<br><small>Main Enterprise Architecture and validated provider contracts</small></td>
+      <td><strong>Source</strong><br><a href="../documents/provider-integration-cost-control-v1.html">documents/provider-integration-cost-control-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/provider-integration-cost-control-v1.md">documents/agent-md/provider-integration-cost-control-v1.md</a></li></ul></td>
+      <td>Not recorded<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="plan-mobile-001">
+      <td><strong>PLAN-MOBILE-001</strong><br><span class="registry-type">build-plan</span></td>
+      <td><strong>Mobile Build Plan v1</strong><p>Superseded combined Mobile task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Mobile plan.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>approved approval<br>published</td>
+      <td>Mobile Lead<br><small>Reviewers: Technical Lead, Product Lead, Backend Lead, QA</small></td>
+      <td>legacy-transitional-source<br><small>Approved flows, contracts and task register</small></td>
+      <td><strong>Source</strong><br><a href="../documents/build-plan-mobile-v1.html">documents/build-plan-mobile-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/build-plan-mobile-v1.md">documents/agent-md/build-plan-mobile-v1.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="plan-admin-001">
+      <td><strong>PLAN-ADMIN-001</strong><br><span class="registry-type">build-plan</span></td>
+      <td><strong>Admin Build Plan v1</strong><p>Superseded combined Admin task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Admin plan.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>approved approval<br>published</td>
+      <td>Admin Lead<br><small>Reviewers: Technical Lead, Product Lead, Backend Lead, QA</small></td>
+      <td>legacy-transitional-source<br><small>Approved flows, contracts and task register</small></td>
+      <td><strong>Source</strong><br><a href="../documents/build-plan-admin-v1.html">documents/build-plan-admin-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/build-plan-admin-v1.md">documents/agent-md/build-plan-admin-v1.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="plan-backend-001">
+      <td><strong>PLAN-BACKEND-001</strong><br><span class="registry-type">build-plan</span></td>
+      <td><strong>Backend Build Plan v1</strong><p>Superseded combined Backend task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Backend plan.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>approved approval<br>published</td>
+      <td>Backend Lead<br><small>Reviewers: Technical Lead, Product Lead, Mobile Lead, Admin Lead, QA</small></td>
+      <td>legacy-transitional-source<br><small>Approved flows, contracts and task register</small></td>
+      <td><strong>Source</strong><br><a href="../documents/build-plan-backend-v1.html">documents/build-plan-backend-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/build-plan-backend-v1.md">documents/agent-md/build-plan-backend-v1.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="qa-001">
+      <td><strong>QA-001</strong><br><span class="registry-type">qa-release</span></td>
+      <td><strong>QA and Go-Live Readiness Checklist v1</strong><p>Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 QA and Release Assurance. Migration does not mark any test or release gate passed.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>pending approval<br>published</td>
+      <td>QA Lead<br><small>Reviewers: Technical Lead, Product Lead, Infrastructure Lead, Operations</small></td>
+      <td>legacy-derived-frozen<br><small>Approved product scope, contracts and release policy</small></td>
+      <td><strong>Source</strong><br><a href="../documents/qa-go-live-readiness-checklist-v1.html">documents/qa-go-live-readiness-checklist-v1.html</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/qa-go-live-readiness-checklist-v1.md">documents/agent-md/qa-go-live-readiness-checklist-v1.md</a></li></ul></td>
+      <td>Not recorded<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="ai-start-001">
+      <td><strong>AI-START-001</strong><br><span class="registry-type">agent-guidance</span></td>
+      <td><strong>AI Agent Start Here</strong><p>Generated short context-selection guide aligned with AGENTS.md, reader routes and the focused team-week execution model.</p></td>
+      <td><span class="status status-active">active</span><br>approved approval<br>published</td>
+      <td>Technical Lead<br><small>Reviewers: Mobile Lead, Admin Lead, Backend Lead</small></td>
+      <td>generated-output<br><small>AGENTS.md</small></td>
+      <td><strong>Source</strong><br><a href="../content/portal/portal.json">content/portal/portal.json</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/ai-agent-start-here.md">documents/agent-md/ai-agent-start-here.md</a></li></ul></td>
+      <td>2026-07-18<br><small>Next: 2026-10-18</small></td>
+    </tr>
+<tr id="team-packs-001">
+      <td><strong>TEAM-PACKS-001</strong><br><span class="registry-type">agent-context-pack</span></td>
+      <td><strong>Shared Execution Rules and Team Briefs</strong><p>Active focused context inputs used with Phase 3 team-week Markdown packs and embedded daily prompts. These packs narrow work; they do not define product behavior.</p></td>
+      <td><span class="status status-active">active</span><br>approved approval<br>published</td>
+      <td>Technical Lead<br><small>Reviewers: Product Lead, Mobile Lead, Admin Lead, Backend Lead</small></td>
+      <td>legacy-transitional-source<br><small>AGENTS.md and approved source documents</small></td>
+      <td><strong>Source</strong><br><a href="../documents/downloads/shared-ai-agent-execution-rules-v1.md">documents/downloads/shared-ai-agent-execution-rules-v1.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/downloads/mobile-team-build-brief-v1.md">documents/downloads/mobile-team-build-brief-v1.md</a></li><li><a href="../documents/downloads/admin-team-build-brief-v1.md">documents/downloads/admin-team-build-brief-v1.md</a></li><li><a href="../documents/downloads/backend-team-build-brief-v1.md">documents/downloads/backend-team-build-brief-v1.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="week-packs-001">
+      <td><strong>WEEK-PACKS-001</strong><br><span class="registry-type">agent-context-pack</span></td>
+      <td><strong>Weekly Execution Packs</strong><p>Superseded manually duplicated weekly packs retained as migration evidence. Use the generated TASK-LIB-001 team packs organized by week and day.</p></td>
+      <td><span class="status status-superseded">superseded</span><br>approved approval<br>published</td>
+      <td>Project Lead<br><small>Reviewers: Technical Lead, Product Lead, Team leads</small></td>
+      <td>legacy-transitional-source<br><small>Approved task register and build plans</small></td>
+      <td><strong>Source</strong><br><a href="../documents/agent-md/weeks/weekly-execution-index.md">documents/agent-md/weeks/weekly-execution-index.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/weeks/week-01-foundation-identity.md">documents/agent-md/weeks/week-01-foundation-identity.md</a></li><li><a href="../documents/agent-md/weeks/week-02-tasker-task-creation-payment.md">documents/agent-md/weeks/week-02-tasker-task-creation-payment.md</a></li><li><a href="../documents/agent-md/weeks/week-03-discovery-matching-execution-start.md">documents/agent-md/weeks/week-03-discovery-matching-execution-start.md</a></li><li><a href="../documents/agent-md/weeks/week-04-completion-finance-support.md">documents/agent-md/weeks/week-04-completion-finance-support.md</a></li><li><a href="../documents/agent-md/weeks/week-05-integration-recovery-full-flow-qa.md">documents/agent-md/weeks/week-05-integration-recovery-full-flow-qa.md</a></li><li><a href="../documents/agent-md/weeks/week-06-hardening-security-performance.md">documents/agent-md/weeks/week-06-hardening-security-performance.md</a></li><li><a href="../documents/agent-md/weeks/week-07-release-candidate-operations-dry-run.md">documents/agent-md/weeks/week-07-release-candidate-operations-dry-run.md</a></li><li><a href="../documents/agent-md/weeks/week-08-stabilization-freeze.md">documents/agent-md/weeks/week-08-stabilization-freeze.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: Not scheduled</small></td>
+    </tr>
+<tr id="full-context-001">
+      <td><strong>FULL-CONTEXT-001</strong><br><span class="registry-type">generated-agent-context-map</span></td>
+      <td><strong>Work2Cash Full Project Agent Context</strong><p>Generated 765-record cross-project map for onboarding, architecture review and consistency checks. It replaces the former 33,399-line legacy concatenation, contains no decorative HTML and remains non-canonical.</p></td>
+      <td><span class="status status-active">active</span><br>approved approval<br>published</td>
+      <td>Technical Lead<br><small>Reviewers: Product Lead</small></td>
+      <td>generated-output<br><small>None independently; inherits included source authority</small></td>
+      <td><strong>Source</strong><br><a href="../content/portal/portal.json">content/portal/portal.json</a><br><strong>Artifacts</strong><ul><li><a href="../documents/agent-md/work2cash-full-source-of-truth-v1.md">documents/agent-md/work2cash-full-source-of-truth-v1.md</a></li><li><a href="../documents/search-index.json">documents/search-index.json</a></li><li><a href="../scripts/generate-portal.js">scripts/generate-portal.js</a></li></ul></td>
+      <td>2026-07-18<br><small>Next: 2026-10-18</small></td>
+    </tr>
+<tr id="pilot-mf06-001">
+      <td><strong>PILOT-MF06-001</strong><br><span class="registry-type">main-flow-pilot</span></td>
+      <td><strong>MF-06 Create and Fund Task Pilot</strong><p>Approved Phase 1 migration reference; it does not replace the complete mobile catalogue until Phase 2 migration and activation.</p></td>
+      <td><span class="status status-approved">approved</span><br>approved approval<br>published</td>
+      <td>Product Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Backend Lead, Finance, QA</small></td>
+      <td>canonical-source<br><small>Main Enterprise Architecture and Mobile Flow Catalogue v1</small></td>
+      <td><strong>Source</strong><br><a href="../content/pilots/flows/mobile/MF-06-create-and-fund-task.md">content/pilots/flows/mobile/MF-06-create-and-fund-task.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/pilots/flows/mobile/MF-06-create-and-fund-task.html">documents/pilots/flows/mobile/MF-06-create-and-fund-task.html</a></li><li><a href="../documents/agent-md/pilots/flows/mobile/MF-06-create-and-fund-task.md">documents/agent-md/pilots/flows/mobile/MF-06-create-and-fund-task.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="pilot-af04-001">
+      <td><strong>PILOT-AF04-001</strong><br><span class="registry-type">main-flow-pilot</span></td>
+      <td><strong>AF-04 KYC Review Pilot</strong><p>Approved standalone Phase 1 migration reference with exact v0.2 technical traceability; it is not a full-catalogue replacement.</p></td>
+      <td><span class="status status-approved">approved</span><br>approved approval<br>published</td>
+      <td>Product Lead<br><small>Reviewers: Technical Lead, Admin Lead, Backend Lead, Risk and Compliance, QA</small></td>
+      <td>canonical-source<br><small>Main Enterprise Architecture and Admin Flow Catalogue v1</small></td>
+      <td><strong>Source</strong><br><a href="../content/pilots/flows/admin/AF-04-kyc-review.md">content/pilots/flows/admin/AF-04-kyc-review.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/pilots/flows/admin/AF-04-kyc-review.html">documents/pilots/flows/admin/AF-04-kyc-review.html</a></li><li><a href="../documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md">documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="pilot-kyc-contract-001">
+      <td><strong>PILOT-KYC-CONTRACT-001</strong><br><span class="registry-type">technical-contract-pilot</span></td>
+      <td><strong>KYC Review Contract Group Pilot</strong><p>Approved Phase 1 reference defining exact v0.2 paths, DTOs, permissions, concurrency, idempotency and reconciliation; Phase 4 merge remains.</p></td>
+      <td><span class="status status-approved">approved</span><br>approved approval<br>published</td>
+      <td>Backend Lead<br><small>Reviewers: Technical Lead, Admin Lead, Product Lead, Risk and Compliance, QA</small></td>
+      <td>canonical-source<br><small>Approved Phase 1 reference decision for AF-04; subject to future formally approved architecture decisions</small></td>
+      <td><strong>Source</strong><br><a href="../content/pilots/contracts/kyc-review-contract-group.md">content/pilots/contracts/kyc-review-contract-group.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/pilots/contracts/kyc-review-contract-group.html">documents/pilots/contracts/kyc-review-contract-group.html</a></li><li><a href="../documents/agent-md/pilots/contracts/kyc-review-contract-group.md">documents/agent-md/pilots/contracts/kyc-review-contract-group.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="pilot-kyc-data-001">
+      <td><strong>PILOT-KYC-DATA-001</strong><br><span class="registry-type">data-domain-pilot</span></td>
+      <td><strong>Tasker Activation and KYC Data Domain Pilot</strong><p>Approved Phase 1 reference defining KycVerification review/version and immutable numbered KycAttempt behavior; full-schema merge and migration remain.</p></td>
+      <td><span class="status status-approved">approved</span><br>approved approval<br>published</td>
+      <td>Backend Lead<br><small>Reviewers: Technical Lead, Product Lead, Data owner, Security and Privacy, QA</small></td>
+      <td>canonical-source<br><small>Approved Phase 1 reference decision for the KYC domain; subject to future formally approved architecture decisions</small></td>
+      <td><strong>Source</strong><br><a href="../content/pilots/data/kyc-domain.md">content/pilots/data/kyc-domain.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/pilots/data/kyc-domain.html">documents/pilots/data/kyc-domain.html</a></li><li><a href="../documents/agent-md/pilots/data/kyc-domain.md">documents/agent-md/pilots/data/kyc-domain.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="pilot-qa-af04-001">
+      <td><strong>PILOT-QA-AF04-001</strong><br><span class="registry-type">qa-suite-pilot</span></td>
+      <td><strong>AF-04 KYC Review Reference QA Suite</strong><p>Approved Phase 1 reference with eleven executable cases; deployed build, migration and provider-fixture evidence remain implementation-stage requirements.</p></td>
+      <td><span class="status status-approved">approved</span><br>approved approval<br>published</td>
+      <td>QA Lead<br><small>Reviewers: Product Lead, Technical Lead, Admin Lead, Backend Lead, Risk and Compliance</small></td>
+      <td>canonical-source<br><small>AF-04 v0.2 flow, KYC contract v0.2 and KYC data domain v0.2</small></td>
+      <td><strong>Source</strong><br><a href="../content/pilots/qa/AF-04-kyc-review-suite.md">content/pilots/qa/AF-04-kyc-review-suite.md</a><br><strong>Artifacts</strong><ul><li><a href="../documents/pilots/qa/AF-04-kyc-review-suite.html">documents/pilots/qa/AF-04-kyc-review-suite.html</a></li><li><a href="../documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md">documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="flow-lib-001">
+      <td><strong>FLOW-LIB-001</strong><br><span class="registry-type">flow-migration-program</span></td>
+      <td><strong>Phase 2 Standalone Flow Library</strong><p>Active canonical flow family containing all 72 approved standalone sources: 24 mobile main, 13 mobile subflows, 24 admin main and 11 admin subflows. Human/agent indexes, dependency maps and optional combined catalogues are generated.</p></td>
+      <td><span class="status status-active">active</span><br>approved approval<br>published</td>
+      <td>Product Lead<br><small>Reviewers: Technical Lead, Mobile Lead, Admin Lead, Backend Lead, Security and Privacy, QA</small></td>
+      <td>canonical-source<br><small>Approved Mobile and Admin Flow Catalogue v1 behavior in the approved Phase 1 standalone format</small></td>
+      <td><strong>Source</strong><br><a href="../logs/phase-2-execution-log.md">logs/phase-2-execution-log.md</a><br><strong>Artifacts</strong><ul><li><a href="../logs/phase-2-flow-migration-inventory.md">logs/phase-2-flow-migration-inventory.md</a></li><li><a href="../documents/flows/index.html">documents/flows/index.html</a></li><li><a href="../documents/agent-md/flows/README.md">documents/agent-md/flows/README.md</a></li><li><a href="../documents/flows/dependency-map.html">documents/flows/dependency-map.html</a></li><li><a href="../documents/agent-md/flows/dependency-map.md">documents/agent-md/flows/dependency-map.md</a></li><li><a href="../documents/flows/combined-flow-library.html">documents/flows/combined-flow-library.html</a></li><li><a href="../documents/agent-md/flows/combined-flow-library.md">documents/agent-md/flows/combined-flow-library.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="task-lib-001">
+      <td><strong>TASK-LIB-001</strong><br><span class="registry-type">execution-planning-migration</span></td>
+      <td><strong>Phase 3 Canonical Build Task and Weekly Execution Library</strong><p>Active planning family with 25 canonical team-week Markdown sources containing 125 task records: 120 migrated legacy tasks plus five Admin integration tasks. Human and agent execution outputs are also weekly; no standalone daily Markdown source, HTML task page or task-agent export is maintained. The primary junior-developer path is Team Build Plan to Week to Day. Every week begins with a Monday-to-Friday five-day map; every day has an explicit start boundary, finish boundary, implementation steps, tests, commit and embedded agent prompt. Delivery order is Admin construction, Mobile and Backend construction, Admin Integration, then cross-platform hardening.</p></td>
+      <td><span class="status status-active">active</span><br>approved approval<br>published</td>
+      <td>Project Lead<br><small>Reviewers: Technical Lead, Product Lead, Mobile Lead, Admin Lead, Backend Lead, QA</small></td>
+      <td>canonical-source<br><small>Approved flows, accepted contract decisions and approved Phase 3 delivery order</small></td>
+      <td><strong>Source</strong><br><a href="../content/tasks/plan-metadata.json">content/tasks/plan-metadata.json</a><br><strong>Artifacts</strong><ul><li><a href="../logs/phase-3-task-migration-inventory.md">logs/phase-3-task-migration-inventory.md</a></li><li><a href="../logs/phase-3-execution-log.md">logs/phase-3-execution-log.md</a></li><li><a href="../documents/planning/index.html">documents/planning/index.html</a></li><li><a href="../documents/agent-md/planning/README.md">documents/agent-md/planning/README.md</a></li><li><a href="../documents/planning/mobile-build-plan.html">documents/planning/mobile-build-plan.html</a></li><li><a href="../documents/planning/admin-build-plan.html">documents/planning/admin-build-plan.html</a></li><li><a href="../documents/planning/backend-build-plan.html">documents/planning/backend-build-plan.html</a></li><li><a href="../documents/planning/qa-traceability.html">documents/planning/qa-traceability.html</a></li><li><a href="../documents/agent-md/planning/qa-traceability.md">documents/agent-md/planning/qa-traceability.md</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="tech-ref-001">
+      <td><strong>TECH-REF-001</strong><br><span class="registry-type">technical-reference-migration</span></td>
+      <td><strong>Phase 4 Consolidated Technical Reference Library</strong><p>Consolidates the legacy architecture, contract, data, provider and screen families into five human pages, four focused agent packs and one generated OpenAPI baseline. Its 342 anchored records are sections inside those families, not standalone required-reading documents. Approved referral and KYC decisions retain higher authority; provisional gaps remain explicit blockers.</p></td>
+      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td>Technical Lead<br><small>Reviewers: Product Lead, Mobile Lead, Admin Lead, Backend Lead, Infrastructure Lead, Security, Finance, Operations, QA</small></td>
+      <td>canonical-source<br><small>Approved standalone flows and accepted contract decisions, with explicitly marked provisional architecture, contract, schema, provider and design baselines</small></td>
+      <td><strong>Source</strong><br><a href="../content/technical/library.json">content/technical/library.json</a><br><strong>Artifacts</strong><ul><li><a href="../content/technical/contracts.json">content/technical/contracts.json</a></li><li><a href="../content/technical/data.json">content/technical/data.json</a></li><li><a href="../content/technical/platform.json">content/technical/platform.json</a></li><li><a href="../content/technical/screens.json">content/technical/screens.json</a></li><li><a href="../documents/technical/index.html">documents/technical/index.html</a></li><li><a href="../documents/technical/contracts.html">documents/technical/contracts.html</a></li><li><a href="../documents/technical/data.html">documents/technical/data.html</a></li><li><a href="../documents/technical/platform.html">documents/technical/platform.html</a></li><li><a href="../documents/technical/screens.html">documents/technical/screens.html</a></li><li><a href="../documents/technical/openapi/work2cash-v1.json">documents/technical/openapi/work2cash-v1.json</a></li><li><a href="../documents/agent-md/technical/contracts.md">documents/agent-md/technical/contracts.md</a></li><li><a href="../documents/agent-md/technical/data.md">documents/agent-md/technical/data.md</a></li><li><a href="../documents/agent-md/technical/platform.md">documents/agent-md/technical/platform.md</a></li><li><a href="../documents/agent-md/technical/screens.md">documents/agent-md/technical/screens.md</a></li><li><a href="../logs/phase-4-execution-log.md">logs/phase-4-execution-log.md</a></li><li><a href="../logs/phase-4-technical-migration-inventory.md">logs/phase-4-technical-migration-inventory.md</a></li><li><a href="../logs/phase-4-technical-gap-register.md">logs/phase-4-technical-gap-register.md</a></li><li><a href="../scripts/bootstrap-phase4-technical-sources.js">scripts/bootstrap-phase4-technical-sources.js</a></li><li><a href="../scripts/generate-technical-docs.js">scripts/generate-technical-docs.js</a></li></ul></td>
+      <td>2026-07-17<br><small>Next: 2026-10-17</small></td>
+    </tr>
+<tr id="assurance-lib-001">
+      <td><strong>ASSURANCE-LIB-001</strong><br><span class="registry-type">assurance-governance-migration</span></td>
+      <td><strong>Phase 5 Consolidated Assurance and Governance Library</strong><p>Consolidates QA/release, legal/compliance and decision/governance material into four human pages and three focused agent packs. Its 205 independently linked records are sections within those seven readable files, not standalone required-reading documents. Migration does not pass tests, approve legal wording, authorize release or resolve open decisions.</p></td>
+      <td><span class="status status-in-review">in-review</span><br>pending approval<br>published</td>
+      <td>Technical Lead<br><small>Reviewers: QA Lead, Product Lead, Qualified Legal reviewer, Privacy reviewer, Mobile Lead, Admin Lead, Backend Lead, Infrastructure Lead, Operations</small></td>
+      <td>canonical-source<br><small>Approved sources, qualified legal authority and evidence-based release governance; record-level statuses preserve pending work</small></td>
+      <td><strong>Source</strong><br><a href="../content/assurance/library.json">content/assurance/library.json</a><br><strong>Artifacts</strong><ul><li><a href="../content/assurance/qa-release.json">content/assurance/qa-release.json</a></li><li><a href="../content/assurance/legal-compliance.json">content/assurance/legal-compliance.json</a></li><li><a href="../content/assurance/decisions-governance.json">content/assurance/decisions-governance.json</a></li><li><a href="../documents/assurance/index.html">documents/assurance/index.html</a></li><li><a href="../documents/assurance/qa-release.html">documents/assurance/qa-release.html</a></li><li><a href="../documents/assurance/legal-compliance.html">documents/assurance/legal-compliance.html</a></li><li><a href="../documents/assurance/decisions-governance.html">documents/assurance/decisions-governance.html</a></li><li><a href="../documents/agent-md/assurance/qa-release.md">documents/agent-md/assurance/qa-release.md</a></li><li><a href="../documents/agent-md/assurance/legal-compliance.md">documents/agent-md/assurance/legal-compliance.md</a></li><li><a href="../documents/agent-md/assurance/decisions-governance.md">documents/agent-md/assurance/decisions-governance.md</a></li><li><a href="../logs/phase-5-execution-log.md">logs/phase-5-execution-log.md</a></li><li><a href="../scripts/bootstrap-phase5-assurance-sources.js">scripts/bootstrap-phase5-assurance-sources.js</a></li><li><a href="../scripts/generate-assurance-docs.js">scripts/generate-assurance-docs.js</a></li></ul></td>
+      <td>2026-07-18<br><small>Next: 2026-10-18</small></td>
+    </tr>
+<tr id="portal-001">
+      <td><strong>PORTAL-001</strong><br><span class="registry-type">documentation-portal</span></td>
+      <td><strong>Phase 6 Documentation Portal and Search</strong><p>Final role-based portal with six current libraries, five reader routes, a 765-record cross-library search index and an inline glossary. Superseded documents remain registry evidence and are not exposed in normal navigation. Phase 6 adds no new per-record human pages.</p></td>
+      <td><span class="status status-active">active</span><br>approved approval<br>published</td>
+      <td>Technical Lead<br><small>Reviewers: Product Lead, Mobile Lead, Admin Lead, Backend Lead, QA Lead, Operations</small></td>
+      <td>canonical-source<br><small>Documentation governance and the registry status of each linked source</small></td>
+      <td><strong>Source</strong><br><a href="../content/portal/portal.json">content/portal/portal.json</a><br><strong>Artifacts</strong><ul><li><a href="../index.html">index.html</a></li><li><a href="../documents/search-index.json">documents/search-index.json</a></li><li><a href="../assets/css/portal.css">assets/css/portal.css</a></li><li><a href="../assets/images/work2cash-logo.png">assets/images/work2cash-logo.png</a></li><li><a href="../assets/js/portal-search.js">assets/js/portal-search.js</a></li><li><a href="../assets/js/gate.js">assets/js/gate.js</a></li><li><a href="../governance/documentation-maintenance-guide.md">governance/documentation-maintenance-guide.md</a></li><li><a href="../logs/phase-6-execution-log.md">logs/phase-6-execution-log.md</a></li><li><a href="../scripts/generate-portal.js">scripts/generate-portal.js</a></li><li><a href="../scripts/validate-accessibility.js">scripts/validate-accessibility.js</a></li></ul></td>
+      <td>2026-07-18<br><small>Next: 2026-10-18</small></td>
+    </tr></tbody></table></div>
+    </section>
+  </main>
+  <footer>Work2Cash documentation governance · Updated 2026-07-17</footer>
+</body>
+</html>

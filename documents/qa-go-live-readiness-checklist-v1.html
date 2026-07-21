@@ -88,6 +88,7 @@
     .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
     .badge { border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.1); border-radius:999px; padding:7px 13px; font-size:12px; font-weight:800; }
     .cover-foot { border-top:1px solid rgba(255,255,255,.18); padding-top:24px; display:flex; justify-content:space-between; gap:24px; color:rgba(255,255,255,.66); font-size:13px; }
+    .cover-foot code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     .sticky {
       position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); backdrop-filter:blur(12px);
       border-bottom:2px solid var(--brand);
@@ -155,6 +156,7 @@
     footer { background:var(--header); color:#D0D5DD; padding:34px 24px; }
     .footer-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
     footer h4 { color:white; margin-top:0; }
+    footer code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     footer p, footer li { color:#CBD5E1; font-size:13px; }
     @media (max-width:900px) {
       .meta-grid, .card-grid, .toc-grid, .footer-inner, .two-col { grid-template-columns:1fr; }
@@ -171,6 +173,7 @@
 </style>
 </head>
 <body>
+  <aside data-phase0-registry role="note" style="padding:10px 18px;background:#fff3df;color:#5f3700;border-bottom:1px solid #e9c46a;font:600 13px/1.5 Arial,sans-serif;text-align:center">Lifecycle: <strong>In Review</strong> · Approval: <strong>Pending</strong> · Owner: <strong>QA Lead</strong> · <a href="./document-registry.html#qa-001" style="color:#123b78">View QA-001 in the Document Registry</a></aside>
   <section class="cover">
     <div class="brand-row">
       <div class="logo">W2C</div>
@@ -188,7 +191,7 @@
         <div class="meta-card"><span>Build Start</span><strong>6 Jul 2026</strong></div>
         <div class="meta-card"><span>Testing Start</span><strong>31 Aug 2026</strong></div>
         <div class="meta-card"><span>Go-Live Target</span><strong>14 Sep 2026</strong></div>
-        <div class="meta-card"><span>Repo Path</span><strong>documents/qa-go-live-readiness-checklist-v1.html</strong></div>
+        <div class="meta-card"><span>Portal Page</span><strong>QA / Go-Live Readiness Checklist v1</strong></div>
       </div>
       <div class="badges">
         <span class="badge">Go/No-Go</span>
@@ -292,8 +295,6 @@
   .doc-hub-actions {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     gap: 10px;
   }
   .doc-hub-links {
@@ -334,37 +335,13 @@
   @media (max-width: 620px) {
     .doc-hub-nav { padding: 0 16px; }
     .doc-hub-card { border-radius: 14px; padding: 14px; }
-    .doc-hub-top { align-items: center; flex-direction: column; gap: 8px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
     .doc-hub-links { grid-template-columns: 1fr; }
     .team-downloads { padding: 0 16px; }
     .team-downloads-card { border-radius: 14px; padding: 14px; }
   }
 </style>
 
-
-<style id="work2cash-wide-layout">
-  .sticky-inner,
-  main,
-  .footer-inner,
-  .doc-hub-nav,
-  .team-downloads,
-  .cover-inner,
-  footer > div {
-    width: 90%;
-    max-width: none;
-  }
-  @media (max-width: 900px) {
-    .sticky-inner,
-    main,
-    .footer-inner,
-    .doc-hub-nav,
-    .team-downloads,
-    .cover-inner,
-    footer > div {
-      width: 100%;
-    }
-  }
-</style>
 <nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
   <div class="doc-hub-card">
     <div class="doc-hub-top">
@@ -408,7 +385,7 @@
       <h2>Source Documents And Evidence Chain</h2>
       
         <p class="intro">QA must trace every acceptance decision back to the source documents. If product behavior is unclear, the Main Enterprise Architecture remains the controlling baseline until formally revised.</p>
-        <div class="table-wrap"><table><thead><tr><th>Document</th><th>Repo Path</th><th>QA Use</th></tr></thead><tbody><tr><td>Main Enterprise Architecture v1</td><td>documents/main-enterprise-architecture-v1.html</td><td>Top-level source of truth.</td></tr><tr><td>Mobile Flow Catalogue v1</td><td>documents/mobile-flow-catalogue-v1.html</td><td>Closed mobile flows and recovery subflows.</td></tr><tr><td>Admin Flow Catalogue v1</td><td>documents/admin-flow-catalogue-v1.html</td><td>Closed admin web flows and operational dependencies.</td></tr><tr><td>Flow Alignment Review v1</td><td>documents/flow-alignment-review-v1.html</td><td>Alignment decisions across Figma, mobile, admin and architecture.</td></tr><tr><td>Legal &amp; User-Facing Documents Pack v1</td><td>documents/legal_user_facing_documents_pack_v1.html</td><td>Combined user-facing policy pack.</td></tr><tr><td>API &amp; Socket Contract Specification v1</td><td>documents/api-socket-contract-specification-v1.html</td><td>REST, socket, webhook, queue and response contracts.</td></tr><tr><td>Data Model &amp; Prisma Schema Planning v1</td><td>documents/data-model-prisma-schema-planning-v1.html</td><td>Data model and schema execution baseline.</td></tr><tr><td>Provider Integration &amp; Cost Control v1</td><td>documents/provider-integration-cost-control-v1.html</td><td>Provider adapters, webhooks, costs and go-live validations.</td></tr><tr><td>Mobile Build Plan v1</td><td>documents/build-plan-mobile-v1.html</td><td>Mobile-led implementation order.</td></tr><tr><td>Admin Build Plan v1</td><td>documents/build-plan-admin-v1.html</td><td>Admin execution plan following mobile outcomes.</td></tr><tr><td>Backend Build Plan v1</td><td>documents/build-plan-backend-v1.html</td><td>Backend execution plan following mobile needs.</td></tr></tbody></table></div>
+        <div class="table-wrap"><table><thead><tr><th>Document</th><th>Portal Page</th><th>QA Use</th></tr></thead><tbody><tr><td>Main Enterprise Architecture v1</td><td>Main Enterprise Architecture v1</td><td>Top-level source of truth.</td></tr><tr><td>Mobile Flow Catalogue v1</td><td>Mobile Flow Catalogue v1</td><td>Closed mobile flows and recovery subflows.</td></tr><tr><td>Admin Flow Catalogue v1</td><td>Admin Flow Catalogue v1</td><td>Closed admin web flows and operational dependencies.</td></tr><tr><td>Flow Alignment Review v1</td><td>Flow Alignment Review v1</td><td>Alignment decisions across Figma, mobile, admin and architecture.</td></tr><tr><td>Legal &amp; User-Facing Documents Pack v1</td><td>Legal & User-Facing Documents Pack v1</td><td>Combined user-facing policy pack.</td></tr><tr><td>API &amp; Socket Contract Specification v1</td><td>API & Socket Contract Specification v1</td><td>REST, socket, webhook, queue and response contracts.</td></tr><tr><td>Data Model &amp; Prisma Schema Planning v1</td><td>Data Model & Prisma Schema Planning v1</td><td>Data model and schema execution baseline.</td></tr><tr><td>Provider Integration &amp; Cost Control v1</td><td>Provider Integration & Cost Control v1</td><td>Provider adapters, webhooks, costs and go-live validations.</td></tr><tr><td>Mobile Build Plan v1</td><td>Mobile Build Plan v1</td><td>Mobile-led implementation order.</td></tr><tr><td>Admin Build Plan v1</td><td>Admin Build Plan v1</td><td>Admin execution plan following mobile outcomes.</td></tr><tr><td>Backend Build Plan v1</td><td>Backend Build Plan v1</td><td>Backend execution plan following mobile needs.</td></tr></tbody></table></div>
         
     <div class="diagram">
       <div class="diagram-head"><h4>Evidence Chain</h4><span>Release Proof</span></div>
@@ -633,7 +610,7 @@ Commit message if docs/code change is needed:</pre></div>
   <footer>
     <div class="footer-inner">
       <div><h4>Work2Cash</h4><p>QA / Go-Live Readiness Checklist v1 for final launch acceptance.</p></div>
-      <div><h4>Document Location</h4><p><code>documents/qa-go-live-readiness-checklist-v1.html</code></p></div>
+      <div><h4>Portal Page</h4><p><code>QA / Go-Live Readiness Checklist v1</code></p></div>
       <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
     </div>
   </footer>

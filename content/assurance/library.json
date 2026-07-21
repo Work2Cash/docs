@@ -1,0 +1,34 @@
+{
+  "id": "ASSURANCE-LIB-001",
+  "title": "Phase 5 Consolidated Assurance and Governance Library",
+  "version": "1.0",
+  "status": "in-review",
+  "lastReviewed": "2026-07-18",
+  "authority": "Approved product/technical sources, qualified subject-matter authority and evidence-based release governance",
+  "families": [
+    {
+      "id": "ASSURANCE-QA-001",
+      "slug": "qa-release",
+      "title": "QA and Release Assurance",
+      "description": "One traceable register for flow acceptance, contracts, providers, security, recovery, UAT, release gates and Go/No-Go evidence."
+    },
+    {
+      "id": "ASSURANCE-LEGAL-001",
+      "slug": "legal-compliance",
+      "title": "Legal and Compliance",
+      "description": "One internal clause library and compliance map for Terms, Privacy, Tasker, cancellation/refund, safety, KYC, location and payment/wallet policy. It is not legal approval or public publication."
+    },
+    {
+      "id": "ASSURANCE-DECISIONS-001",
+      "slug": "decisions-governance",
+      "title": "Decisions and Governance",
+      "description": "One governed register for accepted decisions, design conflicts, risks, open questions and cross-document propagation."
+    }
+  ],
+  "legacySources": {
+    "qa": "documents/agent-md/qa-go-live-readiness-checklist-v1.md",
+    "legal": "documents/agent-md/legal_user_facing_documents_pack_v1.md",
+    "decisions": "documents/agent-md/flow-alignment-review-v1.md"
+  },
+  "editRule": "Edit the three JSON family sources after bootstrap; do not rerun this migration script for normal changes."
+}

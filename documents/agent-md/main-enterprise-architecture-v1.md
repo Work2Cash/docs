@@ -1,8 +1,9 @@
 # Main Enterprise Architecture v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `main-enterprise-architecture-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Main Enterprise Architecture v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -1027,6 +1028,33 @@ Part VII
 
 The infrastructure strategy prioritizes low fixed cost, self-hosting, provider abstraction, and clear fallback paths if latency or provider capability fails.
 
+### Current Approved Production Cost Baseline
+
+Production provider: DigitalOcean. Hetzner is not available for this project and is not the selected production provider. Contabo remains the selected staging baseline.
+
+| Item | Value |
+|---|---|
+| App server | DigitalOcean Basic Droplet, 16GB RAM, 8 vCPU, 320GB SSD - $96/month |
+| Data server | DigitalOcean Basic Droplet, 16GB RAM, 8 vCPU, 320GB SSD - $96/month |
+| Monitoring server | DigitalOcean Basic Droplet, 4GB RAM, 2 vCPU, 80GB SSD - $24/month |
+| Object storage | DigitalOcean Spaces, 250GiB storage / 1TiB outbound transfer baseline - $5/month |
+| Total production baseline | $221/month; ₦353,600/month at ₦1,600/$ |
+| Yearly production baseline | $2,652/year; ₦4,243,200/year |
+
+### Current Approved Staging Cost Baseline
+
+Staging provider: Contabo. Selected plan: Cloud 20 with 6 vCPU cores, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port, EU region, Ubuntu, AutoBackup disabled and no private networking. Add-on: 250GB Object Storage in European Union.
+
+| Item | Value |
+|---|---|
+| Monthly staging infrastructure | €10/month: €7.50 Cloud 20 + €2.50 object storage |
+| Estimated monthly Naira value | ₦18,000/month using €1 = ₦1,800 |
+| Domain first-month cost | ₦9,890: ₦9,200 base + ₦690 VAT |
+| First-month direct estimate | ₦27,890 including domain and one Contabo month |
+| Safe first-month approval | ₦40,000 for domain, server, object storage, VAT/FX/payment variance and checkout buffer |
+
+> AutoBackup is disabled, so backups must be configured from the server to the 250GB object storage. Server storage alone is not the backup strategy.
+
 ### Provider Register
 
 <div class="table-wrap">
@@ -1057,19 +1085,21 @@ The infrastructure strategy prioritizes low fixed cost, self-hosting, provider a
 
 **Production Strategy**
 
-Use Hetzner first for production because of cost. If Nigerian latency or routing is unacceptable after testing, move the app and data servers together to DigitalOcean London/Frankfurt.
+Use Contabo for lean staging and DigitalOcean for production. DigitalOcean is the active production baseline for app, data, monitoring and object storage.
 
 </div>
 
 <div class="table-wrap">
 
-| Environment                | Provider / Plan                                                               | Monthly USD | Monthly NGN @ ₦1,600/\$ | Yearly NGN            |
+| Environment | Provider / Plan | Monthly Price | NGN Budget Note | Yearly Budget Note |
 |----------------------------|-------------------------------------------------------------------------------|-------------|-------------------------|-----------------------|
-| Staging                    | Hetzner CX33 - 4 vCPU, 8GB RAM, 80GB SSD                                      | \$10.59     | ₦16,944                 | ₦203,328              |
-| Staging + optional storage | CX33 + \$5 storage                                                            | \$15.59     | ₦24,944                 | ₦299,328              |
-| Production Primary         | Hetzner CX43 app + CX43 data + CX23 monitoring + \$5 storage                  | \$50.27     | ₦80,432                 | ₦965,184              |
-| Production Budget Buffer   | Primary production target buffer                                              | \$60-\$80   | ₦96,000-₦128,000        | ₦1,152,000-₦1,536,000 |
-| Production Fallback        | DigitalOcean 16GB/8vCPU app + 16GB/8vCPU data + 4GB/2vCPU monitoring + Spaces | \$221       | ₦353,600                | ₦4,243,200            |
+| Staging | Contabo Cloud 20 - 6 vCPU, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port, EU region, Ubuntu | €7.50/month | ₦13,500/month at €1 = ₦1,800 | Recalculate from live invoice |
+| Staging object storage | Contabo 250GB Object Storage - European Union add-on | €2.50/month | ₦4,500/month at €1 = ₦1,800 | Recalculate from live invoice |
+| Production App Server | DigitalOcean Basic Droplet - 16GB RAM, 8 vCPU, 320GB SSD | $96/month | ₦153,600/month | ₦1,843,200/year |
+| Production Data Server | DigitalOcean Basic Droplet - 16GB RAM, 8 vCPU, 320GB SSD | $96/month | ₦153,600/month | ₦1,843,200/year |
+| Production Monitoring Server | DigitalOcean Basic Droplet - 4GB RAM, 2 vCPU, 80GB SSD | $24/month | ₦38,400/month | ₦460,800/year |
+| Production Object Storage | DigitalOcean Spaces - 250GiB storage / 1TiB outbound transfer baseline | $5/month | ₦8,000/month | ₦96,000/year |
+| Total Production Baseline | DigitalOcean production infrastructure | $221/month | ₦353,600/month | ₦4,243,200/year |
 
 </div>
 
@@ -1103,7 +1133,7 @@ Use Hetzner first for production because of cost. If Nigerian latency or routing
 
 - DigitalOcean pricing checked against official Droplets pricing page for \$96/month 16GB/8vCPU and \$24/month 4GB/2vCPU planning assumptions.
 - DigitalOcean Spaces \$5/month planning assumption checked against official Spaces pricing documentation.
-- Hetzner pricing baseline is confirmed from Hetzner official source (https://www.hetzner.com/cloud/cost-optimized/); prices still must be revalidated before provisioning because providers can change pricing.
+- DigitalOcean production pricing baseline is based on Basic Droplet and Spaces planning values; prices still must be revalidated before provisioning because providers can change pricing.
 - All provider prices exclude VAT and may change before launch.
 
 </div>
@@ -1423,7 +1453,7 @@ This section records key architecture decisions, tradeoffs, unresolved items, an
 | Unified User model                   | A Nigerian user may hire and earn from the same account  | Permission logic must be enforced through mode, profile, and wallet type |
 | Separate API and Socket domains      | Clean routing, scaling, monitoring, and future migration | More DNS/proxy configuration                                             |
 | Self-host infrastructure             | Lower fixed cost and control                             | Team owns backups, updates, monitoring, restore drills                   |
-| Hetzner first, DigitalOcean fallback | Cost-first production with latency fallback              | Must test Nigerian networks before launch                                |
+| Contabo staging, DigitalOcean production | Contabo keeps staging lean; DigitalOcean is the active production baseline | Monitor production cost and capacity before scaling |
 | Task browse sorted by distance       | Avoid hiding useful work strictly by radius              | Tasker and Task Owner decisions must factor ETA and arrival time         |
 | Proxy dial-in masked calls           | Protect phone numbers while using normal dialer/airtime  | Provider capability and cost must be validated during development        |
 | Static legal pages first             | Safer and faster for MVP                                 | Admin-managed legal content deferred                                     |
@@ -1436,7 +1466,7 @@ This section records key architecture decisions, tradeoffs, unresolved items, an
 
 | Risk                    | Impact      | Mitigation                                                                                        |
 |-------------------------|-------------|---------------------------------------------------------------------------------------------------|
-| USD cost spikes         | High        | Batch paid APIs, use Hetzner first, track provider costs, guard Google Maps, monitor masked calls |
+| USD cost spikes         | High        | Batch paid APIs, use Contabo for lean staging, use DigitalOcean for production, track provider costs, guard Google Maps, monitor masked calls |
 | Payment webhook failure | Critical    | Signature verification, webhook logs, reconciliation cron, backend-confirmed state                |
 | Wallet ledger mismatch  | Critical    | Append-only ledger, hourly checks, admin reason/audit for manual actions                          |
 | Identity fraud          | High        | Smile ID KYC, device/session monitoring, risk flags, admin review                                 |
@@ -1486,30 +1516,30 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 <div class="table-wrap">
 
-| Resource                              | Docs Portal Page / Link                                 | Purpose                                                                                                                     |
+| Resource                              | Portal Page                                 | Purpose                                                                                                                     |
 |---------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Main Enterprise Architecture v1       | documents/main-enterprise-architecture-v1.html        | Top-level source of truth for architecture, product, infrastructure, provider, security, timeline and governance decisions. |
-| Mobile Flow Catalogue v1              | documents/mobile-flow-catalogue-v1.html               | Closed mobile flows, subflows, dependencies, recovery paths and screen silhouettes.                                         |
-| Admin Flow Catalogue v1               | documents/admin-flow-catalogue-v1.html                | Closed admin web flows, dependencies, recovery paths and dashboard silhouettes.                                             |
-| Flow Alignment Review v1              | documents/flow-alignment-review-v1.html               | Comparison and decision tracker for Figma, mobile/admin flow catalogues and architecture alignment.                         |
-| Legal & User-Facing Documents Pack    | documents/legal_user_facing_documents_pack_v1.html    | Combined legal/user-facing pack. Separate /legal/... pages are not used for MVP docs publishing.                            |
-| API & Socket Contract Specification   | documents/api-socket-contract-specification-v1.html   | Planned contract document for REST, socket, webhook, events, queues and response shapes.                                    |
-| Data Model & Prisma Schema Planning   | documents/data-model-prisma-schema-planning-v1.html   | Planned entity, relationship, enum and migration planning document.                                                         |
-| Provider Integration & Cost Control   | documents/provider-integration-cost-control-v1.html   | Planned provider, hosting, pricing, cost guard and operations document.                                                     |
-| Build / Implementation Execution Plan | documents/build-implementation-execution-plan-v1.html | Planned team-by-team build timeline and execution tracker.                                                                  |
-| QA / Go-Live Readiness Checklist      | documents/qa-go-live-readiness-checklist-v1.html      | Planned QA, launch, rollback, provider validation and go-live checklist.                                                    |
+| Main Enterprise Architecture v1       | Main Enterprise Architecture v1        | Top-level source of truth for architecture, product, infrastructure, provider, security, timeline and governance decisions. |
+| Mobile Flow Catalogue v1              | Mobile Flow Catalogue v1               | Closed mobile flows, subflows, dependencies, recovery paths and screen silhouettes.                                         |
+| Admin Flow Catalogue v1               | Admin Flow Catalogue v1                | Closed admin web flows, dependencies, recovery paths and dashboard silhouettes.                                             |
+| Flow Alignment Review v1              | Flow Alignment Review v1               | Comparison and decision tracker for Figma, mobile/admin flow catalogues and architecture alignment.                         |
+| Legal & User-Facing Documents Pack    | Legal & User-Facing Documents Pack v1    | Combined legal/user-facing pack. Separate /legal/... pages are not used for MVP docs publishing.                            |
+| API & Socket Contract Specification   | API & Socket Contract Specification v1   | Published contract baseline for REST, socket, webhook, events, queues and response shapes; formal review pending.                                    |
+| Data Model & Prisma Schema Planning   | Data Model & Prisma Schema Planning v1   | Published entity, relationship, enum and migration baseline; formal review pending.                                                         |
+| Provider Integration & Cost Control   | Provider Integration & Cost Control v1   | Published provider, hosting, pricing, cost guard and operations baseline; formal review pending.                                                     |
+| Build / Implementation Execution Plan | Build / Implementation Execution Plan v1 | Published team-by-team build timeline and execution baseline; formal review pending.                                                                  |
+| QA / Go-Live Readiness Checklist      | QA / Go-Live Readiness Checklist v1      | Published QA, launch, rollback, provider validation and go-live baseline; formal review pending.                                                    |
 
 </div>
 
 ### GitHub Documentation Governance
 
-- The `docs` project is the team-facing Work2Cash documentation portal.
+- Repository name: docs. It is the team-facing Work2Cash documentation portal.
 - GitHub Pages deploys through GitHub Actions from a clean \_site folder.
 - The deployment artifact should include index.html, documents/, assets/, and optional 404.html.
 - GitHub Pages source is GitHub Actions.
 - index.html is the password gate landing page. Protected documents use client-side auth guard only; this is soft protection, not server-side security.
 - Every protected HTML file under documents/ must include: `<script src="../assets/js/guard.js"></script>`.
-- scripts/apply.guard.js must recursively scan documents/ and fail deployment if a protected HTML file lacks guard.js.
+- scripts/apply.guard.js must recursively scan protected document pages and fail deployment if a protected HTML file lacks guard.js.
 - No secrets, API keys, production credentials, private user data, sensitive payment data, or confidential operational secrets should be stored in the documentation portal.
 - Documentation changes enter main through PRs. No direct push to main. Commits should be one clear documentation update at a time.
 
@@ -1519,16 +1549,16 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 | Order | Document                                     | Status                                  |
 |-------|----------------------------------------------|-----------------------------------------|
-| 1     | Main Enterprise Architecture Document        | Active source of truth                  |
-| 2     | Mobile Flow Catalogue                        | Generated and aligned                   |
-| 3     | Admin Flow Catalogue                         | Generated and aligned                   |
-| 4     | Flow Alignment Review                        | Generated and resolved-decision tracker |
-| 5     | Legal & User-Facing Documents Pack           | Combined pack; publish under documents/ |
-| 6     | API & Socket Contract Specification          | Planned                                 |
-| 7     | Data Model & Prisma Schema Planning Document | Planned                                 |
-| 8     | Provider Integration & Cost Control Document | Planned                                 |
-| 9     | Build / Implementation Execution Plan        | Planned                                 |
-| 10    | QA / Go-Live Readiness Checklist             | Planned                                 |
+| 1     | Main Enterprise Architecture Document        | Published provisional controlling baseline; formal approval pending                  |
+| 2     | Mobile Flow Catalogue                        | Published provisional catalogue; formal approval pending                   |
+| 3     | Admin Flow Catalogue                         | Published provisional catalogue; formal approval pending                   |
+| 4     | Flow Alignment Review                        | Published provisional decision tracker; formal approval pending |
+| 5     | Legal & User-Facing Documents Pack           | Published protected pack; formal review pending |
+| 6     | API & Socket Contract Specification          | Published; formal review pending                                 |
+| 7     | Data Model & Prisma Schema Planning Document | Published; formal review pending                                 |
+| 8     | Provider Integration & Cost Control Document | Published; formal review pending                                 |
+| 9     | Build / Implementation Execution Plan        | Published; formal review pending                                 |
+| 10    | QA / Go-Live Readiness Checklist             | Published; formal review pending                                 |
 
 </div>
 
@@ -1538,7 +1568,7 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 | Document                              | Location                                           | Publishing Rule                                                                                                                  |
 |---------------------------------------|----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| Legal & User-Facing Documents Pack v1 | documents/legal_user_facing_documents_pack_v1.html | Main architecture links to ./legal_user_facing_documents_pack_v1.html. Separate /legal/... pages are not published for MVP docs. |
+| Legal & User-Facing Documents Pack v1 | Legal & User-Facing Documents Pack v1 | Main architecture links to Legal & User-Facing Documents Pack v1. Separate /legal/... pages are not published for MVP docs. |
 
 </div>
 
@@ -1579,7 +1609,6 @@ Reference lists for document assembly, legal URLs, glossary, and implementation 
 
 - DigitalOcean Droplets pricing: https://www.digitalocean.com/pricing/droplets
 - DigitalOcean Spaces pricing: https://docs.digitalocean.com/products/spaces/details/pricing/
-- Hetzner Cloud cost-optimized pricing: https://www.hetzner.com/cloud/cost-optimized/
 - Nigeria Data Protection Commission: https://ndpc.gov.ng/
 
 </div>
@@ -1608,7 +1637,7 @@ Company, sponsor, owner, prepared by, and final approver: Traceworka.
 
 #### Status
 
-HTML master architecture draft. Legal pack regeneration comes after architecture sign-off.
+Published provisional architecture baseline. Formal product and technical approval remains pending; see the Document Registry.
 
 </div>
 

@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A corrected, searchable map of shared, Task Owner, Tasker and Admin screens. Each record states purpose, dependencies, safety rules and unresolved design evidence.">
+  <title>Screen-to-Feature Reference | Work2Cash Docs</title>
+  <link rel="stylesheet" href="../../assets/css/pilot-docs.css">
+  <script src="../../assets/js/guard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to technical records</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html">Work2Cash Docs</a>
+    <nav aria-label="Technical reference navigation">
+      <a href="index.html">Technical reference</a>
+      <a href="../agent-md/technical/screens.md" download>Download agent pack</a>
+      
+    </nav>
+  </header>
+  <main id="content" class="technical-shell" tabindex="-1">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Technical Reference</a><span aria-hidden="true">/</span><span>Screen-to-Feature Reference</span></nav>
+    <header class="document-hero technical-hero">
+      <div class="eyebrow">Phase 4 · Consolidated technical library</div>
+      <h1>Screen-to-Feature Reference</h1>
+      <p class="audience">A corrected, searchable map of shared, Task Owner, Tasker and Admin screens. Each record states purpose, dependencies, safety rules and unresolved design evidence.</p>
+      <div class="status-row"><span class="status status-in-review">in-review</span><span>Version 1.0</span><span>48 records</span></div>
+    </header>
+
+    <section class="technical-intro" aria-labelledby="how-to-use-title">
+      <div>
+        <h2 id="how-to-use-title">How to use this page</h2>
+        <p>Search by name, path, model, provider, screen or rule. Filter by domain, then open only the record required for the current task. Every record has its own direct link.</p>
+        <ul><li>Known Facebook, generic KYC upload, old category, card-first, auto-accept and admin-reassignment drift is corrected.</li><li>Missing Figma version and screen-transition evidence remains visible as a design-review gap.</li></ul>
+      </div>
+      <dl class="technical-metadata">
+    <div><dt>Owner</dt><dd>Product Lead</dd></div>
+    <div><dt>Reviewers</dt><dd>Technical Lead, Mobile Lead, Admin Lead, Backend Lead, QA</dd></div>
+    <div><dt>Authority</dt><dd>Approved standalone flows and accepted product decisions</dd></div>
+    <div><dt>Last reviewed</dt><dd>2026-07-17</dd></div>
+  </dl>
+    </section>
+
+    <section class="technical-rules" aria-labelledby="shared-rules-title">
+      <h2 id="shared-rules-title">Rules that apply to every record</h2>
+      <ul><li>The approved flow controls behavior; a visual mockup cannot silently change product rules.</li><li>Use Home, Errands, Office and Support as MVP categories.</li><li>Use the Smile ID NIN/BVN and biometric path for Tasker KYC.</li><li>Payments are cardless-first through Paystack and Moniepoint; redirects do not prove payment.</li><li>Taskers do not auto-accept and Admin cannot reassign tasks.</li></ul>
+    </section>
+
+    <section class="technical-controls" aria-label="Find technical records">
+      <label><span>Search</span><input type="search" data-technical-search placeholder="Search screen-to-feature reference" autocomplete="off"></label>
+      <label><span>Domain</span><select data-technical-domain><option value="">All domains</option><option value="Admin">Admin</option><option value="Shared">Shared</option></select></label>
+      <div class="technical-result-count" data-technical-result-count aria-live="polite">48 records shown</div>
+    </section>
+
+    <section class="technical-status-summary" aria-label="Record status summary">
+      <span><strong>48</strong> design-source-required</span>
+    </section>
+
+    <section class="technical-record-list" aria-label="Screen-to-Feature Reference records">
+      <details class="technical-record" id="screen-shared-01" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-01</span>
+      <span class="technical-record-title">Welcome / onboarding</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Introduces the two intents: get help or earn.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Introduces the two intents: get help or earn.</dd></div><div><dt>Backend/product dependency</dt><dd>Store onboarding intent without splitting the user model.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Store onboarding intent without splitting the user model.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-02" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-02</span>
+      <span class="technical-record-title">Role choice</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">User chooses &quot;I need help&quot; or &quot;I want to earn&quot;.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>User chooses &quot;I need help&quot; or &quot;I want to earn&quot;.</dd></div><div><dt>Backend/product dependency</dt><dd>Persist selected app mode and route the user to the correct flow.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Persist selected app mode and route the user to the correct flow.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-03" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-03</span>
+      <span class="technical-record-title">Create account</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Full name, email, password, terms agreement, approved Google or Apple sign-in where available.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Full name, email, password, terms agreement, approved Google or Apple sign-in where available.</dd></div><div><dt>Backend/product dependency</dt><dd>Registration, password hashing, social auth adapters, terms audit.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP Facebook login is excluded.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Registration, password hashing, social auth adapters, terms audit.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-04" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-04</span>
+      <span class="technical-record-title">Login / forgot password</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Email or phone login, recovery, reset flow.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Email or phone login, recovery, reset flow.</dd></div><div><dt>Backend/product dependency</dt><dd>Auth sessions, refresh tokens, OTP reset, resend limits.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Auth sessions, refresh tokens, OTP reset, resend limits.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-05" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-05</span>
+      <span class="technical-record-title">OTP verification</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Six-digit verification code.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Six-digit verification code.</dd></div><div><dt>Backend/product dependency</dt><dd>OTP generation, expiry, retry limits, anti-spam guard.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>OTP generation, expiry, retry limits, anti-spam guard.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-06" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-06</span>
+      <span class="technical-record-title">Verify identity</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Complete the accepted Smile ID NIN/BVN and biometric Tasker-verification path.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Complete the accepted Smile ID NIN/BVN and biometric Tasker-verification path.</dd></div><div><dt>Backend/product dependency</dt><dd>KYC verification and attempt records, Smile ID adapter, consent, safe evidence references and status tracking.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Generic document upload is not the primary MVP identity path.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>KYC verification and attempt records, Smile ID adapter, consent, safe evidence references and status tracking.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-06">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-07" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-07</span>
+      <span class="technical-record-title">Selfie capture</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Complete the accepted Smile ID NIN/BVN and biometric Tasker-verification path.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Complete the accepted Smile ID NIN/BVN and biometric Tasker-verification path.</dd></div><div><dt>Backend/product dependency</dt><dd>KYC verification and attempt records, Smile ID adapter, consent, safe evidence references and status tracking.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Generic document upload is not the primary MVP identity path.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>KYC verification and attempt records, Smile ID adapter, consent, safe evidence references and status tracking.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-07">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-08" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-08</span>
+      <span class="technical-record-title">ID upload</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Complete the accepted Smile ID NIN/BVN and biometric Tasker-verification path.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Complete the accepted Smile ID NIN/BVN and biometric Tasker-verification path.</dd></div><div><dt>Backend/product dependency</dt><dd>KYC verification and attempt records, Smile ID adapter, consent, safe evidence references and status tracking.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Generic document upload is not the primary MVP identity path.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>KYC verification and attempt records, Smile ID adapter, consent, safe evidence references and status tracking.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-08">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-09" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-09</span>
+      <span class="technical-record-title">Complete profile</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Phone number, address, state, user photo.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Phone number, address, state, user photo.</dd></div><div><dt>Backend/product dependency</dt><dd>User profile fields, address relation, state validation.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>User profile fields, address relation, state validation.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-09">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-10" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-10</span>
+      <span class="technical-record-title">Pricing rule</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Explains fair pricing and underpricing restriction.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Explains fair pricing and underpricing restriction.</dd></div><div><dt>Backend/product dependency</dt><dd>Category minimum price rules and recommended price ranges.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Trust</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Category minimum price rules and recommended price ranges.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-10">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-11" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-11</span>
+      <span class="technical-record-title">Home quick task</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Select one of the approved MVP categories: Home, Errands, Office or Support.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Select one of the approved MVP categories: Home, Errands, Office or Support.</dd></div><div><dt>Backend/product dependency</dt><dd>TaskCategory and TaskType catalog.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Admin must manage categories and pricing rules.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>TaskCategory and TaskType catalog.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-11">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-12" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-12</span>
+      <span class="technical-record-title">Task details</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">User describes what needs to be done.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>User describes what needs to be done.</dd></div><div><dt>Backend/product dependency</dt><dd>Task draft creation with structured and free-text fields.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Support attachments and later edits before payment.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Task draft creation with structured and free-text fields.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-12">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-13" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-13</span>
+      <span class="technical-record-title">Task checklist</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Specific sub-services such as sweeping, dish washing, laundry.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Specific sub-services such as sweeping, dish washing, laundry.</dd></div><div><dt>Backend/product dependency</dt><dd>Task requirement checklist tied to service category.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Useful for disputes and completion confirmation.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Task requirement checklist tied to service category.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-13">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-14" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-14</span>
+      <span class="technical-record-title">Set pricing</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">User enters budget and sees platform recommended/minimum range.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>User enters budget and sees platform recommended/minimum range.</dd></div><div><dt>Backend/product dependency</dt><dd>Pricing engine with minimum price, recommended price, urgency adjustments.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Do not allow underpricing below configured floor.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Pricing engine with minimum price, recommended price, urgency adjustments.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-14">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-15" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-15</span>
+      <span class="technical-record-title">Task schedule</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Date, time, duration, urgency.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Date, time, duration, urgency.</dd></div><div><dt>Backend/product dependency</dt><dd>Task window, expiry rules, urgent task flag.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Urgent jobs can affect broadcast priority.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Task window, expiry rules, urgent task flag.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-15">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-16" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-16</span>
+      <span class="technical-record-title">Location</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Saved address or current location.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Saved address or current location.</dd></div><div><dt>Backend/product dependency</dt><dd>Address book, coordinates, geocoding cache.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Cache paid geocoding results when terms allow.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Address book, coordinates, geocoding cache.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-16">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-17" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-17</span>
+      <span class="technical-record-title">Available taskers</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Nearby taskers with ETA, distance, rating, service fit.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Nearby taskers with ETA, distance, rating, service fit.</dd></div><div><dt>Backend/product dependency</dt><dd>Valkey GEOSEARCH first, paid ETA only after filtering.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Batch ETA requests and enforce quotas.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Valkey GEOSEARCH first, paid ETA only after filtering.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-17">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-18" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-18</span>
+      <span class="technical-record-title">Booking summary</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Selected task, cost breakdown, secure payment note.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Selected task, cost breakdown, secure payment note.</dd></div><div><dt>Backend/product dependency</dt><dd>Pending booking, escrow intent, service fee computation.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Show transparent pricing before payment.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Pending booking, escrow intent, service fee computation.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-18">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-19" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-19</span>
+      <span class="technical-record-title">Make payment</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Use cardless-first Paystack or Moniepoint options such as bank transfer, virtual account or USSD, with wallet where eligible.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Use cardless-first Paystack or Moniepoint options such as bank transfer, virtual account or USSD, with wallet where eligible.</dd></div><div><dt>Backend/product dependency</dt><dd>Payment initialization, provider reference, webhook reconciliation.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Card-entry-first UX is forbidden; backend webhook/reconciliation owns final payment truth.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Payment initialization, provider reference, webhook reconciliation.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-19">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-20" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-20</span>
+      <span class="technical-record-title">Payment success / receipt</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Payment received, receipt, QR/download.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Payment received, receipt, QR/download.</dd></div><div><dt>Backend/product dependency</dt><dd>Ledger credit, escrow hold, receipt generation.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Do not trust the client UI without webhook confirmation.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Ledger credit, escrow hold, receipt generation.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-20">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-21" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-21</span>
+      <span class="technical-record-title">Task in progress</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Timer, task progress, chat, emergency support.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Timer, task progress, chat, emergency support.</dd></div><div><dt>Backend/product dependency</dt><dd>Task state machine, WebSocket chat, support escalation.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Works with intermittent connectivity.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Task state machine, WebSocket chat, support escalation.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-21">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-22" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-22</span>
+      <span class="technical-record-title">Task complete / rating</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Owner confirms completion and rates tasker.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Owner confirms completion and rates tasker.</dd></div><div><dt>Backend/product dependency</dt><dd>Escrow release, two-sided review, rating aggregation.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Include dispute window before auto-release if needed.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Escrow release, two-sided review, rating aggregation.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-22">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-23" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-23</span>
+      <span class="technical-record-title">Wallet and transactions</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Balance, funding, transaction history, pending/failed states.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Balance, funding, transaction history, pending/failed states.</dd></div><div><dt>Backend/product dependency</dt><dd>Double-entry ledger and balance projection.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Never store balance as the only source of truth.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Double-entry ledger and balance projection.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-23">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-24" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-24</span>
+      <span class="technical-record-title">Messages, notifications, help</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Chat, task alerts, FAQs, support ticket, report issue.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Chat, task alerts, FAQs, support ticket, report issue.</dd></div><div><dt>Backend/product dependency</dt><dd>Socket.io, FCM, notification inbox, support module.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>FCM wakes devices for task and chat events.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Socket.io, FCM, notification inbox, support module.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-24">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-25" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-25</span>
+      <span class="technical-record-title">Complete Tasker profile</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Gender, DOB, phone, address, location, state, bank details.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Gender, DOB, phone, address, location, state, bank details.</dd></div><div><dt>Backend/product dependency</dt><dd>TaskerProfile, KYC gate, payout destination setup.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>TaskerProfile, KYC gate, payout destination setup.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-25">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-26" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-26</span>
+      <span class="technical-record-title">Select task</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Choose categories and sub-skills the tasker can perform.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Choose categories and sub-skills the tasker can perform.</dd></div><div><dt>Backend/product dependency</dt><dd>Tasker skills relation and category eligibility.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Tasker skills relation and category eligibility.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-26">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-27" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-27</span>
+      <span class="technical-record-title">Availability</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Days available, working hours, maximum travel distance and preferred categories; auto-accept is excluded.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Days available, working hours, maximum travel distance and preferred categories; auto-accept is excluded.</dd></div><div><dt>Backend/product dependency</dt><dd>Availability schedule, service radius, task matching filters.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP Tasker auto-accept is excluded.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Availability schedule, service radius, task matching filters.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-27">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-28" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-28</span>
+      <span class="technical-record-title">Pricing info</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Minimum acceptable price and pricing guidance.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Minimum acceptable price and pricing guidance.</dd></div><div><dt>Backend/product dependency</dt><dd>Tasker pricing preference bounded by platform minimum.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Trust</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Tasker pricing preference bounded by platform minimum.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-28">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-29" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-29</span>
+      <span class="technical-record-title">Enable location</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Allow app to find nearby jobs.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Allow app to find nearby jobs.</dd></div><div><dt>Backend/product dependency</dt><dd>Location permission, online status, Valkey geo index update.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Location permission, online status, Valkey geo index update.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-29">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-30" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-30</span>
+      <span class="technical-record-title">Task request</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Incoming job with owner, distance, task details, price, accept/reject.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Incoming job with owner, distance, task details, price, accept/reject.</dd></div><div><dt>Backend/product dependency</dt><dd>Real-time job offer, expiry, atomic assignment lock.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Real-time job offer, expiry, atomic assignment lock.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-30">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-31" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-31</span>
+      <span class="technical-record-title">Accepted task / start journey</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Tasker starts movement to task owner.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Tasker starts movement to task owner.</dd></div><div><dt>Backend/product dependency</dt><dd>Status change to TASKER_EN_ROUTE, GPS stream starts.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Status change to TASKER_EN_ROUTE, GPS stream starts.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-31">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-32" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-32</span>
+      <span class="technical-record-title">Arrived / start task</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Tasker marks arrival and begins work timer.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Tasker marks arrival and begins work timer.</dd></div><div><dt>Backend/product dependency</dt><dd>Status transition to ARRIVED then IN_PROGRESS.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Status transition to ARRIVED then IN_PROGRESS.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-32">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-33" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-33</span>
+      <span class="technical-record-title">Mark completed</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Tasker requests owner confirmation.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Tasker requests owner confirmation.</dd></div><div><dt>Backend/product dependency</dt><dd>Status changes to AWAITING_OWNER_CONFIRMATION.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Status changes to AWAITING_OWNER_CONFIRMATION.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-33">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-34" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-34</span>
+      <span class="technical-record-title">Task completed</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Payment released after owner confirms.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Payment released after owner confirms.</dd></div><div><dt>Backend/product dependency</dt><dd>Wallet credit, ledger settlement, notification.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Wallet credit, ledger settlement, notification.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-34">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-35" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-35</span>
+      <span class="technical-record-title">Wallet / earnings / withdraw</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Available balance, earned amount, withdrawal amount, fee, PIN.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Available balance, earned amount, withdrawal amount, fee, PIN.</dd></div><div><dt>Backend/product dependency</dt><dd>Ledger history, withdrawal request, payout adapter, withdrawal PIN.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>MVP</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Ledger history, withdrawal request, payout adapter, withdrawal PIN.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-35">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-shared-36" data-technical-record data-domain="Shared">
+    <summary>
+      <span class="technical-record-id">SCREEN-SHARED-36</span>
+      <span class="technical-record-title">Rate task owner / ratings</span>
+      <span class="technical-record-badges"><span>Shared</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Two-sided marketplace reputation.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Signed-out or signed-in user according to the flow</dd></div><div><dt>Purpose</dt><dd>Two-sided marketplace reputation.</dd></div><div><dt>Backend/product dependency</dt><dd>Review model for tasker-to-owner and owner-to-tasker reviews.</dd></div><div><dt>Access or priority</dt><dd>Shared</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Trust</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Shared approved standalone flows</li><li>Review model for tasker-to-owner and owner-to-tasker reviews.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-shared-36">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-admin-01" data-technical-record data-domain="Admin">
+    <summary>
+      <span class="technical-record-id">SCREEN-ADMIN-01</span>
+      <span class="technical-record-title">Dashboard overview</span>
+      <span class="technical-record-badges"><span>Admin</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Total users, active tasks, revenue, pending approvals, disputes.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Admin</dd></div><div><dt>Purpose</dt><dd>Total users, active tasks, revenue, pending approvals, disputes.</dd></div><div><dt>Backend/product dependency</dt><dd>Analytics aggregation and cached summary metrics.</dd></div><div><dt>Access or priority</dt><dd>Admin, Operations</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Admin, Operations</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin approved standalone flows</li><li>Analytics aggregation and cached summary metrics.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-admin-01">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-admin-02" data-technical-record data-domain="Admin">
+    <summary>
+      <span class="technical-record-id">SCREEN-ADMIN-02</span>
+      <span class="technical-record-title">User management</span>
+      <span class="technical-record-badges"><span>Admin</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">List, search, filter, view, suspend, ban users.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Admin</dd></div><div><dt>Purpose</dt><dd>List, search, filter, view, suspend, ban users.</dd></div><div><dt>Backend/product dependency</dt><dd>Admin user query APIs and account status workflow.</dd></div><div><dt>Access or priority</dt><dd>Admin, Support Lead</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Admin, Support Lead</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin approved standalone flows</li><li>Admin user query APIs and account status workflow.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-admin-02">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-admin-03" data-technical-record data-domain="Admin">
+    <summary>
+      <span class="technical-record-id">SCREEN-ADMIN-03</span>
+      <span class="technical-record-title">KYC verification</span>
+      <span class="technical-record-badges"><span>Admin</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Review selfie, ID, verification status, approve/reject.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Admin</dd></div><div><dt>Purpose</dt><dd>Review selfie, ID, verification status, approve/reject.</dd></div><div><dt>Backend/product dependency</dt><dd>KYC moderation workflow, provider data, audit trail.</dd></div><div><dt>Access or priority</dt><dd>KYC Reviewer, Admin</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>KYC Reviewer, Admin</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin approved standalone flows</li><li>KYC moderation workflow, provider data, audit trail.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-admin-03">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-admin-04" data-technical-record data-domain="Admin">
+    <summary>
+      <span class="technical-record-id">SCREEN-ADMIN-04</span>
+      <span class="technical-record-title">Task management</span>
+      <span class="technical-record-badges"><span>Admin</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">All tasks by status, category, amount, owner, tasker.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Admin</dd></div><div><dt>Purpose</dt><dd>All tasks by status, category, amount, owner, tasker.</dd></div><div><dt>Backend/product dependency</dt><dd>Task search, task timeline, intervention endpoints.</dd></div><div><dt>Access or priority</dt><dd>Operations</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Operations Admin may force-cancel under policy but cannot reassign or select a replacement Tasker.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin approved standalone flows</li><li>Task search, task timeline, intervention endpoints.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-admin-04">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-admin-05" data-technical-record data-domain="Admin">
+    <summary>
+      <span class="technical-record-id">SCREEN-ADMIN-05</span>
+      <span class="technical-record-title">Controlled force cancel</span>
+      <span class="technical-record-badges"><span>Admin</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Admin may force-cancel a task under policy; admin cannot select a replacement Tasker.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Admin</dd></div><div><dt>Purpose</dt><dd>Admin may force-cancel a task under policy; admin cannot select a replacement Tasker.</dd></div><div><dt>Backend/product dependency</dt><dd>Reason capture, refund/penalty decision, notification.</dd></div><div><dt>Access or priority</dt><dd>Operations Lead</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Operations Lead Admin may force-cancel under policy but cannot reassign or select a replacement Tasker.</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin approved standalone flows</li><li>Reason capture, refund/penalty decision, notification.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-admin-05">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-admin-06" data-technical-record data-domain="Admin">
+    <summary>
+      <span class="technical-record-id">SCREEN-ADMIN-06</span>
+      <span class="technical-record-title">Wallet and escrow</span>
+      <span class="technical-record-badges"><span>Admin</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Held funds, wallet activity, task settlement state.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Admin</dd></div><div><dt>Purpose</dt><dd>Held funds, wallet activity, task settlement state.</dd></div><div><dt>Backend/product dependency</dt><dd>Ledger query, escrow status, settlement audit trail.</dd></div><div><dt>Access or priority</dt><dd>Finance</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Finance</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin approved standalone flows</li><li>Ledger query, escrow status, settlement audit trail.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-admin-06">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-admin-07" data-technical-record data-domain="Admin">
+    <summary>
+      <span class="technical-record-id">SCREEN-ADMIN-07</span>
+      <span class="technical-record-title">Withdrawals</span>
+      <span class="technical-record-badges"><span>Admin</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Approve/reject withdrawal requests.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Admin</dd></div><div><dt>Purpose</dt><dd>Approve/reject withdrawal requests.</dd></div><div><dt>Backend/product dependency</dt><dd>Payout approval workflow, payout adapter, withdrawal status.</dd></div><div><dt>Access or priority</dt><dd>Finance Lead</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Finance Lead</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin approved standalone flows</li><li>Payout approval workflow, payout adapter, withdrawal status.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-admin-07">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-admin-08" data-technical-record data-domain="Admin">
+    <summary>
+      <span class="technical-record-id">SCREEN-ADMIN-08</span>
+      <span class="technical-record-title">Disputes and support</span>
+      <span class="technical-record-badges"><span>Admin</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Complaint details, evidence, admin decision, resolution tracking.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Admin</dd></div><div><dt>Purpose</dt><dd>Complaint details, evidence, admin decision, resolution tracking.</dd></div><div><dt>Backend/product dependency</dt><dd>Support ticket module, dispute states, evidence attachments.</dd></div><div><dt>Access or priority</dt><dd>Support, Operations</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Support, Operations</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin approved standalone flows</li><li>Support ticket module, dispute states, evidence attachments.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-admin-08">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-admin-09" data-technical-record data-domain="Admin">
+    <summary>
+      <span class="technical-record-id">SCREEN-ADMIN-09</span>
+      <span class="technical-record-title">Category and pricing</span>
+      <span class="technical-record-badges"><span>Admin</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Create/edit task categories, services, recommended and minimum price.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Admin</dd></div><div><dt>Purpose</dt><dd>Create/edit task categories, services, recommended and minimum price.</dd></div><div><dt>Backend/product dependency</dt><dd>Marketplace catalog and pricing rules engine.</dd></div><div><dt>Access or priority</dt><dd>Admin</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Admin</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin approved standalone flows</li><li>Marketplace catalog and pricing rules engine.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-admin-09">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-admin-10" data-technical-record data-domain="Admin">
+    <summary>
+      <span class="technical-record-id">SCREEN-ADMIN-10</span>
+      <span class="technical-record-title">Fraud and risk</span>
+      <span class="technical-record-badges"><span>Admin</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Risk alerts, suspicious behavior, top risk factors.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Admin</dd></div><div><dt>Purpose</dt><dd>Risk alerts, suspicious behavior, top risk factors.</dd></div><div><dt>Backend/product dependency</dt><dd>Risk score, rule triggers, admin flags, investigation history.</dd></div><div><dt>Access or priority</dt><dd>Risk, Admin</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Risk, Admin</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin approved standalone flows</li><li>Risk score, rule triggers, admin flags, investigation history.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-admin-10">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-admin-11" data-technical-record data-domain="Admin">
+    <summary>
+      <span class="technical-record-id">SCREEN-ADMIN-11</span>
+      <span class="technical-record-title">Roles and permissions</span>
+      <span class="technical-record-badges"><span>Admin</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Add admin, create role, permission matrix, 2FA.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Admin</dd></div><div><dt>Purpose</dt><dd>Add admin, create role, permission matrix, 2FA.</dd></div><div><dt>Backend/product dependency</dt><dd>RBAC, admin auth, admin audit logs, session security.</dd></div><div><dt>Access or priority</dt><dd>Super Admin</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Super Admin</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin approved standalone flows</li><li>RBAC, admin auth, admin audit logs, session security.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-admin-11">Link directly to this record</a>
+    </div>
+  </details>
+<details class="technical-record" id="screen-admin-12" data-technical-record data-domain="Admin">
+    <summary>
+      <span class="technical-record-id">SCREEN-ADMIN-12</span>
+      <span class="technical-record-title">Analytics and reports</span>
+      <span class="technical-record-badges"><span>Admin</span><span class="status status-design-source-required">design-source-required</span></span>
+    </summary>
+    <div class="technical-record-body">
+      <p class="record-summary">Revenue, task trend, user growth, top services, reports.</p>
+      <section><h4>At a glance</h4><dl class="record-facts"><div><dt>Actor</dt><dd>Admin</dd></div><div><dt>Purpose</dt><dd>Revenue, task trend, user growth, top services, reports.</dd></div><div><dt>Backend/product dependency</dt><dd>Reporting queries, export, scheduled summary support.</dd></div><div><dt>Access or priority</dt><dd>Admin, Management</dd></div><div><dt>Design status</dt><dd>Figma file/version and review evidence not recorded</dd></div><div><dt>Implementation status</dt><dd>Not verified by this migration</dd></div></dl></section>
+      <div class="record-columns">
+        <section><h4>Rules</h4><ul><li>Admin, Management</li><li>Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.</li><li>Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission.</li></ul></section>
+        <section><h4>Dependencies</h4><ul><li>Admin approved standalone flows</li><li>Reporting queries, export, scheduled summary support.</li><li>Relevant contract and data-model anchors</li></ul></section>
+      </div>
+      
+      <section class="record-gaps" aria-label="Known gaps"><h4>Known gaps or decisions required</h4><ul><li>Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review.</li></ul></section>
+      
+      <p class="record-source"><strong>Source:</strong> Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions</p>
+      <a class="record-anchor" href="#screen-admin-12">Link directly to this record</a>
+    </div>
+  </details>
+      <div class="technical-empty" data-technical-empty hidden><h2>No matching records</h2><p>Clear the search or select another domain.</p></div>
+    </section>
+  </main>
+  <footer>Work2Cash technical reference · Generated from <code>content/technical/screens.json</code></footer>
+  <script src="../../assets/js/technical-library.js"></script>
+</body>
+</html>

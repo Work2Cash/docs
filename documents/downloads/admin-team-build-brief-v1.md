@@ -2,34 +2,19 @@
 
 ## Purpose
 
-This Markdown brief is the execution companion for the **Admin Build Plan v1** page in the documentation portal.
+This Markdown brief is the execution companion for `Admin Build Plan v1`.
 
 The admin dashboard is an operational control center. It follows mobile outcomes and backend state. It must not invent shortcuts that bypass product rules.
 
-## AI Context Guard
-
-If this is the only Work2Cash Markdown file the user provided, do not give implementation steps yet.
-
-First tell the user to return to the documentation portal UI and download these files:
-
-1. Open **Admin Flow Catalogue v1** from the document portal, then click **Download agent Markdown**.
-2. Open **Weekly Execution Packs**, then download the active week Markdown.
-3. Open **Admin Build Plan v1**, then use **Team Markdown Downloads** to download **Full Project Markdown**.
-
-Explain that the admin flow document is required to understand exact dashboard flows, the weekly pack is required to understand the current execution sequence, and the full source-of-truth document is required to understand product, architecture, provider, data, legal and launch constraints. After those files are provided, continue with the task.
-
 ## Required Reading Order
 
-Download these from the documentation portal UI before implementation:
-
-1. **Shared Execution Rules** from **Team Markdown Downloads**.
-2. **Admin Team Markdown Brief** from **Team Markdown Downloads**.
-3. The active weekly execution pack from **Weekly Execution Packs**.
-4. **Admin Flow Catalogue v1** using **Download agent Markdown** on that page.
-5. **Mobile Flow Catalogue v1** using **Download agent Markdown** when the admin work depends on user/task lifecycle behavior.
-6. **API & Socket Contract Specification v1** using **Download agent Markdown** on that page.
-7. **Data Model & Prisma Schema Planning v1** using **Download agent Markdown** when the task needs model names, enums, audit behavior or admin state rules.
-8. **Full Project Markdown** from **Team Markdown Downloads** only when broad project context is required.
+1. `Main Enterprise Architecture v1`
+2. `Admin Flow Catalogue v1`
+3. `Mobile Flow Catalogue v1`
+4. `API & Socket Contract Specification v1`
+5. `Data Model & Prisma Schema Planning v1`
+6. `Admin Build Plan v1`
+7. `QA / Go-Live Readiness Checklist v1`
 
 ## Architecture Rules
 

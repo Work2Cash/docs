@@ -1,8 +1,9 @@
 # Provider Integration & Cost Control v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `provider-integration-cost-control-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Provider Integration & Cost Control v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -84,7 +85,7 @@ Payments**Paystack + Moniepoint**
 
 <div class="meta-card">
 
-Hosting**Hetzner First**
+Hosting**Contabo Staging / DigitalOcean Production**
 
 </div>
 
@@ -226,6 +227,43 @@ Strategy
 
 </div>
 
+
+## Current Approved Production Cost Baseline
+
+DigitalOcean is the active production infrastructure baseline for Work2Cash. Hetzner is not available for this project and is not the selected production provider.
+
+| Item | Selection | Cost |
+|---|---|---|
+| App server | DigitalOcean Basic Droplet, 16GB RAM, 8 vCPU, 320GB SSD | $96/month |
+| Data server | DigitalOcean Basic Droplet, 16GB RAM, 8 vCPU, 320GB SSD | $96/month |
+| Monitoring server | DigitalOcean Basic Droplet, 4GB RAM, 2 vCPU, 80GB SSD | $24/month |
+| DigitalOcean Spaces | 250GiB storage / 1TiB outbound transfer baseline | $5/month |
+| Total production baseline | App + data + monitoring + Spaces | $221/month |
+| Monthly NGN estimate | $221 at ₦1,600/$ | ₦353,600/month |
+| Yearly production baseline | $2,652/year at ₦1,600/$ | ₦4,243,200/year |
+
+Production provider is DigitalOcean. DigitalOcean is no longer a fallback; it is the active production baseline. Contabo remains the selected staging baseline.
+
+## Current Approved Staging Cost Baseline
+
+This is the selected staging baseline for Work2Cash. It is separate from optional provider-testing reserves and production hosting comparisons.
+
+| Item | Selection | Cost |
+|---|---|---|
+| Domain | work2cash.ng via WhoGoHost: ₦9,200 base + 7.5% VAT = ₦690 | ₦9,890 total |
+| Staging server | Contabo Cloud 20, EU region, Ubuntu; 6 vCPU cores, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port | €7.50/month |
+| Object storage | 250GB Object Storage in EU | €2.50/month |
+| Contabo monthly total | Server + object storage | €10/month |
+| Naira estimate | €1 = ₦1,800 | ₦18,000/month |
+| First-month direct estimate | Domain + Contabo monthly | ₦27,890 |
+| Safe approval budget | Includes checkout/FX/payment variance | ₦40,000 |
+
+The real recurring staging infrastructure cost is €10/month before FX/payment variation. The safe first-month approval amount is ₦40,000 because it includes the domain purchase, Contabo monthly cost, VAT/FX/payment variance, and checkout buffer.
+
+> AutoBackup is disabled. The technical team must configure backups from the server to the 250GB object storage. Server storage alone is not the backup strategy.
+
+> UK region is not selected. If UK is later selected, add €1.60/month, making Contabo monthly total €11.60/month.
+
 ## Provider Strategy
 
 <div class="diagram">
@@ -306,10 +344,9 @@ Registry
 | Masked Calls           | Africa's Talking                             | Secondary candidate for masked calls.                        | Fallback voice masking candidate.                                                          | Candidate to validate                 | Confirm Nigeria number support and proxy dial-in feasibility.                                                                |
 | Masked Calls           | Vonage                                       | Fallback masked call provider.                               | Fallback if local candidates fail.                                                         | Fallback                              | Do not depend on it until Nigeria voice-capable number support is verified.                                                  |
 | Masked Calls           | Sinch                                        | Enterprise fallback.                                         | Fallback if scale/compliance requires enterprise provider.                                 | Fallback                              | Likely higher-cost path; validate only if needed.                                                                            |
-| Hosting                | Hetzner                                      | First-choice production and staging hosting path.            | Self-host NestJS, Postgres, Valkey, BullMQ, monitoring stack where selected.               | First-choice infrastructure           | Latency must be measured from Nigeria before final production commitment.                                                    |
-| Hosting                | DigitalOcean                                 | Production fallback if Hetzner latency becomes unacceptable. | Alternative app/data/monitoring server setup and Spaces/S3-compatible storage.             | Fallback infrastructure               | Keep migration plan ready and object storage compatible.                                                                     |
+| Hosting | DigitalOcean | Active production hosting baseline. | App server, data server, monitoring server and Spaces object storage. | Selected production infrastructure | Use DigitalOcean production sizing and monitor before scaling. |
 | Object/Backup Storage  | DigitalOcean Spaces or S3-compatible storage | Media, backup and export storage.                            | Task proof media, backups, generated exports.                                              | Active option                         | Use signed URLs, lifecycle policies and backup restore tests.                                                                |
-| Domain                 | WhoGoHost                                    | Domain registrar for work2cash.ng.                           | Domain purchase and DNS ownership.                                                         | Active provider                       | Domain baseline: NGN 9,200 + 7.5% VAT = NGN 9,890 excluding bank transfer/payment charges.                                   |
+| Domain                 | WhoGoHost                                    | Domain registrar for work2cash.ng.                           | Domain purchase and DNS ownership.                                                         | Active provider                       | Domain baseline: ₦9,200 + 7.5% VAT = ₦690; total ₦9,890 excluding bank transfer/payment charges.                                   |
 | Analytics              | Firebase Analytics                           | Basic mobile analytics.                                      | Event-level mobile analytics where useful.                                                 | Deferred/light usage                  | Product analytics is intentionally not a core MVP dependency.                                                                |
 
 </div>
@@ -566,12 +603,10 @@ The table below captures Work2Cash budgeting assumptions. Any external provider 
 
 | Item                     | Baseline                                          | Execution Note                                                            |
 |--------------------------|---------------------------------------------------|---------------------------------------------------------------------------|
-| Exchange rate assumption | USD 1 = NGN 1,600                                 | Project budgeting baseline. Revalidate before payments/provisioning.      |
-| Domain                   | NGN 9,200 + 7.5% VAT = NGN 9,890                  | WhoGoHost baseline excluding bank transfer/payment charges.               |
-| Staging hosting          | Hetzner CX33 baseline from project source         | 4 vCPU, 8GB RAM, 80GB SSD. Revalidate before provisioning.                |
-| Production first choice  | Hetzner self-hosted production                    | Selected for cost; latency from Nigeria must be measured.                 |
-| Production fallback      | DigitalOcean multi-server production              | Use if Hetzner latency or operational risk becomes unacceptable.          |
-| Production budget buffer | USD 60-80 monthly buffer                          | Infrastructure/provider overage buffer from architecture baseline.        |
+| Exchange rate assumption | €1 = ₦1,800                                 | Working exchange estimate for Contabo staging. Convert at payment date.      |
+| Domain                   | ₦9,200 + 7.5% VAT = ₦690; total ₦9,890                  | WhoGoHost domain baseline; included in the first-month direct estimate.               |
+| Staging hosting          | Contabo Cloud 20: 6 vCPU, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port, EU region, Ubuntu. | €7.50/month from selected plan; no AutoBackup; no private networking. |
+| Production baseline | DigitalOcean app + data + monitoring + Spaces | $221/month; ₦353,600/month at ₦1,600/$; ₦4,243,200/year. |
 | Variable provider costs  | Maps, KYC, SMS, email, masked calls, payment fees | Track by use case and alert before budget drift becomes operational risk. |
 
 </div>
@@ -580,7 +615,7 @@ The table below captures Work2Cash budgeting assumptions. Any external provider 
 
 **Pricing verification gate**
 
-Provider pricing is operationally unstable. Before go-live, verify Paystack, Moniepoint, Smile ID, Google Maps, Termii, email, hosting, object storage and masked-call pricing from official provider sources and update this document if the baseline changes.
+Provider pricing is operationally unstable. Before go-live, verify Paystack, Moniepoint, Smile ID, Google Maps, Termii, email, Contabo staging, DigitalOcean production, object storage and masked-call pricing from official provider sources and update this document if the baseline changes.
 
 </div>
 
@@ -755,9 +790,9 @@ Checklist
 
 <div class="callout green">
 
-**Portal publication note**
+**Portal publication**
 
-Publish this document as **Provider Integration & Cost Control v1** in the Work2Cash documentation portal and link it from the main architecture resource list.
+Publish this document as `Provider Integration & Cost Control v1` in the Work2Cash documentation portal and link it from the main architecture resource list.
 
 </div>
 
@@ -777,9 +812,9 @@ Provider Integration & Cost Control v1 for execution across backend, mobile, adm
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**Provider Integration & Cost Control v1** in the documentation portal
+`Provider Integration & Cost Control v1`
 
 </div>
 

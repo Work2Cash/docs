@@ -45,6 +45,8 @@ function showDocumentLibrary() {
 
   gate.classList.add("hidden");
   docs.classList.remove("hidden");
+  gate.setAttribute("aria-hidden", "true");
+  docs.removeAttribute("aria-hidden");
   return true;
 }
 
@@ -64,6 +66,7 @@ function continueAfterUnlock() {
 async function unlock() {
   const passwordInput = document.getElementById("password");
   const error = document.getElementById("error");
+  if (!passwordInput || !error) return;
 
   const hash = await sha256(passwordInput.value);
 
@@ -72,6 +75,7 @@ async function unlock() {
     continueAfterUnlock();
   } else {
     error.textContent = "Incorrect password.";
+    passwordInput.select();
   }
 }
 
@@ -88,10 +92,6 @@ if (authForm) {
     unlock();
   });
 }
-
-document.getElementById("password").addEventListener("keydown", (event) => {
-  if (event.key === "Enter") unlock();
-});
 
 if (isUnlocked()) {
   continueAfterUnlock();

@@ -1,0 +1,1267 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-07-17",
+  "owner": "Technical Lead",
+  "lifecyclePolicy": "governance/lifecycle-policy.md",
+  "entries": [
+    {
+      "id": "DOC-REG-001",
+      "title": "Work2Cash Document Registry",
+      "type": "governance",
+      "audience": [
+        "All teams",
+        "AI agents"
+      ],
+      "owner": "Technical Lead",
+      "reviewers": [
+        "Product Lead"
+      ],
+      "version": "1.0",
+      "status": "active",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Documentation governance",
+      "artifactClass": "canonical-source",
+      "currentSource": "governance/document-registry.json",
+      "artifacts": [
+        "governance/document-registry.md",
+        "documents/document-registry.html",
+        "documents/agent-md/document-registry.md"
+      ],
+      "migrationPhase": "Phase 0",
+      "notes": "Machine-readable registry is canonical; Markdown and HTML views are generated.",
+      "supersedes": null,
+      "tags": [
+        "governance"
+      ]
+    },
+    {
+      "id": "GOV-POL-001",
+      "title": "Documentation Governance Policies",
+      "type": "governance",
+      "audience": [
+        "All contributors",
+        "AI agents"
+      ],
+      "owner": "Technical Lead",
+      "reviewers": [
+        "Product Lead"
+      ],
+      "version": "1.0",
+      "status": "active",
+      "approval": "approved",
+      "publication": "internal",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Documentation governance",
+      "artifactClass": "canonical-source",
+      "currentSource": "governance/editing-policy.md",
+      "artifacts": [
+        "governance/versioning-policy.md",
+        "governance/lifecycle-policy.md",
+        "governance/review-log.md"
+      ],
+      "migrationPhase": "Phase 0",
+      "notes": "Controls editing, lifecycle, authority, versioning and review evidence.",
+      "supersedes": null,
+      "tags": [
+        "governance"
+      ]
+    },
+    {
+      "id": "AGENT-GUIDE-001",
+      "title": "Work2Cash AI Agent Repository Instructions",
+      "type": "agent-guidance",
+      "audience": [
+        "AI agents",
+        "Developers"
+      ],
+      "owner": "Technical Lead",
+      "reviewers": [
+        "Product Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead"
+      ],
+      "version": "1.0",
+      "status": "active",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Documentation governance and active product sources",
+      "artifactClass": "canonical-source",
+      "currentSource": "AGENTS.md",
+      "artifacts": [
+        "documents/downloads/AGENTS.md"
+      ],
+      "migrationPhase": "Phase 0",
+      "notes": "Downloaded copy must be byte-identical to the repository source.",
+      "supersedes": null,
+      "tags": [
+        "agent-guidance"
+      ]
+    },
+    {
+      "id": "ARCH-001",
+      "title": "Main Enterprise Architecture v1",
+      "type": "architecture",
+      "audience": [
+        "All teams",
+        "Stakeholders",
+        "AI agents"
+      ],
+      "owner": "Technical Lead",
+      "reviewers": [
+        "Product Lead",
+        "Infrastructure Lead",
+        "Security",
+        "Finance",
+        "Operations"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": null,
+      "nextReview": null,
+      "authority": "Designated provisional controlling baseline pending formal approval",
+      "artifactClass": "legacy-derived-frozen",
+      "currentSource": "documents/main-enterprise-architecture-v1.html",
+      "artifacts": [
+        "documents/agent-md/main-enterprise-architecture-v1.md"
+      ],
+      "migrationPhase": "Phase 4",
+      "notes": "Frozen Phase 4 migration evidence. Use TECH-REF-001 for current architecture and operations reading. Formal approval of the migrated architecture records remains pending.",
+      "supersedes": null,
+      "tags": [
+        "architecture"
+      ]
+    },
+    {
+      "id": "DESIGN-001",
+      "title": "Screen To Feature Map v1",
+      "type": "design-map",
+      "audience": [
+        "Product",
+        "Design",
+        "Mobile",
+        "Admin",
+        "Backend"
+      ],
+      "owner": "Product Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": null,
+      "nextReview": null,
+      "authority": "Main Enterprise Architecture v1",
+      "artifactClass": "legacy-derived-frozen",
+      "currentSource": "documents/screen-to-feature-map-v1.html",
+      "artifacts": [
+        "documents/agent-md/screen-to-feature-map-v1.md"
+      ],
+      "migrationPhase": "Phase 4",
+      "notes": "Frozen Phase 4 migration evidence. Use TECH-REF-001 Screen-to-Feature Reference, where known provider, KYC, category, payment, auto-accept and admin-reassignment drift is corrected and remaining design evidence is marked.",
+      "supersedes": null,
+      "tags": [
+        "design-map"
+      ]
+    },
+    {
+      "id": "FLOW-MOBILE-001",
+      "title": "Mobile Flow Catalogue v1",
+      "type": "flow-catalogue",
+      "audience": [
+        "Product",
+        "Mobile",
+        "Backend",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Product Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Mobile Lead",
+        "Backend Lead",
+        "QA"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": null,
+      "authority": "Main Enterprise Architecture v1",
+      "artifactClass": "legacy-transitional-source",
+      "currentSource": "documents/mobile-flow-catalogue-v1.html",
+      "artifacts": [
+        "documents/agent-md/mobile-flow-catalogue-v1.md"
+      ],
+      "migrationPhase": "Phase 2",
+      "notes": "Approved behavior was migrated into 37 standalone mobile flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.",
+      "supersedes": null,
+      "tags": [
+        "flow-catalogue"
+      ]
+    },
+    {
+      "id": "FLOW-ADMIN-001",
+      "title": "Admin Flow Catalogue v1",
+      "type": "flow-catalogue",
+      "audience": [
+        "Product",
+        "Admin",
+        "Backend",
+        "Operations",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Product Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "Operations",
+        "QA"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": null,
+      "authority": "Main Enterprise Architecture v1",
+      "artifactClass": "legacy-transitional-source",
+      "currentSource": "documents/admin-flow-catalogue-v1.html",
+      "artifacts": [
+        "documents/agent-md/admin-flow-catalogue-v1.md"
+      ],
+      "migrationPhase": "Phase 2",
+      "notes": "Approved behavior was migrated into 35 standalone admin flow sources. Retained only as historical combined evidence; use FLOW-LIB-001.",
+      "supersedes": null,
+      "tags": [
+        "flow-catalogue"
+      ]
+    },
+    {
+      "id": "FLOW-ALIGN-001",
+      "title": "Flow Alignment Review v1",
+      "type": "decision-review",
+      "audience": [
+        "Product",
+        "Technical leads",
+        "QA"
+      ],
+      "owner": "Product Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": null,
+      "nextReview": null,
+      "authority": "Main Enterprise Architecture v1 and approved decisions",
+      "artifactClass": "legacy-derived-frozen",
+      "currentSource": "documents/flow-alignment-review-v1.html",
+      "artifacts": [
+        "documents/agent-md/flow-alignment-review-v1.md"
+      ],
+      "migrationPhase": "Phase 5",
+      "notes": "Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 Decisions and Governance for current accepted decisions, propagation work, open questions and risks.",
+      "supersedes": null,
+      "tags": [
+        "decision-review"
+      ]
+    },
+    {
+      "id": "LEGAL-001",
+      "title": "Legal and User-Facing Documents Pack v1",
+      "type": "legal",
+      "audience": [
+        "Legal",
+        "Product",
+        "Operations",
+        "Users"
+      ],
+      "owner": "Product Lead",
+      "reviewers": [
+        "Legal reviewer",
+        "Technical Lead",
+        "Privacy reviewer"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": null,
+      "nextReview": null,
+      "authority": "Applicable law and formally approved product policy",
+      "artifactClass": "legacy-derived-frozen",
+      "currentSource": "documents/legal_user_facing_documents_pack_v1.html",
+      "artifacts": [
+        "documents/agent-md/legal_user_facing_documents_pack_v1.md"
+      ],
+      "migrationPhase": "Phase 5",
+      "notes": "Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 Legal and Compliance. Migrated clauses remain internal, non-effective and subject to qualified legal and privacy review.",
+      "supersedes": null,
+      "tags": [
+        "legal"
+      ]
+    },
+    {
+      "id": "CONTRACT-001",
+      "title": "API and Socket Contract Specification v1",
+      "type": "technical-contract",
+      "audience": [
+        "Mobile",
+        "Admin",
+        "Backend",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Backend Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "QA"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": null,
+      "nextReview": null,
+      "authority": "Main Enterprise Architecture and approved flows",
+      "artifactClass": "legacy-derived-frozen",
+      "currentSource": "documents/api-socket-contract-specification-v1.html",
+      "artifacts": [
+        "documents/agent-md/api-socket-contract-specification-v1.md"
+      ],
+      "migrationPhase": "Phase 4",
+      "notes": "Frozen Phase 4 migration evidence. Use TECH-REF-001 API, Socket and OpenAPI Reference. Approved referral and KYC decisions are merged there with higher authority; remaining contract gaps are explicit.",
+      "supersedes": null,
+      "tags": [
+        "technical-contract"
+      ]
+    },
+    {
+      "id": "CONTRACT-REFERRAL-001",
+      "title": "Referral Contract Group",
+      "type": "technical-contract-decision",
+      "audience": [
+        "Mobile",
+        "Admin",
+        "Backend",
+        "Finance",
+        "Risk",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Backend Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Product Lead",
+        "Finance",
+        "Risk",
+        "QA"
+      ],
+      "version": "0.1",
+      "status": "approved",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Repository-owner accepted contract decision based on approved MF-02, MF-14, MF-17 and AF-15 behavior",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/contracts/referral-contract-group.md",
+      "artifacts": [
+        "documents/contracts/referral-contract-group.html",
+        "documents/agent-md/contracts/referral-contract-group.md",
+        "documents/contracts/index.html",
+        "documents/agent-md/contracts/README.md",
+        "scripts/validate-referral-contract.js"
+      ],
+      "migrationPhase": "Targeted referral contract-gap resolution before Phase 4",
+      "notes": "Closes the referral code/share, registration attribution, progress, reward-status and Admin review path gap. Registration owns attribution; settlement owns five-paid-task qualification; wallet credit is idempotent backend work; no referral socket or public credit mutation exists.",
+      "supersedes": null,
+      "tags": [
+        "referral",
+        "contract-decision",
+        "MF-17",
+        "AF-15",
+        "wallet-credit"
+      ]
+    },
+    {
+      "id": "DATA-001",
+      "title": "Data Model and Prisma Schema Planning v1",
+      "type": "data-model",
+      "audience": [
+        "Backend",
+        "Admin",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Backend Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Data owner",
+        "Security"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": null,
+      "nextReview": null,
+      "authority": "Main Enterprise Architecture and approved contracts",
+      "artifactClass": "legacy-derived-frozen",
+      "currentSource": "documents/data-model-prisma-schema-planning-v1.html",
+      "artifacts": [
+        "documents/agent-md/data-model-prisma-schema-planning-v1.md"
+      ],
+      "migrationPhase": "Phase 4",
+      "notes": "Frozen Phase 4 migration evidence. Use TECH-REF-001 Data Model Reference. KycAttempt is merged from the approved pilot and conceptual models remain clearly separated from executable Prisma baselines.",
+      "supersedes": null,
+      "tags": [
+        "data-model"
+      ]
+    },
+    {
+      "id": "PROVIDER-001",
+      "title": "Provider Integration and Cost Control v1",
+      "type": "provider-operations",
+      "audience": [
+        "Backend",
+        "Infrastructure",
+        "Finance",
+        "Operations"
+      ],
+      "owner": "Infrastructure Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Backend Lead",
+        "Finance",
+        "Security"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": null,
+      "nextReview": null,
+      "authority": "Main Enterprise Architecture and validated provider contracts",
+      "artifactClass": "legacy-derived-frozen",
+      "currentSource": "documents/provider-integration-cost-control-v1.html",
+      "artifacts": [
+        "documents/agent-md/provider-integration-cost-control-v1.md"
+      ],
+      "migrationPhase": "Phase 4",
+      "notes": "Frozen Phase 4 migration evidence. Use TECH-REF-001 Platform Architecture and Operations. Costs and provider capabilities still require dated official validation before purchase or go-live.",
+      "supersedes": null,
+      "tags": [
+        "provider-operations"
+      ]
+    },
+    {
+      "id": "PLAN-MOBILE-001",
+      "title": "Mobile Build Plan v1",
+      "type": "build-plan",
+      "audience": [
+        "Mobile",
+        "Backend",
+        "Product",
+        "QA"
+      ],
+      "owner": "Mobile Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Product Lead",
+        "Backend Lead",
+        "QA"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": null,
+      "authority": "Approved flows, contracts and task register",
+      "artifactClass": "legacy-transitional-source",
+      "currentSource": "documents/build-plan-mobile-v1.html",
+      "artifacts": [
+        "documents/agent-md/build-plan-mobile-v1.md"
+      ],
+      "migrationPhase": "Phase 3",
+      "notes": "Superseded combined Mobile task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Mobile plan.",
+      "supersedes": null,
+      "tags": [
+        "build-plan"
+      ]
+    },
+    {
+      "id": "PLAN-ADMIN-001",
+      "title": "Admin Build Plan v1",
+      "type": "build-plan",
+      "audience": [
+        "Admin",
+        "Backend",
+        "Product",
+        "QA"
+      ],
+      "owner": "Admin Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Product Lead",
+        "Backend Lead",
+        "QA"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": null,
+      "authority": "Approved flows, contracts and task register",
+      "artifactClass": "legacy-transitional-source",
+      "currentSource": "documents/build-plan-admin-v1.html",
+      "artifacts": [
+        "documents/agent-md/build-plan-admin-v1.md"
+      ],
+      "migrationPhase": "Phase 3",
+      "notes": "Superseded combined Admin task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Admin plan.",
+      "supersedes": null,
+      "tags": [
+        "build-plan"
+      ]
+    },
+    {
+      "id": "PLAN-BACKEND-001",
+      "title": "Backend Build Plan v1",
+      "type": "build-plan",
+      "audience": [
+        "Backend",
+        "Mobile",
+        "Admin",
+        "Product",
+        "QA"
+      ],
+      "owner": "Backend Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Product Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "QA"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": null,
+      "authority": "Approved flows, contracts and task register",
+      "artifactClass": "legacy-transitional-source",
+      "currentSource": "documents/build-plan-backend-v1.html",
+      "artifacts": [
+        "documents/agent-md/build-plan-backend-v1.md"
+      ],
+      "migrationPhase": "Phase 3",
+      "notes": "Superseded combined Backend task reference retained as migration evidence. Use TASK-LIB-001 and its generated week-by-week Backend plan.",
+      "supersedes": null,
+      "tags": [
+        "build-plan"
+      ]
+    },
+    {
+      "id": "QA-001",
+      "title": "QA and Go-Live Readiness Checklist v1",
+      "type": "qa-release",
+      "audience": [
+        "QA",
+        "All delivery teams",
+        "Operations"
+      ],
+      "owner": "QA Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Product Lead",
+        "Infrastructure Lead",
+        "Operations"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": null,
+      "nextReview": null,
+      "authority": "Approved product scope, contracts and release policy",
+      "artifactClass": "legacy-derived-frozen",
+      "currentSource": "documents/qa-go-live-readiness-checklist-v1.html",
+      "artifacts": [
+        "documents/agent-md/qa-go-live-readiness-checklist-v1.md"
+      ],
+      "migrationPhase": "Phase 5",
+      "notes": "Frozen Phase 5 migration evidence. Use ASSURANCE-LIB-001 QA and Release Assurance. Migration does not mark any test or release gate passed.",
+      "supersedes": null,
+      "tags": [
+        "qa-release"
+      ]
+    },
+    {
+      "id": "AI-START-001",
+      "title": "AI Agent Start Here",
+      "type": "agent-guidance",
+      "audience": [
+        "AI agents",
+        "Developers"
+      ],
+      "owner": "Technical Lead",
+      "reviewers": [
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead"
+      ],
+      "version": "2.0",
+      "status": "active",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-18",
+      "nextReview": "2026-10-18",
+      "authority": "AGENTS.md",
+      "artifactClass": "generated-output",
+      "currentSource": "content/portal/portal.json",
+      "artifacts": [
+        "documents/agent-md/ai-agent-start-here.md"
+      ],
+      "migrationPhase": "Phase 6",
+      "notes": "Generated short context-selection guide aligned with AGENTS.md, reader routes and the focused team-week execution model.",
+      "supersedes": null,
+      "tags": [
+        "agent-guidance"
+      ]
+    },
+    {
+      "id": "TEAM-PACKS-001",
+      "title": "Shared Execution Rules and Team Briefs",
+      "type": "agent-context-pack",
+      "audience": [
+        "Mobile",
+        "Admin",
+        "Backend",
+        "AI agents"
+      ],
+      "owner": "Technical Lead",
+      "reviewers": [
+        "Product Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead"
+      ],
+      "version": "1",
+      "status": "active",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "AGENTS.md and approved source documents",
+      "artifactClass": "legacy-transitional-source",
+      "currentSource": "documents/downloads/shared-ai-agent-execution-rules-v1.md",
+      "artifacts": [
+        "documents/downloads/mobile-team-build-brief-v1.md",
+        "documents/downloads/admin-team-build-brief-v1.md",
+        "documents/downloads/backend-team-build-brief-v1.md"
+      ],
+      "migrationPhase": "Phase 3",
+      "notes": "Active focused context inputs used with Phase 3 team-week Markdown packs and embedded daily prompts. These packs narrow work; they do not define product behavior.",
+      "supersedes": null,
+      "tags": [
+        "agent-context-pack"
+      ]
+    },
+    {
+      "id": "WEEK-PACKS-001",
+      "title": "Weekly Execution Packs",
+      "type": "agent-context-pack",
+      "audience": [
+        "All delivery teams",
+        "AI agents"
+      ],
+      "owner": "Project Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Product Lead",
+        "Team leads"
+      ],
+      "version": "1",
+      "status": "superseded",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": null,
+      "authority": "Approved task register and build plans",
+      "artifactClass": "legacy-transitional-source",
+      "currentSource": "documents/agent-md/weeks/weekly-execution-index.md",
+      "artifacts": [
+        "documents/agent-md/weeks/week-01-foundation-identity.md",
+        "documents/agent-md/weeks/week-02-tasker-task-creation-payment.md",
+        "documents/agent-md/weeks/week-03-discovery-matching-execution-start.md",
+        "documents/agent-md/weeks/week-04-completion-finance-support.md",
+        "documents/agent-md/weeks/week-05-integration-recovery-full-flow-qa.md",
+        "documents/agent-md/weeks/week-06-hardening-security-performance.md",
+        "documents/agent-md/weeks/week-07-release-candidate-operations-dry-run.md",
+        "documents/agent-md/weeks/week-08-stabilization-freeze.md"
+      ],
+      "migrationPhase": "Phase 3",
+      "notes": "Superseded manually duplicated weekly packs retained as migration evidence. Use the generated TASK-LIB-001 team packs organized by week and day.",
+      "supersedes": null,
+      "tags": [
+        "agent-context-pack"
+      ]
+    },
+    {
+      "id": "FULL-CONTEXT-001",
+      "title": "Work2Cash Full Project Agent Context",
+      "type": "generated-agent-context-map",
+      "audience": [
+        "AI agents",
+        "Technical leads",
+        "Architecture reviewers"
+      ],
+      "owner": "Technical Lead",
+      "reviewers": [
+        "Product Lead"
+      ],
+      "version": "2.0",
+      "status": "active",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-18",
+      "nextReview": "2026-10-18",
+      "authority": "None independently; inherits included source authority",
+      "artifactClass": "generated-output",
+      "currentSource": "content/portal/portal.json",
+      "artifacts": [
+        "documents/agent-md/work2cash-full-source-of-truth-v1.md",
+        "documents/search-index.json",
+        "scripts/generate-portal.js"
+      ],
+      "migrationPhase": "Phase 6",
+      "notes": "Generated 765-record cross-project map for onboarding, architecture review and consistency checks. It replaces the former 33,399-line legacy concatenation, contains no decorative HTML and remains non-canonical.",
+      "supersedes": null,
+      "tags": [
+        "agent-context-bundle"
+      ]
+    },
+    {
+      "id": "PILOT-MF06-001",
+      "title": "MF-06 Create and Fund Task Pilot",
+      "type": "main-flow-pilot",
+      "audience": [
+        "Non-technical teams",
+        "Mobile",
+        "Backend",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Product Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Mobile Lead",
+        "Backend Lead",
+        "Finance",
+        "QA"
+      ],
+      "version": "0.1",
+      "status": "approved",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Main Enterprise Architecture and Mobile Flow Catalogue v1",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/pilots/flows/mobile/MF-06-create-and-fund-task.md",
+      "artifacts": [
+        "documents/pilots/flows/mobile/MF-06-create-and-fund-task.html",
+        "documents/agent-md/pilots/flows/mobile/MF-06-create-and-fund-task.md"
+      ],
+      "migrationPhase": "Phase 1",
+      "notes": "Approved Phase 1 migration reference; it does not replace the complete mobile catalogue until Phase 2 migration and activation.",
+      "supersedes": null,
+      "tags": [
+        "main-flow-pilot"
+      ]
+    },
+    {
+      "id": "PILOT-AF04-001",
+      "title": "AF-04 KYC Review Pilot",
+      "type": "main-flow-pilot",
+      "audience": [
+        "Non-technical operations",
+        "Admin",
+        "Backend",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Product Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "Risk and Compliance",
+        "QA"
+      ],
+      "version": "0.2",
+      "status": "approved",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Main Enterprise Architecture and Admin Flow Catalogue v1",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/pilots/flows/admin/AF-04-kyc-review.md",
+      "artifacts": [
+        "documents/pilots/flows/admin/AF-04-kyc-review.html",
+        "documents/agent-md/pilots/flows/admin/AF-04-kyc-review.md"
+      ],
+      "migrationPhase": "Phase 1",
+      "notes": "Approved standalone Phase 1 migration reference with exact v0.2 technical traceability; it is not a full-catalogue replacement.",
+      "supersedes": null,
+      "tags": [
+        "main-flow-pilot",
+        "admin",
+        "kyc"
+      ]
+    },
+    {
+      "id": "PILOT-KYC-CONTRACT-001",
+      "title": "KYC Review Contract Group Pilot",
+      "type": "technical-contract-pilot",
+      "audience": [
+        "Admin",
+        "Backend",
+        "QA",
+        "Product",
+        "AI agents"
+      ],
+      "owner": "Backend Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Admin Lead",
+        "Product Lead",
+        "Risk and Compliance",
+        "QA"
+      ],
+      "version": "0.2",
+      "status": "approved",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Approved Phase 1 reference decision for AF-04; subject to future formally approved architecture decisions",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/pilots/contracts/kyc-review-contract-group.md",
+      "artifacts": [
+        "documents/pilots/contracts/kyc-review-contract-group.html",
+        "documents/agent-md/pilots/contracts/kyc-review-contract-group.md"
+      ],
+      "migrationPhase": "Phase 1",
+      "notes": "Approved Phase 1 reference defining exact v0.2 paths, DTOs, permissions, concurrency, idempotency and reconciliation; Phase 4 merge remains.",
+      "supersedes": null,
+      "tags": [
+        "technical-contract-pilot",
+        "admin",
+        "kyc"
+      ]
+    },
+    {
+      "id": "PILOT-KYC-DATA-001",
+      "title": "Tasker Activation and KYC Data Domain Pilot",
+      "type": "data-domain-pilot",
+      "audience": [
+        "Backend",
+        "Admin",
+        "Security and Privacy",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Backend Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Product Lead",
+        "Data owner",
+        "Security and Privacy",
+        "QA"
+      ],
+      "version": "0.2",
+      "status": "approved",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Approved Phase 1 reference decision for the KYC domain; subject to future formally approved architecture decisions",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/pilots/data/kyc-domain.md",
+      "artifacts": [
+        "documents/pilots/data/kyc-domain.html",
+        "documents/agent-md/pilots/data/kyc-domain.md"
+      ],
+      "migrationPhase": "Phase 1",
+      "notes": "Approved Phase 1 reference defining KycVerification review/version and immutable numbered KycAttempt behavior; full-schema merge and migration remain.",
+      "supersedes": null,
+      "tags": [
+        "data-domain-pilot",
+        "kyc",
+        "prisma"
+      ]
+    },
+    {
+      "id": "PILOT-QA-AF04-001",
+      "title": "AF-04 KYC Review Reference QA Suite",
+      "type": "qa-suite-pilot",
+      "audience": [
+        "QA",
+        "Admin",
+        "Backend",
+        "Product",
+        "AI agents"
+      ],
+      "owner": "QA Lead",
+      "reviewers": [
+        "Product Lead",
+        "Technical Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "Risk and Compliance"
+      ],
+      "version": "0.2",
+      "status": "approved",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "AF-04 v0.2 flow, KYC contract v0.2 and KYC data domain v0.2",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/pilots/qa/AF-04-kyc-review-suite.md",
+      "artifacts": [
+        "documents/pilots/qa/AF-04-kyc-review-suite.html",
+        "documents/agent-md/pilots/qa/AF-04-kyc-review-suite.md"
+      ],
+      "migrationPhase": "Phase 1",
+      "notes": "Approved Phase 1 reference with eleven executable cases; deployed build, migration and provider-fixture evidence remain implementation-stage requirements.",
+      "supersedes": null,
+      "tags": [
+        "qa-suite-pilot",
+        "admin",
+        "kyc"
+      ]
+    },
+    {
+      "id": "FLOW-LIB-001",
+      "title": "Phase 2 Standalone Flow Library",
+      "type": "flow-migration-program",
+      "audience": [
+        "Non-technical teams",
+        "Mobile",
+        "Admin",
+        "Backend",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Product Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "Security and Privacy",
+        "QA"
+      ],
+      "version": "1.0",
+      "status": "active",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Approved Mobile and Admin Flow Catalogue v1 behavior in the approved Phase 1 standalone format",
+      "artifactClass": "canonical-source",
+      "currentSource": "logs/phase-2-execution-log.md",
+      "artifacts": [
+        "logs/phase-2-flow-migration-inventory.md",
+        "documents/flows/index.html",
+        "documents/agent-md/flows/README.md",
+        "documents/flows/dependency-map.html",
+        "documents/agent-md/flows/dependency-map.md",
+        "documents/flows/combined-flow-library.html",
+        "documents/agent-md/flows/combined-flow-library.md"
+      ],
+      "migrationPhase": "Phase 2",
+      "notes": "Active canonical flow family containing all 72 approved standalone sources: 24 mobile main, 13 mobile subflows, 24 admin main and 11 admin subflows. Human/agent indexes, dependency maps and optional combined catalogues are generated.",
+      "supersedes": "FLOW-MOBILE-001 and FLOW-ADMIN-001",
+      "tags": [
+        "flow-library",
+        "phase-2",
+        "migration"
+      ]
+    },
+    {
+      "id": "TASK-LIB-001",
+      "title": "Phase 3 Canonical Build Task and Weekly Execution Library",
+      "type": "execution-planning-migration",
+      "audience": [
+        "Junior Mobile developers",
+        "Junior Admin developers",
+        "Junior Backend developers",
+        "Team leads",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Project Lead",
+      "reviewers": [
+        "Technical Lead",
+        "Product Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "QA"
+      ],
+      "version": "1.0",
+      "status": "active",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Approved flows, accepted contract decisions and approved Phase 3 delivery order",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/tasks/plan-metadata.json",
+      "artifacts": [
+        "logs/phase-3-task-migration-inventory.md",
+        "logs/phase-3-execution-log.md",
+        "documents/planning/index.html",
+        "documents/agent-md/planning/README.md",
+        "documents/planning/mobile-build-plan.html",
+        "documents/planning/admin-build-plan.html",
+        "documents/planning/backend-build-plan.html",
+        "documents/planning/qa-traceability.html",
+        "documents/agent-md/planning/qa-traceability.md"
+      ],
+      "migrationPhase": "Phase 3",
+      "notes": "Active planning family with 25 canonical team-week Markdown sources containing 125 task records: 120 migrated legacy tasks plus five Admin integration tasks. Human and agent execution outputs are also weekly; no standalone daily Markdown source, HTML task page or task-agent export is maintained. The primary junior-developer path is Team Build Plan to Week to Day. Every week begins with a Monday-to-Friday five-day map; every day has an explicit start boundary, finish boundary, implementation steps, tests, commit and embedded agent prompt. Delivery order is Admin construction, Mobile and Backend construction, Admin Integration, then cross-platform hardening.",
+      "supersedes": "PLAN-MOBILE-001, PLAN-ADMIN-001, PLAN-BACKEND-001 and WEEK-PACKS-001",
+      "tags": [
+        "task-library",
+        "weekly-execution",
+        "phase-3",
+        "junior-developers"
+      ]
+    },
+    {
+      "id": "TECH-REF-001",
+      "title": "Phase 4 Consolidated Technical Reference Library",
+      "type": "technical-reference-migration",
+      "audience": [
+        "Mobile",
+        "Admin",
+        "Backend",
+        "Infrastructure",
+        "Operations",
+        "QA",
+        "AI agents"
+      ],
+      "owner": "Technical Lead",
+      "reviewers": [
+        "Product Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "Infrastructure Lead",
+        "Security",
+        "Finance",
+        "Operations",
+        "QA"
+      ],
+      "version": "1.0",
+      "status": "in-review",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": "2026-07-17",
+      "nextReview": "2026-10-17",
+      "authority": "Approved standalone flows and accepted contract decisions, with explicitly marked provisional architecture, contract, schema, provider and design baselines",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/technical/library.json",
+      "artifacts": [
+        "content/technical/contracts.json",
+        "content/technical/data.json",
+        "content/technical/platform.json",
+        "content/technical/screens.json",
+        "documents/technical/index.html",
+        "documents/technical/contracts.html",
+        "documents/technical/data.html",
+        "documents/technical/platform.html",
+        "documents/technical/screens.html",
+        "documents/technical/openapi/work2cash-v1.json",
+        "documents/agent-md/technical/contracts.md",
+        "documents/agent-md/technical/data.md",
+        "documents/agent-md/technical/platform.md",
+        "documents/agent-md/technical/screens.md",
+        "logs/phase-4-execution-log.md",
+        "logs/phase-4-technical-migration-inventory.md",
+        "logs/phase-4-technical-gap-register.md",
+        "scripts/bootstrap-phase4-technical-sources.js",
+        "scripts/generate-technical-docs.js"
+      ],
+      "migrationPhase": "Phase 4",
+      "notes": "Consolidates the legacy architecture, contract, data, provider and screen families into five human pages, four focused agent packs and one generated OpenAPI baseline. Its 342 anchored records are sections inside those families, not standalone required-reading documents. Approved referral and KYC decisions retain higher authority; provisional gaps remain explicit blockers.",
+      "supersedes": "ARCH-001, DESIGN-001, CONTRACT-001, DATA-001 and PROVIDER-001",
+      "tags": [
+        "technical-reference",
+        "openapi",
+        "architecture",
+        "contracts",
+        "data",
+        "providers",
+        "screens",
+        "phase-4"
+      ]
+    },
+    {
+      "id": "ASSURANCE-LIB-001",
+      "title": "Phase 5 Consolidated Assurance and Governance Library",
+      "type": "assurance-governance-migration",
+      "audience": [
+        "Product",
+        "Legal",
+        "Privacy",
+        "QA",
+        "Operations",
+        "Mobile",
+        "Admin",
+        "Backend",
+        "Infrastructure",
+        "AI agents"
+      ],
+      "owner": "Technical Lead",
+      "reviewers": [
+        "QA Lead",
+        "Product Lead",
+        "Qualified Legal reviewer",
+        "Privacy reviewer",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "Infrastructure Lead",
+        "Operations"
+      ],
+      "version": "1.0",
+      "status": "in-review",
+      "approval": "pending",
+      "publication": "published",
+      "lastReviewed": "2026-07-18",
+      "nextReview": "2026-10-18",
+      "authority": "Approved sources, qualified legal authority and evidence-based release governance; record-level statuses preserve pending work",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/assurance/library.json",
+      "artifacts": [
+        "content/assurance/qa-release.json",
+        "content/assurance/legal-compliance.json",
+        "content/assurance/decisions-governance.json",
+        "documents/assurance/index.html",
+        "documents/assurance/qa-release.html",
+        "documents/assurance/legal-compliance.html",
+        "documents/assurance/decisions-governance.html",
+        "documents/agent-md/assurance/qa-release.md",
+        "documents/agent-md/assurance/legal-compliance.md",
+        "documents/agent-md/assurance/decisions-governance.md",
+        "logs/phase-5-execution-log.md",
+        "scripts/bootstrap-phase5-assurance-sources.js",
+        "scripts/generate-assurance-docs.js"
+      ],
+      "migrationPhase": "Phase 5",
+      "notes": "Consolidates QA/release, legal/compliance and decision/governance material into four human pages and three focused agent packs. Its 205 independently linked records are sections within those seven readable files, not standalone required-reading documents. Migration does not pass tests, approve legal wording, authorize release or resolve open decisions.",
+      "supersedes": "FLOW-ALIGN-001, LEGAL-001 and QA-001",
+      "tags": [
+        "assurance",
+        "qa",
+        "release",
+        "legal",
+        "compliance",
+        "decisions",
+        "governance",
+        "phase-5"
+      ]
+    },
+    {
+      "id": "PORTAL-001",
+      "title": "Phase 6 Documentation Portal and Search",
+      "type": "documentation-portal",
+      "audience": [
+        "Non-technical teams",
+        "Junior developers",
+        "Technical leads",
+        "QA",
+        "Legal",
+        "Privacy",
+        "Operations",
+        "AI agents"
+      ],
+      "owner": "Technical Lead",
+      "reviewers": [
+        "Product Lead",
+        "Mobile Lead",
+        "Admin Lead",
+        "Backend Lead",
+        "QA Lead",
+        "Operations"
+      ],
+      "version": "2.0",
+      "status": "active",
+      "approval": "approved",
+      "publication": "published",
+      "lastReviewed": "2026-07-18",
+      "nextReview": "2026-10-18",
+      "authority": "Documentation governance and the registry status of each linked source",
+      "artifactClass": "canonical-source",
+      "currentSource": "content/portal/portal.json",
+      "artifacts": [
+        "index.html",
+        "documents/search-index.json",
+        "assets/css/portal.css",
+        "assets/images/work2cash-logo.png",
+        "assets/js/portal-search.js",
+        "assets/js/gate.js",
+        "governance/documentation-maintenance-guide.md",
+        "logs/phase-6-execution-log.md",
+        "scripts/generate-portal.js",
+        "scripts/validate-accessibility.js"
+      ],
+      "migrationPhase": "Phase 6",
+      "notes": "Final role-based portal with six current libraries, five reader routes, a 765-record cross-library search index and an inline glossary. Superseded documents remain registry evidence and are not exposed in normal navigation. Phase 6 adds no new per-record human pages.",
+      "supersedes": null,
+      "tags": [
+        "portal",
+        "search",
+        "accessibility",
+        "generation",
+        "phase-6"
+      ]
+    }
+  ]
+}

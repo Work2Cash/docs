@@ -1,0 +1,2336 @@
+{
+  "id": "TECH-SCREENS-001",
+  "slug": "screens",
+  "title": "Screen-to-Feature Reference",
+  "description": "A corrected, searchable map of shared, Task Owner, Tasker and Admin screens. Each record states purpose, dependencies, safety rules and unresolved design evidence.",
+  "audience": "Product, Design, Mobile, Admin, Backend, QA and AI agents",
+  "owner": "Product Lead",
+  "reviewers": [
+    "Technical Lead",
+    "Mobile Lead",
+    "Admin Lead",
+    "Backend Lead",
+    "QA"
+  ],
+  "status": "in-review",
+  "version": "1.0",
+  "lastReviewed": "2026-07-17",
+  "authority": "Approved standalone flows and accepted product decisions",
+  "sourceNotes": [
+    "Known Facebook, generic KYC upload, old category, card-first, auto-accept and admin-reassignment drift is corrected.",
+    "Missing Figma version and screen-transition evidence remains visible as a design-review gap."
+  ],
+  "sharedRules": [
+    "The approved flow controls behavior; a visual mockup cannot silently change product rules.",
+    "Use Home, Errands, Office and Support as MVP categories.",
+    "Use the Smile ID NIN/BVN and biometric path for Tasker KYC.",
+    "Payments are cardless-first through Paystack and Moniepoint; redirects do not prove payment.",
+    "Taskers do not auto-accept and Admin cannot reassign tasks."
+  ],
+  "records": [
+    {
+      "id": "SCREEN-SHARED-01",
+      "type": "screen",
+      "title": "Welcome / onboarding",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Introduces the two intents: get help or earn.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Introduces the two intents: get help or earn."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Store onboarding intent without splitting the user model."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Store onboarding intent without splitting the user model.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-02",
+      "type": "screen",
+      "title": "Role choice",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "User chooses \"I need help\" or \"I want to earn\".",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "User chooses \"I need help\" or \"I want to earn\"."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Persist selected app mode and route the user to the correct flow."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Persist selected app mode and route the user to the correct flow.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-03",
+      "type": "screen",
+      "title": "Create account",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Full name, email, password, terms agreement, approved Google or Apple sign-in where available.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Full name, email, password, terms agreement, approved Google or Apple sign-in where available."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Registration, password hashing, social auth adapters, terms audit."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP Facebook login is excluded.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Registration, password hashing, social auth adapters, terms audit.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-04",
+      "type": "screen",
+      "title": "Login / forgot password",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Email or phone login, recovery, reset flow.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Email or phone login, recovery, reset flow."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Auth sessions, refresh tokens, OTP reset, resend limits."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Auth sessions, refresh tokens, OTP reset, resend limits.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-05",
+      "type": "screen",
+      "title": "OTP verification",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Six-digit verification code.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Six-digit verification code."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "OTP generation, expiry, retry limits, anti-spam guard."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "OTP generation, expiry, retry limits, anti-spam guard.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-06",
+      "type": "screen",
+      "title": "Verify identity",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Complete the accepted Smile ID NIN/BVN and biometric Tasker-verification path.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Complete the accepted Smile ID NIN/BVN and biometric Tasker-verification path."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "KYC verification and attempt records, Smile ID adapter, consent, safe evidence references and status tracking."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Generic document upload is not the primary MVP identity path.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "KYC verification and attempt records, Smile ID adapter, consent, safe evidence references and status tracking.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-07",
+      "type": "screen",
+      "title": "Selfie capture",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Complete the accepted Smile ID NIN/BVN and biometric Tasker-verification path.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Complete the accepted Smile ID NIN/BVN and biometric Tasker-verification path."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "KYC verification and attempt records, Smile ID adapter, consent, safe evidence references and status tracking."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Generic document upload is not the primary MVP identity path.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "KYC verification and attempt records, Smile ID adapter, consent, safe evidence references and status tracking.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-08",
+      "type": "screen",
+      "title": "ID upload",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Complete the accepted Smile ID NIN/BVN and biometric Tasker-verification path.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Complete the accepted Smile ID NIN/BVN and biometric Tasker-verification path."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "KYC verification and attempt records, Smile ID adapter, consent, safe evidence references and status tracking."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Generic document upload is not the primary MVP identity path.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "KYC verification and attempt records, Smile ID adapter, consent, safe evidence references and status tracking.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-09",
+      "type": "screen",
+      "title": "Complete profile",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Phone number, address, state, user photo.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Phone number, address, state, user photo."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "User profile fields, address relation, state validation."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "User profile fields, address relation, state validation.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-10",
+      "type": "screen",
+      "title": "Pricing rule",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Explains fair pricing and underpricing restriction.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Explains fair pricing and underpricing restriction."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Category minimum price rules and recommended price ranges."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Trust",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Category minimum price rules and recommended price ranges.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-11",
+      "type": "screen",
+      "title": "Home quick task",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Select one of the approved MVP categories: Home, Errands, Office or Support.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Select one of the approved MVP categories: Home, Errands, Office or Support."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "TaskCategory and TaskType catalog."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Admin must manage categories and pricing rules.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "TaskCategory and TaskType catalog.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-12",
+      "type": "screen",
+      "title": "Task details",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "User describes what needs to be done.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "User describes what needs to be done."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Task draft creation with structured and free-text fields."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Support attachments and later edits before payment.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Task draft creation with structured and free-text fields.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-13",
+      "type": "screen",
+      "title": "Task checklist",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Specific sub-services such as sweeping, dish washing, laundry.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Specific sub-services such as sweeping, dish washing, laundry."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Task requirement checklist tied to service category."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Useful for disputes and completion confirmation.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Task requirement checklist tied to service category.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-14",
+      "type": "screen",
+      "title": "Set pricing",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "User enters budget and sees platform recommended/minimum range.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "User enters budget and sees platform recommended/minimum range."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Pricing engine with minimum price, recommended price, urgency adjustments."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Do not allow underpricing below configured floor.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Pricing engine with minimum price, recommended price, urgency adjustments.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-15",
+      "type": "screen",
+      "title": "Task schedule",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Date, time, duration, urgency.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Date, time, duration, urgency."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Task window, expiry rules, urgent task flag."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Urgent jobs can affect broadcast priority.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Task window, expiry rules, urgent task flag.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-16",
+      "type": "screen",
+      "title": "Location",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Saved address or current location.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Saved address or current location."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Address book, coordinates, geocoding cache."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Cache paid geocoding results when terms allow.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Address book, coordinates, geocoding cache.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-17",
+      "type": "screen",
+      "title": "Available taskers",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Nearby taskers with ETA, distance, rating, service fit.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Nearby taskers with ETA, distance, rating, service fit."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Valkey GEOSEARCH first, paid ETA only after filtering."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Batch ETA requests and enforce quotas.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Valkey GEOSEARCH first, paid ETA only after filtering.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-18",
+      "type": "screen",
+      "title": "Booking summary",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Selected task, cost breakdown, secure payment note.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Selected task, cost breakdown, secure payment note."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Pending booking, escrow intent, service fee computation."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Show transparent pricing before payment.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Pending booking, escrow intent, service fee computation.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-19",
+      "type": "screen",
+      "title": "Make payment",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Use cardless-first Paystack or Moniepoint options such as bank transfer, virtual account or USSD, with wallet where eligible.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Use cardless-first Paystack or Moniepoint options such as bank transfer, virtual account or USSD, with wallet where eligible."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Payment initialization, provider reference, webhook reconciliation."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Card-entry-first UX is forbidden; backend webhook/reconciliation owns final payment truth.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Payment initialization, provider reference, webhook reconciliation.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-20",
+      "type": "screen",
+      "title": "Payment success / receipt",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Payment received, receipt, QR/download.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Payment received, receipt, QR/download."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Ledger credit, escrow hold, receipt generation."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Do not trust the client UI without webhook confirmation.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Ledger credit, escrow hold, receipt generation.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-21",
+      "type": "screen",
+      "title": "Task in progress",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Timer, task progress, chat, emergency support.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Timer, task progress, chat, emergency support."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Task state machine, WebSocket chat, support escalation."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Works with intermittent connectivity.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Task state machine, WebSocket chat, support escalation.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-22",
+      "type": "screen",
+      "title": "Task complete / rating",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Owner confirms completion and rates tasker.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Owner confirms completion and rates tasker."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Escrow release, two-sided review, rating aggregation."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Include dispute window before auto-release if needed.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Escrow release, two-sided review, rating aggregation.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-23",
+      "type": "screen",
+      "title": "Wallet and transactions",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Balance, funding, transaction history, pending/failed states.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Balance, funding, transaction history, pending/failed states."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Double-entry ledger and balance projection."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Never store balance as the only source of truth.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Double-entry ledger and balance projection.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-24",
+      "type": "screen",
+      "title": "Messages, notifications, help",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Chat, task alerts, FAQs, support ticket, report issue.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Chat, task alerts, FAQs, support ticket, report issue."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Socket.io, FCM, notification inbox, support module."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "FCM wakes devices for task and chat events.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Socket.io, FCM, notification inbox, support module.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-25",
+      "type": "screen",
+      "title": "Complete Tasker profile",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Gender, DOB, phone, address, location, state, bank details.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Gender, DOB, phone, address, location, state, bank details."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "TaskerProfile, KYC gate, payout destination setup."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "TaskerProfile, KYC gate, payout destination setup.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-26",
+      "type": "screen",
+      "title": "Select task",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Choose categories and sub-skills the tasker can perform.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Choose categories and sub-skills the tasker can perform."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Tasker skills relation and category eligibility."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Tasker skills relation and category eligibility.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-27",
+      "type": "screen",
+      "title": "Availability",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Days available, working hours, maximum travel distance and preferred categories; auto-accept is excluded.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Days available, working hours, maximum travel distance and preferred categories; auto-accept is excluded."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Availability schedule, service radius, task matching filters."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP Tasker auto-accept is excluded.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Availability schedule, service radius, task matching filters.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-28",
+      "type": "screen",
+      "title": "Pricing info",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Minimum acceptable price and pricing guidance.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Minimum acceptable price and pricing guidance."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Tasker pricing preference bounded by platform minimum."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Trust",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Tasker pricing preference bounded by platform minimum.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-29",
+      "type": "screen",
+      "title": "Enable location",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Allow app to find nearby jobs.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Allow app to find nearby jobs."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Location permission, online status, Valkey geo index update."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Location permission, online status, Valkey geo index update.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-30",
+      "type": "screen",
+      "title": "Task request",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Incoming job with owner, distance, task details, price, accept/reject.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Incoming job with owner, distance, task details, price, accept/reject."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Real-time job offer, expiry, atomic assignment lock."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Real-time job offer, expiry, atomic assignment lock.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-31",
+      "type": "screen",
+      "title": "Accepted task / start journey",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Tasker starts movement to task owner.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Tasker starts movement to task owner."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Status change to TASKER_EN_ROUTE, GPS stream starts."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Status change to TASKER_EN_ROUTE, GPS stream starts.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-32",
+      "type": "screen",
+      "title": "Arrived / start task",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Tasker marks arrival and begins work timer.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Tasker marks arrival and begins work timer."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Status transition to ARRIVED then IN_PROGRESS."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Status transition to ARRIVED then IN_PROGRESS.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-33",
+      "type": "screen",
+      "title": "Mark completed",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Tasker requests owner confirmation.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Tasker requests owner confirmation."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Status changes to AWAITING_OWNER_CONFIRMATION."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Status changes to AWAITING_OWNER_CONFIRMATION.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-34",
+      "type": "screen",
+      "title": "Task completed",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Payment released after owner confirms.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Payment released after owner confirms."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Wallet credit, ledger settlement, notification."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Wallet credit, ledger settlement, notification.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-35",
+      "type": "screen",
+      "title": "Wallet / earnings / withdraw",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Available balance, earned amount, withdrawal amount, fee, PIN.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Available balance, earned amount, withdrawal amount, fee, PIN."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Ledger history, withdrawal request, payout adapter, withdrawal PIN."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "MVP",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Ledger history, withdrawal request, payout adapter, withdrawal PIN.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-SHARED-36",
+      "type": "screen",
+      "title": "Rate task owner / ratings",
+      "domain": "Shared",
+      "status": "design-source-required",
+      "summary": "Two-sided marketplace reputation.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Signed-out or signed-in user according to the flow"
+        },
+        {
+          "label": "Purpose",
+          "value": "Two-sided marketplace reputation."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Review model for tasker-to-owner and owner-to-tasker reviews."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Shared"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Trust",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Shared approved standalone flows",
+        "Review model for tasker-to-owner and owner-to-tasker reviews.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-ADMIN-01",
+      "type": "screen",
+      "title": "Dashboard overview",
+      "domain": "Admin",
+      "status": "design-source-required",
+      "summary": "Total users, active tasks, revenue, pending approvals, disputes.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Admin"
+        },
+        {
+          "label": "Purpose",
+          "value": "Total users, active tasks, revenue, pending approvals, disputes."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Analytics aggregation and cached summary metrics."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Admin, Operations"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Admin, Operations",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Admin approved standalone flows",
+        "Analytics aggregation and cached summary metrics.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-ADMIN-02",
+      "type": "screen",
+      "title": "User management",
+      "domain": "Admin",
+      "status": "design-source-required",
+      "summary": "List, search, filter, view, suspend, ban users.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Admin"
+        },
+        {
+          "label": "Purpose",
+          "value": "List, search, filter, view, suspend, ban users."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Admin user query APIs and account status workflow."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Admin, Support Lead"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Admin, Support Lead",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Admin approved standalone flows",
+        "Admin user query APIs and account status workflow.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-ADMIN-03",
+      "type": "screen",
+      "title": "KYC verification",
+      "domain": "Admin",
+      "status": "design-source-required",
+      "summary": "Review selfie, ID, verification status, approve/reject.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Admin"
+        },
+        {
+          "label": "Purpose",
+          "value": "Review selfie, ID, verification status, approve/reject."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "KYC moderation workflow, provider data, audit trail."
+        },
+        {
+          "label": "Access or priority",
+          "value": "KYC Reviewer, Admin"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "KYC Reviewer, Admin",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Admin approved standalone flows",
+        "KYC moderation workflow, provider data, audit trail.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-ADMIN-04",
+      "type": "screen",
+      "title": "Task management",
+      "domain": "Admin",
+      "status": "design-source-required",
+      "summary": "All tasks by status, category, amount, owner, tasker.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Admin"
+        },
+        {
+          "label": "Purpose",
+          "value": "All tasks by status, category, amount, owner, tasker."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Task search, task timeline, intervention endpoints."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Operations"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Operations Admin may force-cancel under policy but cannot reassign or select a replacement Tasker.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Admin approved standalone flows",
+        "Task search, task timeline, intervention endpoints.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-ADMIN-05",
+      "type": "screen",
+      "title": "Controlled force cancel",
+      "domain": "Admin",
+      "status": "design-source-required",
+      "summary": "Admin may force-cancel a task under policy; admin cannot select a replacement Tasker.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Admin"
+        },
+        {
+          "label": "Purpose",
+          "value": "Admin may force-cancel a task under policy; admin cannot select a replacement Tasker."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Reason capture, refund/penalty decision, notification."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Operations Lead"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Operations Lead Admin may force-cancel under policy but cannot reassign or select a replacement Tasker.",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Admin approved standalone flows",
+        "Reason capture, refund/penalty decision, notification.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-ADMIN-06",
+      "type": "screen",
+      "title": "Wallet and escrow",
+      "domain": "Admin",
+      "status": "design-source-required",
+      "summary": "Held funds, wallet activity, task settlement state.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Admin"
+        },
+        {
+          "label": "Purpose",
+          "value": "Held funds, wallet activity, task settlement state."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Ledger query, escrow status, settlement audit trail."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Finance"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Finance",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Admin approved standalone flows",
+        "Ledger query, escrow status, settlement audit trail.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-ADMIN-07",
+      "type": "screen",
+      "title": "Withdrawals",
+      "domain": "Admin",
+      "status": "design-source-required",
+      "summary": "Approve/reject withdrawal requests.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Admin"
+        },
+        {
+          "label": "Purpose",
+          "value": "Approve/reject withdrawal requests."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Payout approval workflow, payout adapter, withdrawal status."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Finance Lead"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Finance Lead",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Admin approved standalone flows",
+        "Payout approval workflow, payout adapter, withdrawal status.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-ADMIN-08",
+      "type": "screen",
+      "title": "Disputes and support",
+      "domain": "Admin",
+      "status": "design-source-required",
+      "summary": "Complaint details, evidence, admin decision, resolution tracking.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Admin"
+        },
+        {
+          "label": "Purpose",
+          "value": "Complaint details, evidence, admin decision, resolution tracking."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Support ticket module, dispute states, evidence attachments."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Support, Operations"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Support, Operations",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Admin approved standalone flows",
+        "Support ticket module, dispute states, evidence attachments.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-ADMIN-09",
+      "type": "screen",
+      "title": "Category and pricing",
+      "domain": "Admin",
+      "status": "design-source-required",
+      "summary": "Create/edit task categories, services, recommended and minimum price.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Admin"
+        },
+        {
+          "label": "Purpose",
+          "value": "Create/edit task categories, services, recommended and minimum price."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Marketplace catalog and pricing rules engine."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Admin"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Admin",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Admin approved standalone flows",
+        "Marketplace catalog and pricing rules engine.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-ADMIN-10",
+      "type": "screen",
+      "title": "Fraud and risk",
+      "domain": "Admin",
+      "status": "design-source-required",
+      "summary": "Risk alerts, suspicious behavior, top risk factors.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Admin"
+        },
+        {
+          "label": "Purpose",
+          "value": "Risk alerts, suspicious behavior, top risk factors."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Risk score, rule triggers, admin flags, investigation history."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Risk, Admin"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Risk, Admin",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Admin approved standalone flows",
+        "Risk score, rule triggers, admin flags, investigation history.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-ADMIN-11",
+      "type": "screen",
+      "title": "Roles and permissions",
+      "domain": "Admin",
+      "status": "design-source-required",
+      "summary": "Add admin, create role, permission matrix, 2FA.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Admin"
+        },
+        {
+          "label": "Purpose",
+          "value": "Add admin, create role, permission matrix, 2FA."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "RBAC, admin auth, admin audit logs, session security."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Super Admin"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Super Admin",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Admin approved standalone flows",
+        "RBAC, admin auth, admin audit logs, session security.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    },
+    {
+      "id": "SCREEN-ADMIN-12",
+      "type": "screen",
+      "title": "Analytics and reports",
+      "domain": "Admin",
+      "status": "design-source-required",
+      "summary": "Revenue, task trend, user growth, top services, reports.",
+      "facts": [
+        {
+          "label": "Actor",
+          "value": "Admin"
+        },
+        {
+          "label": "Purpose",
+          "value": "Revenue, task trend, user growth, top services, reports."
+        },
+        {
+          "label": "Backend/product dependency",
+          "value": "Reporting queries, export, scheduled summary support."
+        },
+        {
+          "label": "Access or priority",
+          "value": "Admin, Management"
+        },
+        {
+          "label": "Design status",
+          "value": "Figma file/version and review evidence not recorded"
+        },
+        {
+          "label": "Implementation status",
+          "value": "Not verified by this migration"
+        }
+      ],
+      "rules": [
+        "Admin, Management",
+        "Provide loading, empty, error/retry, permission-denied, submit-in-progress and success states where applicable.",
+        "Do not expose exact addresses, full proof media, real phone numbers, KYC evidence or payment secrets without explicit permission."
+      ],
+      "dependencies": [
+        "Admin approved standalone flows",
+        "Reporting queries, export, scheduled summary support.",
+        "Relevant contract and data-model anchors"
+      ],
+      "gaps": [
+        "Exact Figma file, version, previous/next screen mapping and visual acceptance evidence require Design/Product review."
+      ],
+      "source": "Legacy Screen To Feature Map corrected against approved Phase 0–2 decisions"
+    }
+  ]
+}

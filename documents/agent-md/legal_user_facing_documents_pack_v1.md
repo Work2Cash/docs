@@ -1,8 +1,9 @@
 # Legal & User-Facing Documents Pack v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `legal_user_facing_documents_pack_v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Legal & User-Facing Documents Pack v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 

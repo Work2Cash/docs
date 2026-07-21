@@ -24,6 +24,54 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Verify generated document registry
+        run: node scripts/generate-document-registry.js --check
+
+      - name: Verify generated Phase 2 flow inventory
+        run: node scripts/generate-flow-migration-inventory.js --check
+
+      - name: Verify all legacy flows have canonical Phase 2 sources
+        run: node scripts/migrate-legacy-flow-sources.js --check
+
+      - name: Verify generated Phase 2 flow documents
+        run: node scripts/generate-flow-docs.js --check
+
+      - name: Verify canonical contract decisions
+        run: node scripts/generate-contract-docs.js --check
+
+      - name: Verify the accepted referral contract decision
+        run: node scripts/validate-referral-contract.js
+
+      - name: Verify all legacy tasks have canonical Phase 3 sources
+        run: node scripts/migrate-legacy-task-sources.js --check
+
+      - name: Verify canonical tasks are consolidated into weekly source packs
+        run: node scripts/consolidate-task-sources.js --check
+
+      - name: Verify generated Phase 3 task inventory
+        run: node scripts/generate-task-migration-inventory.js --check
+
+      - name: Verify generated Phase 3 task documents
+        run: node scripts/generate-task-docs.js --check
+
+      - name: Verify generated Phase 3 weekly plans and embedded daily prompts
+        run: node scripts/generate-execution-plans.js --check
+
+      - name: Verify consolidated Phase 4 technical reference and OpenAPI
+        run: node scripts/generate-technical-docs.js --check
+
+      - name: Verify consolidated Phase 5 assurance and governance
+        run: node scripts/generate-assurance-docs.js --check
+
+      - name: Verify Phase 6 portal, search and agent context
+        run: node scripts/generate-portal.js --check
+
+      - name: Validate documentation metadata and navigation
+        run: node scripts/validate-docs.js
+
+      - name: Validate current-page accessibility structure
+        run: node scripts/validate-accessibility.js
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
@@ -34,6 +82,9 @@ jobs:
           else
             echo "No guard verification script found. Skipping."
           fi
+
+      - name: Verify generated pilot documents
+        run: node scripts/generate-pilot-docs.js --check
 
       - name: Prepare site folder
         run: |

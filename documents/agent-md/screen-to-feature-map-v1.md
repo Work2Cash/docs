@@ -1,8 +1,9 @@
 # Screen To Feature Map
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `screen-to-feature-map-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.Screen To Feature Map v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="cover">
 
@@ -432,7 +433,7 @@ The Task Owner lane lets a user describe a task, set a fair budget, pay into esc
 
 <div class="node warning-node">
 
-**Fund Escrow**Virtual account, OPay, USSD, wallet.
+**Fund Escrow**Virtual account, Moniepoint, USSD, wallet.
 
 </div>
 
@@ -464,7 +465,7 @@ The Task Owner lane lets a user describe a task, set a fair budget, pay into esc
 | Location                      | Saved address or current location.                                            | Address book, coordinates, geocoding cache.                                | Cache paid geocoding results when terms allow.           |
 | Available taskers             | Nearby taskers with ETA, distance, rating, service fit.                       | Valkey `GEOSEARCH` first, paid ETA only after filtering.                   | Batch ETA requests and enforce quotas.                   |
 | Booking summary               | Selected task, cost breakdown, secure payment note.                           | Pending booking, escrow intent, service fee computation.                   | Show transparent pricing before payment.                 |
-| Make payment                  | Bank transfer, virtual account, USSD, OPay, wallet.                           | Payment initialization, provider reference, webhook reconciliation.        | Card entry must not be the default path.                 |
+| Make payment                  | Bank transfer, virtual account, USSD, Moniepoint, wallet.                           | Payment initialization, provider reference, webhook reconciliation.        | Card entry must not be the default path.                 |
 | Payment success / receipt     | Payment received, receipt, QR/download.                                       | Ledger credit, escrow hold, receipt generation.                            | Do not trust the client UI without webhook confirmation. |
 | Task in progress              | Timer, task progress, chat, emergency support.                                | Task state machine, WebSocket chat, support escalation.                    | Works with intermittent connectivity.                    |
 | Task complete / rating        | Owner confirms completion and rates tasker.                                   | Escrow release, two-sided review, rating aggregation.                      | Include dispute window before auto-release if needed.    |
@@ -481,7 +482,7 @@ Payment UX Correction
 
 </div>
 
-Any card-looking design should be interpreted as saved funding options, not a forced card form. The default production flow is bank transfer, virtual account, USSD, OPay, and wallet balance.
+Any card-looking design should be interpreted as saved funding options, not a forced card form. The default production flow is bank transfer, virtual account, USSD, Moniepoint, and wallet balance.
 
 </div>
 
@@ -511,7 +512,7 @@ The Tasker lane activates after KYC and profile setup. It covers availability, t
 |-------------------------------|------------------------------------------------------------------------|---------------------------------------------------------------------|--------------------------------------------|
 | Complete Tasker profile       | Gender, DOB, phone, address, location, state, bank details.            | `TaskerProfile`, KYC gate, payout destination setup.                | <span class="pill pill-blue">MVP</span>    |
 | Select task                   | Choose categories and sub-skills the tasker can perform.               | Tasker skills relation and category eligibility.                    | <span class="pill pill-blue">MVP</span>    |
-| Availability                  | Days available, working hours, max distance, auto-accept.              | Availability schedule, service radius, task matching filters.       | <span class="pill pill-blue">MVP</span>    |
+| Availability                  | Days available, working hours, maximum travel distance and preferred categories; auto-accept is excluded.              | Availability schedule, service radius, task matching filters.       | <span class="pill pill-blue">MVP</span>    |
 | Pricing info                  | Minimum acceptable price and pricing guidance.                         | Tasker pricing preference bounded by platform minimum.              | <span class="pill pill-green">Trust</span> |
 | Enable location               | Allow app to find nearby jobs.                                         | Location permission, online status, Valkey geo index update.        | <span class="pill pill-blue">MVP</span>    |
 | Task request                  | Incoming job with owner, distance, task details, price, accept/reject. | Real-time job offer, expiry, atomic assignment lock.                | <span class="pill pill-blue">MVP</span>    |
@@ -598,7 +599,7 @@ The admin dashboard is not just reporting. It is the operating console for KYC, 
 | User management         | List, search, filter, view, suspend, ban users.                       | Admin user query APIs and account status workflow.             | Admin, Support Lead |
 | KYC verification        | Review selfie, ID, verification status, approve/reject.               | KYC moderation workflow, provider data, audit trail.           | KYC Reviewer, Admin |
 | Task management         | All tasks by status, category, amount, owner, tasker.                 | Task search, task timeline, intervention endpoints.            | Operations          |
-| Force cancel / reassign | Admin cancels or reassigns problematic tasks.                         | Reason capture, refund/penalty decision, notification.         | Operations Lead     |
+| Controlled force cancel | Admin may force-cancel a task under policy; admin cannot select a replacement Tasker.                         | Reason capture, refund/penalty decision, notification.         | Operations Lead     |
 | Wallet and escrow       | Held funds, wallet activity, task settlement state.                   | Ledger query, escrow status, settlement audit trail.           | Finance             |
 | Withdrawals             | Approve/reject withdrawal requests.                                   | Payout approval workflow, payout adapter, withdrawal status.   | Finance Lead        |
 | Disputes and support    | Complaint details, evidence, admin decision, resolution tracking.     | Support ticket module, dispute states, evidence attachments.   | Support, Operations |
@@ -685,7 +686,7 @@ Analytics
 
 - Smile ID behind `KycProviderPort`.
 - Google Maps behind `RoutingProviderPort`.
-- Paystack and OPay behind `PaymentProviderPort`.
+- Paystack and Moniepoint behind `PaymentProviderPort`.
 - FCM behind `PushNotificationPort`.
 
 </div>

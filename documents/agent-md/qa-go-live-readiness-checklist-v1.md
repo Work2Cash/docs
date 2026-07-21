@@ -1,8 +1,9 @@
 # QA / Go-Live Readiness Checklist v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `qa-go-live-readiness-checklist-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.QA / Go-Live Readiness Checklist v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -84,7 +85,7 @@ Go-Live Target**14 Sep 2026**
 
 <div class="meta-card">
 
-Portal Page**documents/qa-go-live-readiness-checklist-v1.html**
+Portal Page**QA / Go-Live Readiness Checklist v1**
 
 </div>
 
@@ -172,17 +173,17 @@ QA must trace every acceptance decision back to the source documents. If product
 
 | Document                               | Portal Page                                           | QA Use                                                            |
 |----------------------------------------|-----------------------------------------------------|-------------------------------------------------------------------|
-| Main Enterprise Architecture v1        | documents/main-enterprise-architecture-v1.html      | Top-level source of truth.                                        |
-| Mobile Flow Catalogue v1               | documents/mobile-flow-catalogue-v1.html             | Closed mobile flows and recovery subflows.                        |
-| Admin Flow Catalogue v1                | documents/admin-flow-catalogue-v1.html              | Closed admin web flows and operational dependencies.              |
-| Flow Alignment Review v1               | documents/flow-alignment-review-v1.html             | Alignment decisions across Figma, mobile, admin and architecture. |
-| Legal & User-Facing Documents Pack v1  | documents/legal_user_facing_documents_pack_v1.html  | Combined user-facing policy pack.                                 |
-| API & Socket Contract Specification v1 | documents/api-socket-contract-specification-v1.html | REST, socket, webhook, queue and response contracts.              |
-| Data Model & Prisma Schema Planning v1 | documents/data-model-prisma-schema-planning-v1.html | Data model and schema execution baseline.                         |
-| Provider Integration & Cost Control v1 | documents/provider-integration-cost-control-v1.html | Provider adapters, webhooks, costs and go-live validations.       |
-| Mobile Build Plan v1                   | documents/build-plan-mobile-v1.html                 | Mobile-led implementation order.                                  |
-| Admin Build Plan v1                    | documents/build-plan-admin-v1.html                  | Admin execution plan following mobile outcomes.                   |
-| Backend Build Plan v1                  | documents/build-plan-backend-v1.html                | Backend execution plan following mobile needs.                    |
+| Main Enterprise Architecture v1        | Main Enterprise Architecture v1      | Top-level source of truth.                                        |
+| Mobile Flow Catalogue v1               | Mobile Flow Catalogue v1             | Closed mobile flows and recovery subflows.                        |
+| Admin Flow Catalogue v1                | Admin Flow Catalogue v1              | Closed admin web flows and operational dependencies.              |
+| Flow Alignment Review v1               | Flow Alignment Review v1             | Alignment decisions across Figma, mobile, admin and architecture. |
+| Legal & User-Facing Documents Pack v1  | Legal & User-Facing Documents Pack v1  | Combined user-facing policy pack.                                 |
+| API & Socket Contract Specification v1 | API & Socket Contract Specification v1 | REST, socket, webhook, queue and response contracts.              |
+| Data Model & Prisma Schema Planning v1 | Data Model & Prisma Schema Planning v1 | Data model and schema execution baseline.                         |
+| Provider Integration & Cost Control v1 | Provider Integration & Cost Control v1 | Provider adapters, webhooks, costs and go-live validations.       |
+| Mobile Build Plan v1                   | Mobile Build Plan v1                 | Mobile-led implementation order.                                  |
+| Admin Build Plan v1                    | Admin Build Plan v1                  | Admin execution plan following mobile outcomes.                   |
+| Backend Build Plan v1                  | Backend Build Plan v1                | Backend execution plan following mobile needs.                    |
 
 </div>
 
@@ -976,9 +977,9 @@ QA / Go-Live Readiness Checklist v1 for final launch acceptance.
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**QA Go-Live Readiness Checklist v1** in the documentation portal
+`QA / Go-Live Readiness Checklist v1`
 
 </div>
 

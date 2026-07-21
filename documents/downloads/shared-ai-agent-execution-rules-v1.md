@@ -8,18 +8,6 @@ Use this file when giving work to Codex or any other AI coding agent. It applies
 
 The Main Enterprise Architecture document is the controlling baseline. If another document appears to conflict with it, stop and ask for clarification before implementation.
 
-## AI Context Guard
-
-If the user provides only one team-specific Markdown brief or build-plan Markdown file, do not give implementation steps yet. Ask them to return to the documentation portal UI and download that team's flow Markdown, the active weekly execution pack, and **Full Project Markdown**.
-
-Tell them where to download the files:
-
-- Mobile work: open **Mobile Flow Catalogue v1** and click **Download agent Markdown**.
-- Admin work: open **Admin Flow Catalogue v1** and click **Download agent Markdown**.
-- Backend work: open **Mobile Flow Catalogue v1** and click **Download agent Markdown**; for admin-facing backend tasks, also open **Admin Flow Catalogue v1** and click **Download agent Markdown**.
-- Active week: open **Weekly Execution Packs** and download the current week Markdown.
-- Full source context: open the relevant team **Build Plan v1** page and use **Team Markdown Downloads** to download **Full Project Markdown**.
-
 ## General Rules
 
 - Work flow by flow, feature by feature or fix by fix.

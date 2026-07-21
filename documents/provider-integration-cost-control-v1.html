@@ -88,6 +88,7 @@
     .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
     .badge { border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.1); border-radius:999px; padding:7px 13px; font-size:12px; font-weight:800; }
     .cover-foot { border-top:1px solid rgba(255,255,255,.18); padding-top:24px; display:flex; justify-content:space-between; gap:24px; color:rgba(255,255,255,.66); font-size:13px; }
+    .cover-foot code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     .sticky {
       position:sticky; top:0; z-index:20; background:rgba(255,255,255,.96); backdrop-filter:blur(12px);
       border-bottom:2px solid var(--brand);
@@ -155,6 +156,7 @@
     footer { background:var(--header); color:#D0D5DD; padding:34px 24px; }
     .footer-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
     footer h4 { color:white; margin-top:0; }
+    footer code { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); color:#FFFFFF; }
     footer p, footer li { color:#CBD5E1; font-size:13px; }
     @media (max-width:900px) {
       .meta-grid, .card-grid, .toc-grid, .footer-inner, .two-col { grid-template-columns:1fr; }
@@ -171,6 +173,7 @@
 </style>
 </head>
 <body>
+  <aside data-phase0-registry role="note" style="padding:10px 18px;background:#fff3df;color:#5f3700;border-bottom:1px solid #e9c46a;font:600 13px/1.5 Arial,sans-serif;text-align:center">Lifecycle: <strong>In Review</strong> · Approval: <strong>Pending</strong> · Owner: <strong>Infrastructure Lead</strong> · <a href="./document-registry.html#provider-001" style="color:#123b78">View PROVIDER-001 in the Document Registry</a></aside>
   <section class="cover">
     <div class="brand-row">
       <div class="logo">W2C</div>
@@ -188,7 +191,7 @@
         <div class="meta-card"><span>Primary Market</span><strong>Nigeria</strong></div>
         <div class="meta-card"><span>Cost Strategy</span><strong>Frugal + Guarded</strong></div>
         <div class="meta-card"><span>Payments</span><strong>Paystack + Moniepoint</strong></div>
-        <div class="meta-card"><span>Hosting</span><strong>Hetzner First</strong></div>
+        <div class="meta-card"><span>Hosting</span><strong>Contabo Staging / DigitalOcean Production</strong></div>
       </div>
       <div class="badges">
         <span class="badge">Provider Ports</span>
@@ -200,7 +203,7 @@
     </div>
     <div class="cover-foot">
       <div>Source of truth: Enterprise Architecture v1, API & Socket Contract v1, Data Model & Prisma Execution Baseline v1.</div>
-      <div>Target repo location: documents/provider-integration-cost-control-v1.html</div>
+      <div>Portal page: Provider Integration & Cost Control v1</div>
     </div>
   </section>
 
@@ -291,8 +294,6 @@
   .doc-hub-actions {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     gap: 10px;
   }
   .doc-hub-links {
@@ -333,37 +334,13 @@
   @media (max-width: 620px) {
     .doc-hub-nav { padding: 0 16px; }
     .doc-hub-card { border-radius: 14px; padding: 14px; }
-    .doc-hub-top { align-items: center; flex-direction: column; gap: 8px; }
+    .doc-hub-top { align-items: flex-start; flex-direction: column; gap: 6px; }
     .doc-hub-links { grid-template-columns: 1fr; }
     .team-downloads { padding: 0 16px; }
     .team-downloads-card { border-radius: 14px; padding: 14px; }
   }
 </style>
 
-
-<style id="work2cash-wide-layout">
-  .sticky-inner,
-  main,
-  .footer-inner,
-  .doc-hub-nav,
-  .team-downloads,
-  .cover-inner,
-  footer > div {
-    width: 90%;
-    max-width: none;
-  }
-  @media (max-width: 900px) {
-    .sticky-inner,
-    main,
-    .footer-inner,
-    .doc-hub-nav,
-    .team-downloads,
-    .cover-inner,
-    footer > div {
-      width: 100%;
-    }
-  }
-</style>
 <nav class="doc-hub-nav" aria-label="Work2Cash document navigation">
   <div class="doc-hub-card">
     <div class="doc-hub-top">
@@ -385,7 +362,7 @@
       <div class="eyebrow">Navigation</div>
       <h2>Document Contents</h2>
       <p class="intro">This document defines how Work2Cash integrates third-party and self-hosted providers without losing cost control. It is intended for Codex-driven backend, mobile, admin, DevOps and QA execution.</p>
-      <div class="toc-grid"><a href="#scope">01. How To Use This Document</a><a href="#strategy">02. Provider Strategy</a><a href="#registry">03. Provider Registry</a><a href="#environment">04. Environment And Secret Map</a><a href="#adapters">05. Adapter And Port Contracts</a><a href="#webhooks">06. Webhook And Idempotency Rules</a><a href="#cost-controls">07. Cost Control Rules</a><a href="#budgets">08. Budget Baselines And Review Gates</a><a href="#validation">09. Provider Validation Gates</a><a href="#fallback">10. Failure, Fallback And Disablement</a><a href="#monitoring">11. Monitoring, Logs And Alerts</a><a href="#codex">12. Codex Execution Instructions</a><a href="#handover">13. Implementation Checklist</a></div>
+      <div class="toc-grid"><a href="#scope">01. How To Use This Document</a><a href="#current-production-cost">02. Current Approved Production Cost Baseline</a><a href="#current-staging-cost">03. Current Approved Staging Cost Baseline</a><a href="#strategy">04. Provider Strategy</a><a href="#registry">05. Provider Registry</a><a href="#environment">06. Environment And Secret Map</a><a href="#adapters">07. Adapter And Port Contracts</a><a href="#webhooks">08. Webhook And Idempotency Rules</a><a href="#cost-controls">09. Cost Control Rules</a><a href="#budgets">10. Budget Baselines And Review Gates</a><a href="#validation">11. Provider Validation Gates</a><a href="#fallback">12. Failure, Fallback And Disablement</a><a href="#monitoring">13. Monitoring, Logs And Alerts</a><a href="#codex">14. Codex Execution Instructions</a><a href="#handover">15. Implementation Checklist</a></div>
     </section>
 
     <section id="scope" class="section">
@@ -401,11 +378,34 @@
       <div class="callout red"><strong>Cost safety rule</strong><p>Never implement paid provider auto-refresh loops. Paid providers must be called through explicit use cases, queues, webhooks, batch jobs, user actions, or guarded refresh logic.</p></div>
     </section>
 
+
+
+
+    <section id="current-production-cost" class="section">
+      <div class="section-num">Production Baseline</div>
+      <div class="eyebrow">Approved Production Spend</div>
+      <h2>Current Approved Production Cost Baseline</h2>
+      <p class="intro">DigitalOcean is the active production infrastructure baseline for Work2Cash. Hetzner is not available for this project and is not the selected production provider.</p>
+      <div class="table-wrap"><table><thead><tr><th>Item</th><th>Selection</th><th>Cost</th></tr></thead><tbody><tr><td>App server</td><td>DigitalOcean Basic Droplet, 16GB RAM, 8 vCPU, 320GB SSD</td><td>$96/month</td></tr><tr><td>Data server</td><td>DigitalOcean Basic Droplet, 16GB RAM, 8 vCPU, 320GB SSD</td><td>$96/month</td></tr><tr><td>Monitoring server</td><td>DigitalOcean Basic Droplet, 4GB RAM, 2 vCPU, 80GB SSD</td><td>$24/month</td></tr><tr><td>DigitalOcean Spaces</td><td>250GiB storage / 1TiB outbound transfer baseline</td><td>$5/month</td></tr><tr><td>Total production baseline</td><td>App + data + monitoring + Spaces</td><td>$221/month</td></tr><tr><td>Monthly NGN estimate</td><td>$221 at ₦1,600/$</td><td>₦353,600/month</td></tr><tr><td>Yearly production baseline</td><td>$2,652/year at ₦1,600/$</td><td>₦4,243,200/year</td></tr></tbody></table></div>
+      <div class="callout green"><strong>Production decision</strong><p>Production provider is DigitalOcean. DigitalOcean is no longer a fallback; it is the active production baseline. Contabo remains the selected staging baseline.</p></div>
+    </section>
+
+    <section id="current-staging-cost" class="section">
+      <div class="section-num">Cost Baseline</div>
+      <div class="eyebrow">Approved Staging Spend</div>
+      <h2>Current Approved Staging Cost Baseline</h2>
+      <p class="intro">This is the selected staging baseline for Work2Cash. It is separate from optional provider-testing reserves and production hosting comparisons.</p>
+      <div class="table-wrap"><table><thead><tr><th>Item</th><th>Selection</th><th>Cost</th></tr></thead><tbody><tr><td>Domain</td><td>work2cash.ng via WhoGoHost: ₦9,200 base + 7.5% VAT = ₦690</td><td>₦9,890 total</td></tr><tr><td>Contabo Cloud 20</td><td>6 vCPU cores, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port, EU region, Ubuntu</td><td>€7.50/month</td></tr><tr><td>Contabo Object Storage</td><td>250GB Object Storage in European Union</td><td>€2.50/month</td></tr><tr><td>Monthly staging total</td><td>Server + object storage using €1 = ₦1,800</td><td>€10/month, approximately ₦18,000/month</td></tr><tr><td>First-month direct estimate</td><td>Domain + first Contabo monthly cost</td><td>₦27,890</td></tr><tr><td>Safe approval budget</td><td>Domain, server, object storage, VAT/FX/payment differences and checkout variance</td><td>₦40,000</td></tr></tbody></table></div>
+      <p><strong>Plain-English interpretation:</strong> The real recurring staging infrastructure cost is €10/month before FX/payment variation. The safe first-month approval amount is ₦40,000 because it includes the domain purchase, Contabo monthly cost, VAT/FX/payment variance, and checkout buffer.</p>
+      <div class="callout amber"><strong>Backup warning</strong><p>AutoBackup is disabled. The technical team must configure backups from the server to the 250GB object storage. Server storage alone is not the backup strategy.</p></div>
+      <div class="callout green"><strong>Region note</strong><p>UK region is not selected. If UK is later selected, add €1.60/month, making Contabo monthly total €11.60/month.</p></div>
+    </section>
+
     <section id="strategy" class="section">
       <div class="section-num">02</div>
       <div class="eyebrow">Strategy</div>
       <h2>Provider Strategy</h2>
-      
+
     <div class="diagram">
       <div class="diagram-head"><h4>Provider Boundary</h4><span>Hexagonal Architecture</span></div>
       <pre>Controller / Socket Gateway / Worker
@@ -423,7 +423,7 @@ Provider callback
   -&gt; Database State Change</pre>
       <p>Provider SDKs and HTTP clients stay inside adapters. Use cases own business state transitions.</p>
     </div>
-    
+
       <div class="table-wrap"><table><thead><tr><th>Rule</th><th>Execution Decision</th><th>Reason</th></tr></thead><tbody><tr><td>Provider abstraction</td><td>Every external provider must sit behind a port/interface.</td><td>Supports swapping Paystack/Moniepoint, Resend/SendGrid and masked-call providers without rewriting use cases.</td></tr><tr><td>Staging first</td><td>Every provider must pass staging validation before production credentials are configured.</td><td>Prevents live-money/live-KYC mistakes.</td></tr><tr><td>Webhook first for truth</td><td>Payment, transfer, KYC and call provider callbacks must be verified and persisted before state mutation.</td><td>Protects against spoofing, duplicate retries and redirect mismatch.</td></tr><tr><td>Cost visibility</td><td>Every paid provider operation must be logged by provider, use case, resource and requestId.</td><td>Makes USD/variable cost visible before it becomes dangerous.</td></tr><tr><td>Fallback safe states</td><td>Provider failure should lead to pending, retry, support, manual review or disabled feature state.</td><td>Avoids false success and silent data corruption.</td></tr></tbody></table></div>
     </section>
 
@@ -431,7 +431,7 @@ Provider callback
       <div class="section-num">03</div>
       <div class="eyebrow">Registry</div>
       <h2>Provider Registry</h2>
-      <div class="table-wrap"><table><thead><tr><th>Category</th><th>Provider</th><th>Role</th><th>Work2Cash Usage</th><th>Status</th><th>Execution Note</th></tr></thead><tbody><tr><td>Payments - Collections</td><td>Paystack</td><td>Primary collection rail alongside Moniepoint.</td><td>Task Owner cardless payment, bank transfer, payment redirect/status, webhook confirmation.</td><td>Active MVP provider</td><td>Verify current pricing, supported channels, webhook signatures and settlement behavior before go-live.</td></tr><tr><td>Payments - Collections</td><td>Moniepoint</td><td>Primary collection rail alongside Paystack.</td><td>Task Owner payment, provider status, webhook confirmation.</td><td>Active MVP provider</td><td>Verify online checkout/API availability, webhook reliability, bank transfer flow and settlement behavior before go-live.</td></tr><tr><td>Payouts</td><td>Paystack Transfers</td><td>Transfer rail for Tasker withdrawals where appropriate.</td><td>Bulk payout batch processing on 14th and 28th.</td><td>Active MVP provider</td><td>Verify transfer fees, bank coverage, transfer limits, reversal behavior and compliance requirements.</td></tr><tr><td>Payouts</td><td>Moniepoint</td><td>Transfer rail for payout batches where appropriate.</td><td>Bulk payout batch processing and reconciliation.</td><td>Active MVP provider</td><td>Verify transfer API, bulk transfer support, pricing, limits and settlement operations.</td></tr><tr><td>KYC</td><td>Smile ID</td><td>Identity verification provider.</td><td>NIN/BVN + biometric face match for Tasker activation.</td><td>Active MVP provider</td><td>Verify Nigeria product availability, pricing, callback signatures, required consent wording and data retention requirements.</td></tr><tr><td>Maps</td><td>Google Maps Platform</td><td>Paid maps/routing/geocoding provider.</td><td>Geocoding manual address, ETA snapshots, traffic-aware arrival estimate.</td><td>Active MVP provider with strict guard</td><td>Distance/route pricing changes frequently. Configure billing alerts and enforce ETA guard.</td></tr><tr><td>Push Notifications</td><td>Firebase Cloud Messaging</td><td>Primary device wake and push notification channel.</td><td>New task alerts, direct offers, chat/support notifications, critical task updates.</td><td>Active MVP provider</td><td>Keep FCM tokens fresh and handle aggressive Android background killing.</td></tr><tr><td>SMS</td><td>Termii</td><td>SMS fallback for critical OTP and critical notifications.</td><td>OTP fallback after email, critical account/payment/support messages only.</td><td>Active MVP provider</td><td>SMS can become expensive; use only where email/push is insufficient.</td></tr><tr><td>Email</td><td>Resend</td><td>Phase 1 transactional email provider.</td><td>OTP email, receipts, account notifications, support emails.</td><td>Phase 1 provider</td><td>Use React Email templates and monitor free/pro limits.</td></tr><tr><td>Email</td><td>SendGrid</td><td>Later email provider when volume/deliverability requires it.</td><td>High-volume transactional email and dedicated IP needs.</td><td>Deferred provider</td><td>Switch via email adapter without changing use cases.</td></tr><tr><td>Monitoring</td><td>Sentry</td><td>Error monitoring.</td><td>Backend, Flutter and Next.js error tracking.</td><td>Developer/free plan baseline</td><td>Avoid sending PII, KYC payloads, provider secrets or payment-sensitive values.</td></tr><tr><td>Mobile Updates</td><td>Shorebird</td><td>Flutter patch delivery.</td><td>Post-release Dart patch updates where allowed.</td><td>Active mobile provider</td><td>Do not use for native changes requiring app store release.</td></tr><tr><td>Masked Calls</td><td>Infobip</td><td>Primary candidate for proxy dial-in masked calls.</td><td>Task-bound call masking without exposing phone numbers.</td><td>Candidate to validate</td><td>Confirm Nigerian voice number availability, local airtime behavior, carrier reliability and pricing.</td></tr><tr><td>Masked Calls</td><td>Africa&#x27;s Talking</td><td>Secondary candidate for masked calls.</td><td>Fallback voice masking candidate.</td><td>Candidate to validate</td><td>Confirm Nigeria number support and proxy dial-in feasibility.</td></tr><tr><td>Masked Calls</td><td>Vonage</td><td>Fallback masked call provider.</td><td>Fallback if local candidates fail.</td><td>Fallback</td><td>Do not depend on it until Nigeria voice-capable number support is verified.</td></tr><tr><td>Masked Calls</td><td>Sinch</td><td>Enterprise fallback.</td><td>Fallback if scale/compliance requires enterprise provider.</td><td>Fallback</td><td>Likely higher-cost path; validate only if needed.</td></tr><tr><td>Hosting</td><td>Hetzner</td><td>First-choice production and staging hosting path.</td><td>Self-host NestJS, Postgres, Valkey, BullMQ, monitoring stack where selected.</td><td>First-choice infrastructure</td><td>Latency must be measured from Nigeria before final production commitment.</td></tr><tr><td>Hosting</td><td>DigitalOcean</td><td>Production fallback if Hetzner latency becomes unacceptable.</td><td>Alternative app/data/monitoring server setup and Spaces/S3-compatible storage.</td><td>Fallback infrastructure</td><td>Keep migration plan ready and object storage compatible.</td></tr><tr><td>Object/Backup Storage</td><td>DigitalOcean Spaces or S3-compatible storage</td><td>Media, backup and export storage.</td><td>Task proof media, backups, generated exports.</td><td>Active option</td><td>Use signed URLs, lifecycle policies and backup restore tests.</td></tr><tr><td>Domain</td><td>WhoGoHost</td><td>Domain registrar for work2cash.ng.</td><td>Domain purchase and DNS ownership.</td><td>Active provider</td><td>Domain baseline: NGN 9,200 + 7.5% VAT = NGN 9,890 excluding bank transfer/payment charges.</td></tr><tr><td>Analytics</td><td>Firebase Analytics</td><td>Basic mobile analytics.</td><td>Event-level mobile analytics where useful.</td><td>Deferred/light usage</td><td>Product analytics is intentionally not a core MVP dependency.</td></tr></tbody></table></div>
+      <div class="table-wrap"><table><thead><tr><th>Category</th><th>Provider</th><th>Role</th><th>Work2Cash Usage</th><th>Status</th><th>Execution Note</th></tr></thead><tbody><tr><td>Payments - Collections</td><td>Paystack</td><td>Primary collection rail alongside Moniepoint.</td><td>Task Owner cardless payment, bank transfer, payment redirect/status, webhook confirmation.</td><td>Active MVP provider</td><td>Verify current pricing, supported channels, webhook signatures and settlement behavior before go-live.</td></tr><tr><td>Payments - Collections</td><td>Moniepoint</td><td>Primary collection rail alongside Paystack.</td><td>Task Owner payment, provider status, webhook confirmation.</td><td>Active MVP provider</td><td>Verify online checkout/API availability, webhook reliability, bank transfer flow and settlement behavior before go-live.</td></tr><tr><td>Payouts</td><td>Paystack Transfers</td><td>Transfer rail for Tasker withdrawals where appropriate.</td><td>Bulk payout batch processing on 14th and 28th.</td><td>Active MVP provider</td><td>Verify transfer fees, bank coverage, transfer limits, reversal behavior and compliance requirements.</td></tr><tr><td>Payouts</td><td>Moniepoint</td><td>Transfer rail for payout batches where appropriate.</td><td>Bulk payout batch processing and reconciliation.</td><td>Active MVP provider</td><td>Verify transfer API, bulk transfer support, pricing, limits and settlement operations.</td></tr><tr><td>KYC</td><td>Smile ID</td><td>Identity verification provider.</td><td>NIN/BVN + biometric face match for Tasker activation.</td><td>Active MVP provider</td><td>Verify Nigeria product availability, pricing, callback signatures, required consent wording and data retention requirements.</td></tr><tr><td>Maps</td><td>Google Maps Platform</td><td>Paid maps/routing/geocoding provider.</td><td>Geocoding manual address, ETA snapshots, traffic-aware arrival estimate.</td><td>Active MVP provider with strict guard</td><td>Distance/route pricing changes frequently. Configure billing alerts and enforce ETA guard.</td></tr><tr><td>Push Notifications</td><td>Firebase Cloud Messaging</td><td>Primary device wake and push notification channel.</td><td>New task alerts, direct offers, chat/support notifications, critical task updates.</td><td>Active MVP provider</td><td>Keep FCM tokens fresh and handle aggressive Android background killing.</td></tr><tr><td>SMS</td><td>Termii</td><td>SMS fallback for critical OTP and critical notifications.</td><td>OTP fallback after email, critical account/payment/support messages only.</td><td>Active MVP provider</td><td>SMS can become expensive; use only where email/push is insufficient.</td></tr><tr><td>Email</td><td>Resend</td><td>Phase 1 transactional email provider.</td><td>OTP email, receipts, account notifications, support emails.</td><td>Phase 1 provider</td><td>Use React Email templates and monitor free/pro limits.</td></tr><tr><td>Email</td><td>SendGrid</td><td>Later email provider when volume/deliverability requires it.</td><td>High-volume transactional email and dedicated IP needs.</td><td>Deferred provider</td><td>Switch via email adapter without changing use cases.</td></tr><tr><td>Monitoring</td><td>Sentry</td><td>Error monitoring.</td><td>Backend, Flutter and Next.js error tracking.</td><td>Developer/free plan baseline</td><td>Avoid sending PII, KYC payloads, provider secrets or payment-sensitive values.</td></tr><tr><td>Mobile Updates</td><td>Shorebird</td><td>Flutter patch delivery.</td><td>Post-release Dart patch updates where allowed.</td><td>Active mobile provider</td><td>Do not use for native changes requiring app store release.</td></tr><tr><td>Masked Calls</td><td>Infobip</td><td>Primary candidate for proxy dial-in masked calls.</td><td>Task-bound call masking without exposing phone numbers.</td><td>Candidate to validate</td><td>Confirm Nigerian voice number availability, local airtime behavior, carrier reliability and pricing.</td></tr><tr><td>Masked Calls</td><td>Africa&#x27;s Talking</td><td>Secondary candidate for masked calls.</td><td>Fallback voice masking candidate.</td><td>Candidate to validate</td><td>Confirm Nigeria number support and proxy dial-in feasibility.</td></tr><tr><td>Masked Calls</td><td>Vonage</td><td>Fallback masked call provider.</td><td>Fallback if local candidates fail.</td><td>Fallback</td><td>Do not depend on it until Nigeria voice-capable number support is verified.</td></tr><tr><td>Masked Calls</td><td>Sinch</td><td>Enterprise fallback.</td><td>Fallback if scale/compliance requires enterprise provider.</td><td>Fallback</td><td>Likely higher-cost path; validate only if needed.</td></tr><tr><td>Hosting</td><td>DigitalOcean</td><td>Active production hosting baseline.</td><td>App server, data server, monitoring server and Spaces object storage.</td><td>Selected production infrastructure</td><td>Use DigitalOcean production sizing and monitor before scaling.</td></tr><tr><td>Object/Backup Storage</td><td>DigitalOcean Spaces or S3-compatible storage</td><td>Media, backup and export storage.</td><td>Task proof media, backups, generated exports.</td><td>Active option</td><td>Use signed URLs, lifecycle policies and backup restore tests.</td></tr><tr><td>Domain</td><td>WhoGoHost</td><td>Domain registrar for work2cash.ng.</td><td>Domain purchase and DNS ownership.</td><td>Active provider</td><td>Domain baseline: ₦9,200 + 7.5% VAT = ₦690; total ₦9,890 excluding bank transfer/payment charges.</td></tr><tr><td>Analytics</td><td>Firebase Analytics</td><td>Basic mobile analytics.</td><td>Event-level mobile analytics where useful.</td><td>Deferred/light usage</td><td>Product analytics is intentionally not a core MVP dependency.</td></tr></tbody></table></div>
     </section>
 
     <section id="environment" class="section">
@@ -441,7 +441,7 @@ Provider callback
       <div class="table-wrap"><table><thead><tr><th>Surface</th><th>Environment</th><th>URL</th><th>Purpose</th><th>Secret Rule</th></tr></thead><tbody><tr><td>API</td><td>Production</td><td>https://api.work2cash.ng</td><td>REST source of truth.</td><td>Provider live keys only after go-live approval.</td></tr><tr><td>Socket</td><td>Production</td><td>https://socket.work2cash.ng</td><td>Socket.IO for task chat, support chat, tracking and presence.</td><td>Token auth and Valkey adapter when scaled.</td></tr><tr><td>Admin</td><td>Production</td><td>https://admin.work2cash.ng</td><td>Operations dashboard.</td><td>Admin TOTP and RBAC required.</td></tr><tr><td>API</td><td>Staging</td><td>https://api-staging.work2cash.ng</td><td>Staging REST API.</td><td>Sandbox/test keys only.</td></tr><tr><td>Socket</td><td>Staging</td><td>https://socket-staging.work2cash.ng</td><td>Staging socket gateway.</td><td>No production user data.</td></tr><tr><td>Website/Admin</td><td>Staging</td><td>https://staging.work2cash.ng</td><td>Staging web/admin surface.</td><td>Password-gated documentation remains separate from app auth.</td></tr></tbody></table></div>
       <h3>Secret Groups</h3>
       <div class="table-wrap"><table><thead><tr><th>Provider</th><th>Expected Environment Variables</th><th>Rule</th></tr></thead><tbody><tr><td>Paystack</td><td>PAYSTACK_SECRET_KEY, PAYSTACK_PUBLIC_KEY, PAYSTACK_WEBHOOK_SECRET, PAYSTACK_BASE_URL</td><td>Staging uses test keys. Production uses live keys only after approval.</td></tr><tr><td>Moniepoint</td><td>MONIEPOINT_CLIENT_ID, MONIEPOINT_CLIENT_SECRET, MONIEPOINT_WEBHOOK_SECRET, MONIEPOINT_BASE_URL</td><td>Names can be adjusted to official SDK/API naming during implementation.</td></tr><tr><td>Smile ID</td><td>SMILE_ID_PARTNER_ID, SMILE_ID_API_KEY, SMILE_ID_WEBHOOK_SECRET, SMILE_ID_BASE_URL</td><td>Never expose to mobile/admin frontend.</td></tr><tr><td>Google Maps</td><td>GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_BASE_URL, GOOGLE_MAPS_BUDGET_LIMIT</td><td>Restrict key by API, domain/IP where possible.</td></tr><tr><td>Termii</td><td>TERMII_API_KEY, TERMII_SENDER_ID, TERMII_BASE_URL</td><td>Use only for fallback/critical SMS.</td></tr><tr><td>Email</td><td>RESEND_API_KEY, SENDGRID_API_KEY, EMAIL_PROVIDER</td><td>EMAIL_PROVIDER controls adapter selection.</td></tr><tr><td>Firebase</td><td>FCM_SERVER_CREDENTIALS, FIREBASE_PROJECT_ID</td><td>Store server credentials only on backend/worker environment.</td></tr><tr><td>Sentry</td><td>SENTRY_DSN_BACKEND, SENTRY_DSN_ADMIN, SENTRY_DSN_FLUTTER, SENTRY_ENVIRONMENT</td><td>Scrub sensitive data before sending events.</td></tr><tr><td>Shorebird</td><td>SHOREBIRD_TOKEN, SHOREBIRD_APP_ID</td><td>CI/mobile release context only.</td></tr><tr><td>Masked Calls</td><td>CALL_PROVIDER, INFOBIP_API_KEY, AFRICAS_TALKING_API_KEY, VONAGE_API_KEY, SINCH_API_KEY</td><td>Only configure provider after validation.</td></tr><tr><td>Object Storage</td><td>S3_ENDPOINT, S3_REGION, S3_BUCKET_MEDIA, S3_BUCKET_BACKUPS, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY</td><td>Use separate buckets/prefixes for media and backups.</td></tr></tbody></table></div>
-      <div class="callout amber"><strong>Secret handling</strong><p>Raw passwords, API keys, webhook secrets, service account credentials and production provider credentials must never be committed to the docs repo or application repository.</p></div>
+      <div class="callout amber"><strong>Secret handling</strong><p>Raw passwords, API keys, webhook secrets, service account credentials and production provider credentials must never be committed to the documentation portal or application repository.</p></div>
     </section>
 
     <section id="adapters" class="section">
@@ -464,7 +464,7 @@ Provider callback
       <div class="eyebrow">Webhooks</div>
       <h2>Webhook And Idempotency Rules</h2>
       <div class="table-wrap"><table><thead><tr><th>Rule</th><th>Execution Requirement</th><th>Why It Matters</th></tr></thead><tbody><tr><td>Raw body</td><td>Webhook routes must preserve raw request body for signature validation.</td><td>Required for Paystack, Moniepoint and other signed callbacks.</td></tr><tr><td>Signature verification</td><td>Reject webhooks that fail signature verification.</td><td>Prevents spoofed payment/KYC/call events.</td></tr><tr><td>Idempotency</td><td>Persist provider + eventId/reference in ProviderWebhookEvent before processing.</td><td>Allows safe provider retries.</td></tr><tr><td>Fast acknowledgement</td><td>Store event and queue processing quickly.</td><td>Avoids provider timeout and duplicate retry storms.</td></tr><tr><td>State guards</td><td>Provider event cannot force invalid task/payment/payout state transition.</td><td>Use use-case state machine guards.</td></tr><tr><td>Audit</td><td>High-impact provider results write audit/provider request logs.</td><td>Supports reconciliation and dispute review.</td></tr><tr><td>Replay handling</td><td>Duplicate webhook returns success after confirming previous processing state.</td><td>Provider retries should not create duplicates.</td></tr></tbody></table></div>
-      
+
     <div class="diagram">
       <div class="diagram-head"><h4>Webhook Processing</h4><span>Idempotent Provider Flow</span></div>
       <pre>Provider sends webhook
@@ -478,7 +478,7 @@ Provider callback
   -&gt; ProviderRequestLog / AuditLog records result</pre>
       <p>Provider retries must be safe. Duplicate callbacks must not duplicate ledger entries, task states, payout items or KYC decisions.</p>
     </div>
-    
+
     </section>
 
     <section id="cost-controls" class="section">
@@ -496,8 +496,8 @@ Provider callback
       <div class="eyebrow">Budgets</div>
       <h2>Budget Baselines And Review Gates</h2>
       <p class="intro">The table below captures Work2Cash budgeting assumptions. Any external provider pricing must be revalidated from the official provider source before live provisioning, investor reporting or go-live budgeting.</p>
-      <div class="table-wrap"><table><thead><tr><th>Item</th><th>Baseline</th><th>Execution Note</th></tr></thead><tbody><tr><td>Exchange rate assumption</td><td>USD 1 = NGN 1,600</td><td>Project budgeting baseline. Revalidate before payments/provisioning.</td></tr><tr><td>Domain</td><td>NGN 9,200 + 7.5% VAT = NGN 9,890</td><td>WhoGoHost baseline excluding bank transfer/payment charges.</td></tr><tr><td>Staging hosting</td><td>Hetzner CX33 baseline from project source</td><td>4 vCPU, 8GB RAM, 80GB SSD. Revalidate before provisioning.</td></tr><tr><td>Production first choice</td><td>Hetzner self-hosted production</td><td>Selected for cost; latency from Nigeria must be measured.</td></tr><tr><td>Production fallback</td><td>DigitalOcean multi-server production</td><td>Use if Hetzner latency or operational risk becomes unacceptable.</td></tr><tr><td>Production budget buffer</td><td>USD 60-80 monthly buffer</td><td>Infrastructure/provider overage buffer from architecture baseline.</td></tr><tr><td>Variable provider costs</td><td>Maps, KYC, SMS, email, masked calls, payment fees</td><td>Track by use case and alert before budget drift becomes operational risk.</td></tr></tbody></table></div>
-      <div class="callout amber"><strong>Pricing verification gate</strong><p>Provider pricing is operationally unstable. Before go-live, verify Paystack, Moniepoint, Smile ID, Google Maps, Termii, email, hosting, object storage and masked-call pricing from official provider sources and update this document if the baseline changes.</p></div>
+      <div class="table-wrap"><table><thead><tr><th>Item</th><th>Baseline</th><th>Execution Note</th></tr></thead><tbody><tr><td>Exchange rate assumption</td><td>€1 = ₦1,800</td><td>Working exchange estimate for Contabo staging. Convert at payment date.</td></tr><tr><td>Domain</td><td>₦9,200 + 7.5% VAT = ₦690; total ₦9,890</td><td>WhoGoHost domain baseline; included in the first-month direct estimate.</td></tr><tr><td>Staging hosting</td><td>Contabo Cloud 20 plus 250GB EU Object Storage</td><td>€10/month total: €7.50 server + €2.50 object storage, approximately ₦18,000/month at €1 = ₦1,800.</td></tr><tr><td>Production baseline</td><td>DigitalOcean app + data + monitoring + Spaces</td><td>$221/month; ₦353,600/month at ₦1,600/$; ₦4,243,200/year.</td></tr><tr><td>Variable provider costs</td><td>Maps, KYC, SMS, email, masked calls, payment fees</td><td>Track by use case and alert before budget drift becomes operational risk.</td></tr></tbody></table></div>
+      <div class="callout amber"><strong>Pricing verification gate</strong><p>Provider pricing is operationally unstable. Before go-live, verify Paystack, Moniepoint, Smile ID, Google Maps, Termii, email, Contabo staging, DigitalOcean production, object storage and masked-call pricing from official provider sources and update this document if the baseline changes.</p></div>
     </section>
 
     <section id="validation" class="section">
@@ -545,14 +545,14 @@ Provider callback
         <li>Backups are restored successfully in staging before production go-live.</li>
         <li>Provider pricing is revalidated from official sources before go-live.</li>
       </ul>
-      <div class="callout green"><strong>Repo placement</strong><p>Publish this document as <code>documents/provider-integration-cost-control-v1.html</code> in the Work2Cash docs repository and link it from the main architecture resource list.</p></div>
+      <div class="callout green"><strong>Portal publication</strong><p>Publish this document as <code>Provider Integration & Cost Control v1</code> in the Work2Cash documentation portal and link it from the main architecture resource list.</p></div>
     </section>
   </main>
 
   <footer>
     <div class="footer-inner">
       <div><h4>Work2Cash</h4><p>Provider Integration & Cost Control v1 for execution across backend, mobile, admin, DevOps and QA.</p></div>
-      <div><h4>Document Location</h4><p><code>documents/provider-integration-cost-control-v1.html</code></p></div>
+      <div><h4>Portal Page</h4><p><code>Provider Integration & Cost Control v1</code></p></div>
       <div><h4>Guard Requirement</h4><p>Protected HTML documents must include the documentation auth guard script before closing body.</p></div>
     </div>
   </footer>

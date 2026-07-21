@@ -1,0 +1,4718 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Work2Cash API Contract Baseline",
+    "version": "1.0",
+    "description": "Generated from the Phase 4 consolidated contract source. Approved-reference operations control their named decisions; provisional operations retain explicit gaps and must not be implemented by guesswork."
+  },
+  "servers": [
+    {
+      "url": "https://api-staging.work2cash.ng",
+      "description": "Staging"
+    },
+    {
+      "url": "https://api.work2cash.ng",
+      "description": "Production"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Admin operations"
+    },
+    {
+      "name": "Catalog and coverage"
+    },
+    {
+      "name": "Communication and support"
+    },
+    {
+      "name": "Identity and sessions"
+    },
+    {
+      "name": "Matching"
+    },
+    {
+      "name": "Payments and escrow"
+    },
+    {
+      "name": "Providers, webhooks, queues and jobs"
+    },
+    {
+      "name": "Referral Contract Group"
+    },
+    {
+      "name": "Reports and risk"
+    },
+    {
+      "name": "System operations"
+    },
+    {
+      "name": "Task Owner"
+    },
+    {
+      "name": "Task creation"
+    },
+    {
+      "name": "Task execution"
+    },
+    {
+      "name": "Tasker"
+    },
+    {
+      "name": "Tasker activation and KYC"
+    },
+    {
+      "name": "Wallets and payouts"
+    }
+  ],
+  "paths": {
+    "/admin/auth/sessions/{sessionId}": {
+      "delete": {
+        "operationId": "delete_admin_auth_sessions_sessionid",
+        "summary": "Revoke an admin session.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-104",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "Admin token + TOTP",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/admin-users": {
+      "get": {
+        "operationId": "get_admin_admin_users",
+        "summary": "List admin users.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-106",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Owner/Technical Lead",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      },
+      "post": {
+        "operationId": "post_admin_admin_users",
+        "summary": "Invite or create admin user.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-107",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Owner/Technical Lead",
+        "x-work2cash-auth": "Admin token + TOTP",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/audit-logs": {
+      "get": {
+        "operationId": "get_admin_audit_logs",
+        "summary": "Search privileged actions and system audit events.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-128",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Risk",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/auth/sessions": {
+      "get": {
+        "operationId": "get_admin_auth_sessions",
+        "summary": "List admin sessions and devices.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-103",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/config": {
+      "get": {
+        "operationId": "get_admin_config",
+        "summary": "Read remote config values.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-126",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Ops",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/dashboard": {
+      "get": {
+        "operationId": "get_admin_dashboard",
+        "summary": "Return operating dashboard summary.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-114",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/finance/transactions": {
+      "get": {
+        "operationId": "get_admin_finance_transactions",
+        "summary": "List payments, escrow, wallet entries, transfers, and receipts.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-121",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Finance",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/permissions": {
+      "get": {
+        "operationId": "get_admin_permissions",
+        "summary": "List available permission keys.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-113",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Owner/Technical Lead",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/referrals": {
+      "get": {
+        "operationId": "get_admin_referrals",
+        "summary": "Returns the permission-filtered referral review queue for AF-15.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-133",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved CONTRACT-REFERRAL-001 decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "Read-only",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/admin/referrals/{attributionId}": {
+      "get": {
+        "operationId": "get_admin_referrals_attributionid",
+        "summary": "Returns one safe referral decision record with referrer/referred-user summaries, attribution history, authoritative paid-task qualification evidence, reward state, wallet-credit reference, risk-review link and prior decisions.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-134",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved CONTRACT-REFERRAL-001 decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "Read-only",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/admin/roles": {
+      "get": {
+        "operationId": "get_admin_roles",
+        "summary": "List roles and permissions.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-110",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Owner/Technical Lead",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      },
+      "post": {
+        "operationId": "post_admin_roles",
+        "summary": "Create a role.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-111",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Owner/Technical Lead",
+        "x-work2cash-auth": "Admin token + TOTP",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/tasks": {
+      "get": {
+        "operationId": "get_admin_tasks",
+        "summary": "Search and filter tasks.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-118",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Ops",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/tasks/{taskId}": {
+      "get": {
+        "operationId": "get_admin_tasks_taskid",
+        "summary": "View task details and timeline.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-119",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Ops",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/use-case-health": {
+      "get": {
+        "operationId": "get_admin_use_case_health",
+        "summary": "View use case invocation, last used, success/failure state.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-129",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Technical/Admin",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/users": {
+      "get": {
+        "operationId": "get_admin_users",
+        "summary": "Search users and account states.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-115",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Support/Risk",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/users/{userId}": {
+      "get": {
+        "operationId": "get_admin_users_userid",
+        "summary": "Returns permission-gated user, Tasker and KYC summary context when AF-04 is entered from User Management. It is not the dedicated evidence/detail contract.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-116",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved Phase 1 KYC review contract decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "Read-only",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/admin/admin-users/{adminUserId}": {
+      "patch": {
+        "operationId": "patch_admin_admin_users_adminuserid",
+        "summary": "Update admin user status, metadata, or assigned roles.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-108",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Owner/Technical Lead",
+        "x-work2cash-auth": "Admin token + TOTP",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/config/{key}": {
+      "patch": {
+        "operationId": "patch_admin_config_key",
+        "summary": "Update feature flags, thresholds, or platform caps.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-127",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Ops Lead",
+        "x-work2cash-auth": "Admin token + TOTP",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/roles/{roleId}": {
+      "patch": {
+        "operationId": "patch_admin_roles_roleid",
+        "summary": "Update role permissions.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-112",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Owner/Technical Lead",
+        "x-work2cash-auth": "Admin token + TOTP",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/admin-users/{adminUserId}/disable": {
+      "post": {
+        "operationId": "post_admin_admin_users_adminuserid_disable",
+        "summary": "Disable an admin account.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-109",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Owner/Technical Lead",
+        "x-work2cash-auth": "Admin token + TOTP",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/announcements": {
+      "post": {
+        "operationId": "post_admin_announcements",
+        "summary": "Create notification or announcement campaign.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-124",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Ops",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/auth/login": {
+      "post": {
+        "operationId": "post_admin_auth_login",
+        "summary": "Authenticate admin user with email/password.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-099",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "Public admin",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/auth/logout": {
+      "post": {
+        "operationId": "post_admin_auth_logout",
+        "summary": "Invalidate current admin session.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-105",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/auth/totp/enroll": {
+      "post": {
+        "operationId": "post_admin_auth_totp_enroll",
+        "summary": "Enroll TOTP for an admin account.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-101",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "Admin token or invite token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/auth/totp/recovery-codes": {
+      "post": {
+        "operationId": "post_admin_auth_totp_recovery_codes",
+        "summary": "Generate or rotate recovery codes.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-102",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "Admin token + TOTP",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/auth/totp/verify": {
+      "post": {
+        "operationId": "post_admin_auth_totp_verify",
+        "summary": "Verify TOTP challenge during login or sensitive operation.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-100",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "Admin pre-session or admin token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/referrals/{attributionId}/approve": {
+      "post": {
+        "operationId": "post_admin_referrals_attributionid_approve",
+        "summary": "Approved contract record from Referral Contract Group.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-135",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved CONTRACT-REFERRAL-001 decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "See approved source",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/admin/referrals/{attributionId}/hold": {
+      "post": {
+        "operationId": "post_admin_referrals_attributionid_hold",
+        "summary": "Approved contract record from Referral Contract Group.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-136",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved CONTRACT-REFERRAL-001 decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "See approved source",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/admin/referrals/{attributionId}/reject": {
+      "post": {
+        "operationId": "post_admin_referrals_attributionid_reject",
+        "summary": "Approved contract record from Referral Contract Group.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-137",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved CONTRACT-REFERRAL-001 decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "See approved source",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/admin/users/{userId}/suspend": {
+      "post": {
+        "operationId": "post_admin_users_userid_suspend",
+        "summary": "Suspend account after verified risk rule.",
+        "tags": [
+          "Admin operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-117",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Risk",
+        "x-work2cash-auth": "Admin token + TOTP",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/catalog/categories": {
+      "get": {
+        "operationId": "get_catalog_categories",
+        "summary": "List active task categories and display order.",
+        "tags": [
+          "Catalog and coverage"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-032",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User/Admin",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/catalog/task-types": {
+      "get": {
+        "operationId": "get_catalog_task_types",
+        "summary": "List task types under each category.",
+        "tags": [
+          "Catalog and coverage"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-033",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User/Admin",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/catalog/categories/{categoryId}": {
+      "patch": {
+        "operationId": "patch_admin_catalog_categories_categoryid",
+        "summary": "Update labels, ordering, and visibility.",
+        "tags": [
+          "Catalog and coverage"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-035",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/catalog/categories": {
+      "post": {
+        "operationId": "post_admin_catalog_categories",
+        "summary": "Create category or task type.",
+        "tags": [
+          "Catalog and coverage"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-034",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/catalog/categories/{categoryId}/archive": {
+      "post": {
+        "operationId": "post_admin_catalog_categories_categoryid_archive",
+        "summary": "Archive unused or retired category.",
+        "tags": [
+          "Catalog and coverage"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-037",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/catalog/categories/{categoryId}/disable": {
+      "post": {
+        "operationId": "post_admin_catalog_categories_categoryid_disable",
+        "summary": "Disable category for new tasks.",
+        "tags": [
+          "Catalog and coverage"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-036",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/notifications": {
+      "get": {
+        "operationId": "get_notifications",
+        "summary": "List in-app notifications.",
+        "tags": [
+          "Communication and support"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-088",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasks/{taskId}/call-sessions/active": {
+      "get": {
+        "operationId": "get_tasks_taskid_call_sessions_active",
+        "summary": "Return active masked call session if one exists.",
+        "tags": [
+          "Communication and support"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-091",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner/Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasks/{taskId}/communications": {
+      "get": {
+        "operationId": "get_tasks_taskid_communications",
+        "summary": "Return communication summary for task chat, voice notes, masked call sessions, and audit flags.",
+        "tags": [
+          "Communication and support"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-093",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner/Tasker/Admin",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/notifications/{notificationId}/read": {
+      "post": {
+        "operationId": "post_notifications_notificationid_read",
+        "summary": "Mark notification read.",
+        "tags": [
+          "Communication and support"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-089",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/support/emergency": {
+      "post": {
+        "operationId": "post_support_emergency",
+        "summary": "Open emergency support request.",
+        "tags": [
+          "Communication and support"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-087",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/support/sessions": {
+      "post": {
+        "operationId": "post_support_sessions",
+        "summary": "Open support live chat session.",
+        "tags": [
+          "Communication and support"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-086",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasks/{taskId}/call-sessions": {
+      "post": {
+        "operationId": "post_tasks_taskid_call_sessions",
+        "summary": "Create or retrieve a masked call session for an eligible task state.",
+        "tags": [
+          "Communication and support"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-090",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner/Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasks/{taskId}/call-sessions/{sessionId}/end": {
+      "post": {
+        "operationId": "post_tasks_taskid_call_sessions_sessionid_end",
+        "summary": "Close a masked call session.",
+        "tags": [
+          "Communication and support"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-092",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner/Tasker/System",
+        "x-work2cash-auth": "Access token or provider callback",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasks/{taskId}/voice-notes": {
+      "post": {
+        "operationId": "post_tasks_taskid_voice_notes",
+        "summary": "Finalize uploaded voice note metadata for task chat.",
+        "tags": [
+          "Communication and support"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-094",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner/Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/me/addresses/{addressId}": {
+      "delete": {
+        "operationId": "delete_me_addresses_addressid",
+        "summary": "Remove saved address from future use.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-018",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      },
+      "patch": {
+        "operationId": "patch_me_addresses_addressid",
+        "summary": "Update saved address metadata.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-017",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/me/sessions/{sessionId}": {
+      "delete": {
+        "operationId": "delete_me_sessions_sessionid",
+        "summary": "Revoke another device session.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-026",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token + PIN",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/me": {
+      "get": {
+        "operationId": "get_me",
+        "summary": "Return authenticated user, mode, KYC, profile completeness, wallets, and next actions.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-012",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/me/addresses": {
+      "get": {
+        "operationId": "get_me_addresses",
+        "summary": "List saved addresses for task posting and profile convenience.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-015",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      },
+      "post": {
+        "operationId": "post_me_addresses",
+        "summary": "Create a saved address from manual entry or GPS-confirmed pin.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-016",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/me/notification-preferences": {
+      "get": {
+        "operationId": "get_me_notification_preferences",
+        "summary": "Return push, email, SMS, and announcement preference settings.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-019",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      },
+      "patch": {
+        "operationId": "patch_me_notification_preferences",
+        "summary": "Update notification preferences.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-020",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/me/sessions": {
+      "get": {
+        "operationId": "get_me_sessions",
+        "summary": "List active devices and sessions.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-025",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/me/profile": {
+      "patch": {
+        "operationId": "patch_me_profile",
+        "summary": "Update profile fields such as name, photo, gender, and contact metadata.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-013",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "operationId": "post_auth_login",
+        "summary": "Authenticate with password and issue access/refresh tokens.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-002",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Guest",
+        "x-work2cash-auth": "Public",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "operationId": "post_auth_logout",
+        "summary": "Invalidate the current session.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-010",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/auth/logout-all": {
+      "post": {
+        "operationId": "post_auth_logout_all",
+        "summary": "Revoke all sessions for the user.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-011",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token + PIN",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/auth/otp/send": {
+      "post": {
+        "operationId": "post_auth_otp_send",
+        "summary": "Send OTP for email, phone, recovery, or sensitive verification fallback.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-005",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Guest/User",
+        "x-work2cash-auth": "Conditional",
+        "x-work2cash-idempotency": "Yes by purpose+recipient",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/auth/otp/verify": {
+      "post": {
+        "operationId": "post_auth_otp_verify",
+        "summary": "Verify OTP and mark the verification purpose as complete.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-006",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Guest/User",
+        "x-work2cash-auth": "Conditional",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/auth/password/forgot": {
+      "post": {
+        "operationId": "post_auth_password_forgot",
+        "summary": "Start password reset using email first then SMS fallback.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-007",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Guest",
+        "x-work2cash-auth": "Public",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/auth/password/reset": {
+      "post": {
+        "operationId": "post_auth_password_reset",
+        "summary": "Complete password reset after valid OTP/recovery token.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-008",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Guest",
+        "x-work2cash-auth": "Public",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "operationId": "post_auth_refresh",
+        "summary": "Rotate refresh token and issue a fresh access token.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-009",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Refresh token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "operationId": "post_auth_register",
+        "summary": "Captures referral attribution as part of the existing registration transaction without creating a separate unauthenticated attribution endpoint.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-001",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved CONTRACT-REFERRAL-001 decision",
+        "x-work2cash-actor": "Unauthenticated registration",
+        "x-work2cash-auth": "Registration rules",
+        "x-work2cash-idempotency": "See approved source",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/auth/social/apple": {
+      "post": {
+        "operationId": "post_auth_social_apple",
+        "summary": "Authenticate or create account using Apple identity.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-004",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Guest",
+        "x-work2cash-auth": "Public",
+        "x-work2cash-idempotency": "Recommended",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/auth/social/google": {
+      "post": {
+        "operationId": "post_auth_social_google",
+        "summary": "Authenticate or create account using Google identity.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-003",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Guest",
+        "x-work2cash-auth": "Public",
+        "x-work2cash-idempotency": "Recommended",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/me/mode": {
+      "post": {
+        "operationId": "post_me_mode",
+        "summary": "Switch visible app mode between Task Owner and Tasker.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-014",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/me/security-pin/reset/confirm": {
+      "post": {
+        "operationId": "post_me_security_pin_reset_confirm",
+        "summary": "Set new PIN after reset verification.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-024",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/me/security-pin/reset/start": {
+      "post": {
+        "operationId": "post_me_security_pin_reset_start",
+        "summary": "Start PIN reset through OTP and risk checks.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-023",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/me/security-pin/setup": {
+      "post": {
+        "operationId": "post_me_security_pin_setup",
+        "summary": "Create first security PIN after identity/contact checks.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-021",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/me/security-pin/verify": {
+      "post": {
+        "operationId": "post_me_security_pin_verify",
+        "summary": "Verify PIN for a sensitive operation.",
+        "tags": [
+          "Identity and sessions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-022",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/favorites/taskers/{taskerId}": {
+      "delete": {
+        "operationId": "delete_favorites_taskers_taskerid",
+        "summary": "Remove favorite Tasker.",
+        "tags": [
+          "Matching"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-083",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/favorites/taskers": {
+      "get": {
+        "operationId": "get_favorites_taskers",
+        "summary": "List favorite Taskers.",
+        "tags": [
+          "Matching"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-081",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      },
+      "post": {
+        "operationId": "post_favorites_taskers",
+        "summary": "Add Tasker to favorites.",
+        "tags": [
+          "Matching"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-082",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}/candidates": {
+      "get": {
+        "operationId": "get_task_owner_tasks_taskid_candidates",
+        "summary": "List interested/available Taskers with ETA and profile summary.",
+        "tags": [
+          "Matching"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-046",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/tasks": {
+      "get": {
+        "operationId": "get_tasker_tasks",
+        "summary": "List available tasks sorted nearest first with location filtering.",
+        "tags": [
+          "Matching"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-057",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}/direct-offers": {
+      "post": {
+        "operationId": "post_task_owner_tasks_taskid_direct_offers",
+        "summary": "Send direct offer to a favorite Tasker.",
+        "tags": [
+          "Matching"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-045",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/tasks/{taskId}/interest": {
+      "post": {
+        "operationId": "post_tasker_tasks_taskid_interest",
+        "summary": "Declare interest and confirm ability to arrive by required time.",
+        "tags": [
+          "Matching"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-059",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/payments/verify": {
+      "post": {
+        "operationId": "post_payments_verify",
+        "summary": "Verify payment redirect/status from client side.",
+        "tags": [
+          "Payments and escrow"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-070",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/webhooks/moniepoint": {
+      "post": {
+        "operationId": "post_webhooks_moniepoint",
+        "summary": "Receive Moniepoint payment/transfer events.",
+        "tags": [
+          "Payments and escrow"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-072",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Provider",
+        "x-work2cash-auth": "Signature",
+        "x-work2cash-idempotency": "Provider event ID",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/webhooks/paystack": {
+      "post": {
+        "operationId": "post_webhooks_paystack",
+        "summary": "Receive Paystack payment/transfer events.",
+        "tags": [
+          "Payments and escrow"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-071",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Provider",
+        "x-work2cash-auth": "Signature",
+        "x-work2cash-idempotency": "Provider event ID",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/webhooks/calls/provider": {
+      "post": {
+        "operationId": "post_webhooks_calls_provider",
+        "summary": "Receives Inbound proxy call, call bridged, call ended, recording metadata if enabled from Masked Call Provider.",
+        "tags": [
+          "Providers, webhooks, queues and jobs"
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "WEBHOOK-004",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and provider validation",
+        "x-work2cash-actor": "Masked Call Provider",
+        "x-work2cash-auth": "Provider signature",
+        "x-work2cash-idempotency": "Call session ID + provider call ID.",
+        "x-work2cash-gaps": [
+          "Provider-specific request schema and signature test vectors require sandbox evidence."
+        ]
+      }
+    },
+    "/webhooks/smile-id": {
+      "post": {
+        "operationId": "post_webhooks_smile_id",
+        "summary": "Receives KYC approved, rejected, pending, failed from Smile ID.",
+        "tags": [
+          "Providers, webhooks, queues and jobs"
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "WEBHOOK-003",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and provider validation",
+        "x-work2cash-actor": "Smile ID",
+        "x-work2cash-auth": "Provider signature",
+        "x-work2cash-idempotency": "Smile job/user reference.",
+        "x-work2cash-gaps": [
+          "Provider-specific request schema and signature test vectors require sandbox evidence."
+        ]
+      }
+    },
+    "/referrals/me": {
+      "get": {
+        "operationId": "get_referrals_me",
+        "summary": "Returns the signed-in user's referral code, native-share URL and aggregate progress/reward summary for MF-17.",
+        "tags": [
+          "Referral Contract Group"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-130",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved CONTRACT-REFERRAL-001 decision",
+        "x-work2cash-actor": "Signed-in user",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Read-only",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/referrals/me/attributions": {
+      "get": {
+        "operationId": "get_referrals_me_attributions",
+        "summary": "Returns only referrals attributed to the signed-in user, including paid-task progress and reward status.",
+        "tags": [
+          "Referral Contract Group"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-131",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved CONTRACT-REFERRAL-001 decision",
+        "x-work2cash-actor": "Signed-in user",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Read-only",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/admin/ratings": {
+      "get": {
+        "operationId": "get_admin_ratings",
+        "summary": "Review ratings and reported reviews.",
+        "tags": [
+          "Reports and risk"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-125",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Ops/Risk",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/reports": {
+      "get": {
+        "operationId": "get_admin_reports",
+        "summary": "List reports/disputes.",
+        "tags": [
+          "Reports and risk"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-122",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Support/Risk",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/reports/{reportId}": {
+      "get": {
+        "operationId": "get_reports_reportid",
+        "summary": "Return report status and allowed next action.",
+        "tags": [
+          "Reports and risk"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-085",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User/Admin",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/referrals/{attributionId}/escalate-risk": {
+      "post": {
+        "operationId": "post_admin_referrals_attributionid_escalate_risk",
+        "summary": "Approved contract record from Referral Contract Group.",
+        "tags": [
+          "Reports and risk"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-138",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved CONTRACT-REFERRAL-001 decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "See approved source",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/admin/reports/{reportId}/resolve": {
+      "post": {
+        "operationId": "post_admin_reports_reportid_resolve",
+        "summary": "Resolve report with outcome, penalty, hold, or dismissal.",
+        "tags": [
+          "Reports and risk"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-123",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Support/Risk",
+        "x-work2cash-auth": "Admin token + TOTP where high impact",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}/report": {
+      "post": {
+        "operationId": "post_task_owner_tasks_taskid_report",
+        "summary": "Report issue linked to a task.",
+        "tags": [
+          "Reports and risk"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-051",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasks/{taskId}/ratings": {
+      "post": {
+        "operationId": "post_tasks_taskid_ratings",
+        "summary": "Submit rating and review after completed task.",
+        "tags": [
+          "Reports and risk"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-080",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner/Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasks/{taskId}/reports": {
+      "post": {
+        "operationId": "post_tasks_taskid_reports",
+        "summary": "Create report/dispute linked to a task.",
+        "tags": [
+          "Reports and risk"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-084",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "get_health",
+        "summary": "Basic liveness check.",
+        "tags": [
+          "System operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-095",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Load balancer",
+        "x-work2cash-auth": "Public/internal",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/metrics": {
+      "get": {
+        "operationId": "get_metrics",
+        "summary": "Expose service metrics for monitoring.",
+        "tags": [
+          "System operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-097",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Monitoring",
+        "x-work2cash-auth": "Internal",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/ready": {
+      "get": {
+        "operationId": "get_ready",
+        "summary": "Readiness check for API dependencies.",
+        "tags": [
+          "System operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-096",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Load balancer",
+        "x-work2cash-auth": "Internal",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/version": {
+      "get": {
+        "operationId": "get_version",
+        "summary": "Return deployed API version and compatibility metadata.",
+        "tags": [
+          "System operations"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-098",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Client/Admin",
+        "x-work2cash-auth": "Public",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}/location/confirm-pin": {
+      "post": {
+        "operationId": "post_task_owner_tasks_taskid_location_confirm_pin",
+        "summary": "Confirm exact map pin before posting.",
+        "tags": [
+          "Task creation"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-041",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}/location/geocode": {
+      "post": {
+        "operationId": "post_task_owner_tasks_taskid_location_geocode",
+        "summary": "Convert manual address to coordinates.",
+        "tags": [
+          "Task creation"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-040",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}/media": {
+      "post": {
+        "operationId": "post_task_owner_tasks_taskid_media",
+        "summary": "Upload proof of work to be done.",
+        "tags": [
+          "Task creation"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-042",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}/payment-intent": {
+      "post": {
+        "operationId": "post_task_owner_tasks_taskid_payment_intent",
+        "summary": "Create Paystack or Moniepoint payment session.",
+        "tags": [
+          "Task creation"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-043",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/drafts": {
+      "post": {
+        "operationId": "post_task_owner_tasks_drafts",
+        "summary": "Create a draft task.",
+        "tags": [
+          "Task creation"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-038",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/tasks/{taskId}": {
+      "get": {
+        "operationId": "get_tasker_tasks_taskid",
+        "summary": "Return public task details, limited media summary, distance, and arrival requirement.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-058",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/tasks/{taskId}/force-cancel": {
+      "post": {
+        "operationId": "post_admin_tasks_taskid_force_cancel",
+        "summary": "Force cancel task with elevated permission.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-120",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Ops Lead",
+        "x-work2cash-auth": "Admin token + TOTP",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}/broadcast": {
+      "post": {
+        "operationId": "post_task_owner_tasks_taskid_broadcast",
+        "summary": "Move a funded task into public broadcast.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-044",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}/cancel": {
+      "post": {
+        "operationId": "post_task_owner_tasks_taskid_cancel",
+        "summary": "Cancel task under current state rules.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-050",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}/confirm-completion": {
+      "post": {
+        "operationId": "post_task_owner_tasks_taskid_confirm_completion",
+        "summary": "Approve completed task and release escrow if no hold applies.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-049",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}/rebook": {
+      "post": {
+        "operationId": "post_task_owner_tasks_taskid_rebook",
+        "summary": "Create repeat task from a previous completed task.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-052",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/tasks/{taskId}/accept": {
+      "post": {
+        "operationId": "post_tasker_tasks_taskid_accept",
+        "summary": "Accept direct offer or accepted assignment where state allows.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-060",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/tasks/{taskId}/arrived": {
+      "post": {
+        "operationId": "post_tasker_tasks_taskid_arrived",
+        "summary": "Mark arrival at task site.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-063",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/tasks/{taskId}/begin": {
+      "post": {
+        "operationId": "post_tasker_tasks_taskid_begin",
+        "summary": "Begin the task after arrival.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-064",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/tasks/{taskId}/cancel": {
+      "post": {
+        "operationId": "post_tasker_tasks_taskid_cancel",
+        "summary": "Cancel accepted task.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-067",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/tasks/{taskId}/completion-proof": {
+      "post": {
+        "operationId": "post_tasker_tasks_taskid_completion_proof",
+        "summary": "Upload proof of work done.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-065",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/tasks/{taskId}/decline": {
+      "post": {
+        "operationId": "post_tasker_tasks_taskid_decline",
+        "summary": "Decline direct offer or withdraw interest before commitment.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-061",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/tasks/{taskId}/request-completion": {
+      "post": {
+        "operationId": "post_tasker_tasks_taskid_request_completion",
+        "summary": "Ask Task Owner to approve completed work.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-066",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/tasks/{taskId}/start-journey": {
+      "post": {
+        "operationId": "post_tasker_tasks_taskid_start_journey",
+        "summary": "Mark movement toward task site.",
+        "tags": [
+          "Task execution"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-062",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}": {
+      "patch": {
+        "operationId": "patch_task_owner_tasks_taskid",
+        "summary": "Update task title, category, description, budget, required arrival time, and visibility while editable.",
+        "tags": [
+          "Task Owner"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-039",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}/accept-tasker": {
+      "post": {
+        "operationId": "post_task_owner_tasks_taskid_accept_tasker",
+        "summary": "Accept a Tasker for the task.",
+        "tags": [
+          "Task Owner"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-047",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/task-owner/tasks/{taskId}/reject-tasker": {
+      "post": {
+        "operationId": "post_task_owner_tasks_taskid_reject_tasker",
+        "summary": "Reject a Tasker before movement or within allowed movement grace window.",
+        "tags": [
+          "Task Owner"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-048",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Task Owner",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/kyc": {
+      "get": {
+        "operationId": "get_admin_kyc",
+        "summary": "Returns the operational KYC queue. It supplies summary fields only and never returns protected evidence.",
+        "tags": [
+          "Tasker activation and KYC"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-140",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved Phase 1 KYC review contract decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "Read-only",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/admin/kyc/{kycId}": {
+      "get": {
+        "operationId": "get_admin_kyc_kycid",
+        "summary": "Returns the complete safe decision context for one case. Protected evidence uses time-limited references only when the admin also has kyc.evidence.read.",
+        "tags": [
+          "Tasker activation and KYC"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-141",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved Phase 1 KYC review contract decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "Read-only",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/kyc/status": {
+      "get": {
+        "operationId": "get_kyc_status",
+        "summary": "Return current KYC state and allowed next action.",
+        "tags": [
+          "Tasker activation and KYC"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-030",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/kyc/{kycId}/approve": {
+      "post": {
+        "operationId": "post_admin_kyc_kycid_approve",
+        "summary": "Records that the verified evidence satisfies KYC policy and recalculates Tasker activation eligibility.",
+        "tags": [
+          "Tasker activation and KYC"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-142",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved Phase 1 KYC review contract decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "See approved source",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/admin/kyc/{kycId}/escalate-risk": {
+      "post": {
+        "operationId": "post_admin_kyc_kycid_escalate_risk",
+        "summary": "Hands suspicious or ambiguous identity behavior to AF-14 without falsely approving or rejecting KYC.",
+        "tags": [
+          "Tasker activation and KYC"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-145",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved Phase 1 KYC review contract decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "See approved source",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/admin/kyc/{kycId}/reconcile": {
+      "post": {
+        "operationId": "post_admin_kyc_kycid_reconcile",
+        "summary": "Queues one controlled check of the latest Smile ID attempt when verified provider truth is delayed or inconsistent.",
+        "tags": [
+          "Tasker activation and KYC"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-146",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved Phase 1 KYC review contract decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "See approved source",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/admin/kyc/{kycId}/reject": {
+      "post": {
+        "operationId": "post_admin_kyc_kycid_reject",
+        "summary": "Records a verified non-correctable policy failure. Correctable evidence problems must use re-verification instead.",
+        "tags": [
+          "Tasker activation and KYC"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-143",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved Phase 1 KYC review contract decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "See approved source",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/admin/kyc/{kycId}/request-reverification": {
+      "post": {
+        "operationId": "post_admin_kyc_kycid_request_reverification",
+        "summary": "Records a correctable problem and tells the Tasker which accepted steps must be repeated.",
+        "tags": [
+          "Tasker activation and KYC"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-031",
+        "x-work2cash-status": "approved-reference",
+        "x-work2cash-authority": "Approved Phase 1 KYC review contract decision",
+        "x-work2cash-actor": "Admin",
+        "x-work2cash-auth": "TOTP-authenticated Admin session and named permission",
+        "x-work2cash-idempotency": "See approved source",
+        "x-work2cash-gaps": [
+          "OpenAPI component schemas must be completed from the approved examples before generated clients are treated as final."
+        ]
+      }
+    },
+    "/kyc/face-capture": {
+      "post": {
+        "operationId": "post_kyc_face_capture",
+        "summary": "Submit biometric face capture reference or uploaded media.",
+        "tags": [
+          "Tasker activation and KYC"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-029",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/kyc/nin-bvn": {
+      "post": {
+        "operationId": "post_kyc_nin_bvn",
+        "summary": "Submit NIN or BVN for verification through Smile ID adapter.",
+        "tags": [
+          "Tasker activation and KYC"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-028",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/kyc/start": {
+      "post": {
+        "operationId": "post_kyc_start",
+        "summary": "Open a KYC attempt for Tasker activation.",
+        "tags": [
+          "Tasker activation and KYC"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-027",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/profile": {
+      "get": {
+        "operationId": "get_tasker_profile",
+        "summary": "Return Tasker profile, KYC state, skills, ratings, payout readiness, and availability.",
+        "tags": [
+          "Tasker"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-053",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      },
+      "patch": {
+        "operationId": "patch_tasker_profile",
+        "summary": "Update skills, bio, task categories, service locations, and profile metadata.",
+        "tags": [
+          "Tasker"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-054",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/preferences": {
+      "patch": {
+        "operationId": "patch_tasker_preferences",
+        "summary": "Update work preferences and max travel radius.",
+        "tags": [
+          "Tasker"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-055",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/availability": {
+      "post": {
+        "operationId": "post_tasker_availability",
+        "summary": "Set available/unavailable status.",
+        "tags": [
+          "Tasker"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-056",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/payout-account": {
+      "get": {
+        "operationId": "get_tasker_payout_account",
+        "summary": "Return payout account setup status.",
+        "tags": [
+          "Wallets and payouts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-073",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      },
+      "post": {
+        "operationId": "post_tasker_payout_account",
+        "summary": "Add or change Tasker payout account.",
+        "tags": [
+          "Wallets and payouts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-074",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token + PIN",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/tasker/withdrawals": {
+      "get": {
+        "operationId": "get_tasker_withdrawals",
+        "summary": "List withdrawal requests and batch status.",
+        "tags": [
+          "Wallets and payouts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-076",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      },
+      "post": {
+        "operationId": "post_tasker_withdrawals",
+        "summary": "Request withdrawal into next eligible payout batch.",
+        "tags": [
+          "Wallets and payouts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-075",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Tasker",
+        "x-work2cash-auth": "Access token + PIN",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/wallets": {
+      "get": {
+        "operationId": "get_wallets",
+        "summary": "Return Task Owner wallet and Tasker wallet summaries.",
+        "tags": [
+          "Wallets and payouts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-068",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/wallets/{walletId}/ledger": {
+      "get": {
+        "operationId": "get_wallets_walletid_ledger",
+        "summary": "Return wallet ledger entries.",
+        "tags": [
+          "Wallets and payouts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-069",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "User/Admin",
+        "x-work2cash-auth": "Access token",
+        "x-work2cash-idempotency": "No",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/payout-batches": {
+      "post": {
+        "operationId": "post_admin_payout_batches",
+        "summary": "Create payout batch for eligible withdrawal requests.",
+        "tags": [
+          "Wallets and payouts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-077",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Finance",
+        "x-work2cash-auth": "Admin token",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/payout-batches/{batchId}/approve": {
+      "post": {
+        "operationId": "post_admin_payout_batches_batchid_approve",
+        "summary": "Approve prepared payout batch.",
+        "tags": [
+          "Wallets and payouts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-078",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Finance",
+        "x-work2cash-auth": "Admin token + TOTP",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    },
+    "/admin/payout-batches/{batchId}/mark-processed": {
+      "post": {
+        "operationId": "post_admin_payout_batches_batchid_mark_processed",
+        "summary": "Finalize payout batch after provider processing.",
+        "tags": [
+          "Wallets and payouts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. Exact component schema is controlled by the reviewed contract record."
+          },
+          "default": {
+            "description": "Standard Work2Cash error envelope."
+          }
+        },
+        "x-work2cash-id": "API-079",
+        "x-work2cash-status": "provisional",
+        "x-work2cash-authority": "Main Enterprise Architecture and approved standalone flows",
+        "x-work2cash-actor": "Admin Finance",
+        "x-work2cash-auth": "Admin token + TOTP",
+        "x-work2cash-idempotency": "Yes",
+        "x-work2cash-gaps": [
+          "Request and response component schemas require explicit review before implementation.",
+          "Endpoint-to-model traceability must be confirmed where the legacy table did not name records."
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "ErrorEnvelope": {
+        "type": "object",
+        "required": [
+          "error",
+          "meta"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "details": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "additionalProperties": true
+              }
+            }
+          },
+          "meta": {
+            "type": "object",
+            "required": [
+              "requestId"
+            ],
+            "properties": {
+              "requestId": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

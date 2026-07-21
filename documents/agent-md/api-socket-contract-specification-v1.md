@@ -1,8 +1,9 @@
 # API & Socket Contract Specification v1
 
-> Agent Markdown version of the matching documentation portal page.
+> AI-agent Markdown equivalent of `api-socket-contract-specification-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
+> Human-readable HTML source: `.API & Socket Contract Specification v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -266,10 +267,10 @@ Work2Cash separates API and Socket domains so traffic can scale independently wh
 | Environment | Surface       | URL                                   | Purpose                                                     | Notes                                           |
 |-------------|---------------|---------------------------------------|-------------------------------------------------------------|-------------------------------------------------|
 | Production  | Website       | `https://work2cash.ng`                | Public product site and download entry.                     | www redirects to root domain.                   |
-| Production  | API           | `https://api.work2cash.ng`            | REST API for mobile, admin, webhooks where provider allows. | Primary durable contract surface.               |
+| Production  | API           | `https://api.work2cash.ng`            | REST API for mobile, admin, webhooks where provider allows. | Primary durable contract surface hosted on the DigitalOcean production baseline.               |
 | Production  | Admin         | `https://admin.work2cash.ng`          | Next.js admin dashboard.                                    | Admin TOTP and RBAC required.                   |
 | Production  | Socket        | `https://socket.work2cash.ng`         | Socket.IO gateway for real-time features.                   | Uses token auth and Valkey adapter when scaled. |
-| Staging     | Website/Admin | `https://staging.work2cash.ng`        | Staging web/admin surface.                                  | Ultra-lean Hetzner staging path.                |
+| Staging     | Website/Admin | `https://staging.work2cash.ng`        | Staging web/admin surface.                                  | Contabo Cloud 20 staging: 6 vCPU, 12GB RAM, 100GB NVMe, 2 snapshots, 300Mbit/s port, EU region, Ubuntu, no AutoBackup, no private networking. Add 250GB EU Object Storage. Total Contabo staging cost is €10/month, approximately ₦18,000/month at €1 = ₦1,800.                |
 | Staging     | API           | `https://api-staging.work2cash.ng`    | Staging REST API.                                           | Used by staging mobile/admin builds.            |
 | Staging     | Socket        | `https://socket-staging.work2cash.ng` | Staging Socket.IO gateway.                                  | Used by staging mobile/admin builds.            |
 
@@ -1185,9 +1186,9 @@ This section checks the API and socket contract against the corrected mobile and
 
 | Flow  | Name                                     | Primary REST Contracts                                                                                                      | Socket / Realtime Contract                                     | Implementation Note                                                                              |
 |-------|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| MF-01 | Registration                             | /auth/register, /auth/otp/send, /auth/otp/verify, /me, /me/profile, /me/security-pin/setup                                  | Socket not required                                            | Repairs through Login + nextRequiredAction if interrupted.                                       |
-| MF-02 | Login                                    | /auth/login, /auth/social/google, /auth/social/apple, /auth/refresh, /me                                                    | Socket connects after auth when needed                         | Routes to KYC, profile, PIN, or Home based on backend state.                                     |
-| MF-03 | Onboarding and Mode Setup                | /me, /me/mode, /me/profile                                                                                                  | Socket not required                                            | Uses mode field for Task Owner/Tasker context.                                                   |
+| MF-01 | First App Launch and Entry Decision      | /auth/refresh, /me                                                                                                          | Socket connects only after authenticated recovery when needed  | Restores the session when possible and routes from backend nextRequiredAction; no session routes to registration or login. |
+| MF-02 | Registration                             | /auth/register, /auth/otp/send, /auth/otp/verify, /me, /me/profile, /me/security-pin/setup                                  | Socket not required                                            | Creates and verifies the account; interruption repairs through Login and nextRequiredAction.     |
+| MF-03 | Login / Session Recovery                 | /auth/login, /auth/social/google, /auth/social/apple, /auth/refresh, /me                                                    | Socket connects after auth when needed                         | Routes to KYC, profile, PIN, mode setup, or Home based on backend state.                         |
 | MF-04 | Task Owner Home                          | /me, /notifications, /task-owner/tasks/{taskId}/candidates, task summary endpoints                                          | Presence optional                                              | Shows current tasks, wallet state, notifications, and shortcuts.                                 |
 | MF-05 | Tasker Activation                        | /kyc/start, /kyc/nin-bvn, /kyc/face-capture, /kyc/status, /tasker/profile                                                   | Socket not required                                            | Tasker cannot accept tasks until KYC and profile are approved.                                   |
 | MF-06 | Create and Fund Task                     | /task-owner/tasks/drafts, /task-owner/tasks/{taskId}, /location/geocode, /location/confirm-pin, /media, /payment-intent     | Socket not required                                            | Payment truth comes from backend verification/webhook, not client redirect alone.                |
@@ -1195,13 +1196,13 @@ This section checks the API and socket contract against the corrected mobile and
 | MF-08 | Direct Offer to Favorite Tasker          | /favorites/taskers, /task-owner/tasks/{taskId}/direct-offers, /tasker/tasks/{taskId}/accept, /tasker/tasks/{taskId}/decline | FCM notification; direct offer is not socket-based             | Direct offer status uses durable REST state.                                                     |
 | MF-09 | Tasker Browse and Accept Task            | /tasker/tasks, /tasker/tasks/{taskId}, /tasker/tasks/{taskId}/interest, /tasker/tasks/{taskId}/accept                       | Presence optional                                              | Tasker must be in Nigeria and confirm arrival ability.                                           |
 | MF-10 | Active Task Execution                    | /tasker/tasks/{taskId}/start-journey, /arrived, /begin, /completion-proof, /request-completion                              | /tracking, /task                                               | Covers Start Journey, I have arrived, Begin Task, chat, voice notes, masked calls, and tracking. |
-| MF-11 | Completion and Settlement                | /task-owner/tasks/{taskId}/confirm-completion, /tasks/{taskId}/ratings, wallet/escrow status endpoints                      | Socket may notify chat/presence, but settlement is REST/worker | Escrow release can be held only for active issues/disputes.                                      |
+| MF-11 | Task Owner Rejection                     | /task-owner/tasks/{taskId}/candidates, /task-owner/tasks/{taskId}/reject-tasker, /task-owner/tasks/{taskId}/report           | REST command; socket may refresh active task UI                | Enforces pre-movement/grace-window rejection and records repeated movement-stage risk.           |
 | MF-12 | Cancellation and No-Show                 | /task-owner/tasks/{taskId}/cancel, /tasker/tasks/{taskId}/cancel, /tasks/{taskId}/reports                                   | Socket can update active task UI                               | Warning/strike and penalty rules are backend-enforced.                                           |
 | MF-13 | Tasker Withdrawal                        | /tasker/payout-account, /tasker/withdrawals, /wallets, /wallets/{walletId}/ledger                                           | Socket not required                                            | Requires PIN and enters 14th/28th payout batch.                                                  |
-| MF-14 | Task History                             | /task-owner/tasks history endpoint, /tasker/tasks history endpoint, /reports/{reportId}, /wallets/{walletId}/ledger         | Socket not required                                            | Exact endpoint names can be finalized in OpenAPI implementation.                                 |
+| MF-14 | Completion and Settlement                | /tasker/tasks/{taskId}/completion-proof, /tasker/tasks/{taskId}/request-completion, /task-owner/tasks/{taskId}/confirm-completion, /tasks/{taskId}/ratings, wallet/escrow status endpoints | Socket may notify; settlement is REST/worker truth | Escrow release can be held only for active issues/disputes.                                      |
 | MF-15 | Favorites                                | /favorites/taskers, /tasks/{taskId}/ratings, /task-owner/tasks/{taskId}/direct-offers                                       | Socket not required                                            | Task Owner can add favorite after rating and rebook/send direct offer later.                     |
 | MF-16 | Support Live Chat                        | /support/sessions, /support/emergency, /support/tickets where added                                                         | /support                                                       | Support chat is socket-based after REST creates session.                                         |
-| MF-17 | Notifications                            | /notifications, /notifications/{notificationId}/read, /me/notification-preferences                                          | FCM + optional presence                                        | FCM wakes device; in-app notification list is durable REST state.                                |
+| MF-17 | Referral                                 | GET /referrals/me, GET /referrals/me/attributions, optional referralCode on POST /auth/register                            | Socket not required                                            | CONTRACT-REFERRAL-001; backend settlement qualifies and credits one reward after 5 paid tasks.    |
 | MF-18 | Profile and Settings                     | /me, /me/profile, /me/addresses, /me/notification-preferences                                                               | Socket not required                                            | Sensitive changes require PIN.                                                                   |
 | MF-19 | Security and Device Management           | /me/security-pin/setup, /verify, /reset/start, /reset/confirm, /me/sessions                                                 | Socket not required                                            | PIN confirms sensitive actions; OTP only for PIN recovery/contact verification.                  |
 | MF-20 | Notification Center and Preferences      | /notifications, /notifications/{notificationId}/read, /me/notification-preferences                                          | FCM                                                            | Critical messages may bypass marketing preference limits.                                        |
@@ -1254,7 +1255,7 @@ This section checks the API and socket contract against the corrected mobile and
 | AF-12 | Service Coverage Configuration                | /admin/config/{key}, location/coverage config endpoints when implemented            | Socket not required                | Nigeria-only task site policy and location rules.                          |
 | AF-13 | Task Media Moderation                         | /admin/tasks/{taskId}, media moderation endpoints when implemented                  | Socket not required                | Admin can review/remove unsafe or invalid media.                           |
 | AF-14 | Risk, Trust, Warning and Strike Review        | /admin/reports/{reportId}/resolve, /admin/users/{userId}/suspend, /admin/audit-logs | Socket not required                | Warning/strike outcomes must be auditable.                                 |
-| AF-15 | Referral Management                           | Referral endpoints to be finalized in OpenAPI                                       | Socket not required                | Reward after referred user completes 5 paid tasks.                         |
+| AF-15 | Referral Management                           | GET /admin/referrals, GET /admin/referrals/{attributionId}, approve/hold/reject/escalate-risk mutations | Socket not required | CONTRACT-REFERRAL-001; decisions are permissioned, versioned, idempotent and audited. |
 | AF-16 | Platform Config and Remote Config             | /admin/config, /admin/config/{key}                                                  | Socket not required                | Admin dashboard owns remote config sections.                               |
 | AF-17 | Admin Users, Roles and Permissions            | /admin/admin-users, /admin/roles, /admin/permissions, /admin/auth/sessions          | Socket not required                | Admin RBAC is separate from platform user roles.                           |
 | AF-18 | Audit Log Review                              | /admin/audit-logs                                                                   | Socket not required                | Immutable audit trail for privileged actions.                              |
@@ -1416,9 +1417,9 @@ API & Socket Contract Specification v1 for the team-facing documentation portal.
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**API & Socket Contract Specification v1** in the documentation portal
+`API & Socket Contract Specification v1`
 
 </div>
 

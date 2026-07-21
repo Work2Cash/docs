@@ -1,20 +1,11 @@
 # Backend Build Plan v1
 
-> Agent Markdown version of the matching documentation portal page.
+> **Superseded:** retained as migration evidence. Use `planning/backend-build-plan.md` for the active week-by-week and day-by-day Backend plan.
+
+> AI-agent Markdown equivalent of `build-plan-backend-v1.html`.
 >
-> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, open the matching page in the documentation portal.
-
-## AI Context Guard
-
-If this is the only Work2Cash Markdown file the user provided, do not give implementation steps yet.
-
-First tell the user to return to the documentation portal UI and download these files:
-
-1. Open **Mobile Flow Catalogue v1** from the document portal, then click **Download agent Markdown**.
-2. Open **Weekly Execution Packs**, then download the active week Markdown.
-3. Open **Backend Build Plan v1**, then use **Team Markdown Downloads** to download **Full Project Markdown**.
-
-Explain that the mobile flow document is required because backend delivery is mobile-led, the weekly pack is required to understand the current execution sequence, and the full source-of-truth document is required to understand product, architecture, provider, data, legal and launch constraints. For admin-facing backend work, also tell the user to open **Admin Flow Catalogue v1** and click **Download agent Markdown**. After those files are provided, continue with the task.
+> Human-readable HTML source: `.Backend Build Plan v1`.
+> Use this Markdown version for lower-token AI context. If a task needs visual layout or exact document presentation, use the HTML page.
 
 <div class="section cover">
 
@@ -333,7 +324,7 @@ Week 1
 
 | Day  | Date            | Workstream                     | Execution Scope                                                                                                     | Dependency                          | Commit / Output Rule                               |
 |------|-----------------|--------------------------------|---------------------------------------------------------------------------------------------------------------------|-------------------------------------|----------------------------------------------------|
-| W1D1 | Mon 6 Jul 2026  | Project foundation and contracts  | Create NestJS hexagonal structure, Prisma baseline, response/error shapes, OpenAPI shell, health/version endpoints. | Unblocks mobile/admin scaffolding.  | docs(backend): publish initial API contract shell  |
+| W1D1 | Mon 6 Jul 2026  | Repo foundation and contracts  | Create NestJS hexagonal structure, Prisma baseline, response/error shapes, OpenAPI shell, health/version endpoints. | Unblocks mobile/admin scaffolding.  | docs(backend): publish initial API contract shell  |
 | W1D2 | Tue 7 Jul 2026  | Auth contract stubs            | Implement auth/profile/PIN/session DTOs and stub handlers with stable response shapes.                              | Unblocks mobile auth screens.       | feat(auth): add auth contract stubs                |
 | W1D3 | Wed 8 Jul 2026  | Auth implementation            | Implement register, login, OTP email-first/SMS fallback, refresh rotation, social auth adapter shell.               | Supports mobile registration/login. | feat(auth): implement registration and login       |
 | W1D4 | Thu 9 Jul 2026  | Profile, mode, PIN, sessions   | Implement /me, profile update, mode, PIN setup/verify/reset, device/session revoke.                                 | Supports mobile profile/security.   | feat(identity): implement profile pin and sessions |
@@ -649,9 +640,9 @@ Backend Build Execution Plan v1 for Codex and AI-agent execution.
 
 <div>
 
-#### Document Location
+#### Portal Page
 
-**Backend Build Plan v1** in the documentation portal
+`Backend Build Plan v1`
 
 </div>
 
